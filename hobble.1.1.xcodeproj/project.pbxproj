@@ -22,6 +22,22 @@
 		00CEE3F3199434E700F40C12 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE3D7199434E700F40C12 /* CoreData.framework */; };
 		00CEE3FB199434E700F40C12 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00CEE3F9199434E700F40C12 /* InfoPlist.strings */; };
 		00CEE3FD199434E700F40C12 /* hobble_1_1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CEE3FC199434E700F40C12 /* hobble_1_1Tests.m */; };
+		00CEE4071994350300F40C12 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00CEE4061994350300F40C12 /* MainStoryboard.storyboard */; };
+		00CEE40B1994369A00F40C12 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE40A1994369A00F40C12 /* Parse.framework */; };
+		00CEE40E199436D700F40C12 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CEE40D199436D700F40C12 /* LoginViewController.m */; };
+		00CEE41119943AFC00F40C12 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CEE41019943AFC00F40C12 /* SignUpViewController.m */; };
+		00CEE413199448E900F40C12 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE412199448E900F40C12 /* AddressBook.framework */; };
+		00CEE415199448F000F40C12 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE414199448F000F40C12 /* AddressBookUI.framework */; };
+		00CEE4171994490100F40C12 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4161994490100F40C12 /* CFNetwork.framework */; };
+		00CEE4191994490800F40C12 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4181994490800F40C12 /* SystemConfiguration.framework */; };
+		00CEE41B1994490E00F40C12 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE41A1994490E00F40C12 /* MobileCoreServices.framework */; };
+		00CEE41D1994491400F40C12 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE41C1994491400F40C12 /* AudioToolbox.framework */; };
+		00CEE41F1994491A00F40C12 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE41E1994491A00F40C12 /* Security.framework */; };
+		00CEE4211994492100F40C12 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4201994492100F40C12 /* libz.1.1.3.dylib */; };
+		00CEE4231994492700F40C12 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4221994492700F40C12 /* QuartzCore.framework */; };
+		00CEE4251994493500F40C12 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4241994493500F40C12 /* StoreKit.framework */; };
+		00CEE4271994493A00F40C12 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4261994493A00F40C12 /* CoreLocation.framework */; };
+		00CEE42A19952E7C00F40C12 /* FriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CEE42919952E7C00F40C12 /* FriendsTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +69,25 @@
 		00CEE3F8199434E700F40C12 /* hobble.1.1Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "hobble.1.1Tests-Info.plist"; sourceTree = "<group>"; };
 		00CEE3FA199434E700F40C12 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		00CEE3FC199434E700F40C12 /* hobble_1_1Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = hobble_1_1Tests.m; sourceTree = "<group>"; };
+		00CEE4061994350300F40C12 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		00CEE40A1994369A00F40C12 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		00CEE40C199436D700F40C12 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = ../LoginViewController.h; sourceTree = "<group>"; };
+		00CEE40D199436D700F40C12 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = ../LoginViewController.m; sourceTree = "<group>"; };
+		00CEE40F19943AFC00F40C12 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		00CEE41019943AFC00F40C12 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		00CEE412199448E900F40C12 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		00CEE414199448F000F40C12 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		00CEE4161994490100F40C12 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		00CEE4181994490800F40C12 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		00CEE41A1994490E00F40C12 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		00CEE41C1994491400F40C12 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		00CEE41E1994491A00F40C12 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		00CEE4201994492100F40C12 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
+		00CEE4221994492700F40C12 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		00CEE4241994493500F40C12 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		00CEE4261994493A00F40C12 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		00CEE42819952E7C00F40C12 /* FriendsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsTableViewController.h; sourceTree = "<group>"; };
+		00CEE42919952E7C00F40C12 /* FriendsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,10 +95,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00CEE3D4199434E700F40C12 /* CoreGraphics.framework in Frameworks */,
 				00CEE3D8199434E700F40C12 /* CoreData.framework in Frameworks */,
+				00CEE4271994493A00F40C12 /* CoreLocation.framework in Frameworks */,
+				00CEE4251994493500F40C12 /* StoreKit.framework in Frameworks */,
+				00CEE3D4199434E700F40C12 /* CoreGraphics.framework in Frameworks */,
+				00CEE4231994492700F40C12 /* QuartzCore.framework in Frameworks */,
+				00CEE4211994492100F40C12 /* libz.1.1.3.dylib in Frameworks */,
+				00CEE41F1994491A00F40C12 /* Security.framework in Frameworks */,
+				00CEE41D1994491400F40C12 /* AudioToolbox.framework in Frameworks */,
+				00CEE41B1994490E00F40C12 /* MobileCoreServices.framework in Frameworks */,
+				00CEE4191994490800F40C12 /* SystemConfiguration.framework in Frameworks */,
+				00CEE4171994490100F40C12 /* CFNetwork.framework in Frameworks */,
 				00CEE3D6199434E700F40C12 /* UIKit.framework in Frameworks */,
 				00CEE3D2199434E700F40C12 /* Foundation.framework in Frameworks */,
+				00CEE415199448F000F40C12 /* AddressBookUI.framework in Frameworks */,
+				00CEE413199448E900F40C12 /* AddressBook.framework in Frameworks */,
+				00CEE40B1994369A00F40C12 /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +150,18 @@
 		00CEE3D0199434E700F40C12 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				00CEE4261994493A00F40C12 /* CoreLocation.framework */,
+				00CEE4241994493500F40C12 /* StoreKit.framework */,
+				00CEE4221994492700F40C12 /* QuartzCore.framework */,
+				00CEE4201994492100F40C12 /* libz.1.1.3.dylib */,
+				00CEE41E1994491A00F40C12 /* Security.framework */,
+				00CEE41C1994491400F40C12 /* AudioToolbox.framework */,
+				00CEE41A1994490E00F40C12 /* MobileCoreServices.framework */,
+				00CEE4181994490800F40C12 /* SystemConfiguration.framework */,
+				00CEE4161994490100F40C12 /* CFNetwork.framework */,
+				00CEE414199448F000F40C12 /* AddressBookUI.framework */,
+				00CEE412199448E900F40C12 /* AddressBook.framework */,
+				00CEE40A1994369A00F40C12 /* Parse.framework */,
 				00CEE3D1199434E700F40C12 /* Foundation.framework */,
 				00CEE3D3199434E700F40C12 /* CoreGraphics.framework */,
 				00CEE3D5199434E700F40C12 /* UIKit.framework */,
@@ -115,6 +174,13 @@
 		00CEE3D9199434E700F40C12 /* hobble.1.1 */ = {
 			isa = PBXGroup;
 			children = (
+				00CEE4061994350300F40C12 /* MainStoryboard.storyboard */,
+				00CEE42819952E7C00F40C12 /* FriendsTableViewController.h */,
+				00CEE42919952E7C00F40C12 /* FriendsTableViewController.m */,
+				00CEE40C199436D700F40C12 /* LoginViewController.h */,
+				00CEE40D199436D700F40C12 /* LoginViewController.m */,
+				00CEE40F19943AFC00F40C12 /* SignUpViewController.h */,
+				00CEE41019943AFC00F40C12 /* SignUpViewController.m */,
 				00CEE3E2199434E700F40C12 /* AppDelegate.h */,
 				00CEE3E3199434E700F40C12 /* AppDelegate.m */,
 				00CEE3E8199434E700F40C12 /* Images.xcassets */,
@@ -228,6 +294,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00CEE4071994350300F40C12 /* MainStoryboard.storyboard in Resources */,
 				00CEE3DE199434E700F40C12 /* InfoPlist.strings in Resources */,
 				00CEE3E9199434E700F40C12 /* Images.xcassets in Resources */,
 			);
@@ -248,7 +315,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00CEE40E199436D700F40C12 /* LoginViewController.m in Sources */,
+				00CEE41119943AFC00F40C12 /* SignUpViewController.m in Sources */,
 				00CEE3E4199434E700F40C12 /* AppDelegate.m in Sources */,
+				00CEE42A19952E7C00F40C12 /* FriendsTableViewController.m in Sources */,
 				00CEE3E7199434E700F40C12 /* hobble_1_1.xcdatamodeld in Sources */,
 				00CEE3E0199434E700F40C12 /* main.m in Sources */,
 			);
@@ -367,6 +437,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "hobble.1.1/hobble.1.1-Prefix.pch";
 				INFOPLIST_FILE = "hobble.1.1/hobble.1.1-Info.plist";
@@ -380,6 +454,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "hobble.1.1/hobble.1.1-Prefix.pch";
 				INFOPLIST_FILE = "hobble.1.1/hobble.1.1-Info.plist";
