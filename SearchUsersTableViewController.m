@@ -1,23 +1,24 @@
 //
-//  FriendsTableViewController.m
+//  SearchUsersTableViewController.m
 //  hobble.1.1
 //
-//  Created by Robin Mehta on 8/8/14.
+//  Created by Robin Mehta on 8/10/14.
 //  Copyright (c) 2014 hobble. All rights reserved.
 //
 
-#import "FriendsTableViewController.h"
+#import "SearchUsersTableViewController.h"
 
-@interface FriendsTableViewController ()
+@interface SearchUsersTableViewController ()
 
 @end
 
-@implementation FriendsTableViewController
+@implementation SearchUsersTableViewController
 
 
 //- (void)viewDidLoad
 //{
 //    [super viewDidLoad];
+//    
 //    // Uncomment the following line to preserve selection between presentations.
 //    // self.clearsSelectionOnViewWillAppear = NO;
 //    
@@ -27,28 +28,21 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    self.navigationItem.hidesBackButton = YES;
-    // assign friends relation (that was created in edit friends)
-    self.friendsRelation = [[PFUser currentUser] objectForKey:@"friendsRelation"];
     self.currentUser = [PFUser currentUser];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+    self.friendsRelation = self.friendclass.friendsRelation;
     
-    PFQuery *query = [self.friendsRelation query];
-    [query orderByAscending:@"username"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (error) {
-            NSLog(@"Error %@ %@", error, [error userInfo]);
+    
+    PFQuery *query = [PFUser query];
+    [query whereKey:@"username" containsString:self.searchDisplayController.searchBar.text];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
+        if (!error) {
+        self.searchResults = results;
+        [self.tableView reloadData];
         }
         else {
-            self.friends = objects; // warning OK
-            [self.tableView reloadData];
+            NSLog(@"Error %@ %@", error, [error userInfo]);
         }
     }];
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,47 +62,58 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.friends count];
+    return [self.searchResults count];
 }
+
+
+
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"CustomTableCell";
+    SearchResultsTableViewCell *cell = (SearchResultsTableViewCell *) [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    PFUser *user = [self.friends objectAtIndex:indexPath.row];
-    cell.textLabel.text = user.username;
+    // Configure the cell...
+    if (cell == nil) {
+        cell = [[SearchResultsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
 
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+    PFUser *user = [self.searchResults objectAtIndex:indexPath.row];
+    cell.cellLabel.text = user.username;
+    }
     
     return cell;
 }
 
 -(void)userPressedDone {
-    //    [self performSegueWithIdentifier:@"<#string#>" sender:nil];
     [self.tableView reloadData];
+    [self performSegueWithIdentifier:@"SearchToFriends" sender:nil];
 }
 
-// should delete friends (+ remove relation) for selected cells - not tested
+
+// should add friends (+ add relation) for selected cells - not tested
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
     
     UIBarButtonItem *doneBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(userPressedDone)];
-    doneBarButtonItem.title = @"Delete";
+    doneBarButtonItem.title = @"Add";
     self.navigationItem.rightBarButtonItem = doneBarButtonItem;
     
-    PFRelation *friendsRelation = [self.currentUser relationforKey:@"friendsRelation"];
-    PFUser *user = [self.friends objectAtIndex:indexPath.row];
+    PFUser *user = [self.searchResults objectAtIndex:indexPath.row];
     
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
     
-    for(PFUser *friend in self.friends) {
-        if ([friend.objectId isEqualToString:user.objectId]) {
-            [self.friends removeObject:friend];
-            [friendsRelation removeObject:user];
-            break;
-        }
+    if ([self isFriend:user]) {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    else {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        [self.friendclass.friends addObject:user];
+        [_friendsRelation addObject:user];
     }
     
     [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -116,9 +121,31 @@
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
-
+    
 }
 
+
+- (BOOL)isFriend:(PFUser *)user {
+    for(PFUser *friend in _friendclass.friends) {
+        if ([friend.objectId isEqualToString:user.objectId]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+
+/*
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    
+    // Configure the cell...
+    
+    return cell;
+}
+*/
 
 /*
 // Override to support conditional editing of the table view.
@@ -168,5 +195,22 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+//- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+//{
+//    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
+//    self.searchResults = [self.SearchedUsers filteredArrayUsingPredicate:resultPredicate];
+//}
+//
+//-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+//{
+//    [self filterContentForSearchText:searchString
+//                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
+//                                      objectAtIndex:[self.searchDisplayController.searchBar
+//                                                     selectedScopeButtonIndex]]];
+//    
+//    return YES;
+//}
 
 @end

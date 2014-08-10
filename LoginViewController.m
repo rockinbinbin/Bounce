@@ -80,7 +80,7 @@
                 [alertView show];
             }
             else {
-                [self.navigationController popToRootViewControllerAnimated:YES];
+                [self performSegueWithIdentifier:@"LoginToMain" sender:self];
             }
         }];
     }
