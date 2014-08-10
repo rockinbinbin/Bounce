@@ -41,7 +41,6 @@
 		00CEE4251994493500F40C12 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4241994493500F40C12 /* StoreKit.framework */; };
 		00CEE4271994493A00F40C12 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4261994493A00F40C12 /* CoreLocation.framework */; };
 		00CEE42A19952E7C00F40C12 /* FriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CEE42919952E7C00F40C12 /* FriendsTableViewController.m */; };
-		00CEE42D199556DA00F40C12 /* SearchFriendsInContactsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CEE42C199556DA00F40C12 /* SearchFriendsInContactsTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,8 +97,6 @@
 		00CEE4261994493A00F40C12 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		00CEE42819952E7C00F40C12 /* FriendsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsTableViewController.h; sourceTree = "<group>"; };
 		00CEE42919952E7C00F40C12 /* FriendsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsTableViewController.m; sourceTree = "<group>"; };
-		00CEE42B199556DA00F40C12 /* SearchFriendsInContactsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFriendsInContactsTableViewController.h; sourceTree = "<group>"; };
-		00CEE42C199556DA00F40C12 /* SearchFriendsInContactsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFriendsInContactsTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,12 +184,10 @@
 			isa = PBXGroup;
 			children = (
 				00CEE4061994350300F40C12 /* MainStoryboard.storyboard */,
-				001D6C7D1997E09F00BC7D5D /* SearchResultsTableViewCell.h */,
-				001D6C7E1997E09F00BC7D5D /* SearchResultsTableViewCell.m */,
 				00B16FDD1997300C00257F6C /* SearchUsersTableViewController.h */,
 				00B16FDE1997300C00257F6C /* SearchUsersTableViewController.m */,
-				00CEE42B199556DA00F40C12 /* SearchFriendsInContactsTableViewController.h */,
-				00CEE42C199556DA00F40C12 /* SearchFriendsInContactsTableViewController.m */,
+				001D6C7D1997E09F00BC7D5D /* SearchResultsTableViewCell.h */,
+				001D6C7E1997E09F00BC7D5D /* SearchResultsTableViewCell.m */,
 				00CEE42819952E7C00F40C12 /* FriendsTableViewController.h */,
 				00CEE42919952E7C00F40C12 /* FriendsTableViewController.m */,
 				001D6C801997E58A00BC7D5D /* SettingsViewController.h */,
@@ -344,7 +339,6 @@
 				00CEE3E0199434E700F40C12 /* main.m in Sources */,
 				001D6C821997E58A00BC7D5D /* SettingsViewController.m in Sources */,
 				001D6C7F1997E09F00BC7D5D /* SearchResultsTableViewCell.m in Sources */,
-				00CEE42D199556DA00F40C12 /* SearchFriendsInContactsTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

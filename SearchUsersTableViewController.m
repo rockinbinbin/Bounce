@@ -28,14 +28,22 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
+    NSLog(@"View Did Appear");
+    
     self.currentUser = [PFUser currentUser];
     self.friendsRelation = self.friendclass.friendsRelation;
     
     
+    NSLog(@"User Info %@", self.currentUser.username); // works. username: @roro
+    
+    
     PFQuery *query = [PFUser query];
-    [query whereKey:@"username" containsString:self.searchDisplayController.searchBar.text];
+    [query whereKey:@"username" containsString:@"robin"]; // self.searchDisplayController.searchBar.text
     [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
         if (!error) {
+        
+        // query doesn't work: prints out nothing
         self.searchResults = results;
         [self.tableView reloadData];
         }
@@ -43,6 +51,12 @@
             NSLog(@"Error %@ %@", error, [error userInfo]);
         }
     }];
+    
+    // after query: test - print all usernames in parse
+    PFUser *user;
+    for (user in self.searchResults) {
+        NSLog(@"User Info: %@", user.username);
+    }
 }
 
 - (void)didReceiveMemoryWarning
