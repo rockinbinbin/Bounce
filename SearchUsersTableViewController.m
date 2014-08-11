@@ -39,24 +39,28 @@
     
     
     PFQuery *query = [PFUser query];
-    [query whereKey:@"username" containsString:@"robin"]; // self.searchDisplayController.searchBar.text
-    [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
-        if (!error) {
-        
-        // query doesn't work: prints out nothing
-        self.searchResults = results;
-        [self.tableView reloadData];
-        }
-        else {
-            NSLog(@"Error %@ %@", error, [error userInfo]);
-        }
-    }];
+    self.searchResults = [query findObjects];
+    
+    
+//    [query whereKey:@"username" containsString:@"robin"]; // self.searchDisplayController.searchBar.text
+//    [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
+//        if (!error) {
+//        
+//        // query doesn't work: prints out nothing
+//        self.searchResults = results;
+//        [self.tableView reloadData];
+//        }
+//        else {
+//            NSLog(@"Error %@ %@", error, [error userInfo]);
+//        }
+//    }];
+    
     
     // after query: test - print all usernames in parse
-    PFUser *user;
-    for (user in self.searchResults) {
-        NSLog(@"User Info: %@", user.username);
-    }
+//    PFUser *user;
+//    for (user in self.searchResults) {
+//        NSLog(@"User Info: %@", user.username);
+//    }
 }
 
 - (void)didReceiveMemoryWarning
