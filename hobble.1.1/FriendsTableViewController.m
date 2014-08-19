@@ -25,8 +25,8 @@
 //    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 //}
 
--(void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+-(void)viewDidLoad {
+    [super viewDidLoad];
     
     self.navigationItem.hidesBackButton = YES;
     // assign friends relation (that was created in edit friends)
@@ -48,6 +48,8 @@
             [self.tableView reloadData];
         }
     }];
+    
+    
     
 }
 

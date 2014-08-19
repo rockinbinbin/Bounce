@@ -10,6 +10,8 @@
 
 @interface SearchFriendsViewController ()
 
+- (IBAction)AddButton:(id)sender;
+
 @end
 
 @implementation SearchFriendsViewController
@@ -27,7 +29,8 @@
     [super viewDidLoad];
     
     self.currentUser = [PFUser currentUser];
-    self.friendsRelation = self.friendclass.friendsRelation;
+    self.friendsRelation = self.friendclass.friendsRelation; // what does this mean??
+    // self.friendclass.friends = ??? ;
     self.searchResults = [[NSArray alloc] init];
     self.finalResults = [[NSArray alloc] init];
     self.usernames = [[NSMutableArray alloc] init];
@@ -64,8 +67,6 @@
     }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    
     static NSString *cellID = @"cellID";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellID"];
     
@@ -79,10 +80,78 @@
         NSString *name = [self.finalResults objectAtIndex:indexPath.row];
         cell.textLabel.text = name;
     }
-    
-    
     return cell;
 }
+
+
+
+
+
+// should add friends (+ add relation) for selected cells - not tested
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+
+    NSString *usernameSelected = [self.finalResults objectAtIndex:indexPath.row];
+    PFUser *thisUser;
+    
+    for (PFUser *user in self.searchResults) {
+        if (usernameSelected == user.username) {
+            thisUser = user;
+        }
+    }
+
+    
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    
+    if ([self isFriend:thisUser]) {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        // put up alert - already a friend!
+        NSLog(@"Already a friend - can't add this user");
+    }
+    else {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                [self.friendclass.friends addObject:thisUser];
+                [_friendsRelation addObject:thisUser];
+        NSLog(@"User added as friend!");
+  
+    }
+    
+    [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+    
+    
+    for (PFUser *user in self.friendclass.friends) {
+        NSLog(user.username);
+    }
+    
+}
+
+
+
+// uh
+- (BOOL)isFriend:(PFUser *)user {
+    for(PFUser *friend in _friendclass.friends) {
+        if ([friend.objectId isEqualToString:user.objectId]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+
+
+
+
+
+
+
+
+
 
 /*
 #pragma mark - Navigation
@@ -114,4 +183,7 @@ shouldReloadTableForSearchString:(NSString *)searchString
     return YES;
 }
 
+- (IBAction)AddButton:(id)sender {
+    [self performSegueWithIdentifier:@"SearchToFriends" sender:self];
+}
 @end

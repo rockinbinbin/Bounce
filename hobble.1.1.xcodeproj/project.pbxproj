@@ -8,10 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		001196E519A2CE1A002D2757 /* SearchFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001196E419A2CE1A002D2757 /* SearchFriendsViewController.m */; };
-		001D6C7F1997E09F00BC7D5D /* SearchResultsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 001D6C7E1997E09F00BC7D5D /* SearchResultsTableViewCell.m */; };
 		001D6C821997E58A00BC7D5D /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001D6C811997E58A00BC7D5D /* SettingsViewController.m */; };
 		00A9C30E1999838200F89967 /* GroupsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A9C30D1999838200F89967 /* GroupsTableViewController.m */; };
-		00B16FDF1997300C00257F6C /* SearchUsersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B16FDE1997300C00257F6C /* SearchUsersTableViewController.m */; };
 		00CEE3D2199434E700F40C12 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE3D1199434E700F40C12 /* Foundation.framework */; };
 		00CEE3D4199434E700F40C12 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE3D3199434E700F40C12 /* CoreGraphics.framework */; };
 		00CEE3D6199434E700F40C12 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE3D5199434E700F40C12 /* UIKit.framework */; };
@@ -58,14 +56,10 @@
 /* Begin PBXFileReference section */
 		001196E319A2CE1A002D2757 /* SearchFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFriendsViewController.h; sourceTree = "<group>"; };
 		001196E419A2CE1A002D2757 /* SearchFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFriendsViewController.m; sourceTree = "<group>"; };
-		001D6C7D1997E09F00BC7D5D /* SearchResultsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsTableViewCell.h; sourceTree = "<group>"; };
-		001D6C7E1997E09F00BC7D5D /* SearchResultsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsTableViewCell.m; sourceTree = "<group>"; };
 		001D6C801997E58A00BC7D5D /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		001D6C811997E58A00BC7D5D /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		00A9C30C1999838200F89967 /* GroupsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsTableViewController.h; sourceTree = "<group>"; };
 		00A9C30D1999838200F89967 /* GroupsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsTableViewController.m; sourceTree = "<group>"; };
-		00B16FDD1997300C00257F6C /* SearchUsersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchUsersTableViewController.h; path = ../SearchUsersTableViewController.h; sourceTree = "<group>"; };
-		00B16FDE1997300C00257F6C /* SearchUsersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchUsersTableViewController.m; path = ../SearchUsersTableViewController.m; sourceTree = "<group>"; };
 		00CEE3CE199434E700F40C12 /* hobble.1.1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hobble.1.1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00CEE3D1199434E700F40C12 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		00CEE3D3199434E700F40C12 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -190,14 +184,10 @@
 			isa = PBXGroup;
 			children = (
 				00CEE4061994350300F40C12 /* MainStoryboard.storyboard */,
-				001196E319A2CE1A002D2757 /* SearchFriendsViewController.h */,
-				001196E419A2CE1A002D2757 /* SearchFriendsViewController.m */,
 				00A9C30C1999838200F89967 /* GroupsTableViewController.h */,
 				00A9C30D1999838200F89967 /* GroupsTableViewController.m */,
-				00B16FDD1997300C00257F6C /* SearchUsersTableViewController.h */,
-				00B16FDE1997300C00257F6C /* SearchUsersTableViewController.m */,
-				001D6C7D1997E09F00BC7D5D /* SearchResultsTableViewCell.h */,
-				001D6C7E1997E09F00BC7D5D /* SearchResultsTableViewCell.m */,
+				001196E319A2CE1A002D2757 /* SearchFriendsViewController.h */,
+				001196E419A2CE1A002D2757 /* SearchFriendsViewController.m */,
 				00CEE42819952E7C00F40C12 /* FriendsTableViewController.h */,
 				00CEE42919952E7C00F40C12 /* FriendsTableViewController.m */,
 				001D6C801997E58A00BC7D5D /* SettingsViewController.h */,
@@ -344,13 +334,11 @@
 				00CEE41119943AFC00F40C12 /* SignUpViewController.m in Sources */,
 				00CEE3E4199434E700F40C12 /* AppDelegate.m in Sources */,
 				00CEE42A19952E7C00F40C12 /* FriendsTableViewController.m in Sources */,
-				00B16FDF1997300C00257F6C /* SearchUsersTableViewController.m in Sources */,
 				00A9C30E1999838200F89967 /* GroupsTableViewController.m in Sources */,
 				00CEE3E7199434E700F40C12 /* hobble_1_1.xcdatamodeld in Sources */,
 				001196E519A2CE1A002D2757 /* SearchFriendsViewController.m in Sources */,
 				00CEE3E0199434E700F40C12 /* main.m in Sources */,
 				001D6C821997E58A00BC7D5D /* SettingsViewController.m in Sources */,
-				001D6C7F1997E09F00BC7D5D /* SearchResultsTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
