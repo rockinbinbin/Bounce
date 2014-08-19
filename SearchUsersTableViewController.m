@@ -12,6 +12,9 @@
 
 @end
 
+// figure out why results aren't displaying in table cells
+// test add/delete relations (delete is in FriendsTableViewController.m)
+
 @implementation SearchUsersTableViewController
 
 
@@ -41,26 +44,12 @@
     PFQuery *query = [PFUser query];
     self.searchResults = [query findObjects];
     
-    
-//    [query whereKey:@"username" containsString:@"robin"]; // self.searchDisplayController.searchBar.text
-//    [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
-//        if (!error) {
-//        
-//        // query doesn't work: prints out nothing
-//        self.searchResults = results;
-//        [self.tableView reloadData];
-//        }
-//        else {
-//            NSLog(@"Error %@ %@", error, [error userInfo]);
-//        }
-//    }];
-    
-    
     // after query: test - print all usernames in parse
-//    PFUser *user;
-//    for (user in self.searchResults) {
-//        NSLog(@"User Info: %@", user.username);
-//    }
+    PFUser *user;
+    for (user in self.searchResults) {
+        NSLog(@"User Info: %@", user.username);
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -69,21 +58,25 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+//#pragma mark - Table view data source
+//
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+//{
+//    // Return the number of sections.
+//    return 1;
+//}
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 1;
-}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return [self.searchResults count];
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return [self.finalResults count];
+        
+    } else {
+        return [self.searchResults count];
+    }
 }
-
-
 
 
 
@@ -97,11 +90,17 @@
         cell = [[SearchResultsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
 
+    PFUser *user;
+    
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-    PFUser *user = [self.searchResults objectAtIndex:indexPath.row];
-    cell.cellLabel.text = user.username;
+    user = [self.finalResults objectAtIndex:indexPath.row];
+    }
+    else {
+        user = [self.searchResults objectAtIndex:indexPath.row];
     }
     
+    
+    cell.cellLabel.text = user.username;
     return cell;
 }
 
@@ -110,15 +109,16 @@
     [self performSegueWithIdentifier:@"SearchToFriends" sender:nil];
 }
 
-
+// not in recipe guide
 // should add friends (+ add relation) for selected cells - not tested
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    UIBarButtonItem *doneBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(userPressedDone)];
-    doneBarButtonItem.title = @"Add";
-    self.navigationItem.rightBarButtonItem = doneBarButtonItem;
+    // // done bar button item
+//    UIBarButtonItem *doneBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(userPressedDone)];
+//    doneBarButtonItem.title = @"Add";
+//    self.navigationItem.rightBarButtonItem = doneBarButtonItem;
     
     PFUser *user = [self.searchResults objectAtIndex:indexPath.row];
     
@@ -140,6 +140,7 @@
         }
     }];
     
+    [self performSegueWithIdentifier:@"SearchToFriends" sender:self];
 }
 
 
@@ -215,20 +216,20 @@
 */
 
 
-//- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
-//{
-//    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
-//    self.searchResults = [self.SearchedUsers filteredArrayUsingPredicate:resultPredicate];
-//}
-//
-//-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-//{
-//    [self filterContentForSearchText:searchString
-//                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
-//                                      objectAtIndex:[self.searchDisplayController.searchBar
-//                                                     selectedScopeButtonIndex]]];
-//    
-//    return YES;
-//}
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+{
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
+    self.finalResults = [self.searchResults filteredArrayUsingPredicate:resultPredicate];
+}
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterContentForSearchText:searchString
+                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
+                                      objectAtIndex:[self.searchDisplayController.searchBar
+                                                     selectedScopeButtonIndex]]];
+    
+    return YES;
+}
 
 @end

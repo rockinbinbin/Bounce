@@ -26,6 +26,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // why is there no back button?
+    
     // Do any additional setup after loading the view.
 }
 
@@ -48,7 +50,7 @@
 
 - (IBAction)LogoutButton:(id)sender {
     [PFUser logOut];
-    PFUser *currentUser = [PFUser currentUser];
+    PFUser *currentUser = [PFUser currentUser]; // OK for now
     [self performSegueWithIdentifier:@"LogoutToLogin" sender:nil];
 }
 @end
