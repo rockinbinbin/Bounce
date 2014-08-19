@@ -28,7 +28,9 @@
     
     self.currentUser = [PFUser currentUser];
     self.friendsRelation = self.friendclass.friendsRelation;
-    
+    self.searchResults = [[NSArray alloc] init];
+    self.finalResults = [[NSArray alloc] init];
+    self.usernames = [[NSMutableArray alloc] init];
     
     NSLog(@"User Info %@", self.currentUser.username); // works. username: @roro
     
@@ -36,11 +38,12 @@
     PFQuery *query = [PFUser query];
     self.searchResults = [query findObjects];
     
-//    // after query: test - print all usernames in parse
-//    PFUser *user;
-//    for (user in self.searchResults) {
-//        NSLog(@"User Info: %@", user.username);
-//    } // works
+    // after query: test - print all usernames in parse
+    PFUser *user;
+    for (user in self.searchResults) {
+        //NSLog(@"User Info: %@", user.username);
+        [self.usernames addObject:user.username];
+    }
 
 }
 
@@ -57,7 +60,7 @@
 //}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.searchResults count];
+    return [self.finalResults count];
     }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -70,9 +73,12 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     
-    PFUser *user = [self.searchResults objectAtIndex:indexPath.row];
-    
-    cell.textLabel.text = user.username;
+//    PFUser *user;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+//    user = [self.finalResults objectAtIndex:indexPath.row];
+        NSString *name = [self.finalResults objectAtIndex:indexPath.row];
+        cell.textLabel.text = name;
+    }
     
     
     return cell;
@@ -91,11 +97,14 @@
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
-    self.finalResults = [self.searchResults filteredArrayUsingPredicate:resultPredicate];
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF beginswith[c] %@", searchText];
+ 
+    
+    self.finalResults = [self.usernames filteredArrayUsingPredicate:resultPredicate];
 }
 
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller
+shouldReloadTableForSearchString:(NSString *)searchString
 {
     [self filterContentForSearchText:searchString
                                scope:[[self.searchDisplayController.searchBar scopeButtonTitles]

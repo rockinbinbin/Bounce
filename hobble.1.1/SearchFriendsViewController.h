@@ -10,12 +10,14 @@
 #import <Parse/Parse.h>
 #import "FriendsTableViewController.h"
 
-@interface SearchFriendsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface SearchFriendsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchDisplayDelegate, UISearchBarDelegate>
 
 @property (nonatomic, strong) PFUser *currentUser;
 @property (nonatomic, strong) NSArray *searchResults; // all users in app
 @property (nonatomic, strong) FriendsTableViewController *friendclass;
 @property (nonatomic, strong) PFRelation *friendsRelation;
 @property (nonatomic, strong) NSArray *finalResults; // searched users
+
+@property (nonatomic, strong) NSMutableArray *usernames;
 
 @end
