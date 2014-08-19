@@ -8,6 +8,8 @@
 
 #import "SearchFriendsViewController.h"
 
+// ALL THIS DOES IS SEARCH FOR AND ADD A FRIEND RELATION
+
 @interface SearchFriendsViewController ()
 
 - (IBAction)AddButton:(id)sender;
@@ -28,27 +30,50 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationItem.hidesBackButton = NO;
     self.currentUser = [PFUser currentUser];
-    self.friendsRelation = self.friendclass.friendsRelation; // what does this mean??
-    // self.friendclass.friends = ??? ;
     self.searchResults = [[NSArray alloc] init];
     self.finalResults = [[NSArray alloc] init];
+//    self.friendUsers = [[NSMutableArray alloc] init];
     self.usernames = [[NSMutableArray alloc] init];
+    self.friendsRelation = [[PFUser currentUser] objectForKey:@"friendsRelation"];
     
     NSLog(@"User Info %@", self.currentUser.username); // works. username: @roro
     
+}
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
+    // find all users
     PFQuery *query = [PFUser query];
     self.searchResults = [query findObjects];
-    
     // after query: test - print all usernames in parse
     PFUser *user;
     for (user in self.searchResults) {
         //NSLog(@"User Info: %@", user.username);
         [self.usernames addObject:user.username];
     }
-
+    
+    // find all friends
+    PFQuery *querytwo = [self.friendsRelation query];
+    [querytwo orderByAscending:@"username"];
+    [querytwo findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error) {
+            NSLog(@"Error %@ %@", error, [error userInfo]);
+        }
+        else {
+            self.friendUsers = objects; // warning OK
+            //            [self.tableView reloadData];
+        }
+    }];
+    
+    for (PFUser *friend in self.friendUsers) {
+        NSLog(@"friendUsers:%@", friend.username);
+    }
 }
+
 
 
 - (void)didReceiveMemoryWarning
@@ -84,9 +109,6 @@
 }
 
 
-
-
-
 // should add friends (+ add relation) for selected cells - not tested
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
@@ -99,7 +121,6 @@
             thisUser = user;
         }
     }
-
     
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -111,7 +132,7 @@
     }
     else {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-                [self.friendclass.friends addObject:thisUser];
+                [self.friendUsers addObject:thisUser];
                 [_friendsRelation addObject:thisUser];
         NSLog(@"User added as friend!");
   
@@ -124,7 +145,7 @@
     }];
     
     
-    for (PFUser *user in self.friendclass.friends) {
+    for (PFUser *user in self.friendUsers) {
         NSLog(user.username);
     }
     
@@ -134,7 +155,7 @@
 
 // uh
 - (BOOL)isFriend:(PFUser *)user {
-    for(PFUser *friend in _friendclass.friends) {
+    for(PFUser *friend in self.friendUsers) {
         if ([friend.objectId isEqualToString:user.objectId]) {
             return YES;
         }
@@ -142,12 +163,6 @@
     
     return NO;
 }
-
-
-
-
-
-
 
 
 

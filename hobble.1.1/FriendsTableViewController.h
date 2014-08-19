@@ -15,6 +15,6 @@
 @property (nonatomic, strong) NSMutableArray *friends;
 @property (nonatomic, strong) PFUser *currentUser;
 
--(void)userPressedDone;
+//-(void)userPressedDone;
 
 @end

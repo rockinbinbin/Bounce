@@ -8,6 +8,8 @@
 
 #import "FriendsTableViewController.h"
 
+// ALL THIS DOES IS LIST YOUR FRIENDS IN TABLE VIEW
+
 @interface FriendsTableViewController ()
 
 @end
@@ -24,6 +26,15 @@
 //    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
 //    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 //}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
 
 -(void)viewDidLoad {
     [super viewDidLoad];
@@ -48,9 +59,6 @@
             [self.tableView reloadData];
         }
     }];
-    
-    
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -76,7 +84,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
     
     PFUser *user = [self.friends objectAtIndex:indexPath.row];
     cell.textLabel.text = user.username;
@@ -85,41 +97,38 @@
     return cell;
 }
 
--(void)userPressedDone {
-    //    [self performSegueWithIdentifier:@"<#string#>" sender:nil];
-    [self.tableView reloadData];
-}
 
-// should delete friends (+ remove relation) for selected cells - not tested
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
-    
-    UIBarButtonItem *doneBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(userPressedDone)];
-    doneBarButtonItem.title = @"Delete";
-    self.navigationItem.rightBarButtonItem = doneBarButtonItem;
-    
-    PFRelation *friendsRelation = [self.currentUser relationforKey:@"friendsRelation"];
-    PFUser *user = [self.friends objectAtIndex:indexPath.row];
-    
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    
-    for(PFUser *friend in self.friends) {
-        if ([friend.objectId isEqualToString:user.objectId]) {
-            [self.friends removeObject:friend];
-            [friendsRelation removeObject:user];
-            break;
-        }
-    }
-    
-    [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (error) {
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
 
-}
+//// should delete friends (+ remove relation) for selected cells - not tested
+//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    
+//    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+//    
+////    UIBarButtonItem *doneBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(userPressedDone)];
+////    doneBarButtonItem.title = @"Delete";
+////    self.navigationItem.rightBarButtonItem = doneBarButtonItem;
+//    
+//    PFRelation *friendsRelation = [self.currentUser relationforKey:@"friendsRelation"];
+//    PFUser *user = [self.friends objectAtIndex:indexPath.row];
+//    
+//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+//    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+//    
+//    for(PFUser *friend in self.friends) {
+//        if ([friend.objectId isEqualToString:user.objectId]) {
+//            [self.friends removeObject:friend];
+//            [friendsRelation removeObject:user];
+//            break;
+//        }
+//    }
+//    
+//    [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//        if (error) {
+//            NSLog(@"Error: %@ %@", error, [error userInfo]);
+//        }
+//    }];
+//
+//}
 
 
 /*

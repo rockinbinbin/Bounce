@@ -14,10 +14,10 @@
 
 @property (nonatomic, strong) PFUser *currentUser;
 @property (nonatomic, strong) NSArray *searchResults; // all users in app
-@property (nonatomic, strong) FriendsTableViewController *friendclass;
-@property (nonatomic, strong) PFRelation *friendsRelation;
 @property (nonatomic, strong) NSArray *finalResults; // searched users' usernames
-
 @property (nonatomic, strong) NSMutableArray *usernames; // all users' usernames
+
+@property (nonatomic, strong) PFRelation *friendsRelation;
+@property (nonatomic, strong) NSMutableArray *friendUsers;
 
 @end
