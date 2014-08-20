@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "AppDelegate.h"
 
 @interface GroupsTableViewController : UITableViewController
 
@@ -15,6 +16,6 @@
 @property (nonatomic, strong) NSMutableArray *groups; // store here after query
 @property (nonatomic, strong) PFUser *currentUser;
 
--(void)userPressedDone; // as of now, just refreshes table view. move all relation/ stuff here?
+//-(void)userPressedDone; // as of now, just refreshes table view. move all relation/ stuff here?
 
 @end

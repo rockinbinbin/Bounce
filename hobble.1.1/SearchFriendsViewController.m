@@ -30,13 +30,13 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.hidesBackButton = NO;
+    //self.navigationItem.hidesBackButton = NO;
     self.currentUser = [PFUser currentUser];
     self.searchResults = [[NSArray alloc] init];
     self.finalResults = [[NSArray alloc] init];
 //    self.friendUsers = [[NSMutableArray alloc] init];
     self.usernames = [[NSMutableArray alloc] init];
-    self.friendsRelation = [[PFUser currentUser] objectForKey:@"friendsRelation"];
+    self.friendsRelation = [[PFUser currentUser] objectForKey:ParseFriendRelation];
     
     NSLog(@"User Info %@", self.currentUser.username); // works. username: @roro
     
@@ -58,7 +58,7 @@
     
     // find all friends
     PFQuery *querytwo = [self.friendsRelation query];
-    [querytwo orderByAscending:@"username"];
+    [querytwo orderByAscending:ParseUsername];
     [querytwo findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
             NSLog(@"Error %@ %@", error, [error userInfo]);
@@ -151,9 +151,6 @@
     
 }
 
-
-
-// uh
 - (BOOL)isFriend:(PFUser *)user {
     for(PFUser *friend in self.friendUsers) {
         if ([friend.objectId isEqualToString:user.objectId]) {
@@ -163,10 +160,6 @@
     
     return NO;
 }
-
-
-
-
 
 /*
 #pragma mark - Navigation

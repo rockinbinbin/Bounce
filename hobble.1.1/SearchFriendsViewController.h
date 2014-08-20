@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import "FriendsTableViewController.h"
+#import "AppDelegate.h"
 
 @interface SearchFriendsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchDisplayDelegate, UISearchBarDelegate>
 
@@ -18,6 +19,6 @@
 @property (nonatomic, strong) NSMutableArray *usernames; // all users' usernames
 
 @property (nonatomic, strong) PFRelation *friendsRelation;
-@property (nonatomic, strong) NSMutableArray *friendUsers;
+@property (nonatomic, strong) NSMutableArray *friendUsers; // all friends
 
 @end

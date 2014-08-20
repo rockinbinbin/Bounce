@@ -26,7 +26,7 @@
                                 <rect key="frame" x="112" y="269" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kNG-aR-K6e">
                                 <rect key="frame" x="137" y="367" width="38" height="30"/>
@@ -90,7 +90,7 @@
                                 <rect key="frame" x="112" y="251" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xCO-vS-fSe">
                                 <rect key="frame" x="133" y="331" width="55" height="30"/>
@@ -213,7 +213,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Search Users" id="r9U-XQ-v3H">
-                                        <barButtonItem key="rightBarButtonItem" title="Add" id="V0Q-Gc-KYq">
+                                        <barButtonItem key="rightBarButtonItem" title="Done" id="V0Q-Gc-KYq">
                                             <connections>
                                                 <action selector="AddButton:" destination="RTG-Ob-u6u" id="C1C-pW-X55"/>
                                             </connections>
@@ -307,10 +307,10 @@
             </objects>
             <point key="canvasLocation" x="-110" y="215"/>
         </scene>
-        <!--Table View Controller - Groups-->
+        <!--Groups Table View Controller - Groups-->
         <scene sceneID="IQH-SW-COk">
             <objects>
-                <tableViewController id="vAA-gy-fHR" sceneMemberID="viewController">
+                <tableViewController id="vAA-gy-fHR" customClass="GroupsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="arO-5q-Jex">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -319,11 +319,18 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <items>
-                                <navigationItem title="Groups" id="e3F-zw-0gr"/>
+                                <navigationItem title="Groups" id="e3F-zw-0gr">
+                                    <barButtonItem key="leftBarButtonItem" title="Search" id="dm6-xv-yGg"/>
+                                    <barButtonItem key="rightBarButtonItem" title="Create" id="BJs-Ml-PV2">
+                                        <connections>
+                                            <segue destination="3SW-yW-hfi" kind="modal" identifier="GroupsToCreate" id="vxS-NN-FOb"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </navigationItem>
                             </items>
                         </navigationBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="MIc-EU-P8P">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="GroupCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GroupCell" id="MIc-EU-P8P">
                                 <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MIc-EU-P8P" id="aWl-tM-h9T">
@@ -343,6 +350,53 @@
             </objects>
             <point key="canvasLocation" x="432" y="589"/>
         </scene>
+        <!--Create Group View Controller-->
+        <scene sceneID="QdL-ur-Xdk">
+            <objects>
+                <viewController id="3SW-yW-hfi" customClass="CreateGroupViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ESu-DQ-erd"/>
+                        <viewControllerLayoutGuide type="bottom" id="05h-SW-UQ3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WLu-DY-msb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AGo-dq-qpq">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Create Group" id="Hf5-e2-JBc"/>
+                                </items>
+                            </navigationBar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Group Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="67B-9B-aUp">
+                                <rect key="frame" x="112" y="178" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1zm-5t-Eu4">
+                                <rect key="frame" x="120" y="314" width="89" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="Done:" destination="3SW-yW-hfi" eventType="touchUpInside" id="GxQ-pB-aMm"/>
+                                    <segue destination="vAA-gy-fHR" kind="modal" identifier="CreateToGroup" id="O0y-m5-u3X"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="groupNameTextField" destination="67B-9B-aUp" id="gP1-g0-BdK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="def-Rn-5wv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="838" y="592"/>
+        </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -352,5 +406,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="m56-br-YY8"/>
         <segue reference="zUk-wO-gHJ"/>
+        <segue reference="O0y-m5-u3X"/>
     </inferredMetricsTieBreakers>
 </document>

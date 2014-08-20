@@ -41,7 +41,7 @@
     
     self.navigationItem.hidesBackButton = YES;
     // assign friends relation (that was created in edit friends)
-    self.friendsRelation = [[PFUser currentUser] objectForKey:@"friendsRelation"];
+    self.friendsRelation = [[PFUser currentUser] objectForKey:ParseFriendRelation];
     self.currentUser = [PFUser currentUser];
 }
 
@@ -49,7 +49,7 @@
     [super viewWillAppear:animated];
     
     PFQuery *query = [self.friendsRelation query];
-    [query orderByAscending:@"username"];
+    [query orderByAscending:ParseUsername];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
             NSLog(@"Error %@ %@", error, [error userInfo]);

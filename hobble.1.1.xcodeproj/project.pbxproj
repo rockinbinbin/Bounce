@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		001196E519A2CE1A002D2757 /* SearchFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001196E419A2CE1A002D2757 /* SearchFriendsViewController.m */; };
+		001196E819A41D6C002D2757 /* CreateGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001196E719A41D6C002D2757 /* CreateGroupViewController.m */; };
 		001D6C821997E58A00BC7D5D /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001D6C811997E58A00BC7D5D /* SettingsViewController.m */; };
 		00A9C30E1999838200F89967 /* GroupsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A9C30D1999838200F89967 /* GroupsTableViewController.m */; };
 		00CEE3D2199434E700F40C12 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE3D1199434E700F40C12 /* Foundation.framework */; };
@@ -56,6 +57,8 @@
 /* Begin PBXFileReference section */
 		001196E319A2CE1A002D2757 /* SearchFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFriendsViewController.h; sourceTree = "<group>"; };
 		001196E419A2CE1A002D2757 /* SearchFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFriendsViewController.m; sourceTree = "<group>"; };
+		001196E619A41D6C002D2757 /* CreateGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGroupViewController.h; sourceTree = "<group>"; };
+		001196E719A41D6C002D2757 /* CreateGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGroupViewController.m; sourceTree = "<group>"; };
 		001D6C801997E58A00BC7D5D /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		001D6C811997E58A00BC7D5D /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		00A9C30C1999838200F89967 /* GroupsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsTableViewController.h; sourceTree = "<group>"; };
@@ -184,6 +187,8 @@
 			isa = PBXGroup;
 			children = (
 				00CEE4061994350300F40C12 /* MainStoryboard.storyboard */,
+				001196E619A41D6C002D2757 /* CreateGroupViewController.h */,
+				001196E719A41D6C002D2757 /* CreateGroupViewController.m */,
 				00A9C30C1999838200F89967 /* GroupsTableViewController.h */,
 				00A9C30D1999838200F89967 /* GroupsTableViewController.m */,
 				001196E319A2CE1A002D2757 /* SearchFriendsViewController.h */,
@@ -330,6 +335,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				001196E819A41D6C002D2757 /* CreateGroupViewController.m in Sources */,
 				00CEE40E199436D700F40C12 /* LoginViewController.m in Sources */,
 				00CEE41119943AFC00F40C12 /* SignUpViewController.m in Sources */,
 				00CEE3E4199434E700F40C12 /* AppDelegate.m in Sources */,
