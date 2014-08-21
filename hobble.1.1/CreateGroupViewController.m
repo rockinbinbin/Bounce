@@ -10,6 +10,8 @@
 
 @interface CreateGroupViewController ()
 
+//@property (nonatomic, strong) Definitions *predefined;
+
 @end
 
 @implementation CreateGroupViewController
@@ -19,6 +21,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+
     }
     return self;
 }
@@ -28,7 +31,8 @@
     [super viewDidLoad];
     // hides keyboard when user hits background
     
-    self.groupsRelation = [[PFUser currentUser] objectForKey:ParseGroupRelation];
+    //self.groupsRelation = [[PFUser currentUser] objectForKey:ParseGroupRelation];
+    
     self.currentUser = [PFUser currentUser];
 
     
@@ -73,6 +77,7 @@
     [query whereKey:ParseGroupName equalTo:name];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
+            // works
             if (objects.count) {
                 NSLog(@"NOT UNIQUE GROUP NAME"); // write alert to try a different username
                 UIAlertView *notuniqueusername = [[UIAlertView alloc] initWithTitle:@"Oops!"
@@ -85,7 +90,6 @@
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
-
     if ([name length] == 0) {
             UIAlertView *zerolength = [[UIAlertView alloc] initWithTitle:@"Oops!"
                                                                      message:@"Make sure you enter a group name!"
@@ -94,34 +98,57 @@
         }
             
     else {
-        PFObject *Group = [PFObject objectWithClassName:@"Group"]; // creates an object of a new class called Group
-        Group[ParseGroupName] = name;
-        [self.groupsRelation addObject:Group]; // creates the relation
-            
-        [Group saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (error) {
-                NSLog(@"Error: %@ %@", error, [error userInfo]);
-            }
-            else {
-                [self performSegueWithIdentifier:@"CreateToGroup" sender:nil];
-            }
-        }];
-            
+        
+        // WHAT I DID HERE: created an array of strings as group names stored in the PFUser dash.
+        // Also, creates the group object with an array of PFUsers associated.
+        
+        Definitions *predefined = [[Definitions alloc]init];
+        predefined.Group[ParseGroupName] = name; // works
+        
+        
+        NSMutableArray *Userarray = [[NSMutableArray alloc] init];
+        [Userarray addObject:predefined.currentUser];
+        
+        
+        // create an array column object in Group class // WORKS
+        predefined.Group[@"ArrayOfUsers"] = Userarray;
+        [predefined.Group saveInBackground];
+        
+//        [groupies addObject:name];
+        
+//        for (NSString *blah in groupies) {
+//            NSLog(blah);
+//    }
+       
+        
+        PFUser *user = [PFUser currentUser];
+//        NSMutableArray *GroupArray = [[NSMutableArray alloc] init];
+//        [GroupArray addObject:name];
+        //user[@"ArrayOfGroups"] = GroupArray;
+        [user addObject:name forKey:@"ArrayOfGroups"];
+        [user saveInBackground];
+        
+        
+        
+        
+//        [predefined.groupsRelation addObject:self.currentUser];
+//        [predefined.UserToGroupsRelation addObject:predefined.Group];
+//        
+//        [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//            if (error) {
+//                NSLog(@"Error: %@ %@", error, [error userInfo]);
+//            }
+//        }];
+//        
+//        [predefined.Group saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//            if (error) {
+//                NSLog(@"Error: %@ %@", error, [error userInfo]);
+//            }
+//            else {
+//                [self performSegueWithIdentifier:@"CreateToGroup" sender:nil];
+//            }
+//        }];
 
-            
-//                [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//                    if (error) {
-//                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Sorry!"
-//                                                                            message:[error.userInfo objectForKey:@"error"]
-//                                                                           delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//                        [alertView show];
-//                    }
-//                    else {
-//                        //                [self.navigationController popToRootViewControllerAnimated:YES];
-//                        [self performSegueWithIdentifier:@"SignUpToMain" sender:nil];
-//                    }
-//                }];
-            
-            }
+    }
 }
 @end

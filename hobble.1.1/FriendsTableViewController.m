@@ -41,7 +41,7 @@
     
     self.navigationItem.hidesBackButton = YES;
     // assign friends relation (that was created in edit friends)
-    self.friendsRelation = [[PFUser currentUser] objectForKey:ParseFriendRelation];
+    self.friendsRelation = [[PFUser currentUser] objectForKey:ParseFriendRelation]; // defines relation as amount of friends in current user
     self.currentUser = [PFUser currentUser];
 }
 

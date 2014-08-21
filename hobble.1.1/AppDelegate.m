@@ -23,6 +23,8 @@
 //    [self.window makeKeyAndVisible];
     [Parse setApplicationId:@"vVNUbdp3ci9MLKqNWJMFMYBQZ1tE8EjJ5DZBTCF7"
                   clientKey:@"JvcX34MRd7rREhmtjFZrcU8mxqmRDFlbyC0yXzAv"];
+    
+    //groupies = [[NSMutableArray alloc] initWithCapacity:0];
     return YES;
 }
 

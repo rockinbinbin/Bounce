@@ -21,6 +21,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        NSLog(@"A");
     }
     return self;
 }
@@ -29,26 +30,84 @@
     [super viewDidLoad];
     
     self.navigationItem.hidesBackButton = YES;
+    
     // assign groups relation (that was created in edit groups)
-    self.groupsRelation = [[PFUser currentUser] objectForKey:ParseGroupRelation];
-    self.currentUser = [PFUser currentUser];
+    //self.groupsRelation = [[PFUser currentUser] objectForKey:ParseGroupRelation];
+    
+    //self.currentUser = [PFUser currentUser];
+    
+    NSLog(@"B");
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    PFQuery *query = [self.groupsRelation query];
-    [query orderByAscending:ParseGroupName];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (error) {
-            NSLog(@"Error %@ %@", error, [error userInfo]);
-        }
-        else {
-            self.groups = objects; // warning OK
-            [self.tableView reloadData];
-        }
-    }];
+    NSLog(@"C");
+    
+    //PFQuery *query = [PFUser query];
+    //self.groups = [PFUser objectWithClassName:@"ArrayOfGroups"];
+    
+    
+//    for (NSString *name in groupies) {
+//        NSLog(@"PLEASE PRINT");
+//        NSLog(name);
+//    }
+    
+    
+    //Definitions *predefined = [[Definitions alloc] init];
+    
+    
+    // THIS QUERY DOESN'T WORK -- figure out how to fix it!!!
+//    PFQuery *UsersGroups = [PFUser query];
+//    [UsersGroups whereKeyExists:@"ArrayOfGroups"];
+//    [UsersGroups findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//        if (error) {
+//            NSLog(@"Error %@ %@", error, [error userInfo]);
+//        }
+//        else {
+//            // THIS IS RETURNING THE CURRENT USER..? query is wrong
+//            self.groups = objects; // warning OK
+//            for (PFObject *object in objects) {
+//                NSLog(@"%@", object.objectId);
+//                // add to your array here
+//            }
+//            [self.tableView reloadData];
+//        }
+//    }];
+    
+    self.groups = [[PFUser currentUser] objectForKey:@"ArrayOfGroups"];
+    
+    for (NSString *str in self.groups) {
+        NSLog(str);
+    }
+
+//    for (PFObject *obj in self.groups) {
+//        NSString *str = [obj objectForKey:@"ArrayOfGroups"];
+//        NSLog(str);
+//    }
+    
+    //PFQuery *query = [predefined.groupsRelation query]; // THIS IS THE PROBLEM
+    
+    
+    //[query orderByAscending:ParseGroupName];
+    //self.groups = [query findObjects];
+    
+//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//        if (error) {
+//            NSLog(@"Error %@ %@", error, [error userInfo]);
+//        }
+//        else {
+//            self.groups = objects; // warning OK
+//            [self.tableView reloadData];
+//        }
+//    }];
+    
+//    // does NOTHING
+//    PFQuery *userQuery = [predefined.UserToGroupsRelation query];
+//    self.groups = [userQuery findObjects];
+    
+    
 }
 
 
@@ -63,25 +122,43 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
+    NSLog(@"D");
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
+    NSLog(@"E");
     return [self.groups count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    NSLog(@"F");
+    
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    PFObject *group = [self.groups objectAtIndex:indexPath.row];
-    cell.textLabel.text = [group objectForKey:ParseGroupName];
+    
+    
+    NSString *group = [self.groups objectAtIndex:indexPath.row];
+    cell.textLabel.text = group;
+  
+    
+    
+    // FIX THIS: length method - can't pass an array into a string?what
+    
+//    PFObject *object = [self.groups objectAtIndex:indexPath.row];
+//    NSString *thistext = [object objectForKey:@"ArrayOfGroups"];
+//    
+//    cell.textLabel.text = thistext;
+    
+    
     
     return cell;
 }
