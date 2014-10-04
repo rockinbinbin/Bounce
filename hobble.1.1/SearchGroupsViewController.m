@@ -8,7 +8,7 @@
 
 #import "SearchGroupsViewController.h"
 
-// ALL THIS DOES IS SEARCH FOR AND ADD A GROUP RELATION
+// ALL THIS DOES IS SEARCH FOR AND ADD A GROUP
 
 @interface SearchGroupsViewController ()
 
@@ -36,10 +36,6 @@
     self.MyGroups = [[NSMutableArray alloc] init]; // array with all of the current users' group objects
     
     self.Names = [[NSMutableArray alloc] init]; // array with all group names
-    
-    
-    
-    NSLog(@"got to search view did load");
 }
 
 
@@ -52,84 +48,12 @@
     // find ALL group Names
     PFQuery *query = [PFQuery queryWithClassName:@"Group"];
     [query whereKeyExists:@"groupName"];
-//    [query includeKey:@"groupName"];
-//    [query selectKeys:@[@"groupName"]];
-//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//        if (error) {
-//            NSLog(@"Error");
-//        }
-//        else {
-//            self.groups = objects;
-////            int a = 0;
-////            a = [objects count];
-////            NSLog(@"A = %d", a);
-////            for (PFObject *str in objects) {
-//////                NSLog(@"%@", str);
-////                NSString *hi = [str objectForKey:@"groupName"];
-////                NSLog(@"HI = %@", hi);
-////                [self.Names addObject:hi];
-////            }
-//        }
-//    }];
     self.groups = [query findObjects];
 
-    
-    
-    int a = 0;
-    a = [self.groups count];
-    NSLog(@"A = %d", a);
     for (PFObject *str in self.groups) {
-        //                NSLog(@"%@", str);
         NSString *hi = [str objectForKey:@"groupName"];
-        NSLog(@"HI = %@", hi);
         [self.Names addObject:hi];
     }
-    
-    
-    
-    
-//    // find ALL group objects
-//    PFQuery *twoquery = [PFQuery queryWithClassName:@"Group"];
-//    [twoquery whereKeyExists:@"groupName"];
-//    [twoquery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//        if (error) {
-//            NSLog(@"Error");
-//        }
-//        else {
-//            int a = 0;
-//            a = [objects count];
-//            NSLog(@"A = %d", a);
-//            for (PFObject *str in objects) {
-//                [self.Names addObject:str];
-//            }
-//        }
-//    }];
-    
-    
-    
-////    for (NSString *name in self.MyGroups) {
-////        NSLog(name);
-////    } // name works
-//    int count = 0;
-//    [self.Names count];
-//    NSLog(@"COUNT: %d", count);
-    
-//    int count = 0;
-//    for (NSString *name in self.Names) {
-//        NSLog(@"GOT HEREEE");
-//        NSLog(@"%d", count);
-//        count++;
-//        NSLog(@"%@", name);
-//    }
-//
-// //    ERROR
-//    for (NSString *string in self.groups) {
-//        NSLog(string);
-//    }
-    
-
-    NSLog(@"got to search view will appear");
-    
 }
 
 
@@ -141,13 +65,12 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"A");
     return [self.finalResults count];
 }
 
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"B");
+
     static NSString *cellID = @"cellID";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellID"];
     
@@ -155,14 +78,11 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     
-    NSLog(@"UPPP");
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        NSLog(@"HIIIII");
         NSString *name = [self.finalResults objectAtIndex:indexPath.row];
         cell.textLabel.text = name;
     }
     
-    NSLog(@"got to search cell for row at index path");
     return cell;
 }
 
@@ -170,7 +90,7 @@
 
 // should add groups (add to my groups array + add user to group members) for selected cells
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"C");
+
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
     NSString *usernameSelected = [self.finalResults objectAtIndex:indexPath.row];
@@ -209,7 +129,7 @@
         
         [self.MyGroups addObject:thisGroup];
         
-        NSLog(@"User added as friend!");
+        NSLog(@"Group added!");
         
     }
     
@@ -232,15 +152,12 @@
 // should take in a new group to see if its name matches the name in mygroups array
 - (BOOL)isInGroup:(PFObject *)group {
     
-    NSLog(@"D");
-    
     PFObject *testgroup = [PFObject objectWithClassName:@"Group"];
     for(testgroup in self.MyGroups) {
         if ([[group objectForKey:@"groupName"] isEqualToString:testgroup]) {
             return YES;
         }
     }
-    
     return NO;
 }
 
@@ -260,23 +177,21 @@
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
-    NSLog(@"E");
+
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF beginswith[c] %@", searchText];
     
-    
     self.finalResults = [self.Names filteredArrayUsingPredicate:resultPredicate];
-    NSLog(@"End of E");
+
 }
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller
 shouldReloadTableForSearchString:(NSString *)searchString
 {
-    NSLog(@"F");
+
     [self filterContentForSearchText:searchString
                                scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
                                       objectAtIndex:[self.searchDisplayController.searchBar
                                                      selectedScopeButtonIndex]]];
-    NSLog(@"End of F");
     return YES;
 }
 
