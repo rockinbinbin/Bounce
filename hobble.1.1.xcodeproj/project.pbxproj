@@ -10,6 +10,7 @@
 		001196E519A2CE1A002D2757 /* SearchFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001196E419A2CE1A002D2757 /* SearchFriendsViewController.m */; };
 		001196E819A41D6C002D2757 /* CreateGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001196E719A41D6C002D2757 /* CreateGroupViewController.m */; };
 		001196EB19A51443002D2757 /* Definitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 001196EA19A51443002D2757 /* Definitions.m */; };
+		001196F119A666C1002D2757 /* SearchGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001196F019A666C1002D2757 /* SearchGroupsViewController.m */; };
 		001D6C821997E58A00BC7D5D /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001D6C811997E58A00BC7D5D /* SettingsViewController.m */; };
 		00A9C30E1999838200F89967 /* GroupsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A9C30D1999838200F89967 /* GroupsTableViewController.m */; };
 		00CEE3D2199434E700F40C12 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE3D1199434E700F40C12 /* Foundation.framework */; };
@@ -62,6 +63,8 @@
 		001196E719A41D6C002D2757 /* CreateGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGroupViewController.m; sourceTree = "<group>"; };
 		001196E919A51443002D2757 /* Definitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Definitions.h; sourceTree = "<group>"; };
 		001196EA19A51443002D2757 /* Definitions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Definitions.m; sourceTree = "<group>"; };
+		001196EF19A666C1002D2757 /* SearchGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchGroupsViewController.h; sourceTree = "<group>"; };
+		001196F019A666C1002D2757 /* SearchGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchGroupsViewController.m; sourceTree = "<group>"; };
 		001D6C801997E58A00BC7D5D /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		001D6C811997E58A00BC7D5D /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		00A9C30C1999838200F89967 /* GroupsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsTableViewController.h; sourceTree = "<group>"; };
@@ -190,6 +193,8 @@
 			isa = PBXGroup;
 			children = (
 				00CEE4061994350300F40C12 /* MainStoryboard.storyboard */,
+				001196EF19A666C1002D2757 /* SearchGroupsViewController.h */,
+				001196F019A666C1002D2757 /* SearchGroupsViewController.m */,
 				001196E919A51443002D2757 /* Definitions.h */,
 				001196EA19A51443002D2757 /* Definitions.m */,
 				001196E619A41D6C002D2757 /* CreateGroupViewController.h */,
@@ -348,6 +353,7 @@
 				00CEE42A19952E7C00F40C12 /* FriendsTableViewController.m in Sources */,
 				00A9C30E1999838200F89967 /* GroupsTableViewController.m in Sources */,
 				00CEE3E7199434E700F40C12 /* hobble_1_1.xcdatamodeld in Sources */,
+				001196F119A666C1002D2757 /* SearchGroupsViewController.m in Sources */,
 				001196E519A2CE1A002D2757 /* SearchFriendsViewController.m in Sources */,
 				00CEE3E0199434E700F40C12 /* main.m in Sources */,
 				001D6C821997E58A00BC7D5D /* SettingsViewController.m in Sources */,
@@ -396,6 +402,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -434,6 +441,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;

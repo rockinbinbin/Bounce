@@ -109,14 +109,14 @@
 }
 
 
-// should add friends (+ add relation) for selected cells - not tested
+// should add friends (+ add relation) for selected cells
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 
     NSString *usernameSelected = [self.finalResults objectAtIndex:indexPath.row];
     PFUser *thisUser;
     
-    for (PFUser *user in self.searchResults) {
+    for (PFUser *user in self.searchResults) { // find the user in all users group that has the username of the username selected, and make a user out of it
         if (usernameSelected == user.username) {
             thisUser = user;
         }
@@ -151,7 +151,7 @@
     
 }
 
-- (BOOL)isFriend:(PFUser *)user {
+- (BOOL)isFriend:(PFUser *)user { // take in a new user to see if matches an ID in my friends array
     for(PFUser *friend in self.friendUsers) {
         if ([friend.objectId isEqualToString:user.objectId]) {
             return YES;

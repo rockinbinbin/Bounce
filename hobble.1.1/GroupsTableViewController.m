@@ -21,7 +21,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        NSLog(@"A");
     }
     return self;
 }
@@ -35,15 +34,13 @@
     //self.groupsRelation = [[PFUser currentUser] objectForKey:ParseGroupRelation];
     
     //self.currentUser = [PFUser currentUser];
-    
-    NSLog(@"B");
+
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    NSLog(@"C");
+
     
     //PFQuery *query = [PFUser query];
     //self.groups = [PFUser objectWithClassName:@"ArrayOfGroups"];
@@ -78,9 +75,9 @@
     
     self.groups = [[PFUser currentUser] objectForKey:@"ArrayOfGroups"];
     
-    for (NSString *str in self.groups) {
-        NSLog(str);
-    }
+//    for (NSString *str in self.groups) {
+//        NSLog(str);
+//    }
 
 //    for (PFObject *obj in self.groups) {
 //        NSString *str = [obj objectForKey:@"ArrayOfGroups"];
@@ -122,21 +119,20 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    NSLog(@"D");
+
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    NSLog(@"E");
+
     return [self.groups count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    NSLog(@"F");
     
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];

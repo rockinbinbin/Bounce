@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
-#import "FriendsTableViewController.h"
+//#import "FriendsTableViewController.h"
 #import "AppDelegate.h"
 
 @interface SearchFriendsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchDisplayDelegate, UISearchBarDelegate>
