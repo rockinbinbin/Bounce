@@ -12,6 +12,11 @@
 		001196EB19A51443002D2757 /* Definitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 001196EA19A51443002D2757 /* Definitions.m */; };
 		001196F119A666C1002D2757 /* SearchGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001196F019A666C1002D2757 /* SearchGroupsViewController.m */; };
 		001D6C821997E58A00BC7D5D /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001D6C811997E58A00BC7D5D /* SettingsViewController.m */; };
+		00296BD619EFA5BF003ADA30 /* APAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 00296BCA19EFA5BF003ADA30 /* APAddress.m */; };
+		00296BD719EFA5BF003ADA30 /* APAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 00296BCC19EFA5BF003ADA30 /* APAddressBook.m */; };
+		00296BD819EFA5BF003ADA30 /* APContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 00296BCE19EFA5BF003ADA30 /* APContact.m */; };
+		00296BD919EFA5BF003ADA30 /* APPhoneWithLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 00296BD019EFA5BF003ADA30 /* APPhoneWithLabel.m */; };
+		00296BDA19EFA5BF003ADA30 /* APSocialProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 00296BD219EFA5BF003ADA30 /* APSocialProfile.m */; };
 		00A9C30E1999838200F89967 /* GroupsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A9C30D1999838200F89967 /* GroupsTableViewController.m */; };
 		00CEE3D2199434E700F40C12 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE3D1199434E700F40C12 /* Foundation.framework */; };
 		00CEE3D4199434E700F40C12 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE3D3199434E700F40C12 /* CoreGraphics.framework */; };
@@ -67,6 +72,18 @@
 		001196F019A666C1002D2757 /* SearchGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchGroupsViewController.m; sourceTree = "<group>"; };
 		001D6C801997E58A00BC7D5D /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		001D6C811997E58A00BC7D5D /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		00296BC919EFA5BF003ADA30 /* APAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APAddress.h; sourceTree = "<group>"; };
+		00296BCA19EFA5BF003ADA30 /* APAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APAddress.m; sourceTree = "<group>"; };
+		00296BCB19EFA5BF003ADA30 /* APAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APAddressBook.h; sourceTree = "<group>"; };
+		00296BCC19EFA5BF003ADA30 /* APAddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APAddressBook.m; sourceTree = "<group>"; };
+		00296BCD19EFA5BF003ADA30 /* APContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APContact.h; sourceTree = "<group>"; };
+		00296BCE19EFA5BF003ADA30 /* APContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APContact.m; sourceTree = "<group>"; };
+		00296BCF19EFA5BF003ADA30 /* APPhoneWithLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPhoneWithLabel.h; sourceTree = "<group>"; };
+		00296BD019EFA5BF003ADA30 /* APPhoneWithLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APPhoneWithLabel.m; sourceTree = "<group>"; };
+		00296BD119EFA5BF003ADA30 /* APSocialProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APSocialProfile.h; sourceTree = "<group>"; };
+		00296BD219EFA5BF003ADA30 /* APSocialProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APSocialProfile.m; sourceTree = "<group>"; };
+		00296BD319EFA5BF003ADA30 /* APTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APTypes.h; sourceTree = "<group>"; };
+		00296BD519EFA5BF003ADA30 /* APAddressBook-Bridging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "APAddressBook-Bridging.h"; sourceTree = "<group>"; };
 		00A9C30C1999838200F89967 /* GroupsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsTableViewController.h; sourceTree = "<group>"; };
 		00A9C30D1999838200F89967 /* GroupsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsTableViewController.m; sourceTree = "<group>"; };
 		00CEE3CE199434E700F40C12 /* hobble.1.1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hobble.1.1.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,9 +163,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00296BC719EFA5BF003ADA30 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				00296BC819EFA5BF003ADA30 /* Core */,
+				00296BD419EFA5BF003ADA30 /* Swift */,
+			);
+			path = Pod;
+			sourceTree = "<group>";
+		};
+		00296BC819EFA5BF003ADA30 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				00296BC919EFA5BF003ADA30 /* APAddress.h */,
+				00296BCA19EFA5BF003ADA30 /* APAddress.m */,
+				00296BCB19EFA5BF003ADA30 /* APAddressBook.h */,
+				00296BCC19EFA5BF003ADA30 /* APAddressBook.m */,
+				00296BCD19EFA5BF003ADA30 /* APContact.h */,
+				00296BCE19EFA5BF003ADA30 /* APContact.m */,
+				00296BCF19EFA5BF003ADA30 /* APPhoneWithLabel.h */,
+				00296BD019EFA5BF003ADA30 /* APPhoneWithLabel.m */,
+				00296BD119EFA5BF003ADA30 /* APSocialProfile.h */,
+				00296BD219EFA5BF003ADA30 /* APSocialProfile.m */,
+				00296BD319EFA5BF003ADA30 /* APTypes.h */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		00296BD419EFA5BF003ADA30 /* Swift */ = {
+			isa = PBXGroup;
+			children = (
+				00296BD519EFA5BF003ADA30 /* APAddressBook-Bridging.h */,
+			);
+			path = Swift;
+			sourceTree = "<group>";
+		};
 		00CEE3C5199434E700F40C12 = {
 			isa = PBXGroup;
 			children = (
+				00296BC719EFA5BF003ADA30 /* Pod */,
 				00CEE3D9199434E700F40C12 /* hobble.1.1 */,
 				00CEE3F6199434E700F40C12 /* hobble.1.1Tests */,
 				00CEE3D0199434E700F40C12 /* Frameworks */,
@@ -307,6 +360,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 00CEE3C5199434E700F40C12;
 			productRefGroup = 00CEE3CF199434E700F40C12 /* Products */;
@@ -348,12 +402,17 @@
 				001196E819A41D6C002D2757 /* CreateGroupViewController.m in Sources */,
 				00CEE40E199436D700F40C12 /* LoginViewController.m in Sources */,
 				00CEE41119943AFC00F40C12 /* SignUpViewController.m in Sources */,
+				00296BD819EFA5BF003ADA30 /* APContact.m in Sources */,
+				00296BD919EFA5BF003ADA30 /* APPhoneWithLabel.m in Sources */,
 				00CEE3E4199434E700F40C12 /* AppDelegate.m in Sources */,
+				00296BDA19EFA5BF003ADA30 /* APSocialProfile.m in Sources */,
 				001196EB19A51443002D2757 /* Definitions.m in Sources */,
+				00296BD619EFA5BF003ADA30 /* APAddress.m in Sources */,
 				00CEE42A19952E7C00F40C12 /* FriendsTableViewController.m in Sources */,
 				00A9C30E1999838200F89967 /* GroupsTableViewController.m in Sources */,
 				00CEE3E7199434E700F40C12 /* hobble_1_1.xcdatamodeld in Sources */,
 				001196F119A666C1002D2757 /* SearchGroupsViewController.m in Sources */,
+				00296BD719EFA5BF003ADA30 /* APAddressBook.m in Sources */,
 				001196E519A2CE1A002D2757 /* SearchFriendsViewController.m in Sources */,
 				00CEE3E0199434E700F40C12 /* main.m in Sources */,
 				001D6C821997E58A00BC7D5D /* SettingsViewController.m in Sources */,

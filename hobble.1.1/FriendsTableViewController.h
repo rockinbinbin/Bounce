@@ -10,11 +10,14 @@
 #import <Parse/Parse.h>
 #import "AppDelegate.h"
 
-@interface FriendsTableViewController : UITableViewController
+@interface FriendsTableViewController : UITableViewController <UIAlertViewDelegate>
 
 @property (nonatomic, strong) PFRelation *friendsRelation;
 @property (nonatomic, strong) NSMutableArray *friends;
 @property (nonatomic, strong) PFUser *currentUser;
+
+
+- (BOOL)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 
 //-(void)userPressedDone;
 

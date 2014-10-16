@@ -7,8 +7,10 @@
 //
 
 #import "FriendsTableViewController.h"
+#import "APAddressBook.h"
 
 // ALL THIS DOES IS LIST YOUR FRIENDS IN TABLE VIEW
+
 
 @interface FriendsTableViewController ()
 
@@ -43,7 +45,55 @@
     // assign friends relation (that was created in edit friends)
     self.friendsRelation = [[PFUser currentUser] objectForKey:ParseFriendRelation]; // defines relation as amount of friends in current user
     self.currentUser = [PFUser currentUser];
+    
+    
+    // if user is a first time user: ask if they want to populate friends from contacts
+    // in new backend, not sure how to store if user is first time user
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Load friends from contacts?"
+                                                            message:@"Locale is fun with friends!"
+                                                           delegate:nil cancelButtonTitle:@"No" otherButtonTitles:@"OK!", nil];
+    alertView.delegate = self;
+    [alertView show];
+    
+    // CODE NOT TESTED
+    if ([self alertView:alertView clickedButtonAtIndex:alertView.cancelButtonIndex]) { // && add if new user
+        // import contacts
+        
+        APAddressBook *addressBook = [[APAddressBook alloc] init];
+        // don't forget to show some activity
+        [addressBook loadContacts:^(NSArray *contacts, NSError *error)
+        {
+            // hide activity
+            if (!error)
+            {
+                // do something with contacts array
+                // if users in contacts have an account, add them as friends + display
+                // make sure you store your own phone number at sign up and confirm it via text
+            }
+            else
+            {
+                // show error
+            }
+        }];
+
+        
+    }
+    
 }
+
+- (BOOL)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        NSLog(@"user pressed Cancel");
+        NSLog(@"%d", buttonIndex);
+        return NO;
+    }
+    else {
+    NSLog(@"user pressed OK");
+    NSLog(@"%d", buttonIndex);
+        return YES;
+    }
+}
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
