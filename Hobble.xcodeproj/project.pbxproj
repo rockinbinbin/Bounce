@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		001196E519A2CE1A002D2757 /* SearchFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001196E419A2CE1A002D2757 /* SearchFriendsViewController.m */; };
 		001196E819A41D6C002D2757 /* CreateGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001196E719A41D6C002D2757 /* CreateGroupViewController.m */; };
-		001196EB19A51443002D2757 /* Definitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 001196EA19A51443002D2757 /* Definitions.m */; };
 		001196F119A666C1002D2757 /* SearchGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001196F019A666C1002D2757 /* SearchGroupsViewController.m */; };
 		001D6C821997E58A00BC7D5D /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001D6C811997E58A00BC7D5D /* SettingsViewController.m */; };
 		00296BD619EFA5BF003ADA30 /* APAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 00296BCA19EFA5BF003ADA30 /* APAddress.m */; };
@@ -21,9 +20,9 @@
 		0060FE461A0ECB2C00525A50 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0060FE421A0ECB2C00525A50 /* Parse.framework */; };
 		0060FE471A0ECB2C00525A50 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0060FE431A0ECB2C00525A50 /* ParseFacebookUtils.framework */; };
 		0060FE481A0ECB2C00525A50 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0060FE441A0ECB2C00525A50 /* ParseUI.framework */; };
-		0090ECAD1A6B523B009DB11D /* ChatsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0090ECAC1A6B523B009DB11D /* ChatsTableViewController.m */; };
 		0090ECB01A6B59CA009DB11D /* NewMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0090ECAF1A6B59CA009DB11D /* NewMessageViewController.m */; };
 		0090ECB31A6B6624009DB11D /* AddGroupsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0090ECB21A6B6623009DB11D /* AddGroupsTableViewController.m */; };
+		0090ECB61A6BA251009DB11D /* Definitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0090ECB51A6BA251009DB11D /* Definitions.m */; };
 		00A9C30E1999838200F89967 /* GroupsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A9C30D1999838200F89967 /* GroupsTableViewController.m */; };
 		00CEE3D2199434E700F40C12 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE3D1199434E700F40C12 /* Foundation.framework */; };
 		00CEE3D4199434E700F40C12 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE3D3199434E700F40C12 /* CoreGraphics.framework */; };
@@ -71,8 +70,6 @@
 		001196E419A2CE1A002D2757 /* SearchFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFriendsViewController.m; sourceTree = "<group>"; };
 		001196E619A41D6C002D2757 /* CreateGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGroupViewController.h; sourceTree = "<group>"; };
 		001196E719A41D6C002D2757 /* CreateGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGroupViewController.m; sourceTree = "<group>"; };
-		001196E919A51443002D2757 /* Definitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Definitions.h; sourceTree = "<group>"; };
-		001196EA19A51443002D2757 /* Definitions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Definitions.m; sourceTree = "<group>"; };
 		001196EF19A666C1002D2757 /* SearchGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchGroupsViewController.h; sourceTree = "<group>"; };
 		001196F019A666C1002D2757 /* SearchGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchGroupsViewController.m; sourceTree = "<group>"; };
 		001D6C801997E58A00BC7D5D /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
@@ -93,12 +90,12 @@
 		0060FE421A0ECB2C00525A50 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		0060FE431A0ECB2C00525A50 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		0060FE441A0ECB2C00525A50 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
-		0090ECAB1A6B523B009DB11D /* ChatsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatsTableViewController.h; path = ../ChatsTableViewController.h; sourceTree = "<group>"; };
-		0090ECAC1A6B523B009DB11D /* ChatsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatsTableViewController.m; path = ../ChatsTableViewController.m; sourceTree = "<group>"; };
 		0090ECAE1A6B59CA009DB11D /* NewMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewMessageViewController.h; sourceTree = "<group>"; };
 		0090ECAF1A6B59CA009DB11D /* NewMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMessageViewController.m; sourceTree = "<group>"; };
 		0090ECB11A6B6623009DB11D /* AddGroupsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddGroupsTableViewController.h; path = ../AddGroupsTableViewController.h; sourceTree = "<group>"; };
 		0090ECB21A6B6623009DB11D /* AddGroupsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddGroupsTableViewController.m; path = ../AddGroupsTableViewController.m; sourceTree = "<group>"; };
+		0090ECB41A6BA251009DB11D /* Definitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Definitions.h; sourceTree = "<group>"; };
+		0090ECB51A6BA251009DB11D /* Definitions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Definitions.m; sourceTree = "<group>"; };
 		00A9C30C1999838200F89967 /* GroupsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsTableViewController.h; sourceTree = "<group>"; };
 		00A9C30D1999838200F89967 /* GroupsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsTableViewController.m; sourceTree = "<group>"; };
 		00CEE3CE199434E700F40C12 /* Hobble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hobble.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -275,16 +272,14 @@
 				0090ECB21A6B6623009DB11D /* AddGroupsTableViewController.m */,
 				0090ECAE1A6B59CA009DB11D /* NewMessageViewController.h */,
 				0090ECAF1A6B59CA009DB11D /* NewMessageViewController.m */,
-				0090ECAB1A6B523B009DB11D /* ChatsTableViewController.h */,
-				0090ECAC1A6B523B009DB11D /* ChatsTableViewController.m */,
 				001196EF19A666C1002D2757 /* SearchGroupsViewController.h */,
 				001196F019A666C1002D2757 /* SearchGroupsViewController.m */,
-				001196E919A51443002D2757 /* Definitions.h */,
-				001196EA19A51443002D2757 /* Definitions.m */,
 				001196E619A41D6C002D2757 /* CreateGroupViewController.h */,
 				001196E719A41D6C002D2757 /* CreateGroupViewController.m */,
 				00A9C30C1999838200F89967 /* GroupsTableViewController.h */,
 				00A9C30D1999838200F89967 /* GroupsTableViewController.m */,
+				0090ECB41A6BA251009DB11D /* Definitions.h */,
+				0090ECB51A6BA251009DB11D /* Definitions.m */,
 				001196E319A2CE1A002D2757 /* SearchFriendsViewController.h */,
 				001196E419A2CE1A002D2757 /* SearchFriendsViewController.m */,
 				00CEE42819952E7C00F40C12 /* FriendsTableViewController.h */,
@@ -435,10 +430,8 @@
 				00CEE41119943AFC00F40C12 /* SignUpViewController.m in Sources */,
 				00296BD819EFA5BF003ADA30 /* APContact.m in Sources */,
 				00296BD919EFA5BF003ADA30 /* APPhoneWithLabel.m in Sources */,
-				0090ECAD1A6B523B009DB11D /* ChatsTableViewController.m in Sources */,
 				00CEE3E4199434E700F40C12 /* AppDelegate.m in Sources */,
 				00296BDA19EFA5BF003ADA30 /* APSocialProfile.m in Sources */,
-				001196EB19A51443002D2757 /* Definitions.m in Sources */,
 				00296BD619EFA5BF003ADA30 /* APAddress.m in Sources */,
 				00CEE42A19952E7C00F40C12 /* FriendsTableViewController.m in Sources */,
 				00A9C30E1999838200F89967 /* GroupsTableViewController.m in Sources */,
@@ -447,6 +440,7 @@
 				00CEE3E7199434E700F40C12 /* hobble_1_1.xcdatamodeld in Sources */,
 				001196F119A666C1002D2757 /* SearchGroupsViewController.m in Sources */,
 				00296BD719EFA5BF003ADA30 /* APAddressBook.m in Sources */,
+				0090ECB61A6BA251009DB11D /* Definitions.m in Sources */,
 				001196E519A2CE1A002D2757 /* SearchFriendsViewController.m in Sources */,
 				00CEE3E0199434E700F40C12 /* main.m in Sources */,
 				001D6C821997E58A00BC7D5D /* SettingsViewController.m in Sources */,

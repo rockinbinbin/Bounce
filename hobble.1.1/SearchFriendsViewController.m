@@ -52,7 +52,6 @@
     // after query: test - print all usernames in parse
     PFUser *user;
     for (user in self.searchResults) {
-        //NSLog(@"User Info: %@", user.username);
         [self.usernames addObject:user.username];
     }
     
@@ -65,7 +64,6 @@
         }
         else {
             self.friendUsers = objects; // warning OK
-            //            [self.tableView reloadData];
         }
     }];
     
@@ -82,11 +80,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return 71;
-//}
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.finalResults count];
     }
@@ -101,7 +94,6 @@
     
 //    PFUser *user;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-//    user = [self.finalResults objectAtIndex:indexPath.row];
         NSString *name = [self.finalResults objectAtIndex:indexPath.row];
         cell.textLabel.text = name;
     }
@@ -161,16 +153,6 @@
     return NO;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {

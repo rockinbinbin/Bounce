@@ -13,10 +13,6 @@
 
 @interface GroupsTableViewController : UITableViewController
 
-//@property (nonatomic, strong) PFRelation *groupsRelation;
 @property (nonatomic, strong) NSMutableArray *groups; // store here after query
-//@property (nonatomic, strong) PFUser *currentUser;
-
-//-(void)userPressedDone; // as of now, just refreshes table view. move all relation/ stuff here?
 
 @end

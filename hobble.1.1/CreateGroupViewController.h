@@ -15,9 +15,6 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *groupNameTextField;
 @property (strong, nonatomic) PFUser *currentUser;
-//@property (strong, nonatomic) PFRelation *groupsRelation;
-
-//@property (strong, nonatomic) Definitions *predefined;
 
 - (IBAction)Done:(id)sender;
 

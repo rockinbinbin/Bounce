@@ -7,10 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
 @interface AddGroupsTableViewController : UITableViewController
 
+// store in parse:
 @property int radius;
 @property int timeAllocated;
+// create property for location
+@property (nonatomic, strong) NSMutableArray *SelectedGroups;
+
+
+@property (nonatomic, strong) NSMutableArray *groups;
 
 @end

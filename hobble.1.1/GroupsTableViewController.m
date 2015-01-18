@@ -29,81 +29,14 @@
     [super viewDidLoad];
     
     self.navigationItem.hidesBackButton = YES;
-    
-    // assign groups relation (that was created in edit groups)
-    //self.groupsRelation = [[PFUser currentUser] objectForKey:ParseGroupRelation];
-    
-    //self.currentUser = [PFUser currentUser];
 
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
-    
-    //PFQuery *query = [PFUser query];
-    //self.groups = [PFUser objectWithClassName:@"ArrayOfGroups"];
-    
-    
-//    for (NSString *name in groupies) {
-//        NSLog(@"PLEASE PRINT");
-//        NSLog(name);
-//    }
-    
-    
-    //Definitions *predefined = [[Definitions alloc] init];
-    
-    
-    // THIS QUERY DOESN'T WORK -- figure out how to fix it!!!
-//    PFQuery *UsersGroups = [PFUser query];
-//    [UsersGroups whereKeyExists:@"ArrayOfGroups"];
-//    [UsersGroups findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//        if (error) {
-//            NSLog(@"Error %@ %@", error, [error userInfo]);
-//        }
-//        else {
-//            // THIS IS RETURNING THE CURRENT USER..? query is wrong
-//            self.groups = objects; // warning OK
-//            for (PFObject *object in objects) {
-//                NSLog(@"%@", object.objectId);
-//                // add to your array here
-//            }
-//            [self.tableView reloadData];
-//        }
-//    }];
     
     self.groups = [[PFUser currentUser] objectForKey:@"ArrayOfGroups"];
-    
-//    for (NSString *str in self.groups) {
-//        NSLog(str);
-//    }
-
-//    for (PFObject *obj in self.groups) {
-//        NSString *str = [obj objectForKey:@"ArrayOfGroups"];
-//        NSLog(str);
-//    }
-    
-    //PFQuery *query = [predefined.groupsRelation query]; // THIS IS THE PROBLEM
-    
-    
-    //[query orderByAscending:ParseGroupName];
-    //self.groups = [query findObjects];
-    
-//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//        if (error) {
-//            NSLog(@"Error %@ %@", error, [error userInfo]);
-//        }
-//        else {
-//            self.groups = objects; // warning OK
-//            [self.tableView reloadData];
-//        }
-//    }];
-    
-//    // does NOTHING
-//    PFQuery *userQuery = [predefined.UserToGroupsRelation query];
-//    self.groups = [userQuery findObjects];
-    
     
 }
 
@@ -132,8 +65,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
@@ -145,107 +76,7 @@
     NSString *group = [self.groups objectAtIndex:indexPath.row];
     cell.textLabel.text = group;
   
-    
-    
-// FIX THIS: length method - can't pass an array into a string?what
-    
-//    PFObject *object = [self.groups objectAtIndex:indexPath.row];
-//    NSString *thistext = [object objectForKey:@"ArrayOfGroups"];
-//    
-//    cell.textLabel.text = thistext;
-    
-    
-    
     return cell;
 }
-
-
-//// should delete friends (+ remove relation) for selected cells - not tested
-//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    
-//    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
-//    
-//    // bar button? test
-//    UIBarButtonItem *doneBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(userPressedDone)];
-//    doneBarButtonItem.title = @"Delete";
-//    self.navigationItem.rightBarButtonItem = doneBarButtonItem;
-//    
-//
-//    
-//    
-//    // code change
-//    PFObject *group = [self.groups objectAtIndex:indexPath.row];
-//    
-//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//    cell.accessoryType = UITableViewCellAccessoryCheckmark;
-//    
-//    for (PFObject *groupObject in self.groups) {
-//        if ([group.objectId isEqualToString:group.objectId]) {
-//            [self.groups removeObject:groupObject];
-//            [self.groupsRelation removeObject:group]; // only difference between FriendsTableViewController.m is that self.groupsRelation is used here instead of creating and initializing a new PFRelation.
-//            break;
-//        }
-//    }
-//    
-//    
-//    [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//        if (error) {
-//            NSLog(@"Error: %@ %@", error, [error userInfo]);
-//        }
-//    }];
-//    
-//}
-//
-//
-//
-//
-///*
-//// Override to support conditional editing of the table view.
-//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    // Return NO if you do not want the specified item to be editable.
-//    return YES;
-//}
-//*/
-//
-///*
-//// Override to support editing the table view.
-//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    if (editingStyle == UITableViewCellEditingStyleDelete) {
-//        // Delete the row from the data source
-//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-//    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-//        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-//    }   
-//}
-//*/
-//
-///*
-//// Override to support rearranging the table view.
-//- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-//{
-//}
-//*/
-//
-///*
-//// Override to support conditional rearranging of the table view.
-//- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    // Return NO if you do not want the item to be re-orderable.
-//    return YES;
-//}
-//*/
-//
-///*
-//#pragma mark - Navigation
-//
-//// In a storyboard-based application, you will often want to do a little preparation before navigation
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    // Get the new view controller using [segue destinationViewController].
-//    // Pass the selected object to the new view controller.
-//}
-//*/
 
 @end

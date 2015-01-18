@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
-//#import "FriendsTableViewController.h"
 #import "AppDelegate.h"
 
 @interface SearchGroupsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchDisplayDelegate, UISearchBarDelegate>
@@ -16,8 +15,6 @@
 @property (nonatomic, strong) PFUser *currentUser;
 @property (nonatomic, strong) NSArray *finalResults; // searched group names
 @property (nonatomic, strong) NSMutableArray *Names; // all group names
-
-//@property (nonatomic, strong) PFRelation *friendsRelation;
 @property (nonatomic, strong) NSArray *groups; // all groups in app
 @property (nonatomic, strong) NSMutableArray *MyGroups; // my groups names
 

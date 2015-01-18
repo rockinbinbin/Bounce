@@ -19,6 +19,4 @@
 
 - (BOOL)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 
-//-(void)userPressedDone;
-
 @end

@@ -10,8 +10,6 @@
 
 @interface CreateGroupViewController ()
 
-//@property (nonatomic, strong) Definitions *predefined;
-
 @end
 
 @implementation CreateGroupViewController
@@ -29,9 +27,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // hides keyboard when user hits background
-    
-    //self.groupsRelation = [[PFUser currentUser] objectForKey:ParseGroupRelation];
     
     self.currentUser = [PFUser currentUser];
 
@@ -58,16 +53,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)Done:(id)sender {
     NSString *name = [self.groupNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -113,41 +98,10 @@
         // create an array column object in Group class // WORKS
         predefined.Group[@"ArrayOfUsers"] = Userarray;
         [predefined.Group saveInBackground];
-        
-//        [groupies addObject:name];
-        
-//        for (NSString *blah in groupies) {
-//            NSLog(blah);
-//    }
-       
-        
+
         PFUser *user = [PFUser currentUser];
-//        NSMutableArray *GroupArray = [[NSMutableArray alloc] init];
-//        [GroupArray addObject:name];
-        //user[@"ArrayOfGroups"] = GroupArray;
         [user addObject:name forKey:@"ArrayOfGroups"];
         [user saveInBackground];
-        
-        
-        
-        
-//        [predefined.groupsRelation addObject:self.currentUser];
-//        [predefined.UserToGroupsRelation addObject:predefined.Group];
-//        
-//        [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//            if (error) {
-//                NSLog(@"Error: %@ %@", error, [error userInfo]);
-//            }
-//        }];
-//        
-//        [predefined.Group saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//            if (error) {
-//                NSLog(@"Error: %@ %@", error, [error userInfo]);
-//            }
-//            else {
-//                [self performSegueWithIdentifier:@"CreateToGroup" sender:nil];
-//            }
-//        }];
 
     }
 }
