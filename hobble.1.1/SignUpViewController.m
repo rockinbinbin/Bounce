@@ -62,13 +62,13 @@
                                                                    delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [zerolength show];
             }
-            else if (![username hasPrefix:@"@"]) {
-                    UIAlertView *prefix = [[UIAlertView alloc] initWithTitle:@"Oops!"
-                                                                        message:@"User handles must begin with an "@" symbol."
-                                                                       delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                [prefix show];
-                
-            }
+//            else if (![username hasPrefix:@"@"]) {
+//                    UIAlertView *prefix = [[UIAlertView alloc] initWithTitle:@"Oops!"
+//                                                                        message:@"User handles must begin with an "@" symbol."
+//                                                                       delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//                [prefix show];
+//                
+//            }
             else {
                 PFUser *newUser = [PFUser user];
                 newUser.username = username;

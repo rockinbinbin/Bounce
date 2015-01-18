@@ -21,6 +21,8 @@
 {
     [super viewDidAppear:animated];
     
+    [self setupReturnButton];
+    
     // hides keyboard when user hits background
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     [self.view addGestureRecognizer:gestureRecognizer];
@@ -74,7 +76,15 @@
             }
         }];
     }
-
-    
 }
+
+/// Sets up the done button on keyboard to be blue.
+- (void)setupReturnButton {
+    self.usernameField.delegate = self;
+    self.passwordField.delegate = self;
+    
+    [self.usernameField setReturnKeyType:UIReturnKeyNext];
+    [self.passwordField setReturnKeyType:UIReturnKeyDone];
+}
+
 @end
