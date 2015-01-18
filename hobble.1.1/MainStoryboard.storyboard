@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="amR-BS-Uqj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="amR-BS-Uqj">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -218,7 +219,33 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="791" y="264"/>
+            <point key="canvasLocation" x="845" y="-160"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="zuF-34-szG">
+            <objects>
+                <tableViewController id="w1v-ac-A6C" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="xct-A8-sRk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Ene-ri-Or1">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ene-ri-Or1" id="QGJ-Z0-sDP">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="w1v-ac-A6C" id="eoZ-Um-sVI"/>
+                            <outlet property="delegate" destination="w1v-ac-A6C" id="W07-iT-NlQ"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pf6-6r-4j9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="419" y="-1765"/>
         </scene>
         <!--Search Friends View Controller-->
         <scene sceneID="9BP-v9-e85">
@@ -263,6 +290,11 @@
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <items>
                                     <navigationItem title="Search Users" id="r9U-XQ-v3H">
+                                        <barButtonItem key="leftBarButtonItem" title="AddFromContacts" id="e4f-Q3-O0T">
+                                            <connections>
+                                                <segue destination="w1v-ac-A6C" kind="modal" id="ZVJ-ex-pLn"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Done" id="V0Q-Gc-KYq">
                                             <connections>
                                                 <action selector="AddButton:" destination="RTG-Ob-u6u" id="C1C-pW-X55"/>
@@ -333,7 +365,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4FF-Yv-1y9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="869" y="-949"/>
+            <point key="canvasLocation" x="807" y="-1177"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="De1-gW-0af">
@@ -443,7 +475,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="def-Rn-5wv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="838" y="592"/>
+            <point key="canvasLocation" x="1290" y="238"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -454,6 +486,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="m56-br-YY8"/>
         <segue reference="zUk-wO-gHJ"/>
-        <segue reference="ycK-Be-z99"/>
+        <segue reference="O0y-m5-u3X"/>
     </inferredMetricsTieBreakers>
 </document>

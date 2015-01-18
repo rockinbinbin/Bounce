@@ -147,7 +147,7 @@
   
     
     
-    // FIX THIS: length method - can't pass an array into a string?what
+// FIX THIS: length method - can't pass an array into a string?what
     
 //    PFObject *object = [self.groups objectAtIndex:indexPath.row];
 //    NSString *thistext = [object objectForKey:@"ArrayOfGroups"];

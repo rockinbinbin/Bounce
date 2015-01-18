@@ -55,29 +55,27 @@
     alertView.delegate = self;
     [alertView show];
     
-    // CODE NOT TESTED
-    if ([self alertView:alertView clickedButtonAtIndex:alertView.cancelButtonIndex]) { // && add if new user
-        // import contacts
-        
-        APAddressBook *addressBook = [[APAddressBook alloc] init];
-        // don't forget to show some activity
-        [addressBook loadContacts:^(NSArray *contacts, NSError *error)
-        {
-            // hide activity
-            if (!error)
-            {
-                // do something with contacts array
-                // if users in contacts have an account, add them as friends + display
-                // make sure you store your own phone number at sign up and confirm it via text
-            }
-            else
-            {
-                // show error
-            }
-        }];
-
-        
-    }
+//    // CODE NOT TESTED
+//    if ([self alertView:alertView clickedButtonAtIndex:alertView.cancelButtonIndex]) { // && add if new user
+//        // import contacts
+//        
+//        APAddressBook *addressBook = [[APAddressBook alloc] init];
+//        // don't forget to show some activity
+//        [addressBook loadContacts:^(NSArray *contacts, NSError *error)
+//        {
+//            // hide activity
+//            if (!error)
+//            {
+//                // do something with contacts array (segue)
+//                // if users in contacts have an account, add them as friends + display
+//                // make sure you store your own phone number at sign up and confirm it via text
+//            }
+//            else
+//            {
+//                // show error
+//            }
+//        }];
+//    }
     
 }
 
