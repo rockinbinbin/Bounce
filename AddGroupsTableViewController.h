@@ -19,5 +19,6 @@
 
 
 @property (nonatomic, strong) NSMutableArray *groups;
+@property (nonatomic, strong) PFObject *Request;
 
 @end

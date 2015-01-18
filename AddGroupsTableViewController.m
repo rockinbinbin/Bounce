@@ -79,14 +79,23 @@
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    for (NSString *str in self.SelectedGroups) {
-        NSLog(@"%@", str);
-    }
 }
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [[self.tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryNone];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"SentHobbleRequest"]) {
+        self.Request = [PFObject objectWithClassName:@"Requests"];
+        self.Request[@"Sender"] = [PFUser currentUser].username;
+        self.Request[@"RequestedGroups"] = self.SelectedGroups;
+        self.Request[@"Radius"] = [NSNumber numberWithInt:self.radius];
+        self.Request[@"TimeAllocated"] = [NSNumber numberWithInt:self.timeAllocated];
+        [self.Request saveInBackground];
+    }
 }
 
 @end

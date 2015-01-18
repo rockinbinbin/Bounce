@@ -88,14 +88,14 @@
         // Also, creates the group object with an array of PFUsers associated.
         
         Definitions *predefined = [[Definitions alloc]init];
-        predefined.Group[ParseGroupName] = name; // works
+        predefined.Group[ParseGroupName] = name;
         
         
         NSMutableArray *Userarray = [[NSMutableArray alloc] init];
         [Userarray addObject:predefined.currentUser];
         
         
-        // create an array column object in Group class // WORKS
+        // create an array column object in Group class
         predefined.Group[@"ArrayOfUsers"] = Userarray;
         [predefined.Group saveInBackground];
 
