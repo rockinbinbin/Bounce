@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
         self.navigationItem.hidesBackButton = YES;
+    self.SelectedGroups = [NSMutableArray array];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -57,12 +58,35 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    
     NSString *group = [self.groups objectAtIndex:indexPath.row];
     cell.textLabel.text = group;
     
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+      UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
+    if ([selectedCell accessoryType] == UITableViewCellAccessoryNone) {
+        [selectedCell setAccessoryType:UITableViewCellAccessoryCheckmark];
+        [self.SelectedGroups addObject:[self.groups objectAtIndex:indexPath.row]];
+        
+    }
+    else {
+        [selectedCell setAccessoryType:UITableViewCellAccessoryNone];
+        [self.SelectedGroups removeObject:[self.groups objectAtIndex:indexPath.row]];
+        
+    }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    for (NSString *str in self.SelectedGroups) {
+        NSLog(@"%@", str);
+    }
+}
+
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [[self.tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryNone];
+}
 
 @end
