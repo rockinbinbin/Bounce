@@ -50,33 +50,35 @@
 #pragma mark - Navigation
 
 
-- (IBAction)AddGroupsButton:(id)sender {
-    NSString *RadiusString = [self.Radius.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
-    NSString *TimeString = [self.TimeAllocated.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
-    // INPUT ERROR MESSAGES
-    if ([RadiusString length] == 0 || [TimeString length] == 0) {
-        UIAlertView *zeroString = [[UIAlertView alloc] initWithTitle:@"Oops!"
-                                                             message:@"Please Enter a radius and time value!"
-                                                            delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [zeroString show];
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"NewMessageToAddGroups"]) {
+        NSString *RadiusString = [self.Radius.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         
-    }
-    
-    else if (![self isNumeric:RadiusString] || ![self isNumeric:TimeString]) {
-        UIAlertView *notNumeric = [[UIAlertView alloc] initWithTitle:@"Oops!"
-                                                             message:@"Please enter a numeric radius and time value!"
-                                                            delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [notNumeric show];
+        NSString *TimeString = [self.TimeAllocated.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         
-    }
-    else {
-    
-    AddGroupsTableViewController *viewControllerB = [AddGroupsTableViewController alloc];
-    viewControllerB.radius = [RadiusString intValue];
-    viewControllerB.timeAllocated = [TimeString intValue];
-        [self performSegueWithIdentifier:@"NewMessageToAddGroups" sender:nil];
+        // INPUT ERROR MESSAGES
+        if ([RadiusString length] == 0 || [TimeString length] == 0) {
+            UIAlertView *zeroString = [[UIAlertView alloc] initWithTitle:@"Oops!"
+                                                                 message:@"Please Enter a radius and time value!"
+                                                                delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [zeroString show];
+            
+        }
+        
+        else if (![self isNumeric:RadiusString] || ![self isNumeric:TimeString]) {
+            UIAlertView *notNumeric = [[UIAlertView alloc] initWithTitle:@"Oops!"
+                                                                 message:@"Please enter a numeric radius and time value!"
+                                                                delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [notNumeric show];
+            
+        }
+        else {
+            AddGroupsTableViewController *controller = (AddGroupsTableViewController *)segue.destinationViewController;
+            controller.radius = [RadiusString intValue];
+            controller.timeAllocated = [TimeString intValue];
+        }
     }
 }
+
 @end

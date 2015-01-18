@@ -28,6 +28,9 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.groups = [[PFUser currentUser] objectForKey:@"ArrayOfGroups"];
+    
+    NSLog(@"radius = %d", self.radius);
+    NSLog(@"time allocated = %d", self.timeAllocated);
 }
 
 - (void)didReceiveMemoryWarning {
