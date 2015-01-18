@@ -57,7 +57,7 @@
                     <connections>
                         <outlet property="passwordField" destination="BzF-ls-dXJ" id="eoJ-aw-MKG"/>
                         <outlet property="usernameField" destination="fli-dF-ooo" id="oep-AF-8cT"/>
-                        <segue destination="fnW-oV-SgQ" kind="modal" identifier="LoginToMain" id="zUk-wO-gHJ"/>
+                        <segue destination="kV9-jE-7vq" kind="modal" identifier="LoginToMain" id="vKn-zR-jAc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VGf-NI-ndq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -102,12 +102,12 @@
                     <connections>
                         <outlet property="passwordField" destination="gXy-mn-ud6" id="eQ8-eZ-W3M"/>
                         <outlet property="usernameField" destination="rfS-EM-zvz" id="XTC-32-mD8"/>
-                        <segue destination="fnW-oV-SgQ" kind="modal" identifier="SignUpToMain" id="fM0-NR-Kgp"/>
+                        <segue destination="kV9-jE-7vq" kind="modal" identifier="SignUpToMain" id="iWx-A3-VzT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z9c-0S-FNf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-114" y="-496"/>
+            <point key="canvasLocation" x="-578" y="-872"/>
         </scene>
         <!--Friends-->
         <scene sceneID="20M-Oh-max">
@@ -159,7 +159,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YHl-Zd-w6R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="432" y="-427"/>
+            <point key="canvasLocation" x="702" y="-1225"/>
         </scene>
         <!--Search Groups View Controller-->
         <scene sceneID="XTs-jM-M8L">
@@ -219,7 +219,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="845" y="-160"/>
+            <point key="canvasLocation" x="-197" y="-558"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="zuF-34-szG">
@@ -245,7 +245,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pf6-6r-4j9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="419" y="-1765"/>
+            <point key="canvasLocation" x="1137" y="-1850"/>
         </scene>
         <!--Search Friends View Controller-->
         <scene sceneID="9BP-v9-e85">
@@ -329,7 +329,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="419" y="-1130"/>
+            <point key="canvasLocation" x="702" y="-1850"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="pzz-Yr-pdT">
@@ -356,7 +356,6 @@
                                 </state>
                                 <connections>
                                     <action selector="LogoutButton:" destination="AOx-Im-xmo" eventType="touchUpInside" id="yDz-AQ-Kgj"/>
-                                    <segue destination="amR-BS-Uqj" kind="modal" identifier="LogoutToLogin" id="Wto-z8-D9X"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -365,7 +364,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4FF-Yv-1y9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="807" y="-1177"/>
+            <point key="canvasLocation" x="1137" y="-1213"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="De1-gW-0af">
@@ -379,13 +378,11 @@
                     </tabBar>
                     <connections>
                         <segue destination="3DC-zD-EZb" kind="relationship" relationship="viewControllers" id="5q4-uk-ytw"/>
-                        <segue destination="vAA-gy-fHR" kind="relationship" relationship="viewControllers" id="i7a-yn-lDS"/>
-                        <segue destination="kV9-jE-7vq" kind="relationship" relationship="viewControllers" id="Lpr-Gl-cSf"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k4r-SC-EkJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-110" y="215"/>
+            <point key="canvasLocation" x="307" y="-1850"/>
         </scene>
         <!--Item-->
         <scene sceneID="zul-qe-NhF">
@@ -403,14 +400,24 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <items>
                                     <navigationItem title="Home" id="jb7-U8-tBv">
-                                        <barButtonItem key="rightBarButtonItem" title="New Msg" id="JNo-57-Knu">
+                                        <barButtonItem key="leftBarButtonItem" title="Notifications" id="WJl-8C-iDb"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Groups" id="JNo-57-Knu">
                                             <connections>
-                                                <segue destination="MB8-5b-hFj" kind="modal" identifier="ChatsToNewMessage" id="6s2-cS-5Wo"/>
+                                                <segue destination="vAA-gy-fHR" kind="modal" identifier="HomeToGroups" id="5ec-RP-EpJ"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8e1-R5-hGt">
+                                <rect key="frame" x="5" y="512" width="315" height="56"/>
+                                <state key="normal" title="New Request">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="MB8-5b-hFj" kind="modal" identifier="ChatsToNewMessage" id="3Ze-QF-nQF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -418,7 +425,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieu-G5-rfv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-418" y="1056"/>
+            <point key="canvasLocation" x="-604" y="484"/>
         </scene>
         <!--Add Groups Table View Controller-->
         <scene sceneID="9yd-V7-lwp">
@@ -433,6 +440,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <items>
                                 <navigationItem title="Add Groups" id="ATL-0z-8pN">
+                                    <barButtonItem key="leftBarButtonItem" title="Cancel" id="Bx3-Op-Ku7"/>
                                     <barButtonItem key="rightBarButtonItem" title="Send" id="E0R-mn-nDa">
                                         <connections>
                                             <segue destination="kV9-jE-7vq" kind="modal" identifier="SentHobbleRequest" id="FWY-ec-8vv"/>
@@ -458,7 +466,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cc3-DR-nYe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="432" y="1211"/>
+            <point key="canvasLocation" x="190" y="844"/>
         </scene>
         <!--New Message View Controller-->
         <scene sceneID="Y8i-Dp-QEk">
@@ -475,7 +483,9 @@
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HT7-bq-0t1">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <items>
-                                    <navigationItem title="New Message" id="bGw-ZW-aC9"/>
+                                    <navigationItem title="New Message" id="bGw-ZW-aC9">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Nkz-2j-Qkn"/>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2t6-rX-lw8">
@@ -519,7 +529,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="86h-SD-Mgh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-12" y="1056"/>
+            <point key="canvasLocation" x="-197" y="844"/>
         </scene>
         <!--Groups-->
         <scene sceneID="IQH-SW-COk">
@@ -534,14 +544,10 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <items>
                                 <navigationItem title="Groups" id="e3F-zw-0gr">
-                                    <barButtonItem key="leftBarButtonItem" title="Search" id="dm6-xv-yGg">
+                                    <barButtonItem key="leftBarButtonItem" title="Back" id="dm6-xv-yGg"/>
+                                    <barButtonItem key="rightBarButtonItem" title="Add" id="BJs-Ml-PV2">
                                         <connections>
-                                            <segue destination="JTr-Mh-iWb" kind="modal" identifier="GroupsToSearch" id="KiT-eK-v6a"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem key="rightBarButtonItem" title="Create" id="BJs-Ml-PV2">
-                                        <connections>
-                                            <segue destination="3SW-yW-hfi" kind="modal" identifier="GroupsToCreate" id="vxS-NN-FOb"/>
+                                            <segue destination="eWB-sI-E7x" kind="modal" identifier="AddGroups" id="JfK-IQ-kaU"/>
                                         </connections>
                                     </barButtonItem>
                                 </navigationItem>
@@ -566,7 +572,45 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Hq-YO-YFr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="432" y="589"/>
+            <point key="canvasLocation" x="-190" y="172"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="vNS-mk-Adn">
+            <objects>
+                <viewController id="eWB-sI-E7x" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="z5I-UW-K3X"/>
+                        <viewControllerLayoutGuide type="bottom" id="AOZ-Zw-FJW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DMe-sx-C8N">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0rS-Lg-3tB">
+                                <rect key="frame" x="102" y="162" width="116" height="30"/>
+                                <state key="normal" title="CREATE GROUP">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="3SW-yW-hfi" kind="modal" identifier="GroupsToCreate" id="9ok-nV-PeQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j1u-kB-0PB">
+                                <rect key="frame" x="95" y="250" width="130" height="30"/>
+                                <state key="normal" title="SEARCH GROUPS">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="JTr-Mh-iWb" kind="modal" identifier="SearchGroups" id="4wy-RK-G3y"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sqX-IY-Q4K" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="307" y="232"/>
         </scene>
         <!--Create Group View Controller-->
         <scene sceneID="QdL-ur-Xdk">
@@ -583,7 +627,14 @@
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AGo-dq-qpq">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <items>
-                                    <navigationItem title="Create Group" id="Hf5-e2-JBc"/>
+                                    <navigationItem title="Create Group" id="Hf5-e2-JBc">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="qAs-9c-nRG"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Search" id="As0-ry-Tlp">
+                                            <connections>
+                                                <segue destination="JTr-Mh-iWb" kind="modal" identifier="GroupsToSearch" id="nK4-Y1-va8"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Group Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="67B-9B-aUp">
@@ -610,7 +661,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="def-Rn-5wv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1290" y="238"/>
+            <point key="canvasLocation" x="494" y="-478"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -619,9 +670,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="i7a-yn-lDS"/>
-        <segue reference="zUk-wO-gHJ"/>
         <segue reference="5q4-uk-ytw"/>
+        <segue reference="O0y-m5-u3X"/>
+        <segue reference="4wy-RK-G3y"/>
         <segue reference="FWY-ec-8vv"/>
     </inferredMetricsTieBreakers>
 </document>
