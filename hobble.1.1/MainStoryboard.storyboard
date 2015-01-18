@@ -440,7 +440,11 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <items>
                                 <navigationItem title="Add Groups" id="ATL-0z-8pN">
-                                    <barButtonItem key="leftBarButtonItem" title="Cancel" id="Bx3-Op-Ku7"/>
+                                    <barButtonItem key="leftBarButtonItem" title="Cancel" id="Bx3-Op-Ku7">
+                                        <connections>
+                                            <action selector="unwind:" destination="fG2-Cj-Xvw" id="dtA-vu-Y1S"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem key="rightBarButtonItem" title="Send" id="E0R-mn-nDa">
                                         <connections>
                                             <segue destination="kV9-jE-7vq" kind="modal" identifier="SentHobbleRequest" id="FWY-ec-8vv"/>
@@ -484,7 +488,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <items>
                                     <navigationItem title="New Message" id="bGw-ZW-aC9">
-                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Nkz-2j-Qkn"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Nkz-2j-Qkn">
+                                            <connections>
+                                                <action selector="unwind:" destination="MB8-5b-hFj" id="CcU-3p-KSn"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -544,7 +552,11 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <items>
                                 <navigationItem title="Groups" id="e3F-zw-0gr">
-                                    <barButtonItem key="leftBarButtonItem" title="Back" id="dm6-xv-yGg"/>
+                                    <barButtonItem key="leftBarButtonItem" title="Back" id="dm6-xv-yGg">
+                                        <connections>
+                                            <action selector="unwind:" destination="vAA-gy-fHR" id="zGu-jG-3qR"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem key="rightBarButtonItem" title="Add" id="BJs-Ml-PV2">
                                         <connections>
                                             <segue destination="eWB-sI-E7x" kind="modal" identifier="AddGroups" id="JfK-IQ-kaU"/>
@@ -628,7 +640,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <items>
                                     <navigationItem title="Create Group" id="Hf5-e2-JBc">
-                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="qAs-9c-nRG"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="qAs-9c-nRG">
+                                            <connections>
+                                                <action selector="unwind:" destination="3SW-yW-hfi" id="L0e-vl-o33"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Search" id="As0-ry-Tlp">
                                             <connections>
                                                 <segue destination="JTr-Mh-iWb" kind="modal" identifier="GroupsToSearch" id="nK4-Y1-va8"/>
@@ -671,8 +687,8 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="5q4-uk-ytw"/>
-        <segue reference="O0y-m5-u3X"/>
-        <segue reference="4wy-RK-G3y"/>
         <segue reference="FWY-ec-8vv"/>
+        <segue reference="ycK-Be-z99"/>
+        <segue reference="4wy-RK-G3y"/>
     </inferredMetricsTieBreakers>
 </document>
