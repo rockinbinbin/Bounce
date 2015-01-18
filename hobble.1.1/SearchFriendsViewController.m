@@ -121,13 +121,13 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
         // put up alert - already a friend!
         NSLog(@"Already a friend - can't add this user");
+        
     }
     else {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
                 [self.friendUsers addObject:thisUser];
                 [_friendsRelation addObject:thisUser];
         NSLog(@"User added as friend!");
-  
     }
     
     [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {

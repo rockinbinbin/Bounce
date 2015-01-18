@@ -114,6 +114,11 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
         // put up alert - already a friend!
         NSLog(@"Already in group - can't add this user");
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Hey!"
+                                                            message:@"You've already added this group!"
+                                                           delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+
     }
     else {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
