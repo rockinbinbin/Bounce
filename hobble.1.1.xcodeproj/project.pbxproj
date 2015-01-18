@@ -100,21 +100,21 @@
 		0090ECC71A6C5322009DB11D /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		00A9C30C1999838200F89967 /* GroupsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsTableViewController.h; sourceTree = "<group>"; };
 		00A9C30D1999838200F89967 /* GroupsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsTableViewController.m; sourceTree = "<group>"; };
-		00CEE3CE199434E700F40C12 /* Hobble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hobble.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		00CEE3CE199434E700F40C12 /* hobble.1.1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hobble.1.1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00CEE3D1199434E700F40C12 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		00CEE3D3199434E700F40C12 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		00CEE3D5199434E700F40C12 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		00CEE3D7199434E700F40C12 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		00CEE3DB199434E700F40C12 /* Hobble-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Hobble-Info.plist"; sourceTree = "<group>"; };
+		00CEE3DB199434E700F40C12 /* hobble.1.1-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "hobble.1.1-Info.plist"; sourceTree = "<group>"; };
 		00CEE3DD199434E700F40C12 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		00CEE3DF199434E700F40C12 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		00CEE3E1199434E700F40C12 /* Hobble-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hobble-Prefix.pch"; sourceTree = "<group>"; };
+		00CEE3E1199434E700F40C12 /* hobble.1.1-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "hobble.1.1-Prefix.pch"; sourceTree = "<group>"; };
 		00CEE3E2199434E700F40C12 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		00CEE3E3199434E700F40C12 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		00CEE3E6199434E700F40C12 /* hobble_1_1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hobble_1_1.xcdatamodel; sourceTree = "<group>"; };
 		00CEE3E8199434E700F40C12 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		00CEE3EE199434E700F40C12 /* HobbleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HobbleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		00CEE3F8199434E700F40C12 /* HobbleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HobbleTests-Info.plist"; sourceTree = "<group>"; };
+		00CEE3EE199434E700F40C12 /* hobble.1.1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hobble.1.1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00CEE3F8199434E700F40C12 /* hobble.1.1Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "hobble.1.1Tests-Info.plist"; sourceTree = "<group>"; };
 		00CEE3FA199434E700F40C12 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		00CEE3FC199434E700F40C12 /* hobble_1_1Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = hobble_1_1Tests.m; sourceTree = "<group>"; };
 		00CEE4061994350300F40C12 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainStoryboard.storyboard; path = hobble.1.1/MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -252,8 +252,8 @@
 		00CEE3CF199434E700F40C12 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				00CEE3CE199434E700F40C12 /* Hobble.app */,
-				00CEE3EE199434E700F40C12 /* HobbleTests.xctest */,
+				00CEE3CE199434E700F40C12 /* hobble.1.1.app */,
+				00CEE3EE199434E700F40C12 /* hobble.1.1Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -311,10 +311,10 @@
 		00CEE3DA199434E700F40C12 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				00CEE3DB199434E700F40C12 /* Hobble-Info.plist */,
+				00CEE3DB199434E700F40C12 /* hobble.1.1-Info.plist */,
 				00CEE3DC199434E700F40C12 /* InfoPlist.strings */,
 				00CEE3DF199434E700F40C12 /* main.m */,
-				00CEE3E1199434E700F40C12 /* Hobble-Prefix.pch */,
+				00CEE3E1199434E700F40C12 /* hobble.1.1-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -331,7 +331,7 @@
 		00CEE3F7199434E700F40C12 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				00CEE3F8199434E700F40C12 /* HobbleTests-Info.plist */,
+				00CEE3F8199434E700F40C12 /* hobble.1.1Tests-Info.plist */,
 				00CEE3F9199434E700F40C12 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -340,9 +340,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00CEE3CD199434E700F40C12 /* Hobble */ = {
+		00CEE3CD199434E700F40C12 /* hobble.1.1 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00CEE400199434E700F40C12 /* Build configuration list for PBXNativeTarget "Hobble" */;
+			buildConfigurationList = 00CEE400199434E700F40C12 /* Build configuration list for PBXNativeTarget "hobble.1.1" */;
 			buildPhases = (
 				00CEE3CA199434E700F40C12 /* Sources */,
 				00CEE3CB199434E700F40C12 /* Frameworks */,
@@ -352,14 +352,14 @@
 			);
 			dependencies = (
 			);
-			name = Hobble;
+			name = hobble.1.1;
 			productName = hobble.1.1;
-			productReference = 00CEE3CE199434E700F40C12 /* Hobble.app */;
+			productReference = 00CEE3CE199434E700F40C12 /* hobble.1.1.app */;
 			productType = "com.apple.product-type.application";
 		};
-		00CEE3ED199434E700F40C12 /* HobbleTests */ = {
+		00CEE3ED199434E700F40C12 /* hobble.1.1Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00CEE403199434E700F40C12 /* Build configuration list for PBXNativeTarget "HobbleTests" */;
+			buildConfigurationList = 00CEE403199434E700F40C12 /* Build configuration list for PBXNativeTarget "hobble.1.1Tests" */;
 			buildPhases = (
 				00CEE3EA199434E700F40C12 /* Sources */,
 				00CEE3EB199434E700F40C12 /* Frameworks */,
@@ -370,9 +370,9 @@
 			dependencies = (
 				00CEE3F5199434E700F40C12 /* PBXTargetDependency */,
 			);
-			name = HobbleTests;
+			name = hobble.1.1Tests;
 			productName = hobble.1.1Tests;
-			productReference = 00CEE3EE199434E700F40C12 /* HobbleTests.xctest */;
+			productReference = 00CEE3EE199434E700F40C12 /* hobble.1.1Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -389,7 +389,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 00CEE3C9199434E700F40C12 /* Build configuration list for PBXProject "Hobble" */;
+			buildConfigurationList = 00CEE3C9199434E700F40C12 /* Build configuration list for PBXProject "hobble.1.1" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -402,8 +402,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				00CEE3CD199434E700F40C12 /* Hobble */,
-				00CEE3ED199434E700F40C12 /* HobbleTests */,
+				00CEE3CD199434E700F40C12 /* hobble.1.1 */,
+				00CEE3ED199434E700F40C12 /* hobble.1.1Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -469,7 +469,7 @@
 /* Begin PBXTargetDependency section */
 		00CEE3F5199434E700F40C12 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 00CEE3CD199434E700F40C12 /* Hobble */;
+			target = 00CEE3CD199434E700F40C12 /* hobble.1.1 */;
 			targetProxy = 00CEE3F4199434E700F40C12 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -577,9 +577,9 @@
 					"$(PROJECT_DIR)/parse-library-1",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "hobble.1.1/Hobble-Prefix.pch";
-				INFOPLIST_FILE = "hobble.1.1/Hobble-Info.plist";
-				PRODUCT_NAME = Hobble;
+				GCC_PREFIX_HEADER = "hobble.1.1/hobble.1.1-Prefix.pch";
+				INFOPLIST_FILE = "hobble.1.1/hobble.1.1-Info.plist";
+				PRODUCT_NAME = hobble.1.1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -595,9 +595,9 @@
 					"$(PROJECT_DIR)/parse-library-1",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "hobble.1.1/Hobble-Prefix.pch";
-				INFOPLIST_FILE = "hobble.1.1/Hobble-Info.plist";
-				PRODUCT_NAME = Hobble;
+				GCC_PREFIX_HEADER = "hobble.1.1/hobble.1.1-Prefix.pch";
+				INFOPLIST_FILE = "hobble.1.1/hobble.1.1-Info.plist";
+				PRODUCT_NAME = hobble.1.1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -617,8 +617,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "hobble.1.1Tests/HobbleTests-Info.plist";
-				PRODUCT_NAME = HobbleTests;
+				INFOPLIST_FILE = "hobble.1.1Tests/hobble.1.1Tests-Info.plist";
+				PRODUCT_NAME = hobble.1.1Tests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -635,8 +635,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "hobble.1.1/hobble.1.1-Prefix.pch";
-				INFOPLIST_FILE = "hobble.1.1Tests/HobbleTests-Info.plist";
-				PRODUCT_NAME = HobbleTests;
+				INFOPLIST_FILE = "hobble.1.1Tests/hobble.1.1Tests-Info.plist";
+				PRODUCT_NAME = hobble.1.1Tests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -645,7 +645,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00CEE3C9199434E700F40C12 /* Build configuration list for PBXProject "Hobble" */ = {
+		00CEE3C9199434E700F40C12 /* Build configuration list for PBXProject "hobble.1.1" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00CEE3FE199434E700F40C12 /* Debug */,
@@ -654,7 +654,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		00CEE400199434E700F40C12 /* Build configuration list for PBXNativeTarget "Hobble" */ = {
+		00CEE400199434E700F40C12 /* Build configuration list for PBXNativeTarget "hobble.1.1" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00CEE401199434E700F40C12 /* Debug */,
@@ -663,7 +663,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		00CEE403199434E700F40C12 /* Build configuration list for PBXNativeTarget "HobbleTests" */ = {
+		00CEE403199434E700F40C12 /* Build configuration list for PBXNativeTarget "hobble.1.1Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00CEE404199434E700F40C12 /* Debug */,

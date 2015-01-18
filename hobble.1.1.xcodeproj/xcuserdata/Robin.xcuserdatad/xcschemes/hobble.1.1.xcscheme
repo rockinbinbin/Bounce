@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00CEE3CD199434E700F40C12"
                BuildableName = "Hobble.app"
-               BlueprintName = "Hobble"
-               ReferencedContainer = "container:Hobble.xcodeproj">
+               BlueprintName = "hobble.1.1"
+               ReferencedContainer = "container:hobble.1.1.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,8 +34,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00CEE3ED199434E700F40C12"
                BuildableName = "HobbleTests.xctest"
-               BlueprintName = "HobbleTests"
-               ReferencedContainer = "container:Hobble.xcodeproj">
+               BlueprintName = "hobble.1.1Tests"
+               ReferencedContainer = "container:hobble.1.1.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -44,8 +44,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "00CEE3CD199434E700F40C12"
             BuildableName = "Hobble.app"
-            BlueprintName = "Hobble"
-            ReferencedContainer = "container:Hobble.xcodeproj">
+            BlueprintName = "hobble.1.1"
+            ReferencedContainer = "container:hobble.1.1.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -63,8 +63,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "00CEE3CD199434E700F40C12"
             BuildableName = "Hobble.app"
-            BlueprintName = "Hobble"
-            ReferencedContainer = "container:Hobble.xcodeproj">
+            BlueprintName = "hobble.1.1"
+            ReferencedContainer = "container:hobble.1.1.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -81,8 +81,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "00CEE3CD199434E700F40C12"
             BuildableName = "Hobble.app"
-            BlueprintName = "Hobble"
-            ReferencedContainer = "container:Hobble.xcodeproj">
+            BlueprintName = "hobble.1.1"
+            ReferencedContainer = "container:hobble.1.1.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
