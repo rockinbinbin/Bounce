@@ -273,10 +273,10 @@
 			children = (
 				0090ECB11A6B6623009DB11D /* AddGroupsTableViewController.h */,
 				0090ECB21A6B6623009DB11D /* AddGroupsTableViewController.m */,
-				0090ECAB1A6B523B009DB11D /* ChatsTableViewController.h */,
-				0090ECAC1A6B523B009DB11D /* ChatsTableViewController.m */,
 				0090ECAE1A6B59CA009DB11D /* NewMessageViewController.h */,
 				0090ECAF1A6B59CA009DB11D /* NewMessageViewController.m */,
+				0090ECAB1A6B523B009DB11D /* ChatsTableViewController.h */,
+				0090ECAC1A6B523B009DB11D /* ChatsTableViewController.m */,
 				001196EF19A666C1002D2757 /* SearchGroupsViewController.h */,
 				001196F019A666C1002D2757 /* SearchGroupsViewController.m */,
 				001196E919A51443002D2757 /* Definitions.h */,

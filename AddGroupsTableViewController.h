@@ -10,4 +10,7 @@
 
 @interface AddGroupsTableViewController : UITableViewController
 
+@property int radius;
+@property int timeAllocated;
+
 @end

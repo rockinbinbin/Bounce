@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AddGroupsTableViewController.h"
 
 @interface NewMessageViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UITextField *TimeAllocated;
+@property (strong, nonatomic) IBOutlet UITextField *Radius;
+- (IBAction)AddGroupsButton:(id)sender;
 
 @end
