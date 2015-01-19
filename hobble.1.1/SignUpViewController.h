@@ -13,6 +13,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *passwordField;
 
 - (IBAction)signupButton:(id)sender;
+@property (strong, nonatomic) IBOutlet UITextField *GenderTextField;
 
 
 @end

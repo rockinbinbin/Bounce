@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="eCW-CR-uJy">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -106,6 +105,11 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Male/Female" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vR9-dX-yK4">
+                                <rect key="frame" x="155" y="283" width="290" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -121,6 +125,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="hobble" id="hT8-TK-uVC"/>
                     <connections>
+                        <outlet property="GenderTextField" destination="vR9-dX-yK4" id="LLF-NH-fv1"/>
                         <outlet property="passwordField" destination="gXy-mn-ud6" id="eQ8-eZ-W3M"/>
                         <outlet property="usernameField" destination="rfS-EM-zvz" id="XTC-32-mD8"/>
                         <segue destination="6gP-aN-Fq0" kind="presentation" identifier="SignUpToMain" id="iWx-A3-VzT"/>

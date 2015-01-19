@@ -44,6 +44,7 @@
 - (IBAction)signupButton:(id)sender {
     NSString *username = [self.usernameField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString *password = [self.passwordField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString *gender = [self.GenderTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     PFQuery *query = [PFUser query];
     [query whereKey:@"Username" equalTo:username];
@@ -56,10 +57,16 @@
             [notuniqueusername show];
         }
         else {
-            if ([username length] == 0 || [password length] == 0) {
+            if ([username length] == 0 || [password length] == 0 || [gender length] == 0) {
                 UIAlertView *zerolength = [[UIAlertView alloc] initWithTitle:@"Oops!"
-                                                                    message:@"Make sure you enter a username and password!"
+                                                                    message:@"Make sure you enter a username, password, & gender!"
                                                                    delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [zerolength show];
+            }
+            else if (![gender isEqualToString:@"Female"] || ![gender isEqualToString: @"female"] || ![gender isEqualToString:@"Male"] || ![gender isEqualToString:@"male"]) {
+                UIAlertView *zerolength = [[UIAlertView alloc] initWithTitle:@"Oops!"
+                                                         message:@"Please enter 'Male' or 'Female' for gender."
+                                                                    delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [zerolength show];
             }
 //            else if (![username hasPrefix:@"@"]) {
@@ -73,6 +80,7 @@
                 PFUser *newUser = [PFUser user];
                 newUser.username = username;
                 newUser.password = password;
+                newUser[@"Gender"] = gender;
                 
                 [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                     if (error) {
