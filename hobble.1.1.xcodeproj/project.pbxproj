@@ -53,6 +53,8 @@
 		00CEE4231994492700F40C12 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4221994492700F40C12 /* QuartzCore.framework */; };
 		00CEE4251994493500F40C12 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4241994493500F40C12 /* StoreKit.framework */; };
 		00CEE4271994493A00F40C12 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4261994493A00F40C12 /* CoreLocation.framework */; };
+		28F13A521A6C75A90069EBA4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F13A511A6C75A90069EBA4 /* MapKit.framework */; };
+		28F13A5B1A6C7F7B0069EBA4 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F13A5A1A6C7F7B0069EBA4 /* MapViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +135,9 @@
 		00CEE4221994492700F40C12 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		00CEE4241994493500F40C12 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		00CEE4261994493A00F40C12 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		28F13A511A6C75A90069EBA4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		28F13A591A6C7F7B0069EBA4 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		28F13A5A1A6C7F7B0069EBA4 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +145,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28F13A521A6C75A90069EBA4 /* MapKit.framework in Frameworks */,
 				00CEE3D8199434E700F40C12 /* CoreData.framework in Frameworks */,
 				00CEE4271994493A00F40C12 /* CoreLocation.framework in Frameworks */,
 				0060FE471A0ECB2C00525A50 /* ParseFacebookUtils.framework in Frameworks */,
@@ -261,6 +267,7 @@
 		00CEE3D0199434E700F40C12 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				28F13A511A6C75A90069EBA4 /* MapKit.framework */,
 				00CEE4261994493A00F40C12 /* CoreLocation.framework */,
 				00CEE4241994493500F40C12 /* StoreKit.framework */,
 				00CEE4221994492700F40C12 /* QuartzCore.framework */,
@@ -283,6 +290,8 @@
 		00CEE3D9199434E700F40C12 /* hobble.1.1 */ = {
 			isa = PBXGroup;
 			children = (
+				28F13A591A6C7F7B0069EBA4 /* MapViewController.h */,
+				28F13A5A1A6C7F7B0069EBA4 /* MapViewController.m */,
 				0090ECB11A6B6623009DB11D /* AddGroupsTableViewController.h */,
 				0090ECB21A6B6623009DB11D /* AddGroupsTableViewController.m */,
 				0090ECAE1A6B59CA009DB11D /* NewMessageViewController.h */,
@@ -441,6 +450,7 @@
 				00CEE41119943AFC00F40C12 /* SignUpViewController.m in Sources */,
 				00296BD819EFA5BF003ADA30 /* APContact.m in Sources */,
 				00296BD919EFA5BF003ADA30 /* APPhoneWithLabel.m in Sources */,
+				28F13A5B1A6C7F7B0069EBA4 /* MapViewController.m in Sources */,
 				00CEE3E4199434E700F40C12 /* AppDelegate.m in Sources */,
 				00296BDA19EFA5BF003ADA30 /* APSocialProfile.m in Sources */,
 				00296BD619EFA5BF003ADA30 /* APAddress.m in Sources */,
