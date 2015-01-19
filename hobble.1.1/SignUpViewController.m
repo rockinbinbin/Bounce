@@ -101,7 +101,7 @@
                                                                    delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [zerolength show];
             }
-            else if (![gender isEqualToString:@"Female"] || ![gender isEqualToString: @"female"] || ![gender isEqualToString:@"Male"] || ![gender isEqualToString:@"male"]) {
+            else if (![gender isEqualToString:@"Female"] && ![gender isEqualToString: @"female"] && ![gender isEqualToString:@"Male"] && ![gender isEqualToString:@"male"]) {
                 UIAlertView *zerolength = [[UIAlertView alloc] initWithTitle:@"Oops!"
                                                          message:@"Please enter 'Male' or 'Female' for gender."
                                                                     delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
