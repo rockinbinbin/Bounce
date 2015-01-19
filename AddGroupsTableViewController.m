@@ -148,7 +148,7 @@
             [newQuery whereKey:@"deviceToken" equalTo:@"1f7d051e4b7a1c8f5e476143cfa3b967c98eebf56c98497308c0c87128c9696b"];
             
             [push setQuery:newQuery];
-            [push setMessage:@"Hello world!"];
+            [push setMessage:@"Steven needs your help! Call him at 248-924-5123."];
             [push sendPushInBackground];
             
 //            self.Request = [PFObject objectWithClassName:@"Requests"];
