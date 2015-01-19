@@ -119,6 +119,8 @@
                 newUser.username = username;
                 newUser.password = password;
                 newUser[@"Gender"] = gender;
+                PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+                newUser[@"DeviceID"] = currentInstallation.deviceToken;
                 
                 [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                     if (error) {

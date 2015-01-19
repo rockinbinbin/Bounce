@@ -131,21 +131,25 @@
             
             for (NSString *groupName in self.SelectedGroups) {
                 PFQuery *query = [PFUser query];
+                [query whereKey:@"username" notEqualTo:currentUser.username];
                 [query whereKey:@"ArrayOfGroups" equalTo:groupName];
                 [query whereKey:@"CurrentLocation" nearGeoPoint:userGeoPoint withinMiles:self.radius];
                 [queries addObject:query];
             }
             
-            for (PFQuery *query in queries) {
-                NSLog(@"%@", query);
-            }
-            
             query = [PFQuery orQueryWithSubqueries:queries];
+            NSArray *resultUsers = [query findObjects];
             
+            NSLog(@"%@", resultUsers[0][@"DeviceID"]);
             
-            NSArray *placesObjects = [query findObjects];
+            PFPush *push = [[PFPush alloc] init];
             
-            NSLog(@"%lu", (unsigned long)placesObjects.count);
+            PFQuery *newQuery = [PFInstallation query];
+            [newQuery whereKey:@"deviceToken" equalTo:@"1f7d051e4b7a1c8f5e476143cfa3b967c98eebf56c98497308c0c87128c9696b"];
+            
+            [push setQuery:newQuery];
+            [push setMessage:@"Hello world!"];
+            [push sendPushInBackground];
             
 //            self.Request = [PFObject objectWithClassName:@"Requests"];
 //            self.Request[@"Sender"] = [PFUser currentUser].username;
