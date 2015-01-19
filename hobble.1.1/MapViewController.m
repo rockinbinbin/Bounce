@@ -81,7 +81,6 @@
 - (void)foundLocation:(CLLocation *)location
 {
     PFGeoPoint *geoPoint = [PFGeoPoint geoPointWithLocation:location];
-    
 }
 
 @end
