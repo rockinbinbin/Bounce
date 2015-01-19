@@ -80,8 +80,8 @@
 /// Called when the location is updated.
 - (void)foundLocation:(CLLocation *)location
 {
+    PFGeoPoint *geoPoint = [PFGeoPoint geoPointWithLocation:location];
     
-    NSLog(@"New location data!");
 }
 
 @end

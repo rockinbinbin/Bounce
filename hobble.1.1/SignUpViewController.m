@@ -21,6 +21,38 @@
     // hides keyboard when user hits background
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     [self.view addGestureRecognizer:gestureRecognizer];
+    
+    // background
+    self.title = @"Create Account";
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    // Next Button
+    self.RegisterButton.buttonColor = [UIColor redColor];
+    self.RegisterButton.shadowColor = [UIColor purpleColor];
+    self.RegisterButton.shadowHeight = 3.0f;
+    self.RegisterButton.cornerRadius = 6.0f;
+    self.RegisterButton.titleLabel.font = [UIFont boldFlatFontOfSize:16];
+    [self.RegisterButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.RegisterButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    
+    // Username Text Field
+    self.usernameField.textFieldColor = [UIColor cloudsColor];
+    self.usernameField.borderColor = [UIColor redColor];
+    self.usernameField.borderWidth = 3.0f;
+    self.usernameField.cornerRadius = 6.0f;
+    
+    // password Text Field
+    self.passwordField.textFieldColor = [UIColor cloudsColor];
+    self.passwordField.borderColor = [UIColor redColor];
+    self.passwordField.borderWidth = 3.0f;
+    self.passwordField.cornerRadius = 6.0f;
+    
+    // Gender Field
+    self.GenderTextField.textFieldColor = [UIColor cloudsColor];
+    self.GenderTextField.borderColor = [UIColor redColor];
+    self.GenderTextField.borderWidth = 3.0f;
+    self.GenderTextField.cornerRadius = 6.0f;
+
 }
 
 - (void) hideKeyboard // when user hits background

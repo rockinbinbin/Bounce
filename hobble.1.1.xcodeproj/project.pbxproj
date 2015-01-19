@@ -38,6 +38,9 @@
 		007BA3FB1A6C9CE100BF08DE /* UITabBar+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 007BA3E61A6C9CE100BF08DE /* UITabBar+FlatUI.m */; };
 		007BA3FC1A6C9CE100BF08DE /* UITableViewCell+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 007BA3E81A6C9CE100BF08DE /* UITableViewCell+FlatUI.m */; };
 		007BA3FD1A6C9CE100BF08DE /* UIToolbar+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 007BA3EA1A6C9CE100BF08DE /* UIToolbar+FlatUI.m */; };
+		007BA4031A6CD56D00BF08DE /* GroupsPlusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007BA4021A6CD56D00BF08DE /* GroupsPlusViewController.m */; };
+		007BA4091A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 007BA4061A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.m */; };
+		007BA40A1A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 007BA4081A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
 		0090ECB01A6B59CA009DB11D /* NewMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0090ECAF1A6B59CA009DB11D /* NewMessageViewController.m */; };
 		0090ECB31A6B6624009DB11D /* AddGroupsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0090ECB21A6B6623009DB11D /* AddGroupsTableViewController.m */; };
 		0090ECB61A6BA251009DB11D /* Definitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0090ECB51A6BA251009DB11D /* Definitions.m */; };
@@ -148,6 +151,12 @@
 		007BA3E81A6C9CE100BF08DE /* UITableViewCell+FlatUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+FlatUI.m"; sourceTree = "<group>"; };
 		007BA3E91A6C9CE100BF08DE /* UIToolbar+FlatUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIToolbar+FlatUI.h"; sourceTree = "<group>"; };
 		007BA3EA1A6C9CE100BF08DE /* UIToolbar+FlatUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIToolbar+FlatUI.m"; sourceTree = "<group>"; };
+		007BA4011A6CD56D00BF08DE /* GroupsPlusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsPlusViewController.h; sourceTree = "<group>"; };
+		007BA4021A6CD56D00BF08DE /* GroupsPlusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsPlusViewController.m; sourceTree = "<group>"; };
+		007BA4051A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
+		007BA4061A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
+		007BA4071A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
+		007BA4081A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
 		0090ECAE1A6B59CA009DB11D /* NewMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewMessageViewController.h; sourceTree = "<group>"; };
 		0090ECAF1A6B59CA009DB11D /* NewMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMessageViewController.m; sourceTree = "<group>"; };
 		0090ECB11A6B6623009DB11D /* AddGroupsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddGroupsTableViewController.h; path = ../AddGroupsTableViewController.h; sourceTree = "<group>"; };
@@ -334,6 +343,17 @@
 			path = ios;
 			sourceTree = "<group>";
 		};
+		007BA4041A6CDF7500BF08DE /* keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				007BA4051A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.h */,
+				007BA4061A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.m */,
+				007BA4071A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.h */,
+				007BA4081A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.m */,
+			);
+			path = keyboard;
+			sourceTree = "<group>";
+		};
 		0090ECC11A6C5322009DB11D /* Unused */ = {
 			isa = PBXGroup;
 			children = (
@@ -353,6 +373,7 @@
 			children = (
 				0090ECC11A6C5322009DB11D /* Unused */,
 				00CEE4061994350300F40C12 /* MainStoryboard.storyboard */,
+				007BA4041A6CDF7500BF08DE /* keyboard */,
 				0060FE401A0ECB2C00525A50 /* parse-library-1 */,
 				00296BC719EFA5BF003ADA30 /* Pod */,
 				00CEE3D9199434E700F40C12 /* hobble.1.1 */,
@@ -401,6 +422,8 @@
 				28F13A5A1A6C7F7B0069EBA4 /* MapViewController.m */,
 				0090ECB11A6B6623009DB11D /* AddGroupsTableViewController.h */,
 				0090ECB21A6B6623009DB11D /* AddGroupsTableViewController.m */,
+				007BA4011A6CD56D00BF08DE /* GroupsPlusViewController.h */,
+				007BA4021A6CD56D00BF08DE /* GroupsPlusViewController.m */,
 				0090ECAE1A6B59CA009DB11D /* NewMessageViewController.h */,
 				0090ECAF1A6B59CA009DB11D /* NewMessageViewController.m */,
 				001196EF19A666C1002D2757 /* SearchGroupsViewController.h */,
@@ -414,8 +437,8 @@
 				00CEE40C199436D700F40C12 /* LoginViewController.h */,
 				00CEE40D199436D700F40C12 /* LoginViewController.m */,
 				00CEE40F19943AFC00F40C12 /* SignUpViewController.h */,
-				007BA3C31A6C9CE100BF08DE /* ios */,
 				00CEE41019943AFC00F40C12 /* SignUpViewController.m */,
+				007BA3C31A6C9CE100BF08DE /* ios */,
 				00CEE3E2199434E700F40C12 /* AppDelegate.h */,
 				00CEE3E3199434E700F40C12 /* AppDelegate.m */,
 				00CEE3E8199434E700F40C12 /* Images.xcassets */,
@@ -565,6 +588,7 @@
 				00CEE40E199436D700F40C12 /* LoginViewController.m in Sources */,
 				00CEE41119943AFC00F40C12 /* SignUpViewController.m in Sources */,
 				00296BD819EFA5BF003ADA30 /* APContact.m in Sources */,
+				007BA4091A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.m in Sources */,
 				007BA3F81A6C9CE100BF08DE /* UIProgressView+FlatUI.m in Sources */,
 				007BA3F61A6C9CE100BF08DE /* UINavigationBar+FlatUI.m in Sources */,
 				00296BD919EFA5BF003ADA30 /* APPhoneWithLabel.m in Sources */,
@@ -575,6 +599,7 @@
 				00CEE3E4199434E700F40C12 /* AppDelegate.m in Sources */,
 				00296BDA19EFA5BF003ADA30 /* APSocialProfile.m in Sources */,
 				007BA3EC1A6C9CE100BF08DE /* FUIButton.m in Sources */,
+				007BA4031A6CD56D00BF08DE /* GroupsPlusViewController.m in Sources */,
 				00296BD619EFA5BF003ADA30 /* APAddress.m in Sources */,
 				00A9C30E1999838200F89967 /* GroupsTableViewController.m in Sources */,
 				007BA3F71A6C9CE100BF08DE /* UIPopoverController+FlatUI.m in Sources */,
@@ -588,6 +613,7 @@
 				007BA3EB1A6C9CE100BF08DE /* FUIAlertView.m in Sources */,
 				007BA3FC1A6C9CE100BF08DE /* UITableViewCell+FlatUI.m in Sources */,
 				007BA3F31A6C9CE100BF08DE /* UIColor+FlatUI.m in Sources */,
+				007BA40A1A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				0090ECB31A6B6624009DB11D /* AddGroupsTableViewController.m in Sources */,
 				00CEE3E7199434E700F40C12 /* hobble_1_1.xcdatamodeld in Sources */,
 				007BA3FB1A6C9CE100BF08DE /* UITabBar+FlatUI.m in Sources */,

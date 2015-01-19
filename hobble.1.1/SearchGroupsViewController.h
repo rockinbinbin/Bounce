@@ -18,8 +18,6 @@
 @property (nonatomic, strong) NSArray *groups; // all groups in app
 @property (nonatomic, strong) NSMutableArray *MyGroups; // my groups names
 
-
-
 - (IBAction)doneButton:(id)sender;
 
 @end

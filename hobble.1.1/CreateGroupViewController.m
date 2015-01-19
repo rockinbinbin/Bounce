@@ -33,6 +33,25 @@
     
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     [self.view addGestureRecognizer:gestureRecognizer];
+    
+    // background
+    self.title = @"Create Group";
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    // Register Button
+    self.DoneButton.buttonColor = [UIColor redColor];
+    self.DoneButton.shadowColor = [UIColor purpleColor];
+    self.DoneButton.shadowHeight = 3.0f;
+    self.DoneButton.cornerRadius = 6.0f;
+    self.DoneButton.titleLabel.font = [UIFont boldFlatFontOfSize:16];
+    [self.DoneButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.DoneButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    
+    // Username Text Field
+    self.groupNameTextField.textFieldColor = [UIColor cloudsColor];
+    self.groupNameTextField.borderColor = [UIColor redColor];
+    self.groupNameTextField.borderWidth = 3.0f;
+    self.groupNameTextField.cornerRadius = 6.0f;
 }
 
 

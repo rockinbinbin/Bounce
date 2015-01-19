@@ -7,13 +7,28 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIColor+FlatUI.h"
+#import "UISlider+FlatUI.h"
+#import "UIStepper+FlatUI.h"
+#import "UITabBar+FlatUI.h"
+#import "UINavigationBar+FlatUI.h"
+#import "FUIButton.h"
+#import "FUISwitch.h"
+#import "UIFont+FlatUI.h"
+#import "FUIAlertView.h"
+#import "UIBarButtonItem+FlatUI.h"
+#import "UIProgressView+FlatUI.h"
+#import "FUISegmentedControl.h"
+#import "UIPopoverController+FlatUI.h"
+
 
 @interface SignUpViewController : UIViewController
-@property (strong, nonatomic) IBOutlet UITextField *usernameField;
-@property (strong, nonatomic) IBOutlet UITextField *passwordField;
+@property (strong, nonatomic) IBOutlet FUITextField *usernameField;
+@property (strong, nonatomic) IBOutlet FUITextField *passwordField;
 
 - (IBAction)signupButton:(id)sender;
-@property (strong, nonatomic) IBOutlet UITextField *GenderTextField;
+@property (strong, nonatomic) IBOutlet FUITextField *GenderTextField;
 
+@property (strong, nonatomic) IBOutlet FUIButton *RegisterButton;
 
 @end

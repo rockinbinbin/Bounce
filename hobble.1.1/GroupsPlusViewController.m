@@ -17,28 +17,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     // background
-    self.title = @"New Message";
+    self.title = @"Add Groups";
     self.view.backgroundColor = [UIColor whiteColor];
     
-    // Login Button
-    self.CreateGroupButton.buttonColor = [UIColor hobbleRed];
-    self.CreateGroupButton.shadowColor = [UIColor redColor];
+    // Register Button
+    self.CreateGroupButton.buttonColor = [UIColor redColor];
+    self.CreateGroupButton.shadowColor = [UIColor purpleColor];
+
     self.CreateGroupButton.shadowHeight = 3.0f;
     self.CreateGroupButton.cornerRadius = 6.0f;
     self.CreateGroupButton.titleLabel.font = [UIFont boldFlatFontOfSize:16];
     [self.CreateGroupButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.CreateGroupButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     
-    // Login Button
-    self.SearchGroupsButton.buttonColor = [UIColor hobbleRed];
-    self.SearchGroupsButton.shadowColor = [UIColor redColor];
+    // Register Button
+    self.SearchGroupsButton.buttonColor = [UIColor redColor];
+    self.SearchGroupsButton.shadowColor = [UIColor purpleColor];
     self.SearchGroupsButton.shadowHeight = 3.0f;
     self.SearchGroupsButton.cornerRadius = 6.0f;
     self.SearchGroupsButton.titleLabel.font = [UIFont boldFlatFontOfSize:16];
     [self.SearchGroupsButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.SearchGroupsButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,5 +56,9 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)unwind:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end

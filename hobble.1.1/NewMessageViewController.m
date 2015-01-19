@@ -20,6 +20,31 @@
     
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     [self.view addGestureRecognizer:gestureRecognizer];
+    
+    // background
+    self.title = @"New Message";
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    // Register Button
+    self.AddGroupsButton.buttonColor = [UIColor redColor];
+    self.AddGroupsButton.shadowColor = [UIColor purpleColor];
+    self.AddGroupsButton.shadowHeight = 3.0f;
+    self.AddGroupsButton.cornerRadius = 6.0f;
+    self.AddGroupsButton.titleLabel.font = [UIFont boldFlatFontOfSize:16];
+    [self.AddGroupsButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.AddGroupsButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    
+    // Username Text Field
+    self.Radius.textFieldColor = [UIColor cloudsColor];
+    self.Radius.borderColor = [UIColor redColor];
+    self.Radius.borderWidth = 3.0f;
+    self.Radius.cornerRadius = 6.0f;
+    
+    // Username Text Field
+    self.TimeAllocated.textFieldColor = [UIColor cloudsColor];
+    self.TimeAllocated.borderColor = [UIColor redColor];
+    self.TimeAllocated.borderWidth = 3.0f;
+    self.TimeAllocated.cornerRadius = 6.0f;
 }
 
 - (void)didReceiveMemoryWarning {
