@@ -92,15 +92,78 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"SentHobbleRequest"]) {
-        self.Request = [PFObject objectWithClassName:@"Requests"];
-        self.Request[@"Sender"] = [PFUser currentUser].username;
-        self.Request[@"RequestedGroups"] = self.SelectedGroups;
-        self.Request[@"Radius"] = [NSNumber numberWithInt:self.radius];
-        self.Request[@"TimeAllocated"] = [NSNumber numberWithInt:self.timeAllocated];
-        self.Request[@"Location"] = [PFGeoPoint geoPointWithLocation:self.location_manager.location];
+
+//        NSLog(@"%@", placesObjects[placesObjects.count - 1]);
         
-        [self.Request saveInBackground];
+//        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//            if (error) {  // The query failed
+//                NSLog(@"error in geo query!");
+//            } else {  // The query is successful
+//                NSLog(@"The query is successful!");
+//                NSLog(@"%lu", (unsigned long)objects.count);
+//                NSLog(@"%@", objects[0]);
+//                // 1. Find new posts (those that we did not already have)
+//                // 2. Find posts to remove (those we have but that we did not get from this query)
+//                // 3. Configure the new posts
+//                // 4. Remove the old posts and add the new posts
+//            }
+//        }];
+        
+//        self.Request = [PFObject objectWithClassName:@"Requests"];
+//        self.Request[@"Sender"] = [PFUser currentUser].username;
+//        self.Request[@"RequestedGroups"] = self.SelectedGroups;
+//        self.Request[@"Radius"] = [NSNumber numberWithInt:self.radius];
+//        self.Request[@"TimeAllocated"] = [NSNumber numberWithInt:self.timeAllocated];
+//        self.Request[@"Location"] = [PFGeoPoint geoPointWithLocation:self.location_manager.location];
+//        [self.Request saveInBackground];
     }
+}
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    if ([identifier isEqualToString:@"SentHobbleRequest"]) {
+        if ([self.SelectedGroups count]) {
+            
+            PFQuery *query = [PFUser query];
+            PFUser *currentUser = [PFUser currentUser];
+            PFGeoPoint *userGeoPoint = currentUser[@"CurrentLocation"];
+            
+            NSMutableArray *queries = [[NSMutableArray alloc] init];
+            
+            for (NSString *groupName in self.SelectedGroups) {
+                PFQuery *query = [PFUser query];
+                [query whereKey:@"ArrayOfGroups" equalTo:groupName];
+                [query whereKey:@"CurrentLocation" nearGeoPoint:userGeoPoint withinMiles:self.radius];
+                [queries addObject:query];
+            }
+            
+            for (PFQuery *query in queries) {
+                NSLog(@"%@", query);
+            }
+            
+            query = [PFQuery orQueryWithSubqueries:queries];
+            
+            
+            NSArray *placesObjects = [query findObjects];
+            
+            NSLog(@"%lu", (unsigned long)placesObjects.count);
+            
+//            self.Request = [PFObject objectWithClassName:@"Requests"];
+//            self.Request[@"Sender"] = [PFUser currentUser].username;
+//            self.Request[@"RequestedGroups"] = self.SelectedGroups;
+//            self.Request[@"Radius"] = [NSNumber numberWithInt:self.radius];
+//            self.Request[@"TimeAllocated"] = [NSNumber numberWithInt:self.timeAllocated];
+//            [self.Request saveInBackground];
+            return YES;
+        }
+        else {
+            UIAlertView *zerolength = [[UIAlertView alloc] initWithTitle:@"yo!"
+                                                                 message:@"Please check at least one group!"
+                                                                delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [zerolength show];
+            return NO;
+        }
+    }
+    return NO;
 }
 
 - (IBAction)unwind:(id)sender {
