@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00CEE3CD199434E700F40C12"
-               BuildableName = "Hobble.app"
+               BuildableName = "hobble.1.1.app"
                BlueprintName = "hobble.1.1"
                ReferencedContainer = "container:hobble.1.1.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00CEE3ED199434E700F40C12"
-               BuildableName = "HobbleTests.xctest"
+               BuildableName = "hobble.1.1Tests.xctest"
                BlueprintName = "hobble.1.1Tests"
                ReferencedContainer = "container:hobble.1.1.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "00CEE3CD199434E700F40C12"
-            BuildableName = "Hobble.app"
+            BuildableName = "hobble.1.1.app"
             BlueprintName = "hobble.1.1"
             ReferencedContainer = "container:hobble.1.1.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "00CEE3CD199434E700F40C12"
-            BuildableName = "Hobble.app"
+            BuildableName = "hobble.1.1.app"
             BlueprintName = "hobble.1.1"
             ReferencedContainer = "container:hobble.1.1.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "00CEE3CD199434E700F40C12"
-            BuildableName = "Hobble.app"
+            BuildableName = "hobble.1.1.app"
             BlueprintName = "hobble.1.1"
             ReferencedContainer = "container:hobble.1.1.xcodeproj">
          </BuildableReference>
