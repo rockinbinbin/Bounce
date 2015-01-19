@@ -20,7 +20,7 @@
     
     // background
     self.title = @"Add Groups";
-    self.view.backgroundColor = [UIColor redColor];
+    self.view.backgroundColor = [UIColor colorFromHexCode:@"E1163D"];
     
     // Register Button
     self.CreateGroupButton.buttonColor = [UIColor whiteColor];
