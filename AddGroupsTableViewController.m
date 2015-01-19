@@ -19,6 +19,9 @@
         self.navigationItem.hidesBackButton = YES;
     self.SelectedGroups = [NSMutableArray array];
     
+    self.location_manager = [[CLLocationManager alloc] init];
+
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -94,6 +97,8 @@
         self.Request[@"RequestedGroups"] = self.SelectedGroups;
         self.Request[@"Radius"] = [NSNumber numberWithInt:self.radius];
         self.Request[@"TimeAllocated"] = [NSNumber numberWithInt:self.timeAllocated];
+        self.Request[@"Location"] = [PFGeoPoint geoPointWithLocation:self.location_manager.location];
+        
         [self.Request saveInBackground];
     }
 }

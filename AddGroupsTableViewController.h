@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface AddGroupsTableViewController : UITableViewController
 
@@ -17,6 +18,7 @@
 // create property for location
 @property (nonatomic, strong) NSMutableArray *SelectedGroups;
 
+@property (strong, nonatomic) CLLocationManager *location_manager;
 
 @property (nonatomic, strong) NSMutableArray *groups;
 @property (nonatomic, strong) PFObject *Request;
