@@ -31,6 +31,40 @@
     if ([PFUser currentUser]) {
         [self performSegueWithIdentifier:@"LoginToMain" sender:nil];
     }
+    
+    // background
+    self.title = @"Log In";
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    // Register Button
+    self.RegisterButton.buttonColor = [UIColor redColor];
+    self.RegisterButton.shadowColor = [UIColor purpleColor];
+    self.RegisterButton.shadowHeight = 3.0f;
+    self.RegisterButton.cornerRadius = 6.0f;
+    self.RegisterButton.titleLabel.font = [UIFont boldFlatFontOfSize:16];
+    [self.RegisterButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.RegisterButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    
+    // Log In Button
+    self.LoginButton.buttonColor = [UIColor redColor];
+    self.LoginButton.shadowColor = [UIColor purpleColor];
+    self.LoginButton.shadowHeight = 3.0f;
+    self.LoginButton.cornerRadius = 6.0f;
+    self.LoginButton.titleLabel.font = [UIFont boldFlatFontOfSize:16];
+    [self.LoginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.LoginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    
+    // Username Text Field
+    self.usernameField.textFieldColor = [UIColor cloudsColor];
+    self.usernameField.borderColor = [UIColor redColor];
+    self.usernameField.borderWidth = 3.0f;
+    self.usernameField.cornerRadius = 6.0f;
+    
+    // password Text Field
+    self.passwordField.textFieldColor = [UIColor cloudsColor];
+    self.passwordField.borderColor = [UIColor redColor];
+    self.passwordField.borderWidth = 3.0f;
+    self.passwordField.cornerRadius = 6.0f;
 }
 
 - (void) hideKeyboard // when user hits background

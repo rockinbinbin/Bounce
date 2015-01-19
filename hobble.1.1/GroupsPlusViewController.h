@@ -1,13 +1,12 @@
 //
-//  NewMessageViewController.h
-//  Hobble
+//  GroupsPlusViewController.h
+//  hobble.1.1
 //
-//  Created by Robin Mehta on 1/17/15.
+//  Created by Robin Mehta on 1/19/15.
 //  Copyright (c) 2015 hobble. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "AddGroupsTableViewController.h"
 #import "UIColor+FlatUI.h"
 #import "UISlider+FlatUI.h"
 #import "UIStepper+FlatUI.h"
@@ -22,10 +21,8 @@
 #import "FUISegmentedControl.h"
 #import "UIPopoverController+FlatUI.h"
 
-
-@interface NewMessageViewController : UIViewController
-@property (strong, nonatomic) IBOutlet FUITextField *TimeAllocated;
-@property (strong, nonatomic) IBOutlet FUITextField *Radius;
-@property (strong, nonatomic) IBOutlet FUIButton *AddGroupsButton;
+@interface GroupsPlusViewController : UIViewController
+@property (strong, nonatomic) IBOutlet FUIButton *CreateGroupButton;
+@property (strong, nonatomic) IBOutlet FUIButton *SearchGroupsButton;
 
 @end
