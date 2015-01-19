@@ -76,6 +76,9 @@
 		00CEE4231994492700F40C12 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4221994492700F40C12 /* QuartzCore.framework */; };
 		00CEE4251994493500F40C12 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4241994493500F40C12 /* StoreKit.framework */; };
 		00CEE4271994493A00F40C12 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4261994493A00F40C12 /* CoreLocation.framework */; };
+		00CF93F61A6D41CF00C90F61 /* hobbleicon120-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 00CF93F31A6D41CF00C90F61 /* hobbleicon120-01.png */; };
+		00CF93F71A6D41CF00C90F61 /* hobbleicon180-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 00CF93F41A6D41CF00C90F61 /* hobbleicon180-01.png */; };
+		00CF93F81A6D41CF00C90F61 /* hobble1024-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 00CF93F51A6D41CF00C90F61 /* hobble1024-01.png */; };
 		28F13A521A6C75A90069EBA4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F13A511A6C75A90069EBA4 /* MapKit.framework */; };
 		28F13A5B1A6C7F7B0069EBA4 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F13A5A1A6C7F7B0069EBA4 /* MapViewController.m */; };
 /* End PBXBuildFile section */
@@ -204,6 +207,9 @@
 		00CEE4221994492700F40C12 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		00CEE4241994493500F40C12 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		00CEE4261994493A00F40C12 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		00CF93F31A6D41CF00C90F61 /* hobbleicon120-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hobbleicon120-01.png"; sourceTree = "<group>"; };
+		00CF93F41A6D41CF00C90F61 /* hobbleicon180-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hobbleicon180-01.png"; sourceTree = "<group>"; };
+		00CF93F51A6D41CF00C90F61 /* hobble1024-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hobble1024-01.png"; sourceTree = "<group>"; };
 		28F13A511A6C75A90069EBA4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		28F13A591A6C7F7B0069EBA4 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		28F13A5A1A6C7F7B0069EBA4 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
@@ -442,6 +448,9 @@
 				00CEE3E2199434E700F40C12 /* AppDelegate.h */,
 				00CEE3E3199434E700F40C12 /* AppDelegate.m */,
 				00CEE3E8199434E700F40C12 /* Images.xcassets */,
+				00CF93F31A6D41CF00C90F61 /* hobbleicon120-01.png */,
+				00CF93F41A6D41CF00C90F61 /* hobbleicon180-01.png */,
+				00CF93F51A6D41CF00C90F61 /* hobble1024-01.png */,
 				00CEE3E5199434E700F40C12 /* hobble_1_1.xcdatamodeld */,
 				00CEE3DA199434E700F40C12 /* Supporting Files */,
 			);
@@ -561,7 +570,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				00CEE4071994350300F40C12 /* MainStoryboard.storyboard in Resources */,
+				00CF93F81A6D41CF00C90F61 /* hobble1024-01.png in Resources */,
+				00CF93F61A6D41CF00C90F61 /* hobbleicon120-01.png in Resources */,
 				00CEE3DE199434E700F40C12 /* InfoPlist.strings in Resources */,
+				00CF93F71A6D41CF00C90F61 /* hobbleicon180-01.png in Resources */,
 				007BA3C21A6C9BE400BF08DE /* Podfile in Resources */,
 				00CEE3E9199434E700F40C12 /* Images.xcassets in Resources */,
 			);
