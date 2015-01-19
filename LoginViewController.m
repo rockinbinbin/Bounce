@@ -36,15 +36,6 @@
     self.title = @"Log In";
     self.view.backgroundColor = [UIColor whiteColor];
     
-    // Register Button
-    self.RegisterButton.buttonColor = [UIColor redColor];
-    self.RegisterButton.shadowColor = [UIColor purpleColor];
-    self.RegisterButton.shadowHeight = 3.0f;
-    self.RegisterButton.cornerRadius = 6.0f;
-    self.RegisterButton.titleLabel.font = [UIFont boldFlatFontOfSize:16];
-    [self.RegisterButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.RegisterButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-    
     // Log In Button
     self.LoginButton.buttonColor = [UIColor redColor];
     self.LoginButton.shadowColor = [UIColor purpleColor];

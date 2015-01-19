@@ -17,19 +17,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dHQ-33-1dY" customClass="TPKeyboardAvoidingScrollView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dHQ-33-1dY" customClass="TPKeyboardAvoidingScrollView">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2UG-nj-hcg" customClass="FUIButton">
-                                        <rect key="frame" x="157" y="390" width="286" height="30"/>
-                                        <state key="normal" title="REGISTER">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="amR-FZ-Qql" kind="presentation" identifier="LoginToSignup" id="Qdr-r1-Q44"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kNG-aR-K6e" customClass="FUIButton">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kNG-aR-K6e" customClass="FUIButton">
                                         <rect key="frame" x="157" y="309" width="286" height="30"/>
                                         <state key="normal" title="LOGIN">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -38,23 +29,78 @@
                                             <action selector="loginButton:" destination="amR-BS-Uqj" eventType="touchUpInside" id="lfe-f9-gT7"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BzF-ls-dXJ" customClass="FUITextField">
-                                        <rect key="frame" x="124" y="223" width="353" height="54"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fli-dF-ooo" customClass="FUITextField">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fli-dF-ooo" customClass="FUITextField">
                                         <rect key="frame" x="126" y="126" width="348" height="71"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Ncs-I6-4bt"/>
+                                            <constraint firstAttribute="width" constant="200" id="QJG-f8-SO2"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="QJG-f8-SO2"/>
+                                            </mask>
+                                        </variation>
                                     </textField>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Don't have an account?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O9a-Td-aVL">
-                                        <rect key="frame" x="209" y="356" width="183" height="21"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Don't have an account?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O9a-Td-aVL">
+                                        <rect key="frame" x="96" y="367" width="183" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BzF-ls-dXJ" customClass="FUITextField">
+                                        <rect key="frame" x="124" y="223" width="353" height="54"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2UG-nj-hcg" customClass="FUIButton">
+                                        <rect key="frame" x="370" y="363" width="92" height="30"/>
+                                        <state key="normal" title="REGISTER">
+                                            <color key="titleColor" red="1" green="0.11370802878725628" blue="0.072334916332364663" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="amR-FZ-Qql" kind="presentation" identifier="LoginToSignup" id="Qdr-r1-Q44"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottomMargin" secondItem="fli-dF-ooo" secondAttribute="topMargin" constant="-30" id="1ID-2R-dn2"/>
+                                    <constraint firstAttribute="centerX" secondItem="O9a-Td-aVL" secondAttribute="centerX" constant="10" id="89o-ot-xRt"/>
+                                    <constraint firstAttribute="bottom" secondItem="O9a-Td-aVL" secondAttribute="bottom" constant="20" id="94i-6X-cYI"/>
+                                    <constraint firstAttribute="centerX" secondItem="2UG-nj-hcg" secondAttribute="centerX" constant="-10" id="AB0-h7-D1h"/>
+                                    <constraint firstItem="kNG-aR-K6e" firstAttribute="top" secondItem="BzF-ls-dXJ" secondAttribute="bottom" constant="32" id="AOG-Jc-8rf"/>
+                                    <constraint firstItem="kNG-aR-K6e" firstAttribute="height" secondItem="BzF-ls-dXJ" secondAttribute="height" id="D2W-Rg-7vY"/>
+                                    <constraint firstItem="fli-dF-ooo" firstAttribute="width" secondItem="BzF-ls-dXJ" secondAttribute="width" id="H7P-2a-bt3"/>
+                                    <constraint firstAttribute="centerX" secondItem="fli-dF-ooo" secondAttribute="centerX" id="Ni2-L6-tnK"/>
+                                    <constraint firstItem="O9a-Td-aVL" firstAttribute="top" secondItem="kNG-aR-K6e" secondAttribute="bottom" constant="28" id="O5S-fg-OuR"/>
+                                    <constraint firstAttribute="centerX" secondItem="2UG-nj-hcg" secondAttribute="centerX" constant="-90" id="PcJ-bB-7TI"/>
+                                    <constraint firstAttribute="trailing" secondItem="kNG-aR-K6e" secondAttribute="trailing" constant="157" id="VUc-p1-rF2"/>
+                                    <constraint firstAttribute="centerX" secondItem="kNG-aR-K6e" secondAttribute="centerX" id="WCH-qc-66z"/>
+                                    <constraint firstAttribute="centerX" secondItem="O9a-Td-aVL" secondAttribute="centerX" constant="50" id="Yls-9d-hqg"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="2UG-nj-hcg" secondAttribute="topMargin" constant="-300" id="ZBY-au-YzV"/>
+                                    <constraint firstAttribute="trailing" secondItem="fli-dF-ooo" secondAttribute="trailing" constant="50" id="ZXF-v1-0wO"/>
+                                    <constraint firstItem="BzF-ls-dXJ" firstAttribute="top" secondItem="fli-dF-ooo" secondAttribute="bottom" constant="10" id="eJU-U6-RBl"/>
+                                    <constraint firstItem="fli-dF-ooo" firstAttribute="height" secondItem="BzF-ls-dXJ" secondAttribute="height" id="hBC-nD-Kte"/>
+                                    <constraint firstAttribute="trailing" secondItem="BzF-ls-dXJ" secondAttribute="trailing" constant="50" id="i2f-RC-jmg"/>
+                                    <constraint firstItem="2UG-nj-hcg" firstAttribute="top" secondItem="kNG-aR-K6e" secondAttribute="bottom" constant="24" id="lXV-yg-zmF"/>
+                                    <constraint firstItem="kNG-aR-K6e" firstAttribute="width" secondItem="BzF-ls-dXJ" secondAttribute="width" id="n5J-zt-hvO"/>
+                                    <constraint firstItem="2UG-nj-hcg" firstAttribute="top" secondItem="kNG-aR-K6e" secondAttribute="bottom" constant="160" id="rDq-bd-0TN"/>
+                                    <constraint firstItem="BzF-ls-dXJ" firstAttribute="leading" secondItem="dHQ-33-1dY" secondAttribute="leading" constant="50" id="tgj-mK-aCf"/>
+                                    <constraint firstItem="kNG-aR-K6e" firstAttribute="leading" secondItem="dHQ-33-1dY" secondAttribute="leading" constant="50" id="tmi-BW-hiS"/>
+                                    <constraint firstItem="fli-dF-ooo" firstAttribute="leading" secondItem="dHQ-33-1dY" secondAttribute="leading" constant="50" id="uzw-5H-Bte"/>
+                                    <constraint firstAttribute="centerX" secondItem="BzF-ls-dXJ" secondAttribute="centerX" constant="-0.5" id="zej-Yd-cPf"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="89o-ot-xRt"/>
+                                        <exclude reference="94i-6X-cYI"/>
+                                        <exclude reference="AB0-h7-D1h"/>
+                                        <exclude reference="ZBY-au-YzV"/>
+                                        <exclude reference="rDq-bd-0TN"/>
+                                    </mask>
+                                </variation>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -113,6 +159,18 @@
                                         <connections>
                                             <action selector="signupButton:" destination="nun-Mh-Vy2" eventType="touchUpInside" id="yz7-Ke-ObZ"/>
                                         </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Have an account?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="48v-cF-qMO">
+                                        <rect key="frame" x="118" y="460" width="140" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fmL-La-bKJ">
+                                        <rect key="frame" x="301" y="456" width="51" height="30"/>
+                                        <state key="normal" title="LOG IN">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                     </button>
                                 </subviews>
                             </scrollView>
@@ -578,7 +636,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PHY-E1-f3i" customClass="TPKeyboardAvoidingScrollView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PHY-E1-f3i" customClass="TPKeyboardAvoidingScrollView">
                                 <rect key="frame" x="0.0" y="44" width="600" height="556"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wXC-3j-9QP" customClass="FUIButton">
@@ -892,9 +950,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="5q4-uk-ytw"/>
-        <segue reference="iWx-A3-VzT"/>
         <segue reference="O0y-m5-u3X"/>
         <segue reference="nK4-Y1-va8"/>
+        <segue reference="vKn-zR-jAc"/>
+        <segue reference="5q4-uk-ytw"/>
     </inferredMetricsTieBreakers>
 </document>
