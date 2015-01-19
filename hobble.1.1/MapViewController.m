@@ -81,6 +81,9 @@
 - (void)foundLocation:(CLLocation *)location
 {
     PFGeoPoint *geoPoint = [PFGeoPoint geoPointWithLocation:location];
+    PFUser *currentUser = [PFUser currentUser];
+    currentUser[@"CurrentLocation"] = geoPoint;
+    NSLog(@"location called");
 }
 
 @end
