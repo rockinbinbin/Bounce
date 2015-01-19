@@ -18,6 +18,9 @@
     
     self.location_manager = [[CLLocationManager alloc] init];
     [self.location_manager requestAlwaysAuthorization];
+    self.location_manager.pausesLocationUpdatesAutomatically = YES;
+    self.location_manager.activityType = CLActivityTypeFitness;
+    
     
     [self startReceivingSignificantLocationChanges];
     [self changeCenterToUserLocation];
@@ -61,6 +64,24 @@
     
     region.span = span;
     [self.map setRegion:region];
+}
+
+/// Called when a significant location change occurs.
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    [self foundLocation:manager.location];
+}
+
+/// Called when an error occurs
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    NSLog(@"Location manager failed with error: %@", error);
+}
+
+/// Called when the location is updated.
+- (void)foundLocation:(CLLocation *)location
+{
+    
+    NSLog(@"New location data!");
 }
 
 @end

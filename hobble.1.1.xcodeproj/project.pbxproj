@@ -501,6 +501,13 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = hobble;
 				TargetAttributes = {
+					00CEE3CD199434E700F40C12 = {
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
 					00CEE3ED199434E700F40C12 = {
 						TestTargetID = 00CEE3CD199434E700F40C12;
 					};
