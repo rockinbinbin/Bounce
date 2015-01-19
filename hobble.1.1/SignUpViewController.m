@@ -52,6 +52,12 @@
     self.GenderTextField.borderColor = [UIColor redColor];
     self.GenderTextField.borderWidth = 3.0f;
     self.GenderTextField.cornerRadius = 6.0f;
+    
+    // Gender Field
+    self.PhoneNumberField.textFieldColor = [UIColor cloudsColor];
+    self.PhoneNumberField.borderColor = [UIColor redColor];
+    self.PhoneNumberField.borderWidth = 3.0f;
+    self.PhoneNumberField.cornerRadius = 6.0f;
 
 }
 

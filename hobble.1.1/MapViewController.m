@@ -83,6 +83,7 @@
     PFGeoPoint *geoPoint = [PFGeoPoint geoPointWithLocation:location];
     PFUser *currentUser = [PFUser currentUser];
     currentUser[@"CurrentLocation"] = geoPoint;
+    [currentUser saveInBackground];
     NSLog(@"location called");
 }
 
