@@ -29,6 +29,7 @@
 - (IBAction)signupButton:(id)sender;
 @property (strong, nonatomic) IBOutlet FUITextField *GenderTextField;
 
+@property (strong, nonatomic) IBOutlet FUITextField *PhoneNumberField;
 @property (strong, nonatomic) IBOutlet FUIButton *RegisterButton;
 
 @end
