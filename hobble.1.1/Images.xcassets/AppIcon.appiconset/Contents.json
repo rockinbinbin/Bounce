@@ -3,25 +3,25 @@
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "hobbleicon120-01.png",
+      "filename" : "Icon120.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "hobbleicon180-01.png",
+      "filename" : "Icon120-1.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "hobbleicon180-01-1.png",
+      "filename" : "Icon180.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "hobbleicon180-01-2.png",
+      "filename" : "Icon180-1.png",
       "scale" : "3x"
     }
   ],

@@ -6,6 +6,74 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Intro Pages-->
+        <scene sceneID="SKe-xt-zHW">
+            <objects>
+                <pageViewController storyboardIdentifier="IntroPages" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="IAF-SX-4EL" customClass="IntroPages" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="G2m-ZU-vsd"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a96-gX-Mb7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2475" y="-1612"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="6aj-Z1-4VL">
+            <objects>
+                <viewController storyboardIdentifier="Intro1ID" id="HTG-Dc-sWL" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dFs-P0-gSd"/>
+                        <viewControllerLayoutGuide type="bottom" id="U4r-he-aNv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wrd-6g-sWu">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="First" translatesAutoresizingMaskIntoConstraints="NO" id="ikS-if-m4G">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="ikS-if-m4G" secondAttribute="trailing" constant="-16" id="2wz-az-RXT"/>
+                            <constraint firstItem="U4r-he-aNv" firstAttribute="top" secondItem="ikS-if-m4G" secondAttribute="bottom" id="IZa-qU-gy7"/>
+                            <constraint firstItem="ikS-if-m4G" firstAttribute="leading" secondItem="wrd-6g-sWu" secondAttribute="leadingMargin" constant="-16" id="Y8U-g6-Itw"/>
+                            <constraint firstItem="ikS-if-m4G" firstAttribute="top" secondItem="wrd-6g-sWu" secondAttribute="topMargin" id="e7t-Ku-z1B"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AOp-gK-4nP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1802" y="-2133"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="X2K-BN-xJ5">
+            <objects>
+                <viewController storyboardIdentifier="Intro2ID" id="XIA-CA-eeq" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4Gj-qm-EyC"/>
+                        <viewControllerLayoutGuide type="bottom" id="qwC-P8-nbt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zyn-Nf-Sbw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tutorial-1" translatesAutoresizingMaskIntoConstraints="NO" id="WcZ-R8-tO6">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="WcZ-R8-tO6" firstAttribute="top" secondItem="zyn-Nf-Sbw" secondAttribute="topMargin" id="Gb4-lP-YSi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="WcZ-R8-tO6" secondAttribute="trailing" constant="-16" id="THo-Sy-aOg"/>
+                            <constraint firstItem="WcZ-R8-tO6" firstAttribute="leading" secondItem="zyn-Nf-Sbw" secondAttribute="leadingMargin" constant="-16" id="TQ6-VO-Xhi"/>
+                            <constraint firstItem="qwC-P8-nbt" firstAttribute="top" secondItem="WcZ-R8-tO6" secondAttribute="bottom" id="seB-my-39y"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Blz-1b-nZQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1152" y="-2133"/>
+        </scene>
         <!--hobble-->
         <scene sceneID="2N6-wz-8AM">
             <objects>
@@ -606,6 +674,35 @@
             </objects>
             <point key="canvasLocation" x="3755" y="-1282"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="aix-iJ-QK4">
+            <objects>
+                <viewController storyboardIdentifier="Intro3ID" id="E8c-MB-xgq" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3fF-lJ-eHr"/>
+                        <viewControllerLayoutGuide type="bottom" id="Z4q-5k-Hxq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3j5-lK-PAd">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tutorial View – Flock.png" translatesAutoresizingMaskIntoConstraints="NO" id="qZX-8o-8zH">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qZX-8o-8zH" firstAttribute="leading" secondItem="3j5-lK-PAd" secondAttribute="leadingMargin" constant="-16" id="80W-Rz-aYi"/>
+                            <constraint firstItem="Z4q-5k-Hxq" firstAttribute="top" secondItem="qZX-8o-8zH" secondAttribute="bottom" id="XvZ-29-zy0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="qZX-8o-8zH" secondAttribute="trailing" constant="-16" id="cUd-Mp-t9r"/>
+                            <constraint firstItem="qZX-8o-8zH" firstAttribute="top" secondItem="3j5-lK-PAd" secondAttribute="topMargin" id="ndc-ce-Aju"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7SU-Kn-Wri" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-526" y="-2133"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="De1-gW-0af">
             <objects>
@@ -776,7 +873,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PHY-E1-f3i" customClass="TPKeyboardAvoidingScrollView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PHY-E1-f3i" customClass="TPKeyboardAvoidingScrollView">
                                 <rect key="frame" x="0.0" y="44" width="600" height="556"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="5" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nR5-oT-qWF" customClass="FUITextField">
@@ -1067,12 +1164,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="amR-BS-Uqj" kind="relationship" relationship="rootViewController" id="2YV-XF-9Td"/>
+                        <segue destination="IAF-SX-4EL" kind="relationship" relationship="rootViewController" id="zLp-Yz-oBk"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g14-oI-7wv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2752" y="-862"/>
+            <point key="canvasLocation" x="-2784" y="-862"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ulm-VH-lbA">
@@ -1121,11 +1218,15 @@
             <point key="canvasLocation" x="-1816" y="-113"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="First" width="1242" height="2208"/>
+        <image name="Tutorial View – Flock.png" width="1242" height="2208"/>
+        <image name="Tutorial-1" width="1243" height="2208"/>
+    </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="5q4-uk-ytw"/>
         <segue reference="4AU-3V-Mmf"/>
         <segue reference="9WW-6Z-0lW"/>
         <segue reference="4wy-RK-G3y"/>
-        <segue reference="5q4-uk-ytw"/>
-        <segue reference="amd-4h-7sg"/>
     </inferredMetricsTieBreakers>
 </document>

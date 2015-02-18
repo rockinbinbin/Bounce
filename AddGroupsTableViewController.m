@@ -100,7 +100,7 @@
 //                NSLog(@"error in geo query!");
 //            } else {  // The query is successful
 //                NSLog(@"The query is successful!");
-//                NSLog(@"%lu", (unsigned long)objects.count);
+//                NSLog(x@"%lu", (unsigned long)objects.count);
 //                NSLog(@"%@", objects[0]);
 //                // 1. Find new posts (those that we did not already have)
 //                // 2. Find posts to remove (those we have but that we did not get from this query)
