@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0002633A1A981E8800CB187C /* icon114.png in Resources */ = {isa = PBXBuildFile; fileRef = 000263391A981E8800CB187C /* icon114.png */; };
+		0002633C1A981F1500CB187C /* iconLighter114.png in Resources */ = {isa = PBXBuildFile; fileRef = 0002633B1A981F1500CB187C /* iconLighter114.png */; };
+		0002633E1A981FCE00CB187C /* iconRightColor114.png in Resources */ = {isa = PBXBuildFile; fileRef = 0002633D1A981FCE00CB187C /* iconRightColor114.png */; };
 		001196E819A41D6C002D2757 /* CreateGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001196E719A41D6C002D2757 /* CreateGroupViewController.m */; };
 		001196F119A666C1002D2757 /* SearchGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001196F019A666C1002D2757 /* SearchGroupsViewController.m */; };
 		00296BD619EFA5BF003ADA30 /* APAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 00296BCA19EFA5BF003ADA30 /* APAddress.m */; };
@@ -109,6 +112,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		000263391A981E8800CB187C /* icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon114.png; sourceTree = "<group>"; };
+		0002633B1A981F1500CB187C /* iconLighter114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconLighter114.png; sourceTree = "<group>"; };
+		0002633D1A981FCE00CB187C /* iconRightColor114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconRightColor114.png; sourceTree = "<group>"; };
 		001196E619A41D6C002D2757 /* CreateGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGroupViewController.h; sourceTree = "<group>"; };
 		001196E719A41D6C002D2757 /* CreateGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGroupViewController.m; sourceTree = "<group>"; };
 		001196EF19A666C1002D2757 /* SearchGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchGroupsViewController.h; sourceTree = "<group>"; };
@@ -483,7 +489,10 @@
 				00CEE3E3199434E700F40C12 /* AppDelegate.m */,
 				00CEE3E8199434E700F40C12 /* Images.xcassets */,
 				009C76DB1A95405200F9F1DE /* Tutorial View – Flock@3x.png */,
+				000263391A981E8800CB187C /* icon114.png */,
+				0002633B1A981F1500CB187C /* iconLighter114.png */,
 				009C76E91A95448A00F9F1DE /* Icon120.png */,
+				0002633D1A981FCE00CB187C /* iconRightColor114.png */,
 				009C76EA1A95448A00F9F1DE /* Icon180.png */,
 				009C76DC1A95405200F9F1DE /* Tutorial View – Flock@2x.png */,
 				009C76DD1A95405200F9F1DE /* Tutorial View – Flock@1x.png */,
@@ -579,6 +588,7 @@
 				ORGANIZATIONNAME = hobble;
 				TargetAttributes = {
 					00CEE3CD199434E700F40C12 = {
+						DevelopmentTeam = KM659CVM6Q;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -621,10 +631,12 @@
 				009C76D01A953EA400F9F1DE /* Tutorial-1@1x-01.png in Resources */,
 				009C76DE1A95405200F9F1DE /* Tutorial View – Flock@3x.png in Resources */,
 				009C76CF1A953EA400F9F1DE /* Tutorial-1@2x-01.png in Resources */,
+				0002633A1A981E8800CB187C /* icon114.png in Resources */,
 				009C76D91A953FE700F9F1DE /* Tutorial View – Homepoint@2x.png in Resources */,
 				009C76C21A93E81F00F9F1DE /* LandingView@3x.png in Resources */,
 				00CEE4071994350300F40C12 /* MainStoryboard.storyboard in Resources */,
 				009C76E71A95447400F9F1DE /* Icon120.png in Resources */,
+				0002633E1A981FCE00CB187C /* iconRightColor114.png in Resources */,
 				009C76E01A95405200F9F1DE /* Tutorial View – Flock@1x.png in Resources */,
 				009C76DA1A953FE700F9F1DE /* Tutorial View – Homepoint@1x.png in Resources */,
 				009C76C31A93E81F00F9F1DE /* LandingView@2x.png in Resources */,
@@ -633,6 +645,7 @@
 				00CEE3E9199434E700F40C12 /* Images.xcassets in Resources */,
 				009C76DF1A95405200F9F1DE /* Tutorial View – Flock@2x.png in Resources */,
 				009C76D41A953F9500F9F1DE /* Tutorial-1@3x-01.png in Resources */,
+				0002633C1A981F1500CB187C /* iconLighter114.png in Resources */,
 				009C76D21A953F6D00F9F1DE /* Tutorial-1@3x-01.png in Resources */,
 				009C76EC1A95448A00F9F1DE /* Icon180.png in Resources */,
 			);
@@ -816,7 +829,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Craig Schmatz (D8M75W4XCX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -827,7 +841,7 @@
 				INFOPLIST_FILE = "hobble.1.1/bounce-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				PRODUCT_NAME = bounce;
-				PROVISIONING_PROFILE = "9f526c98-419c-4bbd-82bb-a61d9123ffae";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -838,7 +852,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Craig Schmatz (D8M75W4XCX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -849,7 +864,7 @@
 				INFOPLIST_FILE = "hobble.1.1/bounce-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				PRODUCT_NAME = bounce;
-				PROVISIONING_PROFILE = "9f526c98-419c-4bbd-82bb-a61d9123ffae";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
