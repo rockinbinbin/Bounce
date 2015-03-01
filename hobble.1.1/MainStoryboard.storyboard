@@ -11,6 +11,9 @@
             <objects>
                 <pageViewController storyboardIdentifier="IntroPages" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="IAF-SX-4EL" customClass="IntroPages" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="G2m-ZU-vsd"/>
+                    <connections>
+                        <segue destination="nun-Mh-Vy2" kind="presentation" identifier="skipSegue" id="sfj-fh-VTg"/>
+                    </connections>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a96-gX-Mb7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -193,7 +196,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VGf-NI-ndq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2042" y="-862"/>
+            <point key="canvasLocation" x="-730" y="-946"/>
         </scene>
         <!--hobble-->
         <scene sceneID="KQR-1S-ysg">
@@ -415,7 +418,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z9c-0S-FNf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-650" y="-841"/>
+            <point key="canvasLocation" x="-1458" y="-951"/>
         </scene>
         <!--Friends-->
         <scene sceneID="20M-Oh-max">
@@ -739,7 +742,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ne-8z-iXw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-202" y="-2793"/>
+            <point key="canvasLocation" x="192" y="-2121"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="De1-gW-0af">
@@ -1207,7 +1210,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iq1-Z2-DDi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1352" y="-862"/>
+            <point key="canvasLocation" x="-2318" y="-840"/>
         </scene>
         <!--Item-->
         <scene sceneID="Mpk-8l-lEW">
@@ -1231,7 +1234,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vJq-KY-YII" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1816" y="-113"/>
+            <point key="canvasLocation" x="-1882" y="243"/>
         </scene>
     </scenes>
     <resources>
@@ -1240,11 +1243,11 @@
         <image name="Tutorial-1" width="1243" height="2208"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="d3k-F4-lru"/>
+        <segue reference="nbk-g1-R0E"/>
+        <segue reference="vKn-zR-jAc"/>
         <segue reference="4AU-3V-Mmf"/>
-        <segue reference="9WW-6Z-0lW"/>
         <segue reference="4wy-RK-G3y"/>
         <segue reference="5q4-uk-ytw"/>
-        <segue reference="nbk-g1-R0E"/>
-        <segue reference="d3k-F4-lru"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -10,6 +10,9 @@
 
 @interface IntroPages : UIPageViewController
 <UIPageViewControllerDelegate, UIPageViewControllerDataSource>
+
+- (IBAction)skipButton:(id)sender;
+
 @end
 
 @implementation IntroPages
@@ -21,15 +24,28 @@
 {
     [super viewDidLoad];
     
+    // SKIP BUTTON
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button addTarget:self
+               action:@selector(skipButton:)
+     forControlEvents:UIControlEventTouchUpInside];
+    [button setTitle:@"skip" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    button.frame = CGRectMake(80.0, 470.0, 160.0, 40.0);
+    
     self.delegate = self;
     self.dataSource = self;
     
     UIViewController *p1 = [self.storyboard
                             instantiateViewControllerWithIdentifier:@"Intro1ID"];
+        [p1.view addSubview:button];
+    
     UIViewController *p2 = [self.storyboard
                             instantiateViewControllerWithIdentifier:@"Intro2ID"];
+    
     UIViewController *p3 = [self.storyboard
                             instantiateViewControllerWithIdentifier:@"Intro3ID"];
+    
     UIViewController *p4 = [self.storyboard
                             instantiateViewControllerWithIdentifier:@"Intro4ID"];
     
@@ -90,6 +106,10 @@
 (UIPageViewController *)pageViewController
 {
     return 0;
+}
+
+- (IBAction)skipButton:(id)sender {
+    [self performSegueWithIdentifier:@"skipSegue" sender:nil];
 }
 
 @end
