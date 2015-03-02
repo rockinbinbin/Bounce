@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 static NSString * const ParseUsername = @"username";
 static NSString * const ParseFriendRelation = @"friendsRelation";
 static NSString * const ParseGroupRelation = @"groupsRelation";

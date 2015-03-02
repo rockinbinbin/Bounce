@@ -136,6 +136,15 @@
                                             <segue destination="amR-FZ-Qql" kind="presentation" identifier="LoginToSignup" id="Qdr-r1-Q44"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Bo-65-yuy">
+                                        <rect key="frame" x="213" y="430" width="175" height="30"/>
+                                        <state key="normal" title="LOGIN WITH FACEBOOK">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="facebookLogin:" destination="amR-BS-Uqj" eventType="touchUpInside" id="ldY-iH-AEf"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottomMargin" secondItem="fli-dF-ooo" secondAttribute="topMargin" constant="-30" id="1ID-2R-dn2"/>
@@ -210,7 +219,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rqd-qp-nso" customClass="TPKeyboardAvoidingScrollView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rqd-qp-nso" customClass="TPKeyboardAvoidingScrollView">
                                 <rect key="frame" x="0.0" y="48" width="600" height="568"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rfS-EM-zvz" customClass="FUITextField">
@@ -330,6 +339,15 @@
                                             </mask>
                                         </variation>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dST-Af-A1V">
+                                        <rect key="frame" x="208" y="464" width="184" height="30"/>
+                                        <state key="normal" title="SIGN IN WITH FACEBOOK">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="facebookSignin:" destination="nun-Mh-Vy2" eventType="touchUpInside" id="3Hn-1b-A6Z"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="xCO-vS-fSe" firstAttribute="centerXWithinMargins" secondItem="rqd-qp-nso" secondAttribute="centerXWithinMargins" constant="20" id="0YZ-Bv-2r0"/>
@@ -855,7 +873,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieu-G5-rfv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-936" y="271"/>
+            <point key="canvasLocation" x="-1172" y="-85"/>
         </scene>
         <!--Add Groups Table View Controller-->
         <scene sceneID="9yd-V7-lwp">
@@ -900,7 +918,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cc3-DR-nYe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2032" y="673"/>
+            <point key="canvasLocation" x="-2190" y="839"/>
         </scene>
         <!--New Message View Controller-->
         <scene sceneID="Y8i-Dp-QEk">
@@ -1038,7 +1056,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Hq-YO-YFr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-231" y="-65"/>
+            <point key="canvasLocation" x="-195" y="659"/>
         </scene>
         <!--Groups Plus View Controller-->
         <scene sceneID="vNS-mk-Adn">
@@ -1152,7 +1170,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Le-Tm-rWW" customClass="TPKeyboardAvoidingScrollView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Le-Tm-rWW" customClass="TPKeyboardAvoidingScrollView">
                                 <rect key="frame" x="0.0" y="44" width="600" height="556"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Group Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="67B-9B-aUp" customClass="FUITextField">
@@ -1210,7 +1228,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iq1-Z2-DDi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2318" y="-840"/>
+            <point key="canvasLocation" x="-2858" y="-336"/>
         </scene>
         <!--Item-->
         <scene sceneID="Mpk-8l-lEW">
@@ -1234,7 +1252,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vJq-KY-YII" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1882" y="243"/>
+            <point key="canvasLocation" x="-2044" y="-103"/>
         </scene>
     </scenes>
     <resources>
@@ -1243,11 +1261,11 @@
         <image name="Tutorial-1" width="1243" height="2208"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="5q4-uk-ytw"/>
+        <segue reference="amd-4h-7sg"/>
         <segue reference="d3k-F4-lru"/>
-        <segue reference="nbk-g1-R0E"/>
         <segue reference="vKn-zR-jAc"/>
         <segue reference="4AU-3V-Mmf"/>
         <segue reference="4wy-RK-G3y"/>
-        <segue reference="5q4-uk-ytw"/>
     </inferredMetricsTieBreakers>
 </document>

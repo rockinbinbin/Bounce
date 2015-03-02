@@ -89,7 +89,6 @@
     }
 
     {
-        NSLog(@"%d", currentIndex);
         ++currentIndex;
         currentIndex = currentIndex % (myViewControllers.count);
         return [myViewControllers objectAtIndex:currentIndex];

@@ -22,6 +22,16 @@
 #import "FUISegmentedControl.h"
 #import "UIPopoverController+FlatUI.h"
 
+#import "AFNetworking.h"
+#import <ParseFacebookUtils/PFFacebookUtils.h>
+#import "ProgressHUD.h"
+
+#import "AppConstant.h"
+#import "pushnotification.h"
+#import "utilities.h"
+
+
+
 
 @interface LoginViewController : UIViewController <UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet FUITextField *usernameField;
@@ -29,5 +39,6 @@
 - (IBAction)loginButton:(id)sender;
 @property (strong, nonatomic) IBOutlet FUIButton *LoginButton;
 @property (strong, nonatomic) IBOutlet FUIButton *RegisterButton;
+- (IBAction)facebookLogin:(id)sender;
 
 @end

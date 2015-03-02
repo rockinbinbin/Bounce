@@ -21,6 +21,14 @@
 #import "FUISegmentedControl.h"
 #import "UIPopoverController+FlatUI.h"
 
+#import "AFNetworking.h"
+#import <ParseFacebookUtils/PFFacebookUtils.h>
+#import "ProgressHUD.h"
+
+#import "AppConstant.h"
+#import "pushnotification.h"
+#import "utilities.h"
+
 
 @interface SignUpViewController : UIViewController
 @property (strong, nonatomic) IBOutlet FUITextField *usernameField;
@@ -31,5 +39,6 @@
 
 @property (strong, nonatomic) IBOutlet FUITextField *PhoneNumberField;
 @property (strong, nonatomic) IBOutlet FUIButton *RegisterButton;
+- (IBAction)facebookSignin:(id)sender;
 
 @end
