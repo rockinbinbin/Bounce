@@ -30,6 +30,19 @@
 	<array>
 		<string>location</string>
 	</array>
+	<key>FacebookDisplayName</key>
+	<string>Bounce</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb515523265245164</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>515523265245164</string>
 	<key>UIMainStoryboardFile</key>
 	<string>MainStoryboard</string>
 	<key>UIRequiredDeviceCapabilities</key>

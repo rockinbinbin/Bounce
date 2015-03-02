@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0002633A1A981E8800CB187C /* icon114.png in Resources */ = {isa = PBXBuildFile; fileRef = 000263391A981E8800CB187C /* icon114.png */; };
-		0002633C1A981F1500CB187C /* iconLighter114.png in Resources */ = {isa = PBXBuildFile; fileRef = 0002633B1A981F1500CB187C /* iconLighter114.png */; };
-		0002633E1A981FCE00CB187C /* iconRightColor114.png in Resources */ = {isa = PBXBuildFile; fileRef = 0002633D1A981FCE00CB187C /* iconRightColor114.png */; };
 		001196E819A41D6C002D2757 /* CreateGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001196E719A41D6C002D2757 /* CreateGroupViewController.m */; };
 		001196F119A666C1002D2757 /* SearchGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001196F019A666C1002D2757 /* SearchGroupsViewController.m */; };
 		00296BD619EFA5BF003ADA30 /* APAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 00296BCA19EFA5BF003ADA30 /* APAddress.m */; };
@@ -44,6 +41,14 @@
 		007BA4031A6CD56D00BF08DE /* GroupsPlusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007BA4021A6CD56D00BF08DE /* GroupsPlusViewController.m */; };
 		007BA4091A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 007BA4061A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.m */; };
 		007BA40A1A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 007BA4081A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
+		007CF1D81AA3E4C7007D7C33 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF0BD1AA3E4C6007D7C33 /* FacebookSDK.framework */; };
+		007CF1D91AA3E4C7007D7C33 /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF0BE1AA3E4C6007D7C33 /* FBAudienceNetwork.framework */; };
+		007CF1DA1AA3E4C7007D7C33 /* FBAudienceNetwork.README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 007CF0BF1AA3E4C6007D7C33 /* FBAudienceNetwork.README.txt */; };
+		007CF1DB1AA3E4C7007D7C33 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 007CF0C01AA3E4C6007D7C33 /* LICENSE */; };
+		007CF1DC1AA3E4C7007D7C33 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 007CF0C11AA3E4C6007D7C33 /* README.txt */; };
+		007CF29A1AA3E516007D7C33 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF2991AA3E516007D7C33 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		007CF29C1AA3E529007D7C33 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF29B1AA3E529007D7C33 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		007CF29E1AA3E532007D7C33 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF29D1AA3E532007D7C33 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		0090ECB01A6B59CA009DB11D /* NewMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0090ECAF1A6B59CA009DB11D /* NewMessageViewController.m */; };
 		0090ECB31A6B6624009DB11D /* AddGroupsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0090ECB21A6B6623009DB11D /* AddGroupsTableViewController.m */; };
 		0090ECB61A6BA251009DB11D /* Definitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0090ECB51A6BA251009DB11D /* Definitions.m */; };
@@ -112,9 +117,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		000263391A981E8800CB187C /* icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon114.png; sourceTree = "<group>"; };
-		0002633B1A981F1500CB187C /* iconLighter114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconLighter114.png; sourceTree = "<group>"; };
-		0002633D1A981FCE00CB187C /* iconRightColor114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconRightColor114.png; sourceTree = "<group>"; };
 		001196E619A41D6C002D2757 /* CreateGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGroupViewController.h; sourceTree = "<group>"; };
 		001196E719A41D6C002D2757 /* CreateGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGroupViewController.m; sourceTree = "<group>"; };
 		001196EF19A666C1002D2757 /* SearchGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchGroupsViewController.h; sourceTree = "<group>"; };
@@ -181,6 +183,14 @@
 		007BA4061A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
 		007BA4071A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
 		007BA4081A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
+		007CF0BD1AA3E4C6007D7C33 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		007CF0BE1AA3E4C6007D7C33 /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBAudienceNetwork.framework; sourceTree = "<group>"; };
+		007CF0BF1AA3E4C6007D7C33 /* FBAudienceNetwork.README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FBAudienceNetwork.README.txt; sourceTree = "<group>"; };
+		007CF0C01AA3E4C6007D7C33 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		007CF0C11AA3E4C6007D7C33 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		007CF2991AA3E516007D7C33 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		007CF29B1AA3E529007D7C33 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		007CF29D1AA3E532007D7C33 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		0090ECAE1A6B59CA009DB11D /* NewMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewMessageViewController.h; sourceTree = "<group>"; };
 		0090ECAF1A6B59CA009DB11D /* NewMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMessageViewController.m; sourceTree = "<group>"; };
 		0090ECB11A6B6623009DB11D /* AddGroupsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddGroupsTableViewController.h; path = ../AddGroupsTableViewController.h; sourceTree = "<group>"; };
@@ -256,6 +266,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				007CF29E1AA3E532007D7C33 /* Accounts.framework in Frameworks */,
+				007CF29C1AA3E529007D7C33 /* AdSupport.framework in Frameworks */,
+				007CF29A1AA3E516007D7C33 /* Social.framework in Frameworks */,
 				28F13A521A6C75A90069EBA4 /* MapKit.framework in Frameworks */,
 				00CEE3D8199434E700F40C12 /* CoreData.framework in Frameworks */,
 				00CEE4271994493A00F40C12 /* CoreLocation.framework in Frameworks */,
@@ -273,7 +286,9 @@
 				00CEE4171994490100F40C12 /* CFNetwork.framework in Frameworks */,
 				00CEE3D6199434E700F40C12 /* UIKit.framework in Frameworks */,
 				00CEE3D2199434E700F40C12 /* Foundation.framework in Frameworks */,
+				007CF1D91AA3E4C7007D7C33 /* FBAudienceNetwork.framework in Frameworks */,
 				00CEE415199448F000F40C12 /* AddressBookUI.framework in Frameworks */,
+				007CF1D81AA3E4C7007D7C33 /* FacebookSDK.framework in Frameworks */,
 				00CEE413199448E900F40C12 /* AddressBook.framework in Frameworks */,
 				0060FE451A0ECB2C00525A50 /* Bolts.framework in Frameworks */,
 			);
@@ -396,6 +411,19 @@
 			path = keyboard;
 			sourceTree = "<group>";
 		};
+		007CF0BB1AA3E4C6007D7C33 /* FacebookSDK */ = {
+			isa = PBXGroup;
+			children = (
+				007CF0BD1AA3E4C6007D7C33 /* FacebookSDK.framework */,
+				007CF0BE1AA3E4C6007D7C33 /* FBAudienceNetwork.framework */,
+				007CF0BF1AA3E4C6007D7C33 /* FBAudienceNetwork.README.txt */,
+				007CF0C01AA3E4C6007D7C33 /* LICENSE */,
+				007CF0C11AA3E4C6007D7C33 /* README.txt */,
+			);
+			name = FacebookSDK;
+			path = ../../FacebookSDK;
+			sourceTree = "<group>";
+		};
 		0090ECC11A6C5322009DB11D /* Unused */ = {
 			isa = PBXGroup;
 			children = (
@@ -440,6 +468,10 @@
 		00CEE3D0199434E700F40C12 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				007CF29D1AA3E532007D7C33 /* Accounts.framework */,
+				007CF29B1AA3E529007D7C33 /* AdSupport.framework */,
+				007CF2991AA3E516007D7C33 /* Social.framework */,
+				007CF0BB1AA3E4C6007D7C33 /* FacebookSDK */,
 				28F13A511A6C75A90069EBA4 /* MapKit.framework */,
 				00CEE4261994493A00F40C12 /* CoreLocation.framework */,
 				00CEE4241994493500F40C12 /* StoreKit.framework */,
@@ -489,10 +521,7 @@
 				00CEE3E3199434E700F40C12 /* AppDelegate.m */,
 				00CEE3E8199434E700F40C12 /* Images.xcassets */,
 				009C76DB1A95405200F9F1DE /* Tutorial View – Flock@3x.png */,
-				000263391A981E8800CB187C /* icon114.png */,
-				0002633B1A981F1500CB187C /* iconLighter114.png */,
 				009C76E91A95448A00F9F1DE /* Icon120.png */,
-				0002633D1A981FCE00CB187C /* iconRightColor114.png */,
 				009C76EA1A95448A00F9F1DE /* Icon180.png */,
 				009C76DC1A95405200F9F1DE /* Tutorial View – Flock@2x.png */,
 				009C76DD1A95405200F9F1DE /* Tutorial View – Flock@1x.png */,
@@ -607,6 +636,7 @@
 			knownRegions = (
 				en,
 				Base,
+				he,
 			);
 			mainGroup = 00CEE3C5199434E700F40C12;
 			productRefGroup = 00CEE3CF199434E700F40C12 /* Products */;
@@ -631,13 +661,13 @@
 				009C76D01A953EA400F9F1DE /* Tutorial-1@1x-01.png in Resources */,
 				009C76DE1A95405200F9F1DE /* Tutorial View – Flock@3x.png in Resources */,
 				009C76CF1A953EA400F9F1DE /* Tutorial-1@2x-01.png in Resources */,
-				0002633A1A981E8800CB187C /* icon114.png in Resources */,
 				009C76D91A953FE700F9F1DE /* Tutorial View – Homepoint@2x.png in Resources */,
 				009C76C21A93E81F00F9F1DE /* LandingView@3x.png in Resources */,
 				00CEE4071994350300F40C12 /* MainStoryboard.storyboard in Resources */,
+				007CF1DA1AA3E4C7007D7C33 /* FBAudienceNetwork.README.txt in Resources */,
 				009C76E71A95447400F9F1DE /* Icon120.png in Resources */,
-				0002633E1A981FCE00CB187C /* iconRightColor114.png in Resources */,
 				009C76E01A95405200F9F1DE /* Tutorial View – Flock@1x.png in Resources */,
+				007CF1DB1AA3E4C7007D7C33 /* LICENSE in Resources */,
 				009C76DA1A953FE700F9F1DE /* Tutorial View – Homepoint@1x.png in Resources */,
 				009C76C31A93E81F00F9F1DE /* LandingView@2x.png in Resources */,
 				00CEE3DE199434E700F40C12 /* InfoPlist.strings in Resources */,
@@ -645,8 +675,8 @@
 				00CEE3E9199434E700F40C12 /* Images.xcassets in Resources */,
 				009C76DF1A95405200F9F1DE /* Tutorial View – Flock@2x.png in Resources */,
 				009C76D41A953F9500F9F1DE /* Tutorial-1@3x-01.png in Resources */,
-				0002633C1A981F1500CB187C /* iconLighter114.png in Resources */,
 				009C76D21A953F6D00F9F1DE /* Tutorial-1@3x-01.png in Resources */,
+				007CF1DC1AA3E4C7007D7C33 /* README.txt in Resources */,
 				009C76EC1A95448A00F9F1DE /* Icon180.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -753,7 +783,7 @@
 		00CEE3FE199434E700F40C12 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -793,7 +823,7 @@
 		00CEE3FF199434E700F40C12 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -835,6 +865,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/parse-library-1",
+					"$(PROJECT_DIR)/hobble.1.1/FacebookSDK",
+					/Users/Robin/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "hobble.1.1/bounce-Prefix.pch";
@@ -858,6 +890,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/parse-library-1",
+					"$(PROJECT_DIR)/hobble.1.1/FacebookSDK",
+					/Users/Robin/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "hobble.1.1/bounce-Prefix.pch";
