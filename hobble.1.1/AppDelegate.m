@@ -28,6 +28,11 @@
     
     [PFFacebookUtils initializeFacebook];
     
+//    MapViewController *mapView = [[MapViewController alloc] init];
+//    self.window.rootViewController = mapView;
+//    //self.window.backgroundColor = [UIColor whiteColor];
+//    [self.window makeKeyAndVisible];
+//    
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
@@ -189,6 +194,7 @@
 {
     return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication withSession:[PFFacebookUtils session]];
 }
+
 
 
 @end

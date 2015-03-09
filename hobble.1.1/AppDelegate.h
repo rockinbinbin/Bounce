@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "MapViewController.h"
 
 static NSString * const ParseUsername = @"username";
 static NSString * const ParseFriendRelation = @"friendsRelation";
@@ -22,6 +22,7 @@ static NSString * const ParseGroupName = @"groupName";
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
