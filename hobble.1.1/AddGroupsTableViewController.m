@@ -89,36 +89,6 @@
     [[self.tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryNone];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([[segue identifier] isEqualToString:@"SentHobbleRequest"]) {
-
-//        NSLog(@"%@", placesObjects[placesObjects.count - 1]);
-        
-//        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//            if (error) {  // The query failed
-//                NSLog(@"error in geo query!");
-//            } else {  // The query is successful
-//                NSLog(@"The query is successful!");
-//                NSLog(x@"%lu", (unsigned long)objects.count);
-//                NSLog(@"%@", objects[0]);
-//                // 1. Find new posts (those that we did not already have)
-//                // 2. Find posts to remove (those we have but that we did not get from this query)
-//                // 3. Configure the new posts
-//                // 4. Remove the old posts and add the new posts
-//            }
-//        }];
-        
-//        self.Request = [PFObject objectWithClassName:@"Requests"];
-//        self.Request[@"Sender"] = [PFUser currentUser].username;
-//        self.Request[@"RequestedGroups"] = self.SelectedGroups;
-//        self.Request[@"Radius"] = [NSNumber numberWithInt:self.radius];
-//        self.Request[@"TimeAllocated"] = [NSNumber numberWithInt:self.timeAllocated];
-//        self.Request[@"Location"] = [PFGeoPoint geoPointWithLocation:self.location_manager.location];
-//        [self.Request saveInBackground];
-    }
-}
-
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
     if ([identifier isEqualToString:@"SentHobbleRequest"]) {
         if ([self.SelectedGroups count]) {
@@ -133,8 +103,6 @@
             for (NSString *groupName in self.SelectedGroups) {
                 PFQuery *query = [PFUser query];
                 [query whereKey:@"username" notEqualTo:currentUser.username];
-                
-                // "equals" (a, null) vs. "containsString" (null)
                 [query whereKey:@"ArrayOfGroups" equalTo:groupName];
                 [query whereKey:@"CurrentLocation" nearGeoPoint:userGeoPoint withinMiles:self.radius];
                 [queries addObject:query];
@@ -143,15 +111,33 @@
             query = [PFQuery orQueryWithSubqueries:queries];
             NSArray *resultUsers = [query findObjects];
             
+            NSMutableArray *resultUsernames = [[NSMutableArray alloc] init];
+            
             for (PFUser *user in resultUsers) {
                 NSLog(@"%@", user.username);
+                [resultUsernames addObject:user.username];
             }
+        
+
             
             if ([resultUsers count] != 0) {
                 // NSLog(@"%@", resultUsers[0][@"DeviceID"]);
                 
+                self.Request = [PFObject objectWithClassName:@"Requests"];
+                self.Request[@"Sender"] = [PFUser currentUser].username;
+                self.Request[@"receivers"] = resultUsernames;
+            
+                
+                self.Request[@"RequestedGroups"] = self.SelectedGroups;
+                self.Request[@"Radius"] = [NSNumber numberWithInt:self.radius];
+                self.Request[@"TimeAllocated"] = [NSNumber numberWithInt:self.timeAllocated];
+                self.Request[@"Location"] = [PFGeoPoint geoPointWithLocation:self.location_manager.location];
+                [self.Request saveInBackground];
+                
                 // SET DELEGATE HERE
-                [self didSelectMultipleUsers:resultUsers];
+                [self didSelectMultipleUsers:resultUsernames];
+                
+                
                 
             } else {
                 NSLog(@"There were no users found.");
