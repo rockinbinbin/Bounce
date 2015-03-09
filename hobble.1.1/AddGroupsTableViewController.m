@@ -148,7 +148,11 @@
             }
             
             if ([resultUsers count] != 0) {
-                NSLog(@"%@", resultUsers[0][@"DeviceID"]);
+                // NSLog(@"%@", resultUsers[0][@"DeviceID"]);
+                
+                // SET DELEGATE HERE
+                [self didSelectMultipleUsers:resultUsers];
+                
             } else {
                 NSLog(@"There were no users found.");
             }
@@ -174,6 +178,10 @@
         }
     }
     return NO;
+}
+
+- (void)didSelectMultipleUsers:(NSArray *)users {
+    [self.delegate didSelectMultipleUsers:users];
 }
 
 - (IBAction)unwind:(id)sender {

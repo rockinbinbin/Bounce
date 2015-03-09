@@ -780,7 +780,7 @@
             </objects>
             <point key="canvasLocation" x="2043" y="-2779"/>
         </scene>
-        <!--hobble-->
+        <!--bounce-->
         <scene sceneID="zul-qe-NhF">
             <objects>
                 <viewController id="kV9-jE-7vq" customClass="MapViewController" sceneMemberID="viewController">
@@ -848,11 +848,11 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="hobble" id="I6t-vn-6bK">
+                    <navigationItem key="navigationItem" title="bounce" id="I6t-vn-6bK">
                         <barButtonItem key="leftBarButtonItem" title="Messages" id="kIF-wY-W6q">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="0.75" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="nBk-WW-0oN" kind="presentation" identifier="HomeToMessages" id="9P5-jG-jt3"/>
+                                <segue destination="jwJ-1v-85f" kind="show" id="rhq-Pb-wJM"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Groups" id="bsE-ii-erb">
@@ -870,38 +870,34 @@
             </objects>
             <point key="canvasLocation" x="-1172" y="-85"/>
         </scene>
-        <!--Messages View-->
-        <scene sceneID="90l-bl-0Tz">
+        <!--Messages Table View Controller-->
+        <scene sceneID="jJY-2z-R9S">
             <objects>
-                <viewController id="nBk-WW-0oN" customClass="MessagesView" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="7Xl-P3-BM6"/>
-                        <viewControllerLayoutGuide type="bottom" id="I5m-P4-dRt"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8KC-97-TKQ">
+                <tableViewController id="jwJ-1v-85f" customClass="MessagesTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="vDg-rG-qqr">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yWl-eH-4dc">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                <items>
-                                    <navigationItem title="Messages" id="MEw-VZ-eFl">
-                                        <barButtonItem key="rightBarButtonItem" id="vg9-ZS-vvx"/>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="yWl-eH-4dc" secondAttribute="trailing" constant="-16" id="KT4-qC-lvc"/>
-                            <constraint firstItem="yWl-eH-4dc" firstAttribute="leading" secondItem="8KC-97-TKQ" secondAttribute="leadingMargin" constant="-16" id="rE2-me-hTM"/>
-                            <constraint firstItem="yWl-eH-4dc" firstAttribute="top" secondItem="8KC-97-TKQ" secondAttribute="topMargin" id="toG-z5-cJe"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Cyk-3y-ZLm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="HtG-uT-hTs">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HtG-uT-hTs" id="36v-I8-aNT">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="jwJ-1v-85f" id="we8-nf-Lg2"/>
+                            <outlet property="delegate" destination="jwJ-1v-85f" id="GWb-BS-Opi"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="tableMessages" destination="vDg-rG-qqr" id="1VP-Fe-JF7"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="egM-tY-tIy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-490" y="-143"/>
+            <point key="canvasLocation" x="-526" y="-77"/>
         </scene>
         <!--Add Groups Table View Controller-->
         <scene sceneID="9yd-V7-lwp">

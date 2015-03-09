@@ -10,6 +10,12 @@
 #import <Parse/Parse.h>
 #import <CoreLocation/CoreLocation.h>
 
+@protocol SelectMultipleDelegate
+
+- (void)didSelectMultipleUsers:(NSArray *)users;
+
+@end
+
 @interface AddGroupsTableViewController : UITableViewController
 
 // store in parse:
@@ -22,5 +28,7 @@
 
 @property (nonatomic, strong) NSMutableArray *groups;
 @property (nonatomic, strong) PFObject *Request;
+
+@property (nonatomic, assign) IBOutlet id<SelectMultipleDelegate>delegate;
 
 @end
