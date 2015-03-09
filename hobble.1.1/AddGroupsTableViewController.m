@@ -14,13 +14,14 @@
 
 @implementation AddGroupsTableViewController
 
+@synthesize delegate;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
         self.navigationItem.hidesBackButton = YES;
     self.SelectedGroups = [NSMutableArray array];
     
     self.location_manager = [[CLLocationManager alloc] init];
-
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -117,9 +118,7 @@
                 NSLog(@"%@", user.username);
                 [resultUsernames addObject:user.username];
             }
-        
 
-            
             if ([resultUsers count] != 0) {
                 // NSLog(@"%@", resultUsers[0][@"DeviceID"]);
                 
@@ -135,9 +134,10 @@
                 [self.Request saveInBackground];
                 
                 // SET DELEGATE HERE
+                if (delegate != nil) {
+                    NSLog(@"DELEGATE IS NOT NIL");
                 [self didSelectMultipleUsers:resultUsernames];
-                
-                
+                }
                 
             } else {
                 NSLog(@"There were no users found.");

@@ -50,6 +50,9 @@
     messages = [[NSMutableArray alloc] init];
     //---------------------------------------------------------------------------------------------------------------------------------------------
    // _viewEmpty.hidden = YES;
+    
+    AddGroupsTableViewController *selectMultipleView = [[AddGroupsTableViewController alloc] init];
+    selectMultipleView.delegate = self;
 
 }
 
@@ -67,9 +70,7 @@
 
 #pragma mark - Backend methods
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)loadMessages
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
     PFQuery *query = [PFQuery queryWithClassName:PF_MESSAGES_CLASS_NAME];
     [query whereKey:PF_MESSAGES_USER equalTo:[PFUser currentUser]];
@@ -130,11 +131,13 @@
 }
 
 /////// HERE IS THE METHOD FOR THE USER ARRAY DELEGATE :)
+
 - (void)didSelectMultipleUsers:(NSMutableArray *)users {
+    NSLog(@"DIDSELECTMULTIPLEUSERS IS BEING CALLED");
+    
     NSString *groupId = StartMultipleChat(users);
     [self actionChat:groupId];
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
