@@ -12,12 +12,15 @@
 #import "utilities.h"
 #import "MapViewController.h"
 #import "NavigationController.h"
+#import "LoginViewController.h"
+#import "IntroPages.h"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 void LoginUser(id target)
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	NavigationController *navigationController = [[NavigationController alloc] initWithRootViewController:[[MapViewController alloc] init]];
+    UIStoryboard* mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    NavigationController *navigationController = [[NavigationController alloc] initWithRootViewController:(LoginViewController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"LoginViewController"]];
 	[target presentViewController:navigationController animated:YES completion:nil];
 }
 

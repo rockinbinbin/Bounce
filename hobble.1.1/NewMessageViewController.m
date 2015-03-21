@@ -9,6 +9,7 @@
 #import "NewMessageViewController.h"
 
 @interface NewMessageViewController ()
+- (IBAction)cancelButtonPressed:(id)sender;
 
 @end
 
@@ -17,6 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     [self.view addGestureRecognizer:gestureRecognizer];
@@ -106,8 +108,8 @@
     }
 }
 
-- (IBAction)unwind:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 
+- (IBAction)cancelButtonPressed:(id)sender {
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
 @end

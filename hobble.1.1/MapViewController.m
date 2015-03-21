@@ -7,6 +7,8 @@
 //
 
 #import "MapViewController.h"
+#import <Parse/Parse.h>
+#import "utilities.h"
 
 @implementation MapViewController
 
@@ -21,6 +23,9 @@
     self.location_manager.pausesLocationUpdatesAutomatically = YES;
     self.location_manager.activityType = CLActivityTypeFitness;
     
+    if ([PFUser currentUser] == nil) {
+        LoginUser(self);
+    }
     
     [self startReceivingSignificantLocationChanges];
     [self changeCenterToUserLocation];

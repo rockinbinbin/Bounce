@@ -7,6 +7,8 @@
 //
 
 #import "HomeViewController.h"
+#import <Parse/Parse.h>
+#import "utilities.h"
 
 @interface HomeViewController ()
 
@@ -21,6 +23,7 @@
     
     self.location_manager = [[CLLocationManager alloc] init];
     [self.location_manager requestWhenInUseAuthorization];
+    
     
     [self startReceivingSignificantLocationChanges];
     [self changeCenterToUserLocation];

@@ -12,6 +12,8 @@
 
 @interface SearchGroupsViewController ()
 
+- (IBAction)CancelButtonPressed:(id)sender;
+
 @end
 
 @implementation SearchGroupsViewController
@@ -191,6 +193,11 @@ shouldReloadTableForSearchString:(NSString *)searchString
 
 
 - (IBAction)doneButton:(id)sender {
-    [self performSegueWithIdentifier:@"SearchToGroups" sender:self];
+    //[self performSegueWithIdentifier:@"SearchToGroups" sender:self];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    
+}
+- (IBAction)CancelButtonPressed:(id)sender {
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "IntroPages.h"
 
 @interface IntroPages : UIPageViewController
 <UIPageViewControllerDelegate, UIPageViewControllerDataSource>

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		001196E819A41D6C002D2757 /* CreateGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001196E719A41D6C002D2757 /* CreateGroupViewController.m */; };
 		001196F119A666C1002D2757 /* SearchGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001196F019A666C1002D2757 /* SearchGroupsViewController.m */; };
+		001DF9F71ABCEFD8008C9D1F /* RootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001DF9F61ABCEFD8008C9D1F /* RootTabBarController.m */; };
 		00296BD619EFA5BF003ADA30 /* APAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 00296BCA19EFA5BF003ADA30 /* APAddress.m */; };
 		00296BD719EFA5BF003ADA30 /* APAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 00296BCC19EFA5BF003ADA30 /* APAddressBook.m */; };
 		00296BD819EFA5BF003ADA30 /* APContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 00296BCE19EFA5BF003ADA30 /* APContact.m */; };
@@ -194,6 +195,9 @@
 		001196E719A41D6C002D2757 /* CreateGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGroupViewController.m; sourceTree = "<group>"; };
 		001196EF19A666C1002D2757 /* SearchGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchGroupsViewController.h; sourceTree = "<group>"; };
 		001196F019A666C1002D2757 /* SearchGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchGroupsViewController.m; sourceTree = "<group>"; };
+		001DF9F51ABCEFD8008C9D1F /* RootTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTabBarController.h; sourceTree = "<group>"; };
+		001DF9F61ABCEFD8008C9D1F /* RootTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabBarController.m; sourceTree = "<group>"; };
+		001DF9F81ABD287B008C9D1F /* IntroPages.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroPages.h; sourceTree = "<group>"; };
 		00296BC919EFA5BF003ADA30 /* APAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APAddress.h; sourceTree = "<group>"; };
 		00296BCA19EFA5BF003ADA30 /* APAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APAddress.m; sourceTree = "<group>"; };
 		00296BCB19EFA5BF003ADA30 /* APAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APAddressBook.h; sourceTree = "<group>"; };
@@ -602,6 +606,7 @@
 		00414E411AADECCE00B25CEE /* onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				001DF9F81ABD287B008C9D1F /* IntroPages.h */,
 				00414E421AADECCE00B25CEE /* IntroPages.m */,
 				00414E431AADECCE00B25CEE /* LoginViewController.h */,
 				00414E441AADECCE00B25CEE /* LoginViewController.m */,
@@ -1008,6 +1013,8 @@
 			children = (
 				0090ECC11A6C5322009DB11D /* Unused */,
 				00CEE4061994350300F40C12 /* MainStoryboard.storyboard */,
+				001DF9F51ABCEFD8008C9D1F /* RootTabBarController.h */,
+				001DF9F61ABCEFD8008C9D1F /* RootTabBarController.m */,
 				007BA4041A6CDF7500BF08DE /* keyboard */,
 				0060FE401A0ECB2C00525A50 /* parse-library-1 */,
 				00296BC719EFA5BF003ADA30 /* Pod */,
@@ -1330,6 +1337,7 @@
 				0090ECCA1A6C5322009DB11D /* SettingsViewController.m in Sources */,
 				00414F301AADEE0600B25CEE /* JSQMessagesCollectionViewCellOutgoing.m in Sources */,
 				00414F0C1AADEE0600B25CEE /* UIButton+AFNetworking.m in Sources */,
+				001DF9F71ABCEFD8008C9D1F /* RootTabBarController.m in Sources */,
 				00414F631AAE24A800B25CEE /* ChatView.m in Sources */,
 				00414F261AADEE0600B25CEE /* JSQMessage.m in Sources */,
 				00414F4C1AADEE5700B25CEE /* messages.m in Sources */,

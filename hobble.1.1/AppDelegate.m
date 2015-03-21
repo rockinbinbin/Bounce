@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
+#import "IntroPages.h"
 
 @implementation AppDelegate
 
@@ -50,6 +51,11 @@
     pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
     pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
     pageControl.backgroundColor = [UIColor whiteColor];
+    
+//    if ([PFUser currentUser] != nil) {
+//        UIPageViewController *pageViewController = [[UIPageViewController alloc] init];
+//        
+//    }
 
     return YES;
 }
@@ -194,7 +200,5 @@
 {
     return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication withSession:[PFFacebookUtils session]];
 }
-
-
 
 @end

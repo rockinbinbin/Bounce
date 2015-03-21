@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AddGroupsTableViewController.h"
 
-@interface MessagesTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, SelectMultipleDelegate>
+@interface MessagesTableViewController : UITableViewController <SelectMultipleDelegate>
 
 - (void)loadMessages;
 

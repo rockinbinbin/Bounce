@@ -10,6 +10,8 @@
 
 @interface CreateGroupViewController ()
 
+- (IBAction)CancelButtonPressed:(id)sender;
+
 @end
 
 @implementation CreateGroupViewController
@@ -73,6 +75,10 @@
 }
 
 
+- (IBAction)CancelButtonPressed:(id)sender {
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (IBAction)Done:(id)sender {
     NSString *name = [self.groupNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
@@ -121,11 +127,9 @@
         PFUser *user = [PFUser currentUser];
         [user addObject:name forKey:@"ArrayOfGroups"];
         [user saveInBackground];
+        
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 
     }
-}
-
-- (IBAction)unwind:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

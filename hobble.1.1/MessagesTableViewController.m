@@ -57,15 +57,8 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
     [super viewDidAppear:animated];
-    //---------------------------------------------------------------------------------------------------------------------------------------------
-    if ([PFUser currentUser] != nil)
-    {
-        [self loadMessages];
-    }
-    else LoginUser(self);
 }
 
 #pragma mark - Backend methods
@@ -86,7 +79,9 @@
              [self updateEmptyView];
              [self updateTabCounter];
          }
-         else [ProgressHUD showError:@"Network error."];
+         else {
+             [ProgressHUD showError:@"Network error."];
+         }
          [refreshControl endRefreshing];
      }];
 }
@@ -118,16 +113,16 @@
 - (void)actionChat:(NSString *)groupId {
     ChatView *chatView = [[ChatView alloc] initWith:groupId];
     chatView.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:chatView animated:YES];
+//    [self.navigationController pushViewController:chatView animated:YES];
 }
 
 
 - (void)actionCleanup {
-    [messages removeAllObjects];
-    [_tableMessages reloadData];
+//    [messages removeAllObjects];
+//    [_tableMessages reloadData];
 
-    UITabBarItem *item = self.tabBarController.tabBar.items[1];
-    item.badgeValue = nil;
+//    UITabBarItem *item = self.tabBarController.tabBar.items[1];
+//    item.badgeValue = nil;
 }
 
 /////// HERE IS THE METHOD FOR THE USER ARRAY DELEGATE :)

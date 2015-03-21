@@ -30,6 +30,7 @@
 @property (strong, nonatomic) IBOutlet FUITextField *groupNameTextField;
 @property (strong, nonatomic) PFUser *currentUser;
 @property (strong, nonatomic) IBOutlet FUIButton *DoneButton;
+- (IBAction)CancelButtonPressed:(id)sender;
 
 - (IBAction)Done:(id)sender;
 

@@ -11,6 +11,8 @@
 // ALL THIS DOES IS LIST GROUPS NAMES IN TABLE VIEW
 
 @interface GroupsTableViewController ()
+- (IBAction)createGroupsButtonPressed:(id)sender;
+- (IBAction)searchGroupsButtonPressed:(id)sender;
 
 @end
 
@@ -28,8 +30,6 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.hidesBackButton = YES;
-
 }
 
 
@@ -79,8 +79,9 @@
     return cell;
 }
 
-- (IBAction)unwind:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+- (IBAction)createGroupsButtonPressed:(id)sender {
 }
 
+- (IBAction)searchGroupsButtonPressed:(id)sender {
+}
 @end
