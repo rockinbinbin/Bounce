@@ -251,7 +251,7 @@
             </objects>
             <point key="canvasLocation" x="2940" y="-1295"/>
         </scene>
-        <!--Search Groups View Controller-->
+        <!--Search Homepoints-->
         <scene sceneID="XTs-jM-M8L">
             <objects>
                 <viewController id="JTr-Mh-iWb" customClass="SearchGroupsViewController" sceneMemberID="viewController">
@@ -298,7 +298,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="3vl-YX-HiR"/>
+                    <navigationItem key="navigationItem" title="Search Homepoints" id="3vl-YX-HiR"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="9Uy-9c-0bd" id="cph-5u-dta"/>
                     </connections>
@@ -573,6 +573,35 @@
             </objects>
             <point key="canvasLocation" x="-1750" y="1523"/>
         </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="Reo-zI-ROB">
+            <objects>
+                <viewController id="vgm-9R-ZP0" customClass="SettingsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="a1c-Wg-O2a"/>
+                        <viewControllerLayoutGuide type="bottom" id="JCS-5X-IZj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Oos-TU-ltA">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tqC-nJ-YZf">
+                                <rect key="frame" x="213" y="364" width="159" height="75"/>
+                                <state key="normal" title="LOGOUT">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="LogoutPressed:" destination="vgm-9R-ZP0" eventType="touchUpInside" id="h1Q-cV-Y2d"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ueu-35-eWQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-336" y="1197"/>
+        </scene>
         <!--bounce-->
         <scene sceneID="zul-qe-NhF">
             <objects>
@@ -645,6 +674,11 @@
                     <navigationItem key="navigationItem" title="bounce" id="I6t-vn-6bK">
                         <barButtonItem key="leftBarButtonItem" id="kIF-wY-W6q">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="0.75" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="mbD-PA-ddn">
+                            <connections>
+                                <segue destination="vgm-9R-ZP0" kind="show" id="Wuu-Bc-SGc"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -747,7 +781,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cc3-DR-nYe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1876" y="1509"/>
+            <point key="canvasLocation" x="1842" y="1913"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JjR-zT-Uam">
@@ -763,7 +797,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T0A-lE-d7B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="381" y="1509"/>
+            <point key="canvasLocation" x="383" y="1913"/>
         </scene>
         <!--New Message View Controller-->
         <scene sceneID="Y8i-Dp-QEk">
@@ -843,7 +877,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="86h-SD-Mgh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1132" y="1501"/>
+            <point key="canvasLocation" x="1134" y="1905"/>
         </scene>
         <!--Groups-->
         <scene sceneID="IQH-SW-COk">
@@ -906,7 +940,7 @@
             </objects>
             <point key="canvasLocation" x="334" y="-1143"/>
         </scene>
-        <!--Create Group View Controller-->
+        <!--Create Homepoint-->
         <scene sceneID="QdL-ur-Xdk">
             <objects>
                 <viewController id="3SW-yW-hfi" customClass="CreateGroupViewController" sceneMemberID="viewController">
@@ -951,7 +985,7 @@
                             <constraint firstItem="2Le-Tm-rWW" firstAttribute="leading" secondItem="WLu-DY-msb" secondAttribute="leadingMargin" constant="-16" id="u1f-Vy-MPr"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="cPr-js-yBE">
+                    <navigationItem key="navigationItem" title="Create Homepoint" id="cPr-js-yBE">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="s6C-ji-cfJ">
                             <connections>
                                 <action selector="CancelButtonPressed:" destination="3SW-yW-hfi" id="ZNp-w8-6RW"/>

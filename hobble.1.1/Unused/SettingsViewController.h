@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 
 @interface SettingsViewController : UIViewController
-- (IBAction)LogoutButton:(id)sender;
+
+- (IBAction)LogoutPressed:(id)sender;
 
 @end

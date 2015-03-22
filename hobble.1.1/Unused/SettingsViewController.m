@@ -7,6 +7,7 @@
 //
 
 #import "SettingsViewController.h"
+#import "utilities.h"
 
 @interface SettingsViewController ()
 
@@ -34,9 +35,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)LogoutButton:(id)sender {
+
+
+- (IBAction)LogoutPressed:(id)sender {
     [PFUser logOut];
-    PFUser *currentUser = [PFUser currentUser]; // OK for now
-    [self performSegueWithIdentifier:@"LogoutToLogin" sender:nil];
+    LoginUser(self);
 }
 @end
