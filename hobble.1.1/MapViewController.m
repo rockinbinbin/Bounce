@@ -9,6 +9,7 @@
 #import "MapViewController.h"
 #import <Parse/Parse.h>
 #import "utilities.h"
+#import "IntroPages.h"
 
 @implementation MapViewController
 
@@ -22,6 +23,12 @@
     [self.location_manager requestAlwaysAuthorization];
     self.location_manager.pausesLocationUpdatesAutomatically = YES;
     self.location_manager.activityType = CLActivityTypeFitness;
+    
+//    PFUser *user = [PFUser currentUser];
+//    
+//    if (user.isNew) {
+//        [self performSegueWithIdentifier:@"FirstTimeUser" sender:nil];
+//            }
     
     if ([PFUser currentUser] == nil) {
         LoginUser(self);

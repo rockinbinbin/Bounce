@@ -19,9 +19,13 @@
 void LoginUser(id target)
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
+    NSLog(@"LoginUser(id target) called");
+    
     UIStoryboard* mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    NavigationController *navigationController = [[NavigationController alloc] initWithRootViewController:(LoginViewController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"LoginViewController"]];
+    NavigationController *navigationController = [[NavigationController alloc] initWithRootViewController:(IntroPages*)[mainStoryboard instantiateViewControllerWithIdentifier:@"IntroPages"]];
+    [navigationController setNavigationBarHidden: YES animated:YES];
 	[target presentViewController:navigationController animated:YES completion:nil];
+
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------

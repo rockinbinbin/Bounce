@@ -10,6 +10,7 @@
 		001196E819A41D6C002D2757 /* CreateGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001196E719A41D6C002D2757 /* CreateGroupViewController.m */; };
 		001196F119A666C1002D2757 /* SearchGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001196F019A666C1002D2757 /* SearchGroupsViewController.m */; };
 		001DF9F71ABCEFD8008C9D1F /* RootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001DF9F61ABCEFD8008C9D1F /* RootTabBarController.m */; };
+		001DF9FE1ABE395F008C9D1F /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001DF9FD1ABE395F008C9D1F /* NavigationController.m */; };
 		00296BD619EFA5BF003ADA30 /* APAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 00296BCA19EFA5BF003ADA30 /* APAddress.m */; };
 		00296BD719EFA5BF003ADA30 /* APAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 00296BCC19EFA5BF003ADA30 /* APAddressBook.m */; };
 		00296BD819EFA5BF003ADA30 /* APContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 00296BCE19EFA5BF003ADA30 /* APContact.m */; };
@@ -102,7 +103,6 @@
 		00414F4E1AADEE5700B25CEE /* camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 00414F471AADEE5700B25CEE /* camera.m */; };
 		00414F4F1AADEE5700B25CEE /* images.m in Sources */ = {isa = PBXBuildFile; fileRef = 00414F491AADEE5700B25CEE /* images.m */; };
 		00414F501AADEE5700B25CEE /* utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 00414F4B1AADEE5700B25CEE /* utilities.m */; };
-		00414F541AADF07F00B25CEE /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00414F531AADF07F00B25CEE /* NavigationController.m */; };
 		00414F571AAE17BC00B25CEE /* MessagesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00414F561AAE17BC00B25CEE /* MessagesTableViewController.m */; };
 		00414F5D1AAE184300B25CEE /* MessagesTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00414F5C1AAE184300B25CEE /* MessagesTableCell.m */; };
 		00414F5F1AAE1CEA00B25CEE /* MessagesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00414F5E1AAE1CEA00B25CEE /* MessagesCell.xib */; };
@@ -197,7 +197,9 @@
 		001196F019A666C1002D2757 /* SearchGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchGroupsViewController.m; sourceTree = "<group>"; };
 		001DF9F51ABCEFD8008C9D1F /* RootTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTabBarController.h; sourceTree = "<group>"; };
 		001DF9F61ABCEFD8008C9D1F /* RootTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabBarController.m; sourceTree = "<group>"; };
-		001DF9F81ABD287B008C9D1F /* IntroPages.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroPages.h; sourceTree = "<group>"; };
+		001DF9F91ABE34E3008C9D1F /* IntroPages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroPages.h; sourceTree = "<group>"; };
+		001DF9FC1ABE3957008C9D1F /* NavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
+		001DF9FD1ABE395F008C9D1F /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		00296BC919EFA5BF003ADA30 /* APAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APAddress.h; sourceTree = "<group>"; };
 		00296BCA19EFA5BF003ADA30 /* APAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APAddress.m; sourceTree = "<group>"; };
 		00296BCB19EFA5BF003ADA30 /* APAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APAddressBook.h; sourceTree = "<group>"; };
@@ -384,8 +386,6 @@
 		00414F4A1AADEE5700B25CEE /* utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utilities.h; sourceTree = "<group>"; };
 		00414F4B1AADEE5700B25CEE /* utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = utilities.m; sourceTree = "<group>"; };
 		00414F511AADEE7900B25CEE /* AppConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppConstant.h; sourceTree = "<group>"; };
-		00414F521AADF07F00B25CEE /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
-		00414F531AADF07F00B25CEE /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		00414F551AAE17BC00B25CEE /* MessagesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesTableViewController.h; sourceTree = "<group>"; };
 		00414F561AAE17BC00B25CEE /* MessagesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesTableViewController.m; sourceTree = "<group>"; };
 		00414F5B1AAE184300B25CEE /* MessagesTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessagesTableCell.h; path = ../MessagesTableCell.h; sourceTree = "<group>"; };
@@ -606,8 +606,8 @@
 		00414E411AADECCE00B25CEE /* onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				001DF9F81ABD287B008C9D1F /* IntroPages.h */,
 				00414E421AADECCE00B25CEE /* IntroPages.m */,
+				001DF9F91ABE34E3008C9D1F /* IntroPages.h */,
 				00414E431AADECCE00B25CEE /* LoginViewController.h */,
 				00414E441AADECCE00B25CEE /* LoginViewController.m */,
 				00414E451AADECCE00B25CEE /* SignUpViewController.h */,
@@ -1096,9 +1096,9 @@
 				007BA3C31A6C9CE100BF08DE /* FlatUIKit */,
 				00CEE3E2199434E700F40C12 /* AppDelegate.h */,
 				00CEE3E3199434E700F40C12 /* AppDelegate.m */,
-				00414F521AADF07F00B25CEE /* NavigationController.h */,
-				00414F531AADF07F00B25CEE /* NavigationController.m */,
 				00414F511AADEE7900B25CEE /* AppConstant.h */,
+				001DF9FC1ABE3957008C9D1F /* NavigationController.h */,
+				001DF9FD1ABE395F008C9D1F /* NavigationController.m */,
 				00CEE3E8199434E700F40C12 /* Images.xcassets */,
 				00CEE3E5199434E700F40C12 /* hobble_1_1.xcdatamodeld */,
 				00CEE3DA199434E700F40C12 /* Supporting Files */,
@@ -1309,7 +1309,6 @@
 				00414F061AADEE0600B25CEE /* AFURLRequestSerialization.m in Sources */,
 				007BA3F11A6C9CE100BF08DE /* FUITextField.m in Sources */,
 				00414F0B1AADEE0600B25CEE /* UIAlertView+AFNetworking.m in Sources */,
-				00414F541AADF07F00B25CEE /* NavigationController.m in Sources */,
 				00CEE3E4199434E700F40C12 /* AppDelegate.m in Sources */,
 				00296BDA19EFA5BF003ADA30 /* APSocialProfile.m in Sources */,
 				00414F281AADEE0600B25CEE /* JSQMessagesBubbleImage.m in Sources */,
@@ -1335,6 +1334,7 @@
 				00414F041AADEE0600B25CEE /* AFSecurityPolicy.m in Sources */,
 				00414F341AADEE0600B25CEE /* JSQMessagesLabel.m in Sources */,
 				0090ECCA1A6C5322009DB11D /* SettingsViewController.m in Sources */,
+				001DF9FE1ABE395F008C9D1F /* NavigationController.m in Sources */,
 				00414F301AADEE0600B25CEE /* JSQMessagesCollectionViewCellOutgoing.m in Sources */,
 				00414F0C1AADEE0600B25CEE /* UIButton+AFNetworking.m in Sources */,
 				001DF9F71ABCEFD8008C9D1F /* RootTabBarController.m in Sources */,

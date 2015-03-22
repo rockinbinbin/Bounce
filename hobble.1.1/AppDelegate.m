@@ -51,11 +51,6 @@
     pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
     pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
     pageControl.backgroundColor = [UIColor whiteColor];
-    
-//    if ([PFUser currentUser] != nil) {
-//        UIPageViewController *pageViewController = [[UIPageViewController alloc] init];
-//        
-//    }
 
     return YES;
 }
