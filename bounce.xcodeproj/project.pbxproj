@@ -159,6 +159,15 @@
 		28F13A521A6C75A90069EBA4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F13A511A6C75A90069EBA4 /* MapKit.framework */; };
 		28F13A5B1A6C7F7B0069EBA4 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F13A5A1A6C7F7B0069EBA4 /* MapViewController.m */; };
 		6791817D1AC0057D00D0474C /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6791817C1AC0057D00D0474C /* FacebookSDK.framework */; };
+		679181D21AC0758400D0474C /* GroupsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 679181C21AC0758400D0474C /* GroupsListViewController.m */; };
+		679181D31AC0758400D0474C /* GroupsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 679181C31AC0758400D0474C /* GroupsListViewController.xib */; };
+		679181D41AC0758400D0474C /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 679181C61AC0758400D0474C /* MBProgressHUD.m */; };
+		679181D51AC0758400D0474C /* ParseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 679181C81AC0758400D0474C /* ParseManager.m */; };
+		679181D61AC0758400D0474C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 679181CB1AC0758400D0474C /* Reachability.m */; };
+		679181D71AC0758400D0474C /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 679181CC1AC0758400D0474C /* SignUpViewController.xib */; };
+		679181D81AC0758400D0474C /* UsersListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 679181CE1AC0758400D0474C /* UsersListViewController.m */; };
+		679181D91AC0758400D0474C /* UsersListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 679181CF1AC0758400D0474C /* UsersListViewController.xib */; };
+		679181DA1AC0758400D0474C /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 679181D11AC0758400D0474C /* Utility.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -455,6 +464,21 @@
 		28F13A591A6C7F7B0069EBA4 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		28F13A5A1A6C7F7B0069EBA4 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		6791817C1AC0057D00D0474C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		679181C11AC0758400D0474C /* GroupsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsListViewController.h; sourceTree = "<group>"; };
+		679181C21AC0758400D0474C /* GroupsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsListViewController.m; sourceTree = "<group>"; };
+		679181C31AC0758400D0474C /* GroupsListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupsListViewController.xib; sourceTree = "<group>"; };
+		679181C51AC0758400D0474C /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		679181C61AC0758400D0474C /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		679181C71AC0758400D0474C /* ParseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseManager.h; sourceTree = "<group>"; };
+		679181C81AC0758400D0474C /* ParseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseManager.m; sourceTree = "<group>"; };
+		679181CA1AC0758400D0474C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		679181CB1AC0758400D0474C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		679181CC1AC0758400D0474C /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
+		679181CD1AC0758400D0474C /* UsersListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersListViewController.h; sourceTree = "<group>"; };
+		679181CE1AC0758400D0474C /* UsersListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersListViewController.m; sourceTree = "<group>"; };
+		679181CF1AC0758400D0474C /* UsersListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UsersListViewController.xib; sourceTree = "<group>"; };
+		679181D01AC0758400D0474C /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		679181D11AC0758400D0474C /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -932,6 +956,7 @@
 		00CEE3C5199434E700F40C12 = {
 			isa = PBXGroup;
 			children = (
+				679181C01AC0758400D0474C /* Bounce */,
 				007BA4041A6CDF7500BF08DE /* keyboard */,
 				00CEE3D9199434E700F40C12 /* hobble.1.1 */,
 				00CEE4061994350300F40C12 /* MainStoryboard.storyboard */,
@@ -1060,6 +1085,44 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		679181C01AC0758400D0474C /* Bounce */ = {
+			isa = PBXGroup;
+			children = (
+				679181C11AC0758400D0474C /* GroupsListViewController.h */,
+				679181C21AC0758400D0474C /* GroupsListViewController.m */,
+				679181C31AC0758400D0474C /* GroupsListViewController.xib */,
+				679181C41AC0758400D0474C /* MBProgressHUD */,
+				679181C71AC0758400D0474C /* ParseManager.h */,
+				679181C81AC0758400D0474C /* ParseManager.m */,
+				679181C91AC0758400D0474C /* Reachability */,
+				679181CC1AC0758400D0474C /* SignUpViewController.xib */,
+				679181CD1AC0758400D0474C /* UsersListViewController.h */,
+				679181CE1AC0758400D0474C /* UsersListViewController.m */,
+				679181CF1AC0758400D0474C /* UsersListViewController.xib */,
+				679181D01AC0758400D0474C /* Utility.h */,
+				679181D11AC0758400D0474C /* Utility.m */,
+			);
+			path = Bounce;
+			sourceTree = "<group>";
+		};
+		679181C41AC0758400D0474C /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				679181C51AC0758400D0474C /* MBProgressHUD.h */,
+				679181C61AC0758400D0474C /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		679181C91AC0758400D0474C /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				679181CA1AC0758400D0474C /* Reachability.h */,
+				679181CB1AC0758400D0474C /* Reachability.m */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1137,14 +1200,17 @@
 			files = (
 				00CEE4071994350300F40C12 /* MainStoryboard.storyboard in Resources */,
 				00414F5F1AAE1CEA00B25CEE /* MessagesCell.xib in Resources */,
+				679181D91AC0758400D0474C /* UsersListViewController.xib in Resources */,
 				00414F121AADEE0600B25CEE /* JSQMessages.strings in Resources */,
 				00414F3D1AADEE0600B25CEE /* ProgressHUD.bundle in Resources */,
+				679181D71AC0758400D0474C /* SignUpViewController.xib in Resources */,
 				00414F361AADEE0600B25CEE /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
 				00414E471AADECCE00B25CEE /* Icon120.png in Resources */,
 				00414F111AADEE0600B25CEE /* JSQMessagesAssets.bundle in Resources */,
 				00414F1B1AADEE0600B25CEE /* JSQMessagesViewController.xib in Resources */,
 				00CEE3DE199434E700F40C12 /* InfoPlist.strings in Resources */,
 				007BA3C21A6C9BE400BF08DE /* Podfile in Resources */,
+				679181D31AC0758400D0474C /* GroupsListViewController.xib in Resources */,
 				00CEE3E9199434E700F40C12 /* Images.xcassets in Resources */,
 				00414F3B1AADEE0600B25CEE /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
 				00414F2F1AADEE0600B25CEE /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
@@ -1163,13 +1229,16 @@
 			files = (
 				00414F081AADEE0600B25CEE /* AFURLSessionManager.m in Sources */,
 				001196E819A41D6C002D2757 /* CreateGroupViewController.m in Sources */,
+				679181D21AC0758400D0474C /* GroupsListViewController.m in Sources */,
 				00414F141AADEE0600B25CEE /* NSString+JSQMessages.m in Sources */,
+				679181DA1AC0758400D0474C /* Utility.m in Sources */,
 				00414F211AADEE0600B25CEE /* JSQMessagesCollectionViewFlowLayout.m in Sources */,
 				00414F0F1AADEE0600B25CEE /* UIRefreshControl+AFNetworking.m in Sources */,
 				00414F2D1AADEE0600B25CEE /* JSQMessagesCollectionViewCell.m in Sources */,
 				00414F321AADEE0600B25CEE /* JSQMessagesComposerTextView.m in Sources */,
 				0090ECC81A6C5322009DB11D /* FriendsTableViewController.m in Sources */,
 				0090ECC91A6C5322009DB11D /* SearchFriendsViewController.m in Sources */,
+				679181D61AC0758400D0474C /* Reachability.m in Sources */,
 				00414F2B1AADEE0600B25CEE /* JSQMessagesCellTextView.m in Sources */,
 				00296BD819EFA5BF003ADA30 /* APContact.m in Sources */,
 				00414F051AADEE0600B25CEE /* AFURLConnectionOperation.m in Sources */,
@@ -1191,6 +1260,7 @@
 				007BA3F11A6C9CE100BF08DE /* FUITextField.m in Sources */,
 				00414F0B1AADEE0600B25CEE /* UIAlertView+AFNetworking.m in Sources */,
 				00CEE3E4199434E700F40C12 /* AppDelegate.m in Sources */,
+				679181D51AC0758400D0474C /* ParseManager.m in Sources */,
 				00296BDA19EFA5BF003ADA30 /* APSocialProfile.m in Sources */,
 				00414F281AADEE0600B25CEE /* JSQMessagesBubbleImage.m in Sources */,
 				00414F251AADEE0600B25CEE /* JSQMediaItem.m in Sources */,
@@ -1236,6 +1306,7 @@
 				00414E571AADECCE00B25CEE /* SignUpViewController.m in Sources */,
 				00414F501AADEE5700B25CEE /* utilities.m in Sources */,
 				00414F001AADEE0600B25CEE /* AFHTTPRequestOperation.m in Sources */,
+				679181D81AC0758400D0474C /* UsersListViewController.m in Sources */,
 				00414F4E1AADEE5700B25CEE /* camera.m in Sources */,
 				00414F0A1AADEE0600B25CEE /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				00414F021AADEE0600B25CEE /* AFHTTPSessionManager.m in Sources */,
@@ -1271,6 +1342,7 @@
 				00414F2C1AADEE0600B25CEE /* JSQMessagesCollectionView.m in Sources */,
 				007BA3FA1A6C9CE100BF08DE /* UIStepper+FlatUI.m in Sources */,
 				007BA3F41A6C9CE100BF08DE /* UIFont+FlatUI.m in Sources */,
+				679181D41AC0758400D0474C /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

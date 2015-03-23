@@ -11,6 +11,7 @@
 #import <ParseUI/ParseUI.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 #import "IntroPages.h"
+#import "UsersListViewController.h"
 
 @implementation AppDelegate
 
@@ -51,6 +52,25 @@
     pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
     pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
     pageControl.backgroundColor = [UIColor whiteColor];
+    
+    
+    
+    
+//    UITabBarController *tabController = [[UITabBarController alloc] init];
+//    
+//    UsersListViewController* userListViewController = [[UsersListViewController alloc] initWithNibName:@"UsersListViewController" bundle:nil];
+//    
+//    //    UITabBarItem *item = [controller objectAtIndex:1];
+//    //    UITabBarItem *item2  = [[UITabBarItem alloc] in]
+//    //    item.
+//    UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:userListViewController];
+//    
+//    NSMutableArray * controller = [NSMutableArray arrayWithObject:navigation] ;
+//    tabController.viewControllers = [NSArray arrayWithArray:controller];
+//    
+//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//    self.window.rootViewController = tabController;
+//    [self.window makeKeyAndVisible];
 
     return YES;
 }

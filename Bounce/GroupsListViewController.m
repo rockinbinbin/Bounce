@@ -1,119 +1,37 @@
 //
-//  GroupsTableViewController.m
-//  hobble.1.1
+//  GroupsListViewController.m
+//  ChattingApp
 //
-//  Created by Robin Mehta on 8/11/14.
-//  Copyright (c) 2014 hobble. All rights reserved.
+//  Created by Shimaa Essam on 3/18/15.
+//  Copyright (c) 2015 Shimaa Essam. All rights reserved.
 //
 
-#import "GroupsTableViewController.h"
-#import "Utility.h"
+#import "GroupsListViewController.h"
+//#import "MainViewController.h"
 #import "ChatView.h"
 
-// ALL THIS DOES IS LIST GROUPS NAMES IN TABLE VIEW
-
-@interface GroupsTableViewController ()
-- (IBAction)createGroupsButtonPressed:(id)sender;
-- (IBAction)searchGroupsButtonPressed:(id)sender;
-
+@interface GroupsListViewController ()
+{
+    NSMutableArray *groups;
+}
 @end
 
-@implementation GroupsTableViewController
-@synthesize groups = groups;
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+@implementation GroupsListViewController
 
--(void)viewDidLoad {
+
+- (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self.navigationController setNavigationBarHidden:NO];
+//    UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logout)];
+//    // Add group button
+//    UIBarButtonItem *addGroupButton = [[UIBarButtonItem alloc] initWithTitle:@"New" style:UIBarButtonItemStylePlain target:self action:@selector(addGroupClicked)];
+//    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects: addGroupButton, logoutButton, nil];
 }
 
-
-//- (void)viewWillAppear:(BOOL)animated {
-//    [super viewWillAppear:animated];
-//    
-////    self.groups = [[PFUser currentUser] objectForKey:@"ArrayOfGroups"];
-//    [self loadGroups];
-//    
-//}
-//#pragma mark - Load Groups
-//- (void) loadGroups{
-//    @try {
-//        if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]){
-//            [[Utility getInstance] showProgressHudWithMessage:@"Loading ..." withView:self.view];
-//            // Call parse manager load all groups
-//            [[ParseManager getInstance] setLoadGroupsdelegate:self];
-//            [[ParseManager getInstance] loadAllGroups];
-//        }else{
-//            [[Utility getInstance] showAlertMessage:@"Please Fill All Login Fields"];
-//        }
-//        
-//    }
-//    @catch (NSException *exception) {
-//        NSLog(@"Exception %@", exception);
-//    }
-//}
-//#pragma mark - ParseManger load groups delegate
-//- (void) didLoadGroups:(NSArray *)groupsList withError:(NSError *)error{
-//    [[Utility getInstance] hideProgressHud];
-//    if (error) {
-//        [[Utility getInstance] showAlertMessage:@"Network Error"];
-//    }else{
-//        // set the groups array
-//        //        if (!groups) {
-//        //            groups = [[NSMutableArray alloc] init];
-//        //        }
-//        
-//        self.groups = [NSMutableArray arrayWithArray:groupsList];
-//        if ([self.groups count] > 0) {
-//            [self.tableView reloadData];
-//        }
-//    }
-//}
-//
-//- (void)didReceiveMemoryWarning
-//{
-//    [super didReceiveMemoryWarning];
-//    // Dispose of any resources that can be recreated.
-//}
-//
-//#pragma mark - Table view data source
-//
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//    // Return the number of sections.
-//
-//    return 1;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//    // Return the number of rows in the section.
-//
-//    return [self.groups count];
-//}
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    static NSString *CellIdentifier = @"Cell";
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-//    
-//    if (cell == nil) {
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//    }
-//    
-//    
-//    NSString *group = [[self.groups objectAtIndex:indexPath.row] objectForKey:@"name"];
-//    cell.textLabel.text = group;
-//  
-//    return cell;
-//}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     [self loadGroups];
@@ -123,14 +41,14 @@
 - (void) loadGroups{
     @try {
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]){
-            [[Utility getInstance] showProgressHudWithMessage:@"Loading ..." withView:self.view];
-            // Call parse manager load all groups
+           [[Utility getInstance] showProgressHudWithMessage:@"Loading ..." withView:self.view];
+           // Call parse manager load all groups
             [[ParseManager getInstance] setLoadGroupsdelegate:self];
             [[ParseManager getInstance] loadAllGroups];
         }else{
             [[Utility getInstance] showAlertMessage:@"Please Fill All Login Fields"];
         }
-        
+
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
@@ -149,7 +67,7 @@
         
         groups = [NSMutableArray arrayWithArray:groupsList];
         if ([groups count] > 0) {
-            [self.tableView reloadData];
+            [self.groupsTableView reloadData];
         }
     }
 }
@@ -163,7 +81,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    UITableViewCell *cell = [self.groupsTableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
@@ -229,10 +147,4 @@
     }
 }
 
-
-- (IBAction)createGroupsButtonPressed:(id)sender {
-}
-
-- (IBAction)searchGroupsButtonPressed:(id)sender {
-}
 @end

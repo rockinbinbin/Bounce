@@ -42,5 +42,6 @@
 @property (strong, nonatomic) IBOutlet FUIButton *RegisterButton;
 
 - (IBAction)facebookLogin:(id)sender;
+- (IBAction)signUpButtonClicked:(id)sender;
 
 @end

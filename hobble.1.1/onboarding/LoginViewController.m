@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
+#import "SignUpViewController.h"
 
 @interface LoginViewController ()
 
@@ -28,7 +29,6 @@
     [self.view addGestureRecognizer:gestureRecognizer];
 
     
-\
     
     // background
     self.title = @"Log In";
@@ -95,7 +95,10 @@
                 [alertView show];
             }
             else {
-                [self performSegueWithIdentifier:@"LoginToMain" sender:self];
+//                [self performSegueWithIdentifier:@"LoginToMain" sender:self];
+                ParsePushUserAssign();
+//                [ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome back %@!", user[PF_USER_FULLNAME]]];
+                [self dismissViewControllerAnimated:YES completion:nil];
             }
         }];
     }
@@ -130,6 +133,8 @@
          else [ProgressHUD showError:error.userInfo[@"error"]];
      }];
 }
+
+
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)requestFacebook:(PFUser *)user
@@ -227,6 +232,10 @@
     [self performSegueWithIdentifier:@"LoginToMain" sender:self];
 }
 
+- (IBAction)signUpButtonClicked:(id)sender {
+    SignUpViewController *signUpController = [[SignUpViewController alloc] init];
+    [self.navigationController pushViewController:signUpController animated:YES];
 
+}
 
 @end

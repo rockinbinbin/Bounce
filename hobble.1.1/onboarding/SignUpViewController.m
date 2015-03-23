@@ -8,7 +8,7 @@
 
 #import "SignUpViewController.h"
 #import <Parse/Parse.h>
-
+#import "RootTabBarController.h"
 @interface SignUpViewController ()
 
 @end
@@ -58,7 +58,18 @@
     self.PhoneNumberField.borderColor = [UIColor redColor];
     self.PhoneNumberField.borderWidth = 3.0f;
     self.PhoneNumberField.cornerRadius = 6.0f;
+    
 
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [super viewWillAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [super viewWillDisappear:animated];
 }
 
 - (void) hideKeyboard // when user hits background
@@ -82,8 +93,10 @@
 - (IBAction)signupButton:(id)sender {
     NSString *username = [self.usernameField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString *password = [self.passwordField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSString *gender = [self.GenderTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+//    NSString *gender = [self.GenderTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
+    NSString *gender = @"";
+
     PFQuery *query = [PFUser query];
     [query whereKey:@"Username" equalTo:username];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -95,18 +108,20 @@
             [notuniqueusername show];
         }
         else {
-            if ([username length] == 0 || [password length] == 0 || [gender length] == 0) {
+            if ([username length] == 0 || [password length] == 0
+//                || [gender length] == 0
+                ){
                 UIAlertView *zerolength = [[UIAlertView alloc] initWithTitle:@"Oops!"
-                                                                    message:@"Make sure you enter a username, password, & gender!"
+                                                                    message:@"Make sure you enter a username, password!"
                                                                    delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [zerolength show];
             }
-            else if (![gender isEqualToString:@"Female"] && ![gender isEqualToString: @"female"] && ![gender isEqualToString:@"Male"] && ![gender isEqualToString:@"male"]) {
-                UIAlertView *zerolength = [[UIAlertView alloc] initWithTitle:@"Oops!"
-                                                         message:@"Please enter 'Male' or 'Female' for gender."
-                                                                    delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                [zerolength show];
-            }
+//            else if (![gender isEqualToString:@"Female"] && ![gender isEqualToString: @"female"] && ![gender isEqualToString:@"Male"] && ![gender isEqualToString:@"male"]) {
+//                UIAlertView *zerolength = [[UIAlertView alloc] initWithTitle:@"Oops!"
+//                                                         message:@"Please enter 'Male' or 'Female' for gender."
+//                                                                    delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//                [zerolength show];
+//            }
 //            else if (![username hasPrefix:@"@"]) {
 //                    UIAlertView *prefix = [[UIAlertView alloc] initWithTitle:@"Oops!"
 //                                                                        message:@"User handles must begin with an "@" symbol."
@@ -115,10 +130,34 @@
 //                
 //            }
             else {
+                PFUser *signUpUser = [PFUser user];
+                signUpUser.username = username;
+//                signUpUser.email = password;
+                signUpUser.password = password;
+                [signUpUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    if (!error) {
+                        NSLog(@"Signup is performed successfully");
+                        [[PFInstallation currentInstallation] setObject:[PFUser currentUser] forKey:@"user"];
+                        [[PFInstallation currentInstallation] setObject:@"true" forKey:@"State"];
+                        [[PFInstallation currentInstallation] saveEventually];
+
+//                        [self.navigationController popToRootViewControllerAnimated:YES];
+                        [ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome back %@!", signUpUser[PF_USER_FULLNAME]]];
+                        [self dismissViewControllerAnimated:YES completion:nil];
+
+                    } else {
+                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Sorry!"
+                                                                            message:[error.userInfo objectForKey:@"error"]
+                                                                           delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                        [alertView show];
+                    }
+                }];
+
+                /*
                 PFUser *newUser = [PFUser user];
                 newUser.username = username;
                 newUser.password = password;
-                newUser[@"Gender"] = gender;
+//                newUser[@"Gender"] = gender;
                 PFInstallation *currentInstallation = [PFInstallation currentInstallation];
                 newUser[@"DeviceID"] = currentInstallation.deviceToken;
                 
@@ -130,9 +169,11 @@
                         [alertView show];
                     }
                     else {
-                        [self performSegueWithIdentifier:@"SignUpToMain" sender:nil];
+                        [self performSegueWithIdentifier:@"LoginToMain" sender:nil];
                     }
                     }];
+                 */
+                
 
             }
         }

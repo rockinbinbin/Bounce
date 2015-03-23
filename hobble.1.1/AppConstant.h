@@ -32,16 +32,24 @@
 #define		PF_USER_PASSWORD					@"password"				//	String
 #define		PF_USER_EMAIL						@"email"				//	String
 #define		PF_USER_EMAILCOPY					@"emailCopy"			//	String
-#define		PF_USER_FULLNAME					@"fullname"				//	String
+#define		PF_USER_FULLNAME					@"username"				//	String
 #define		PF_USER_FULLNAME_LOWER				@"fullname_lower"		//	String
 #define		PF_USER_FACEBOOKID					@"facebookId"			//	String
 #define		PF_USER_PICTURE						@"picture"				//	File
 #define		PF_USER_THUMBNAIL					@"thumbnail"			//	File
 //-----------------------------------------------------------------------
+#define		PF_CHAT_CLASS_NAME					@"Chat"					//	Class name
+#define		PF_CHAT_USER						@"user"					//	Pointer to User Class
+#define		PF_CHAT_GROUPID						@"groupId"				//	String
+#define		PF_CHAT_TEXT						@"text"					//	String
+#define		PF_CHAT_PICTURE						@"picture"				//	File
+#define		PF_CHAT_VIDEO						@"video"				//	File
+#define		PF_CHAT_CREATEDAT					@"createdAt"			//	Date
+//-----------------------------------------------------------------------
 #define		PF_GROUPS_CLASS_NAME				@"Groups"				//	Class name
 #define		PF_GROUPS_NAME						@"name"					//	String
 //-----------------------------------------------------------------------
-#define		PF_MESSAGES_CLASS_NAME				@"Messages2"			//	Class name
+#define		PF_MESSAGES_CLASS_NAME				@"Messages"				//	Class name
 #define		PF_MESSAGES_USER					@"user"					//	Pointer to User Class
 #define		PF_MESSAGES_GROUPID					@"groupId"				//	String
 #define		PF_MESSAGES_DESCRIPTION				@"description"			//	String

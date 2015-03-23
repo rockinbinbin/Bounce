@@ -23,9 +23,9 @@
 #import "UIProgressView+FlatUI.h"
 #import "FUISegmentedControl.h"
 #import "UIPopoverController+FlatUI.h"
+#import "ParseManager.h"
 
-
-@interface CreateGroupViewController : UIViewController
+@interface CreateGroupViewController : UIViewController <ParseManagerAddGroupDelegate>
 
 @property (strong, nonatomic) IBOutlet FUITextField *groupNameTextField;
 @property (strong, nonatomic) PFUser *currentUser;

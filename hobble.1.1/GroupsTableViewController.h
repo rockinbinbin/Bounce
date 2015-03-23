@@ -10,8 +10,9 @@
 #import <Parse/Parse.h>
 #import "AppDelegate.h"
 #import "Definitions.h"
+#import "ParseManager.h"
 
-@interface GroupsTableViewController : UITableViewController
+@interface GroupsTableViewController : UITableViewController <ParseManagerLoadingGroupsDelegate>
 
 @property (nonatomic, strong) NSMutableArray *groups; // store here after query
 
