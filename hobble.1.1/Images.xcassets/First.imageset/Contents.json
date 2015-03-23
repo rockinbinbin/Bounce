@@ -3,7 +3,7 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "LandingView@1x.png"
+      "filename" : "LandingView.png"
     },
     {
       "idiom" : "universal",
@@ -13,7 +13,7 @@
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "LandingView@3x.png"
+      "filename" : "LandingView_iPhone6plus.png"
     }
   ],
   "info" : {

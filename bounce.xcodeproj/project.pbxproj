@@ -20,18 +20,6 @@
 		00296BDA19EFA5BF003ADA30 /* APSocialProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 00296BD219EFA5BF003ADA30 /* APSocialProfile.m */; };
 		00414E471AADECCE00B25CEE /* Icon120.png in Resources */ = {isa = PBXBuildFile; fileRef = 00414E331AADECCE00B25CEE /* Icon120.png */; };
 		00414E481AADECCE00B25CEE /* Icon180.png in Resources */ = {isa = PBXBuildFile; fileRef = 00414E341AADECCE00B25CEE /* Icon180.png */; };
-		00414E491AADECCE00B25CEE /* LandingView@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00414E351AADECCE00B25CEE /* LandingView@1x.png */; };
-		00414E4A1AADECCE00B25CEE /* LandingView@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00414E361AADECCE00B25CEE /* LandingView@2x.png */; };
-		00414E4B1AADECCE00B25CEE /* LandingView@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00414E371AADECCE00B25CEE /* LandingView@3x.png */; };
-		00414E4C1AADECCE00B25CEE /* Tutorial View – Flock@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00414E381AADECCE00B25CEE /* Tutorial View – Flock@1x.png */; };
-		00414E4D1AADECCE00B25CEE /* Tutorial View – Flock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00414E391AADECCE00B25CEE /* Tutorial View – Flock@2x.png */; };
-		00414E4E1AADECCE00B25CEE /* Tutorial View – Flock@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00414E3A1AADECCE00B25CEE /* Tutorial View – Flock@3x.png */; };
-		00414E4F1AADECCE00B25CEE /* Tutorial View – Homepoint@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00414E3B1AADECCE00B25CEE /* Tutorial View – Homepoint@1x.png */; };
-		00414E501AADECCE00B25CEE /* Tutorial View – Homepoint@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00414E3C1AADECCE00B25CEE /* Tutorial View – Homepoint@2x.png */; };
-		00414E511AADECCE00B25CEE /* Tutorial View – Homepoint@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00414E3D1AADECCE00B25CEE /* Tutorial View – Homepoint@3x.png */; };
-		00414E521AADECCE00B25CEE /* Tutorial-1@1x-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 00414E3E1AADECCE00B25CEE /* Tutorial-1@1x-01.png */; };
-		00414E531AADECCE00B25CEE /* Tutorial-1@2x-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 00414E3F1AADECCE00B25CEE /* Tutorial-1@2x-01.png */; };
-		00414E541AADECCE00B25CEE /* Tutorial-1@3x-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 00414E401AADECCE00B25CEE /* Tutorial-1@3x-01.png */; };
 		00414E551AADECCE00B25CEE /* IntroPages.m in Sources */ = {isa = PBXBuildFile; fileRef = 00414E421AADECCE00B25CEE /* IntroPages.m */; };
 		00414E561AADECCE00B25CEE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00414E441AADECCE00B25CEE /* LoginViewController.m */; };
 		00414E571AADECCE00B25CEE /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00414E461AADECCE00B25CEE /* SignUpViewController.m */; };
@@ -202,18 +190,6 @@
 		00296BD519EFA5BF003ADA30 /* APAddressBook-Bridging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "APAddressBook-Bridging.h"; sourceTree = "<group>"; };
 		00414E331AADECCE00B25CEE /* Icon120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon120.png; sourceTree = "<group>"; };
 		00414E341AADECCE00B25CEE /* Icon180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon180.png; sourceTree = "<group>"; };
-		00414E351AADECCE00B25CEE /* LandingView@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LandingView@1x.png"; sourceTree = "<group>"; };
-		00414E361AADECCE00B25CEE /* LandingView@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LandingView@2x.png"; sourceTree = "<group>"; };
-		00414E371AADECCE00B25CEE /* LandingView@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LandingView@3x.png"; sourceTree = "<group>"; };
-		00414E381AADECCE00B25CEE /* Tutorial View – Flock@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial View – Flock@1x.png"; sourceTree = "<group>"; };
-		00414E391AADECCE00B25CEE /* Tutorial View – Flock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial View – Flock@2x.png"; sourceTree = "<group>"; };
-		00414E3A1AADECCE00B25CEE /* Tutorial View – Flock@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial View – Flock@3x.png"; sourceTree = "<group>"; };
-		00414E3B1AADECCE00B25CEE /* Tutorial View – Homepoint@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial View – Homepoint@1x.png"; sourceTree = "<group>"; };
-		00414E3C1AADECCE00B25CEE /* Tutorial View – Homepoint@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial View – Homepoint@2x.png"; sourceTree = "<group>"; };
-		00414E3D1AADECCE00B25CEE /* Tutorial View – Homepoint@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial View – Homepoint@3x.png"; sourceTree = "<group>"; };
-		00414E3E1AADECCE00B25CEE /* Tutorial-1@1x-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-1@1x-01.png"; sourceTree = "<group>"; };
-		00414E3F1AADECCE00B25CEE /* Tutorial-1@2x-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-1@2x-01.png"; sourceTree = "<group>"; };
-		00414E401AADECCE00B25CEE /* Tutorial-1@3x-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-1@3x-01.png"; sourceTree = "<group>"; };
 		00414E421AADECCE00B25CEE /* IntroPages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroPages.m; sourceTree = "<group>"; };
 		00414E431AADECCE00B25CEE /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		00414E441AADECCE00B25CEE /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -559,18 +535,6 @@
 			children = (
 				00414E331AADECCE00B25CEE /* Icon120.png */,
 				00414E341AADECCE00B25CEE /* Icon180.png */,
-				00414E351AADECCE00B25CEE /* LandingView@1x.png */,
-				00414E361AADECCE00B25CEE /* LandingView@2x.png */,
-				00414E371AADECCE00B25CEE /* LandingView@3x.png */,
-				00414E381AADECCE00B25CEE /* Tutorial View – Flock@1x.png */,
-				00414E391AADECCE00B25CEE /* Tutorial View – Flock@2x.png */,
-				00414E3A1AADECCE00B25CEE /* Tutorial View – Flock@3x.png */,
-				00414E3B1AADECCE00B25CEE /* Tutorial View – Homepoint@1x.png */,
-				00414E3C1AADECCE00B25CEE /* Tutorial View – Homepoint@2x.png */,
-				00414E3D1AADECCE00B25CEE /* Tutorial View – Homepoint@3x.png */,
-				00414E3E1AADECCE00B25CEE /* Tutorial-1@1x-01.png */,
-				00414E3F1AADECCE00B25CEE /* Tutorial-1@2x-01.png */,
-				00414E401AADECCE00B25CEE /* Tutorial-1@3x-01.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -1171,30 +1135,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00414E501AADECCE00B25CEE /* Tutorial View – Homepoint@2x.png in Resources */,
-				00414E4C1AADECCE00B25CEE /* Tutorial View – Flock@1x.png in Resources */,
-				00414E491AADECCE00B25CEE /* LandingView@1x.png in Resources */,
-				00414E4F1AADECCE00B25CEE /* Tutorial View – Homepoint@1x.png in Resources */,
 				00CEE4071994350300F40C12 /* MainStoryboard.storyboard in Resources */,
 				00414F5F1AAE1CEA00B25CEE /* MessagesCell.xib in Resources */,
 				00414F121AADEE0600B25CEE /* JSQMessages.strings in Resources */,
-				00414E511AADECCE00B25CEE /* Tutorial View – Homepoint@3x.png in Resources */,
 				00414F3D1AADEE0600B25CEE /* ProgressHUD.bundle in Resources */,
 				00414F361AADEE0600B25CEE /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
 				00414E471AADECCE00B25CEE /* Icon120.png in Resources */,
-				00414E4A1AADECCE00B25CEE /* LandingView@2x.png in Resources */,
 				00414F111AADEE0600B25CEE /* JSQMessagesAssets.bundle in Resources */,
 				00414F1B1AADEE0600B25CEE /* JSQMessagesViewController.xib in Resources */,
 				00CEE3DE199434E700F40C12 /* InfoPlist.strings in Resources */,
-				00414E4D1AADECCE00B25CEE /* Tutorial View – Flock@2x.png in Resources */,
-				00414E541AADECCE00B25CEE /* Tutorial-1@3x-01.png in Resources */,
-				00414E4E1AADECCE00B25CEE /* Tutorial View – Flock@3x.png in Resources */,
 				007BA3C21A6C9BE400BF08DE /* Podfile in Resources */,
-				00414E4B1AADECCE00B25CEE /* LandingView@3x.png in Resources */,
 				00CEE3E9199434E700F40C12 /* Images.xcassets in Resources */,
 				00414F3B1AADEE0600B25CEE /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
-				00414E521AADECCE00B25CEE /* Tutorial-1@1x-01.png in Resources */,
-				00414E531AADECCE00B25CEE /* Tutorial-1@2x-01.png in Resources */,
 				00414F2F1AADEE0600B25CEE /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
 				00414F311AADEE0600B25CEE /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
 				00414E481AADECCE00B25CEE /* Icon180.png in Resources */,

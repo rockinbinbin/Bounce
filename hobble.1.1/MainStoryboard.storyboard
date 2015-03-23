@@ -1082,9 +1082,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="First" width="1242" height="2208"/>
+        <image name="First" width="320" height="480"/>
         <image name="Tutorial View – Flock.png" width="1242" height="2208"/>
-        <image name="Tutorial-1" width="1243" height="2208"/>
+        <image name="Tutorial-1" width="320" height="480"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="5q4-uk-ytw"/>
