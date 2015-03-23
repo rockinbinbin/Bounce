@@ -138,11 +138,6 @@
 		007BA4031A6CD56D00BF08DE /* GroupsPlusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007BA4021A6CD56D00BF08DE /* GroupsPlusViewController.m */; };
 		007BA4091A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 007BA4061A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.m */; };
 		007BA40A1A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 007BA4081A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
-		007CF1D81AA3E4C7007D7C33 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF0BD1AA3E4C6007D7C33 /* FacebookSDK.framework */; };
-		007CF1D91AA3E4C7007D7C33 /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF0BE1AA3E4C6007D7C33 /* FBAudienceNetwork.framework */; };
-		007CF1DA1AA3E4C7007D7C33 /* FBAudienceNetwork.README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 007CF0BF1AA3E4C6007D7C33 /* FBAudienceNetwork.README.txt */; };
-		007CF1DB1AA3E4C7007D7C33 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 007CF0C01AA3E4C6007D7C33 /* LICENSE */; };
-		007CF1DC1AA3E4C7007D7C33 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 007CF0C11AA3E4C6007D7C33 /* README.txt */; };
 		007CF29A1AA3E516007D7C33 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF2991AA3E516007D7C33 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		007CF29C1AA3E529007D7C33 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF29B1AA3E529007D7C33 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		007CF29E1AA3E532007D7C33 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF29D1AA3E532007D7C33 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -161,11 +156,6 @@
 		00CEE3E4199434E700F40C12 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CEE3E3199434E700F40C12 /* AppDelegate.m */; };
 		00CEE3E7199434E700F40C12 /* hobble_1_1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 00CEE3E5199434E700F40C12 /* hobble_1_1.xcdatamodeld */; };
 		00CEE3E9199434E700F40C12 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00CEE3E8199434E700F40C12 /* Images.xcassets */; };
-		00CEE3F1199434E700F40C12 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE3D1199434E700F40C12 /* Foundation.framework */; };
-		00CEE3F2199434E700F40C12 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE3D5199434E700F40C12 /* UIKit.framework */; };
-		00CEE3F3199434E700F40C12 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE3D7199434E700F40C12 /* CoreData.framework */; };
-		00CEE3FB199434E700F40C12 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00CEE3F9199434E700F40C12 /* InfoPlist.strings */; };
-		00CEE3FD199434E700F40C12 /* hobble_1_1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CEE3FC199434E700F40C12 /* hobble_1_1Tests.m */; };
 		00CEE4071994350300F40C12 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00CEE4061994350300F40C12 /* MainStoryboard.storyboard */; };
 		00CEE413199448E900F40C12 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE412199448E900F40C12 /* AddressBook.framework */; };
 		00CEE415199448F000F40C12 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE414199448F000F40C12 /* AddressBookUI.framework */; };
@@ -180,17 +170,8 @@
 		00CEE4271994493A00F40C12 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4261994493A00F40C12 /* CoreLocation.framework */; };
 		28F13A521A6C75A90069EBA4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F13A511A6C75A90069EBA4 /* MapKit.framework */; };
 		28F13A5B1A6C7F7B0069EBA4 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F13A5A1A6C7F7B0069EBA4 /* MapViewController.m */; };
+		6791817D1AC0057D00D0474C /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6791817C1AC0057D00D0474C /* FacebookSDK.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		00CEE3F4199434E700F40C12 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 00CEE3C6199434E700F40C12 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 00CEE3CD199434E700F40C12;
-			remoteInfo = hobble.1.1;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		001196E619A41D6C002D2757 /* CreateGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGroupViewController.h; sourceTree = "<group>"; };
@@ -452,11 +433,6 @@
 		007BA4061A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
 		007BA4071A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
 		007BA4081A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
-		007CF0BD1AA3E4C6007D7C33 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
-		007CF0BE1AA3E4C6007D7C33 /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBAudienceNetwork.framework; sourceTree = "<group>"; };
-		007CF0BF1AA3E4C6007D7C33 /* FBAudienceNetwork.README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FBAudienceNetwork.README.txt; sourceTree = "<group>"; };
-		007CF0C01AA3E4C6007D7C33 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		007CF0C11AA3E4C6007D7C33 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		007CF2991AA3E516007D7C33 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		007CF29B1AA3E529007D7C33 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		007CF29D1AA3E532007D7C33 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -485,7 +461,6 @@
 		00CEE3E3199434E700F40C12 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = hobble.1.1/AppDelegate.m; sourceTree = "<group>"; };
 		00CEE3E6199434E700F40C12 /* hobble_1_1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hobble_1_1.xcdatamodel; sourceTree = "<group>"; };
 		00CEE3E8199434E700F40C12 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		00CEE3EE199434E700F40C12 /* bounceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bounceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00CEE3FA199434E700F40C12 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		00CEE3FC199434E700F40C12 /* hobble_1_1Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = hobble_1_1Tests.m; sourceTree = "<group>"; };
 		00CEE4061994350300F40C12 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainStoryboard.storyboard; path = hobble.1.1/MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -503,6 +478,7 @@
 		28F13A511A6C75A90069EBA4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		28F13A591A6C7F7B0069EBA4 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		28F13A5A1A6C7F7B0069EBA4 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		6791817C1AC0057D00D0474C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -531,22 +507,11 @@
 				00CEE41B1994490E00F40C12 /* MobileCoreServices.framework in Frameworks */,
 				00414F6D1AAE2E1600B25CEE /* Firebase.framework in Frameworks */,
 				00CEE3D6199434E700F40C12 /* UIKit.framework in Frameworks */,
+				6791817D1AC0057D00D0474C /* FacebookSDK.framework in Frameworks */,
 				00CEE3D2199434E700F40C12 /* Foundation.framework in Frameworks */,
-				007CF1D91AA3E4C7007D7C33 /* FBAudienceNetwork.framework in Frameworks */,
 				00CEE415199448F000F40C12 /* AddressBookUI.framework in Frameworks */,
-				007CF1D81AA3E4C7007D7C33 /* FacebookSDK.framework in Frameworks */,
 				00CEE413199448E900F40C12 /* AddressBook.framework in Frameworks */,
 				0060FE451A0ECB2C00525A50 /* Bolts.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		00CEE3EB199434E700F40C12 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				00CEE3F3199434E700F40C12 /* CoreData.framework in Frameworks */,
-				00CEE3F2199434E700F40C12 /* UIKit.framework in Frameworks */,
-				00CEE3F1199434E700F40C12 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -627,6 +592,7 @@
 		00414E631AADEE0600B25CEE /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				6791817C1AC0057D00D0474C /* FacebookSDK.framework */,
 				00414E641AADEE0600B25CEE /* AFNetworking */,
 				00414E8B1AADEE0600B25CEE /* JSQMessagesViewController */,
 				00414EF81AADEE0600B25CEE /* JSQSystemSoundPlayer */,
@@ -988,19 +954,6 @@
 			path = keyboard;
 			sourceTree = "<group>";
 		};
-		007CF0BB1AA3E4C6007D7C33 /* FacebookSDK */ = {
-			isa = PBXGroup;
-			children = (
-				007CF0BD1AA3E4C6007D7C33 /* FacebookSDK.framework */,
-				007CF0BE1AA3E4C6007D7C33 /* FBAudienceNetwork.framework */,
-				007CF0BF1AA3E4C6007D7C33 /* FBAudienceNetwork.README.txt */,
-				007CF0C01AA3E4C6007D7C33 /* LICENSE */,
-				007CF0C11AA3E4C6007D7C33 /* README.txt */,
-			);
-			name = FacebookSDK;
-			path = ../../FacebookSDK;
-			sourceTree = "<group>";
-		};
 		0090ECC11A6C5322009DB11D /* Unused */ = {
 			isa = PBXGroup;
 			children = (
@@ -1039,7 +992,6 @@
 			isa = PBXGroup;
 			children = (
 				00CEE3CE199434E700F40C12 /* bounce.app */,
-				00CEE3EE199434E700F40C12 /* bounceTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1053,7 +1005,6 @@
 				007CF29D1AA3E532007D7C33 /* Accounts.framework */,
 				007CF29B1AA3E529007D7C33 /* AdSupport.framework */,
 				007CF2991AA3E516007D7C33 /* Social.framework */,
-				007CF0BB1AA3E4C6007D7C33 /* FacebookSDK */,
 				28F13A511A6C75A90069EBA4 /* MapKit.framework */,
 				00CEE4261994493A00F40C12 /* CoreLocation.framework */,
 				00CEE4241994493500F40C12 /* StoreKit.framework */,
@@ -1165,24 +1116,6 @@
 			productReference = 00CEE3CE199434E700F40C12 /* bounce.app */;
 			productType = "com.apple.product-type.application";
 		};
-		00CEE3ED199434E700F40C12 /* bounceTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 00CEE403199434E700F40C12 /* Build configuration list for PBXNativeTarget "bounceTests" */;
-			buildPhases = (
-				00CEE3EA199434E700F40C12 /* Sources */,
-				00CEE3EB199434E700F40C12 /* Frameworks */,
-				00CEE3EC199434E700F40C12 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				00CEE3F5199434E700F40C12 /* PBXTargetDependency */,
-			);
-			name = bounceTests;
-			productName = hobble.1.1Tests;
-			productReference = 00CEE3EE199434E700F40C12 /* bounceTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1199,9 +1132,6 @@
 								enabled = 1;
 							};
 						};
-					};
-					00CEE3ED199434E700F40C12 = {
-						TestTargetID = 00CEE3CD199434E700F40C12;
 					};
 				};
 			};
@@ -1232,7 +1162,6 @@
 			projectRoot = "";
 			targets = (
 				00CEE3CD199434E700F40C12 /* bounce */,
-				00CEE3ED199434E700F40C12 /* bounceTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1247,7 +1176,6 @@
 				00414E491AADECCE00B25CEE /* LandingView@1x.png in Resources */,
 				00414E4F1AADECCE00B25CEE /* Tutorial View – Homepoint@1x.png in Resources */,
 				00CEE4071994350300F40C12 /* MainStoryboard.storyboard in Resources */,
-				007CF1DA1AA3E4C7007D7C33 /* FBAudienceNetwork.README.txt in Resources */,
 				00414F5F1AAE1CEA00B25CEE /* MessagesCell.xib in Resources */,
 				00414F121AADEE0600B25CEE /* JSQMessages.strings in Resources */,
 				00414E511AADECCE00B25CEE /* Tutorial View – Homepoint@3x.png in Resources */,
@@ -1257,7 +1185,6 @@
 				00414E4A1AADECCE00B25CEE /* LandingView@2x.png in Resources */,
 				00414F111AADEE0600B25CEE /* JSQMessagesAssets.bundle in Resources */,
 				00414F1B1AADEE0600B25CEE /* JSQMessagesViewController.xib in Resources */,
-				007CF1DB1AA3E4C7007D7C33 /* LICENSE in Resources */,
 				00CEE3DE199434E700F40C12 /* InfoPlist.strings in Resources */,
 				00414E4D1AADECCE00B25CEE /* Tutorial View – Flock@2x.png in Resources */,
 				00414E541AADECCE00B25CEE /* Tutorial-1@3x-01.png in Resources */,
@@ -1270,17 +1197,8 @@
 				00414E531AADECCE00B25CEE /* Tutorial-1@2x-01.png in Resources */,
 				00414F2F1AADEE0600B25CEE /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
 				00414F311AADEE0600B25CEE /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
-				007CF1DC1AA3E4C7007D7C33 /* README.txt in Resources */,
 				00414E481AADECCE00B25CEE /* Icon180.png in Resources */,
 				00414F391AADEE0600B25CEE /* JSQMessagesToolbarContentView.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		00CEE3EC199434E700F40C12 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				00CEE3FB199434E700F40C12 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1404,23 +1322,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		00CEE3EA199434E700F40C12 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				00CEE3FD199434E700F40C12 /* hobble_1_1Tests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		00CEE3F5199434E700F40C12 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 00CEE3CD199434E700F40C12 /* bounce */;
-			targetProxy = 00CEE3F4199434E700F40C12 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		00414E8F1AADEE0600B25CEE /* JSQMessages.strings */ = {
@@ -1560,6 +1462,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/hobble.1.1",
 					"$(PROJECT_DIR)/Vendors",
+					"$(PROJECT_DIR)/Vendors/FacebookSDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "hobble.1.1/bounce-Prefix.pch";
@@ -1590,6 +1493,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/hobble.1.1",
 					"$(PROJECT_DIR)/Vendors",
+					"$(PROJECT_DIR)/Vendors/FacebookSDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "hobble.1.1/bounce-Prefix.pch";
@@ -1600,50 +1504,6 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		00CEE404199434E700F40C12 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/hobble.1.1.app/hobble.1.1";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "hobble.1.1/hobble.1.1-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "hobble.1.1Tests/hobble.1.1Tests-Info.plist";
-				PRODUCT_NAME = bounceTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				VALID_ARCHS = "$(ARCHS_STANDARD)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		00CEE405199434E700F40C12 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/hobble.1.1.app/hobble.1.1";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "hobble.1.1/hobble.1.1-Prefix.pch";
-				INFOPLIST_FILE = "hobble.1.1Tests/hobble.1.1Tests-Info.plist";
-				PRODUCT_NAME = bounceTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				VALID_ARCHS = "$(ARCHS_STANDARD)";
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -1664,15 +1524,6 @@
 			buildConfigurations = (
 				00CEE401199434E700F40C12 /* Debug */,
 				00CEE402199434E700F40C12 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		00CEE403199434E700F40C12 /* Build configuration list for PBXNativeTarget "bounceTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				00CEE404199434E700F40C12 /* Debug */,
-				00CEE405199434E700F40C12 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
