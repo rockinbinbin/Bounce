@@ -28,9 +28,7 @@
     [self.view addGestureRecognizer:gestureRecognizer];
 
     
-//    if ([PFUser currentUser]) {
-//        [self performSegueWithIdentifier:@"LoginToMain" sender:nil];
-//    }
+\
     
     // background
     self.title = @"Log In";

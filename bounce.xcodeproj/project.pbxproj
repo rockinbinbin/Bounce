@@ -11,6 +11,8 @@
 		001196F119A666C1002D2757 /* SearchGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001196F019A666C1002D2757 /* SearchGroupsViewController.m */; };
 		001DF9F71ABCEFD8008C9D1F /* RootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001DF9F61ABCEFD8008C9D1F /* RootTabBarController.m */; };
 		001DF9FE1ABE395F008C9D1F /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001DF9FD1ABE395F008C9D1F /* NavigationController.m */; };
+		001DFA041ABF22C3008C9D1F /* Chatcell.m in Sources */ = {isa = PBXBuildFile; fileRef = 001DFA031ABF22C3008C9D1F /* Chatcell.m */; };
+		001DFA071ABF2CB4008C9D1F /* ChatRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001DFA061ABF2CB4008C9D1F /* ChatRoomViewController.m */; };
 		00296BD619EFA5BF003ADA30 /* APAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 00296BCA19EFA5BF003ADA30 /* APAddress.m */; };
 		00296BD719EFA5BF003ADA30 /* APAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 00296BCC19EFA5BF003ADA30 /* APAddressBook.m */; };
 		00296BD819EFA5BF003ADA30 /* APContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 00296BCE19EFA5BF003ADA30 /* APContact.m */; };
@@ -200,6 +202,11 @@
 		001DF9F91ABE34E3008C9D1F /* IntroPages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroPages.h; sourceTree = "<group>"; };
 		001DF9FC1ABE3957008C9D1F /* NavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
 		001DF9FD1ABE395F008C9D1F /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
+		001DFA021ABF22C3008C9D1F /* Chatcell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chatcell.h; sourceTree = "<group>"; };
+		001DFA031ABF22C3008C9D1F /* Chatcell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chatcell.m; sourceTree = "<group>"; };
+		001DFA051ABF2CB4008C9D1F /* ChatRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRoomViewController.h; sourceTree = "<group>"; };
+		001DFA061ABF2CB4008C9D1F /* ChatRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRoomViewController.m; sourceTree = "<group>"; };
+		001DFA0B1ABF4175008C9D1F /* PF_EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PF_EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		00296BC919EFA5BF003ADA30 /* APAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APAddress.h; sourceTree = "<group>"; };
 		00296BCA19EFA5BF003ADA30 /* APAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APAddress.m; sourceTree = "<group>"; };
 		00296BCB19EFA5BF003ADA30 /* APAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APAddressBook.h; sourceTree = "<group>"; };
@@ -1009,10 +1016,15 @@
 			isa = PBXGroup;
 			children = (
 				00CEE4061994350300F40C12 /* MainStoryboard.storyboard */,
+				001DFA021ABF22C3008C9D1F /* Chatcell.h */,
+				001DFA031ABF22C3008C9D1F /* Chatcell.m */,
+				001DFA051ABF2CB4008C9D1F /* ChatRoomViewController.h */,
+				001DFA061ABF2CB4008C9D1F /* ChatRoomViewController.m */,
 				001DF9F51ABCEFD8008C9D1F /* RootTabBarController.h */,
 				001DF9F61ABCEFD8008C9D1F /* RootTabBarController.m */,
 				00CEE3E2199434E700F40C12 /* AppDelegate.h */,
 				00CEE3E3199434E700F40C12 /* AppDelegate.m */,
+				001DFA0B1ABF4175008C9D1F /* PF_EGORefreshTableHeaderView.h */,
 				007BA4041A6CDF7500BF08DE /* keyboard */,
 				0060FE401A0ECB2C00525A50 /* parse-library-1 */,
 				00296BC719EFA5BF003ADA30 /* Pod */,
@@ -1320,6 +1332,7 @@
 				00414F4D1AADEE5700B25CEE /* pushnotification.m in Sources */,
 				007BA3EC1A6C9CE100BF08DE /* FUIButton.m in Sources */,
 				00414F291AADEE0600B25CEE /* JSQPhotoMediaItem.m in Sources */,
+				001DFA041ABF22C3008C9D1F /* Chatcell.m in Sources */,
 				00414F071AADEE0600B25CEE /* AFURLResponseSerialization.m in Sources */,
 				00414F161AADEE0600B25CEE /* UIDevice+JSQMessages.m in Sources */,
 				007BA4031A6CD56D00BF08DE /* GroupsPlusViewController.m in Sources */,
@@ -1357,6 +1370,7 @@
 				00414F0A1AADEE0600B25CEE /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				00414F021AADEE0600B25CEE /* AFHTTPSessionManager.m in Sources */,
 				007BA3F91A6C9CE100BF08DE /* UISlider+FlatUI.m in Sources */,
+				001DFA071ABF2CB4008C9D1F /* ChatRoomViewController.m in Sources */,
 				007BA3EB1A6C9CE100BF08DE /* FUIAlertView.m in Sources */,
 				00414E551AADECCE00B25CEE /* IntroPages.m in Sources */,
 				00414F371AADEE0600B25CEE /* JSQMessagesMediaPlaceholderView.m in Sources */,
@@ -1454,6 +1468,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1483,10 +1498,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "51bcdcfd-1634-4679-8544-3eb12cb395ea";
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Debug;
 		};
@@ -1494,6 +1510,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1517,16 +1534,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "51bcdcfd-1634-4679-8544-3eb12cb395ea";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Release;
 		};
 		00CEE401199434E700F40C12 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1548,6 +1568,7 @@
 				PRODUCT_NAME = bounce;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1555,6 +1576,7 @@
 		00CEE402199434E700F40C12 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1576,6 +1598,7 @@
 				PRODUCT_NAME = bounce;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1583,6 +1606,7 @@
 		00CEE404199434E700F40C12 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/hobble.1.1.app/hobble.1.1";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -1598,6 +1622,7 @@
 				INFOPLIST_FILE = "hobble.1.1Tests/hobble.1.1Tests-Info.plist";
 				PRODUCT_NAME = bounceTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -1605,6 +1630,7 @@
 		00CEE405199434E700F40C12 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/hobble.1.1.app/hobble.1.1";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -1616,6 +1642,7 @@
 				INFOPLIST_FILE = "hobble.1.1Tests/hobble.1.1Tests-Info.plist";
 				PRODUCT_NAME = bounceTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;

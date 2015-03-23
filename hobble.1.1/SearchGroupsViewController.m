@@ -41,6 +41,11 @@
 }
 
 
+//- (UINavigationController *)navigationController {
+//    return nil;
+//}
+
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -51,14 +56,17 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Group"];
     [query whereKeyExists:@"groupName"];
     self.groups = [query findObjects];
+    //[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//        self.groups = objects;
+//    }];
 
     for (PFObject *str in self.groups) {
         NSString *hi = [str objectForKey:@"groupName"];
         [self.Names addObject:hi];
     }
+    
+
 }
-
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -108,7 +116,8 @@
     }
     
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    //cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    
     
     
     // if user is already a part of the group (if user's objectID is in the ArrayOfUsers key)
@@ -123,21 +132,41 @@
 
     }
     else {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        
-        // find name of thisGroup
-        NSString *name = [thisGroup objectForKey:@"groupName"];
-        
-        // add group name to ArrayOfGroups for current user
-        [[PFUser currentUser] addObject:name forKey:@"ArrayOfGroups"];
-        
-        // add user to ArrayOfUsers
-        [thisGroup addObject:[PFUser currentUser] forKey:@"ArrayOfUsers"];
-        
-        [self.MyGroups addObject:thisGroup];
-        
-        NSLog(@"Group added!");
-        
+        if (index != NSNotFound) {
+            if ([cell accessoryType] == UITableViewCellAccessoryNone) {
+                [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+                // find name of thisGroup
+                NSString *name = [thisGroup objectForKey:@"groupName"];
+                
+                // add group name to ArrayOfGroups for current user
+                [[PFUser currentUser] addObject:name forKey:@"ArrayOfGroups"];
+                
+                // add user to ArrayOfUsers
+                [thisGroup addObject:[PFUser currentUser] forKey:@"ArrayOfUsers"];
+                
+                [self.MyGroups addObject:thisGroup];
+                
+                NSLog(@"Group added!");
+
+            } else {
+                [cell setAccessoryType:UITableViewCellAccessoryNone];
+                
+                // find name of thisGroup
+                NSString *name = [thisGroup objectForKey:@"groupName"];
+                
+                // add group name to ArrayOfGroups for current user
+                [[PFUser currentUser] removeObject:name forKey:@"ArrayOfGroups"];
+                
+                // add user to ArrayOfUsers
+                [thisGroup removeObject:[PFUser currentUser] forKey:@"ArrayOfUsers"];
+                
+                [self.MyGroups removeObject:thisGroup];
+                
+                NSLog(@"Group removed!");
+
+                
+            }
+        }
     }
     
     // save current user
@@ -190,10 +219,9 @@ shouldReloadTableForSearchString:(NSString *)searchString
 }
 
 
-
-
 - (IBAction)doneButton:(id)sender {
     //[self performSegueWithIdentifier:@"SearchToGroups" sender:self];
+
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     
 }
