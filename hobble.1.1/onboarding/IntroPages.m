@@ -113,5 +113,11 @@
 //- (IBAction)skipButton:(id)sender {
 //    [self performSegueWithIdentifier:@"skipSegue" sender:nil];
 //}
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    NSLog(@"memory recieved warning !");
+    // Dispose of any resources that can be recreated.
+}
 
 @end

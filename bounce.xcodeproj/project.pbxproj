@@ -578,8 +578,8 @@
 		00414E411AADECCE00B25CEE /* onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				00414E421AADECCE00B25CEE /* IntroPages.m */,
 				001DF9F91ABE34E3008C9D1F /* IntroPages.h */,
+				00414E421AADECCE00B25CEE /* IntroPages.m */,
 				00414E431AADECCE00B25CEE /* LoginViewController.h */,
 				00414E441AADECCE00B25CEE /* LoginViewController.m */,
 				00414E451AADECCE00B25CEE /* SignUpViewController.h */,
@@ -968,6 +968,8 @@
 		00CEE3C5199434E700F40C12 = {
 			isa = PBXGroup;
 			children = (
+				007BA4041A6CDF7500BF08DE /* keyboard */,
+				00CEE3D9199434E700F40C12 /* hobble.1.1 */,
 				00CEE4061994350300F40C12 /* MainStoryboard.storyboard */,
 				001DFA021ABF22C3008C9D1F /* Chatcell.h */,
 				001DFA031ABF22C3008C9D1F /* Chatcell.m */,
@@ -978,10 +980,7 @@
 				00CEE3E2199434E700F40C12 /* AppDelegate.h */,
 				00CEE3E3199434E700F40C12 /* AppDelegate.m */,
 				001DFA0B1ABF4175008C9D1F /* PF_EGORefreshTableHeaderView.h */,
-				007BA4041A6CDF7500BF08DE /* keyboard */,
-				0060FE401A0ECB2C00525A50 /* parse-library-1 */,
 				00296BC719EFA5BF003ADA30 /* Pod */,
-				00CEE3D9199434E700F40C12 /* hobble.1.1 */,
 				00CEE3F6199434E700F40C12 /* hobble.1.1Tests */,
 				00CEE3D0199434E700F40C12 /* Frameworks */,
 				00CEE3CF199434E700F40C12 /* Products */,
@@ -999,6 +998,7 @@
 		00CEE3D0199434E700F40C12 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0060FE401A0ECB2C00525A50 /* parse-library-1 */,
 				00414F6C1AAE2E1600B25CEE /* Firebase.framework */,
 				00414F681AAE2B3200B25CEE /* libicucore.dylib */,
 				00414E631AADEE0600B25CEE /* Vendors */,
@@ -1126,7 +1126,7 @@
 				ORGANIZATIONNAME = hobble;
 				TargetAttributes = {
 					00CEE3CD199434E700F40C12 = {
-						DevelopmentTeam = KM659CVM6Q;
+						DevelopmentTeam = 4ET98LDP9Q;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1383,8 +1383,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Craig Schmatz (D8M75W4XCX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Craig Schmatz (D8M75W4XCX)";
+				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: com.bounce";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development IOS Push Services: com.bounce";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1425,8 +1425,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Craig Schmatz (D8M75W4XCX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Craig Schmatz (D8M75W4XCX)";
+				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: com.bounce";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development IOS Push Services: com.bounce";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1451,8 +1451,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mohamed AboShamaa (7B692GFEFN)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mohamed AboShamaa (7B692GFEFN)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1469,7 +1469,7 @@
 				INFOPLIST_FILE = "hobble.1.1/bounce-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				PRODUCT_NAME = bounce;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "e935613c-736e-47ad-9b75-297720517e39";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
 				WRAPPER_EXTENSION = app;
@@ -1482,8 +1482,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mohamed AboShamaa (7B692GFEFN)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mohamed AboShamaa (7B692GFEFN)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1500,7 +1500,7 @@
 				INFOPLIST_FILE = "hobble.1.1/bounce-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				PRODUCT_NAME = bounce;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "e935613c-736e-47ad-9b75-297720517e39";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
 				WRAPPER_EXTENSION = app;
