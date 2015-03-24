@@ -191,7 +191,8 @@
           }];
          //-----------------------------------------------------------------------------------------------------------------------------------------
          user[PF_USER_EMAILCOPY] = userData[@"email"];
-         user[PF_USER_FULLNAME] = userData[@"name"];
+         user[PF_USER_USERNAME] = userData[@"name"];
+         user[@"fullname"] = userData[@"name"];
          user[PF_USER_FULLNAME_LOWER] = [userData[@"name"] lowercaseString];
          user[PF_USER_FACEBOOKID] = userData[@"id"];
          user[PF_USER_PICTURE] = filePicture;

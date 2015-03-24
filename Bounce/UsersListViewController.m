@@ -8,6 +8,8 @@
 
 #import "UsersListViewController.h"
 #import "Utility.h"
+#import <FacebookSDK/FacebookSDK.h>
+
 @interface UsersListViewController ()
 {
     NSArray *parseUsers;
@@ -112,6 +114,14 @@
         [query whereKey:@"username" notEqualTo:[[PFUser currentUser] username]];
         NSArray* users = [[NSArray alloc] initWithArray:[query findObjects]];
         parseUsers = users;
+        
+        
+
+        
+        
+        
+        
+        
 //        for (int i = 0; i < users.count; i++) {
 //            PFObject* currentUserFromCloud = users[i];
 //            User* currentUser = [[User alloc] init];
@@ -144,7 +154,12 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
+    PFUser *user = [parseUsers objectAtIndex:indexPath.row];
+    if ([user objectForKey:@"fullname"]) {
+        cell.textLabel.text = [user objectForKey:@"fullname"];
+    }else{
     cell.textLabel.text = [[parseUsers objectAtIndex:indexPath.row] username];
+    }
     
     return cell;
 }
