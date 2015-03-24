@@ -7,7 +7,7 @@
 //
 
 #import "UsersListViewController.h"
-
+#import "Utility.h"
 @interface UsersListViewController ()
 {
     NSArray *parseUsers;
@@ -20,6 +20,7 @@
     if (self) {
         // Custom initialization
         self.title = @"Messages";
+//        self.tabBarItem.title = @"Messages";
     }
     return self;
 }
@@ -103,9 +104,12 @@
 
 - (void) setUsersList{
 //    _usersList = [[NSMutableArray alloc] init];
+    [[Utility getInstance] showProgressHudWithMessage:@"Load Users" withView:self.view];
     dispatch_queue_t firstQueue = dispatch_queue_create("usersList", 0);
     dispatch_async(firstQueue, ^{
-        PFQuery *query = [PFQuery queryWithClassName:@"_User"];
+        PFQuery *query = [PFUser query];
+        [query orderByAscending:@"username"];
+        [query whereKey:@"username" notEqualTo:[[PFUser currentUser] username]];
         NSArray* users = [[NSArray alloc] initWithArray:[query findObjects]];
         parseUsers = users;
 //        for (int i = 0; i < users.count; i++) {
@@ -120,6 +124,8 @@
 //        }
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.usersTableView reloadData];
+//            [ProgressHUD ]
+            [[Utility getInstance] hideProgressHud];
         });
     });
 }
