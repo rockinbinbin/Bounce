@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
+#import <Parse/Parse.h>
 
-@interface HomeScreenViewController : UIViewController
+@interface HomeScreenViewController : UIViewController <CLLocationManagerDelegate>
+
+@property (strong, nonatomic) CLLocationManager *location_manager;
+
+@property (weak, nonatomic) IBOutlet MKMapView *map;
+- (IBAction)messageButtonClicked:(id)sender;
 
 @end

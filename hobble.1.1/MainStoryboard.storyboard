@@ -640,21 +640,21 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="dSY-iw-bRd" firstAttribute="top" secondItem="SL6-gN-Zwp" secondAttribute="bottom" id="1N5-9u-WtQ"/>
-                            <constraint firstItem="6lv-UC-Z0j" firstAttribute="top" secondItem="dSY-iw-bRd" secondAttribute="bottom" constant="50" id="Afe-Yo-XMP"/>
+                            <constraint firstItem="6lv-UC-Z0j" firstAttribute="top" secondItem="dSY-iw-bRd" secondAttribute="bottom" id="3zT-S9-zb7"/>
+                            <constraint firstItem="dSY-iw-bRd" firstAttribute="top" secondItem="SL6-gN-Zwp" secondAttribute="bottom" id="4Ax-bL-2Ev"/>
                             <constraint firstItem="dSY-iw-bRd" firstAttribute="leading" secondItem="ih3-6v-0cu" secondAttribute="leadingMargin" constant="-20" id="IFi-wq-XdH"/>
+                            <constraint firstItem="6lv-UC-Z0j" firstAttribute="top" secondItem="dSY-iw-bRd" secondAttribute="bottom" constant="50" id="IOc-yg-SrC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="8Ld-ZR-G3Q" secondAttribute="trailing" constant="-16" id="JCq-XQ-0je"/>
                             <constraint firstItem="dSY-iw-bRd" firstAttribute="leading" secondItem="ih3-6v-0cu" secondAttribute="leadingMargin" constant="-16" id="KQI-tL-UrR"/>
                             <constraint firstItem="8Ld-ZR-G3Q" firstAttribute="top" secondItem="dSY-iw-bRd" secondAttribute="bottom" constant="1" id="N1p-XZ-eR4"/>
                             <constraint firstItem="8Ld-ZR-G3Q" firstAttribute="leading" secondItem="ih3-6v-0cu" secondAttribute="leadingMargin" constant="-16" id="WHF-Di-DiI"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dSY-iw-bRd" secondAttribute="trailing" constant="-16" id="WfS-Z5-T0e"/>
+                            <constraint firstItem="6lv-UC-Z0j" firstAttribute="top" secondItem="dSY-iw-bRd" secondAttribute="bottom" id="YG7-EE-9eS"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dSY-iw-bRd" secondAttribute="trailing" constant="-16" id="b67-3g-WFu"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dSY-iw-bRd" secondAttribute="trailing" constant="-20" id="dHF-J5-LXQ"/>
-                            <constraint firstItem="6lv-UC-Z0j" firstAttribute="top" secondItem="dSY-iw-bRd" secondAttribute="bottom" id="gUP-Og-la5"/>
                             <constraint firstItem="dSY-iw-bRd" firstAttribute="leading" secondItem="ih3-6v-0cu" secondAttribute="leadingMargin" constant="-20" id="kKx-hd-jPI"/>
                             <constraint firstItem="dSY-iw-bRd" firstAttribute="leading" secondItem="ih3-6v-0cu" secondAttribute="leadingMargin" constant="-16" id="n0K-Tc-QaU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dSY-iw-bRd" secondAttribute="trailing" constant="-20" id="tkC-Ox-h6e"/>
-                            <constraint firstItem="6lv-UC-Z0j" firstAttribute="top" secondItem="dSY-iw-bRd" secondAttribute="bottom" id="x1a-M1-ktp"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -664,8 +664,6 @@
                                 <exclude reference="b67-3g-WFu"/>
                                 <exclude reference="dHF-J5-LXQ"/>
                                 <exclude reference="n0K-Tc-QaU"/>
-                                <exclude reference="gUP-Og-la5"/>
-                                <exclude reference="x1a-M1-ktp"/>
                             </mask>
                         </variation>
                     </view>

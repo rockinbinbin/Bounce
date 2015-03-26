@@ -10,6 +10,7 @@
 #import "GenderScreenViewController.h"
 #import <Parse/Parse.h>
 #import "RootTabBarController.h"
+#import "HomeScreenViewController.h"
 
 @interface SignupScreenViewController ()
 
@@ -264,7 +265,9 @@
 
 // Logged-in user experience -- THIS DOESN'T WORK?
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
-    [self performSegueWithIdentifier:@"SignUpToMain" sender:self];
+    HomeScreenViewController* homeScreenViewController = [[HomeScreenViewController alloc] initWithNibName:@"HomeScreenViewController" bundle:nil];
+    [self.navigationController pushViewController:homeScreenViewController animated:YES];
+//    [self performSegueWithIdentifier:@"SignUpToMain" sender:self];
 }
 
 
