@@ -12,6 +12,7 @@
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 #import "IntroPages.h"
 #import "UsersListViewController.h"
+#import "IntroPagesViewController.h"
 
 @implementation AppDelegate
 
@@ -57,20 +58,21 @@
     
     
 //    UITabBarController *tabController = [[UITabBarController alloc] init];
-//    
-//    UsersListViewController* userListViewController = [[UsersListViewController alloc] initWithNibName:@"UsersListViewController" bundle:nil];
-//    
+//
+    IntroPagesViewController* introPagesViewController = [[IntroPagesViewController alloc] initWithNibName:@"IntroPagesViewController" bundle:nil];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:introPagesViewController];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = navigationController;
+    [self.window makeKeyAndVisible];
+
+//
 //    //    UITabBarItem *item = [controller objectAtIndex:1];
 //    //    UITabBarItem *item2  = [[UITabBarItem alloc] in]
 //    //    item.
-//    UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:userListViewController];
-//    
+//
 //    NSMutableArray * controller = [NSMutableArray arrayWithObject:navigation] ;
 //    tabController.viewControllers = [NSArray arrayWithArray:controller];
 //    
-//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    self.window.rootViewController = tabController;
-//    [self.window makeKeyAndVisible];
 
     return YES;
 }

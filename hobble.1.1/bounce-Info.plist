@@ -43,8 +43,6 @@
 	</array>
 	<key>FacebookAppID</key>
 	<string>515523265245164</string>
-	<key>UIMainStoryboardFile</key>
-	<string>MainStoryboard</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
