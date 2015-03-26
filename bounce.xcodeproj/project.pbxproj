@@ -158,9 +158,9 @@
 		00CEE4271994493A00F40C12 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4261994493A00F40C12 /* CoreLocation.framework */; };
 		28F13A521A6C75A90069EBA4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F13A511A6C75A90069EBA4 /* MapKit.framework */; };
 		28F13A5B1A6C7F7B0069EBA4 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F13A5A1A6C7F7B0069EBA4 /* MapViewController.m */; };
+		672F97271AC4707700CFBC28 /* RequistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 672F97251AC4707700CFBC28 /* RequistsViewController.m */; };
+		672F97281AC4707700CFBC28 /* RequistsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 672F97261AC4707700CFBC28 /* RequistsViewController.xib */; };
 		6791817D1AC0057D00D0474C /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6791817C1AC0057D00D0474C /* FacebookSDK.framework */; };
-		679181D21AC0758400D0474C /* GroupsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 679181C21AC0758400D0474C /* GroupsListViewController.m */; };
-		679181D31AC0758400D0474C /* GroupsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 679181C31AC0758400D0474C /* GroupsListViewController.xib */; };
 		679181D41AC0758400D0474C /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 679181C61AC0758400D0474C /* MBProgressHUD.m */; };
 		679181D51AC0758400D0474C /* ParseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 679181C81AC0758400D0474C /* ParseManager.m */; };
 		679181D61AC0758400D0474C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 679181CB1AC0758400D0474C /* Reachability.m */; };
@@ -505,10 +505,10 @@
 		28F13A511A6C75A90069EBA4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		28F13A591A6C7F7B0069EBA4 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		28F13A5A1A6C7F7B0069EBA4 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		672F97241AC4707700CFBC28 /* RequistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequistsViewController.h; sourceTree = "<group>"; };
+		672F97251AC4707700CFBC28 /* RequistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequistsViewController.m; sourceTree = "<group>"; };
+		672F97261AC4707700CFBC28 /* RequistsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RequistsViewController.xib; sourceTree = "<group>"; };
 		6791817C1AC0057D00D0474C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
-		679181C11AC0758400D0474C /* GroupsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsListViewController.h; sourceTree = "<group>"; };
-		679181C21AC0758400D0474C /* GroupsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsListViewController.m; sourceTree = "<group>"; };
-		679181C31AC0758400D0474C /* GroupsListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupsListViewController.xib; sourceTree = "<group>"; };
 		679181C51AC0758400D0474C /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		679181C61AC0758400D0474C /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		679181C71AC0758400D0474C /* ParseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseManager.h; sourceTree = "<group>"; };
@@ -1183,15 +1183,15 @@
 		679181C01AC0758400D0474C /* Bounce */ = {
 			isa = PBXGroup;
 			children = (
+				672F97241AC4707700CFBC28 /* RequistsViewController.h */,
+				672F97251AC4707700CFBC28 /* RequistsViewController.m */,
+				672F97261AC4707700CFBC28 /* RequistsViewController.xib */,
 				CA39ABF01AC44A1D00C2F4E1 /* Third Party */,
 				CA39ABAE1AC420AB00C2F4E1 /* Bounce Images */,
 				CA39ABAC1AC41FC500C2F4E1 /* Business */,
 				CA08CFBE1AC4080700B562AA /* Model */,
 				CA08CFBF1AC4080700B562AA /* ViewControllers */,
 				CA08CFC01AC4080700B562AA /* Views */,
-				679181C11AC0758400D0474C /* GroupsListViewController.h */,
-				679181C21AC0758400D0474C /* GroupsListViewController.m */,
-				679181C31AC0758400D0474C /* GroupsListViewController.xib */,
 				679181C41AC0758400D0474C /* MBProgressHUD */,
 				679181C71AC0758400D0474C /* ParseManager.h */,
 				679181C81AC0758400D0474C /* ParseManager.m */,
@@ -1472,12 +1472,12 @@
 				CA39ABCF1AC420CB00C2F4E1 /* Tutorial-3_iPhone6.png in Resources */,
 				00414E471AADECCE00B25CEE /* Icon120.png in Resources */,
 				CA39ABEF1AC4454300C2F4E1 /* GenderScreenViewController.xib in Resources */,
+				672F97281AC4707700CFBC28 /* RequistsViewController.xib in Resources */,
 				00414F111AADEE0600B25CEE /* JSQMessagesAssets.bundle in Resources */,
 				00414F1B1AADEE0600B25CEE /* JSQMessagesViewController.xib in Resources */,
 				CA39ABCC1AC420CB00C2F4E1 /* Tutorial-3.png in Resources */,
 				00CEE3DE199434E700F40C12 /* InfoPlist.strings in Resources */,
 				007BA3C21A6C9BE400BF08DE /* Podfile in Resources */,
-				679181D31AC0758400D0474C /* GroupsListViewController.xib in Resources */,
 				CA39ABDA1AC420CB00C2F4E1 /* LandingView_iPhone6.png in Resources */,
 				00CEE3E9199434E700F40C12 /* Images.xcassets in Resources */,
 				00414F3B1AADEE0600B25CEE /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
@@ -1495,9 +1495,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				672F97271AC4707700CFBC28 /* RequistsViewController.m in Sources */,
 				00414F081AADEE0600B25CEE /* AFURLSessionManager.m in Sources */,
 				001196E819A41D6C002D2757 /* CreateGroupViewController.m in Sources */,
-				679181D21AC0758400D0474C /* GroupsListViewController.m in Sources */,
 				00414F141AADEE0600B25CEE /* NSString+JSQMessages.m in Sources */,
 				679181DA1AC0758400D0474C /* Utility.m in Sources */,
 				00414F211AADEE0600B25CEE /* JSQMessagesCollectionViewFlowLayout.m in Sources */,
