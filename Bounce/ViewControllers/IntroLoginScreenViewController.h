@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoginViewController : UIViewController
+@interface IntroLoginScreenViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIPageControl *currentIndexPageControl;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UIButton *registerButton;
+
+
+- (IBAction)loginButtonClicked:(id)sender;
+- (IBAction)registerButtonClicked:(id)sender;
 
 @end

@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface Intro2IDViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIPageControl *currentIndexPageControl;
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "Intro3IDViewController.h"
+#import "Constants.h"
 
 @interface Intro3IDViewController ()
 
@@ -17,11 +18,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.currentIndexPageControl.backgroundColor = [UIColor clearColor];
+    self.currentIndexPageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (IS_IPHONE4) {
+        _backgroundImageView.image = [UIImage imageNamed:@"Tutorial-3.png"];
+    }
+    else if (IS_IPHONE5) {
+        _backgroundImageView.image = [UIImage imageNamed:@"Tutorial-3_iPhone5"];
+    }else if (IS_IPHONE6){
+        _backgroundImageView.image = [UIImage imageNamed:@"Tutorial-3_iPhone6"];
+    }else if (IS_IPHONE6PLUS){
+        _backgroundImageView.image = [UIImage imageNamed:@"Tutorial-3_iPhone6plus"];
+    }
 }
 
 /*

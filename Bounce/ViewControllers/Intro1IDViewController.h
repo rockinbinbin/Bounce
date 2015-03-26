@@ -10,4 +10,6 @@
 
 @interface Intro1IDViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIPageControl *currentIndexPageControl;
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @end

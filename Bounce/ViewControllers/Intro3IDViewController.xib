@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Intro3IDViewController">
             <connections>
+                <outlet property="backgroundImageView" destination="E5B-43-vmX" id="pWx-u4-YoV"/>
+                <outlet property="currentIndexPageControl" destination="xJm-0x-IZc" id="NmW-To-jzt"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -13,7 +15,34 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="E5B-43-vmX">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                </imageView>
+                <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" currentPage="2" translatesAutoresizingMaskIntoConstraints="NO" id="xJm-0x-IZc">
+                    <rect key="frame" x="260" y="520" width="80" height="40"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="6a8-CQ-jCk"/>
+                        <constraint firstAttribute="height" constant="40" id="Cqo-Jh-2GF"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="J03-2S-OX3"/>
+                        <constraint firstAttribute="width" constant="80" id="Qa5-IL-D4X"/>
+                    </constraints>
+                    <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="currentPageIndicatorTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </pageControl>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="xJm-0x-IZc" secondAttribute="bottom" constant="40" id="Q7E-5t-nzn"/>
+                <constraint firstAttribute="centerX" secondItem="xJm-0x-IZc" secondAttribute="centerX" id="Tto-yc-Vj4"/>
+                <constraint firstAttribute="bottom" secondItem="E5B-43-vmX" secondAttribute="bottom" id="U6F-94-HMp"/>
+                <constraint firstItem="E5B-43-vmX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="eiu-mq-jH8"/>
+                <constraint firstItem="E5B-43-vmX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="h3U-Ce-Tg5"/>
+                <constraint firstAttribute="trailing" secondItem="E5B-43-vmX" secondAttribute="trailing" id="jbI-za-NIT"/>
+            </constraints>
+            <point key="canvasLocation" x="165" y="312"/>
         </view>
     </objects>
 </document>
