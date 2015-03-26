@@ -17,8 +17,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIBarButtonItem *CancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonPressed)];
+    
+    self.navigationItem.leftBarButtonItem = CancelButton;
+
     // Do any additional setup after loading the view.
-    [[self navigationController] setNavigationBarHidden:YES animated:YES];
+//    [[self navigationController] setNavigationBarHidden:YES animated:YES];
 
     
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
@@ -95,7 +99,7 @@
 }
 
 
-- (IBAction)cancelButtonPressed:(id)sender {
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+- (IBAction)cancelButtonPressed{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end
