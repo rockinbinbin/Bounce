@@ -158,6 +158,8 @@
 		00CEE4271994493A00F40C12 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4261994493A00F40C12 /* CoreLocation.framework */; };
 		28F13A521A6C75A90069EBA4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F13A511A6C75A90069EBA4 /* MapKit.framework */; };
 		28F13A5B1A6C7F7B0069EBA4 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F13A5A1A6C7F7B0069EBA4 /* MapViewController.m */; };
+		672F97361AC479D400CFBC28 /* SelectGroupsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 672F97341AC479D400CFBC28 /* SelectGroupsTableViewController.m */; };
+		672F97371AC479D400CFBC28 /* SelectGroupsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 672F97351AC479D400CFBC28 /* SelectGroupsTableViewController.xib */; };
 		6791817D1AC0057D00D0474C /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6791817C1AC0057D00D0474C /* FacebookSDK.framework */; };
 		CA39AC5B1AC476A700C2F4E1 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC0C1AC476A700C2F4E1 /* Contents.json */; };
 		CA39AC5C1AC476A700C2F4E1 /* LandingView.png in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC0D1AC476A700C2F4E1 /* LandingView.png */; };
@@ -507,6 +509,9 @@
 		28F13A511A6C75A90069EBA4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		28F13A591A6C7F7B0069EBA4 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		28F13A5A1A6C7F7B0069EBA4 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		672F97331AC479D400CFBC28 /* SelectGroupsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectGroupsTableViewController.h; sourceTree = "<group>"; };
+		672F97341AC479D400CFBC28 /* SelectGroupsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectGroupsTableViewController.m; sourceTree = "<group>"; };
+		672F97351AC479D400CFBC28 /* SelectGroupsTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectGroupsTableViewController.xib; sourceTree = "<group>"; };
 		6791817C1AC0057D00D0474C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		CA39AC0C1AC476A700C2F4E1 /* Contents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
 		CA39AC0D1AC476A700C2F4E1 /* LandingView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LandingView.png; sourceTree = "<group>"; };
@@ -1329,6 +1334,9 @@
 		CA39AC3E1AC476A700C2F4E1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				672F97331AC479D400CFBC28 /* SelectGroupsTableViewController.h */,
+				672F97341AC479D400CFBC28 /* SelectGroupsTableViewController.m */,
+				672F97351AC479D400CFBC28 /* SelectGroupsTableViewController.xib */,
 				CA39AC3F1AC476A700C2F4E1 /* GenderScreenViewController.h */,
 				CA39AC401AC476A700C2F4E1 /* GenderScreenViewController.m */,
 				CA39AC411AC476A700C2F4E1 /* GenderScreenViewController.xib */,
@@ -1469,6 +1477,7 @@
 				CA39AC851AC476A700C2F4E1 /* Intro3IDViewController.xib in Resources */,
 				00CEE3DE199434E700F40C12 /* InfoPlist.strings in Resources */,
 				007BA3C21A6C9BE400BF08DE /* Podfile in Resources */,
+				672F97371AC479D400CFBC28 /* SelectGroupsTableViewController.xib in Resources */,
 				CA39AC6F1AC476A700C2F4E1 /* Tutorial-3_iPhone5.png in Resources */,
 				CA39AC891AC476A700C2F4E1 /* IntroPagesViewController.xib in Resources */,
 				CA39AC5D1AC476A700C2F4E1 /* LandingView@2x.png in Resources */,
@@ -1577,6 +1586,7 @@
 				CA39AC741AC476A700C2F4E1 /* Reachability.m in Sources */,
 				00414F631AAE24A800B25CEE /* ChatView.m in Sources */,
 				00414F261AADEE0600B25CEE /* JSQMessage.m in Sources */,
+				672F97361AC479D400CFBC28 /* SelectGroupsTableViewController.m in Sources */,
 				00414F4C1AADEE5700B25CEE /* messages.m in Sources */,
 				00414F1E1AADEE0600B25CEE /* JSQMessagesMediaViewBubbleImageMasker.m in Sources */,
 				00414F031AADEE0600B25CEE /* AFNetworkReachabilityManager.m in Sources */,

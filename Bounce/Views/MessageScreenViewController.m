@@ -7,7 +7,7 @@
 //
 
 #import "MessageScreenViewController.h"
-
+#import "SelectGroupsTableViewController.h"
 @interface MessageScreenViewController ()
 - (IBAction)cancelButtonPressed:(id)sender;
 
@@ -101,5 +101,34 @@
 
 - (IBAction)cancelButtonPressed{
     [self.navigationController popViewControllerAnimated:YES];
+}
+- (IBAction)addgroupsButtonClicked:(id)sender {
+    NSString *RadiusString = [self.Radius.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    NSString *TimeString = [self.TimeAllocated.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    // INPUT ERROR MESSAGES
+    if ([RadiusString length] == 0 || [TimeString length] == 0) {
+        UIAlertView *zeroString = [[UIAlertView alloc] initWithTitle:@"Oops!"
+                                                             message:@"Please Enter a radius and time value!"
+                                                            delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [zeroString show];
+        
+    }
+    
+    else if (![self isNumeric:RadiusString] || ![self isNumeric:TimeString]) {
+        UIAlertView *notNumeric = [[UIAlertView alloc] initWithTitle:@"Oops!"
+                                                             message:@"Please enter a numeric radius and time value!"
+                                                            delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [notNumeric show];
+        
+    }
+    else {
+        SelectGroupsTableViewController *controller = [[SelectGroupsTableViewController alloc] init];
+        controller.radius = [RadiusString intValue];
+        controller.timeAllocated = [TimeString intValue];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+
 }
 @end

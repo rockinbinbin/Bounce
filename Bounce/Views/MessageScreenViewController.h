@@ -26,5 +26,6 @@
 @property (strong, nonatomic) IBOutlet UITextField *TimeAllocated;
 @property (strong, nonatomic) IBOutlet UITextField *Radius;
 @property (strong, nonatomic) IBOutlet UIButton *AddGroupsButton;
+- (IBAction)addgroupsButtonClicked:(id)sender;
 
 @end

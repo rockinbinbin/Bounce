@@ -12,6 +12,7 @@
 #import "utilities.h"
 #import "IntroPages.h"
 #import "MessageScreenViewController.h"
+#import "RequistsViewController.h"
 
 @interface HomeScreenViewController ()
 
@@ -109,6 +110,8 @@
 
 - (IBAction)chatButtonPressed:(id)sender {
 //TODO: add the chat
+    RequistsViewController *requistViewController = [[RequistsViewController alloc] init];
+    [self.navigationController pushViewController:requistViewController animated:YES];
 }
 
 

@@ -209,7 +209,9 @@
 {
     ParsePushUserAssign();
     [ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome back %@!", user[PF_USER_FULLNAME]]];
-    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self dismissViewControllerAnimated:YES completion:nil];
+    HomeScreenViewController* homeScreenViewController = [[HomeScreenViewController alloc] initWithNibName:@"HomeScreenViewController" bundle:nil];
+    [self.navigationController pushViewController:homeScreenViewController animated:YES];
 }
 
 // Logged-in user experience
@@ -217,7 +219,7 @@
     HomeScreenViewController* homeScreenViewController = [[HomeScreenViewController alloc] initWithNibName:@"HomeScreenViewController" bundle:nil];
     [self.navigationController pushViewController:homeScreenViewController animated:YES];
 
-    [self performSegueWithIdentifier:@"LoginToMain" sender:self];
+//    [self performSegueWithIdentifier:@"LoginToMain" sender:self];
 }
 
 - (IBAction)signUpButtonClicked:(id)sender {
