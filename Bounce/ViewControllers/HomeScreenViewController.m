@@ -108,7 +108,7 @@
     [self.navigationController pushViewController:messageScreenViewController animated:YES];
 }
 
-- (IBAction)chatButtonPressed:(id)sender {
+- (void)chatButtonPressed{
 //TODO: add the chat
     RequistsViewController *requistViewController = [[RequistsViewController alloc] init];
     [self.navigationController pushViewController:requistViewController animated:YES];

@@ -9,6 +9,8 @@
 #import "SelectGroupsTableViewController.h"
 #import "ParseManager.h"
 #import "HomeScreenViewController.h"
+#import "AppConstant.h"
+
 @interface SelectGroupsTableViewController ()
 
 @end
@@ -38,7 +40,9 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.groups = [[PFUser currentUser] objectForKey:@"ArrayOfGroups"];
+    //self.groups = [[PFUser currentUser] objectForKey:@"ArrayOfGroups"];
+    // load all groups instead using the user groups
+    [self loadAllGroups];
     
     NSLog(@"radius = %d", self.radius);
     NSLog(@"time allocated = %d", self.timeAllocated);
@@ -183,6 +187,24 @@
         [zerolength show];
     }
     
+}
+
+#pragma mark - load all groups
+- (void) loadAllGroups{
+    PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+     {
+         
+         if ([objects count] > 0) {
+             // get name of each group
+             self.groups = [[NSMutableArray alloc]init];
+             for (PFObject *group in objects) {
+                 [self.groups addObject:[group objectForKey:@"groupName"] ];
+             }
+             [self.tableView reloadData];
+         }
+         
+     }];
 }
 
 @end
