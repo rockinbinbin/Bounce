@@ -10,7 +10,7 @@
 #import "utilities.h"
 #import <Parse/Parse.h>
 #import "UsersListViewController.h"
-#import "GroupsListViewController.h"
+#import "RequistsViewController.h"
 
 @interface RootTabBarController ()
 
@@ -21,8 +21,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UsersListViewController* userListViewController = [[UsersListViewController alloc] init];
+//    UsersListViewController* userListViewController = [[UsersListViewController alloc] init];
 //    GroupsListViewController* groupListViewController = [[GroupsListViewController alloc] init];
+        RequistsViewController* requistsViewController = [[RequistsViewController alloc] init];
 
     NSMutableArray * controller = [NSMutableArray arrayWithArray: self.viewControllers] ;
     
@@ -36,10 +37,10 @@
 //    item3.title = @"Groups";
     
 //    
-    UINavigationController *useresNavigationBarController = [[UINavigationController alloc] initWithRootViewController:userListViewController];
+    UINavigationController *requistsNavigationBarController = [[UINavigationController alloc] initWithRootViewController:requistsViewController];
 //    UINavigationController *groupsNavigationBarController = [[UINavigationController alloc] initWithRootViewController:groupListViewController];
 
-    [controller replaceObjectAtIndex:1 withObject:useresNavigationBarController];
+    [controller replaceObjectAtIndex:1 withObject:requistsNavigationBarController];
 //    [controller replaceObjectAtIndex:2 withObject:groupsNavigationBarController];
 
     self.viewControllers = [NSArray arrayWithArray:controller];

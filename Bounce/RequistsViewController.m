@@ -6,17 +6,18 @@
 //  Copyright (c) 2015 Shimaa Essam. All rights reserved.
 //
 
-#import "GroupsListViewController.h"
+#import "RequistsViewController.h"
 //#import "MainViewController.h"
 #import "ChatView.h"
+#import "AppConstant.h"
 
-@interface GroupsListViewController ()
+@interface RequistsViewController ()
 {
-    NSMutableArray *groups;
+    NSMutableArray *requests;
 }
 @end
 
-@implementation GroupsListViewController
+@implementation RequistsViewController
 
 
 - (void)viewDidLoad {
@@ -34,20 +35,35 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self loadGroups];
+    [self loadRequests];
 }
 
 #pragma mark - Load Groups
-- (void) loadGroups{
+- (void) loadRequests{
     @try {
-        if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]){
-           [[Utility getInstance] showProgressHudWithMessage:@"Loading ..." withView:self.view];
-           // Call parse manager load all groups
-            [[ParseManager getInstance] setLoadGroupsdelegate:self];
-            [[ParseManager getInstance] loadAllGroups];
-        }else{
-            [[Utility getInstance] showAlertMessage:@"Please Fill All Login Fields"];
-        }
+        
+        // load requests if the user is sender or receiver
+        PFQuery *query1 = [PFQuery queryWithClassName:@"Requests"];
+        [query1 whereKey:@"Sender" equalTo:[[PFUser currentUser] username]];
+        PFQuery *query2 = [PFQuery queryWithClassName:@"Requests"];
+        [query2 whereKey:@"receivers" equalTo:[[PFUser currentUser] username]];
+        PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:query1, query2, nil]];
+        NSArray *resultUsers = [query findObjects];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+         {
+             requests = [NSMutableArray arrayWithArray:objects];
+             if ([requests count] > 0) {
+                 [self.groupsTableView reloadData];
+             }
+         }];
+//        if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]){
+//           [[Utility getInstance] showProgressHudWithMessage:@"Loading ..." withView:self.view];
+//           // Call parse manager load all groups
+//            [[ParseManager getInstance] setLoadGroupsdelegate:self];
+//            [[ParseManager getInstance] loadAllGroups];
+//        }else{
+//            [[Utility getInstance] showAlertMessage:@"Please Fill All Login Fields"];
+//        }
 
     }
     @catch (NSException *exception) {
@@ -65,8 +81,8 @@
         //            groups = [[NSMutableArray alloc] init];
         //        }
         
-        groups = [NSMutableArray arrayWithArray:groupsList];
-        if ([groups count] > 0) {
+        requests = [NSMutableArray arrayWithArray:groupsList];
+        if ([requests count] > 0) {
             [self.groupsTableView reloadData];
         }
     }
@@ -77,7 +93,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return groups.count;
+    return requests.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -85,25 +101,28 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
-    cell.textLabel.text = [[groups objectAtIndex:indexPath.row] valueForKey:@"name"];
+    
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ send request",[[requests objectAtIndex:indexPath.row] valueForKey:@"Sender"]];
+//    cell.detailTextLabel.text = 
+    
     
     return cell;
 }
 
 #pragma mark - TableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self openGroupChat:indexPath.row];
+    [self openRequestChat:indexPath.row];
 }
 
 #pragma mark - open chat with selected user
-- (void) openGroupChat:(NSInteger) groupIndex
+- (void) openRequestChat:(NSInteger) groupIndex
 {
-    PFObject *group = [groups objectAtIndex:groupIndex];
-    NSString *groupId = group.objectId;
+    PFObject *request = [requests objectAtIndex:groupIndex];
+    NSString *requestId = request.objectId;
     
-    [[ParseManager getInstance] createMessageItemForUser:[PFUser currentUser] WithGroupId:groupId andDescription:[group objectForKey:@"name"]];
+    [[ParseManager getInstance] createMessageItemForUser:[PFUser currentUser] WithGroupId:requestId andDescription:[request objectForKey:@"name"]];
     
-    ChatView *chatView = [[ChatView alloc] initWith:groupId];
+    ChatView *chatView = [[ChatView alloc] initWith:requestId];
     chatView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:chatView animated:YES];
 }
@@ -143,7 +162,7 @@
     if (error) {
         [[Utility getInstance] showAlertMessage:[[error userInfo] objectForKey:@"error"]];
     }else{
-        [self loadGroups];
+        [self loadRequests];
     }
 }
 

@@ -9,7 +9,7 @@
 #import "HomeViewController.h"
 #import <Parse/Parse.h>
 #import "utilities.h"
-
+#import "ParseManager.h"
 @interface HomeViewController ()
 
 @end
@@ -30,6 +30,8 @@
     [self setUserTrackingMode];
     
     [self.location_manager startUpdatingLocation];
+    
+    [self localeUpdating];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -75,7 +77,13 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
     NSLog(@"%@", [locations lastObject]);
+    
 }
 
+#pragma mark - update to server
+- (void) localeUpdating
+{
+    
+}
 
 @end

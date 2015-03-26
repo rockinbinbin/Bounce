@@ -27,6 +27,9 @@
     self.UserToGroupsRelation = [[PFUser currentUser] objectForKey:@"UserToGroupsRelation"];
     
     
+    //
+    self.groupUsers = [self.Group objectForKey:@"groupUsers"];
+    
     /* finally return the object */
     return self;
 }

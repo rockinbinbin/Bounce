@@ -15,6 +15,7 @@
 @property (nonatomic, strong) PFObject *Group;
 @property (nonatomic, strong) PFRelation *groupsRelation;
 @property (nonatomic, strong) PFRelation *UserToGroupsRelation;
+@property (nonatomic, strong) PFRelation *groupUsers;
 @property (nonatomic, strong) PFUser *currentUser;
 
 - (id) init;

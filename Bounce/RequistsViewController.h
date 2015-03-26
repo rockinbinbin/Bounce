@@ -10,7 +10,7 @@
 #import "Utility.h"
 #import "ParseManager.h"
 
-@interface GroupsListViewController : UIViewController<ParseManagerLoadingGroupsDelegate, ParseManagerAddGroupDelegate>
+@interface RequistsViewController : UIViewController<ParseManagerLoadingGroupsDelegate, ParseManagerAddGroupDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *groupsTableView;
 
 @end

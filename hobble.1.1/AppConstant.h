@@ -46,7 +46,7 @@
 #define		PF_CHAT_VIDEO						@"video"				//	File
 #define		PF_CHAT_CREATEDAT					@"createdAt"			//	Date
 //-----------------------------------------------------------------------
-#define		PF_GROUPS_CLASS_NAME				@"Groups"				//	Class name
+#define		PF_GROUPS_CLASS_NAME				@"Group"				//	Class name
 #define		PF_GROUPS_NAME						@"name"					//	String
 //-----------------------------------------------------------------------
 #define		PF_MESSAGES_CLASS_NAME				@"Messages"				//	Class name

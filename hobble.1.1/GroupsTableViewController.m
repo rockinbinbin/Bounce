@@ -167,7 +167,7 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
-    cell.textLabel.text = [[groups objectAtIndex:indexPath.row] valueForKey:@"name"];
+    cell.textLabel.text = [[groups objectAtIndex:indexPath.row] valueForKey:@"groupName"];
     
     return cell;
 }

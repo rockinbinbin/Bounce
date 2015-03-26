@@ -30,6 +30,11 @@
 - (void) loadAllGroups;
 // Add Chat group
 - (void) addChatGroup:(NSString*) groupName;
+// Request
+- (void) createrequestToGroups:(NSArray *) selectedGroups andGender:(NSString *)gender  withinTime:(NSInteger)timeAllocated andInRadius:(NSInteger) radius;
+// Append users to group
+- (void) addListOfUsers:(NSArray *) users toGroup:(PFObject *) group;
+
 
 @end
 
