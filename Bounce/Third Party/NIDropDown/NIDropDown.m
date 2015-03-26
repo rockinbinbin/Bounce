@@ -41,10 +41,10 @@
             self.layer.shadowOffset = CGSizeMake(-5, 5);
         }
         
-        self.layer.masksToBounds = NO;
-        self.layer.cornerRadius = 8;
-        self.layer.shadowRadius = 5;
-        self.layer.shadowOpacity = 0.5;
+//        self.layer.masksToBounds = NO;
+//        self.layer.cornerRadius = 8;
+//        self.layer.shadowRadius = 5;
+//        self.layer.shadowOpacity = 0.5;
         
         table = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, btn.size.width, 0)];
         table.delegate = self;
@@ -92,7 +92,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.list count];
+    return 2;
 }
 
 
@@ -105,27 +105,19 @@
         cell.textLabel.font = [UIFont systemFontOfSize:15];
         cell.textLabel.textAlignment = UITextAlignmentCenter;
     }
-    if ([self.imageList count] == [self.list count]) {
-        cell.textLabel.text =[list objectAtIndex:indexPath.row];
-        cell.imageView.image = [imageList objectAtIndex:indexPath.row];
-    } else if ([self.imageList count] > [self.list count]) {
-        cell.textLabel.text =[list objectAtIndex:indexPath.row];
-        if (indexPath.row < [imageList count]) {
-            cell.imageView.image = [imageList objectAtIndex:indexPath.row];
-        }
-    } else if ([self.imageList count] < [self.list count]) {
-        cell.textLabel.text =[list objectAtIndex:indexPath.row];
-        if (indexPath.row < [imageList count]) {
-            cell.imageView.image = [imageList objectAtIndex:indexPath.row];
-        }
+
+    if (indexPath.row == 0) {
+        cell.textLabel.text = @"Male";
     }
-    
+    else{
+        cell.textLabel.text = @"Female";
+    }
     cell.textLabel.textColor = [UIColor whiteColor];
     
     UIView * v = [[UIView alloc] init];
     v.backgroundColor = [UIColor grayColor];
     cell.selectedBackgroundView = v;
-    
+
     return cell;
 }
 
