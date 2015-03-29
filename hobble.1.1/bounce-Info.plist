@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Hobble</string>
+	<string>Bounce</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIdentifier</key>
@@ -37,12 +37,12 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb515523265245164</string>
+				<string>fb796457337103436</string>
 			</array>
 		</dict>
 	</array>
 	<key>FacebookAppID</key>
-	<string>515523265245164</string>
+	<string>796457337103436</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

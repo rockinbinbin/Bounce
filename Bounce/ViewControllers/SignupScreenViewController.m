@@ -25,6 +25,7 @@
     self.RegisterButton.backgroundColor = [UIColor colorWithRed:120.0/250.0 green:175.0/250.0 blue:212.0/250.0 alpha:1.0];
     self.view.backgroundColor = [UIColor colorWithRed:230.0/250.0 green:89.0/250.0 blue:89.0/250.0 alpha:1.0];
     self.backButton.backgroundColor = [UIColor whiteColor];
+    self.facebookLogin.backgroundColor = [UIColor colorWithRed:81.0/250.0 green:117.0/250.0 blue:195.0/250.0 alpha:1.0];
 
     [self.backButton setTitleColor:[UIColor colorWithRed:230.0/250.0 green:89.0/250.0 blue:89.0/250.0 alpha:1.0] forState:UIControlStateNormal];
     self.backButton.layer.cornerRadius = 6; // this value vary as per your desire
@@ -104,24 +105,23 @@
 - (IBAction)facebookSignin:(id)sender {
     [ProgressHUD show:@"Signing in..." Interaction:NO];
     
+    [PFUser logOut];
     [PFFacebookUtils logInWithPermissions:@[@"public_profile", @"email", @"user_friends"] block:^(PFUser *user, NSError *error)
      {
          if (user != nil)
          {
-             if (user[PF_USER_FACEBOOKID] == nil)
+             if (user[PF_USER_FACEBOOKID] == nil) // Not signed in facebook
              {
                  [self requestFacebook:user];
-                 //[self performSegueWithIdentifier:@"SignUpToMain" sender:self];
              }
              else {
-                 
-                 [self userLoggedIn:user];
-                 //[self performSegueWithIdentifier:@"SignUpToMain" sender:self];
+                 [self userLoggedIn:user]; // Signed in facebook
              }
          }
-         else [ProgressHUD showError:error.userInfo[@"error"]];
+         else {
+             [ProgressHUD showError:error.userInfo[@"error"]];
+         }
      }];
-    
 }
 
 - (void)requestFacebook:(PFUser *)user   {
@@ -192,8 +192,11 @@
 
 - (void)userLoggedIn:(PFUser *)user   {
     ParsePushUserAssign();
-    [ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome back %@!", user[PF_USER_FULLNAME]]];
+    [ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome %@!", user[PF_USER_FULLNAME]]];
     [self dismissViewControllerAnimated:YES completion:nil];
+    HomeScreenViewController* homeScreenViewController = [[HomeScreenViewController alloc] initWithNibName:@"HomeScreenViewController" bundle:nil];
+    [self.navigationController pushViewController:homeScreenViewController animated:YES];
+
 }
 
 // Logged-in user experience -- THIS DOESN'T WORK?

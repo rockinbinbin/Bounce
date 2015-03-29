@@ -10,15 +10,47 @@
 	<string>bounce</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>2CCA50D9C59B0DF3EAC1916AC312B31B6EE02015</key>
+		<string>git://github.com/facebook/xctool.git</string>
+		<key>38C2A0D4F62B675E8C16C8BC1437C7753846C8AC</key>
+		<string>git://github.com/AliSoftware/OHHTTPStubs.git</string>
+		<key>542E5EAD47EA299C9005C3138923F693160B998F</key>
+		<string>git://github.com/facebook/ios-snapshot-test-case.git</string>
+		<key>61C4B9E3B61282127C102C87B46B8CDE985974AE</key>
+		<string>git://github.com/BoltsFramework/Bolts-iOS.git</string>
 		<key>98CDAA4DAE5E8EA446152A66B066143AEBBA8E6B</key>
 		<string>https://github.com/rockinbinbin/hobble.1.1.git</string>
+		<key>A20D666FF4B08EFE53F147818C2D4D17E2242912</key>
+		<string>git://github.com/facebook/facebook-ios-sdk.git</string>
+		<key>DD20A1A48C66B5213E0FEBB87A95EF51D6C6F3E8</key>
+		<string>https://github.com/AFNetworking/AFNetworking.git</string>
+		<key>E4BCE3AE6B24E41B9BCE312FF3B0B6CD0B8B8025</key>
+		<string>git://github.com/erikdoe/ocmock</string>
+		<key>F851E1D8A348ED6D1513B00F69F61CD978F43008</key>
+		<string>git://github.com/tomaz/appledoc.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>bounce.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>2CCA50D9C59B0DF3EAC1916AC312B31B6EE02015</key>
+		<string>../../../Bounce/facebook-ios-sdk/vendor/xctool</string>
+		<key>38C2A0D4F62B675E8C16C8BC1437C7753846C8AC</key>
+		<string>../../../Bounce/facebook-ios-sdk/vendor/OHHTTPStubs</string>
+		<key>542E5EAD47EA299C9005C3138923F693160B998F</key>
+		<string>../../../Bounce/facebook-ios-sdk/vendor/ios-snapshot-test-case</string>
+		<key>61C4B9E3B61282127C102C87B46B8CDE985974AE</key>
+		<string>../../../Bounce/facebook-ios-sdk/Bolts-IOS</string>
 		<key>98CDAA4DAE5E8EA446152A66B066143AEBBA8E6B</key>
 		<string>../..</string>
+		<key>A20D666FF4B08EFE53F147818C2D4D17E2242912</key>
+		<string>../../../Bounce/facebook-ios-sdk</string>
+		<key>DD20A1A48C66B5213E0FEBB87A95EF51D6C6F3E8</key>
+		<string>../../../Bounce/facebook-ios-sdk/vendor/OHHTTPStubs/OHHTTPStubs/UnitTests/AFNetworking</string>
+		<key>E4BCE3AE6B24E41B9BCE312FF3B0B6CD0B8B8025</key>
+		<string>../../../Bounce/facebook-ios-sdk/vendor/OCMock</string>
+		<key>F851E1D8A348ED6D1513B00F69F61CD978F43008</key>
+		<string>../../../Bounce/facebook-ios-sdk/vendor/appledoc</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/rockinbinbin/hobble.1.1.git</string>
@@ -32,9 +64,73 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>DD20A1A48C66B5213E0FEBB87A95EF51D6C6F3E8</string>
+			<key>IDESourceControlWCCName</key>
+			<string>AFNetworking</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F851E1D8A348ED6D1513B00F69F61CD978F43008</string>
+			<key>IDESourceControlWCCName</key>
+			<string>appledoc</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>61C4B9E3B61282127C102C87B46B8CDE985974AE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Bolts-IOS</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>A20D666FF4B08EFE53F147818C2D4D17E2242912</string>
+			<key>IDESourceControlWCCName</key>
+			<string>facebook-ios-sdk</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>98CDAA4DAE5E8EA446152A66B066143AEBBA8E6B</string>
 			<key>IDESourceControlWCCName</key>
 			<string>hobble.1.1</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>542E5EAD47EA299C9005C3138923F693160B998F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ios-snapshot-test-case</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E4BCE3AE6B24E41B9BCE312FF3B0B6CD0B8B8025</string>
+			<key>IDESourceControlWCCName</key>
+			<string>OCMock</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>38C2A0D4F62B675E8C16C8BC1437C7753846C8AC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>OHHTTPStubs</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2CCA50D9C59B0DF3EAC1916AC312B31B6EE02015</string>
+			<key>IDESourceControlWCCName</key>
+			<string>xctool</string>
 		</dict>
 	</array>
 </dict>

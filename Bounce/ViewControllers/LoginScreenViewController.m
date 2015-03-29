@@ -12,6 +12,9 @@
 #import "HomeScreenViewController.h"
 #import "Utility.h"
 
+#import <FacebookSDK/FacebookSDK.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 @interface LoginScreenViewController ()
 
 @end
@@ -104,6 +107,7 @@
 - (IBAction)facebookLogin:(id)sender {
     [ProgressHUD show:@"Logging in..." Interaction:NO];
     
+    [PFUser logOut];
     [PFFacebookUtils logInWithPermissions:@[@"public_profile", @"email", @"user_friends"] block:^(PFUser *user, NSError *error)
      {
          if (user != nil)
@@ -111,14 +115,14 @@
              if (user[PF_USER_FACEBOOKID] == nil) // Not signed in facebook
              {
                  [self requestFacebook:user];
-                 //[self performSegueWithIdentifier:@"LoginToMain" sender:self];
              }
              else {
                  [self userLoggedIn:user]; // Signed in facebook
-                 //[self performSegueWithIdentifier:@"LoginToMain" sender:self];
              }
          }
-         else [ProgressHUD showError:error.userInfo[@"error"]];
+         else {
+             [ProgressHUD showError:error.userInfo[@"error"]];
+         }
      }];
 }
 
@@ -158,13 +162,19 @@
            PFFile *filePicture = [PFFile fileWithName:@"picture.jpg" data:UIImageJPEGRepresentation(image, 0.6)];
          [filePicture saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
           {
-              if (error != nil) [ProgressHUD showError:error.userInfo[@"error"]];
+              if (error != nil) {
+                  [ProgressHUD showError:error.userInfo[@"error"]];
+              }
           }];
            if (image.size.width > 30) image = ResizeImage(image, 30, 30);
            PFFile *fileThumbnail = [PFFile fileWithName:@"thumbnail.jpg" data:UIImageJPEGRepresentation(image, 0.6)];
          [fileThumbnail saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
           {
-              if (error != nil) [ProgressHUD showError:error.userInfo[@"error"]];
+              if (error != nil)
+              {
+                  [ProgressHUD showError:error.userInfo[@"error"]];
+              }
+              
           }];
          user[PF_USER_EMAILCOPY] = userData[@"email"];
          user[PF_USER_USERNAME] = userData[@"name"];

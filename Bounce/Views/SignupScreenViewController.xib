@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignupScreenViewController">
@@ -9,6 +9,7 @@
                 <outlet property="RegisterButton" destination="RLR-9c-CSV" id="8wo-11-7Rf"/>
                 <outlet property="backButton" destination="dft-G2-CPH" id="k9c-09-Fmc"/>
                 <outlet property="facebookIconImageView" destination="ozq-Ft-5Yy" id="IYt-me-gf6"/>
+                <outlet property="facebookLogin" destination="xzn-Bm-AMG" id="Olw-bd-zNq"/>
                 <outlet property="passwordField" destination="iBw-Y9-0sZ" id="DEZ-Wx-Cxd"/>
                 <outlet property="usernameField" destination="BKd-an-pgb" id="sFh-aR-s6N"/>
                 <outlet property="view" destination="Kgf-s4-caL" id="NhZ-1P-VG0"/>
@@ -94,7 +95,7 @@
                         <constraint firstAttribute="width" constant="60" id="dBs-AF-hvF"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QSK-oI-wUa" userLabel="left line label">
@@ -105,7 +106,7 @@
                         <constraint firstAttribute="height" constant="2" id="hKJ-3b-GIt"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="o" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nlk-S1-Z6i">

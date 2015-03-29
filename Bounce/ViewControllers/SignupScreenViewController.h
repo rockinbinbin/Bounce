@@ -38,6 +38,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *GenderTextField;
 @property (strong, nonatomic) IBOutlet UIButton *RegisterButton;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
+@property (weak, nonatomic) IBOutlet UIButton *facebookLogin;
 @property (weak, nonatomic) IBOutlet UIImageView *facebookIconImageView;
 - (IBAction)backButtonClicked:(id)sender;
 - (IBAction)facebookSignin:(id)sender;
