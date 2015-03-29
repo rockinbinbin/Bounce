@@ -22,7 +22,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.LoginButton.backgroundColor = [UIColor colorWithRed:120.0/250.0 green:175.0/250.0 blue:212.0/250.0 alpha:1.0];
+        self.facebookLogin.backgroundColor = [UIColor colorWithRed:81.0/250.0 green:117.0/250.0 blue:195.0/250.0 alpha:1.0];
     self.view.backgroundColor = [UIColor colorWithRed:230.0/250.0 green:89.0/250.0 blue:89.0/250.0 alpha:1.0];
+    self.backButton.backgroundColor = [UIColor whiteColor];
+    
+    [self.backButton setTitleColor:[UIColor colorWithRed:230.0/250.0 green:89.0/250.0 blue:89.0/250.0 alpha:1.0] forState:UIControlStateNormal];
+    self.backButton.layer.cornerRadius = 6; // this value vary as per your desire
+    self.backButton.clipsToBounds = YES;
 }
 
 // i want this function to execute each time (to bypass login if already logged in)
@@ -33,12 +39,20 @@
     // hides keyboard when user hits background
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     [self.view addGestureRecognizer:gestureRecognizer];
+
+    UITapGestureRecognizer *facebookGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(facebookClicked)];
+    self.facebookIconImageView.userInteractionEnabled = YES;
+    [self.facebookIconImageView addGestureRecognizer:facebookGestureRecognizer];
 }
 
 - (void) hideKeyboard // when user hits background
 {
     [self.usernameField resignFirstResponder];
     [self.passwordField resignFirstResponder];
+}
+
+- (void) facebookClicked{
+    [self facebookLogin:nil];
 }
 
 - (BOOL) textFieldShouldReturn: (UITextField *)textField {
@@ -201,5 +215,8 @@
     SignUpViewController *signUpController = [[SignUpViewController alloc] init];
     [self.navigationController pushViewController:signUpController animated:YES];
     
+}
+- (IBAction)backButtonClicked:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end

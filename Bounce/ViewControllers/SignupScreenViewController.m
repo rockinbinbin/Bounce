@@ -24,14 +24,23 @@
     [super viewDidLoad];
     self.RegisterButton.backgroundColor = [UIColor colorWithRed:120.0/250.0 green:175.0/250.0 blue:212.0/250.0 alpha:1.0];
     self.view.backgroundColor = [UIColor colorWithRed:230.0/250.0 green:89.0/250.0 blue:89.0/250.0 alpha:1.0];
+    self.backButton.backgroundColor = [UIColor whiteColor];
+
+    [self.backButton setTitleColor:[UIColor colorWithRed:230.0/250.0 green:89.0/250.0 blue:89.0/250.0 alpha:1.0] forState:UIControlStateNormal];
+    self.backButton.layer.cornerRadius = 6; // this value vary as per your desire
+    self.backButton.clipsToBounds = YES;
 
     // hides keyboard when user hits background
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     [self.view addGestureRecognizer:gestureRecognizer];
+    
+    UITapGestureRecognizer *facebookGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(facebookClicked)];
+    self.facebookIconImageView.userInteractionEnabled = YES;
+    [self.facebookIconImageView addGestureRecognizer:facebookGestureRecognizer];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
 }
 
@@ -45,6 +54,9 @@
     [self.passwordField resignFirstResponder];
 }
 
+- (void) facebookClicked{
+    [self facebookSignin:nil];
+}
 // hides keyboard when user clicks return
 - (BOOL) textFieldShouldReturn: (UITextField *)textField {
     [textField resignFirstResponder];
@@ -61,7 +73,6 @@
     
     NSString *username = [self.usernameField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString *password = [self.passwordField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    //    NSString *gender = [self.GenderTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     PFQuery *query = [PFUser query];
     [query whereKey:@"username" equalTo:username];
@@ -71,12 +82,9 @@
             [[Utility getInstance] showAlertWithMessage:@"This user handle seems to be taken. Please choose another!" andTitle:@"Oops!"];
         }
         else {
-            if ([username length] == 0 || [password length] == 0){ //|| [gender length] == 0)
+            if ([username length] == 0 || [password length] == 0){
                 [[Utility getInstance] showAlertWithMessage:@"Make sure you enter a username, password!" andTitle:@"Oops!"];
             }
-//            else if (![gender isEqualToString:@"Female"] && ![gender isEqualToString: @"female"] && ![gender isEqualToString:@"Male"] && ![gender isEqualToString:@"male"]) {
-//                [[Utility getInstance] showAlertWithMessage:@"Please enter 'Male' or 'Female' for gender." andTitle:@"Oops!"];
-//            }
             else if (![username hasPrefix:@"@"]) {
                 [[Utility getInstance] showAlertWithMessage:@"User handles must begin with an "@" symbol." andTitle:@"Oops!"];
             }
@@ -196,5 +204,8 @@
 }
 
 
+- (IBAction)backButtonClicked:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end
 

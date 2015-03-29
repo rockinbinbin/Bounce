@@ -36,9 +36,13 @@
 @property (strong, nonatomic) IBOutlet UITextField *passwordField;
 @property (strong, nonatomic) IBOutlet UIButton *LoginButton;
 @property (strong, nonatomic) IBOutlet UIButton *RegisterButton;
+@property (weak, nonatomic) IBOutlet UIButton *facebookLogin;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
+@property (weak, nonatomic) IBOutlet UIImageView *facebookIconImageView;
 - (IBAction)loginButton:(id)sender;
 - (IBAction)facebookLogin:(id)sender;
 - (IBAction)signUpButtonClicked:(id)sender;
+- (IBAction)backButtonClicked:(id)sender;
 @end
 
 
