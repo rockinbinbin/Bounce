@@ -8,6 +8,9 @@
 
 #import "GenderScreenViewController.h"
 #import "HomeScreenViewController.h"
+#import "AppConstant.h"
+#import "Utility.h"
+#import "ProgressHUD.h"
 
 @interface GenderScreenViewController ()
 
@@ -25,6 +28,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(incomingNotification:) name:@"SelectedStringNotification" object:nil];
+
     // Do any additional setup after loading the view from its nib.
     _btnSelect.backgroundColor = [UIColor whiteColor];
     self.gotItButton.backgroundColor = [UIColor colorWithRed:120.0/250.0 green:175.0/250.0 blue:212.0/250.0 alpha:1.0];
@@ -36,6 +41,11 @@
     downArrow.contentMode=UIViewContentModeScaleAspectFill;
     [self.btnSelect addSubview:downArrow];
     
+}
+
+- (void) incomingNotification:(NSNotification *)notification{
+    NSString *genderSent = [notification object];
+    self.gender = genderSent;
 }
 
 - (void)viewDidUnload {
@@ -52,7 +62,7 @@
     NSArray * arr = [[NSArray alloc] init];
     arr = [NSArray arrayWithObjects:@"Male", @"Female",nil];
     if(_dropDown == nil) {
-        CGFloat f = 200;
+        CGFloat f = 80;
         _dropDown = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"down"];
         _dropDown.delegate = self;
     }
@@ -64,6 +74,34 @@
 
 - (void) niDropDownDelegateMethod: (NIDropDown *) sender {
     [self rel];
+}
+
+- (IBAction)gotItButtonClicked:(id)sender {
+    PFUser* signUpUser = self.currentUser;
+    if (!(self.gender == nil || self.gender.length == 0)) {
+        signUpUser[@"Gender"] = self.gender;
+        [signUpUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (!error) {
+                NSLog(@"Signup is performed successfully");
+                [[PFInstallation currentInstallation] setObject:[PFUser currentUser] forKey:@"user"];
+                [[PFInstallation currentInstallation] setObject:@"true" forKey:@"State"];
+                [[PFInstallation currentInstallation] saveEventually];
+                //                        [self.navigationController popToRootViewControllerAnimated:YES];
+                [ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome %@!", signUpUser[PF_USER_FULLNAME]]];
+                [self dismissViewControllerAnimated:YES completion:nil];
+                
+                HomeScreenViewController* homeScreenViewController = [[HomeScreenViewController alloc] initWithNibName:@"HomeScreenViewController" bundle:nil];
+                [self.navigationController pushViewController:homeScreenViewController animated:YES];
+
+            } else {
+                [[Utility getInstance] showAlertWithMessage:[error.userInfo objectForKey:@"error"] andTitle:@"Sorry!"];
+            }
+        }];
+    }
+    else{
+        [[Utility getInstance] showAlertWithMessage:@"Make sure you selected the gender!" andTitle:@"Oops!"];
+    }
+
 }
 
 -(void)rel{

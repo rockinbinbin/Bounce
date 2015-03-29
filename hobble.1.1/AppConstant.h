@@ -33,6 +33,7 @@
 #define		PF_USER_EMAIL						@"email"				//	String
 #define		PF_USER_EMAILCOPY					@"emailCopy"			//	String
 #define		PF_USER_FULLNAME					@"username"				//	String
+#define		PF_USER_FULLNAME_KEY                @"fullname"				//	String
 #define		PF_USER_FULLNAME_LOWER				@"fullname_lower"		//	String
 #define		PF_USER_FACEBOOKID					@"facebookId"			//	String
 #define		PF_USER_PICTURE						@"picture"				//	File

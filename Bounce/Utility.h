@@ -18,4 +18,5 @@
 - (void) hideProgressHud;
 - (BOOL) checkReachabilityAndDisplayErrorMessage;
 - (void)showAlertMessage:(NSString *)message;
+-(void) showAlertWithMessage:(NSString*) message andTitle:(NSString*)title;
 @end

@@ -28,15 +28,12 @@
     self.delegate = self;
     self.dataSource = self;
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
-//    self.transitionStyle = UIPageViewControllerTransitionStyle.UIPageViewControllerTransitionStyleScroll;
-    
     Intro1IDViewController* intro1IDViewController = [[Intro1IDViewController alloc] initWithNibName:@"Intro1IDViewController" bundle:nil];
     Intro2IDViewController* intro2IDViewController = [[Intro2IDViewController alloc] initWithNibName:@"Intro2IDViewController" bundle:nil];
     Intro3IDViewController* intro3IDViewController = [[Intro3IDViewController alloc] initWithNibName:@"Intro3IDViewController" bundle:nil];
     IntroLoginScreenViewController* introLoginScreenViewController = [[IntroLoginScreenViewController alloc] initWithNibName:@"IntroLoginScreenViewController" bundle:nil];
 
     myViewControllers = @[intro1IDViewController,intro2IDViewController,intro3IDViewController,introLoginScreenViewController];
-//    [self initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationVertical options:nil];
 
     [self setViewControllers:@[intro1IDViewController]
                    direction:UIPageViewControllerNavigationDirectionForward

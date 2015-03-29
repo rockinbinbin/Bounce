@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Intro1IDViewController">
+            <connections>
+                <outlet property="backgroundImageView" destination="XSN-AO-4hr" id="djA-EF-YXV"/>
+                <outlet property="currentIndexPageControl" destination="OOl-bT-LdY" id="nQg-JM-tdb"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XSN-AO-4hr">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                </imageView>
+                <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="OOl-bT-LdY">
+                    <rect key="frame" x="261" y="520" width="80" height="40"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="4o7-Hc-Atc"/>
+                        <constraint firstAttribute="height" constant="40" id="SID-jN-s0G"/>
+                    </constraints>
+                    <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="currentPageIndicatorTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </pageControl>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="OOl-bT-LdY" secondAttribute="bottom" constant="40" id="49h-4N-bDb"/>
+                <constraint firstAttribute="bottom" secondItem="XSN-AO-4hr" secondAttribute="bottom" id="Ayp-b9-YHT"/>
+                <constraint firstAttribute="trailing" secondItem="XSN-AO-4hr" secondAttribute="trailing" id="CsS-zp-8t5"/>
+                <constraint firstItem="XSN-AO-4hr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="DJo-R6-bJf"/>
+                <constraint firstAttribute="centerX" secondItem="OOl-bT-LdY" secondAttribute="centerX" constant="-0.5" id="Dgs-QV-2up"/>
+                <constraint firstItem="XSN-AO-4hr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="L4p-P2-M1y"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

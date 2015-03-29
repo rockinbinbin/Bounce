@@ -103,16 +103,12 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.textLabel.font = [UIFont systemFontOfSize:15];
-        cell.textLabel.textAlignment = UITextAlignmentCenter;
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
     }
-
-    if (indexPath.row == 0) {
-        cell.textLabel.text = @"Male";
-    }
-    else{
-        cell.textLabel.text = @"Female";
-    }
-    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.textLabel.text = list[indexPath.row];
+    cell.backgroundColor = [UIColor whiteColor];
+    cell.textLabel.text =[list objectAtIndex:indexPath.row];
+    cell.textLabel.textColor = [UIColor grayColor];
     
     UIView * v = [[UIView alloc] init];
     v.backgroundColor = [UIColor grayColor];
@@ -125,6 +121,9 @@
     [self hideDropDown:btnSender];
     
     UITableViewCell *c = [tableView cellForRowAtIndexPath:indexPath];
+    self.selectedString = [NSString stringWithString:[list objectAtIndex:indexPath.row]];
+    [[NSNotificationCenter defaultCenter] postNotificationName: @"SelectedStringNotification" object: self.selectedString];
+
     [btnSender setTitle:c.textLabel.text forState:UIControlStateNormal];
     
     for (UIView *subview in btnSender.subviews) {

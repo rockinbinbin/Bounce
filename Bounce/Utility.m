@@ -74,4 +74,11 @@ static Utility *sharedUtility = nil;
     @catch (NSException *exception) {
     }
 }
+
+-(void) showAlertWithMessage:(NSString*) message andTitle:(NSString*)title{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
+                                                        message:message
+                                                       delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alertView show];
+}
 @end

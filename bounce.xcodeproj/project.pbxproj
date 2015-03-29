@@ -158,62 +158,62 @@
 		00CEE4271994493A00F40C12 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4261994493A00F40C12 /* CoreLocation.framework */; };
 		28F13A521A6C75A90069EBA4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F13A511A6C75A90069EBA4 /* MapKit.framework */; };
 		28F13A5B1A6C7F7B0069EBA4 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F13A5A1A6C7F7B0069EBA4 /* MapViewController.m */; };
-		672F97361AC479D400CFBC28 /* SelectGroupsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 672F97341AC479D400CFBC28 /* SelectGroupsTableViewController.m */; };
-		672F97371AC479D400CFBC28 /* SelectGroupsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 672F97351AC479D400CFBC28 /* SelectGroupsTableViewController.xib */; };
 		6791817D1AC0057D00D0474C /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6791817C1AC0057D00D0474C /* FacebookSDK.framework */; };
-		CA39AC5B1AC476A700C2F4E1 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC0C1AC476A700C2F4E1 /* Contents.json */; };
-		CA39AC5C1AC476A700C2F4E1 /* LandingView.png in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC0D1AC476A700C2F4E1 /* LandingView.png */; };
-		CA39AC5D1AC476A700C2F4E1 /* LandingView@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC0E1AC476A700C2F4E1 /* LandingView@2x.png */; };
-		CA39AC5E1AC476A700C2F4E1 /* LandingView_iPhone5.png in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC0F1AC476A700C2F4E1 /* LandingView_iPhone5.png */; };
-		CA39AC5F1AC476A700C2F4E1 /* LandingView_iPhone6.png in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC101AC476A700C2F4E1 /* LandingView_iPhone6.png */; };
-		CA39AC601AC476A700C2F4E1 /* LandingView_iPhone6plus.png in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC111AC476A700C2F4E1 /* LandingView_iPhone6plus.png */; };
-		CA39AC611AC476A700C2F4E1 /* Tutorial-1.png in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC131AC476A700C2F4E1 /* Tutorial-1.png */; };
-		CA39AC621AC476A700C2F4E1 /* Tutorial-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC141AC476A700C2F4E1 /* Tutorial-1@2x.png */; };
-		CA39AC631AC476A700C2F4E1 /* Tutorial-1_iPhone5.png in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC151AC476A700C2F4E1 /* Tutorial-1_iPhone5.png */; };
-		CA39AC641AC476A700C2F4E1 /* Tutorial-1_iPhone6.png in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC161AC476A700C2F4E1 /* Tutorial-1_iPhone6.png */; };
-		CA39AC651AC476A700C2F4E1 /* Tutorial-1_iPhone6plus.png in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC171AC476A700C2F4E1 /* Tutorial-1_iPhone6plus.png */; };
-		CA39AC661AC476A700C2F4E1 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC191AC476A700C2F4E1 /* Contents.json */; };
-		CA39AC671AC476A700C2F4E1 /* Tutorial-2.png in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC1A1AC476A700C2F4E1 /* Tutorial-2.png */; };
-		CA39AC681AC476A700C2F4E1 /* Tutorial-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC1B1AC476A700C2F4E1 /* Tutorial-2@2x.png */; };
-		CA39AC691AC476A700C2F4E1 /* Tutorial-2_iPhone5.png in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC1C1AC476A700C2F4E1 /* Tutorial-2_iPhone5.png */; };
-		CA39AC6A1AC476A700C2F4E1 /* Tutorial-2_iPhone6.png in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC1D1AC476A700C2F4E1 /* Tutorial-2_iPhone6.png */; };
-		CA39AC6B1AC476A700C2F4E1 /* Tutorial-2_iPhone6plus.png in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC1E1AC476A700C2F4E1 /* Tutorial-2_iPhone6plus.png */; };
-		CA39AC6C1AC476A700C2F4E1 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC201AC476A700C2F4E1 /* Contents.json */; };
-		CA39AC6D1AC476A700C2F4E1 /* Tutorial-3.png in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC211AC476A700C2F4E1 /* Tutorial-3.png */; };
-		CA39AC6E1AC476A700C2F4E1 /* Tutorial-3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC221AC476A700C2F4E1 /* Tutorial-3@2x.png */; };
-		CA39AC6F1AC476A700C2F4E1 /* Tutorial-3_iPhone5.png in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC231AC476A700C2F4E1 /* Tutorial-3_iPhone5.png */; };
-		CA39AC701AC476A700C2F4E1 /* Tutorial-3_iPhone6.png in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC241AC476A700C2F4E1 /* Tutorial-3_iPhone6.png */; };
-		CA39AC711AC476A700C2F4E1 /* Tutorial-3_iPhone6plus.png in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC251AC476A700C2F4E1 /* Tutorial-3_iPhone6plus.png */; };
-		CA39AC721AC476A700C2F4E1 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CA39AC2A1AC476A700C2F4E1 /* MBProgressHUD.m */; };
-		CA39AC731AC476A700C2F4E1 /* ParseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA39AC2D1AC476A700C2F4E1 /* ParseManager.m */; };
-		CA39AC741AC476A700C2F4E1 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CA39AC301AC476A700C2F4E1 /* Reachability.m */; };
-		CA39AC751AC476A700C2F4E1 /* RequistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA39AC321AC476A700C2F4E1 /* RequistsViewController.m */; };
-		CA39AC761AC476A700C2F4E1 /* RequistsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC331AC476A700C2F4E1 /* RequistsViewController.xib */; };
-		CA39AC771AC476A700C2F4E1 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC341AC476A700C2F4E1 /* SignUpViewController.xib */; };
-		CA39AC781AC476A700C2F4E1 /* NIDropDown.m in Sources */ = {isa = PBXBuildFile; fileRef = CA39AC381AC476A700C2F4E1 /* NIDropDown.m */; };
-		CA39AC791AC476A700C2F4E1 /* UsersListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA39AC3A1AC476A700C2F4E1 /* UsersListViewController.m */; };
-		CA39AC7A1AC476A700C2F4E1 /* UsersListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC3B1AC476A700C2F4E1 /* UsersListViewController.xib */; };
-		CA39AC7B1AC476A700C2F4E1 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = CA39AC3D1AC476A700C2F4E1 /* Utility.m */; };
-		CA39AC7C1AC476A700C2F4E1 /* GenderScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA39AC401AC476A700C2F4E1 /* GenderScreenViewController.m */; };
-		CA39AC7D1AC476A700C2F4E1 /* GenderScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC411AC476A700C2F4E1 /* GenderScreenViewController.xib */; };
-		CA39AC7E1AC476A700C2F4E1 /* HomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA39AC431AC476A700C2F4E1 /* HomeScreenViewController.m */; };
-		CA39AC7F1AC476A700C2F4E1 /* HomeScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC441AC476A700C2F4E1 /* HomeScreenViewController.xib */; };
-		CA39AC801AC476A700C2F4E1 /* Intro1IDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA39AC461AC476A700C2F4E1 /* Intro1IDViewController.m */; };
-		CA39AC811AC476A700C2F4E1 /* Intro1IDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC471AC476A700C2F4E1 /* Intro1IDViewController.xib */; };
-		CA39AC821AC476A700C2F4E1 /* Intro2IDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA39AC491AC476A700C2F4E1 /* Intro2IDViewController.m */; };
-		CA39AC831AC476A700C2F4E1 /* Intro2IDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC4A1AC476A700C2F4E1 /* Intro2IDViewController.xib */; };
-		CA39AC841AC476A700C2F4E1 /* Intro3IDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA39AC4C1AC476A700C2F4E1 /* Intro3IDViewController.m */; };
-		CA39AC851AC476A700C2F4E1 /* Intro3IDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC4D1AC476A700C2F4E1 /* Intro3IDViewController.xib */; };
-		CA39AC861AC476A700C2F4E1 /* IntroLoginScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA39AC4F1AC476A700C2F4E1 /* IntroLoginScreenViewController.m */; };
-		CA39AC871AC476A700C2F4E1 /* IntroLoginScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC501AC476A700C2F4E1 /* IntroLoginScreenViewController.xib */; };
-		CA39AC881AC476A700C2F4E1 /* IntroPagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA39AC521AC476A700C2F4E1 /* IntroPagesViewController.m */; };
-		CA39AC891AC476A700C2F4E1 /* IntroPagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC531AC476A700C2F4E1 /* IntroPagesViewController.xib */; };
-		CA39AC8A1AC476A700C2F4E1 /* MessageScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA39AC561AC476A700C2F4E1 /* MessageScreenViewController.m */; };
-		CA39AC8B1AC476A700C2F4E1 /* MessageScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC571AC476A700C2F4E1 /* MessageScreenViewController.xib */; };
-		CA39AC8C1AC476A700C2F4E1 /* SignupScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA39AC591AC476A700C2F4E1 /* SignupScreenViewController.m */; };
-		CA39AC8D1AC476A700C2F4E1 /* SignupScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC5A1AC476A700C2F4E1 /* SignupScreenViewController.xib */; };
-		CA39AC901AC478A700C2F4E1 /* LoginScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA39AC8E1AC478A700C2F4E1 /* LoginScreenViewController.m */; };
-		CA39AC921AC478AE00C2F4E1 /* LoginScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA39AC911AC478AE00C2F4E1 /* LoginScreenViewController.xib */; };
+		CA3ABC151AC7E64100E1B5DE /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBC01AC7E64100E1B5DE /* Contents.json */; };
+		CA3ABC161AC7E64100E1B5DE /* LandingView.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBC11AC7E64100E1B5DE /* LandingView.png */; };
+		CA3ABC171AC7E64100E1B5DE /* LandingView@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBC21AC7E64100E1B5DE /* LandingView@2x.png */; };
+		CA3ABC181AC7E64100E1B5DE /* LandingView_iPhone5.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBC31AC7E64100E1B5DE /* LandingView_iPhone5.png */; };
+		CA3ABC191AC7E64100E1B5DE /* LandingView_iPhone6.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBC41AC7E64100E1B5DE /* LandingView_iPhone6.png */; };
+		CA3ABC1A1AC7E64100E1B5DE /* LandingView_iPhone6plus.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBC51AC7E64100E1B5DE /* LandingView_iPhone6plus.png */; };
+		CA3ABC1B1AC7E64100E1B5DE /* Tutorial-1.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBC71AC7E64100E1B5DE /* Tutorial-1.png */; };
+		CA3ABC1C1AC7E64100E1B5DE /* Tutorial-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBC81AC7E64100E1B5DE /* Tutorial-1@2x.png */; };
+		CA3ABC1D1AC7E64100E1B5DE /* Tutorial-1_iPhone5.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBC91AC7E64100E1B5DE /* Tutorial-1_iPhone5.png */; };
+		CA3ABC1E1AC7E64100E1B5DE /* Tutorial-1_iPhone6.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBCA1AC7E64100E1B5DE /* Tutorial-1_iPhone6.png */; };
+		CA3ABC1F1AC7E64100E1B5DE /* Tutorial-1_iPhone6plus.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBCB1AC7E64100E1B5DE /* Tutorial-1_iPhone6plus.png */; };
+		CA3ABC201AC7E64100E1B5DE /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBCD1AC7E64100E1B5DE /* Contents.json */; };
+		CA3ABC211AC7E64100E1B5DE /* Tutorial-2.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBCE1AC7E64100E1B5DE /* Tutorial-2.png */; };
+		CA3ABC221AC7E64100E1B5DE /* Tutorial-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBCF1AC7E64100E1B5DE /* Tutorial-2@2x.png */; };
+		CA3ABC231AC7E64100E1B5DE /* Tutorial-2_iPhone5.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBD01AC7E64100E1B5DE /* Tutorial-2_iPhone5.png */; };
+		CA3ABC241AC7E64100E1B5DE /* Tutorial-2_iPhone6.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBD11AC7E64100E1B5DE /* Tutorial-2_iPhone6.png */; };
+		CA3ABC251AC7E64100E1B5DE /* Tutorial-2_iPhone6plus.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBD21AC7E64100E1B5DE /* Tutorial-2_iPhone6plus.png */; };
+		CA3ABC261AC7E64100E1B5DE /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBD41AC7E64100E1B5DE /* Contents.json */; };
+		CA3ABC271AC7E64100E1B5DE /* Tutorial-3.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBD51AC7E64100E1B5DE /* Tutorial-3.png */; };
+		CA3ABC281AC7E64100E1B5DE /* Tutorial-3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBD61AC7E64100E1B5DE /* Tutorial-3@2x.png */; };
+		CA3ABC291AC7E64100E1B5DE /* Tutorial-3_iPhone5.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBD71AC7E64100E1B5DE /* Tutorial-3_iPhone5.png */; };
+		CA3ABC2A1AC7E64100E1B5DE /* Tutorial-3_iPhone6.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBD81AC7E64100E1B5DE /* Tutorial-3_iPhone6.png */; };
+		CA3ABC2B1AC7E64100E1B5DE /* Tutorial-3_iPhone6plus.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBD91AC7E64100E1B5DE /* Tutorial-3_iPhone6plus.png */; };
+		CA3ABC2C1AC7E64100E1B5DE /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3ABBDE1AC7E64100E1B5DE /* MBProgressHUD.m */; };
+		CA3ABC2D1AC7E64100E1B5DE /* ParseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3ABBE11AC7E64100E1B5DE /* ParseManager.m */; };
+		CA3ABC2E1AC7E64100E1B5DE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3ABBE41AC7E64100E1B5DE /* Reachability.m */; };
+		CA3ABC2F1AC7E64100E1B5DE /* RequistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3ABBE61AC7E64100E1B5DE /* RequistsViewController.m */; };
+		CA3ABC301AC7E64100E1B5DE /* RequistsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBE71AC7E64100E1B5DE /* RequistsViewController.xib */; };
+		CA3ABC311AC7E64100E1B5DE /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBE81AC7E64100E1B5DE /* SignUpViewController.xib */; };
+		CA3ABC321AC7E64100E1B5DE /* NIDropDown.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3ABBEC1AC7E64100E1B5DE /* NIDropDown.m */; };
+		CA3ABC331AC7E64100E1B5DE /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3ABBEE1AC7E64100E1B5DE /* Utility.m */; };
+		CA3ABC341AC7E64100E1B5DE /* GenderScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3ABBF11AC7E64100E1B5DE /* GenderScreenViewController.m */; };
+		CA3ABC351AC7E64100E1B5DE /* HomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3ABBF31AC7E64100E1B5DE /* HomeScreenViewController.m */; };
+		CA3ABC361AC7E64100E1B5DE /* Intro1IDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3ABBF51AC7E64100E1B5DE /* Intro1IDViewController.m */; };
+		CA3ABC371AC7E64100E1B5DE /* Intro2IDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3ABBF71AC7E64100E1B5DE /* Intro2IDViewController.m */; };
+		CA3ABC381AC7E64100E1B5DE /* Intro3IDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3ABBF91AC7E64100E1B5DE /* Intro3IDViewController.m */; };
+		CA3ABC391AC7E64100E1B5DE /* IntroLoginScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3ABBFB1AC7E64100E1B5DE /* IntroLoginScreenViewController.m */; };
+		CA3ABC3A1AC7E64100E1B5DE /* IntroPagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3ABBFD1AC7E64100E1B5DE /* IntroPagesViewController.m */; };
+		CA3ABC3B1AC7E64100E1B5DE /* LoginScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3ABBFF1AC7E64100E1B5DE /* LoginScreenViewController.m */; };
+		CA3ABC3C1AC7E64100E1B5DE /* MessageScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3ABC011AC7E64100E1B5DE /* MessageScreenViewController.m */; };
+		CA3ABC3D1AC7E64100E1B5DE /* SelectGroupsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3ABC031AC7E64100E1B5DE /* SelectGroupsTableViewController.m */; };
+		CA3ABC3E1AC7E64100E1B5DE /* SignupScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3ABC051AC7E64100E1B5DE /* SignupScreenViewController.m */; };
+		CA3ABC3F1AC7E64100E1B5DE /* UsersListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3ABC071AC7E64100E1B5DE /* UsersListViewController.m */; };
+		CA3ABC401AC7E64100E1B5DE /* GenderScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABC091AC7E64100E1B5DE /* GenderScreenViewController.xib */; };
+		CA3ABC411AC7E64100E1B5DE /* HomeScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABC0A1AC7E64100E1B5DE /* HomeScreenViewController.xib */; };
+		CA3ABC421AC7E64100E1B5DE /* Intro1IDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABC0B1AC7E64100E1B5DE /* Intro1IDViewController.xib */; };
+		CA3ABC431AC7E64100E1B5DE /* Intro2IDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABC0C1AC7E64100E1B5DE /* Intro2IDViewController.xib */; };
+		CA3ABC441AC7E64100E1B5DE /* Intro3IDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABC0D1AC7E64100E1B5DE /* Intro3IDViewController.xib */; };
+		CA3ABC451AC7E64100E1B5DE /* IntroLoginScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABC0E1AC7E64100E1B5DE /* IntroLoginScreenViewController.xib */; };
+		CA3ABC461AC7E64100E1B5DE /* IntroPagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABC0F1AC7E64100E1B5DE /* IntroPagesViewController.xib */; };
+		CA3ABC471AC7E64100E1B5DE /* LoginScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABC101AC7E64100E1B5DE /* LoginScreenViewController.xib */; };
+		CA3ABC481AC7E64100E1B5DE /* MessageScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABC111AC7E64100E1B5DE /* MessageScreenViewController.xib */; };
+		CA3ABC491AC7E64100E1B5DE /* SelectGroupsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABC121AC7E64100E1B5DE /* SelectGroupsTableViewController.xib */; };
+		CA3ABC4A1AC7E64100E1B5DE /* SignupScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABC131AC7E64100E1B5DE /* SignupScreenViewController.xib */; };
+		CA3ABC4B1AC7E64100E1B5DE /* UsersListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABC141AC7E64100E1B5DE /* UsersListViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -509,81 +509,81 @@
 		28F13A511A6C75A90069EBA4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		28F13A591A6C7F7B0069EBA4 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		28F13A5A1A6C7F7B0069EBA4 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
-		672F97331AC479D400CFBC28 /* SelectGroupsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectGroupsTableViewController.h; sourceTree = "<group>"; };
-		672F97341AC479D400CFBC28 /* SelectGroupsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectGroupsTableViewController.m; sourceTree = "<group>"; };
-		672F97351AC479D400CFBC28 /* SelectGroupsTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectGroupsTableViewController.xib; sourceTree = "<group>"; };
 		6791817C1AC0057D00D0474C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
-		CA39AC0C1AC476A700C2F4E1 /* Contents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
-		CA39AC0D1AC476A700C2F4E1 /* LandingView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LandingView.png; sourceTree = "<group>"; };
-		CA39AC0E1AC476A700C2F4E1 /* LandingView@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LandingView@2x.png"; sourceTree = "<group>"; };
-		CA39AC0F1AC476A700C2F4E1 /* LandingView_iPhone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LandingView_iPhone5.png; sourceTree = "<group>"; };
-		CA39AC101AC476A700C2F4E1 /* LandingView_iPhone6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LandingView_iPhone6.png; sourceTree = "<group>"; };
-		CA39AC111AC476A700C2F4E1 /* LandingView_iPhone6plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LandingView_iPhone6plus.png; sourceTree = "<group>"; };
-		CA39AC131AC476A700C2F4E1 /* Tutorial-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-1.png"; sourceTree = "<group>"; };
-		CA39AC141AC476A700C2F4E1 /* Tutorial-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-1@2x.png"; sourceTree = "<group>"; };
-		CA39AC151AC476A700C2F4E1 /* Tutorial-1_iPhone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-1_iPhone5.png"; sourceTree = "<group>"; };
-		CA39AC161AC476A700C2F4E1 /* Tutorial-1_iPhone6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-1_iPhone6.png"; sourceTree = "<group>"; };
-		CA39AC171AC476A700C2F4E1 /* Tutorial-1_iPhone6plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-1_iPhone6plus.png"; sourceTree = "<group>"; };
-		CA39AC191AC476A700C2F4E1 /* Contents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
-		CA39AC1A1AC476A700C2F4E1 /* Tutorial-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-2.png"; sourceTree = "<group>"; };
-		CA39AC1B1AC476A700C2F4E1 /* Tutorial-2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-2@2x.png"; sourceTree = "<group>"; };
-		CA39AC1C1AC476A700C2F4E1 /* Tutorial-2_iPhone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-2_iPhone5.png"; sourceTree = "<group>"; };
-		CA39AC1D1AC476A700C2F4E1 /* Tutorial-2_iPhone6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-2_iPhone6.png"; sourceTree = "<group>"; };
-		CA39AC1E1AC476A700C2F4E1 /* Tutorial-2_iPhone6plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-2_iPhone6plus.png"; sourceTree = "<group>"; };
-		CA39AC201AC476A700C2F4E1 /* Contents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
-		CA39AC211AC476A700C2F4E1 /* Tutorial-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-3.png"; sourceTree = "<group>"; };
-		CA39AC221AC476A700C2F4E1 /* Tutorial-3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-3@2x.png"; sourceTree = "<group>"; };
-		CA39AC231AC476A700C2F4E1 /* Tutorial-3_iPhone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-3_iPhone5.png"; sourceTree = "<group>"; };
-		CA39AC241AC476A700C2F4E1 /* Tutorial-3_iPhone6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-3_iPhone6.png"; sourceTree = "<group>"; };
-		CA39AC251AC476A700C2F4E1 /* Tutorial-3_iPhone6plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-3_iPhone6plus.png"; sourceTree = "<group>"; };
-		CA39AC271AC476A700C2F4E1 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
-		CA39AC291AC476A700C2F4E1 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		CA39AC2A1AC476A700C2F4E1 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		CA39AC2C1AC476A700C2F4E1 /* ParseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseManager.h; sourceTree = "<group>"; };
-		CA39AC2D1AC476A700C2F4E1 /* ParseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseManager.m; sourceTree = "<group>"; };
-		CA39AC2F1AC476A700C2F4E1 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		CA39AC301AC476A700C2F4E1 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		CA39AC311AC476A700C2F4E1 /* RequistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequistsViewController.h; sourceTree = "<group>"; };
-		CA39AC321AC476A700C2F4E1 /* RequistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequistsViewController.m; sourceTree = "<group>"; };
-		CA39AC331AC476A700C2F4E1 /* RequistsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RequistsViewController.xib; sourceTree = "<group>"; };
-		CA39AC341AC476A700C2F4E1 /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
-		CA39AC371AC476A700C2F4E1 /* NIDropDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIDropDown.h; sourceTree = "<group>"; };
-		CA39AC381AC476A700C2F4E1 /* NIDropDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIDropDown.m; sourceTree = "<group>"; };
-		CA39AC391AC476A700C2F4E1 /* UsersListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersListViewController.h; sourceTree = "<group>"; };
-		CA39AC3A1AC476A700C2F4E1 /* UsersListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersListViewController.m; sourceTree = "<group>"; };
-		CA39AC3B1AC476A700C2F4E1 /* UsersListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UsersListViewController.xib; sourceTree = "<group>"; };
-		CA39AC3C1AC476A700C2F4E1 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
-		CA39AC3D1AC476A700C2F4E1 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
-		CA39AC3F1AC476A700C2F4E1 /* GenderScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenderScreenViewController.h; sourceTree = "<group>"; };
-		CA39AC401AC476A700C2F4E1 /* GenderScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenderScreenViewController.m; sourceTree = "<group>"; };
-		CA39AC411AC476A700C2F4E1 /* GenderScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GenderScreenViewController.xib; sourceTree = "<group>"; };
-		CA39AC421AC476A700C2F4E1 /* HomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeScreenViewController.h; sourceTree = "<group>"; };
-		CA39AC431AC476A700C2F4E1 /* HomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreenViewController.m; sourceTree = "<group>"; };
-		CA39AC441AC476A700C2F4E1 /* HomeScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeScreenViewController.xib; sourceTree = "<group>"; };
-		CA39AC451AC476A700C2F4E1 /* Intro1IDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Intro1IDViewController.h; sourceTree = "<group>"; };
-		CA39AC461AC476A700C2F4E1 /* Intro1IDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Intro1IDViewController.m; sourceTree = "<group>"; };
-		CA39AC471AC476A700C2F4E1 /* Intro1IDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Intro1IDViewController.xib; sourceTree = "<group>"; };
-		CA39AC481AC476A700C2F4E1 /* Intro2IDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Intro2IDViewController.h; sourceTree = "<group>"; };
-		CA39AC491AC476A700C2F4E1 /* Intro2IDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Intro2IDViewController.m; sourceTree = "<group>"; };
-		CA39AC4A1AC476A700C2F4E1 /* Intro2IDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Intro2IDViewController.xib; sourceTree = "<group>"; };
-		CA39AC4B1AC476A700C2F4E1 /* Intro3IDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Intro3IDViewController.h; sourceTree = "<group>"; };
-		CA39AC4C1AC476A700C2F4E1 /* Intro3IDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Intro3IDViewController.m; sourceTree = "<group>"; };
-		CA39AC4D1AC476A700C2F4E1 /* Intro3IDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Intro3IDViewController.xib; sourceTree = "<group>"; };
-		CA39AC4E1AC476A700C2F4E1 /* IntroLoginScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroLoginScreenViewController.h; sourceTree = "<group>"; };
-		CA39AC4F1AC476A700C2F4E1 /* IntroLoginScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroLoginScreenViewController.m; sourceTree = "<group>"; };
-		CA39AC501AC476A700C2F4E1 /* IntroLoginScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroLoginScreenViewController.xib; sourceTree = "<group>"; };
-		CA39AC511AC476A700C2F4E1 /* IntroPagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroPagesViewController.h; sourceTree = "<group>"; };
-		CA39AC521AC476A700C2F4E1 /* IntroPagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroPagesViewController.m; sourceTree = "<group>"; };
-		CA39AC531AC476A700C2F4E1 /* IntroPagesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroPagesViewController.xib; sourceTree = "<group>"; };
-		CA39AC551AC476A700C2F4E1 /* MessageScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageScreenViewController.h; sourceTree = "<group>"; };
-		CA39AC561AC476A700C2F4E1 /* MessageScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageScreenViewController.m; sourceTree = "<group>"; };
-		CA39AC571AC476A700C2F4E1 /* MessageScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageScreenViewController.xib; sourceTree = "<group>"; };
-		CA39AC581AC476A700C2F4E1 /* SignupScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupScreenViewController.h; sourceTree = "<group>"; };
-		CA39AC591AC476A700C2F4E1 /* SignupScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupScreenViewController.m; sourceTree = "<group>"; };
-		CA39AC5A1AC476A700C2F4E1 /* SignupScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignupScreenViewController.xib; sourceTree = "<group>"; };
-		CA39AC8E1AC478A700C2F4E1 /* LoginScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginScreenViewController.m; sourceTree = "<group>"; };
-		CA39AC8F1AC478A700C2F4E1 /* LoginScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginScreenViewController.h; sourceTree = "<group>"; };
-		CA39AC911AC478AE00C2F4E1 /* LoginScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginScreenViewController.xib; sourceTree = "<group>"; };
+		CA3ABBC01AC7E64100E1B5DE /* Contents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
+		CA3ABBC11AC7E64100E1B5DE /* LandingView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LandingView.png; sourceTree = "<group>"; };
+		CA3ABBC21AC7E64100E1B5DE /* LandingView@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LandingView@2x.png"; sourceTree = "<group>"; };
+		CA3ABBC31AC7E64100E1B5DE /* LandingView_iPhone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LandingView_iPhone5.png; sourceTree = "<group>"; };
+		CA3ABBC41AC7E64100E1B5DE /* LandingView_iPhone6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LandingView_iPhone6.png; sourceTree = "<group>"; };
+		CA3ABBC51AC7E64100E1B5DE /* LandingView_iPhone6plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LandingView_iPhone6plus.png; sourceTree = "<group>"; };
+		CA3ABBC71AC7E64100E1B5DE /* Tutorial-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-1.png"; sourceTree = "<group>"; };
+		CA3ABBC81AC7E64100E1B5DE /* Tutorial-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-1@2x.png"; sourceTree = "<group>"; };
+		CA3ABBC91AC7E64100E1B5DE /* Tutorial-1_iPhone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-1_iPhone5.png"; sourceTree = "<group>"; };
+		CA3ABBCA1AC7E64100E1B5DE /* Tutorial-1_iPhone6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-1_iPhone6.png"; sourceTree = "<group>"; };
+		CA3ABBCB1AC7E64100E1B5DE /* Tutorial-1_iPhone6plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-1_iPhone6plus.png"; sourceTree = "<group>"; };
+		CA3ABBCD1AC7E64100E1B5DE /* Contents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
+		CA3ABBCE1AC7E64100E1B5DE /* Tutorial-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-2.png"; sourceTree = "<group>"; };
+		CA3ABBCF1AC7E64100E1B5DE /* Tutorial-2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-2@2x.png"; sourceTree = "<group>"; };
+		CA3ABBD01AC7E64100E1B5DE /* Tutorial-2_iPhone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-2_iPhone5.png"; sourceTree = "<group>"; };
+		CA3ABBD11AC7E64100E1B5DE /* Tutorial-2_iPhone6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-2_iPhone6.png"; sourceTree = "<group>"; };
+		CA3ABBD21AC7E64100E1B5DE /* Tutorial-2_iPhone6plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-2_iPhone6plus.png"; sourceTree = "<group>"; };
+		CA3ABBD41AC7E64100E1B5DE /* Contents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
+		CA3ABBD51AC7E64100E1B5DE /* Tutorial-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-3.png"; sourceTree = "<group>"; };
+		CA3ABBD61AC7E64100E1B5DE /* Tutorial-3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-3@2x.png"; sourceTree = "<group>"; };
+		CA3ABBD71AC7E64100E1B5DE /* Tutorial-3_iPhone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-3_iPhone5.png"; sourceTree = "<group>"; };
+		CA3ABBD81AC7E64100E1B5DE /* Tutorial-3_iPhone6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-3_iPhone6.png"; sourceTree = "<group>"; };
+		CA3ABBD91AC7E64100E1B5DE /* Tutorial-3_iPhone6plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-3_iPhone6plus.png"; sourceTree = "<group>"; };
+		CA3ABBDB1AC7E64100E1B5DE /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		CA3ABBDD1AC7E64100E1B5DE /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		CA3ABBDE1AC7E64100E1B5DE /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		CA3ABBE01AC7E64100E1B5DE /* ParseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseManager.h; sourceTree = "<group>"; };
+		CA3ABBE11AC7E64100E1B5DE /* ParseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseManager.m; sourceTree = "<group>"; };
+		CA3ABBE31AC7E64100E1B5DE /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		CA3ABBE41AC7E64100E1B5DE /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		CA3ABBE51AC7E64100E1B5DE /* RequistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequistsViewController.h; sourceTree = "<group>"; };
+		CA3ABBE61AC7E64100E1B5DE /* RequistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequistsViewController.m; sourceTree = "<group>"; };
+		CA3ABBE71AC7E64100E1B5DE /* RequistsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RequistsViewController.xib; sourceTree = "<group>"; };
+		CA3ABBE81AC7E64100E1B5DE /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
+		CA3ABBEB1AC7E64100E1B5DE /* NIDropDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIDropDown.h; sourceTree = "<group>"; };
+		CA3ABBEC1AC7E64100E1B5DE /* NIDropDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIDropDown.m; sourceTree = "<group>"; };
+		CA3ABBED1AC7E64100E1B5DE /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		CA3ABBEE1AC7E64100E1B5DE /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
+		CA3ABBF01AC7E64100E1B5DE /* GenderScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenderScreenViewController.h; sourceTree = "<group>"; };
+		CA3ABBF11AC7E64100E1B5DE /* GenderScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenderScreenViewController.m; sourceTree = "<group>"; };
+		CA3ABBF21AC7E64100E1B5DE /* HomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeScreenViewController.h; sourceTree = "<group>"; };
+		CA3ABBF31AC7E64100E1B5DE /* HomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreenViewController.m; sourceTree = "<group>"; };
+		CA3ABBF41AC7E64100E1B5DE /* Intro1IDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Intro1IDViewController.h; sourceTree = "<group>"; };
+		CA3ABBF51AC7E64100E1B5DE /* Intro1IDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Intro1IDViewController.m; sourceTree = "<group>"; };
+		CA3ABBF61AC7E64100E1B5DE /* Intro2IDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Intro2IDViewController.h; sourceTree = "<group>"; };
+		CA3ABBF71AC7E64100E1B5DE /* Intro2IDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Intro2IDViewController.m; sourceTree = "<group>"; };
+		CA3ABBF81AC7E64100E1B5DE /* Intro3IDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Intro3IDViewController.h; sourceTree = "<group>"; };
+		CA3ABBF91AC7E64100E1B5DE /* Intro3IDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Intro3IDViewController.m; sourceTree = "<group>"; };
+		CA3ABBFA1AC7E64100E1B5DE /* IntroLoginScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroLoginScreenViewController.h; sourceTree = "<group>"; };
+		CA3ABBFB1AC7E64100E1B5DE /* IntroLoginScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroLoginScreenViewController.m; sourceTree = "<group>"; };
+		CA3ABBFC1AC7E64100E1B5DE /* IntroPagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroPagesViewController.h; sourceTree = "<group>"; };
+		CA3ABBFD1AC7E64100E1B5DE /* IntroPagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroPagesViewController.m; sourceTree = "<group>"; };
+		CA3ABBFE1AC7E64100E1B5DE /* LoginScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginScreenViewController.h; sourceTree = "<group>"; };
+		CA3ABBFF1AC7E64100E1B5DE /* LoginScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginScreenViewController.m; sourceTree = "<group>"; };
+		CA3ABC001AC7E64100E1B5DE /* MessageScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageScreenViewController.h; sourceTree = "<group>"; };
+		CA3ABC011AC7E64100E1B5DE /* MessageScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageScreenViewController.m; sourceTree = "<group>"; };
+		CA3ABC021AC7E64100E1B5DE /* SelectGroupsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectGroupsTableViewController.h; sourceTree = "<group>"; };
+		CA3ABC031AC7E64100E1B5DE /* SelectGroupsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectGroupsTableViewController.m; sourceTree = "<group>"; };
+		CA3ABC041AC7E64100E1B5DE /* SignupScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupScreenViewController.h; sourceTree = "<group>"; };
+		CA3ABC051AC7E64100E1B5DE /* SignupScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupScreenViewController.m; sourceTree = "<group>"; };
+		CA3ABC061AC7E64100E1B5DE /* UsersListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersListViewController.h; sourceTree = "<group>"; };
+		CA3ABC071AC7E64100E1B5DE /* UsersListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersListViewController.m; sourceTree = "<group>"; };
+		CA3ABC091AC7E64100E1B5DE /* GenderScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GenderScreenViewController.xib; sourceTree = "<group>"; };
+		CA3ABC0A1AC7E64100E1B5DE /* HomeScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeScreenViewController.xib; sourceTree = "<group>"; };
+		CA3ABC0B1AC7E64100E1B5DE /* Intro1IDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Intro1IDViewController.xib; sourceTree = "<group>"; };
+		CA3ABC0C1AC7E64100E1B5DE /* Intro2IDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Intro2IDViewController.xib; sourceTree = "<group>"; };
+		CA3ABC0D1AC7E64100E1B5DE /* Intro3IDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Intro3IDViewController.xib; sourceTree = "<group>"; };
+		CA3ABC0E1AC7E64100E1B5DE /* IntroLoginScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroLoginScreenViewController.xib; sourceTree = "<group>"; };
+		CA3ABC0F1AC7E64100E1B5DE /* IntroPagesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroPagesViewController.xib; sourceTree = "<group>"; };
+		CA3ABC101AC7E64100E1B5DE /* LoginScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginScreenViewController.xib; sourceTree = "<group>"; };
+		CA3ABC111AC7E64100E1B5DE /* MessageScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageScreenViewController.xib; sourceTree = "<group>"; };
+		CA3ABC121AC7E64100E1B5DE /* SelectGroupsTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectGroupsTableViewController.xib; sourceTree = "<group>"; };
+		CA3ABC131AC7E64100E1B5DE /* SignupScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignupScreenViewController.xib; sourceTree = "<group>"; };
+		CA3ABC141AC7E64100E1B5DE /* UsersListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UsersListViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1061,7 +1061,7 @@
 		00CEE3C5199434E700F40C12 = {
 			isa = PBXGroup;
 			children = (
-				CA39AC091AC476A700C2F4E1 /* Bounce */,
+				CA3ABBBD1AC7E64100E1B5DE /* Bounce */,
 				007BA4041A6CDF7500BF08DE /* keyboard */,
 				00CEE3D9199434E700F40C12 /* hobble.1.1 */,
 				00CEE4061994350300F40C12 /* MainStoryboard.storyboard */,
@@ -1190,187 +1190,187 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		CA39AC091AC476A700C2F4E1 /* Bounce */ = {
+		CA3ABBBD1AC7E64100E1B5DE /* Bounce */ = {
 			isa = PBXGroup;
 			children = (
-				CA39AC911AC478AE00C2F4E1 /* LoginScreenViewController.xib */,
-				CA39AC8E1AC478A700C2F4E1 /* LoginScreenViewController.m */,
-				CA39AC8F1AC478A700C2F4E1 /* LoginScreenViewController.h */,
-				CA39AC0A1AC476A700C2F4E1 /* Bounce Images */,
-				CA39AC261AC476A700C2F4E1 /* Business */,
-				CA39AC281AC476A700C2F4E1 /* MBProgressHUD */,
-				CA39AC2B1AC476A700C2F4E1 /* Model */,
-				CA39AC2C1AC476A700C2F4E1 /* ParseManager.h */,
-				CA39AC2D1AC476A700C2F4E1 /* ParseManager.m */,
-				CA39AC2E1AC476A700C2F4E1 /* Reachability */,
-				CA39AC311AC476A700C2F4E1 /* RequistsViewController.h */,
-				CA39AC321AC476A700C2F4E1 /* RequistsViewController.m */,
-				CA39AC331AC476A700C2F4E1 /* RequistsViewController.xib */,
-				CA39AC341AC476A700C2F4E1 /* SignUpViewController.xib */,
-				CA39AC351AC476A700C2F4E1 /* Third Party */,
-				CA39AC391AC476A700C2F4E1 /* UsersListViewController.h */,
-				CA39AC3A1AC476A700C2F4E1 /* UsersListViewController.m */,
-				CA39AC3B1AC476A700C2F4E1 /* UsersListViewController.xib */,
-				CA39AC3C1AC476A700C2F4E1 /* Utility.h */,
-				CA39AC3D1AC476A700C2F4E1 /* Utility.m */,
-				CA39AC3E1AC476A700C2F4E1 /* ViewControllers */,
-				CA39AC541AC476A700C2F4E1 /* Views */,
+				CA3ABBBE1AC7E64100E1B5DE /* Bounce Images */,
+				CA3ABBDA1AC7E64100E1B5DE /* Business */,
+				CA3ABBDC1AC7E64100E1B5DE /* MBProgressHUD */,
+				CA3ABBDF1AC7E64100E1B5DE /* Model */,
+				CA3ABBEF1AC7E64100E1B5DE /* ViewControllers */,
+				CA3ABC081AC7E64100E1B5DE /* Views */,
+				CA3ABBE91AC7E64100E1B5DE /* Third Party */,
+				CA3ABBE01AC7E64100E1B5DE /* ParseManager.h */,
+				CA3ABBE11AC7E64100E1B5DE /* ParseManager.m */,
+				CA3ABBE21AC7E64100E1B5DE /* Reachability */,
+				CA3ABBE51AC7E64100E1B5DE /* RequistsViewController.h */,
+				CA3ABBE61AC7E64100E1B5DE /* RequistsViewController.m */,
+				CA3ABBE71AC7E64100E1B5DE /* RequistsViewController.xib */,
+				CA3ABBE81AC7E64100E1B5DE /* SignUpViewController.xib */,
+				CA3ABBED1AC7E64100E1B5DE /* Utility.h */,
+				CA3ABBEE1AC7E64100E1B5DE /* Utility.m */,
 			);
 			path = Bounce;
 			sourceTree = "<group>";
 		};
-		CA39AC0A1AC476A700C2F4E1 /* Bounce Images */ = {
+		CA3ABBBE1AC7E64100E1B5DE /* Bounce Images */ = {
 			isa = PBXGroup;
 			children = (
-				CA39AC0B1AC476A700C2F4E1 /* First.imageset */,
-				CA39AC121AC476A700C2F4E1 /* Tutorial-1.imageset */,
-				CA39AC181AC476A700C2F4E1 /* Tutorial-2.imageset */,
-				CA39AC1F1AC476A700C2F4E1 /* Tutorial-3.imageset */,
+				CA3ABBBF1AC7E64100E1B5DE /* First.imageset */,
+				CA3ABBC61AC7E64100E1B5DE /* Tutorial-1.imageset */,
+				CA3ABBCC1AC7E64100E1B5DE /* Tutorial-2.imageset */,
+				CA3ABBD31AC7E64100E1B5DE /* Tutorial-3.imageset */,
 			);
 			path = "Bounce Images";
 			sourceTree = "<group>";
 		};
-		CA39AC0B1AC476A700C2F4E1 /* First.imageset */ = {
+		CA3ABBBF1AC7E64100E1B5DE /* First.imageset */ = {
 			isa = PBXGroup;
 			children = (
-				CA39AC0C1AC476A700C2F4E1 /* Contents.json */,
-				CA39AC0D1AC476A700C2F4E1 /* LandingView.png */,
-				CA39AC0E1AC476A700C2F4E1 /* LandingView@2x.png */,
-				CA39AC0F1AC476A700C2F4E1 /* LandingView_iPhone5.png */,
-				CA39AC101AC476A700C2F4E1 /* LandingView_iPhone6.png */,
-				CA39AC111AC476A700C2F4E1 /* LandingView_iPhone6plus.png */,
+				CA3ABBC01AC7E64100E1B5DE /* Contents.json */,
+				CA3ABBC11AC7E64100E1B5DE /* LandingView.png */,
+				CA3ABBC21AC7E64100E1B5DE /* LandingView@2x.png */,
+				CA3ABBC31AC7E64100E1B5DE /* LandingView_iPhone5.png */,
+				CA3ABBC41AC7E64100E1B5DE /* LandingView_iPhone6.png */,
+				CA3ABBC51AC7E64100E1B5DE /* LandingView_iPhone6plus.png */,
 			);
 			path = First.imageset;
 			sourceTree = "<group>";
 		};
-		CA39AC121AC476A700C2F4E1 /* Tutorial-1.imageset */ = {
+		CA3ABBC61AC7E64100E1B5DE /* Tutorial-1.imageset */ = {
 			isa = PBXGroup;
 			children = (
-				CA39AC131AC476A700C2F4E1 /* Tutorial-1.png */,
-				CA39AC141AC476A700C2F4E1 /* Tutorial-1@2x.png */,
-				CA39AC151AC476A700C2F4E1 /* Tutorial-1_iPhone5.png */,
-				CA39AC161AC476A700C2F4E1 /* Tutorial-1_iPhone6.png */,
-				CA39AC171AC476A700C2F4E1 /* Tutorial-1_iPhone6plus.png */,
+				CA3ABBC71AC7E64100E1B5DE /* Tutorial-1.png */,
+				CA3ABBC81AC7E64100E1B5DE /* Tutorial-1@2x.png */,
+				CA3ABBC91AC7E64100E1B5DE /* Tutorial-1_iPhone5.png */,
+				CA3ABBCA1AC7E64100E1B5DE /* Tutorial-1_iPhone6.png */,
+				CA3ABBCB1AC7E64100E1B5DE /* Tutorial-1_iPhone6plus.png */,
 			);
 			path = "Tutorial-1.imageset";
 			sourceTree = "<group>";
 		};
-		CA39AC181AC476A700C2F4E1 /* Tutorial-2.imageset */ = {
+		CA3ABBCC1AC7E64100E1B5DE /* Tutorial-2.imageset */ = {
 			isa = PBXGroup;
 			children = (
-				CA39AC191AC476A700C2F4E1 /* Contents.json */,
-				CA39AC1A1AC476A700C2F4E1 /* Tutorial-2.png */,
-				CA39AC1B1AC476A700C2F4E1 /* Tutorial-2@2x.png */,
-				CA39AC1C1AC476A700C2F4E1 /* Tutorial-2_iPhone5.png */,
-				CA39AC1D1AC476A700C2F4E1 /* Tutorial-2_iPhone6.png */,
-				CA39AC1E1AC476A700C2F4E1 /* Tutorial-2_iPhone6plus.png */,
+				CA3ABBCD1AC7E64100E1B5DE /* Contents.json */,
+				CA3ABBCE1AC7E64100E1B5DE /* Tutorial-2.png */,
+				CA3ABBCF1AC7E64100E1B5DE /* Tutorial-2@2x.png */,
+				CA3ABBD01AC7E64100E1B5DE /* Tutorial-2_iPhone5.png */,
+				CA3ABBD11AC7E64100E1B5DE /* Tutorial-2_iPhone6.png */,
+				CA3ABBD21AC7E64100E1B5DE /* Tutorial-2_iPhone6plus.png */,
 			);
 			path = "Tutorial-2.imageset";
 			sourceTree = "<group>";
 		};
-		CA39AC1F1AC476A700C2F4E1 /* Tutorial-3.imageset */ = {
+		CA3ABBD31AC7E64100E1B5DE /* Tutorial-3.imageset */ = {
 			isa = PBXGroup;
 			children = (
-				CA39AC201AC476A700C2F4E1 /* Contents.json */,
-				CA39AC211AC476A700C2F4E1 /* Tutorial-3.png */,
-				CA39AC221AC476A700C2F4E1 /* Tutorial-3@2x.png */,
-				CA39AC231AC476A700C2F4E1 /* Tutorial-3_iPhone5.png */,
-				CA39AC241AC476A700C2F4E1 /* Tutorial-3_iPhone6.png */,
-				CA39AC251AC476A700C2F4E1 /* Tutorial-3_iPhone6plus.png */,
+				CA3ABBD41AC7E64100E1B5DE /* Contents.json */,
+				CA3ABBD51AC7E64100E1B5DE /* Tutorial-3.png */,
+				CA3ABBD61AC7E64100E1B5DE /* Tutorial-3@2x.png */,
+				CA3ABBD71AC7E64100E1B5DE /* Tutorial-3_iPhone5.png */,
+				CA3ABBD81AC7E64100E1B5DE /* Tutorial-3_iPhone6.png */,
+				CA3ABBD91AC7E64100E1B5DE /* Tutorial-3_iPhone6plus.png */,
 			);
 			path = "Tutorial-3.imageset";
 			sourceTree = "<group>";
 		};
-		CA39AC261AC476A700C2F4E1 /* Business */ = {
+		CA3ABBDA1AC7E64100E1B5DE /* Business */ = {
 			isa = PBXGroup;
 			children = (
-				CA39AC271AC476A700C2F4E1 /* Constants.h */,
+				CA3ABBDB1AC7E64100E1B5DE /* Constants.h */,
 			);
 			path = Business;
 			sourceTree = "<group>";
 		};
-		CA39AC281AC476A700C2F4E1 /* MBProgressHUD */ = {
+		CA3ABBDC1AC7E64100E1B5DE /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
-				CA39AC291AC476A700C2F4E1 /* MBProgressHUD.h */,
-				CA39AC2A1AC476A700C2F4E1 /* MBProgressHUD.m */,
+				CA3ABBDD1AC7E64100E1B5DE /* MBProgressHUD.h */,
+				CA3ABBDE1AC7E64100E1B5DE /* MBProgressHUD.m */,
 			);
 			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
-		CA39AC2B1AC476A700C2F4E1 /* Model */ = {
+		CA3ABBDF1AC7E64100E1B5DE /* Model */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		CA39AC2E1AC476A700C2F4E1 /* Reachability */ = {
+		CA3ABBE21AC7E64100E1B5DE /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
-				CA39AC2F1AC476A700C2F4E1 /* Reachability.h */,
-				CA39AC301AC476A700C2F4E1 /* Reachability.m */,
+				CA3ABBE31AC7E64100E1B5DE /* Reachability.h */,
+				CA3ABBE41AC7E64100E1B5DE /* Reachability.m */,
 			);
 			path = Reachability;
 			sourceTree = "<group>";
 		};
-		CA39AC351AC476A700C2F4E1 /* Third Party */ = {
+		CA3ABBE91AC7E64100E1B5DE /* Third Party */ = {
 			isa = PBXGroup;
 			children = (
-				CA39AC361AC476A700C2F4E1 /* NIDropDown */,
+				CA3ABBEA1AC7E64100E1B5DE /* NIDropDown */,
 			);
 			path = "Third Party";
 			sourceTree = "<group>";
 		};
-		CA39AC361AC476A700C2F4E1 /* NIDropDown */ = {
+		CA3ABBEA1AC7E64100E1B5DE /* NIDropDown */ = {
 			isa = PBXGroup;
 			children = (
-				CA39AC371AC476A700C2F4E1 /* NIDropDown.h */,
-				CA39AC381AC476A700C2F4E1 /* NIDropDown.m */,
+				CA3ABBEB1AC7E64100E1B5DE /* NIDropDown.h */,
+				CA3ABBEC1AC7E64100E1B5DE /* NIDropDown.m */,
 			);
 			path = NIDropDown;
 			sourceTree = "<group>";
 		};
-		CA39AC3E1AC476A700C2F4E1 /* ViewControllers */ = {
+		CA3ABBEF1AC7E64100E1B5DE /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				672F97331AC479D400CFBC28 /* SelectGroupsTableViewController.h */,
-				672F97341AC479D400CFBC28 /* SelectGroupsTableViewController.m */,
-				672F97351AC479D400CFBC28 /* SelectGroupsTableViewController.xib */,
-				CA39AC3F1AC476A700C2F4E1 /* GenderScreenViewController.h */,
-				CA39AC401AC476A700C2F4E1 /* GenderScreenViewController.m */,
-				CA39AC411AC476A700C2F4E1 /* GenderScreenViewController.xib */,
-				CA39AC421AC476A700C2F4E1 /* HomeScreenViewController.h */,
-				CA39AC431AC476A700C2F4E1 /* HomeScreenViewController.m */,
-				CA39AC441AC476A700C2F4E1 /* HomeScreenViewController.xib */,
-				CA39AC451AC476A700C2F4E1 /* Intro1IDViewController.h */,
-				CA39AC461AC476A700C2F4E1 /* Intro1IDViewController.m */,
-				CA39AC471AC476A700C2F4E1 /* Intro1IDViewController.xib */,
-				CA39AC481AC476A700C2F4E1 /* Intro2IDViewController.h */,
-				CA39AC491AC476A700C2F4E1 /* Intro2IDViewController.m */,
-				CA39AC4A1AC476A700C2F4E1 /* Intro2IDViewController.xib */,
-				CA39AC4B1AC476A700C2F4E1 /* Intro3IDViewController.h */,
-				CA39AC4C1AC476A700C2F4E1 /* Intro3IDViewController.m */,
-				CA39AC4D1AC476A700C2F4E1 /* Intro3IDViewController.xib */,
-				CA39AC4E1AC476A700C2F4E1 /* IntroLoginScreenViewController.h */,
-				CA39AC4F1AC476A700C2F4E1 /* IntroLoginScreenViewController.m */,
-				CA39AC501AC476A700C2F4E1 /* IntroLoginScreenViewController.xib */,
-				CA39AC511AC476A700C2F4E1 /* IntroPagesViewController.h */,
-				CA39AC521AC476A700C2F4E1 /* IntroPagesViewController.m */,
-				CA39AC531AC476A700C2F4E1 /* IntroPagesViewController.xib */,
+				CA3ABBF21AC7E64100E1B5DE /* HomeScreenViewController.h */,
+				CA3ABBF31AC7E64100E1B5DE /* HomeScreenViewController.m */,
+				CA3ABBF41AC7E64100E1B5DE /* Intro1IDViewController.h */,
+				CA3ABBF51AC7E64100E1B5DE /* Intro1IDViewController.m */,
+				CA3ABBF61AC7E64100E1B5DE /* Intro2IDViewController.h */,
+				CA3ABBF71AC7E64100E1B5DE /* Intro2IDViewController.m */,
+				CA3ABBF81AC7E64100E1B5DE /* Intro3IDViewController.h */,
+				CA3ABBF91AC7E64100E1B5DE /* Intro3IDViewController.m */,
+				CA3ABBFA1AC7E64100E1B5DE /* IntroLoginScreenViewController.h */,
+				CA3ABBFB1AC7E64100E1B5DE /* IntroLoginScreenViewController.m */,
+				CA3ABBFC1AC7E64100E1B5DE /* IntroPagesViewController.h */,
+				CA3ABBFD1AC7E64100E1B5DE /* IntroPagesViewController.m */,
+				CA3ABBFE1AC7E64100E1B5DE /* LoginScreenViewController.h */,
+				CA3ABBFF1AC7E64100E1B5DE /* LoginScreenViewController.m */,
+				CA3ABC001AC7E64100E1B5DE /* MessageScreenViewController.h */,
+				CA3ABC011AC7E64100E1B5DE /* MessageScreenViewController.m */,
+				CA3ABC021AC7E64100E1B5DE /* SelectGroupsTableViewController.h */,
+				CA3ABC031AC7E64100E1B5DE /* SelectGroupsTableViewController.m */,
+				CA3ABC041AC7E64100E1B5DE /* SignupScreenViewController.h */,
+				CA3ABC051AC7E64100E1B5DE /* SignupScreenViewController.m */,
+				CA3ABBF01AC7E64100E1B5DE /* GenderScreenViewController.h */,
+				CA3ABBF11AC7E64100E1B5DE /* GenderScreenViewController.m */,
+				CA3ABC061AC7E64100E1B5DE /* UsersListViewController.h */,
+				CA3ABC071AC7E64100E1B5DE /* UsersListViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		CA39AC541AC476A700C2F4E1 /* Views */ = {
+		CA3ABC081AC7E64100E1B5DE /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				CA39AC551AC476A700C2F4E1 /* MessageScreenViewController.h */,
-				CA39AC561AC476A700C2F4E1 /* MessageScreenViewController.m */,
-				CA39AC571AC476A700C2F4E1 /* MessageScreenViewController.xib */,
-				CA39AC581AC476A700C2F4E1 /* SignupScreenViewController.h */,
-				CA39AC591AC476A700C2F4E1 /* SignupScreenViewController.m */,
-				CA39AC5A1AC476A700C2F4E1 /* SignupScreenViewController.xib */,
+				CA3ABC091AC7E64100E1B5DE /* GenderScreenViewController.xib */,
+				CA3ABC0A1AC7E64100E1B5DE /* HomeScreenViewController.xib */,
+				CA3ABC0B1AC7E64100E1B5DE /* Intro1IDViewController.xib */,
+				CA3ABC0C1AC7E64100E1B5DE /* Intro2IDViewController.xib */,
+				CA3ABC0D1AC7E64100E1B5DE /* Intro3IDViewController.xib */,
+				CA3ABC0E1AC7E64100E1B5DE /* IntroLoginScreenViewController.xib */,
+				CA3ABC0F1AC7E64100E1B5DE /* IntroPagesViewController.xib */,
+				CA3ABC101AC7E64100E1B5DE /* LoginScreenViewController.xib */,
+				CA3ABC111AC7E64100E1B5DE /* MessageScreenViewController.xib */,
+				CA3ABC121AC7E64100E1B5DE /* SelectGroupsTableViewController.xib */,
+				CA3ABC131AC7E64100E1B5DE /* SignupScreenViewController.xib */,
+				CA3ABC141AC7E64100E1B5DE /* UsersListViewController.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1450,59 +1450,59 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA39AC601AC476A700C2F4E1 /* LandingView_iPhone6plus.png in Resources */,
-				CA39AC811AC476A700C2F4E1 /* Intro1IDViewController.xib in Resources */,
+				CA3ABC1A1AC7E64100E1B5DE /* LandingView_iPhone6plus.png in Resources */,
+				CA3ABC491AC7E64100E1B5DE /* SelectGroupsTableViewController.xib in Resources */,
 				00CEE4071994350300F40C12 /* MainStoryboard.storyboard in Resources */,
-				CA39AC871AC476A700C2F4E1 /* IntroLoginScreenViewController.xib in Resources */,
-				CA39AC8B1AC476A700C2F4E1 /* MessageScreenViewController.xib in Resources */,
 				00414F5F1AAE1CEA00B25CEE /* MessagesCell.xib in Resources */,
-				CA39AC5B1AC476A700C2F4E1 /* Contents.json in Resources */,
-				CA39AC6D1AC476A700C2F4E1 /* Tutorial-3.png in Resources */,
-				CA39AC7F1AC476A700C2F4E1 /* HomeScreenViewController.xib in Resources */,
+				CA3ABC151AC7E64100E1B5DE /* Contents.json in Resources */,
+				CA3ABC481AC7E64100E1B5DE /* MessageScreenViewController.xib in Resources */,
+				CA3ABC271AC7E64100E1B5DE /* Tutorial-3.png in Resources */,
 				00414F121AADEE0600B25CEE /* JSQMessages.strings in Resources */,
 				00414F3D1AADEE0600B25CEE /* ProgressHUD.bundle in Resources */,
-				CA39AC6B1AC476A700C2F4E1 /* Tutorial-2_iPhone6plus.png in Resources */,
-				CA39AC5E1AC476A700C2F4E1 /* LandingView_iPhone5.png in Resources */,
-				CA39AC701AC476A700C2F4E1 /* Tutorial-3_iPhone6.png in Resources */,
-				CA39AC711AC476A700C2F4E1 /* Tutorial-3_iPhone6plus.png in Resources */,
-				CA39AC771AC476A700C2F4E1 /* SignUpViewController.xib in Resources */,
+				CA3ABC401AC7E64100E1B5DE /* GenderScreenViewController.xib in Resources */,
+				CA3ABC461AC7E64100E1B5DE /* IntroPagesViewController.xib in Resources */,
+				CA3ABC441AC7E64100E1B5DE /* Intro3IDViewController.xib in Resources */,
+				CA3ABC251AC7E64100E1B5DE /* Tutorial-2_iPhone6plus.png in Resources */,
+				CA3ABC181AC7E64100E1B5DE /* LandingView_iPhone5.png in Resources */,
+				CA3ABC2A1AC7E64100E1B5DE /* Tutorial-3_iPhone6.png in Resources */,
+				CA3ABC2B1AC7E64100E1B5DE /* Tutorial-3_iPhone6plus.png in Resources */,
+				CA3ABC311AC7E64100E1B5DE /* SignUpViewController.xib in Resources */,
+				CA3ABC471AC7E64100E1B5DE /* LoginScreenViewController.xib in Resources */,
 				00414F361AADEE0600B25CEE /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
-				CA39AC671AC476A700C2F4E1 /* Tutorial-2.png in Resources */,
-				CA39AC621AC476A700C2F4E1 /* Tutorial-1@2x.png in Resources */,
-				CA39AC651AC476A700C2F4E1 /* Tutorial-1_iPhone6plus.png in Resources */,
-				CA39AC641AC476A700C2F4E1 /* Tutorial-1_iPhone6.png in Resources */,
+				CA3ABC211AC7E64100E1B5DE /* Tutorial-2.png in Resources */,
+				CA3ABC1C1AC7E64100E1B5DE /* Tutorial-1@2x.png in Resources */,
+				CA3ABC421AC7E64100E1B5DE /* Intro1IDViewController.xib in Resources */,
+				CA3ABC1F1AC7E64100E1B5DE /* Tutorial-1_iPhone6plus.png in Resources */,
+				CA3ABC1E1AC7E64100E1B5DE /* Tutorial-1_iPhone6.png in Resources */,
 				00414E471AADECCE00B25CEE /* Icon120.png in Resources */,
 				00414F111AADEE0600B25CEE /* JSQMessagesAssets.bundle in Resources */,
+				CA3ABC4B1AC7E64100E1B5DE /* UsersListViewController.xib in Resources */,
+				CA3ABC431AC7E64100E1B5DE /* Intro2IDViewController.xib in Resources */,
 				00414F1B1AADEE0600B25CEE /* JSQMessagesViewController.xib in Resources */,
-				CA39AC851AC476A700C2F4E1 /* Intro3IDViewController.xib in Resources */,
+				CA3ABC4A1AC7E64100E1B5DE /* SignupScreenViewController.xib in Resources */,
 				00CEE3DE199434E700F40C12 /* InfoPlist.strings in Resources */,
+				CA3ABC411AC7E64100E1B5DE /* HomeScreenViewController.xib in Resources */,
 				007BA3C21A6C9BE400BF08DE /* Podfile in Resources */,
-				672F97371AC479D400CFBC28 /* SelectGroupsTableViewController.xib in Resources */,
-				CA39AC6F1AC476A700C2F4E1 /* Tutorial-3_iPhone5.png in Resources */,
-				CA39AC891AC476A700C2F4E1 /* IntroPagesViewController.xib in Resources */,
-				CA39AC5D1AC476A700C2F4E1 /* LandingView@2x.png in Resources */,
-				CA39AC6C1AC476A700C2F4E1 /* Contents.json in Resources */,
+				CA3ABC291AC7E64100E1B5DE /* Tutorial-3_iPhone5.png in Resources */,
+				CA3ABC171AC7E64100E1B5DE /* LandingView@2x.png in Resources */,
+				CA3ABC261AC7E64100E1B5DE /* Contents.json in Resources */,
 				00CEE3E9199434E700F40C12 /* Images.xcassets in Resources */,
-				CA39AC8D1AC476A700C2F4E1 /* SignupScreenViewController.xib in Resources */,
-				CA39AC5C1AC476A700C2F4E1 /* LandingView.png in Resources */,
-				CA39AC761AC476A700C2F4E1 /* RequistsViewController.xib in Resources */,
-				CA39AC6A1AC476A700C2F4E1 /* Tutorial-2_iPhone6.png in Resources */,
-				CA39AC611AC476A700C2F4E1 /* Tutorial-1.png in Resources */,
-				CA39AC681AC476A700C2F4E1 /* Tutorial-2@2x.png in Resources */,
-				CA39AC631AC476A700C2F4E1 /* Tutorial-1_iPhone5.png in Resources */,
+				CA3ABC161AC7E64100E1B5DE /* LandingView.png in Resources */,
+				CA3ABC301AC7E64100E1B5DE /* RequistsViewController.xib in Resources */,
+				CA3ABC241AC7E64100E1B5DE /* Tutorial-2_iPhone6.png in Resources */,
+				CA3ABC1B1AC7E64100E1B5DE /* Tutorial-1.png in Resources */,
+				CA3ABC221AC7E64100E1B5DE /* Tutorial-2@2x.png in Resources */,
+				CA3ABC1D1AC7E64100E1B5DE /* Tutorial-1_iPhone5.png in Resources */,
 				00414F3B1AADEE0600B25CEE /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
-				CA39AC831AC476A700C2F4E1 /* Intro2IDViewController.xib in Resources */,
 				00414F2F1AADEE0600B25CEE /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
-				CA39AC5F1AC476A700C2F4E1 /* LandingView_iPhone6.png in Resources */,
-				CA39AC691AC476A700C2F4E1 /* Tutorial-2_iPhone5.png in Resources */,
+				CA3ABC191AC7E64100E1B5DE /* LandingView_iPhone6.png in Resources */,
+				CA3ABC231AC7E64100E1B5DE /* Tutorial-2_iPhone5.png in Resources */,
 				00414F311AADEE0600B25CEE /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
-				CA39AC7D1AC476A700C2F4E1 /* GenderScreenViewController.xib in Resources */,
 				00414E481AADECCE00B25CEE /* Icon180.png in Resources */,
 				00414F391AADEE0600B25CEE /* JSQMessagesToolbarContentView.xib in Resources */,
-				CA39AC6E1AC476A700C2F4E1 /* Tutorial-3@2x.png in Resources */,
-				CA39AC661AC476A700C2F4E1 /* Contents.json in Resources */,
-				CA39AC921AC478AE00C2F4E1 /* LoginScreenViewController.xib in Resources */,
-				CA39AC7A1AC476A700C2F4E1 /* UsersListViewController.xib in Resources */,
+				CA3ABC281AC7E64100E1B5DE /* Tutorial-3@2x.png in Resources */,
+				CA3ABC201AC7E64100E1B5DE /* Contents.json in Resources */,
+				CA3ABC451AC7E64100E1B5DE /* IntroLoginScreenViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1515,11 +1515,12 @@
 			files = (
 				00414F081AADEE0600B25CEE /* AFURLSessionManager.m in Sources */,
 				001196E819A41D6C002D2757 /* CreateGroupViewController.m in Sources */,
-				CA39AC781AC476A700C2F4E1 /* NIDropDown.m in Sources */,
+				CA3ABC321AC7E64100E1B5DE /* NIDropDown.m in Sources */,
 				00414F141AADEE0600B25CEE /* NSString+JSQMessages.m in Sources */,
+				CA3ABC381AC7E64100E1B5DE /* Intro3IDViewController.m in Sources */,
+				CA3ABC331AC7E64100E1B5DE /* Utility.m in Sources */,
 				00414F211AADEE0600B25CEE /* JSQMessagesCollectionViewFlowLayout.m in Sources */,
 				00414F0F1AADEE0600B25CEE /* UIRefreshControl+AFNetworking.m in Sources */,
-				CA39AC861AC476A700C2F4E1 /* IntroLoginScreenViewController.m in Sources */,
 				00414F2D1AADEE0600B25CEE /* JSQMessagesCollectionViewCell.m in Sources */,
 				00414F321AADEE0600B25CEE /* JSQMessagesComposerTextView.m in Sources */,
 				0090ECC81A6C5322009DB11D /* FriendsTableViewController.m in Sources */,
@@ -1527,51 +1528,50 @@
 				00414F2B1AADEE0600B25CEE /* JSQMessagesCellTextView.m in Sources */,
 				00296BD819EFA5BF003ADA30 /* APContact.m in Sources */,
 				00414F051AADEE0600B25CEE /* AFURLConnectionOperation.m in Sources */,
-				CA39AC751AC476A700C2F4E1 /* RequistsViewController.m in Sources */,
+				CA3ABC2F1AC7E64100E1B5DE /* RequistsViewController.m in Sources */,
 				00414F351AADEE0600B25CEE /* JSQMessagesLoadEarlierHeaderView.m in Sources */,
 				00414F241AADEE0600B25CEE /* JSQLocationMediaItem.m in Sources */,
 				007BA4091A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.m in Sources */,
+				CA3ABC341AC7E64100E1B5DE /* GenderScreenViewController.m in Sources */,
 				007BA3F81A6C9CE100BF08DE /* UIProgressView+FlatUI.m in Sources */,
 				00414F091AADEE0600B25CEE /* AFNetworkActivityIndicatorManager.m in Sources */,
+				CA3ABC3B1AC7E64100E1B5DE /* LoginScreenViewController.m in Sources */,
 				00414F381AADEE0600B25CEE /* JSQMessagesToolbarContentView.m in Sources */,
 				007BA3F61A6C9CE100BF08DE /* UINavigationBar+FlatUI.m in Sources */,
 				00296BD919EFA5BF003ADA30 /* APPhoneWithLabel.m in Sources */,
 				007BA3ED1A6C9CE100BF08DE /* FUICellBackgroundView.m in Sources */,
 				28F13A5B1A6C7F7B0069EBA4 /* MapViewController.m in Sources */,
-				CA39AC721AC476A700C2F4E1 /* MBProgressHUD.m in Sources */,
+				CA3ABC2C1AC7E64100E1B5DE /* MBProgressHUD.m in Sources */,
 				00414F1F1AADEE0600B25CEE /* JSQMessagesTimestampFormatter.m in Sources */,
 				00414F4F1AADEE5700B25CEE /* images.m in Sources */,
+				CA3ABC351AC7E64100E1B5DE /* HomeScreenViewController.m in Sources */,
 				00414F331AADEE0600B25CEE /* JSQMessagesInputToolbar.m in Sources */,
+				CA3ABC3F1AC7E64100E1B5DE /* UsersListViewController.m in Sources */,
 				007BA3FD1A6C9CE100BF08DE /* UIToolbar+FlatUI.m in Sources */,
 				00414F061AADEE0600B25CEE /* AFURLRequestSerialization.m in Sources */,
 				007BA3F11A6C9CE100BF08DE /* FUITextField.m in Sources */,
-				CA39AC881AC476A700C2F4E1 /* IntroPagesViewController.m in Sources */,
 				00414F0B1AADEE0600B25CEE /* UIAlertView+AFNetworking.m in Sources */,
 				00CEE3E4199434E700F40C12 /* AppDelegate.m in Sources */,
 				00296BDA19EFA5BF003ADA30 /* APSocialProfile.m in Sources */,
 				00414F281AADEE0600B25CEE /* JSQMessagesBubbleImage.m in Sources */,
-				CA39AC7C1AC476A700C2F4E1 /* GenderScreenViewController.m in Sources */,
 				00414F251AADEE0600B25CEE /* JSQMediaItem.m in Sources */,
+				CA3ABC3D1AC7E64100E1B5DE /* SelectGroupsTableViewController.m in Sources */,
 				00414F5D1AAE184300B25CEE /* MessagesTableCell.m in Sources */,
 				00414F271AADEE0600B25CEE /* JSQMessagesAvatarImage.m in Sources */,
 				00414F191AADEE0600B25CEE /* JSQMessagesKeyboardController.m in Sources */,
-				CA39AC841AC476A700C2F4E1 /* Intro3IDViewController.m in Sources */,
 				00414F231AADEE0600B25CEE /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */,
 				00414F011AADEE0600B25CEE /* AFHTTPRequestOperationManager.m in Sources */,
 				00414F4D1AADEE5700B25CEE /* pushnotification.m in Sources */,
 				007BA3EC1A6C9CE100BF08DE /* FUIButton.m in Sources */,
-				CA39AC801AC476A700C2F4E1 /* Intro1IDViewController.m in Sources */,
 				00414F291AADEE0600B25CEE /* JSQPhotoMediaItem.m in Sources */,
 				001DFA041ABF22C3008C9D1F /* Chatcell.m in Sources */,
-				CA39AC791AC476A700C2F4E1 /* UsersListViewController.m in Sources */,
 				00414F071AADEE0600B25CEE /* AFURLResponseSerialization.m in Sources */,
 				00414F161AADEE0600B25CEE /* UIDevice+JSQMessages.m in Sources */,
 				007BA4031A6CD56D00BF08DE /* GroupsPlusViewController.m in Sources */,
 				00414F101AADEE0600B25CEE /* UIWebView+AFNetworking.m in Sources */,
 				00414F131AADEE0600B25CEE /* JSQSystemSoundPlayer+JSQMessages.m in Sources */,
-				CA39AC8A1AC476A700C2F4E1 /* MessageScreenViewController.m in Sources */,
 				00296BD619EFA5BF003ADA30 /* APAddress.m in Sources */,
-				CA39AC8C1AC476A700C2F4E1 /* SignupScreenViewController.m in Sources */,
+				CA3ABC3C1AC7E64100E1B5DE /* MessageScreenViewController.m in Sources */,
 				00A9C30E1999838200F89967 /* GroupsTableViewController.m in Sources */,
 				007BA3F71A6C9CE100BF08DE /* UIPopoverController+FlatUI.m in Sources */,
 				00414F151AADEE0600B25CEE /* UIColor+JSQMessages.m in Sources */,
@@ -1581,12 +1581,12 @@
 				0090ECCA1A6C5322009DB11D /* SettingsViewController.m in Sources */,
 				001DF9FE1ABE395F008C9D1F /* NavigationController.m in Sources */,
 				00414F301AADEE0600B25CEE /* JSQMessagesCollectionViewCellOutgoing.m in Sources */,
+				CA3ABC3E1AC7E64100E1B5DE /* SignupScreenViewController.m in Sources */,
 				00414F0C1AADEE0600B25CEE /* UIButton+AFNetworking.m in Sources */,
 				001DF9F71ABCEFD8008C9D1F /* RootTabBarController.m in Sources */,
-				CA39AC741AC476A700C2F4E1 /* Reachability.m in Sources */,
+				CA3ABC2E1AC7E64100E1B5DE /* Reachability.m in Sources */,
 				00414F631AAE24A800B25CEE /* ChatView.m in Sources */,
 				00414F261AADEE0600B25CEE /* JSQMessage.m in Sources */,
-				672F97361AC479D400CFBC28 /* SelectGroupsTableViewController.m in Sources */,
 				00414F4C1AADEE5700B25CEE /* messages.m in Sources */,
 				00414F1E1AADEE0600B25CEE /* JSQMessagesMediaViewBubbleImageMasker.m in Sources */,
 				00414F031AADEE0600B25CEE /* AFNetworkReachabilityManager.m in Sources */,
@@ -1604,7 +1604,6 @@
 				00414F4E1AADEE5700B25CEE /* camera.m in Sources */,
 				00414F0A1AADEE0600B25CEE /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				00414F021AADEE0600B25CEE /* AFHTTPSessionManager.m in Sources */,
-				CA39AC821AC476A700C2F4E1 /* Intro2IDViewController.m in Sources */,
 				007BA3F91A6C9CE100BF08DE /* UISlider+FlatUI.m in Sources */,
 				001DFA071ABF2CB4008C9D1F /* ChatRoomViewController.m in Sources */,
 				007BA3EB1A6C9CE100BF08DE /* FUIAlertView.m in Sources */,
@@ -1615,18 +1614,19 @@
 				007BA3F31A6C9CE100BF08DE /* UIColor+FlatUI.m in Sources */,
 				00414F2E1AADEE0600B25CEE /* JSQMessagesCollectionViewCellIncoming.m in Sources */,
 				007BA40A1A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
+				CA3ABC391AC7E64100E1B5DE /* IntroLoginScreenViewController.m in Sources */,
 				00414F0E1AADEE0600B25CEE /* UIProgressView+AFNetworking.m in Sources */,
 				00414F181AADEE0600B25CEE /* UIView+JSQMessages.m in Sources */,
 				00414F571AAE17BC00B25CEE /* MessagesTableViewController.m in Sources */,
-				CA39AC7E1AC476A700C2F4E1 /* HomeScreenViewController.m in Sources */,
 				00414F171AADEE0600B25CEE /* UIImage+JSQMessages.m in Sources */,
 				00414E591AADECFF00B25CEE /* AddGroupsTableViewController.m in Sources */,
 				00CEE3E7199434E700F40C12 /* hobble_1_1.xcdatamodeld in Sources */,
 				007BA3FB1A6C9CE100BF08DE /* UITabBar+FlatUI.m in Sources */,
+				CA3ABC361AC7E64100E1B5DE /* Intro1IDViewController.m in Sources */,
 				001196F119A666C1002D2757 /* SearchGroupsViewController.m in Sources */,
 				00414F3C1AADEE0600B25CEE /* JSQSystemSoundPlayer.m in Sources */,
+				CA3ABC3A1AC7E64100E1B5DE /* IntroPagesViewController.m in Sources */,
 				00296BD719EFA5BF003ADA30 /* APAddressBook.m in Sources */,
-				CA39AC7B1AC476A700C2F4E1 /* Utility.m in Sources */,
 				0090ECB61A6BA251009DB11D /* Definitions.m in Sources */,
 				00414F1D1AADEE0600B25CEE /* JSQMessagesBubbleImageFactory.m in Sources */,
 				00414F221AADEE0600B25CEE /* JSQMessagesCollectionViewFlowLayoutInvalidationContext.m in Sources */,
@@ -1638,9 +1638,9 @@
 				00414F3E1AADEE0600B25CEE /* ProgressHUD.m in Sources */,
 				00414F2C1AADEE0600B25CEE /* JSQMessagesCollectionView.m in Sources */,
 				007BA3FA1A6C9CE100BF08DE /* UIStepper+FlatUI.m in Sources */,
-				CA39AC901AC478A700C2F4E1 /* LoginScreenViewController.m in Sources */,
+				CA3ABC371AC7E64100E1B5DE /* Intro2IDViewController.m in Sources */,
 				007BA3F41A6C9CE100BF08DE /* UIFont+FlatUI.m in Sources */,
-				CA39AC731AC476A700C2F4E1 /* ParseManager.m in Sources */,
+				CA3ABC2D1AC7E64100E1B5DE /* ParseManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
