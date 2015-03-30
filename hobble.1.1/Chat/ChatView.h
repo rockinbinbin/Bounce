@@ -16,7 +16,11 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 @interface ChatView : JSQMessagesViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate>
 //-------------------------------------------------------------------------------------------------------------------------------------------------
+@property NSMutableArray *messages;
+@property NSString *groupId;
+@property NSTimer *timer;
 
 - (id)initWith:(NSString *)groupId_;
+- (void)loadMessages;
 
 @end

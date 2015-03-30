@@ -34,7 +34,11 @@
 - (void) createrequestToGroups:(NSArray *) selectedGroups andGender:(NSString *)gender  withinTime:(NSInteger)timeAllocated andInRadius:(NSInteger) radius;
 // Append users to group
 - (void) addListOfUsers:(NSArray *) users toGroup:(PFObject *) group;
-
+// get request uodates
+- (PFObject *) retrieveRequest:(PFObject *) requst;
+- (PFObject *) retrieveRequestUpdate:(NSString *) requstId;
+// valid receiver
+- (BOOL) isValidRequestReceiver:(PFObject*) request;
 
 @end
 

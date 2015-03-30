@@ -24,24 +24,26 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 @interface ChatView()
 {
-	NSTimer *timer;
+//	NSTimer *timer;
 	BOOL isLoading;
 
-	NSString *groupId;
+//	NSString *groupId;
 
 	NSMutableArray *users;
-	NSMutableArray *messages;
 	NSMutableDictionary *avatars;
-
+//    NSMutableArray *messages;
 	JSQMessagesBubbleImage *bubbleImageOutgoing;
 	JSQMessagesBubbleImage *bubbleImageIncoming;
 	JSQMessagesAvatarImage *avatarImageBlank;
 }
+
 @end
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 
 @implementation ChatView
-
+@synthesize messages = messages;
+@synthesize groupId = groupId;
+@synthesize timer = timer;
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 - (id)initWith:(NSString *)groupId_
 //-------------------------------------------------------------------------------------------------------------------------------------------------

@@ -14,8 +14,8 @@
 
 #import "AppConstant.h"
 #import <FacebookSDK/FacebookSDK.h>
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <FBSDKLoginKit/FBSDKLoginKit.h>
+//#import <FBSDKCoreKit/FBSDKCoreKit.h>
+//#import <FBSDKLoginKit/FBSDKLoginKit.h>
 @interface LoginScreenViewController ()
 
 @end

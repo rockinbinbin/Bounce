@@ -159,6 +159,8 @@
 		28F13A521A6C75A90069EBA4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F13A511A6C75A90069EBA4 /* MapKit.framework */; };
 		28F13A5B1A6C7F7B0069EBA4 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F13A5A1A6C7F7B0069EBA4 /* MapViewController.m */; };
 		6791817D1AC0057D00D0474C /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6791817C1AC0057D00D0474C /* FacebookSDK.framework */; };
+		67B484D51AC9572B002E57F4 /* CustomChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67B484D21AC9572B002E57F4 /* CustomChatViewController.m */; };
+		67B484D61AC9572B002E57F4 /* RequestManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 67B484D41AC9572B002E57F4 /* RequestManger.m */; };
 		CA3ABC151AC7E64100E1B5DE /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBC01AC7E64100E1B5DE /* Contents.json */; };
 		CA3ABC161AC7E64100E1B5DE /* LandingView.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBC11AC7E64100E1B5DE /* LandingView.png */; };
 		CA3ABC171AC7E64100E1B5DE /* LandingView@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBC21AC7E64100E1B5DE /* LandingView@2x.png */; };
@@ -516,6 +518,10 @@
 		28F13A591A6C7F7B0069EBA4 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		28F13A5A1A6C7F7B0069EBA4 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		6791817C1AC0057D00D0474C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		67B484D11AC9572B002E57F4 /* CustomChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomChatViewController.h; sourceTree = "<group>"; };
+		67B484D21AC9572B002E57F4 /* CustomChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomChatViewController.m; sourceTree = "<group>"; };
+		67B484D31AC9572B002E57F4 /* RequestManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestManger.h; sourceTree = "<group>"; };
+		67B484D41AC9572B002E57F4 /* RequestManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestManger.m; sourceTree = "<group>"; };
 		CA3ABBC01AC7E64100E1B5DE /* Contents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
 		CA3ABBC11AC7E64100E1B5DE /* LandingView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LandingView.png; sourceTree = "<group>"; };
 		CA3ABBC21AC7E64100E1B5DE /* LandingView@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LandingView@2x.png"; sourceTree = "<group>"; };
@@ -1293,6 +1299,10 @@
 		CA3ABBDA1AC7E64100E1B5DE /* Business */ = {
 			isa = PBXGroup;
 			children = (
+				67B484D11AC9572B002E57F4 /* CustomChatViewController.h */,
+				67B484D21AC9572B002E57F4 /* CustomChatViewController.m */,
+				67B484D31AC9572B002E57F4 /* RequestManger.h */,
+				67B484D41AC9572B002E57F4 /* RequestManger.m */,
 				CA3ABBDB1AC7E64100E1B5DE /* Constants.h */,
 			);
 			path = Business;
@@ -1650,7 +1660,9 @@
 				00414F571AAE17BC00B25CEE /* MessagesTableViewController.m in Sources */,
 				00414F171AADEE0600B25CEE /* UIImage+JSQMessages.m in Sources */,
 				00414E591AADECFF00B25CEE /* AddGroupsTableViewController.m in Sources */,
+				67B484D61AC9572B002E57F4 /* RequestManger.m in Sources */,
 				00CEE3E7199434E700F40C12 /* hobble_1_1.xcdatamodeld in Sources */,
+				67B484D51AC9572B002E57F4 /* CustomChatViewController.m in Sources */,
 				007BA3FB1A6C9CE100BF08DE /* UITabBar+FlatUI.m in Sources */,
 				CA3ABC361AC7E64100E1B5DE /* Intro1IDViewController.m in Sources */,
 				001196F119A666C1002D2757 /* SearchGroupsViewController.m in Sources */,

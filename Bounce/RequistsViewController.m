@@ -8,8 +8,11 @@
 
 #import "RequistsViewController.h"
 //#import "MainViewController.h"
-#import "ChatView.h"
+//#import "ChatView.h"
+#import "CustomChatViewController.h"
 #import "AppConstant.h"
+#import "Utility.h"
+#import "Constants.h"
 
 @interface RequistsViewController ()
 {
@@ -47,8 +50,10 @@
         [query1 whereKey:@"Sender" equalTo:[[PFUser currentUser] username]];
         PFQuery *query2 = [PFQuery queryWithClassName:@"Requests"];
         [query2 whereKey:@"receivers" equalTo:[[PFUser currentUser] username]];
+        
         PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:query1, query2, nil]];
-        NSArray *resultUsers = [query findObjects];
+        [query orderByDescending:@"createdAt"];
+//        NSArray *resultUsers = [query findObjects];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
          {
              requests = [NSMutableArray arrayWithArray:objects];
@@ -99,18 +104,25 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self.groupsTableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
     }
     
+    PFObject *request = [requests objectAtIndex:indexPath.row];
+    if ([[Utility getInstance] isRequestValid:[request createdAt] andTimeAllocated:[[request objectForKey:PF_REQUEST_TIME_ALLOCATED] integerValue]]) {
+        cell.backgroundColor = [UIColor whiteColor];
+    }else{
+        // if request time out ==> added gray background
+        cell.backgroundColor = [UIColor lightGrayColor];
+    }
     cell.textLabel.text = [NSString stringWithFormat:@"%@ send request",[[requests objectAtIndex:indexPath.row] valueForKey:@"Sender"]];
-//    cell.detailTextLabel.text = 
-    
+    cell.detailTextLabel.text = [self convertDateToString:[request createdAt]];
     
     return cell;
 }
 
 #pragma mark - TableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    // if request time out ==> no action in the cell
     [self openRequestChat:indexPath.row];
 }
 
@@ -120,50 +132,34 @@
     PFObject *request = [requests objectAtIndex:groupIndex];
     NSString *requestId = request.objectId;
     
-    [[ParseManager getInstance] createMessageItemForUser:[PFUser currentUser] WithGroupId:requestId andDescription:[request objectForKey:@"name"]];
-    
-    ChatView *chatView = [[ChatView alloc] initWith:requestId];
-    chatView.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:chatView animated:YES];
-}
-
-//#pragma mark - Bar item button action
-//- (void)logout
-//{
-//    [PFUser logOut];
-//    MainViewController *mainViewController = [[MainViewController alloc] init];
-//    [self.navigationController pushViewController:mainViewController animated:YES];
-//}
-- (void) addGroupClicked
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Please enter a name for your group" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
-    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [alert show];
-}
-
-#pragma mark - UIAlertViewDelegate
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex != alertView.cancelButtonIndex)
-    {
-        UITextField *textField = [alertView textFieldAtIndex:0];
-        if ([textField.text length] != 0)
-        {
-            [[ParseManager getInstance] setAddGroupdelegate:self];
-            [[ParseManager getInstance] addChatGroup:textField.text];
-        }
-    }
-}
-
-#pragma mark - Parse Manager Add Group delegate
-- (void)didAddGroupWithError:(NSError *)error
-{
-    [[Utility getInstance] hideProgressHud];
-    if (error) {
-        [[Utility getInstance] showAlertMessage:[[error userInfo] objectForKey:@"error"]];
+    if ([[Utility getInstance] isRequestValid:[request createdAt] andTimeAllocated:[[request objectForKey:PF_REQUEST_TIME_ALLOCATED] integerValue]]) {
+        [[ParseManager getInstance] createMessageItemForUser:[PFUser currentUser] WithGroupId:requestId andDescription:[request objectForKey:@"name"]];
+        
+        //    ChatView *chatView = [[ChatView alloc] initWith:requestId];
+        CustomChatViewController *chatView = [[CustomChatViewController alloc] initWith:requestId];
+        
+        chatView.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:chatView animated:YES];
     }else{
-        [self loadRequests];
+        // sho alert request time over
+        [[Utility getInstance] showAlertMessage:@"Request time over"];
     }
+    
+    
 }
 
+#pragma mark - String from Date
+- (NSString*) convertDateToString:(NSDate *) date
+{
+    @try {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss zzz"];
+        
+    NSString *stringFromDate = [formatter stringFromDate:date];
+        return stringFromDate;
+    }
+    @catch (NSException *exception) {
+        NSLog(@"");
+    }
+}
 @end

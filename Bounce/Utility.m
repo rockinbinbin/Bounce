@@ -81,4 +81,18 @@ static Utility *sharedUtility = nil;
                                                        delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alertView show];
 }
+
+#pragma mark - Compare request date with current date
+- (BOOL)isRequestValid:(NSDate *)craetedDate andTimeAllocated:(NSInteger) time
+{
+    NSDate *endDate = [craetedDate dateByAddingTimeInterval:time* 60];
+    NSDate* currentdate = [NSDate date];
+    NSTimeInterval distanceBetweenDates = [endDate timeIntervalSinceDate:currentdate];
+
+    if (distanceBetweenDates <= 0){
+        return NO;
+    }else{
+        return YES;
+    }
+}
 @end
