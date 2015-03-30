@@ -55,6 +55,7 @@
 #define		PF_GROUPS_NAME						@"groupName"					//	String
 #define     PF_GROUP_LOCATION                   @"location"              // pfGeopoint
 #define     PF_GROUP_OWNER                      @"groupOwner"
+#define     PF_GROUP_PRIVACY                    @"Privacy"
 #define     PF_GROUP_Users_RELATION             @"groupUsers"
 
 //-----------------------------------------------------------------------

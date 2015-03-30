@@ -29,7 +29,7 @@
 // Load chat groups
 - (void) loadAllGroups;
 // Add Chat group
-- (void) addGroup:(NSString*) groupName withLocation:(PFGeoPoint*) location;
+- (void) addGroup:(NSString*) groupName withLocation:(PFGeoPoint*) location andPrivacy:(NSString*) privacy;
 // Request
 - (void) createrequestToGroups:(NSArray *) selectedGroups andGender:(NSString *)gender  withinTime:(NSInteger)timeAllocated andInRadius:(NSInteger) radius;
 // Append users to group

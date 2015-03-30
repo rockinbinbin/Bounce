@@ -132,10 +132,11 @@ CLLocationManager *locationManger;
 
 
 #pragma mark - Add Chat Group
-- (void) addGroup:(NSString*) groupName withLocation:(PFGeoPoint*) location {
+- (void) addGroup:(NSString*) groupName withLocation:(PFGeoPoint*) location andPrivacy:(NSString*) privacy {
     PFObject *object = [PFObject objectWithClassName:PF_GROUPS_CLASS_NAME];
     object[PF_GROUPS_NAME] = groupName;
     object[PF_GROUP_LOCATION] = location;
+    object[PF_GROUP_PRIVACY] = privacy;
     object[PF_GROUP_OWNER] = [PFUser currentUser];
     
     // TODO: Make the following part undependable

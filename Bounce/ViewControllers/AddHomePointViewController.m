@@ -10,6 +10,10 @@
 #import "AppConstant.h"
 #import "ChatListCell.h"
 #import "HomePointGroupsViewController.h"
+#import "Definitions.h"
+#import <Parse/Parse.h>
+#import "ParseManager.h"
+#import "GroupsListViewController.h"
 
 @interface AddHomePointViewController ()
 
@@ -66,8 +70,47 @@
 
 -(void)doneButtonClicked{
     //TODO: Go to the users screen to add them in the group
-    HomePointGroupsViewController* homePointGroupsViewController = [[HomePointGroupsViewController alloc] initWithNibName:@"HomePointGroupsViewController" bundle:nil];
-    [self.navigationController pushViewController:homePointGroupsViewController animated:YES];
+   
+    
+    NSString *name = [self.groupNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if ([name length] == 0) {
+        UIAlertView *zerolength = [[UIAlertView alloc] initWithTitle:@"Oops!"
+                                                             message:@"Make sure you enter a group name!"
+                                                            delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [zerolength show];
+    }
+    else{
+        PFQuery *query = [PFQuery queryWithClassName:@"Group"];
+        [query whereKey:ParseGroupName equalTo:name];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (!error) {
+                // works
+                if (objects.count) {
+                    NSLog(@"NOT UNIQUE GROUP NAME"); // write alert to try a different username
+                    UIAlertView *notuniqueusername = [[UIAlertView alloc] initWithTitle:@"Oops!"
+                                                                                message:@"This group name seems to be taken. Please choose another!"
+                                                                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [notuniqueusername show];
+                }
+                else{
+                    if ([self.groupPrivacySegmentedControl selectedSegmentIndex] == 0) {
+                        [[ParseManager getInstance] addGroup:name withLocation:[PFUser currentUser][@"CurrentLocation"] andPrivacy:@"Public"];
+                    } else if ([self.groupPrivacySegmentedControl selectedSegmentIndex] == 1) {
+                        [[ParseManager getInstance] addGroup:name withLocation:[PFUser currentUser][@"CurrentLocation"] andPrivacy:@"Private"];
+                    }
+                    GroupsListViewController* groupsListViewController = [[GroupsListViewController alloc] initWithNibName:@"GroupsListViewController" bundle:nil];
+                    [self.navigationController pushViewController:groupsListViewController animated:YES];
+                    
+                }
+            }
+            else {
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+            }
+        }];
+    }
+    
+//    HomePointGroupsViewController* homePointGroupsViewController = [[HomePointGroupsViewController alloc] initWithNibName:@"HomePointGroupsViewController" bundle:nil];
+//    [self.navigationController pushViewController:homePointGroupsViewController animated:YES];
 }
 
 - (IBAction)segmentedControlClicked:(id)sender {

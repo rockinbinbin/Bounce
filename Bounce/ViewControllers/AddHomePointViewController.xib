@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddHomePointViewController">
             <connections>
                 <outlet property="addLocationButton" destination="wb7-BW-3rw" id="YDo-Mj-6HR"/>
+                <outlet property="groupNameTextField" destination="xkf-Jj-kua" id="yrI-bv-OfE"/>
                 <outlet property="groupPrivacySegmentedControl" destination="zHY-Tm-2df" id="msX-cs-R6f"/>
                 <outlet property="tableView" destination="r1u-l9-c4L" id="5zd-nr-xD9"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
