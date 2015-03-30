@@ -132,11 +132,27 @@ CLLocationManager *locationManger;
 
 
 #pragma mark - Add Chat Group
-- (void) addChatGroup:(NSString*) groupName{
+- (void) addGroup:(NSString*) groupName withLocation:(PFGeoPoint*) location {
     PFObject *object = [PFObject objectWithClassName:PF_GROUPS_CLASS_NAME];
     object[PF_GROUPS_NAME] = groupName;
+    object[PF_GROUP_LOCATION] = location;
+    object[PF_GROUP_OWNER] = [PFUser currentUser];
+    
+    // TODO: Make the following part undependable
+    // Added this part to append needed data
+    NSMutableArray *Userarray = [[NSMutableArray alloc] init];
+    [Userarray addObject:[PFUser currentUser]];
+    object[@"ArrayOfUsers"] = Userarray;
+    PFUser *user = [PFUser currentUser];
+    [user addObject:groupName forKey:@"ArrayOfGroups"];
+    [user saveInBackground];
+
     [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
      {
+         // Added the user to GroupUsers relation
+         PFRelation *usersRelation = [object relationForKey:PF_GROUP_Users_RELATION];
+         [usersRelation addObject:[PFUser currentUser]];
+         [object saveInBackground];
          if ([self.addGroupdelegate respondsToSelector:@selector(didAddGroupWithError:)]) {
              [self.addGroupdelegate didAddGroupWithError:error];
          }
@@ -459,4 +475,84 @@ CLLocationManager *locationManger;
 //    }];
 }
 
+#define K_NEAR_DISTANCE 5
+#pragma mark - Get Group Users near current User
+- (NSInteger) getNearUsersInGroup:(PFObject *) group
+{
+    // User's location
+    PFGeoPoint *userGeoPoint = [[PFUser currentUser] objectForKey:@"CurrentLocation"];
+    
+    PFQuery *query = [PFUser query];
+    [query whereKey:@"username" notEqualTo:[[PFUser currentUser] username]];
+    [query whereKey:@"ArrayOfGroups" equalTo:[group objectForKey:@"groupName"]];
+    [query whereKey:@"CurrentLocation" nearGeoPoint:userGeoPoint withinMiles:K_NEAR_DISTANCE];
+    
+    //if has relation to users
+    // create the query on the relation
+  
+    // Final list of objects
+    NSArray *nearUsers = [query findObjects];
+    return [nearUsers count];
+}
+
+- (NSArray *) getGroupUsers:(PFObject *) group
+{
+    PFQuery *query = [PFUser query];
+    [query whereKey:@"ArrayOfGroups" equalTo:[group objectForKey:@"groupName"]];
+    
+    //if has relation to users
+    // create the query on the relation
+    
+    // Final list of objects
+    NSArray *groupUser = [query findObjects];
+    return groupUser;
+}
+#pragma mark - Distance to HomePoint (Group)
+- (double) getDistanceToGroup:(PFObject *) group
+{
+    PFGeoPoint *userGeoPoint = [[PFUser currentUser] objectForKey:@"CurrentLocation"];
+    PFGeoPoint *groupGeoPoint = [group objectForKey:@"location"];
+    if (!groupGeoPoint) {
+       groupGeoPoint = [PFGeoPoint  geoPointWithLatitude:31.0 longitude:29.0] ;
+    }
+
+    return [userGeoPoint distanceInMilesTo:groupGeoPoint];
+}
+
+#pragma mark - Get Groups of user
+- (NSArray *) getUserGroups
+{
+    @try {
+        // if depend on realtions
+        //    PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
+        //    [query whereKey:PF_GROUP_Users_RELATION equalTo:[PFUser currentUser]];
+        //    [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
+        //        // results contains all the groups of user
+        //
+        //    }];
+        
+        NSArray *userGroups = [[PFUser currentUser] objectForKey:@"ArrayOfGroups"];
+        PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
+        [query whereKey:PF_GROUPS_NAME containedIn:userGroups];
+        NSArray *groups = [query findObjects];
+        return groups;
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
+
+- (NSArray *) getCandidateGroupsForCurrentUser
+{
+    @try {
+        NSArray *userGroups = [[PFUser currentUser] objectForKey:@"ArrayOfGroups"];
+        PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
+        [query whereKey:PF_GROUPS_NAME notContainedIn:userGroups];
+        NSArray *groups = [query findObjects];
+        return groups;
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
 @end

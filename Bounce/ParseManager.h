@@ -29,7 +29,7 @@
 // Load chat groups
 - (void) loadAllGroups;
 // Add Chat group
-- (void) addChatGroup:(NSString*) groupName;
+- (void) addGroup:(NSString*) groupName withLocation:(PFGeoPoint*) location;
 // Request
 - (void) createrequestToGroups:(NSArray *) selectedGroups andGender:(NSString *)gender  withinTime:(NSInteger)timeAllocated andInRadius:(NSInteger) radius;
 // Append users to group
@@ -39,6 +39,15 @@
 - (PFObject *) retrieveRequestUpdate:(NSString *) requstId;
 // valid receiver
 - (BOOL) isValidRequestReceiver:(PFObject*) request;
+
+// nearUsers in group
+- (NSInteger) getNearUsersInGroup:(PFObject *) group;
+// distance between user and group
+- (double) getDistanceToGroup:(PFObject *) group;
+// Get User groups
+- (NSArray *) getUserGroups;
+// Get Groups which currnt user not member at it
+- (NSArray *) getCandidateGroupsForCurrentUser;
 
 @end
 

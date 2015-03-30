@@ -49,8 +49,14 @@
 #define		PF_CHAT_VIDEO						@"video"				//	File
 #define		PF_CHAT_CREATEDAT					@"createdAt"			//	Date
 //-----------------------------------------------------------------------
+//#define		PF_GROUPS_CLASS_NAME				@"Group"				//	Class name
+//#define		PF_GROUPS_NAME						@"name"					//	String
 #define		PF_GROUPS_CLASS_NAME				@"Group"				//	Class name
-#define		PF_GROUPS_NAME						@"name"					//	String
+#define		PF_GROUPS_NAME						@"groupName"					//	String
+#define     PF_GROUP_LOCATION                   @"location"              // pfGeopoint
+#define     PF_GROUP_OWNER                      @"groupOwner"
+#define     PF_GROUP_Users_RELATION             @"groupUsers"
+
 //-----------------------------------------------------------------------
 #define		PF_MESSAGES_CLASS_NAME				@"Messages"				//	Class name
 #define		PF_MESSAGES_USER					@"user"					//	Pointer to User Class
