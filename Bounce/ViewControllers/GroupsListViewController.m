@@ -146,7 +146,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
   
-    cell.numOfMessagesLabel.text = @"8";
+    cell.numOfMessagesLabel.text = @"0";
     // filling the cell data
 //    cell.groupNameLabel.text = @"Group 1";
 //    cell.groupDistanceLabel.text = @"2.1 miles away";
