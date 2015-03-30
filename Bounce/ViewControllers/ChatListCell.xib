@@ -117,6 +117,7 @@
                 <outlet property="iconImageView" destination="e58-hs-qNO" id="Bxx-4V-bmX"/>
                 <outlet property="nearbyLabel" destination="G4t-lL-BHs" id="KQj-3x-HuB"/>
                 <outlet property="numOfFriendsInGroupLabel" destination="fXO-12-a5i" id="oH3-ja-d83"/>
+                <outlet property="topSpaceTitleConstraints" destination="lke-Wu-vqI" id="7vJ-Yb-E2g"/>
             </connections>
             <point key="canvasLocation" x="514" y="356"/>
         </tableViewCell>

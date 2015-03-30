@@ -1,27 +1,27 @@
 //
-//  AddHomePointViewController.m
+//  HomePointGroupsViewController.m
 //  bounce
 //
 //  Created by Mohamed Abo Shamaaa on 3/30/15.
 //  Copyright (c) 2015 hobble. All rights reserved.
 //
 
-#import "AddHomePointViewController.h"
+#import "HomePointGroupsViewController.h"
 #import "AppConstant.h"
 #import "ChatListCell.h"
-#import "HomePointGroupsViewController.h"
+#import "HomePointSuccessfulCreationViewController.h"
 
-@interface AddHomePointViewController ()
+@interface HomePointGroupsViewController ()
 
 @end
 
-@implementation AddHomePointViewController
+@implementation HomePointGroupsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self setBarButtonItemLeft:@"common_close_icon"];
-    self.navigationItem.title = @"add homepoint";
+    [self setBarButtonItemLeft:@"common_back_button"];
+    self.navigationItem.title = @"add to group";
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]
                                    initWithTitle:@"Done"
                                    style:UIBarButtonItemStylePlain
@@ -29,14 +29,6 @@
                                    action:@selector(doneButtonClicked)];
     doneButton.tintColor = DEFAULT_COLOR;
     self.navigationItem.rightBarButtonItem = doneButton;
-    
-    
-//    [[self.groupPrivacySegmentedControl.subviews objectAtIndex:1] setBackgroundColor:DEFAULT_COLOR];
-
-    //setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateSelected];
-//    [[self.groupPrivacySegmentedControl.subviews objectAtIndex:0] setBackgroundColor:[UIColor whiteColor]];
-//    [[self.groupPrivacySegmentedControl.subviews objectAtIndex:1] setTitleTextAttributes:@{NSForegroundColorAttributeName : DEFAULT_COLOR} forState:UIControlStateSelected];
-    self.addLocationButton.backgroundColor = LIGHT_BLUE_COLOR;
 
 }
 
@@ -65,12 +57,8 @@
 }
 
 -(void)doneButtonClicked{
-    //TODO: Go to the users screen to add them in the group
-    HomePointGroupsViewController* homePointGroupsViewController = [[HomePointGroupsViewController alloc] initWithNibName:@"HomePointGroupsViewController" bundle:nil];
-    [self.navigationController pushViewController:homePointGroupsViewController animated:YES];
-}
-
-- (IBAction)segmentedControlClicked:(id)sender {
+    HomePointSuccessfulCreationViewController* homePointSuccessfulCreationViewController = [[HomePointSuccessfulCreationViewController alloc] initWithNibName:@"HomePointSuccessfulCreationViewController" bundle:nil];
+    [self.navigationController pushViewController:homePointSuccessfulCreationViewController animated:YES];
 }
 
 #pragma mark - TableView Datasource
@@ -94,25 +82,18 @@
     cell.numOfFriendsInGroupLabel.hidden = YES;
     cell.nearbyLabel.hidden = YES;
     cell.roundedView.hidden = YES;
-    cell.groupNameLabel.font=[cell.groupNameLabel.font fontWithSize:16];
-    cell.groupDistanceLabel.font=[cell.groupDistanceLabel.font fontWithSize:10];
-
+    cell.groupDistanceLabel.hidden = YES;
+    
+    cell.circularView.layer.borderWidth = 1.0f;
+    cell.circularView.layer.borderColor = DEFAULT_COLOR.CGColor;
+    
     cell.circularViewWidth.constant = 40;
     cell.circularViewHeight.constant = 40;
     cell.circularView.layer.cornerRadius = 20;
     cell.circularView.clipsToBounds = YES;
-    cell.circularView.layer.borderWidth = 0;
-    cell.circularView.layer.borderColor = [UIColor whiteColor].CGColor;
-
 
     cell.iconImageView.image = [UIImage imageNamed:@"common_checkmark_icon"];
-    for ( UIView* view in cell.contentView.subviews )
-    {
-        view.backgroundColor = [ UIColor clearColor ];
-    }
-
-    cell.contentView.backgroundColor = [UIColor colorWithRed:224.0/255.0 green:224.0/255.0 blue:224.0/255.0 alpha:1.0f];
-
+    cell.topSpaceTitleConstraints.constant = 0;
     // filling the cell data
     cell.groupNameLabel.text = @"Group 1";
     cell.groupDistanceLabel.text = @"2.1 miles away";
@@ -140,7 +121,8 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50;
+    return 80;
 }
+
 
 @end

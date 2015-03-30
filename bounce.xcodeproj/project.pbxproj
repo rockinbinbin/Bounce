@@ -224,6 +224,10 @@
 		CA7F0AA61AC9573800AC5FCB /* AddHomePointViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA7F0AA41AC9573800AC5FCB /* AddHomePointViewController.xib */; };
 		CAB03D791AC993CC0043835F /* CustomChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB03D771AC993CC0043835F /* CustomChatViewController.m */; };
 		CAB03D7C1AC995670043835F /* AddHomePointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB03D7B1AC995670043835F /* AddHomePointViewController.m */; };
+		CAB03D801AC997630043835F /* HomePointGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB03D7E1AC997630043835F /* HomePointGroupsViewController.m */; };
+		CAB03D811AC997630043835F /* HomePointGroupsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB03D7F1AC997630043835F /* HomePointGroupsViewController.xib */; };
+		CAB03D851AC99BAA0043835F /* HomePointSuccessfulCreationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB03D831AC99BAA0043835F /* HomePointSuccessfulCreationViewController.m */; };
+		CAB03D861AC99BAA0043835F /* HomePointSuccessfulCreationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB03D841AC99BAA0043835F /* HomePointSuccessfulCreationViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -610,6 +614,12 @@
 		CAB03D781AC993CC0043835F /* CustomChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomChatViewController.h; sourceTree = "<group>"; };
 		CAB03D7A1AC995670043835F /* AddHomePointViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddHomePointViewController.h; sourceTree = "<group>"; };
 		CAB03D7B1AC995670043835F /* AddHomePointViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddHomePointViewController.m; sourceTree = "<group>"; };
+		CAB03D7D1AC997630043835F /* HomePointGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePointGroupsViewController.h; sourceTree = "<group>"; };
+		CAB03D7E1AC997630043835F /* HomePointGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePointGroupsViewController.m; sourceTree = "<group>"; };
+		CAB03D7F1AC997630043835F /* HomePointGroupsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomePointGroupsViewController.xib; path = ../ViewControllers/HomePointGroupsViewController.xib; sourceTree = "<group>"; };
+		CAB03D821AC99BAA0043835F /* HomePointSuccessfulCreationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePointSuccessfulCreationViewController.h; sourceTree = "<group>"; };
+		CAB03D831AC99BAA0043835F /* HomePointSuccessfulCreationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePointSuccessfulCreationViewController.m; sourceTree = "<group>"; };
+		CAB03D841AC99BAA0043835F /* HomePointSuccessfulCreationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomePointSuccessfulCreationViewController.xib; path = ../ViewControllers/HomePointSuccessfulCreationViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1386,10 +1396,14 @@
 				CA7F0A9E1AC948FF00AC5FCB /* EditGroupsViewController.m */,
 				CA7F0A981AC92EF500AC5FCB /* ChatListCell.h */,
 				CA7F0A991AC92EF500AC5FCB /* ChatListCell.m */,
-				CAB03D7A1AC995670043835F /* AddHomePointViewController.h */,
-				CAB03D7B1AC995670043835F /* AddHomePointViewController.m */,
 				CAB03D771AC993CC0043835F /* CustomChatViewController.m */,
 				CAB03D781AC993CC0043835F /* CustomChatViewController.h */,
+				CAB03D7A1AC995670043835F /* AddHomePointViewController.h */,
+				CAB03D7B1AC995670043835F /* AddHomePointViewController.m */,
+				CAB03D7D1AC997630043835F /* HomePointGroupsViewController.h */,
+				CAB03D7E1AC997630043835F /* HomePointGroupsViewController.m */,
+				CAB03D821AC99BAA0043835F /* HomePointSuccessfulCreationViewController.h */,
+				CAB03D831AC99BAA0043835F /* HomePointSuccessfulCreationViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1413,6 +1427,8 @@
 				CA7F0A9F1AC948FF00AC5FCB /* EditGroupsViewController.xib */,
 				CA7F0A9A1AC92EF500AC5FCB /* ChatListCell.xib */,
 				CA7F0AA41AC9573800AC5FCB /* AddHomePointViewController.xib */,
+				CAB03D7F1AC997630043835F /* HomePointGroupsViewController.xib */,
+				CAB03D841AC99BAA0043835F /* HomePointSuccessfulCreationViewController.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1503,6 +1519,7 @@
 				00414F3D1AADEE0600B25CEE /* ProgressHUD.bundle in Resources */,
 				CA3ABC401AC7E64100E1B5DE /* GenderScreenViewController.xib in Resources */,
 				CA3ABC461AC7E64100E1B5DE /* IntroPagesViewController.xib in Resources */,
+				CAB03D861AC99BAA0043835F /* HomePointSuccessfulCreationViewController.xib in Resources */,
 				CA3ABC441AC7E64100E1B5DE /* Intro3IDViewController.xib in Resources */,
 				CA3ABC251AC7E64100E1B5DE /* Tutorial-2_iPhone6plus.png in Resources */,
 				CA3ABC181AC7E64100E1B5DE /* LandingView_iPhone5.png in Resources */,
@@ -1540,6 +1557,7 @@
 				CA3ABC1D1AC7E64100E1B5DE /* Tutorial-1_iPhone5.png in Resources */,
 				00414F3B1AADEE0600B25CEE /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
 				00414F2F1AADEE0600B25CEE /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
+				CAB03D811AC997630043835F /* HomePointGroupsViewController.xib in Resources */,
 				CA3ABC191AC7E64100E1B5DE /* LandingView_iPhone6.png in Resources */,
 				CA3ABC231AC7E64100E1B5DE /* Tutorial-2_iPhone5.png in Resources */,
 				00414F311AADEE0600B25CEE /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
@@ -1573,6 +1591,7 @@
 				CAB03D791AC993CC0043835F /* CustomChatViewController.m in Sources */,
 				0090ECC91A6C5322009DB11D /* SearchFriendsViewController.m in Sources */,
 				00414F2B1AADEE0600B25CEE /* JSQMessagesCellTextView.m in Sources */,
+				CAB03D801AC997630043835F /* HomePointGroupsViewController.m in Sources */,
 				00296BD819EFA5BF003ADA30 /* APContact.m in Sources */,
 				00414F051AADEE0600B25CEE /* AFURLConnectionOperation.m in Sources */,
 				CA7F0A9B1AC92EF500AC5FCB /* ChatListCell.m in Sources */,
@@ -1619,6 +1638,7 @@
 				00414F101AADEE0600B25CEE /* UIWebView+AFNetworking.m in Sources */,
 				00414F131AADEE0600B25CEE /* JSQSystemSoundPlayer+JSQMessages.m in Sources */,
 				00296BD619EFA5BF003ADA30 /* APAddress.m in Sources */,
+				CAB03D851AC99BAA0043835F /* HomePointSuccessfulCreationViewController.m in Sources */,
 				CA3ABC3C1AC7E64100E1B5DE /* MessageScreenViewController.m in Sources */,
 				CA7F0A961AC92E5100AC5FCB /* GroupsListViewController.m in Sources */,
 				00A9C30E1999838200F89967 /* GroupsTableViewController.m in Sources */,

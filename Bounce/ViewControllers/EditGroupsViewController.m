@@ -58,7 +58,7 @@
 }
 
 -(void)doneButtonClicked{
-    [self.navigationController popViewControllerAnimated:YES];
+    //TODO: navigate to the last view controller.
 }
 
 #pragma mark - TableView Datasource
