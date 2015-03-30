@@ -23,7 +23,7 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    self.RegisterButton.backgroundColor = [UIColor colorWithRed:120.0/250.0 green:175.0/250.0 blue:212.0/250.0 alpha:1.0];
+    self.RegisterButton.backgroundColor = LIGHT_BLUE_COLOR;
     self.view.backgroundColor = DEFAULT_COLOR;
     self.backButton.backgroundColor = [UIColor whiteColor];
     self.facebookLogin.backgroundColor = [UIColor colorWithRed:81.0/250.0 green:117.0/250.0 blue:195.0/250.0 alpha:1.0];

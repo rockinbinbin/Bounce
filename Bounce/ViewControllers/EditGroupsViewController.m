@@ -10,6 +10,7 @@
 #import "AppConstant.h"
 #import "ChatListCell.h"
 
+#import "AddHomePointViewController.h"
 @interface EditGroupsViewController ()
 
 @end
@@ -19,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self setBarButtonItemLeft:@"common_plus_icon"];
+    [self setBarButtonItemLeft:@"common_plus_icon_red"];
     self.navigationItem.title = @"homepoints";
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]
                                    initWithTitle:@"Done"
@@ -52,7 +53,8 @@
 }
 
 -(void)addButtonClicked{
-    //TODO: Add the add button action
+    AddHomePointViewController* addHomePointViewController = [[AddHomePointViewController alloc] initWithNibName:@"AddHomePointViewController" bundle:nil];
+    [self.navigationController pushViewController:addHomePointViewController animated:YES];
 }
 
 -(void)doneButtonClicked{
@@ -76,31 +78,8 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
         cell = (ChatListCell *)[nib objectAtIndex:0];
     }
-    
-    // make the circularView rounder
-    cell.circularView.layer.cornerRadius = cell.circularView.frame.size.height / 2;
-    cell.circularView.clipsToBounds = YES;
-    cell.circularView.layer.borderWidth = 3.0f;
-    cell.circularView.layer.borderColor = [UIColor whiteColor].CGColor;
-    cell.circularView.backgroundColor = DEFAULT_COLOR;
-    
-    // rounded view on the left
-    CGRect userOnlineFrame = CGRectMake(cell.circularView.frame.origin.x + 48, cell.circularView.frame.origin.y + 8, 20, 20);
-    UIView* roundedView = [[UIView alloc] initWithFrame: userOnlineFrame];
-    roundedView.layer.cornerRadius = 10;
-    roundedView.layer.masksToBounds = YES;
-    roundedView.backgroundColor = [UIColor redColor];
-    
-    // number of messages for the group
-    UILabel *numOfMessagesLabel = [[UILabel alloc] initWithFrame:CGRectMake(-5, 0, 30, 20)];
-    numOfMessagesLabel.textAlignment = NSTextAlignmentCenter;
-    [numOfMessagesLabel setTextColor:[UIColor whiteColor]];
-    [numOfMessagesLabel setBackgroundColor:[UIColor clearColor]];
-    [numOfMessagesLabel setFont:[UIFont fontWithName: @"Trebuchet MS" size: 14.0f]];
-    numOfMessagesLabel.text = @"44";
-    [roundedView addSubview:numOfMessagesLabel];
-    [cell addSubview:roundedView];
-    
+    cell.numOfMessagesLabel.text = @"8";
+
     // filling the cell data
     cell.groupNameLabel.text = @"Group 1";
     cell.groupDistanceLabel.text = @"2.1 miles away";

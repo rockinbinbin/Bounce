@@ -57,7 +57,11 @@
     
     
     
-    
+    [[UISegmentedControl appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateSelected];
+    [[UISegmentedControl appearance] setBackgroundColor:[UIColor whiteColor]];
+    [[UISegmentedControl appearance] setTintColor:DEFAULT_COLOR];
+
+
 //    UITabBarController *tabController = [[UITabBarController alloc] init];
 //
 //    HomeScreenViewController* homeScreenViewController = [[HomeScreenViewController alloc] initWithNibName:@"HomeScreenViewController" bundle:nil];

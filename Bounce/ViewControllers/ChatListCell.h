@@ -16,4 +16,10 @@
 @property (weak, nonatomic) IBOutlet UIView *circularView;
 
 
+@property (strong, nonatomic) NSString* numOfMessages;
+@property (strong, nonatomic) UILabel *numOfMessagesLabel;
+@property (strong, nonatomic) UIView* roundedView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *circularViewWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *circularViewHeight;
+@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
 @end

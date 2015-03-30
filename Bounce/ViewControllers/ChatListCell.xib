@@ -38,6 +38,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Arl-do-QdW" userLabel="Circular View">
                                 <rect key="frame" x="6" y="4" width="55" height="55"/>
                                 <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="e58-hs-qNO">
+                                        <rect key="frame" x="16" y="16" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="7fV-I6-Zww"/>
+                                            <constraint firstAttribute="width" constant="24" id="wvj-LE-DSq"/>
+                                        </constraints>
+                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nearby" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G4t-lL-BHs">
                                         <rect key="frame" x="15" y="34" width="26" height="10"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="8"/>
@@ -58,12 +65,22 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="55" id="5XN-ta-ext"/>
+                                    <constraint firstItem="e58-hs-qNO" firstAttribute="leading" secondItem="Arl-do-QdW" secondAttribute="leading" constant="13" id="DL8-AS-Idh"/>
+                                    <constraint firstAttribute="centerY" secondItem="e58-hs-qNO" secondAttribute="centerY" id="GOX-sE-gtJ"/>
                                     <constraint firstAttribute="centerX" secondItem="fXO-12-a5i" secondAttribute="centerX" id="TBD-kG-zps"/>
                                     <constraint firstAttribute="centerX" secondItem="G4t-lL-BHs" secondAttribute="centerX" id="UL5-Yj-QBD"/>
                                     <constraint firstAttribute="centerY" secondItem="fXO-12-a5i" secondAttribute="centerY" constant="4" id="Wwa-jP-0JH"/>
+                                    <constraint firstItem="e58-hs-qNO" firstAttribute="top" secondItem="fXO-12-a5i" secondAttribute="top" id="gnI-oc-gjd"/>
                                     <constraint firstItem="G4t-lL-BHs" firstAttribute="top" secondItem="fXO-12-a5i" secondAttribute="bottom" id="rOp-mf-K7g"/>
                                     <constraint firstAttribute="height" constant="55" id="wTW-PC-s19"/>
+                                    <constraint firstAttribute="centerX" secondItem="e58-hs-qNO" secondAttribute="centerX" id="ylp-gL-Mhc"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="DL8-AS-Idh"/>
+                                        <exclude reference="gnI-oc-gjd"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -93,8 +110,11 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="circularView" destination="Arl-do-QdW" id="vZ7-Li-6RZ"/>
+                <outlet property="circularViewHeight" destination="wTW-PC-s19" id="add-9f-8Zg"/>
+                <outlet property="circularViewWidth" destination="5XN-ta-ext" id="c0M-2I-WLg"/>
                 <outlet property="groupDistanceLabel" destination="pmu-FP-Shd" id="CKH-90-nRW"/>
                 <outlet property="groupNameLabel" destination="Ipg-oR-qoh" id="v3O-QO-XaH"/>
+                <outlet property="iconImageView" destination="e58-hs-qNO" id="Bxx-4V-bmX"/>
                 <outlet property="nearbyLabel" destination="G4t-lL-BHs" id="KQj-3x-HuB"/>
                 <outlet property="numOfFriendsInGroupLabel" destination="fXO-12-a5i" id="oH3-ja-d83"/>
             </connections>

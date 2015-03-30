@@ -13,6 +13,7 @@
 #define HEXCOLOR(c) [UIColor colorWithRed:((c>>24)&0xFF)/255.0 green:((c>>16)&0xFF)/255.0 blue:((c>>8)&0xFF)/255.0 alpha:((c)&0xFF)/255.0]
 
 #define DEFAULT_COLOR    [UIColor colorWithRed:230.0/250.0 green:89.0/250.0 blue:89.0/250.0 alpha:1.0]
+#define LIGHT_BLUE_COLOR    [UIColor colorWithRed:120.0/250.0 green:175.0/250.0 blue:212.0/250.0 alpha:1.0]
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 #define		FIREBASE							@"https://relatedchat.firebaseio.com"
 
