@@ -10,6 +10,7 @@
 #import "ParseManager.h"
 #import "HomeScreenViewController.h"
 #import "AppConstant.h"
+#import "RequestManger.h"
 
 @interface SelectGroupsTableViewController ()
 
@@ -109,76 +110,13 @@
 }
 
 - (void)doneButtonPressed{
-    /*
-     Code to submit request goes here
-     
-     */
     
     if ([self.SelectedGroups count]) {
-        [[ParseManager getInstance] createrequestToGroups:self.SelectedGroups andGender:@"" withinTime:self.timeAllocated andInRadius:self.radius];
-        //        PFQuery *query = [PFUser query];
-        //        PFUser *currentUser = [PFUser currentUser];
-        //        PFGeoPoint *userGeoPoint = currentUser[@"CurrentLocation"];
-        //
-        //        NSMutableArray *queries = [[NSMutableArray alloc] init];
-        //
-        //        // go through all groups to find users who are near
-        //        for (NSString *groupName in self.SelectedGroups) {
-        //            PFQuery *query = [PFUser query];
-        //            [query whereKey:@"username" notEqualTo:currentUser.username];
-        //            [query whereKey:@"ArrayOfGroups" equalTo:groupName];
-        //            [query whereKey:@"CurrentLocation" nearGeoPoint:userGeoPoint withinMiles:self.radius];
-        //            [queries addObject:query];
-        //        }
-        //
-        //        query = [PFQuery orQueryWithSubqueries:queries];
-        //        NSArray *resultUsers = [query findObjects];
-        //
-        //        NSMutableArray *resultUsernames = [[NSMutableArray alloc] init];
-        //
-        //        for (PFUser *user in resultUsers) {
-        //            NSLog(@"%@", user.username);
-        //            [resultUsernames addObject:user.username];
-        //        }
-        //
-        //        if ([resultUsers count] != 0) {
-        //            // NSLog(@"%@", resultUsers[0][@"DeviceID"]);
-        //
-        //            self.Request = [PFObject objectWithClassName:@"Requests"];
-        //            self.Request[@"Sender"] = [PFUser currentUser].username;
-        //            self.Request[@"receivers"] = resultUsernames;
-        //
-        //
-        //            self.Request[@"RequestedGroups"] = self.SelectedGroups;
-        //            self.Request[@"Radius"] = [NSNumber numberWithInt:self.radius];
-        //            self.Request[@"TimeAllocated"] = [NSNumber numberWithInt:self.timeAllocated];
-        //            self.Request[@"Location"] = [PFGeoPoint geoPointWithLocation:self.location_manager.location];
-        //            [self.Request saveInBackground];
-        //
-        //            // SET DELEGATE HERE
-        //            if (delegate != nil) {
-        //                NSLog(@"DELEGATE IS NOT NIL");
-        //                [self didSelectMultipleUsers:resultUsernames];
-        //            }
-        //
-        //        } else {
-        //            NSLog(@"There were no users found.");
-        //        }
-        
-        //            PFPush *push = [[PFPush alloc] init];
-        
-        //            PFQuery *newQuery = [PFInstallation query];
-        //            [newQuery whereKey:@"deviceToken" equalTo:@"1f7d051e4b7a1c8f5e476143cfa3b967c98eebf56c98497308c0c87128c9696b"];
-        //
-        //            [push setQuery:newQuery];
-        //            [push setMessage:@"Steven needs your help! Call him at 248-924-5123."];
-        //            [push sendPushInBackground];
+        [[RequestManger getInstance] createrequestToGroups:self.SelectedGroups andGender:@"" withinTime:self.timeAllocated andInRadius:self.radius];
         
         // MOVE TO HOME
         HomeScreenViewController *homeViewController = [[HomeScreenViewController alloc] init];
         [self.navigationController pushViewController:homeViewController animated:YES];
-
-//        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }
     else {
         UIAlertView *zerolength = [[UIAlertView alloc] initWithTitle:@"yo!"
