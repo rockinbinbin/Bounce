@@ -14,6 +14,7 @@
 #import "MessageScreenViewController.h"
 #import "RequistsViewController.h"
 
+#import "GroupsListViewController.h"
 @interface HomeScreenViewController ()
 
 @end
@@ -25,9 +26,10 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    UIBarButtonItem *ChatButton = [[UIBarButtonItem alloc] initWithTitle:@"Chat" style:UIBarButtonItemStylePlain target:self action:@selector(chatButtonPressed)];
-    
-    self.navigationItem.leftBarButtonItem = ChatButton;
+
+    [self setBarButtonItemLeft:@"nav_bar_profile_menu_icon"];
+    [self setBarButtonItemRight:@"nav_bar_group_icon"];
+    self.navigationItem.title = @"bounce";
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
     self.location_manager = [[CLLocationManager alloc] init];
     [self.location_manager requestAlwaysAuthorization];
@@ -42,6 +44,26 @@
     [self changeCenterToUserLocation];
     [self setUserTrackingMode];
 }
+
+-(void) setBarButtonItemLeft:(NSString*) imageName{
+    UIImage *menuImage = [UIImage imageNamed:imageName];
+    self.navigationItem.leftBarButtonItem = [self initialiseBarButton:menuImage withAction:@selector(privateChatButtonPressed)];
+}
+
+-(void) setBarButtonItemRight:(NSString*) imageName{
+    UIImage *searchImage = [UIImage imageNamed:imageName];
+    self.navigationItem.rightBarButtonItem = [self initialiseBarButton:searchImage withAction:@selector(groupChatButtonPressed)];
+}
+
+-(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action{
+    UIButton *buttonItem = [UIButton buttonWithType:UIButtonTypeCustom];
+    buttonItem.bounds = CGRectMake( 0, 0, buttonImage.size.width, buttonImage.size.height );
+    [buttonItem addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
+    [buttonItem setImage:buttonImage forState:UIControlStateNormal];
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:buttonItem];
+    return barButtonItem;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -108,11 +130,14 @@
     [self.navigationController pushViewController:messageScreenViewController animated:YES];
 }
 
-- (void)chatButtonPressed{
-//TODO: add the chat
+- (void)privateChatButtonPressed{
     RequistsViewController *requistViewController = [[RequistsViewController alloc] init];
     [self.navigationController pushViewController:requistViewController animated:YES];
 }
 
+- (void)groupChatButtonPressed{
+    GroupsListViewController *groupsListViewController = [[GroupsListViewController alloc] init];
+    [self.navigationController pushViewController:groupsListViewController animated:YES];
+}
 
 @end

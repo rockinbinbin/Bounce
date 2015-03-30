@@ -214,6 +214,12 @@
 		CA3ABC491AC7E64100E1B5DE /* SelectGroupsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABC121AC7E64100E1B5DE /* SelectGroupsTableViewController.xib */; };
 		CA3ABC4A1AC7E64100E1B5DE /* SignupScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABC131AC7E64100E1B5DE /* SignupScreenViewController.xib */; };
 		CA3ABC4B1AC7E64100E1B5DE /* UsersListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABC141AC7E64100E1B5DE /* UsersListViewController.xib */; };
+		CA7F0A961AC92E5100AC5FCB /* GroupsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7F0A941AC92E5100AC5FCB /* GroupsListViewController.m */; };
+		CA7F0A971AC92E5100AC5FCB /* GroupsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA7F0A951AC92E5100AC5FCB /* GroupsListViewController.xib */; };
+		CA7F0A9B1AC92EF500AC5FCB /* ChatListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7F0A991AC92EF500AC5FCB /* ChatListCell.m */; };
+		CA7F0A9C1AC92EF500AC5FCB /* ChatListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA7F0A9A1AC92EF500AC5FCB /* ChatListCell.xib */; };
+		CA7F0AA01AC948FF00AC5FCB /* EditGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7F0A9E1AC948FF00AC5FCB /* EditGroupsViewController.m */; };
+		CA7F0AA11AC948FF00AC5FCB /* EditGroupsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA7F0A9F1AC948FF00AC5FCB /* EditGroupsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -584,6 +590,15 @@
 		CA3ABC121AC7E64100E1B5DE /* SelectGroupsTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectGroupsTableViewController.xib; sourceTree = "<group>"; };
 		CA3ABC131AC7E64100E1B5DE /* SignupScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignupScreenViewController.xib; sourceTree = "<group>"; };
 		CA3ABC141AC7E64100E1B5DE /* UsersListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UsersListViewController.xib; sourceTree = "<group>"; };
+		CA7F0A931AC92E5100AC5FCB /* GroupsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsListViewController.h; sourceTree = "<group>"; };
+		CA7F0A941AC92E5100AC5FCB /* GroupsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsListViewController.m; sourceTree = "<group>"; };
+		CA7F0A951AC92E5100AC5FCB /* GroupsListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GroupsListViewController.xib; path = ../ViewControllers/GroupsListViewController.xib; sourceTree = "<group>"; };
+		CA7F0A981AC92EF500AC5FCB /* ChatListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListCell.h; sourceTree = "<group>"; };
+		CA7F0A991AC92EF500AC5FCB /* ChatListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListCell.m; sourceTree = "<group>"; };
+		CA7F0A9A1AC92EF500AC5FCB /* ChatListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChatListCell.xib; path = ../ViewControllers/ChatListCell.xib; sourceTree = "<group>"; };
+		CA7F0A9D1AC948FF00AC5FCB /* EditGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditGroupsViewController.h; sourceTree = "<group>"; };
+		CA7F0A9E1AC948FF00AC5FCB /* EditGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditGroupsViewController.m; sourceTree = "<group>"; };
+		CA7F0A9F1AC948FF00AC5FCB /* EditGroupsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditGroupsViewController.xib; path = ../ViewControllers/EditGroupsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1352,6 +1367,12 @@
 				CA3ABBF11AC7E64100E1B5DE /* GenderScreenViewController.m */,
 				CA3ABC061AC7E64100E1B5DE /* UsersListViewController.h */,
 				CA3ABC071AC7E64100E1B5DE /* UsersListViewController.m */,
+				CA7F0A931AC92E5100AC5FCB /* GroupsListViewController.h */,
+				CA7F0A941AC92E5100AC5FCB /* GroupsListViewController.m */,
+				CA7F0A9D1AC948FF00AC5FCB /* EditGroupsViewController.h */,
+				CA7F0A9E1AC948FF00AC5FCB /* EditGroupsViewController.m */,
+				CA7F0A981AC92EF500AC5FCB /* ChatListCell.h */,
+				CA7F0A991AC92EF500AC5FCB /* ChatListCell.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1371,6 +1392,9 @@
 				CA3ABC121AC7E64100E1B5DE /* SelectGroupsTableViewController.xib */,
 				CA3ABC131AC7E64100E1B5DE /* SignupScreenViewController.xib */,
 				CA3ABC141AC7E64100E1B5DE /* UsersListViewController.xib */,
+				CA7F0A951AC92E5100AC5FCB /* GroupsListViewController.xib */,
+				CA7F0A9F1AC948FF00AC5FCB /* EditGroupsViewController.xib */,
+				CA7F0A9A1AC92EF500AC5FCB /* ChatListCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1468,6 +1492,7 @@
 				CA3ABC2B1AC7E64100E1B5DE /* Tutorial-3_iPhone6plus.png in Resources */,
 				CA3ABC311AC7E64100E1B5DE /* SignUpViewController.xib in Resources */,
 				CA3ABC471AC7E64100E1B5DE /* LoginScreenViewController.xib in Resources */,
+				CA7F0AA11AC948FF00AC5FCB /* EditGroupsViewController.xib in Resources */,
 				00414F361AADEE0600B25CEE /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
 				CA3ABC211AC7E64100E1B5DE /* Tutorial-2.png in Resources */,
 				CA3ABC1C1AC7E64100E1B5DE /* Tutorial-1@2x.png in Resources */,
@@ -1477,6 +1502,7 @@
 				00414E471AADECCE00B25CEE /* Icon120.png in Resources */,
 				00414F111AADEE0600B25CEE /* JSQMessagesAssets.bundle in Resources */,
 				CA3ABC4B1AC7E64100E1B5DE /* UsersListViewController.xib in Resources */,
+				CA7F0A9C1AC92EF500AC5FCB /* ChatListCell.xib in Resources */,
 				CA3ABC431AC7E64100E1B5DE /* Intro2IDViewController.xib in Resources */,
 				00414F1B1AADEE0600B25CEE /* JSQMessagesViewController.xib in Resources */,
 				CA3ABC4A1AC7E64100E1B5DE /* SignupScreenViewController.xib in Resources */,
@@ -1502,6 +1528,7 @@
 				00414F391AADEE0600B25CEE /* JSQMessagesToolbarContentView.xib in Resources */,
 				CA3ABC281AC7E64100E1B5DE /* Tutorial-3@2x.png in Resources */,
 				CA3ABC201AC7E64100E1B5DE /* Contents.json in Resources */,
+				CA7F0A971AC92E5100AC5FCB /* GroupsListViewController.xib in Resources */,
 				CA3ABC451AC7E64100E1B5DE /* IntroLoginScreenViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1528,6 +1555,7 @@
 				00414F2B1AADEE0600B25CEE /* JSQMessagesCellTextView.m in Sources */,
 				00296BD819EFA5BF003ADA30 /* APContact.m in Sources */,
 				00414F051AADEE0600B25CEE /* AFURLConnectionOperation.m in Sources */,
+				CA7F0A9B1AC92EF500AC5FCB /* ChatListCell.m in Sources */,
 				CA3ABC2F1AC7E64100E1B5DE /* RequistsViewController.m in Sources */,
 				00414F351AADEE0600B25CEE /* JSQMessagesLoadEarlierHeaderView.m in Sources */,
 				00414F241AADEE0600B25CEE /* JSQLocationMediaItem.m in Sources */,
@@ -1572,6 +1600,7 @@
 				00414F131AADEE0600B25CEE /* JSQSystemSoundPlayer+JSQMessages.m in Sources */,
 				00296BD619EFA5BF003ADA30 /* APAddress.m in Sources */,
 				CA3ABC3C1AC7E64100E1B5DE /* MessageScreenViewController.m in Sources */,
+				CA7F0A961AC92E5100AC5FCB /* GroupsListViewController.m in Sources */,
 				00A9C30E1999838200F89967 /* GroupsTableViewController.m in Sources */,
 				007BA3F71A6C9CE100BF08DE /* UIPopoverController+FlatUI.m in Sources */,
 				00414F151AADEE0600B25CEE /* UIColor+JSQMessages.m in Sources */,
@@ -1600,6 +1629,7 @@
 				0090ECB01A6B59CA009DB11D /* NewMessageViewController.m in Sources */,
 				00414E571AADECCE00B25CEE /* SignUpViewController.m in Sources */,
 				00414F501AADEE5700B25CEE /* utilities.m in Sources */,
+				CA7F0AA01AC948FF00AC5FCB /* EditGroupsViewController.m in Sources */,
 				00414F001AADEE0600B25CEE /* AFHTTPRequestOperation.m in Sources */,
 				00414F4E1AADEE5700B25CEE /* camera.m in Sources */,
 				00414F0A1AADEE0600B25CEE /* UIActivityIndicatorView+AFNetworking.m in Sources */,

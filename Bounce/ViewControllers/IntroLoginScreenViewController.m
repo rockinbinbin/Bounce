@@ -9,6 +9,7 @@
 #import "IntroLoginScreenViewController.h"
 #import "LoginScreenViewController.h"
 #import "SignupScreenViewController.h"
+#import "AppConstant.h"
 
 @interface IntroLoginScreenViewController ()
 
@@ -26,7 +27,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.view.backgroundColor = [UIColor colorWithRed:230.0/250.0 green:89.0/250.0 blue:89.0/250.0 alpha:1.0];
+    self.view.backgroundColor = DEFAULT_COLOR;
     [self customiseButtonShadow:self.loginButton];
     [self customiseButtonShadow:self.registerButton];
 }
@@ -37,8 +38,8 @@
     btn.layer.masksToBounds = NO;
     btn.layer.shadowColor = [UIColor blackColor].CGColor;
     btn.layer.shadowOpacity = 0.8;
-    btn.layer.shadowRadius = 4;
-    btn.layer.shadowOffset = CGSizeMake(4.0f, 4.0f);
+    btn.layer.shadowRadius = 0;
+    btn.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
 }
 
 - (void)didReceiveMemoryWarning {

@@ -14,6 +14,7 @@
 #import "UsersListViewController.h"
 #import "IntroPagesViewController.h"
 
+#import "HomeScreenViewController.h"
 @implementation AppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;
@@ -59,6 +60,9 @@
     
 //    UITabBarController *tabController = [[UITabBarController alloc] init];
 //
+//    HomeScreenViewController* homeScreenViewController = [[HomeScreenViewController alloc] initWithNibName:@"HomeScreenViewController" bundle:nil];
+//    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:homeScreenViewController];
+    
     IntroPagesViewController* introPagesViewController = [[IntroPagesViewController alloc] initWithNibName:@"IntroPagesViewController" bundle:nil];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:introPagesViewController];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
