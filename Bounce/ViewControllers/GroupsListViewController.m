@@ -10,13 +10,15 @@
 #import "EditGroupsViewController.h"
 #import "ChatListCell.h"
 #import "AppConstant.h"
+#import "Utility.h"
+#import "Constants.h"
 
 @interface GroupsListViewController ()
-
 @end
 
 @implementation GroupsListViewController
-
+@synthesize nearUsers = nearUsers;
+@synthesize distanceToUserLocation = distanceToUserLocation;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -31,6 +33,34 @@
     self.navigationItem.rightBarButtonItem = editButton;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    @try {
+        //        [[ParseManager getInstance] setLoadGroupsdelegate:self];
+        if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+            [[Utility getInstance] showProgressHudWithMessage:@"Loading..." withView:self.view];
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                //                [[ParseManager getInstance] loadAllGroups];
+                self.groups = [[NSMutableArray alloc] initWithArray:[[ParseManager getInstance] getUserGroups]];
+                nearUsers = [[NSMutableArray alloc] init];
+                distanceToUserLocation = [[NSMutableArray alloc] init];
+                for (PFObject *group in self.groups) {
+                    [nearUsers addObject:[NSNumber numberWithInteger:[[ParseManager getInstance] getNearUsersInGroup:group]]];
+                    [distanceToUserLocation addObject:[NSNumber numberWithDouble:[[ParseManager getInstance] getDistanceToGroup:group]]];
+                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // Update the UI on the main thread.
+                    [[Utility getInstance] hideProgressHud];
+                    [self.tableView reloadData];
+                });
+            });
+        }
+        
+    }
+    @catch (NSException *exception) {
+        NSLog(@"exception %@", exception);
+    }
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -38,8 +68,9 @@
 
 #pragma mark - Navigation Bar
 -(void) setBarButtonItemLeft:(NSString*) imageName{
-    UIImage *menuImage = [UIImage imageNamed:imageName];
-    self.navigationItem.leftBarButtonItem = [self initialiseBarButton:menuImage withAction:@selector(backButtonClicked)];
+
+    UIImage *back = [UIImage imageNamed:imageName];
+    self.navigationItem.leftBarButtonItem = [self initialiseBarButton:back withAction:@selector(backButtonClicked)];
 }
 
 -(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action{
@@ -57,7 +88,41 @@
 
 -(void)editButtonClicked{
     EditGroupsViewController* editGroupViewController = [[EditGroupsViewController alloc] initWithNibName:@"EditGroupsViewController" bundle:nil];
+    [editGroupViewController setGroups:self.groups];
+    [editGroupViewController setNearUsers:self.nearUsers];
+    [editGroupViewController setDistanceToUserLocation:self.distanceToUserLocation];
+
     [self.navigationController pushViewController:editGroupViewController animated:YES];
+}
+#pragma mark - Parse LoadGroups delegate
+- (void)didLoadGroups:(NSArray *)groups withError:(NSError *)error
+{
+    @try {
+        [[Utility getInstance] hideProgressHud];
+        if (!error) {
+            if(!self.groups)
+            {
+                self.groups = [[NSMutableArray alloc] init];
+            }
+            
+            self.groups = [NSMutableArray arrayWithArray:groups];
+            // calculate the near users in each group
+            // calcultae the distance to the group
+            nearUsers = [[NSMutableArray alloc] init];
+            distanceToUserLocation = [[NSMutableArray alloc] init];
+            
+            for (PFObject *group in groups) {
+                [nearUsers addObject:[NSNumber numberWithInteger:[[ParseManager getInstance] getNearUsersInGroup:group]]];
+                [distanceToUserLocation addObject:[NSNumber numberWithDouble:[[ParseManager getInstance] getDistanceToGroup:group]]];
+            }
+            
+            [self.tableView reloadData];
+        }
+        
+    }
+    @catch (NSException *exception) {
+        NSLog(@"exception %@", exception);
+    }
 }
 
 #pragma mark - TableView Datasource
@@ -66,7 +131,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    return [self.groups count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -76,13 +141,19 @@
     if (!cell) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
         cell = (ChatListCell *)[nib objectAtIndex:0];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
   
     cell.numOfMessagesLabel.text = @"8";
     // filling the cell data
-    cell.groupNameLabel.text = @"Group 1";
-    cell.groupDistanceLabel.text = @"2.1 miles away";
-    cell.numOfFriendsInGroupLabel.text = @"44";
+//    cell.groupNameLabel.text = @"Group 1";
+//    cell.groupDistanceLabel.text = @"2.1 miles away";
+//    cell.numOfFriendsInGroupLabel.text = @"44";
+    
+    cell.groupNameLabel.text = [[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
+    cell.groupDistanceLabel.text = [NSString stringWithFormat:DISTANCE_MESSAGE, [[distanceToUserLocation objectAtIndex:indexPath.row] doubleValue]];
+    cell.numOfFriendsInGroupLabel.text = [NSString stringWithFormat:@"%@",[nearUsers objectAtIndex:indexPath.row]];
+    NSLog(@"near users %@", [nearUsers objectAtIndex:indexPath.row]);
     return cell;
 }
 

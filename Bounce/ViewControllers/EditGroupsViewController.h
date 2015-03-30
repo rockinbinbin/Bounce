@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Constants.h"
 
 @interface EditGroupsViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 @property NSMutableArray* groups;
+@property NSMutableArray *nearUsers;
+@property NSMutableArray *distanceToUserLocation;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

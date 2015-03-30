@@ -212,8 +212,8 @@
         UITextField *textField = [alertView textFieldAtIndex:0];
         if ([textField.text length] != 0)
         {
-            [[ParseManager getInstance] setAddGroupdelegate:self];
-            [[ParseManager getInstance] addChatGroup:textField.text];
+//            [[ParseManager getInstance] setAddGroupdelegate:self];
+//            [[ParseManager getInstance] addChatGroup:textField.text];
         }
     }
 }

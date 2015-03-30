@@ -28,4 +28,8 @@
 #define PF_REQUEST_RECEIVERS_RELATION @"RequestReceivers"
 #define PF_REQUEST_LOCATION @"Location"
 
+//
+#define DISTANCE_MESSAGE @"%.1f miles away"
+
+
 #endif

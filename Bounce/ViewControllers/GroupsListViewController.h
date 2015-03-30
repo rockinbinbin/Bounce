@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface GroupsListViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+#import "ParseManager.h"
+@interface GroupsListViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, ParseManagerLoadingGroupsDelegate>
 @property NSMutableArray* groups;
+@property NSMutableArray *nearUsers;
+@property NSMutableArray *distanceToUserLocation;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

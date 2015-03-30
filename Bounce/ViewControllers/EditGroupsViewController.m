@@ -67,7 +67,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    return [self.groups count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -77,13 +77,14 @@
     if (!cell) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
         cell = (ChatListCell *)[nib objectAtIndex:0];
-    }
-    cell.numOfMessagesLabel.text = @"8";
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.roundedView.hidden = YES;
 
+    }
     // filling the cell data
-    cell.groupNameLabel.text = @"Group 1";
-    cell.groupDistanceLabel.text = @"2.1 miles away";
-    cell.numOfFriendsInGroupLabel.text = @"44";
+    cell.groupNameLabel.text = [[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
+    cell.groupDistanceLabel.text = [NSString stringWithFormat:DISTANCE_MESSAGE, [[self.distanceToUserLocation objectAtIndex:indexPath.row] doubleValue]];
+    cell.numOfFriendsInGroupLabel.text = [NSString stringWithFormat:@"%@",[self.nearUsers objectAtIndex:indexPath.row]];
     return cell;
 }
 
@@ -96,6 +97,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         //add code here for when you hit delete
+        
         NSLog(@"%li index is deleted !", (long)indexPath.row);
         //[self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
     }
