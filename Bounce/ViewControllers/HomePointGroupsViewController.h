@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface HomePointGroupsViewController : UIViewController
+@property NSArray *groupUsers;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

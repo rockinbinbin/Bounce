@@ -22,6 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self.navigationController setNavigationBarHidden:NO];
+
     [self setBarButtonItemLeft:@"common_back_button"];
     self.navigationItem.title = @"homepoints";
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc]

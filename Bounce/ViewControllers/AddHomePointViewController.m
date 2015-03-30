@@ -14,13 +14,19 @@
 #import <Parse/Parse.h>
 #import "ParseManager.h"
 #import "GroupsListViewController.h"
+#import "Utility.h"
+#import "Constants.h"
+#import "HomePointGroupsViewController.h"
 
 @interface AddHomePointViewController ()
 
 @end
 
 @implementation AddHomePointViewController
-
+{
+    NSMutableArray *groups;
+    NSMutableArray *groupsDistance;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -34,13 +40,13 @@
     doneButton.tintColor = DEFAULT_COLOR;
     self.navigationItem.rightBarButtonItem = doneButton;
     
-    
-//    [[self.groupPrivacySegmentedControl.subviews objectAtIndex:1] setBackgroundColor:DEFAULT_COLOR];
-
-    //setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateSelected];
-//    [[self.groupPrivacySegmentedControl.subviews objectAtIndex:0] setBackgroundColor:[UIColor whiteColor]];
-//    [[self.groupPrivacySegmentedControl.subviews objectAtIndex:1] setTitleTextAttributes:@{NSForegroundColorAttributeName : DEFAULT_COLOR} forState:UIControlStateSelected];
     self.addLocationButton.backgroundColor = LIGHT_BLUE_COLOR;
+    
+   
+}
+- (void)viewWillAppear:(BOOL)animated{
+    // load all groups that doesn't contain current user
+    [self loadGroupsData];
 
 }
 
@@ -48,7 +54,30 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+#pragma mark - load groups
+- (void) loadGroupsData
+{
+    @try {
+        if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+            [[Utility getInstance] showProgressHudWithMessage:@"Loading..." withView:self.view];
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                groups = [[NSMutableArray alloc] initWithArray:[[ParseManager getInstance] getCandidateGroupsForCurrentUser]];
+                groupsDistance = [[NSMutableArray alloc] init];
+                for (PFObject *group in groups) {
+                    [groupsDistance addObject:[NSNumber numberWithDouble:[[ParseManager getInstance] getDistanceToGroup:group]]];
+                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // Update the UI on the main thread.
+                    [[Utility getInstance] hideProgressHud];
+                    [self.tableView reloadData];
+                });
+            });
+        }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
 #pragma mark - Navigation Bar
 -(void) setBarButtonItemLeft:(NSString*) imageName{
     UIImage *menuImage = [UIImage imageNamed:imageName];
@@ -122,7 +151,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    return groups.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -157,8 +186,10 @@
     cell.contentView.backgroundColor = [UIColor colorWithRed:224.0/255.0 green:224.0/255.0 blue:224.0/255.0 alpha:1.0f];
 
     // filling the cell data
-    cell.groupNameLabel.text = @"Group 1";
-    cell.groupDistanceLabel.text = @"2.1 miles away";
+    
+    cell.groupNameLabel.text = [[groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
+    cell.groupDistanceLabel.text = [NSString stringWithFormat:DISTANCE_MESSAGE, [[groupsDistance objectAtIndex:indexPath.row] doubleValue]];
+
     return cell;
 }
 
@@ -180,10 +211,39 @@
 #pragma mark - TableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    // Add current user to the group
+    // navigate to group userScreen
+    [self addUserToGroup:indexPath.row];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 50;
+}
+
+#pragma mark - Add User to selected group
+- (void) addUserToGroup:(NSInteger) index
+{
+    @try {
+        PFObject *group = [groups objectAtIndex:index];
+        if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+            [[Utility getInstance] showProgressHudWithMessage:@"Saving ..." withView:self.view];
+            [[ParseManager getInstance] addListOfUsers:[NSArray arrayWithObject:[PFUser currentUser]] toGroup:group];
+            [[Utility getInstance] hideProgressHud];
+            
+            HomePointGroupsViewController *contoller = [[HomePointGroupsViewController alloc]  init];
+            // get group users
+            NSMutableArray *users  = [[NSMutableArray alloc] initWithArray:[[ParseManager getInstance] getGroupUsers:group]];
+            if (![users containsObject:[PFUser currentUser]]) {
+                [users addObject:[PFUser currentUser]];
+            }
+            contoller.groupUsers = [NSArray arrayWithArray:users];
+            [self.navigationController pushViewController:contoller animated:YES];
+        }
+        
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
 }
 
 @end

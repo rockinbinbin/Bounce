@@ -302,15 +302,25 @@ CLLocationManager *locationManger;
 - (void) addListOfUsers:(NSArray *) users toGroup:(PFObject *) group{
     // get the userRelation of the group
     // then append users to this relation
-    PFQuery *query = [PFUser query];
-    [query whereKey:PF_USER_USERNAME containedIn:users];
-    [query setLimit:1000];
     
-    NSArray *usersArray = [query findObjects];
+//    PFQuery *query = [PFUser query];
+//    [query whereKey:PF_USER_USERNAME containedIn:users];
+//    [query setLimit:1000];
+//
+//    NSArray *usersArray = [query findObjects];
+    // Add relation
     PFRelation *relation = [group relationForKey:@"groupUsers"];
-    for (PFUser *user in  usersArray) {
+    for (PFUser *user in  users) {
         [relation addObject:user];
     }
+    
+    NSMutableArray *Userarray = [[NSMutableArray alloc] init];
+    [Userarray addObject:users];
+    group[@"ArrayOfUsers"] = Userarray;
+    PFUser *user = [PFUser currentUser];
+    [user addObject:[group objectForKey:PF_GROUPS_NAME] forKey:@"ArrayOfGroups"];
+    [user saveInBackground];
+
     
     [group saveInBackground];
     

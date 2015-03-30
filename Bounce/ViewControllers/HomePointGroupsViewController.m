@@ -67,7 +67,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    return [self.groupUsers count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -94,9 +94,11 @@
 
     cell.iconImageView.image = [UIImage imageNamed:@"common_checkmark_icon"];
     cell.topSpaceTitleConstraints.constant = 0;
+    
     // filling the cell data
-    cell.groupNameLabel.text = @"Group 1";
-    cell.groupDistanceLabel.text = @"2.1 miles away";
+    
+    cell.groupNameLabel.text = [[self.groupUsers objectAtIndex:indexPath.row] objectForKey:PF_USER_USERNAME];
+//    cell.groupDistanceLabel.text = @"2.1 miles away";
     return cell;
 }
 

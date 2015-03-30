@@ -48,6 +48,8 @@
 - (NSArray *) getUserGroups;
 // Get Groups which currnt user not member at it
 - (NSArray *) getCandidateGroupsForCurrentUser;
+// get group users
+- (NSArray *) getGroupUsers:(PFObject *) group;
 
 @end
 
