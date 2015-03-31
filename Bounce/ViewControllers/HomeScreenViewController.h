@@ -25,5 +25,6 @@
 - (IBAction)messageButtonClicked:(id)sender;
 - (IBAction)privateChatButtonClicked:(id)sender;
 - (IBAction)groupsChatButtonClicked:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *leftMenuButton;
 
 @end

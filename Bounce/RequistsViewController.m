@@ -7,13 +7,13 @@
 //
 
 #import "RequistsViewController.h"
-//#import "MainViewController.h"
-//#import "ChatView.h"
+
 #import "CustomChatViewController.h"
 #import "AppConstant.h"
 #import "Utility.h"
 #import "Constants.h"
-
+#import "UIViewController+AMSlideMenu.h"
+#import "HomeScreenViewController.h"
 @interface RequistsViewController ()
 {
     NSMutableArray *requests;
@@ -26,10 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO];
-//    UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logout)];
-//    // Add group button
-//    UIBarButtonItem *addGroupButton = [[UIBarButtonItem alloc] initWithTitle:@"New" style:UIBarButtonItemStylePlain target:self action:@selector(addGroupClicked)];
-//    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects: addGroupButton, logoutButton, nil];
+    [self setBarButtonItemLeft:@"common_back_button"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,7 +37,30 @@
 - (void)viewWillAppear:(BOOL)animated {
     [self loadRequests];
 }
-
+#pragma mark - Navigation Bar
+-(void) setBarButtonItemLeft:(NSString*) imageName{
+    
+    UIImage *back = [UIImage imageNamed:imageName];
+    self.navigationItem.leftBarButtonItem = [self initialiseBarButton:back withAction:@selector(backButtonClicked)];
+}
+-(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action{
+    UIButton *buttonItem = [UIButton buttonWithType:UIButtonTypeCustom];
+    buttonItem.bounds = CGRectMake( 0, 0, buttonImage.size.width, buttonImage.size.height );
+    [buttonItem addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
+    [buttonItem setImage:buttonImage forState:UIControlStateNormal];
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:buttonItem];
+    return barButtonItem;
+}
+-(void)backButtonClicked{
+    
+//    [self.navigationController popViewControllerAnimated:YES];
+    AMSlideMenuMainViewController *mainVC = [self mainSlideMenu];
+    UIViewController *rootVC = [[HomeScreenViewController alloc] init];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:rootVC];
+    [mainVC.leftMenu openContentNavigationController:nvc];
+//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+//    [mainVC openContentViewControllerForMenu:AMSlideMenuLeft atIndexPath:indexPath];
+}
 #pragma mark - Load Groups
 - (void) loadRequests{
     @try {

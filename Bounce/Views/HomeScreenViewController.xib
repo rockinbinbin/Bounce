@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="endRequestButton" destination="v1e-1e-A2R" id="sLw-GF-jXl"/>
                 <outlet property="iconView" destination="574-VI-820" id="ntu-Sf-G2V"/>
+                <outlet property="leftMenuButton" destination="RzX-9y-Ebr" id="4lY-SH-33J"/>
                 <outlet property="map" destination="uRR-L3-cLI" id="oa7-94-R4o"/>
                 <outlet property="repliesButton" destination="EzP-kZ-dFS" id="cOX-A3-OvW"/>
                 <outlet property="repliesView" destination="sAn-zb-a6X" id="3kq-4E-cHA"/>

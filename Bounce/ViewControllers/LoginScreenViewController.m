@@ -14,6 +14,7 @@
 
 #import "AppConstant.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "SlideMenuViewController.h"
 //#import <FBSDKCoreKit/FBSDKCoreKit.h>
 //#import <FBSDKLoginKit/FBSDKLoginKit.h>
 @interface LoginScreenViewController ()
@@ -86,8 +87,8 @@
                 [[Utility getInstance] showAlertWithMessage:[error.userInfo objectForKey:@"error"] andTitle:@"Sorry!"];
             }
             else {
-                HomeScreenViewController* homeScreenViewController = [[HomeScreenViewController alloc] initWithNibName:@"HomeScreenViewController" bundle:nil];
-                [self.navigationController pushViewController:homeScreenViewController animated:YES];
+                [self navigateToMainScreen];
+
                 ParsePushUserAssign();
                 [ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome back %@!", user[PF_USER_FULLNAME]]];
                 [self dismissViewControllerAnimated:YES completion:nil];
@@ -209,17 +210,12 @@
 - (void)userLoggedIn:(PFUser *)user{
     ParsePushUserAssign();
     [ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome back %@!", user[PF_USER_FULLNAME]]];
-//    [self dismissViewControllerAnimated:YES completion:nil];
-    HomeScreenViewController* homeScreenViewController = [[HomeScreenViewController alloc] initWithNibName:@"HomeScreenViewController" bundle:nil];
-    [self.navigationController pushViewController:homeScreenViewController animated:YES];
+    [self navigateToMainScreen];
 }
 
 // Logged-in user experience
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
-    HomeScreenViewController* homeScreenViewController = [[HomeScreenViewController alloc] initWithNibName:@"HomeScreenViewController" bundle:nil];
-    [self.navigationController pushViewController:homeScreenViewController animated:YES];
-
-//    [self performSegueWithIdentifier:@"LoginToMain" sender:self];
+    [self navigateToMainScreen];
 }
 
 - (IBAction)signUpButtonClicked:(id)sender {
@@ -229,5 +225,17 @@
 }
 - (IBAction)backButtonClicked:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - Navigate to Home screem
+- (void) navigateToMainScreen
+{
+    @try {
+        SlideMenuViewController* mainViewController = [[SlideMenuViewController alloc] init];
+        [self.navigationController pushViewController:mainViewController animated:YES];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
 }
 @end

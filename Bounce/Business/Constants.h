@@ -10,6 +10,8 @@
 #define bounce_Constants_h
 
 #pragma mark - General Constants
+#define IS_IPHONE ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
+
 #define IS_IPHONE4 ([[UIScreen mainScreen] bounds].size.height == 480)
 #define IS_IPHONE5 ([[UIScreen mainScreen] bounds].size.height == 568)
 #define IS_IPHONE6 ([[UIScreen mainScreen] bounds].size.height == 667)
@@ -30,6 +32,8 @@
 
 //
 #define DISTANCE_MESSAGE @"%.1f miles away"
+
+#define SIDE_MENU_WIDTH (IS_IPHONE? 225:375)
 
 
 #endif

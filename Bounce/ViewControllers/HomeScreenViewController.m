@@ -15,6 +15,7 @@
 #import "RequistsViewController.h"
 #import "AppConstant.h"
 #import "GroupsListViewController.h"
+#import "UIViewController+AMSlideMenu.h"
 @interface HomeScreenViewController ()
 
 @end
@@ -27,6 +28,7 @@
     
     [super viewDidLoad];
 
+
     self.repliesButton.layer.cornerRadius = 4;
     self.repliesButton.clipsToBounds = YES;
     self.repliesButton.backgroundColor = DEFAULT_COLOR;
@@ -38,6 +40,10 @@
     self.iconView.layer.borderColor = [UIColor whiteColor].CGColor;
     self.iconView.backgroundColor = DEFAULT_COLOR;
     
+//    [self setBarButtonItemLeft:@"nav_bar_profile_menu_icon"];
+    //[self setBarButtonItemRight:@"nav_bar_group_icon"];
+    self.navigationItem.title = @"bounce";
+    [[self navigationController] setNavigationBarHidden:NO animated:YES];
     self.location_manager = [[CLLocationManager alloc] init];
     [self.location_manager requestAlwaysAuthorization];
     self.location_manager.pausesLocationUpdatesAutomatically = YES;
@@ -64,7 +70,21 @@
     UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:buttonItem];
     return barButtonItem;
 }
-
+#pragma mark - add left button
+- (void) addLeftMenuButton
+{
+    AMSlideMenuMainViewController *mainVC = [AMSlideMenuMainViewController getInstanceForVC:self];
+    
+    UINavigationItem *navItem = self.navigationItem;
+    
+    UIButton *leftBtn = self.leftMenuButton;
+    [mainVC configureLeftMenuButton:leftBtn];
+    [leftBtn addTarget:mainVC action:@selector(openLeftMenu) forControlEvents:UIControlEventTouchUpInside];
+    
+    mainVC.leftMenuButton = leftBtn;
+    
+    navItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.leftMenuButton];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -136,8 +156,10 @@
 - (IBAction)endRequestButtonClicked:(id)sender {
 }
 - (IBAction)privateChatButtonClicked:(id)sender {
-    RequistsViewController *requistViewController = [[RequistsViewController alloc] init];
-    [self.navigationController pushViewController:requistViewController animated:YES];
+//    RequistsViewController *requistViewController = [[RequistsViewController alloc] init];
+//    [self.navigationController pushViewController:requistViewController animated:YES];
+    AMSlideMenuMainViewController *mainVC = [self mainSlideMenu];
+    [mainVC openLeftMenu];
 }
 
 - (IBAction)groupsChatButtonClicked:(id)sender {
