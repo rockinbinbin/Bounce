@@ -27,6 +27,7 @@
 {
     NSMutableArray *groups;
     NSMutableArray *groupsDistance;
+    NSMutableArray *userJoinedGroups;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -62,10 +63,18 @@
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
             [[Utility getInstance] showProgressHudWithMessage:@"Loading..." withView:self.view];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                groups = [[NSMutableArray alloc] initWithArray:[[ParseManager getInstance] getCandidateGroupsForCurrentUser]];
+                groups = [[NSMutableArray alloc] initWithArray:[[ParseManager getInstance] getAllGroupsExceptCreatedByUser]];
                 groupsDistance = [[NSMutableArray alloc] init];
+                userJoinedGroups = [[NSMutableArray alloc] init];
+
                 for (PFObject *group in groups) {
                     [groupsDistance addObject:[NSNumber numberWithDouble:[[ParseManager getInstance] getDistanceToGroup:group]]];
+                    // if user joined the group mark it joined
+                    if ([self isUserJoinedGroup:group]) {
+                        [userJoinedGroups addObject:[NSNumber numberWithBool:YES]];
+                    }else{
+                        [userJoinedGroups addObject:[NSNumber numberWithBool:NO]];
+                    }
                 }
                 dispatch_async(dispatch_get_main_queue(), ^{
                     // Update the UI on the main thread.
@@ -220,7 +229,11 @@
     cell.circularView.layer.borderColor = [UIColor whiteColor].CGColor;
 
 
-    cell.iconImageView.image = [UIImage imageNamed:@"common_checkmark_icon"];
+    if ([[userJoinedGroups objectAtIndex:indexPath.row] boolValue] == YES) {
+        cell.iconImageView.image = [UIImage imageNamed:@"common_checkmark_icon"];
+    }else{
+        cell.iconImageView.image = [UIImage imageNamed:@"common_plus_icon"];
+    }
     for ( UIView* view in cell.contentView.subviews )
     {
         view.backgroundColor = [ UIColor clearColor ];
@@ -254,9 +267,13 @@
 #pragma mark - TableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    // Add current user to the group
-    // navigate to group userScreen
-    [self addUserToGroup:indexPath.row];
+    if ([[userJoinedGroups objectAtIndex:indexPath.row]boolValue]) {
+        // remove current user from the selected group
+        [self deleteUserFromGroup:indexPath.row];
+    }else{
+        // add current user to the selected group
+        [self addUserToGroup:indexPath.row];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -269,18 +286,49 @@
     @try {
         PFObject *group = [groups objectAtIndex:index];
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
-            [[Utility getInstance] showProgressHudWithMessage:@"Saving ..." withView:self.view];
-            [[ParseManager getInstance] addListOfUsers:[NSArray arrayWithObject:[PFUser currentUser]] toGroup:group];
+            [[Utility getInstance] showProgressHudWithMessage:[NSString stringWithFormat:@"Add user to %@", [group objectForKey:PF_GROUPS_NAME]] withView:self.view];
+            [[ParseManager getInstance] addCurrentUserToGroup:group];
             [[Utility getInstance] hideProgressHud];
             
-            HomePointGroupsViewController *contoller = [[HomePointGroupsViewController alloc]  init];
-            // get group users
-            NSMutableArray *users  = [[NSMutableArray alloc] initWithArray:[[ParseManager getInstance] getGroupUsers:group]];
-            if (![users containsObject:[PFUser currentUser]]) {
-                [users addObject:[PFUser currentUser]];
-            }
-            contoller.groupUsers = [NSArray arrayWithArray:users];
-            [self.navigationController pushViewController:contoller animated:YES];
+            // update group cell
+            [userJoinedGroups insertObject:[NSNumber numberWithBool:YES] atIndex:index];
+            [self updateRowAtIndex:index];
+        }
+        
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
+#pragma mark - 
+- (BOOL) isUserJoinedGroup:(PFObject *) group
+{
+    @try {
+        NSArray *userGroups = [[PFUser currentUser] objectForKey:PF_USER_ARRAYOFGROUPS];
+        if ([userGroups containsObject:[group objectForKey:PF_GROUPS_NAME]]) {
+            return YES;
+        }
+        
+        return NO;
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
+
+#pragma mark - Delete user from selected group
+- (void) deleteUserFromGroup:(NSInteger) index
+{
+    @try {
+        PFObject *group = [groups objectAtIndex:index];
+        if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+            [[Utility getInstance] showProgressHudWithMessage:[NSString stringWithFormat:@"Delete user from %@", [group objectForKey:PF_GROUPS_NAME]] withView:self.view];
+            [[ParseManager getInstance] removeUserFromGroup:group];
+            [[Utility getInstance] hideProgressHud];
+            
+            // update group cell
+            [userJoinedGroups insertObject:[NSNumber numberWithBool:NO] atIndex:index];
+            [self updateRowAtIndex:index];
         }
         
     }
@@ -289,4 +337,12 @@
     }
 }
 
+#pragma mark - update Row
+- (void) updateRowAtIndex:(NSInteger) index
+{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    [self.tableView beginUpdates];
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    [self.tableView endUpdates];
+}
 @end

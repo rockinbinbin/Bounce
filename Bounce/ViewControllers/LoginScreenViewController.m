@@ -43,6 +43,10 @@
     UITapGestureRecognizer *facebookGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(facebookClicked)];
     self.facebookIconImageView.userInteractionEnabled = YES;
     [self.facebookIconImageView addGestureRecognizer:facebookGestureRecognizer];
+    
+    //
+    [self.usernameField setText:@"shimaa"];
+    [self.passwordField setText:@"shimaa"];
 }
 
 - (void) hideKeyboard // when user hits background

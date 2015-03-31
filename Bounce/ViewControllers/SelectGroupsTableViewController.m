@@ -11,6 +11,7 @@
 #import "HomeScreenViewController.h"
 #import "AppConstant.h"
 #import "RequestManger.h"
+#import "Utility.h"
 
 @interface SelectGroupsTableViewController ()
 
@@ -129,20 +130,37 @@
 
 #pragma mark - load all groups
 - (void) loadAllGroups{
-    PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-     {
-         
-         if ([objects count] > 0) {
-             // get name of each group
-             self.groups = [[NSMutableArray alloc]init];
-             for (PFObject *group in objects) {
-                 [self.groups addObject:[group objectForKey:@"groupName"] ];
-             }
-             [self.tableView reloadData];
-         }
-         
-     }];
+    
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+        [[Utility getInstance] showProgressHudWithMessage:@"loading..." withView:self.view];
+        NSArray *objects = [[ParseManager getInstance] getUserGroups];
+        [[Utility getInstance]hideProgressHud];
+        if ([objects count] > 0) {
+            // get name of each group
+            self.groups = [[NSMutableArray alloc]init];
+            for (PFObject *group in objects) {
+                [self.groups addObject:[group objectForKey:@"groupName"] ];
+            }
+            [self.tableView reloadData];
+        }
+    }
+    
+
+    
+//    PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
+//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+//     {
+//         
+//         if ([objects count] > 0) {
+//             // get name of each group
+//             self.groups = [[NSMutableArray alloc]init];
+//             for (PFObject *group in objects) {
+//                 [self.groups addObject:[group objectForKey:@"groupName"] ];
+//             }
+//             [self.tableView reloadData];
+//         }
+//         
+//     }];
 }
 
 @end

@@ -40,6 +40,8 @@
 #define		PF_USER_FACEBOOKID					@"facebookId"			//	String
 #define		PF_USER_PICTURE						@"picture"				//	File
 #define		PF_USER_THUMBNAIL					@"thumbnail"			//	File
+#define		PF_USER_ARRAYOFGROUPS				@"ArrayOfGroups"		//	array
+
 //-----------------------------------------------------------------------
 #define		PF_CHAT_CLASS_NAME					@"Chat"					//	Class name
 #define		PF_CHAT_USER						@"user"					//	Pointer to User Class

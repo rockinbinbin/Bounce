@@ -303,11 +303,6 @@ CLLocationManager *locationManger;
     // get the userRelation of the group
     // then append users to this relation
     
-//    PFQuery *query = [PFUser query];
-//    [query whereKey:PF_USER_USERNAME containedIn:users];
-//    [query setLimit:1000];
-//
-//    NSArray *usersArray = [query findObjects];
     // Add relation
     PFRelation *relation = [group relationForKey:@"groupUsers"];
     for (PFUser *user in  users) {
@@ -591,9 +586,18 @@ CLLocationManager *locationManger;
     }
 }
 #pragma mark - Out user from group
-- (void) removeUserFromGroup:(PFObject *) group
+- (BOOL) removeUserFromGroup:(PFObject *) group
 {
     @try {
+        PFUser *currentUser = [PFUser currentUser];
+        PFRelation *relation = [group relationForKey:PF_GROUP_Users_RELATION];
+        [relation removeObject:currentUser];
+        
+        group[@"ArrayOfUsers"] = currentUser;
+        [currentUser removeObject:[group objectForKey:PF_GROUPS_NAME] forKey:@"ArrayOfGroups"];
+        [currentUser save];
+        
+        return [group save];
         
     }
     @catch (NSException *exception) {
@@ -601,4 +605,39 @@ CLLocationManager *locationManger;
     }
 
 }
+
+#pragma mark - Get all Groups in the system except created by user
+- (NSArray *) getAllGroupsExceptCreatedByUser
+{
+    @try {
+        PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
+        [query whereKey:PF_GROUP_OWNER notEqualTo:[PFUser currentUser]];
+//        [query includeKey:PF_GROUP_OWNER];
+        NSArray *groups = [query findObjects];
+        return groups;
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
+#pragma mark - Add User to group
+- (BOOL) addCurrentUserToGroup:(PFObject *) group
+{
+    @try {
+        // Add relation
+        PFUser *currentUser = [PFUser currentUser];
+        PFRelation *relation = [group relationForKey:PF_GROUP_Users_RELATION];
+        [relation addObject:currentUser];
+
+        [group addUniqueObject:currentUser forKey:@"ArrayOfUsers"];
+        [currentUser addUniqueObject:[group objectForKey:PF_GROUPS_NAME] forKey:@"ArrayOfGroups"];
+        [currentUser save];
+        
+        return [group save];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
+
 @end

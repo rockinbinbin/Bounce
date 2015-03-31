@@ -53,6 +53,13 @@
 // remove group
 - (BOOL) removeGroup:(PFObject *) group;
 - (NSArray *) getAllUsers;
+// Get all groups except created by user
+- (NSArray *) getAllGroupsExceptCreatedByUser;
+// Add user to group
+- (BOOL) addCurrentUserToGroup:(PFObject *) group;
+// Remove user from group
+- (BOOL) removeUserFromGroup:(PFObject *) group;
+
 
 @end
 
