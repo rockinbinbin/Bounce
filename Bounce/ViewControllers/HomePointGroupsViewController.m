@@ -10,6 +10,11 @@
 #import "AppConstant.h"
 #import "ChatListCell.h"
 #import "HomePointSuccessfulCreationViewController.h"
+#import <Parse/Parse.h>
+#import "AppConstant.h"
+#import "ParseManager.h"
+#import "Definitions.h"
+#import "Utility.h"
 
 @interface HomePointGroupsViewController ()
 
@@ -57,8 +62,34 @@
 }
 
 -(void)doneButtonClicked{
-    HomePointSuccessfulCreationViewController* homePointSuccessfulCreationViewController = [[HomePointSuccessfulCreationViewController alloc] initWithNibName:@"HomePointSuccessfulCreationViewController" bundle:nil];
-    [self.navigationController pushViewController:homePointSuccessfulCreationViewController animated:YES];
+    //TODO: make the location implementation, store it or make it nil ! then navigate to the new view controller
+    [[Utility getInstance] showProgressHudWithMessage:@"Saving ..." withView:self.view];
+
+    PFQuery *query = [PFQuery queryWithClassName:@"Group"];
+    [query whereKey:ParseGroupName equalTo:self.groupName];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // works
+            if (objects.count) {
+                NSLog(@"NOT UNIQUE GROUP NAME"); // write alert to try a different username
+                UIAlertView *notuniqueusername = [[UIAlertView alloc] initWithTitle:@"Oops!"
+                                                                            message:@"This group name seems to be taken. Please choose another!"
+                                                                           delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [notuniqueusername show];
+            }
+            else{
+                [[ParseManager getInstance] addGroup:self.groupName withLocation:self.groupLocation andPrivacy:self.groupPrivacy];
+//                [[ParseManager getInstance] addGroup:self.groupName withLocation:[PFUser currentUser][@"CurrentLocation"] andPrivacy:self.groupPrivacy];
+                HomePointSuccessfulCreationViewController* homePointSuccessfulCreationViewController = [[HomePointSuccessfulCreationViewController alloc] initWithNibName:@"HomePointSuccessfulCreationViewController" bundle:nil];
+                [self.navigationController pushViewController:homePointSuccessfulCreationViewController animated:YES];
+            }
+            [[Utility getInstance] hideProgressHud];
+        }
+        else {
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+
 }
 
 #pragma mark - TableView Datasource

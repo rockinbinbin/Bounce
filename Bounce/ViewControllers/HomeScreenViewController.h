@@ -20,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet MKMapView *map;
 @property (weak, nonatomic) IBOutlet UIView *repliesView;
 @property (weak, nonatomic) IBOutlet UIView *iconView;
+@property (strong, nonatomic) UILabel *numOfMessagesLabel;
+@property (strong, nonatomic) UIView* roundedView;
 - (IBAction)endRequestButtonClicked:(id)sender;
 - (IBAction)repliesButtonClicked:(id)sender;
 - (IBAction)messageButtonClicked:(id)sender;

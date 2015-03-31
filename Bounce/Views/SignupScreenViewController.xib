@@ -146,13 +146,14 @@
                         <constraint firstAttribute="width" constant="40" id="rzv-Fn-0zi"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dft-G2-CPH">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dft-G2-CPH">
                     <rect key="frame" x="11" y="40" width="40" height="30"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="Jyi-AS-dfl"/>
                         <constraint firstAttribute="width" constant="40" id="ecA-uk-W5W"/>
                     </constraints>
-                    <state key="normal" title="Back">
+                    <state key="normal" image="back_button">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -203,6 +204,7 @@
         </view>
     </objects>
     <resources>
+        <image name="back_button" width="55" height="21"/>
         <image name="common_app_logo" width="180" height="180"/>
         <image name="facebook_login_icon" width="36" height="36"/>
     </resources>

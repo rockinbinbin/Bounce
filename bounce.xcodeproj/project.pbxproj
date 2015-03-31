@@ -225,6 +225,8 @@
 		CA3ABC491AC7E64100E1B5DE /* SelectGroupsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABC121AC7E64100E1B5DE /* SelectGroupsTableViewController.xib */; };
 		CA3ABC4A1AC7E64100E1B5DE /* SignupScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABC131AC7E64100E1B5DE /* SignupScreenViewController.xib */; };
 		CA3ABC4B1AC7E64100E1B5DE /* UsersListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABC141AC7E64100E1B5DE /* UsersListViewController.xib */; };
+		CA4964501ACAA26E00DAD523 /* AddLocationScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA49644E1ACAA26E00DAD523 /* AddLocationScreenViewController.m */; };
+		CA4964511ACAA26E00DAD523 /* AddLocationScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA49644F1ACAA26E00DAD523 /* AddLocationScreenViewController.xib */; };
 		CA7F0A961AC92E5100AC5FCB /* GroupsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7F0A941AC92E5100AC5FCB /* GroupsListViewController.m */; };
 		CA7F0A971AC92E5100AC5FCB /* GroupsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA7F0A951AC92E5100AC5FCB /* GroupsListViewController.xib */; };
 		CA7F0A9B1AC92EF500AC5FCB /* ChatListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7F0A991AC92EF500AC5FCB /* ChatListCell.m */; };
@@ -630,6 +632,9 @@
 		CA3ABC121AC7E64100E1B5DE /* SelectGroupsTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectGroupsTableViewController.xib; sourceTree = "<group>"; };
 		CA3ABC131AC7E64100E1B5DE /* SignupScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignupScreenViewController.xib; sourceTree = "<group>"; };
 		CA3ABC141AC7E64100E1B5DE /* UsersListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UsersListViewController.xib; sourceTree = "<group>"; };
+		CA49644D1ACAA26E00DAD523 /* AddLocationScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddLocationScreenViewController.h; sourceTree = "<group>"; };
+		CA49644E1ACAA26E00DAD523 /* AddLocationScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddLocationScreenViewController.m; sourceTree = "<group>"; };
+		CA49644F1ACAA26E00DAD523 /* AddLocationScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddLocationScreenViewController.xib; path = ../ViewControllers/AddLocationScreenViewController.xib; sourceTree = "<group>"; };
 		CA7F0A931AC92E5100AC5FCB /* GroupsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsListViewController.h; sourceTree = "<group>"; };
 		CA7F0A941AC92E5100AC5FCB /* GroupsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsListViewController.m; sourceTree = "<group>"; };
 		CA7F0A951AC92E5100AC5FCB /* GroupsListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GroupsListViewController.xib; path = ../ViewControllers/GroupsListViewController.xib; sourceTree = "<group>"; };
@@ -1466,6 +1471,8 @@
 				CAB03D781AC993CC0043835F /* CustomChatViewController.h */,
 				CAB03D7A1AC995670043835F /* AddHomePointViewController.h */,
 				CAB03D7B1AC995670043835F /* AddHomePointViewController.m */,
+				CA49644D1ACAA26E00DAD523 /* AddLocationScreenViewController.h */,
+				CA49644E1ACAA26E00DAD523 /* AddLocationScreenViewController.m */,
 				CAB03D7D1AC997630043835F /* HomePointGroupsViewController.h */,
 				CAB03D7E1AC997630043835F /* HomePointGroupsViewController.m */,
 				CAB03D821AC99BAA0043835F /* HomePointSuccessfulCreationViewController.h */,
@@ -1493,6 +1500,7 @@
 				CA7F0A9F1AC948FF00AC5FCB /* EditGroupsViewController.xib */,
 				CA7F0A9A1AC92EF500AC5FCB /* ChatListCell.xib */,
 				CA7F0AA41AC9573800AC5FCB /* AddHomePointViewController.xib */,
+				CA49644F1ACAA26E00DAD523 /* AddLocationScreenViewController.xib */,
 				CAB03D7F1AC997630043835F /* HomePointGroupsViewController.xib */,
 				CAB03D841AC99BAA0043835F /* HomePointSuccessfulCreationViewController.xib */,
 			);
@@ -1596,6 +1604,7 @@
 				CA3ABC311AC7E64100E1B5DE /* SignUpViewController.xib in Resources */,
 				CA3ABC471AC7E64100E1B5DE /* LoginScreenViewController.xib in Resources */,
 				CA7F0AA11AC948FF00AC5FCB /* EditGroupsViewController.xib in Resources */,
+				CA4964511ACAA26E00DAD523 /* AddLocationScreenViewController.xib in Resources */,
 				00414F361AADEE0600B25CEE /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
 				CA3ABC211AC7E64100E1B5DE /* Tutorial-2.png in Resources */,
 				CA3ABC1C1AC7E64100E1B5DE /* Tutorial-1@2x.png in Resources */,
@@ -1696,6 +1705,7 @@
 				00414F271AADEE0600B25CEE /* JSQMessagesAvatarImage.m in Sources */,
 				00414F191AADEE0600B25CEE /* JSQMessagesKeyboardController.m in Sources */,
 				00414F231AADEE0600B25CEE /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */,
+				CA4964501ACAA26E00DAD523 /* AddLocationScreenViewController.m in Sources */,
 				00414F011AADEE0600B25CEE /* AFHTTPRequestOperationManager.m in Sources */,
 				67B74C0D1ACA8FFB00B03C1F /* Reachability.m in Sources */,
 				67B74C2B1ACABA2000B03C1F /* SlideMenuLeftTableViewController.m in Sources */,

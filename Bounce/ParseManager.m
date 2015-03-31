@@ -518,6 +518,13 @@ CLLocationManager *locationManger;
     NSArray *groupUser = [query findObjects];
     return groupUser;
 }
+
+- (NSArray *) getAllUsers{
+    PFQuery *query = [PFUser query];
+    // Final list of objects
+    NSArray *groupUser = [query findObjects];
+    return groupUser;
+}
 #pragma mark - Distance to HomePoint (Group)
 - (double) getDistanceToGroup:(PFObject *) group
 {

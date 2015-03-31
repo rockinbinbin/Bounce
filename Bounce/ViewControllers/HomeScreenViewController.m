@@ -34,6 +34,24 @@
     self.repliesButton.backgroundColor = DEFAULT_COLOR;
     self.repliesView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
     
+    // rounded view on the left
+    CGRect userOnlineFrame = CGRectMake(self.repliesButton.frame.origin.x + 8, self.repliesButton.frame.origin.y - 14 , 20, 20);
+    self.roundedView = [[UIView alloc] initWithFrame: userOnlineFrame];
+    self.roundedView.layer.cornerRadius = 10;
+    self.roundedView.layer.masksToBounds = YES;
+    self.roundedView.backgroundColor = [UIColor redColor];
+    
+    // number of messages for the group
+    self.numOfMessagesLabel = [[UILabel alloc] initWithFrame:CGRectMake(-5, 0, 30, 20)];
+    self.numOfMessagesLabel.textAlignment = NSTextAlignmentCenter;
+    self.numOfMessagesLabel.text = @"";
+    [self.numOfMessagesLabel setTextColor:[UIColor whiteColor]];
+    [self.numOfMessagesLabel setBackgroundColor:[UIColor clearColor]];
+    [self.numOfMessagesLabel setFont:[UIFont fontWithName: @"Trebuchet MS" size: 14.0f]];
+    [self.roundedView addSubview:self.numOfMessagesLabel];
+    [self.repliesView addSubview:self.roundedView];
+
+    
     self.iconView.layer.cornerRadius = self.iconView.frame.size.height / 2;
     self.iconView.clipsToBounds = YES;
     self.iconView.layer.borderWidth = 3.0f;
@@ -93,9 +111,6 @@
 
 # pragma mark Custom Functions
 
-/// MODIFIES: The location manager
-/// EFFECTS:  Starts the Core Location manager monitoring for significant
-///           location changes, to preserve battery life.
 - (void)startReceivingSignificantLocationChanges {
     if (nil == self.location_manager) {
         self.location_manager = [[CLLocationManager alloc] init];
@@ -105,9 +120,6 @@
     [self.location_manager startMonitoringSignificantLocationChanges];
 }
 
-/// MODIFIES: self.map
-/// EFFECTS:  Sets the user tracking mode to be constantly set around the
-///           user.
 - (void)setUserTrackingMode {
     [self.map setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
 }

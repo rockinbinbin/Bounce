@@ -29,11 +29,6 @@
     self.LoginButton.backgroundColor = LIGHT_BLUE_COLOR;
         self.facebookLogin.backgroundColor = [UIColor colorWithRed:81.0/250.0 green:117.0/250.0 blue:195.0/250.0 alpha:1.0];
     self.view.backgroundColor = DEFAULT_COLOR;
-    self.backButton.backgroundColor = [UIColor whiteColor];
-    
-    [self.backButton setTitleColor:DEFAULT_COLOR forState:UIControlStateNormal];
-    self.backButton.layer.cornerRadius = 6; // this value vary as per your desire
-    self.backButton.clipsToBounds = YES;
 }
 
 // i want this function to execute each time (to bypass login if already logged in)

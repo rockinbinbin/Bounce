@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextField *groupNameTextField;
 - (IBAction)segmentedControlClicked:(id)sender;
+- (IBAction)addLocationButtonClicked:(id)sender;
 
 @end

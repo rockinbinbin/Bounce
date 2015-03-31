@@ -83,7 +83,7 @@
     NSString *name = [self.groupNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if ([name length] == 0) {
         UIAlertView *zerolength = [[UIAlertView alloc] initWithTitle:@"Oops!"
-                                                             message:@"Make sure you enter a group name!"
+                                                             message:@"Make sure you entered the group name!"
                                                             delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [zerolength show];
     }
@@ -109,7 +109,7 @@
     }];
     if ([name length] == 0) {
             UIAlertView *zerolength = [[UIAlertView alloc] initWithTitle:@"Oops!"
-                                                                     message:@"Make sure you enter a group name!"
+                                                                     message:@"Make sure you entered the group name!"
                                                                     delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [zerolength show];
         }

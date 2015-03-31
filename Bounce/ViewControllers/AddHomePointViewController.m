@@ -17,6 +17,7 @@
 #import "Utility.h"
 #import "Constants.h"
 #import "HomePointGroupsViewController.h"
+#import "AddLocationScreenViewController.h"
 
 @interface AddHomePointViewController ()
 
@@ -104,7 +105,7 @@
     NSString *name = [self.groupNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if ([name length] == 0) {
         UIAlertView *zerolength = [[UIAlertView alloc] initWithTitle:@"Oops!"
-                                                             message:@"Make sure you enter a group name!"
+                                                             message:@"Make sure you entered the group name!"
                                                             delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [zerolength show];
     }
@@ -122,6 +123,7 @@
                     [notuniqueusername show];
                 }
                 else{
+                    // here we add the current user location as default
                     if ([self.groupPrivacySegmentedControl selectedSegmentIndex] == 0) {
                         [[ParseManager getInstance] addGroup:name withLocation:[PFUser currentUser][@"CurrentLocation"] andPrivacy:@"Public"];
                     } else if ([self.groupPrivacySegmentedControl selectedSegmentIndex] == 1) {
@@ -143,6 +145,47 @@
 }
 
 - (IBAction)segmentedControlClicked:(id)sender {
+}
+
+- (IBAction)addLocationButtonClicked:(id)sender {
+
+    NSString *name = [self.groupNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+    PFQuery *query = [PFQuery queryWithClassName:@"Group"];
+    [query whereKey:ParseGroupName equalTo:name];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // works
+            if (objects.count) {
+                NSLog(@"NOT UNIQUE GROUP NAME"); // write alert to try a different username
+                UIAlertView *notuniqueusername = [[UIAlertView alloc] initWithTitle:@"Oops!"
+                                                                            message:@"This group name seems to be taken. Please choose another!"
+                                                                           delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [notuniqueusername show];
+            }
+            else{
+                if ([name length] == 0) {
+                    UIAlertView *zerolength = [[UIAlertView alloc] initWithTitle:@"Oops!"
+                                                                         message:@"Make sure you entered the group name!"
+                                                                        delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [zerolength show];
+                }
+                else{
+                    AddLocationScreenViewController *addLocationScreenViewController = [[AddLocationScreenViewController alloc]  initWithNibName:@"AddLocationScreenViewController" bundle:nil];
+                    if ([self.groupPrivacySegmentedControl selectedSegmentIndex] == 0) {
+                        addLocationScreenViewController.groupPrivacy = @"Public";
+                    } else if ([self.groupPrivacySegmentedControl selectedSegmentIndex] == 1) {
+                        addLocationScreenViewController.groupPrivacy = @"Private";
+                    }
+                    addLocationScreenViewController.groupName = self.groupNameTextField.text;
+                    [self.navigationController pushViewController:addLocationScreenViewController animated:YES];
+                }
+            }
+        }
+        else {
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
 }
 
 #pragma mark - TableView Datasource

@@ -52,6 +52,7 @@
 - (NSArray *) getGroupUsers:(PFObject *) group;
 // remove group
 - (BOOL) removeGroup:(PFObject *) group;
+- (NSArray *) getAllUsers;
 
 @end
 
