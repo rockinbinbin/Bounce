@@ -10,6 +10,8 @@
 #import "LoginScreenViewController.h"
 #import "SignupScreenViewController.h"
 #import "AppConstant.h"
+#import "SlideMenuViewController.h"
+#import "UIViewController+AMSlideMenu.h"
 
 @interface IntroLoginScreenViewController ()
 
@@ -30,6 +32,8 @@
     self.view.backgroundColor = DEFAULT_COLOR;
     [self customiseButtonShadow:self.loginButton];
     [self customiseButtonShadow:self.registerButton];
+    [self disableSlidePanGestureForLeftMenu];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
 
 -(void) customiseButtonShadow:(UIButton*) btn{

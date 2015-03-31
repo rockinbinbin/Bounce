@@ -13,7 +13,8 @@
 #import "HomeScreenViewController.h"
 #import "Utility.h"
 #import "AppConstant.h"
-
+#import "UIViewController+AMSlideMenu.h"
+#import "IntroLoginScreenViewController.h"
 @interface SignupScreenViewController ()
 
 @end
@@ -39,6 +40,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
+    [self disableSlidePanGestureForLeftMenu];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -204,7 +207,10 @@
 
 
 - (IBAction)backButtonClicked:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    AMSlideMenuMainViewController *mainVC = [self mainSlideMenu];
+    UIViewController *rootVC = [[IntroLoginScreenViewController alloc] init];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:rootVC];
+    [mainVC.leftMenu openContentNavigationController:nvc];
 }
 @end
 

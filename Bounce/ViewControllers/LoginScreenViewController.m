@@ -10,11 +10,14 @@
 #import <Parse/Parse.h>
 #import "SignUpViewController.h"
 #import "HomeScreenViewController.h"
+#import "UIViewController+AMSlideMenu.h"
 #import "Utility.h"
 
 #import "AppConstant.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "SlideMenuViewController.h"
+#import "IntroLoginScreenViewController.h"
+
 //#import <FBSDKCoreKit/FBSDKCoreKit.h>
 //#import <FBSDKLoginKit/FBSDKLoginKit.h>
 @interface LoginScreenViewController ()
@@ -31,9 +34,15 @@
     self.view.backgroundColor = DEFAULT_COLOR;
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+}
+
 // i want this function to execute each time (to bypass login if already logged in)
 - (void)viewDidAppear:(BOOL)animated
 {
+    [self disableSlidePanGestureForLeftMenu];
+
     [super viewDidAppear:animated];
     [self setupReturnButton];
     // hides keyboard when user hits background
@@ -223,7 +232,10 @@
     
 }
 - (IBAction)backButtonClicked:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    AMSlideMenuMainViewController *mainVC = [self mainSlideMenu];
+    UIViewController *rootVC = [[IntroLoginScreenViewController alloc] init];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:rootVC];
+    [mainVC.leftMenu openContentNavigationController:nvc];
 }
 
 #pragma mark - Navigate to Home screem

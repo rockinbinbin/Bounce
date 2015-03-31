@@ -144,7 +144,6 @@
 		00CEE3E4199434E700F40C12 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CEE3E3199434E700F40C12 /* AppDelegate.m */; };
 		00CEE3E7199434E700F40C12 /* hobble_1_1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 00CEE3E5199434E700F40C12 /* hobble_1_1.xcdatamodeld */; };
 		00CEE3E9199434E700F40C12 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00CEE3E8199434E700F40C12 /* Images.xcassets */; };
-		00CEE4071994350300F40C12 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00CEE4061994350300F40C12 /* MainStoryboard.storyboard */; };
 		00CEE413199448E900F40C12 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE412199448E900F40C12 /* AddressBook.framework */; };
 		00CEE415199448F000F40C12 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE414199448F000F40C12 /* AddressBookUI.framework */; };
 		00CEE4171994490100F40C12 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4161994490100F40C12 /* CFNetwork.framework */; };
@@ -520,7 +519,6 @@
 		00CEE3E8199434E700F40C12 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		00CEE3FA199434E700F40C12 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		00CEE3FC199434E700F40C12 /* hobble_1_1Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = hobble_1_1Tests.m; sourceTree = "<group>"; };
-		00CEE4061994350300F40C12 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainStoryboard.storyboard; path = hobble.1.1/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		00CEE412199448E900F40C12 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		00CEE414199448F000F40C12 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		00CEE4161994490100F40C12 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -1135,7 +1133,6 @@
 				CA3ABBBD1AC7E64100E1B5DE /* Bounce */,
 				007BA4041A6CDF7500BF08DE /* keyboard */,
 				00CEE3D9199434E700F40C12 /* hobble.1.1 */,
-				00CEE4061994350300F40C12 /* MainStoryboard.storyboard */,
 				001DFA021ABF22C3008C9D1F /* Chatcell.h */,
 				001DFA031ABF22C3008C9D1F /* Chatcell.m */,
 				001DFA051ABF2CB4008C9D1F /* ChatRoomViewController.h */,
@@ -1584,7 +1581,6 @@
 			files = (
 				CA3ABC1A1AC7E64100E1B5DE /* LandingView_iPhone6plus.png in Resources */,
 				CA3ABC491AC7E64100E1B5DE /* SelectGroupsTableViewController.xib in Resources */,
-				00CEE4071994350300F40C12 /* MainStoryboard.storyboard in Resources */,
 				00414F5F1AAE1CEA00B25CEE /* MessagesCell.xib in Resources */,
 				CA3ABC151AC7E64100E1B5DE /* Contents.json in Resources */,
 				CA3ABC481AC7E64100E1B5DE /* MessageScreenViewController.xib in Resources */,
