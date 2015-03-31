@@ -545,6 +545,7 @@ CLLocationManager *locationManger;
         NSArray *userGroups = [[PFUser currentUser] objectForKey:@"ArrayOfGroups"];
         PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
         [query whereKey:PF_GROUPS_NAME containedIn:userGroups];
+        [query includeKey:PF_GROUP_OWNER];
         NSArray *groups = [query findObjects];
         return groups;
     }
@@ -565,5 +566,32 @@ CLLocationManager *locationManger;
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
     }
+}
+
+#pragma mark - Remove Group
+- (BOOL) removeGroup:(PFObject *) group
+{
+    @try {
+        PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
+        [query whereKey:OBJECT_ID equalTo:[group objectId]];
+        NSArray *groups = [query findObjects];
+        BOOL deleted = [[groups objectAtIndex:0] delete];
+        
+        return deleted;
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
+#pragma mark - Out user from group
+- (void) removeUserFromGroup:(PFObject *) group
+{
+    @try {
+        
+    }
+    @catch (NSException *exception) {
+        
+    }
+
 }
 @end

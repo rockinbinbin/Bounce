@@ -11,12 +11,20 @@
 #import "ChatListCell.h"
 
 #import "AddHomePointViewController.h"
+#import <Parse/Parse.h>
+#import "ParseManager.h"
+#import "Utility.h"
 @interface EditGroupsViewController ()
 
 @end
 
 @implementation EditGroupsViewController
+{
+    NSMutableArray *groupsCreatedBYUser;
+    NSMutableArray *groupsDistance;
+    NSMutableArray *groupsNearUsers;
 
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -31,7 +39,10 @@
     self.navigationItem.rightBarButtonItem = doneButton;
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
 }
-
+- (void) viewWillAppear:(BOOL)animated
+{
+    [self getGroupsCreatedByUser];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -68,7 +79,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.groups count];
+    return [groupsCreatedBYUser count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -83,9 +94,9 @@
 
     }
     // filling the cell data
-    cell.groupNameLabel.text = [[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
-    cell.groupDistanceLabel.text = [NSString stringWithFormat:DISTANCE_MESSAGE, [[self.distanceToUserLocation objectAtIndex:indexPath.row] doubleValue]];
-    cell.numOfFriendsInGroupLabel.text = [NSString stringWithFormat:@"%@",[self.nearUsers objectAtIndex:indexPath.row]];
+    cell.groupNameLabel.text = [[groupsCreatedBYUser objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
+    cell.groupDistanceLabel.text = [NSString stringWithFormat:DISTANCE_MESSAGE, [[groupsDistance objectAtIndex:indexPath.row] doubleValue]];
+    cell.numOfFriendsInGroupLabel.text = [NSString stringWithFormat:@"%@",[groupsNearUsers objectAtIndex:indexPath.row]];
     return cell;
 }
 
@@ -98,9 +109,17 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         //add code here for when you hit delete
-        
-        NSLog(@"%li index is deleted !", (long)indexPath.row);
-        //[self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+        if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+            [[Utility getInstance] showProgressHudWithMessage:@"Delete .." withView:self.view];
+            [[ParseManager getInstance] removeGroup:[groupsCreatedBYUser objectAtIndex:indexPath.row]];
+            [[Utility getInstance] hideProgressHud];
+            NSLog(@"%li index is deleted !", (long)indexPath.row);
+            [groupsCreatedBYUser removeObjectAtIndex:indexPath.row];
+            [groupsDistance removeObjectAtIndex:indexPath.row];
+            [groupsNearUsers removeObjectAtIndex:indexPath.row];
+
+            [self.tableView reloadData];
+        }
     }
 }
 
@@ -114,6 +133,34 @@
     return 80;
 }
 
+#pragma mark 
+- (void) getGroupsCreatedByUser
+{
+    @try {
+        groupsCreatedBYUser = [[NSMutableArray alloc] init];
+        groupsDistance = [[NSMutableArray alloc] init];
+        groupsNearUsers = [[NSMutableArray alloc] init];
+        NSString *userName = [[PFUser currentUser] username];
+        for (int i=0 ; i<self.groups.count ; i++) {
+            PFObject *group = [self.groups objectAtIndex:i];
+            NSLog(@"Group name %@", [group objectForKey: PF_GROUPS_NAME]);
+            if ([group objectForKey:PF_GROUP_OWNER]) {
+                PFUser *user = [group objectForKey:PF_GROUP_OWNER];
+                NSString *ownerName = [user username];
+                if ( [ownerName isEqualToString:userName]) {
+                    [groupsCreatedBYUser addObject:group];
+                    [groupsDistance addObject:[self.distanceToUserLocation objectAtIndex:i]];
+                    [groupsNearUsers addObject:[self.nearUsers objectAtIndex:i]];
+                }
+            }
+            
+        }
+        [self.tableView reloadData];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
 
 
 @end

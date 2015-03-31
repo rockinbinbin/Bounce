@@ -50,6 +50,8 @@
 - (NSArray *) getCandidateGroupsForCurrentUser;
 // get group users
 - (NSArray *) getGroupUsers:(PFObject *) group;
+// remove group
+- (BOOL) removeGroup:(PFObject *) group;
 
 @end
 

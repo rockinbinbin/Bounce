@@ -35,5 +35,7 @@
 
 #define SIDE_MENU_WIDTH (IS_IPHONE? 225:375)
 
+#define OBJECT_ID @"objectId"
+
 
 #endif
