@@ -13,7 +13,7 @@
 #import "IntroPages.h"
 #import "MessageScreenViewController.h"
 #import "RequistsViewController.h"
-
+#import "AppConstant.h"
 #import "GroupsListViewController.h"
 @interface HomeScreenViewController ()
 
@@ -27,10 +27,17 @@
     
     [super viewDidLoad];
 
-    [self setBarButtonItemLeft:@"nav_bar_profile_menu_icon"];
-    [self setBarButtonItemRight:@"nav_bar_group_icon"];
-    self.navigationItem.title = @"bounce";
-    [[self navigationController] setNavigationBarHidden:NO animated:YES];
+    self.repliesButton.layer.cornerRadius = 4;
+    self.repliesButton.clipsToBounds = YES;
+    self.repliesButton.backgroundColor = DEFAULT_COLOR;
+    self.repliesView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
+    
+    self.iconView.layer.cornerRadius = self.iconView.frame.size.height / 2;
+    self.iconView.clipsToBounds = YES;
+    self.iconView.layer.borderWidth = 3.0f;
+    self.iconView.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.iconView.backgroundColor = DEFAULT_COLOR;
+    
     self.location_manager = [[CLLocationManager alloc] init];
     [self.location_manager requestAlwaysAuthorization];
     self.location_manager.pausesLocationUpdatesAutomatically = YES;
@@ -45,14 +52,8 @@
     [self setUserTrackingMode];
 }
 
--(void) setBarButtonItemLeft:(NSString*) imageName{
-    UIImage *menuImage = [UIImage imageNamed:imageName];
-    self.navigationItem.leftBarButtonItem = [self initialiseBarButton:menuImage withAction:@selector(privateChatButtonPressed)];
-}
-
--(void) setBarButtonItemRight:(NSString*) imageName{
-    UIImage *searchImage = [UIImage imageNamed:imageName];
-    self.navigationItem.rightBarButtonItem = [self initialiseBarButton:searchImage withAction:@selector(groupChatButtonPressed)];
+-(void) viewWillAppear:(BOOL)animated{
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
 }
 
 -(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action{
@@ -130,14 +131,17 @@
     [self.navigationController pushViewController:messageScreenViewController animated:YES];
 }
 
-- (void)privateChatButtonPressed{
+- (IBAction)repliesButtonClicked:(id)sender {
+}
+- (IBAction)endRequestButtonClicked:(id)sender {
+}
+- (IBAction)privateChatButtonClicked:(id)sender {
     RequistsViewController *requistViewController = [[RequistsViewController alloc] init];
     [self.navigationController pushViewController:requistViewController animated:YES];
 }
 
-- (void)groupChatButtonPressed{
+- (IBAction)groupsChatButtonClicked:(id)sender {
     GroupsListViewController *groupsListViewController = [[GroupsListViewController alloc] init];
     [self.navigationController pushViewController:groupsListViewController animated:YES];
 }
-
 @end
