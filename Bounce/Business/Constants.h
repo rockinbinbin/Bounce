@@ -10,6 +10,8 @@
 #define bounce_Constants_h
 
 #pragma mark - General Constants
+#define IS_IOS8 ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0)
+
 #define IS_IPHONE ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
 
 #define IS_IPHONE4 ([[UIScreen mainScreen] bounds].size.height == 480)
