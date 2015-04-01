@@ -1953,7 +1953,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "hobble.1.1/bounce-Prefix.pch";
 				INFOPLIST_FILE = "hobble.1.1/bounce-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKCoreKit/build/FBSDKCoreKit.build/Debug-iphoneos/FBSDKCoreKit.build/Objects-normal/arm64",
@@ -2036,7 +2036,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "hobble.1.1/bounce-Prefix.pch";
 				INFOPLIST_FILE = "hobble.1.1/bounce-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKCoreKit/build/FBSDKCoreKit.build/Debug-iphoneos/FBSDKCoreKit.build/Objects-normal/arm64",
