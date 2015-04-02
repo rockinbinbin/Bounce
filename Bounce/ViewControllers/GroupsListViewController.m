@@ -17,6 +17,9 @@
 @end
 
 @implementation GroupsListViewController
+{
+    BOOL loadingData;
+}
 @synthesize nearUsers = nearUsers;
 @synthesize distanceToUserLocation = distanceToUserLocation;
 - (void)viewDidLoad {
@@ -42,6 +45,7 @@
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
             [[Utility getInstance] showProgressHudWithMessage:@"Loading..." withView:self.view];
             [[ParseManager getInstance] setGetUserGroupsdelegate:self];
+            loadingData = YES;
             [[ParseManager getInstance] getUserGroups];
             
 //            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -92,12 +96,13 @@
 }
 
 -(void)editButtonClicked{
-    EditGroupsViewController* editGroupViewController = [[EditGroupsViewController alloc] initWithNibName:@"EditGroupsViewController" bundle:nil];
-    [editGroupViewController setGroups:self.groups];
-    [editGroupViewController setNearUsers:self.nearUsers];
-    [editGroupViewController setDistanceToUserLocation:self.distanceToUserLocation];
-
-    [self.navigationController pushViewController:editGroupViewController animated:YES];
+    if (!loadingData) {
+        EditGroupsViewController* editGroupViewController = [[EditGroupsViewController alloc] initWithNibName:@"EditGroupsViewController" bundle:nil];
+        [editGroupViewController setGroups:self.groups];
+        [editGroupViewController setNearUsers:self.nearUsers];
+        [editGroupViewController setDistanceToUserLocation:self.distanceToUserLocation];
+        [self.navigationController pushViewController:editGroupViewController animated:YES];
+    }
 }
 
 #pragma mark - Parse LoadGroups delegate
@@ -106,6 +111,7 @@
     @try {
         if (error) {
             [[Utility getInstance] hideProgressHud];
+            loadingData = NO;
         }else{
             if(!self.groups)
             {
@@ -127,6 +133,7 @@
                     // Update the UI on the main thread.
                     [[Utility getInstance] hideProgressHud];
                     [self.tableView reloadData];
+                    loadingData = NO;
                 });
             });
         }
@@ -141,6 +148,7 @@
         
         if (error) {
             [[Utility getInstance] hideProgressHud];
+            loadingData = NO;
         }else{
             if(!self.groups)
             {
@@ -162,6 +170,7 @@
                     // Update the UI on the main thread.
                     [[Utility getInstance] hideProgressHud];
                     [self.tableView reloadData];
+                    loadingData = NO;
                 });
             });
         }

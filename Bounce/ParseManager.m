@@ -134,7 +134,7 @@ PFUser *currentUser;
 }
 
 
-#pragma mark - Add Chat Group
+#pragma mark - Add Group
 - (void) addGroup:(NSString*) groupName withLocation:(PFGeoPoint*) location andPrivacy:(NSString*) privacy {
     PFObject *object = [PFObject objectWithClassName:PF_GROUPS_CLASS_NAME];
     object[PF_GROUPS_NAME] = groupName;
@@ -156,6 +156,36 @@ PFUser *currentUser;
          // Added the user to GroupUsers relation
          PFRelation *usersRelation = [object relationForKey:PF_GROUP_Users_RELATION];
          [usersRelation addObject:[PFUser currentUser]];
+         [object saveInBackground];
+         if ([self.addGroupdelegate respondsToSelector:@selector(didAddGroupWithError:)]) {
+             [self.addGroupdelegate didAddGroupWithError:error];
+         }
+     }];
+}
+- (void) addGroup:(NSString*) groupName withArrayOfUser:(NSArray *)users withLocation:(PFGeoPoint*) location andPrivacy:(NSString*) privacy {
+    PFObject *object = [PFObject objectWithClassName:PF_GROUPS_CLASS_NAME];
+    object[PF_GROUPS_NAME] = groupName;
+    object[PF_GROUP_LOCATION] = location;
+    object[PF_GROUP_PRIVACY] = privacy;
+    object[PF_GROUP_OWNER] = [PFUser currentUser];
+    
+    // TODO: Make the following part undependable and depend on relation only
+    // Added this part to append needed data
+    //    NSMutableArray *Userarray = [[NSMutableArray alloc] init];
+    //    [Userarray addObject:[PFUser currentUser]];
+    object[@"ArrayOfUsers"] = users;
+    PFUser *user = [PFUser currentUser];
+    [user addObject:groupName forKey:@"ArrayOfGroups"];
+    [user saveInBackground];
+    
+    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+     {
+         // Added the user to GroupUsers relation
+         PFRelation *usersRelation = [object relationForKey:PF_GROUP_Users_RELATION];
+         for (PFUser *user in users) {
+             [usersRelation addObject:user];
+         }
+         
          [object saveInBackground];
          if ([self.addGroupdelegate respondsToSelector:@selector(didAddGroupWithError:)]) {
              [self.addGroupdelegate didAddGroupWithError:error];

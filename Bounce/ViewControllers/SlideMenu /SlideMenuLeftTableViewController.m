@@ -131,7 +131,7 @@
         [signoutButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [signoutButton addTarget:self   action:@selector(signoutButtonClicked) forControlEvents:UIControlEventTouchUpInside];
         [cell addSubview:signoutButton];
-        [cell setUserInteractionEnabled:NO];
+//        [cell setUserInteractionEnabled:NO];
     }
     
     return cell;
@@ -161,15 +161,20 @@
     switch (indexPath.row) {
         case Profile_Section:
         {
-            rootVC = [[HomeScreenViewController alloc] init];
+            rootVC = [[HomeScreenViewController alloc] initWithNibName:@"HomeScreenViewController" bundle:nil];
         }
             break;
         case Chats_Section:
         {
-            rootVC = [[RequistsViewController alloc] init];
+            rootVC = [[RequistsViewController alloc] initWithNibName:@"RequistsViewController" bundle:nil];
         }
             break;
-        
+//        case Logout_Section:
+//        {
+//            [PFUser logOut];
+//            rootVC = [[LoginScreenViewController alloc] init];
+//
+//        }
         
         default:
             break;

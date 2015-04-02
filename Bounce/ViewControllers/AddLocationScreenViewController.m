@@ -7,7 +7,7 @@
 //
 
 #import "AddLocationScreenViewController.h"
-#import "HomePointGroupsViewController.h"
+#import "AddGroupUsersViewController.h"
 #import "AppConstant.h"
 #import <Parse/Parse.h>
 #import "ParseManager.h"
@@ -118,11 +118,13 @@
 }
 
 -(void) navigateToHomeGroupsAndSetItsData{
-    HomePointGroupsViewController *contoller = [[HomePointGroupsViewController alloc]  init];
+    AddGroupUsersViewController *contoller = [[AddGroupUsersViewController alloc]  init];
     NSMutableArray *users  = [[NSMutableArray alloc] initWithArray:[[ParseManager getInstance] getAllUsers]];
-    if (![users containsObject:[PFUser currentUser]]) {
-        [users addObject:[PFUser currentUser]];
-    }
+    PFUser *currentUser = [PFUser currentUser];
+    // move the current user to the first cell
+    [users removeObject:currentUser];
+    [users insertObject:currentUser atIndex:0];
+
     contoller.groupUsers = [NSArray arrayWithArray:users];
     contoller.groupLocation = self.groupLocation;
     contoller.groupPrivacy = self.groupPrivacy;

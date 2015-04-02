@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 hobble. All rights reserved.
 //
 
-#import "HomePointGroupsViewController.h"
+#import "AddGroupUsersViewController.h"
 #import "AppConstant.h"
 #import "ChatListCell.h"
 #import "HomePointSuccessfulCreationViewController.h"
@@ -16,11 +16,11 @@
 #import "Definitions.h"
 #import "Utility.h"
 
-@interface HomePointGroupsViewController ()
+@interface AddGroupUsersViewController ()
 
 @end
 
-@implementation HomePointGroupsViewController
+@implementation AddGroupUsersViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -34,6 +34,13 @@
                                    action:@selector(doneButtonClicked)];
     doneButton.tintColor = DEFAULT_COLOR;
     self.navigationItem.rightBarButtonItem = doneButton;
+    // create checked array
+    self.userChecked  = [[NSMutableArray alloc] init];
+    NSInteger useresCount = [self.groupUsers count];
+    [self.userChecked  addObject:[NSNumber numberWithBool:YES]];
+    for (int i = 0; i < useresCount-1; i++) {
+        [self.userChecked  addObject:[NSNumber numberWithBool:NO]];
+    }
 
 }
 
@@ -78,8 +85,10 @@
                 [notuniqueusername show];
             }
             else{
-                [[ParseManager getInstance] addGroup:self.groupName withLocation:self.groupLocation andPrivacy:self.groupPrivacy];
-//                [[ParseManager getInstance] addGroup:self.groupName withLocation:[PFUser currentUser][@"CurrentLocation"] andPrivacy:self.groupPrivacy];
+                // get selected users
+               NSArray *users = [self getCheckedUsers];
+                [[ParseManager getInstance] addGroup:self.groupName withArrayOfUser:users withLocation:self.groupLocation andPrivacy:self.groupPrivacy];
+
                 HomePointSuccessfulCreationViewController* homePointSuccessfulCreationViewController = [[HomePointSuccessfulCreationViewController alloc] initWithNibName:@"HomePointSuccessfulCreationViewController" bundle:nil];
                 [self.navigationController pushViewController:homePointSuccessfulCreationViewController animated:YES];
             }
@@ -123,11 +132,14 @@
     cell.circularView.layer.cornerRadius = 20;
     cell.circularView.clipsToBounds = YES;
 
-    cell.iconImageView.image = [UIImage imageNamed:@"common_checkmark_icon"];
     cell.topSpaceTitleConstraints.constant = 0;
     
     // filling the cell data
-    
+    if ([[self.userChecked objectAtIndex:indexPath.row] boolValue]) {
+        cell.iconImageView.image = [UIImage imageNamed:@"common_checkmark_icon"];
+    }else{
+        cell.iconImageView.image = [UIImage imageNamed:@"common_plus_icon"];
+    }
     cell.groupNameLabel.text = [[self.groupUsers objectAtIndex:indexPath.row] objectForKey:PF_USER_USERNAME];
 //    cell.groupDistanceLabel.text = @"2.1 miles away";
     return cell;
@@ -147,15 +159,50 @@
     }
 }
 
-
 #pragma mark - TableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    // mark this user as checked
+    if (indexPath.row != 0) {
+        BOOL checked;
+        if ([[self.userChecked objectAtIndex:indexPath.row] boolValue]) {
+            // mark it to add to group
+            checked = NO;
+        }else{
+            // mark it as not in the group
+            checked = YES;
+        }
+        [self.userChecked replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithBool:checked]];
+        [self updateRowAtIndex:indexPath];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 80;
 }
 
-
+#pragma mark - update Row
+- (void) updateRowAtIndex:(NSIndexPath*) indexPath
+{
+    [self.tableView beginUpdates];
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    [self.tableView endUpdates];
+}
+#pragma mark - get Selected users
+- (NSArray *) getCheckedUsers
+{
+    @try {
+        NSMutableArray *selectedUsers = [[NSMutableArray alloc] init];
+        
+        for (int i = 0; i<[self.groupUsers count]; i++) {
+            if ([[self.userChecked objectAtIndex:i] boolValue]) {
+                [selectedUsers addObject:[self.groupUsers objectAtIndex:i]];
+            }
+        }
+        return [NSArray arrayWithArray:selectedUsers];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
 @end

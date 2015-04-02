@@ -11,8 +11,9 @@
 #import <CoreLocation/CoreLocation.h>
 #import "ParseManager.h"
 
-@interface HomePointGroupsViewController : UIViewController
+@interface AddGroupUsersViewController : UIViewController
 @property NSArray *groupUsers;
+@property NSMutableArray *userChecked;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, assign) PFGeoPoint * groupLocation;
 @property (nonatomic, assign) NSString* groupPrivacy;

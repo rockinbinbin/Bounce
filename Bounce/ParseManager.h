@@ -31,7 +31,7 @@
 // Load chat groups
 - (void) loadAllGroups;
 // Add Chat group
-- (void) addGroup:(NSString*) groupName withLocation:(PFGeoPoint*) location andPrivacy:(NSString*) privacy;
+- (void) addGroup:(NSString*) groupName withArrayOfUser:(NSArray *)users withLocation:(PFGeoPoint*) location andPrivacy:(NSString*) privacy;
 // Request
 - (void) createrequestToGroups:(NSArray *) selectedGroups andGender:(NSString *)gender  withinTime:(NSInteger)timeAllocated andInRadius:(NSInteger) radius;
 // Append users to group
@@ -63,7 +63,8 @@
 - (BOOL) removeUserFromGroup:(PFObject *) group;
 //
 - (NSInteger) getNearUsersNumberInGroup:(PFObject *) group;
-
+//
+- (void) addGroup:(NSString*) groupName withLocation:(PFGeoPoint*) location andPrivacy:(NSString*) privacy;
 
 @end
 

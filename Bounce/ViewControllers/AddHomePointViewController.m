@@ -9,14 +9,14 @@
 #import "AddHomePointViewController.h"
 #import "AppConstant.h"
 #import "ChatListCell.h"
-#import "HomePointGroupsViewController.h"
+#import "AddGroupUsersViewController.h"
 #import "Definitions.h"
 #import <Parse/Parse.h>
 #import "ParseManager.h"
 #import "GroupsListViewController.h"
 #import "Utility.h"
 #import "Constants.h"
-#import "HomePointGroupsViewController.h"
+#import "AddGroupUsersViewController.h"
 #import "AddLocationScreenViewController.h"
 
 @interface AddHomePointViewController ()
@@ -43,6 +43,9 @@
     self.navigationItem.rightBarButtonItem = doneButton;
     
     self.addLocationButton.backgroundColor = LIGHT_BLUE_COLOR;
+    
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+    [self.view addGestureRecognizer:gestureRecognizer];
     
    
 }
@@ -344,5 +347,10 @@
     [self.tableView beginUpdates];
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
     [self.tableView endUpdates];
+}
+#pragma mark - 
+- (void) hideKeyboard
+{
+    [self.groupNameTextField resignFirstResponder];
 }
 @end
