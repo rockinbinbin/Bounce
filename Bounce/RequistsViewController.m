@@ -29,6 +29,7 @@
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO];
     [self setBarButtonItemLeft:@"common_back_button"];
+    self.navigationItem.title = @"chats";
 }
 
 - (void)didReceiveMemoryWarning {

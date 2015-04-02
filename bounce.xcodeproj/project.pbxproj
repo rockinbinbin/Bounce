@@ -1445,14 +1445,10 @@
 				CA3ABBFD1AC7E64100E1B5DE /* IntroPagesViewController.m */,
 				CA3ABBFE1AC7E64100E1B5DE /* LoginScreenViewController.h */,
 				CA3ABBFF1AC7E64100E1B5DE /* LoginScreenViewController.m */,
-				CA3ABC001AC7E64100E1B5DE /* MessageScreenViewController.h */,
-				CA3ABC011AC7E64100E1B5DE /* MessageScreenViewController.m */,
 				CA3ABC021AC7E64100E1B5DE /* SelectGroupsTableViewController.h */,
 				CA3ABC031AC7E64100E1B5DE /* SelectGroupsTableViewController.m */,
 				CA3ABC041AC7E64100E1B5DE /* SignupScreenViewController.h */,
 				CA3ABC051AC7E64100E1B5DE /* SignupScreenViewController.m */,
-				CA3ABBF01AC7E64100E1B5DE /* GenderScreenViewController.h */,
-				CA3ABBF11AC7E64100E1B5DE /* GenderScreenViewController.m */,
 				CA3ABC061AC7E64100E1B5DE /* UsersListViewController.h */,
 				CA3ABC071AC7E64100E1B5DE /* UsersListViewController.m */,
 				CA7F0A931AC92E5100AC5FCB /* GroupsListViewController.h */,
@@ -1473,6 +1469,10 @@
 				CAB03D7E1AC997630043835F /* HomePointGroupsViewController.m */,
 				CAB03D821AC99BAA0043835F /* HomePointSuccessfulCreationViewController.h */,
 				CAB03D831AC99BAA0043835F /* HomePointSuccessfulCreationViewController.m */,
+				CA3ABC001AC7E64100E1B5DE /* MessageScreenViewController.h */,
+				CA3ABC011AC7E64100E1B5DE /* MessageScreenViewController.m */,
+				CA3ABBF01AC7E64100E1B5DE /* GenderScreenViewController.h */,
+				CA3ABBF11AC7E64100E1B5DE /* GenderScreenViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1481,6 +1481,8 @@
 			isa = PBXGroup;
 			children = (
 				CA3ABC091AC7E64100E1B5DE /* GenderScreenViewController.xib */,
+				CA3ABC111AC7E64100E1B5DE /* MessageScreenViewController.xib */,
+				CA7F0AA41AC9573800AC5FCB /* AddHomePointViewController.xib */,
 				CA3ABC0A1AC7E64100E1B5DE /* HomeScreenViewController.xib */,
 				CA3ABC0B1AC7E64100E1B5DE /* Intro1IDViewController.xib */,
 				CA3ABC0C1AC7E64100E1B5DE /* Intro2IDViewController.xib */,
@@ -1488,7 +1490,6 @@
 				CA3ABC0E1AC7E64100E1B5DE /* IntroLoginScreenViewController.xib */,
 				CA3ABC0F1AC7E64100E1B5DE /* IntroPagesViewController.xib */,
 				CA3ABC101AC7E64100E1B5DE /* LoginScreenViewController.xib */,
-				CA3ABC111AC7E64100E1B5DE /* MessageScreenViewController.xib */,
 				CA3ABC121AC7E64100E1B5DE /* SelectGroupsTableViewController.xib */,
 				CA3ABC131AC7E64100E1B5DE /* SignupScreenViewController.xib */,
 				CA3ABC141AC7E64100E1B5DE /* UsersListViewController.xib */,
@@ -1496,7 +1497,6 @@
 				CA7F0A9F1AC948FF00AC5FCB /* EditGroupsViewController.xib */,
 				CA7F0A9A1AC92EF500AC5FCB /* ChatListCell.xib */,
 				CA3ABBE71AC7E64100E1B5DE /* RequistsViewController.xib */,
-				CA7F0AA41AC9573800AC5FCB /* AddHomePointViewController.xib */,
 				CA49644F1ACAA26E00DAD523 /* AddLocationScreenViewController.xib */,
 				CAB03D7F1AC997630043835F /* HomePointGroupsViewController.xib */,
 				CAB03D841AC99BAA0043835F /* HomePointSuccessfulCreationViewController.xib */,

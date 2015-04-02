@@ -20,12 +20,19 @@
 #import "UIProgressView+FlatUI.h"
 #import "FUISegmentedControl.h"
 #import "UIPopoverController+FlatUI.h"
+#import "NIDropDown.h"
 
-
-@interface MessageScreenViewController : UIViewController
-@property (strong, nonatomic) IBOutlet UITextField *TimeAllocated;
-@property (strong, nonatomic) IBOutlet UITextField *Radius;
-@property (strong, nonatomic) IBOutlet UIButton *AddGroupsButton;
-- (IBAction)addgroupsButtonClicked:(id)sender;
+@interface MessageScreenViewController : UIViewController<NIDropDownDelegate>
+@property (weak, nonatomic) IBOutlet UISegmentedControl *groupGenderSegment;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) NIDropDown *dropDown;
+@property (weak, nonatomic) IBOutlet UIButton *distanceSelectButton;
+@property (weak, nonatomic) IBOutlet UIButton *durationSelectButton;
+- (IBAction)distanceSelectButtonClicked:(id)sender;
+- (IBAction)durationSelectButtonClicked:(id)sender;
+- (IBAction)genderSegmentClicked:(id)sender;
+@property NSString* distance;
+@property NSString* duration;
+@property BOOL isDistanceSent;
 
 @end

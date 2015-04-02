@@ -16,6 +16,7 @@
 // store in parse:
 @property int radius;
 @property int timeAllocated;
+@property NSString* genderFilter;
 // create property for location
 @property (nonatomic, strong) NSMutableArray *SelectedGroups;
 
