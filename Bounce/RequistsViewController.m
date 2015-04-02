@@ -14,6 +14,8 @@
 #import "Constants.h"
 #import "UIViewController+AMSlideMenu.h"
 #import "HomeScreenViewController.h"
+#import "ChatListCell.h"
+
 @interface RequistsViewController ()
 {
     NSMutableArray *requests;
@@ -122,28 +124,75 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [self.groupsTableView dequeueReusableCellWithIdentifier:@"Cell"];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
-    }
+    NSString* cellId = @"ChatListCell";
+    ChatListCell *cell = [self.groupsTableView dequeueReusableCellWithIdentifier:cellId];
     
+    if (!cell) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
+        cell = (ChatListCell *)[nib objectAtIndex:0];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    [[cell.contentView viewWithTag:4]removeFromSuperview] ;
+
+    // Hide unneeded elements and show needed ones
+    cell.numOfMessagesLabel.hidden = YES;
+    cell.numOfFriendsInGroupLabel.hidden = YES;
+    cell.nearbyLabel.hidden = YES;
+    cell.roundedView.hidden = YES;
+    cell.timeLabel.hidden = NO;
+
+    // Decrease the circular view size
+    cell.circularViewWidth.constant = 40;
+    cell.circularViewHeight.constant = 40;
+    cell.circularView.layer.cornerRadius = 20;
+    cell.circularView.clipsToBounds = YES;
+
+    // Setting the elements data
     PFObject *request = [requests objectAtIndex:indexPath.row];
+    cell.groupNameLabel.text = [NSString stringWithFormat:@"%@ send request",[[requests objectAtIndex:indexPath.row] valueForKey:@"Sender"]];
+    cell.groupDistanceLabel.textColor = [UIColor grayColor];
+    cell.groupDistanceLabel.text = [self convertDateToString:[request createdAt]]; // it should be the message content
+    cell.timeLabel.text = @"Fri, Feb. 25";
+    //    cell.iconImageView.image = [UIImage imageNamed:@"common_plus_icon"]; // it should be the user profile
+
+    for ( UIView* view in cell.contentView.subviews )
+    {
+        view.backgroundColor = [ UIColor clearColor ];
+    }
     if ([[Utility getInstance] isRequestValid:[request createdAt] andTimeAllocated:[[request objectForKey:PF_REQUEST_TIME_ALLOCATED] integerValue]]) {
-        cell.backgroundColor = [UIColor whiteColor];
+        cell.contentView.backgroundColor = [UIColor whiteColor];
+        self.groupsTableView.backgroundColor = [UIColor whiteColor];
     }else{
         // if request time out ==> added gray background
-        cell.backgroundColor = [UIColor lightGrayColor];
+        cell.contentView.backgroundColor = [UIColor colorWithRed:224.0/255.0 green:224.0/255.0 blue:224.0/255.0 alpha:1.0f];
+        self.groupsTableView.backgroundColor = [UIColor colorWithRed:224.0/255.0 green:224.0/255.0 blue:224.0/255.0 alpha:1.0f];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ send request",[[requests objectAtIndex:indexPath.row] valueForKey:@"Sender"]];
-    cell.detailTextLabel.text = [self convertDateToString:[request createdAt]];
-    
+
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 80;
 }
 
 #pragma mark - TableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     // if request time out ==> no action in the cell
     [self openRequestChat:indexPath.row];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return YES if you want the specified item to be editable.
+    return YES;
+}
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //add code here for when you hit delete
+        NSLog(@"%li index is deleted !", (long)indexPath.row);
+        //[self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+    }
 }
 
 #pragma mark - open chat with selected user

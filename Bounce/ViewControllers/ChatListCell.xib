@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -82,6 +83,17 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4i2-ET-GI2" userLabel="timeLabel">
+                                <rect key="frame" x="3" y="59" width="60" height="20"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="oPE-an-Yzi"/>
+                                    <constraint firstAttribute="width" constant="60" id="yPt-CC-GU4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -90,6 +102,8 @@
                             <constraint firstItem="pmu-FP-Shd" firstAttribute="top" secondItem="Ipg-oR-qoh" secondAttribute="bottom" constant="4" id="Nby-M6-Oio"/>
                             <constraint firstItem="Arl-do-QdW" firstAttribute="leading" secondItem="Tlb-Ug-cbn" secondAttribute="leading" constant="8" id="YHA-LM-mmM"/>
                             <constraint firstItem="pmu-FP-Shd" firstAttribute="leading" secondItem="Arl-do-QdW" secondAttribute="trailing" constant="24" id="Z4m-HY-jAJ"/>
+                            <constraint firstItem="4i2-ET-GI2" firstAttribute="top" secondItem="Arl-do-QdW" secondAttribute="bottom" id="ZZs-aX-Mf0"/>
+                            <constraint firstItem="Arl-do-QdW" firstAttribute="centerX" secondItem="4i2-ET-GI2" secondAttribute="centerX" id="iuH-UF-FWN"/>
                             <constraint firstAttribute="centerY" secondItem="Ipg-oR-qoh" secondAttribute="centerY" constant="14" id="lke-Wu-vqI"/>
                             <constraint firstAttribute="centerY" secondItem="Arl-do-QdW" secondAttribute="centerY" id="pef-NT-Kgg"/>
                         </constraints>
@@ -117,6 +131,7 @@
                 <outlet property="iconImageView" destination="e58-hs-qNO" id="Bxx-4V-bmX"/>
                 <outlet property="nearbyLabel" destination="G4t-lL-BHs" id="KQj-3x-HuB"/>
                 <outlet property="numOfFriendsInGroupLabel" destination="fXO-12-a5i" id="oH3-ja-d83"/>
+                <outlet property="timeLabel" destination="4i2-ET-GI2" id="RWN-M8-2xT"/>
                 <outlet property="topSpaceTitleConstraints" destination="lke-Wu-vqI" id="7vJ-Yb-E2g"/>
             </connections>
             <point key="canvasLocation" x="514" y="356"/>

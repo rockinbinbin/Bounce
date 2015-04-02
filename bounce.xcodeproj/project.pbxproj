@@ -177,11 +177,6 @@
 		CA3ABC181AC7E64100E1B5DE /* LandingView_iPhone5.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBC31AC7E64100E1B5DE /* LandingView_iPhone5.png */; };
 		CA3ABC191AC7E64100E1B5DE /* LandingView_iPhone6.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBC41AC7E64100E1B5DE /* LandingView_iPhone6.png */; };
 		CA3ABC1A1AC7E64100E1B5DE /* LandingView_iPhone6plus.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBC51AC7E64100E1B5DE /* LandingView_iPhone6plus.png */; };
-		CA3ABC1B1AC7E64100E1B5DE /* Tutorial-1.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBC71AC7E64100E1B5DE /* Tutorial-1.png */; };
-		CA3ABC1C1AC7E64100E1B5DE /* Tutorial-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBC81AC7E64100E1B5DE /* Tutorial-1@2x.png */; };
-		CA3ABC1D1AC7E64100E1B5DE /* Tutorial-1_iPhone5.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBC91AC7E64100E1B5DE /* Tutorial-1_iPhone5.png */; };
-		CA3ABC1E1AC7E64100E1B5DE /* Tutorial-1_iPhone6.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBCA1AC7E64100E1B5DE /* Tutorial-1_iPhone6.png */; };
-		CA3ABC1F1AC7E64100E1B5DE /* Tutorial-1_iPhone6plus.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBCB1AC7E64100E1B5DE /* Tutorial-1_iPhone6plus.png */; };
 		CA3ABC201AC7E64100E1B5DE /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBCD1AC7E64100E1B5DE /* Contents.json */; };
 		CA3ABC211AC7E64100E1B5DE /* Tutorial-2.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBCE1AC7E64100E1B5DE /* Tutorial-2.png */; };
 		CA3ABC221AC7E64100E1B5DE /* Tutorial-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBCF1AC7E64100E1B5DE /* Tutorial-2@2x.png */; };
@@ -239,6 +234,11 @@
 		CAB03D811AC997630043835F /* HomePointGroupsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB03D7F1AC997630043835F /* HomePointGroupsViewController.xib */; };
 		CAB03D851AC99BAA0043835F /* HomePointSuccessfulCreationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB03D831AC99BAA0043835F /* HomePointSuccessfulCreationViewController.m */; };
 		CAB03D861AC99BAA0043835F /* HomePointSuccessfulCreationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB03D841AC99BAA0043835F /* HomePointSuccessfulCreationViewController.xib */; };
+		CAB71EB91ACD61B300FB09FD /* Tutorial-1_iPhone5.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB71EB41ACD61B300FB09FD /* Tutorial-1_iPhone5.png */; };
+		CAB71EBA1ACD61B300FB09FD /* Tutorial-1_iPhone6.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB71EB51ACD61B300FB09FD /* Tutorial-1_iPhone6.png */; };
+		CAB71EBB1ACD61B300FB09FD /* Tutorial-1_iPhone6plus.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB71EB61ACD61B300FB09FD /* Tutorial-1_iPhone6plus.png */; };
+		CAB71EBC1ACD61B300FB09FD /* Tutorial-1.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB71EB71ACD61B300FB09FD /* Tutorial-1.png */; };
+		CAB71EBD1ACD61B300FB09FD /* Tutorial-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB71EB81ACD61B300FB09FD /* Tutorial-1@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -566,11 +566,6 @@
 		CA3ABBC31AC7E64100E1B5DE /* LandingView_iPhone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LandingView_iPhone5.png; sourceTree = "<group>"; };
 		CA3ABBC41AC7E64100E1B5DE /* LandingView_iPhone6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LandingView_iPhone6.png; sourceTree = "<group>"; };
 		CA3ABBC51AC7E64100E1B5DE /* LandingView_iPhone6plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LandingView_iPhone6plus.png; sourceTree = "<group>"; };
-		CA3ABBC71AC7E64100E1B5DE /* Tutorial-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-1.png"; sourceTree = "<group>"; };
-		CA3ABBC81AC7E64100E1B5DE /* Tutorial-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-1@2x.png"; sourceTree = "<group>"; };
-		CA3ABBC91AC7E64100E1B5DE /* Tutorial-1_iPhone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-1_iPhone5.png"; sourceTree = "<group>"; };
-		CA3ABBCA1AC7E64100E1B5DE /* Tutorial-1_iPhone6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-1_iPhone6.png"; sourceTree = "<group>"; };
-		CA3ABBCB1AC7E64100E1B5DE /* Tutorial-1_iPhone6plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-1_iPhone6plus.png"; sourceTree = "<group>"; };
 		CA3ABBCD1AC7E64100E1B5DE /* Contents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
 		CA3ABBCE1AC7E64100E1B5DE /* Tutorial-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-2.png"; sourceTree = "<group>"; };
 		CA3ABBCF1AC7E64100E1B5DE /* Tutorial-2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-2@2x.png"; sourceTree = "<group>"; };
@@ -586,9 +581,9 @@
 		CA3ABBDB1AC7E64100E1B5DE /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		CA3ABBE01AC7E64100E1B5DE /* ParseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseManager.h; sourceTree = "<group>"; };
 		CA3ABBE11AC7E64100E1B5DE /* ParseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseManager.m; sourceTree = "<group>"; };
-		CA3ABBE51AC7E64100E1B5DE /* RequistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequistsViewController.h; sourceTree = "<group>"; };
-		CA3ABBE61AC7E64100E1B5DE /* RequistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequistsViewController.m; sourceTree = "<group>"; };
-		CA3ABBE71AC7E64100E1B5DE /* RequistsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RequistsViewController.xib; sourceTree = "<group>"; };
+		CA3ABBE51AC7E64100E1B5DE /* RequistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RequistsViewController.h; path = ../RequistsViewController.h; sourceTree = "<group>"; };
+		CA3ABBE61AC7E64100E1B5DE /* RequistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RequistsViewController.m; path = ../RequistsViewController.m; sourceTree = "<group>"; };
+		CA3ABBE71AC7E64100E1B5DE /* RequistsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RequistsViewController.xib; path = ../RequistsViewController.xib; sourceTree = "<group>"; };
 		CA3ABBE81AC7E64100E1B5DE /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
 		CA3ABBEB1AC7E64100E1B5DE /* NIDropDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIDropDown.h; sourceTree = "<group>"; };
 		CA3ABBEC1AC7E64100E1B5DE /* NIDropDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIDropDown.m; sourceTree = "<group>"; };
@@ -653,6 +648,11 @@
 		CAB03D821AC99BAA0043835F /* HomePointSuccessfulCreationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePointSuccessfulCreationViewController.h; sourceTree = "<group>"; };
 		CAB03D831AC99BAA0043835F /* HomePointSuccessfulCreationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePointSuccessfulCreationViewController.m; sourceTree = "<group>"; };
 		CAB03D841AC99BAA0043835F /* HomePointSuccessfulCreationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomePointSuccessfulCreationViewController.xib; path = ../ViewControllers/HomePointSuccessfulCreationViewController.xib; sourceTree = "<group>"; };
+		CAB71EB41ACD61B300FB09FD /* Tutorial-1_iPhone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-1_iPhone5.png"; sourceTree = "<group>"; };
+		CAB71EB51ACD61B300FB09FD /* Tutorial-1_iPhone6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-1_iPhone6.png"; sourceTree = "<group>"; };
+		CAB71EB61ACD61B300FB09FD /* Tutorial-1_iPhone6plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-1_iPhone6plus.png"; sourceTree = "<group>"; };
+		CAB71EB71ACD61B300FB09FD /* Tutorial-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-1.png"; sourceTree = "<group>"; };
+		CAB71EB81ACD61B300FB09FD /* Tutorial-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-1@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1321,9 +1321,6 @@
 				CA3ABBE91AC7E64100E1B5DE /* Third Party */,
 				CA3ABBE01AC7E64100E1B5DE /* ParseManager.h */,
 				CA3ABBE11AC7E64100E1B5DE /* ParseManager.m */,
-				CA3ABBE51AC7E64100E1B5DE /* RequistsViewController.h */,
-				CA3ABBE61AC7E64100E1B5DE /* RequistsViewController.m */,
-				CA3ABBE71AC7E64100E1B5DE /* RequistsViewController.xib */,
 				CA3ABBE81AC7E64100E1B5DE /* SignUpViewController.xib */,
 				CA3ABBED1AC7E64100E1B5DE /* Utility.h */,
 				CA3ABBEE1AC7E64100E1B5DE /* Utility.m */,
@@ -1358,11 +1355,11 @@
 		CA3ABBC61AC7E64100E1B5DE /* Tutorial-1.imageset */ = {
 			isa = PBXGroup;
 			children = (
-				CA3ABBC71AC7E64100E1B5DE /* Tutorial-1.png */,
-				CA3ABBC81AC7E64100E1B5DE /* Tutorial-1@2x.png */,
-				CA3ABBC91AC7E64100E1B5DE /* Tutorial-1_iPhone5.png */,
-				CA3ABBCA1AC7E64100E1B5DE /* Tutorial-1_iPhone6.png */,
-				CA3ABBCB1AC7E64100E1B5DE /* Tutorial-1_iPhone6plus.png */,
+				CAB71EB41ACD61B300FB09FD /* Tutorial-1_iPhone5.png */,
+				CAB71EB51ACD61B300FB09FD /* Tutorial-1_iPhone6.png */,
+				CAB71EB61ACD61B300FB09FD /* Tutorial-1_iPhone6plus.png */,
+				CAB71EB71ACD61B300FB09FD /* Tutorial-1.png */,
+				CAB71EB81ACD61B300FB09FD /* Tutorial-1@2x.png */,
 			);
 			path = "Tutorial-1.imageset";
 			sourceTree = "<group>";
@@ -1464,8 +1461,10 @@
 				CA7F0A9E1AC948FF00AC5FCB /* EditGroupsViewController.m */,
 				CA7F0A981AC92EF500AC5FCB /* ChatListCell.h */,
 				CA7F0A991AC92EF500AC5FCB /* ChatListCell.m */,
-				CAB03D771AC993CC0043835F /* CustomChatViewController.m */,
+				CA3ABBE51AC7E64100E1B5DE /* RequistsViewController.h */,
+				CA3ABBE61AC7E64100E1B5DE /* RequistsViewController.m */,
 				CAB03D781AC993CC0043835F /* CustomChatViewController.h */,
+				CAB03D771AC993CC0043835F /* CustomChatViewController.m */,
 				CAB03D7A1AC995670043835F /* AddHomePointViewController.h */,
 				CAB03D7B1AC995670043835F /* AddHomePointViewController.m */,
 				CA49644D1ACAA26E00DAD523 /* AddLocationScreenViewController.h */,
@@ -1496,6 +1495,7 @@
 				CA7F0A951AC92E5100AC5FCB /* GroupsListViewController.xib */,
 				CA7F0A9F1AC948FF00AC5FCB /* EditGroupsViewController.xib */,
 				CA7F0A9A1AC92EF500AC5FCB /* ChatListCell.xib */,
+				CA3ABBE71AC7E64100E1B5DE /* RequistsViewController.xib */,
 				CA7F0AA41AC9573800AC5FCB /* AddHomePointViewController.xib */,
 				CA49644F1ACAA26E00DAD523 /* AddLocationScreenViewController.xib */,
 				CAB03D7F1AC997630043835F /* HomePointGroupsViewController.xib */,
@@ -1598,16 +1598,15 @@
 				CA3ABC2B1AC7E64100E1B5DE /* Tutorial-3_iPhone6plus.png in Resources */,
 				CA7F0AA61AC9573800AC5FCB /* AddHomePointViewController.xib in Resources */,
 				CA3ABC311AC7E64100E1B5DE /* SignUpViewController.xib in Resources */,
+				CAB71EBC1ACD61B300FB09FD /* Tutorial-1.png in Resources */,
 				CA3ABC471AC7E64100E1B5DE /* LoginScreenViewController.xib in Resources */,
 				CA7F0AA11AC948FF00AC5FCB /* EditGroupsViewController.xib in Resources */,
 				CA4964511ACAA26E00DAD523 /* AddLocationScreenViewController.xib in Resources */,
 				00414F361AADEE0600B25CEE /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
 				CA3ABC211AC7E64100E1B5DE /* Tutorial-2.png in Resources */,
-				CA3ABC1C1AC7E64100E1B5DE /* Tutorial-1@2x.png in Resources */,
 				CA3ABC421AC7E64100E1B5DE /* Intro1IDViewController.xib in Resources */,
-				CA3ABC1F1AC7E64100E1B5DE /* Tutorial-1_iPhone6plus.png in Resources */,
-				CA3ABC1E1AC7E64100E1B5DE /* Tutorial-1_iPhone6.png in Resources */,
 				00414E471AADECCE00B25CEE /* Icon120.png in Resources */,
+				CAB71EB91ACD61B300FB09FD /* Tutorial-1_iPhone5.png in Resources */,
 				00414F111AADEE0600B25CEE /* JSQMessagesAssets.bundle in Resources */,
 				CA3ABC4B1AC7E64100E1B5DE /* UsersListViewController.xib in Resources */,
 				CA7F0A9C1AC92EF500AC5FCB /* ChatListCell.xib in Resources */,
@@ -1616,17 +1615,18 @@
 				CA3ABC4A1AC7E64100E1B5DE /* SignupScreenViewController.xib in Resources */,
 				00CEE3DE199434E700F40C12 /* InfoPlist.strings in Resources */,
 				CA3ABC411AC7E64100E1B5DE /* HomeScreenViewController.xib in Resources */,
+				CAB71EBB1ACD61B300FB09FD /* Tutorial-1_iPhone6plus.png in Resources */,
 				007BA3C21A6C9BE400BF08DE /* Podfile in Resources */,
+				CAB71EBA1ACD61B300FB09FD /* Tutorial-1_iPhone6.png in Resources */,
 				CA3ABC291AC7E64100E1B5DE /* Tutorial-3_iPhone5.png in Resources */,
 				CA3ABC171AC7E64100E1B5DE /* LandingView@2x.png in Resources */,
 				CA3ABC261AC7E64100E1B5DE /* Contents.json in Resources */,
 				00CEE3E9199434E700F40C12 /* Images.xcassets in Resources */,
 				CA3ABC161AC7E64100E1B5DE /* LandingView.png in Resources */,
+				CAB71EBD1ACD61B300FB09FD /* Tutorial-1@2x.png in Resources */,
 				CA3ABC301AC7E64100E1B5DE /* RequistsViewController.xib in Resources */,
 				CA3ABC241AC7E64100E1B5DE /* Tutorial-2_iPhone6.png in Resources */,
-				CA3ABC1B1AC7E64100E1B5DE /* Tutorial-1.png in Resources */,
 				CA3ABC221AC7E64100E1B5DE /* Tutorial-2@2x.png in Resources */,
-				CA3ABC1D1AC7E64100E1B5DE /* Tutorial-1_iPhone5.png in Resources */,
 				00414F3B1AADEE0600B25CEE /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
 				00414F2F1AADEE0600B25CEE /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
 				CAB03D811AC997630043835F /* HomePointGroupsViewController.xib in Resources */,
@@ -1925,7 +1925,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Mohamed AboShamaa (7B692GFEFN)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mohamed AboShamaa (7B692GFEFN)";
@@ -2008,7 +2008,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Mohamed AboShamaa (7B692GFEFN)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mohamed AboShamaa (7B692GFEFN)";
