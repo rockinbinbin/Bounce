@@ -15,6 +15,7 @@
 #import "AppConstant.h"
 #import "UIViewController+AMSlideMenu.h"
 #import "IntroLoginScreenViewController.h"
+#import "SlideMenuViewController.h"
 @interface SignupScreenViewController ()
 
 @end
@@ -32,9 +33,9 @@
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     [self.view addGestureRecognizer:gestureRecognizer];
     
-    UITapGestureRecognizer *facebookGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(facebookClicked)];
-    self.facebookIconImageView.userInteractionEnabled = YES;
-    [self.facebookIconImageView addGestureRecognizer:facebookGestureRecognizer];
+//    UITapGestureRecognizer *facebookGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(facebookClicked)];
+//    self.facebookIconImageView.userInteractionEnabled = YES;
+//    [self.facebookIconImageView addGestureRecognizer:facebookGestureRecognizer];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -114,7 +115,7 @@
                  [self requestFacebook:user];
              }
              else {
-                 [self userLoggedIn:user]; // Signed in facebook
+                 [self userLoggedIn:user isUserNew:NO]; // Signed in facebook
              }
          }
          else {
@@ -172,7 +173,7 @@
           {
               if (error == nil)
               {
-                  [self userLoggedIn:user];
+                  [self userLoggedIn:user isUserNew:YES];
               }
               else
               {
@@ -189,13 +190,15 @@
     [[NSOperationQueue mainQueue] addOperation:operation];
 }
 
-- (void)userLoggedIn:(PFUser *)user   {
+- (void)userLoggedIn:(PFUser *)user isUserNew:(BOOL) isNew{
     ParsePushUserAssign();
-    [ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome %@!", user[PF_USER_FULLNAME]]];
-    [self dismissViewControllerAnimated:YES completion:nil];
-    HomeScreenViewController* homeScreenViewController = [[HomeScreenViewController alloc] initWithNibName:@"HomeScreenViewController" bundle:nil];
-    [self.navigationController pushViewController:homeScreenViewController animated:YES];
-
+    if (isNew) {
+        [ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome %@!", user[PF_USER_FULLNAME]]];
+    }
+    else{
+        [ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome back %@!", user[PF_USER_FULLNAME]]];
+    }
+    [self navigateToMainScreen];
 }
 
 // Logged-in user experience -- THIS DOESN'T WORK?
@@ -212,5 +215,18 @@
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:rootVC];
     [mainVC.leftMenu openContentNavigationController:nvc];
 }
+
+#pragma mark - Navigate to Home screem
+- (void) navigateToMainScreen
+{
+    @try {
+        SlideMenuViewController* mainViewController = [[SlideMenuViewController alloc] init];
+        [self.navigationController pushViewController:mainViewController animated:YES];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
+
 @end
 

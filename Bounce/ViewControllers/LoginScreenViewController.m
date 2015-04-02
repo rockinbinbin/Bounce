@@ -49,9 +49,9 @@
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     [self.view addGestureRecognizer:gestureRecognizer];
 
-    UITapGestureRecognizer *facebookGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(facebookClicked)];
-    self.facebookIconImageView.userInteractionEnabled = YES;
-    [self.facebookIconImageView addGestureRecognizer:facebookGestureRecognizer];
+//    UITapGestureRecognizer *facebookGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(facebookClicked)];
+//    self.facebookIconImageView.userInteractionEnabled = YES;
+//    [self.facebookIconImageView addGestureRecognizer:facebookGestureRecognizer];
     
     //
     [self.usernameField setText:@"shimaa"];
@@ -127,7 +127,7 @@
                  [self requestFacebook:user];
              }
              else {
-                 [self userLoggedIn:user]; // Signed in facebook
+                 [self userLoggedIn:user isUserNew:NO]; // Signed in facebook
              }
          }
          else {
@@ -197,7 +197,7 @@
           {
               if (error == nil)
               {
-                  [self userLoggedIn:user];
+                  [self userLoggedIn:user isUserNew:YES];
               }
               else
               {
@@ -215,9 +215,14 @@
     [[NSOperationQueue mainQueue] addOperation:operation];
 }
 
-- (void)userLoggedIn:(PFUser *)user{
+- (void)userLoggedIn:(PFUser *)user isUserNew:(BOOL) isNew{
     ParsePushUserAssign();
-    [ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome back %@!", user[PF_USER_FULLNAME]]];
+    if (isNew) {
+        [ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome %@!", user[PF_USER_FULLNAME]]];
+    }
+    else{
+        [ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome back %@!", user[PF_USER_FULLNAME]]];
+    }
     [self navigateToMainScreen];
 }
 
