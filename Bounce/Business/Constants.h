@@ -31,6 +31,11 @@
 #define PF_REQUEST_GROUPS_RELATION @"RequestGroups"
 #define PF_REQUEST_RECEIVERS_RELATION @"RequestReceivers"
 #define PF_REQUEST_LOCATION @"Location"
+#define PF_REQUEST_IS_ENDED @"isEnded"
+// save end date instead save the timee allocate 
+#define PF_REQUEST_END_DATE @"EndDate"
+#define PF_REQUEST_GENDER @"gender";
+
 
 //
 #define DISTANCE_MESSAGE @"%.1f miles away"
@@ -38,6 +43,14 @@
 #define SIDE_MENU_WIDTH (IS_IPHONE? 225:375)
 
 #define OBJECT_ID @"objectId"
+#define PF_GENDER @"Gender"
+// Home screen
+#define REQUEST_TIME_LEFT_STRING @"%ld minute left"
+
+// Gender cases
+#define ALL_GENDER @"All"
+#define MALE_GENDER @"Male"
+#define FEMALE_GENDER @"Female"
 
 
 #endif

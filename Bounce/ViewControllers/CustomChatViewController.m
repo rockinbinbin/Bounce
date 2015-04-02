@@ -16,7 +16,9 @@
 @end
 
 @implementation CustomChatViewController
-
+{
+    UIAlertView *requestTimeOverAlert;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -33,22 +35,30 @@
     // validate request end
     // if request still valid
     //    self.currentRequest = [[ParseManager getInstance] retrieveRequest:self.currentRequest];
-    self.currentRequest = [[ParseManager getInstance] retrieveRequestUpdate:self.groupId];
-    
-    if (self.currentRequest && [[Utility getInstance] isRequestValid:self.currentRequest.createdAt andTimeAllocated:[[self.currentRequest objectForKey:PF_REQUEST_TIME_ALLOCATED] integerValue]]) {
-        if (![self isUserStillReceiverForTheRequest]) {
-            [self clearMessagesAndStopUpdate];
-            [self showAlertViewWithMessage:@"You become out the request radius"];
-        }else{
-            [super loadMessages];
-        }
-    }else{
-        // delete all messages
-        [self clearMessagesAndStopUpdate];
-        // show alert view
-        [self showAlertViewWithMessage:@"Request time over"];
-    }
-}
+    [super loadMessages];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        self.currentRequest = [[ParseManager getInstance] retrieveRequestUpdate:self.groupId];            self.currentRequest = [[ParseManager getInstance] retrieveRequestUpdate:self.groupId];
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            BOOL requestEnded = [[self.currentRequest objectForKey:PF_REQUEST_IS_ENDED] boolValue];
+            if (self.currentRequest&& !requestEnded && [[Utility getInstance] isRequestValid:self.currentRequest.createdAt andTimeAllocated:[[self.currentRequest objectForKey:PF_REQUEST_TIME_ALLOCATED] integerValue]]) {
+                if (![self isUserStillReceiverForTheRequest]) {
+                    [self clearMessagesAndStopUpdate];
+                    [self showAlertViewWithMessage:@"You become out the request radius"];
+                }
+//                    else{
+//                    [super loadMessages];
+//                }
+            }else{
+                // delete all messages
+                [self clearMessagesAndStopUpdate];
+                // show alert view
+                [self showAlertViewWithMessage:@"Request time over"];
+            }
+
+        });
+    });
+   }
 
 #pragma mark - Alert view Delegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -60,15 +70,18 @@
 - (BOOL) isUserStillReceiverForTheRequest
 {
     return [[ParseManager getInstance] isValidRequestReceiver:self.currentRequest];
+
 //    return  YES;
 }
 
 #pragma mark - Show Alert
 - (void) showAlertViewWithMessage:(NSString *) message
 {
-    UIAlertView *requestTimeOverAlert = [[UIAlertView alloc] initWithTitle:@"" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-    [requestTimeOverAlert show];
-}
+    if (!requestTimeOverAlert) {
+        requestTimeOverAlert = [[UIAlertView alloc] initWithTitle:@"" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [requestTimeOverAlert show];
+    }
+   }
 #pragma mark - Clear Messages
 - (void) clearMessagesAndStopUpdate
 {

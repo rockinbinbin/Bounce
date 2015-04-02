@@ -55,62 +55,89 @@ static RequestManger *sharedRequestManger = nil;
         // remove the far users
         NSDate *endDate = [[activeRequest createdAt] dateByAddingTimeInterval:[[activeRequest objectForKey:PF_REQUEST_TIME_ALLOCATED] integerValue] * 60];
         if (![self isEndDateIsSmallerThanCurrent:endDate]) {
-            //Update request
+            // Update Request view in home screen
+            [self calculateRequestTimeOver];
+            
+            [self getNumberOfUnReadMessages];
+            
+            
             NSLog(@"Requist still valid");
+            //Update request
+            [self updateRequestUsers];
             
-            PFUser *currentUser = [PFUser currentUser];
-            PFGeoPoint *userGeoPoint = currentUser[@"CurrentLocation"];
-            NSArray *oldUsers = [activeRequest objectForKey:@"receivers"];
-            NSArray *selectedGroups = [activeRequest objectForKey:PF_REQUEST_SELECTED_GROUPS];
-            NSInteger radius = [[activeRequest objectForKey:PF_REQUEST_RADIUS] integerValue];
-            NSMutableArray *oldUsersNames = [[NSMutableArray alloc] initWithArray:oldUsers];
-            
-            // go through all groups to find users who are near
-            NSArray *resultUsers = [self getUsersInSelectedGroups:selectedGroups WithinRequestRadius:radius withSenderName:[currentUser username] andSenderLocation:userGeoPoint];
-            
-            NSMutableArray *resultUsernames = [[NSMutableArray alloc] init];
-            NSMutableArray *addedUsers = [[NSMutableArray alloc] init];
-            NSMutableArray *removedUsers = [[NSMutableArray alloc] init];
-            for (PFUser *user in resultUsers) {
-                [resultUsernames addObject:user.username];
-                NSLog(@"%@", user.username);
-                if (![oldUsersNames containsObject:user.username]) {
-                    [addedUsers addObject:user];
-                }else{
-                    // remove this user from list
-                    [oldUsersNames removeObject:user.username];
-                    [removedUsers addObject:user];
-                }
-            }
-            // update request record
-            if ([addedUsers count] != 0 || [removedUsers count] > 0) {
-                // NSLog(@"%@", resultUsers[0][@"DeviceID"]);
-                PFObject *request;
-                activeRequest[@"receivers"] = resultUsernames;
-                [activeRequest saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
-                    // create group messaging with all users
-                    NSString *requestId = request.objectId;
-                    
-                    
-                    for (PFUser* user in addedUsers) {
-                        // send push notification for new users
-                        // creat chat
-                        [self sendPushNotificationForUser:user from:[currentUser username]];
-                        [[ParseManager getInstance] createMessageItemForUser:user WithGroupId:requestId andDescription:@""];
-                    }
-//                    for (PFUser* user in removedUsers) {
-//                        // remove chat if found
-//                        //                    [[ParseManager getInstance] createMessageItemForUser:user WithGroupId:requestId andDescription:@""];
-//                    }
-                }];
-                
-            } else {
-                NSLog(@"There were no users found.");
-            }
         }else{
             // invalidate the request
+            activeRequest = nil;
             [self invalidateCurrentRequest];
+            if ([self.requestManagerDelegate respondsToSelector:@selector(requestTimeOver)]) {
+                [self.requestManagerDelegate requestTimeOver];
+            }
         }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
+#pragma mark - Update Request Users
+- (void) updateRequestUsers
+{
+    @try {
+        PFUser *currentUser = [PFUser currentUser];
+        PFGeoPoint *userGeoPoint = currentUser[@"CurrentLocation"];
+        NSArray *oldUsers = [activeRequest objectForKey:@"receivers"];
+        NSArray *selectedGroups = [activeRequest objectForKey:PF_REQUEST_SELECTED_GROUPS];
+        NSInteger radius = [[activeRequest objectForKey:PF_REQUEST_RADIUS] integerValue];
+        NSMutableArray *oldUsersNames = [[NSMutableArray alloc] initWithArray:oldUsers];
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            // get User in the selected groups and within the radius
+            NSArray *resultUsers = [self getUsersInSelectedGroups:selectedGroups withGender:[activeRequest objectForKey:PF_GENDER] WithinRequestRadius:radius withSenderName:[currentUser username] andSenderLocation:userGeoPoint];
+           
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSMutableArray *resultUsernames = [[NSMutableArray alloc] init];
+                NSMutableArray *addedUsers = [[NSMutableArray alloc] init];
+                NSMutableArray *removedUsers = [[NSMutableArray alloc] init];
+                for (PFUser *user in resultUsers) {
+                    [resultUsernames addObject:user.username];
+                    NSLog(@"%@", user.username);
+                    if (![oldUsersNames containsObject:user.username]) {
+                        [addedUsers addObject:user];
+                    }else{
+                        // remove this user from list
+                        [oldUsersNames removeObject:user.username];
+                    }
+                }
+                // After finish the remaining users in the oldUserNames ==> are the removed users
+                removedUsers = [NSMutableArray arrayWithArray:oldUsersNames];
+                // update request record
+                if ([addedUsers count] != 0 || [removedUsers count] > 0) {
+                    activeRequest[@"receivers"] = resultUsernames;
+                    [activeRequest saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+                        // create group messaging with all users
+                        NSString *requestId = activeRequest.objectId;
+                        // update request user srelation
+                        [self appendUsers:resultUsers toRequestUserRelation:activeRequest];
+                        
+                        for (PFUser* user in addedUsers) {
+                            // send push notification for new users
+                            [self sendPushNotificationForUser:user from:[currentUser username]];
+                            // creat chat
+                            [[ParseManager getInstance] createMessageItemForUser:user WithGroupId:requestId andDescription:@""];
+                        }
+                        // TODO: Adjust this part
+                        
+                        //                    for (PFUser* user in removedUsers) {
+                        //                        // remove chat if found
+                        //                        //                    [[ParseManager getInstance] createMessageItemForUser:user WithGroupId:requestId andDescription:@""];
+                        //                    }
+                    }];
+                    
+                } else {
+                    NSLog(@"There were no users found.");
+                }
+            });
+        });
+        
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
@@ -144,166 +171,57 @@ static RequestManger *sharedRequestManger = nil;
 #pragma mark - Request
 - (void) createrequestToGroups:(NSArray *) selectedGroups andGender:(NSString *)gender  withinTime:(NSInteger)timeAllocated andInRadius:(NSInteger) radius{
     
+    // first get users in selected groups
     PFUser *currentUser = [PFUser currentUser];
+    if (![gender isEqualToString:ALL_GENDER]) {
+        gender = [currentUser objectForKey:PF_GENDER];
+    }
     PFGeoPoint *userGeoPoint = currentUser[@"CurrentLocation"];
-    
-    NSArray *resultUsers = [self getUsersInSelectedGroups:selectedGroups WithinRequestRadius:radius withSenderName:[currentUser username] andSenderLocation:userGeoPoint];
-    NSMutableArray *resultUsernames = [[NSMutableArray alloc] init];
-    for (PFUser *user in resultUsers) {
-        NSLog(@"%@", user.username);
-        [resultUsernames addObject:user.username];
-    }
-    
-    if ([resultUsers count] != 0) {
-        // NSLog(@"%@", resultUsers[0][@"DeviceID"]);
-        PFObject *request;
-        request = [PFObject objectWithClassName:PF_REQUET_CLASS_NAME];
-        request[PF_REQUEST_SENDER] = [PFUser currentUser].username;
-        request[PF_REQUEST_RECEIVER] = resultUsernames;
-        
-        request[PF_REQUEST_SELECTED_GROUPS] = selectedGroups;
-        request[PF_REQUEST_RADIUS] = [NSNumber numberWithInteger:radius];
-        request[PF_REQUEST_TIME_ALLOCATED] = [NSNumber numberWithInteger:timeAllocated];
-        NSLog(@"location %@ ", locationManger.location);
-        request[PF_REQUEST_LOCATION] = [PFGeoPoint geoPointWithLocation:locationManger.location];
-        
-        // add request relations
-        // TODO: If we will depend on relation we will use relation code
-        PFRelation *groupsrelation = [request relationForKey:PF_REQUEST_GROUPS_RELATION];
-        PFRelation *receiversRelation = [request relationForKey:PF_REQUEST_RECEIVERS_RELATION];
-        // get all groups
-        PFQuery *groupsQuery = [PFQuery queryWithClassName:@"Groups"];
-        [groupsQuery whereKey:@"groupName" containedIn:selectedGroups];
-        NSArray *groupsObjects = [groupsQuery findObjects];
-        for (PFObject *group in groupsObjects) {
-            [groupsrelation addObject:group];
-        }
-        for (PFObject *user in resultUsers) {
-            [receiversRelation addObject:user];
-        }
-        
-        [request saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
-            // create group messaging with all users
-            NSString *requestId = request.objectId;
-            [[ParseManager getInstance] createMessageItemForUser:[PFUser currentUser] WithGroupId:requestId andDescription:@"request"];
-            
-            for (PFUser* user in resultUsers) {
-                
-                [[ParseManager getInstance] createMessageItemForUser:user WithGroupId:requestId andDescription:@""];
-                [self sendPushNotificationForUser:user from:[currentUser username]];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // get User in the selected groups and within the radius
+        NSArray *resultUsers = [self getUsersInSelectedGroups:selectedGroups withGender:gender WithinRequestRadius:radius withSenderName:[currentUser username] andSenderLocation:userGeoPoint];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // Get User names
+            NSMutableArray *resultUsernames = [[NSMutableArray alloc] init];
+            for (PFUser *user in resultUsers) {
+                NSLog(@"%@", user.username);
+                [resultUsernames addObject:user.username];
             }
-        }];
-        // start request updating
-        activeRequest = request;
-        [self startRequestUpdating];
-    } else {
-        NSLog(@"There were no users found.");
-    }
+            // Set the request data
+            PFObject *request;
+            request = [PFObject objectWithClassName:PF_REQUET_CLASS_NAME];
+            request[PF_REQUEST_SENDER] = currentUser.username;
+            request[PF_REQUEST_RECEIVER] = resultUsernames;
+            request[PF_REQUEST_SELECTED_GROUPS] = selectedGroups;
+            request[PF_REQUEST_RADIUS] = [NSNumber numberWithInteger:radius];
+            request[PF_REQUEST_TIME_ALLOCATED] = [NSNumber numberWithInteger:timeAllocated];
+            NSLog(@"location %@ ", locationManger.location);
+            request[PF_REQUEST_LOCATION] = [PFGeoPoint geoPointWithLocation:locationManger.location];
+            request[PF_GENDER] = gender;
+            [request saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+                // Set the request end date
+                request[PF_REQUEST_END_DATE] = [[request createdAt] dateByAddingTimeInterval:(timeAllocated*60)];
+                // save the request relations
+                [self setRequestGroupRelation:request withGroups:selectedGroups];
+                [self appendUsers:resultUsers toRequestUserRelation:request];
+                // create group messaging with all users
+                NSString *requestId = request.objectId;
+                [[ParseManager getInstance] createMessageItemForUser:currentUser WithGroupId:requestId andDescription:@"request"];
+                for (PFUser* user in resultUsers) {
+                    [[ParseManager getInstance] createMessageItemForUser:user WithGroupId:requestId andDescription:@""];
+                    [self sendPushNotificationForUser:user from:[currentUser username]];
+                }
+                // start request updating
+                activeRequest = request;
+                [self startRequestUpdating];
+            }];
+        });
+    });
+    
 }
 
-//- (void) createrequestToGroups:(NSArray *) selectedGroups andGender:(NSString *)gender  withinTime:(NSInteger)timeAllocated andInRadius:(NSInteger) radius{
-//
-//    PFQuery *query = [PFUser query];
-//    PFUser *currentUser = [PFUser currentUser];
-//    PFGeoPoint *userGeoPoint = currentUser[@"CurrentLocation"];
-//
-//    NSMutableArray *queries = [[NSMutableArray alloc] init];
-//
-//    // go through all groups to find users who are near
-//    for (NSString *groupName in selectedGroups) {
-//        PFQuery *query = [PFUser query];
-//        [query whereKey:@"username" notEqualTo:currentUser.username];
-//        [query whereKey:@"ArrayOfGroups" equalTo:groupName];
-//        [query whereKey:@"CurrentLocation" nearGeoPoint:userGeoPoint withinMiles:radius];
-//        [queries addObject:query];
-//    }
-//
-//    query = [PFQuery orQueryWithSubqueries:queries];
-//    NSArray *resultUsers = [query findObjects];
-//
-//    NSMutableArray *resultUsernames = [[NSMutableArray alloc] init];
-//
-//    for (PFUser *user in resultUsers) {
-//        NSLog(@"%@", user.username);
-//        [resultUsernames addObject:user.username];
-//    }
-//
-//    if ([resultUsers count] != 0) {
-//        // NSLog(@"%@", resultUsers[0][@"DeviceID"]);
-//        PFObject *request;
-//        request = [PFObject objectWithClassName:@"Requests"];
-//        request[@"Sender"] = [PFUser currentUser].username;
-//        request[@"receivers"] = resultUsernames;
-//
-//
-//        request[@"RequestedGroups"] = selectedGroups;
-//        request[@"Radius"] = [NSNumber numberWithInteger:radius];
-//        request[@"TimeAllocated"] = [NSNumber numberWithInteger:timeAllocated];
-//        NSLog(@"location %@ ", locationManger.location);
-//        request[@"Location"] = [PFGeoPoint geoPointWithLocation:locationManger.location];
-//
-//        // add request relations
-//        PFRelation *groupsrelation = [request relationForKey:PF_REQUEST_GROUPS_RELATION];
-//        PFRelation *receiversRelation = [request relationForKey:PF_REQUEST_RECEIVERS_RELATION];
-//
-//        // get all groups
-//        PFQuery *groupsQuery = [PFQuery queryWithClassName:@"Groups"];
-//        [groupsQuery whereKey:@"groupName" containedIn:selectedGroups];
-//        NSArray *groupsObjects = [groupsQuery findObjects];
-//        for (PFObject *group in groupsObjects) {
-//            [groupsrelation addObject:group];
-//        }
-//
-//        for (PFObject *user in resultUsers) {
-//            [receiversRelation addObject:user];
-//        }
-//
-//        [request saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
-//            // create group messaging with all users
-//            NSString *requestId = request.objectId;
-//            [[ParseManager getInstance] createMessageItemForUser:[PFUser currentUser] WithGroupId:requestId andDescription:@"request"];
-//
-//            for (PFUser* user in resultUsers) {
-//
-//                [[ParseManager getInstance] createMessageItemForUser:user WithGroupId:requestId andDescription:@""];
-//
-//                PFQuery *queryInstallation = [PFInstallation query];
-//                [queryInstallation whereKey:PF_INSTALLATION_USER equalTo:user];
-//
-//                PFPush *push = [[PFPush alloc] init];
-//                [push setQuery:queryInstallation];
-//                [push setMessage:[NSString stringWithFormat:@"%@ send request to you", currentUser.username]];
-//                [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-//                 {
-//                     if (error != nil)
-//                     {
-//                         NSLog(@"SendPushNotification send error.");
-//                     }
-//                 }];
-//            }
-//            // send push notification for all user in this request chat
-//
-//
-//
-//
-//
-//        }];
-//
-//
-//        // start request updating
-//        activeRequest = request;
-//        [self startRequestUpdating];
-//
-//    } else {
-//        NSLog(@"There were no users found.");
-//    }
-//
-//
-//    //    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-//
-//}
 #pragma mark - Get Useres in selected groups within radius
-- (NSArray*) getUsersInSelectedGroups:(NSArray *)selectedGroups WithinRequestRadius:(NSInteger)radius withSenderName:(NSString *)username andSenderLocation:(PFGeoPoint*) location
+- (NSArray*) getUsersInSelectedGroups:(NSArray *)selectedGroups withGender:(NSString*) gender WithinRequestRadius:(NSInteger)radius withSenderName:(NSString *)username andSenderLocation:(PFGeoPoint*) location
 {
     @try {
         PFQuery *query = [PFUser query];
@@ -312,6 +230,9 @@ static RequestManger *sharedRequestManger = nil;
         for (NSString *groupName in selectedGroups) {
             PFQuery *query = [PFUser query];
             [query whereKey:@"username" notEqualTo:username];
+            if (![gender isEqualToString:ALL_GENDER]) {
+                [query whereKey:PF_GENDER equalTo:gender];
+            }
             [query whereKey:@"ArrayOfGroups" equalTo:groupName];
             [query whereKey:@"CurrentLocation" nearGeoPoint:location withinMiles:radius];
             [queries addObject:query];
@@ -320,6 +241,42 @@ static RequestManger *sharedRequestManger = nil;
         NSArray *resultUsers = [query findObjects];
         
         return resultUsers;
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
+
+#pragma mark - Add Object to request user relation
+- (void) appendUsers:(NSArray *) users toRequestUserRelation:(PFObject *) request
+{
+    @try {
+        PFRelation *receiversRelation = [request relationForKey:PF_REQUEST_RECEIVERS_RELATION];
+        for (PFObject *user in users) {
+            [receiversRelation addObject:user];
+        }
+        [request saveInBackground];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
+
+#pragma mark - Set the request group relation
+- (void) setRequestGroupRelation:(PFObject *) request withGroups:(NSArray *) selectedGroups
+{
+    @try {
+        PFRelation *groupsrelation = [request relationForKey:PF_REQUEST_GROUPS_RELATION];
+        // get all groups
+        PFQuery *groupsQuery = [PFQuery queryWithClassName:@"Groups"];
+        [groupsQuery whereKey:@"groupName" containedIn:selectedGroups];
+        [groupsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            NSArray *groupsObjects = objects;
+            for (PFObject *group in groupsObjects) {
+                [groupsrelation addObject:group];
+            }
+            [request saveInBackground];
+        }];
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
@@ -348,4 +305,92 @@ static RequestManger *sharedRequestManger = nil;
 }
 #pragma mark - remove message chat of delete users
 
+#pragma mark - End Request
+- (void) endRequest
+{
+    // update request data
+    // close the update thread
+    // remove the reply view
+    [activeRequest setObject:[NSDate date] forKey:PF_REQUEST_END_DATE];
+    [activeRequest setObject:[NSNumber numberWithBool:YES] forKey:PF_REQUEST_IS_ENDED];
+    [activeRequest saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error) {
+            [self invalidateCurrentRequest];
+        }
+        if ([self.requestManagerDelegate respondsToSelector:@selector(didEndRequestWithError:)]) {
+            [self.requestManagerDelegate didEndRequestWithError:error];
+        }
+    }];
+}
+
+#pragma mark - Get Number of Unreaded messages
+- (void) getNumberOfUnReadMessages
+{
+    @try {
+        PFQuery *query = [PFQuery queryWithClassName:PF_MESSAGES_CLASS_NAME];
+        [query whereKey:PF_MESSAGES_USER equalTo:[PFUser currentUser]];
+        [query whereKey:PF_MESSAGES_GROUPID equalTo:[activeRequest objectId]];
+        
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+         {
+             NSInteger unReadMessages = [[objects objectAtIndex:0][PF_MESSAGES_COUNTER] intValue];
+             self.unReadReplies = unReadMessages;
+             if ([self.requestManagerDelegate respondsToSelector:@selector(updateRequestUnreadMessage:)]) {
+                 [self.requestManagerDelegate updateRequestUnreadMessage:unReadMessages];
+             }
+             
+         }];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
+#pragma mark - Get requestTime left
+- (void) calculateRequestTimeOver
+{
+    @try {
+        self.requestLeftTimeInMinute = [[NSDate date] timeIntervalSinceDate:[activeRequest createdAt]]/60;
+        if ([self.requestManagerDelegate respondsToSelector:@selector(updateRequestRemainingTime:)]) {
+            [self.requestManagerDelegate updateRequestRemainingTime:self.requestLeftTimeInMinute];
+        }
+    }
+    @catch (NSException *exception) {
+        
+    }
+}
+#pragma mark Has Actinve request
+- (BOOL) hasActiveRequest
+{
+    if (activeRequest) {
+        return YES;
+    }
+    return NO;
+}
+#define ACTIVE_REQUEST_ID @"ActiveRequestId"
+#pragma mark - Save active Request Id
+- (void) loadActiveRequest
+{
+    // retreive request data from server
+    PFQuery *query = [PFQuery queryWithClassName:PF_REQUET_CLASS_NAME];
+    [query whereKey:PF_REQUEST_SENDER equalTo:[[PFUser currentUser] username]];
+    [query orderByDescending:@"createdAt"];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        // set the default data
+        if ([objects count] >0) {
+            activeRequest = [objects objectAtIndex:0];
+            if (![self isEndDateIsSmallerThanCurrent:[activeRequest objectForKey:PF_REQUEST_END_DATE]]) {
+                // remaining time
+                [self calculateRequestTimeOver];
+                // unreaded message
+                [self getNumberOfUnReadMessages];
+                [self startRequestUpdating];
+            }else{
+                activeRequest = nil;
+                self.unReadReplies = 0;
+                self.requestLeftTimeInMinute = 0;
+            }
+        }
+    }];
+}
 @end

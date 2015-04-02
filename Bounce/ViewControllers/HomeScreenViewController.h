@@ -10,8 +10,9 @@
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <Parse/Parse.h>
+#import "RequestManger.h"
 
-@interface HomeScreenViewController : UIViewController <CLLocationManagerDelegate>
+@interface HomeScreenViewController : UIViewController <CLLocationManagerDelegate, RequestManagerDelegate>
 
 @property (strong, nonatomic) CLLocationManager *location_manager;
 @property (weak, nonatomic) IBOutlet UILabel *timeLeftLabel;

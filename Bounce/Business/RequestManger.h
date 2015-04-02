@@ -8,8 +8,25 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol RequestManagerDelegate;
 @interface RequestManger : NSObject
 
+@property id<RequestManagerDelegate> requestManagerDelegate;
+@property NSInteger unReadReplies;
+@property NSInteger requestLeftTimeInMinute;
 + (RequestManger*) getInstance;
 - (void) createrequestToGroups:(NSArray *) selectedGroups andGender:(NSString *)gender  withinTime:(NSInteger)timeAllocated andInRadius:(NSInteger) radius;
+- (void) endRequest;
+- (BOOL) hasActiveRequest;
+- (void) loadActiveRequest;
+
+@end
+
+@protocol RequestManagerDelegate <NSObject>
+
+- (void) updateRequestRemainingTime:(NSInteger) remainingTime;
+- (void) updateRequestUnreadMessage:(NSInteger) numberOfUnreadMessages;
+- (void) didEndRequestWithError:(NSError *) error;
+- (void) requestTimeOver;
+//- (void) didLoadActiveRequest;
 @end

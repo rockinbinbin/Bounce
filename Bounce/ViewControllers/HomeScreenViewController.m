@@ -16,6 +16,8 @@
 #import "AppConstant.h"
 #import "GroupsListViewController.h"
 #import "UIViewController+AMSlideMenu.h"
+#import "RequestManger.h"
+
 @interface HomeScreenViewController ()
 
 @end
@@ -27,7 +29,7 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-
+    [[RequestManger getInstance] loadActiveRequest];
 
     self.repliesButton.layer.cornerRadius = 4;
     self.repliesButton.clipsToBounds = YES;
@@ -76,10 +78,24 @@
     [self startReceivingSignificantLocationChanges];
     [self changeCenterToUserLocation];
     [self setUserTrackingMode];
+    [self hideReplyView];
 }
 
 -(void) viewWillAppear:(BOOL)animated{
+    [[RequestManger getInstance] setRequestManagerDelegate:self];
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
+//    if ([[RequestManger getInstance] hasActiveRequest]) {
+//        [self.repliesView setHidden:NO];
+////        // set the replies view data
+////        self.numOfMessagesLabel.text = [NSString stringWithFormat:@"%ld", [[RequestManger getInstance] unReadReplies]];
+////        self.timeLeftLabel.text = [NSString stringWithFormat:REQUEST_TIME_LEFT_STRING, [[RequestManger getInstance] requestLeftTimeInMinute]];
+//    }else{
+//        [self.repliesView setHidden:YES];
+//    }
+}
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [[RequestManger getInstance] setRequestManagerDelegate:nil];
 }
 
 -(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action{
@@ -166,8 +182,17 @@
 }
 
 - (IBAction)repliesButtonClicked:(id)sender {
+    // navigate to the request screen
+    RequistsViewController* requistsViewController = [[RequistsViewController alloc] initWithNibName:@"RequistsViewController" bundle:nil];
+    [self.navigationController pushViewController:requistsViewController animated:YES];
 }
 - (IBAction)endRequestButtonClicked:(id)sender {
+    // call the request manager
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+        [[Utility getInstance] showProgressHudWithMessage:@"End Request..." withView:self.view];
+        [[RequestManger getInstance] setRequestManagerDelegate:self];
+        [[RequestManger getInstance] endRequest];
+    }
 }
 - (IBAction)privateChatButtonClicked:(id)sender {
 //    RequistsViewController *requistViewController = [[RequistsViewController alloc] init];
@@ -179,5 +204,55 @@
 - (IBAction)groupsChatButtonClicked:(id)sender {
     GroupsListViewController *groupsListViewController = [[GroupsListViewController alloc] init];
     [self.navigationController pushViewController:groupsListViewController animated:YES];
+}
+
+#pragma mark - RequestManger Delegat
+- (void)updateRequestRemainingTime:(NSInteger)remainingTime
+{
+    @try {
+//        if (remainingTime > 0) {
+            [self showTheReplyView];
+            self.timeLeftLabel.text  = [NSString stringWithFormat:REQUEST_TIME_LEFT_STRING, (long)remainingTime];
+//        }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
+
+- (void)updateRequestUnreadMessage:(NSInteger)numberOfUnreadMessages
+{
+    @try {
+        if (numberOfUnreadMessages > 0) {
+            [self.roundedView setHidden:NO];
+            [self.numOfMessagesLabel setText:[NSString stringWithFormat:@"%ld", (long)numberOfUnreadMessages]];
+        }else{
+            [self.roundedView setHidden:YES];
+        }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
+- (void)didEndRequestWithError:(NSError *)error
+{
+    [[Utility getInstance] hideProgressHud];
+    if (!error) {
+        [self hideReplyView];
+    }
+}
+- (void)requestTimeOver
+{
+    [self hideReplyView];
+}
+#pragma mark - show Reply view
+- (void) showTheReplyView
+{
+    [self.repliesView setHidden:NO];
+}
+- (void) hideReplyView
+{
+    [self.repliesView setHidden:YES];
+    [self.roundedView setHidden:YES];
 }
 @end
