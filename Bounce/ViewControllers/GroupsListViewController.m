@@ -41,21 +41,24 @@
         //        [[ParseManager getInstance] setLoadGroupsdelegate:self];
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
             [[Utility getInstance] showProgressHudWithMessage:@"Loading..." withView:self.view];
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                //                [[ParseManager getInstance] loadAllGroups];
-                self.groups = [[NSMutableArray alloc] initWithArray:[[ParseManager getInstance] getUserGroups]];
-                nearUsers = [[NSMutableArray alloc] init];
-                distanceToUserLocation = [[NSMutableArray alloc] init];
-                for (PFObject *group in self.groups) {
-                    [nearUsers addObject:[NSNumber numberWithInteger:[[ParseManager getInstance] getNearUsersInGroup:group]]];
-                    [distanceToUserLocation addObject:[NSNumber numberWithDouble:[[ParseManager getInstance] getDistanceToGroup:group]]];
-                }
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    // Update the UI on the main thread.
-                    [[Utility getInstance] hideProgressHud];
-                    [self.tableView reloadData];
-                });
-            });
+            [[ParseManager getInstance] setGetUserGroupsdelegate:self];
+            [[ParseManager getInstance] getUserGroups];
+            
+//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//                //                [[ParseManager getInstance] loadAllGroups];
+//                self.groups = [[NSMutableArray alloc] initWithArray:[[ParseManager getInstance] getUserGroups]];
+//                nearUsers = [[NSMutableArray alloc] init];
+//                distanceToUserLocation = [[NSMutableArray alloc] init];
+//                for (PFObject *group in self.groups) {
+//                    [nearUsers addObject:[NSNumber numberWithInteger:[[ParseManager getInstance] getNearUsersInGroup:group]]];
+//                    [distanceToUserLocation addObject:[NSNumber numberWithDouble:[[ParseManager getInstance] getDistanceToGroup:group]]];
+//                }
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    // Update the UI on the main thread.
+//                    [[Utility getInstance] hideProgressHud];
+//                    [self.tableView reloadData];
+//                });
+//            });
         }
         
     }
@@ -96,31 +99,72 @@
 
     [self.navigationController pushViewController:editGroupViewController animated:YES];
 }
+
 #pragma mark - Parse LoadGroups delegate
-- (void)didLoadGroups:(NSArray *)groups withError:(NSError *)error
+- (void)didLoadUserGroups:(NSArray *)groups WithError:(NSError *)error
 {
     @try {
-        [[Utility getInstance] hideProgressHud];
-        if (!error) {
+        if (error) {
+            [[Utility getInstance] hideProgressHud];
+        }else{
             if(!self.groups)
             {
                 self.groups = [[NSMutableArray alloc] init];
             }
-            
             self.groups = [NSMutableArray arrayWithArray:groups];
             // calculate the near users in each group
             // calcultae the distance to the group
             nearUsers = [[NSMutableArray alloc] init];
             distanceToUserLocation = [[NSMutableArray alloc] init];
             
-            for (PFObject *group in groups) {
-                [nearUsers addObject:[NSNumber numberWithInteger:[[ParseManager getInstance] getNearUsersInGroup:group]]];
-                [distanceToUserLocation addObject:[NSNumber numberWithDouble:[[ParseManager getInstance] getDistanceToGroup:group]]];
-            }
-            
-            [self.tableView reloadData];
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                for (PFObject *group in groups) {
+                    [nearUsers addObject:[NSNumber numberWithInteger:[[ParseManager getInstance] getNearUsersNumberInGroup:group]]];
+                    [distanceToUserLocation addObject:[NSNumber numberWithDouble:[[ParseManager getInstance] getDistanceToGroup:group]]];
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // Update the UI on the main thread.
+                    [[Utility getInstance] hideProgressHud];
+                    [self.tableView reloadData];
+                });
+            });
         }
+    }
+    @catch (NSException *exception) {
         
+    }
+}
+- (void)didLoadGroups:(NSArray *)groups withError:(NSError *)error
+{
+    @try {
+        
+        if (error) {
+            [[Utility getInstance] hideProgressHud];
+        }else{
+            if(!self.groups)
+            {
+                self.groups = [[NSMutableArray alloc] init];
+            }
+            self.groups = [NSMutableArray arrayWithArray:groups];
+            // calculate the near users in each group
+            // calcultae the distance to the group
+            nearUsers = [[NSMutableArray alloc] init];
+            distanceToUserLocation = [[NSMutableArray alloc] init];
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                for (PFObject *group in groups) {
+                    [nearUsers addObject:[NSNumber numberWithInteger:[[ParseManager getInstance] getNearUsersNumberInGroup:group]]];
+                    [distanceToUserLocation addObject:[NSNumber numberWithDouble:[[ParseManager getInstance] getDistanceToGroup:group]]];
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // Update the UI on the main thread.
+                    [[Utility getInstance] hideProgressHud];
+                    [self.tableView reloadData];
+                });
+            });
+        }
     }
     @catch (NSException *exception) {
         NSLog(@"exception %@", exception);

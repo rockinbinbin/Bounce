@@ -113,7 +113,7 @@
 - (void)doneButtonPressed{
     
     if ([self.SelectedGroups count]) {
-        [[RequestManger getInstance] createrequestToGroups:self.SelectedGroups andGender:@"" withinTime:self.timeAllocated andInRadius:self.radius];
+        [[RequestManger getInstance] createrequestToGroups:self.SelectedGroups andGender:ALL_GENDER withinTime:self.timeAllocated andInRadius:self.radius];
         
         // MOVE TO HOME
         HomeScreenViewController *homeViewController = [[HomeScreenViewController alloc] init];
@@ -132,18 +132,23 @@
 - (void) loadAllGroups{
     
     if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
-        [[Utility getInstance] showProgressHudWithMessage:@"loading..." withView:self.view];
-        NSArray *objects = [[ParseManager getInstance] getUserGroups];
-        [[Utility getInstance]hideProgressHud];
-        if ([objects count] > 0) {
-            // get name of each group
-            self.groups = [[NSMutableArray alloc]init];
-            for (PFObject *group in objects) {
-                [self.groups addObject:[group objectForKey:@"groupName"] ];
-            }
-            [self.tableView reloadData];
-        }
+            [[Utility getInstance] showProgressHudWithMessage:@"Loading..." withView:self.view];
+            [[ParseManager getInstance] setGetUserGroupsdelegate:self];
+            [[ParseManager getInstance] getUserGroups];
     }
+
+//        [[Utility getInstance] showProgressHudWithMessage:@"loading..." withView:self.view];
+//        NSArray *objects = [[ParseManager getInstance] getUserGroups];
+//        [[Utility getInstance]hideProgressHud];
+//        if ([objects count] > 0) {
+//            // get name of each group
+//            self.groups = [[NSMutableArray alloc]init];
+//            for (PFObject *group in objects) {
+//                [self.groups addObject:[group objectForKey:@"groupName"] ];
+//            }
+//            [self.tableView reloadData];
+//        }
+//    }
     
 
     
@@ -161,6 +166,27 @@
 //         }
 //         
 //     }];
+}
+
+#pragma mark - Get user groups delegate
+- (void)didLoadUserGroups:(NSArray *)groups WithError:(NSError *)error
+{
+    @try {
+        if (!error) {
+            [[Utility getInstance]hideProgressHud];
+            if ([groups count] > 0) {
+                // get name of each group
+                self.groups = [[NSMutableArray alloc]init];
+                for (PFObject *group in groups) {
+                    [self.groups addObject:[group objectForKey:PF_GROUPS_NAME] ];
+                }
+                [self.tableView reloadData];
+            }
+        }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
 }
 
 @end

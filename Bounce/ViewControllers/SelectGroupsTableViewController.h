@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import <CoreLocation/CoreLocation.h>
+#import "ParseManager.h"
 
-@interface SelectGroupsTableViewController : UITableViewController
+@interface SelectGroupsTableViewController : UITableViewController<ParseManagerGetUserGroups>
 
 // store in parse:
 @property int radius;

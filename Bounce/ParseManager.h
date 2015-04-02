@@ -13,6 +13,7 @@
 @protocol ParseManagerSignupDelegate;
 @protocol ParseManagerLoadingGroupsDelegate;
 @protocol ParseManagerAddGroupDelegate;
+@protocol ParseManagerGetUserGroups;
 
 @interface ParseManager : NSObject
 
@@ -20,6 +21,7 @@
 @property id<ParseManagerSignupDelegate> signupDelegate;
 @property id<ParseManagerLoadingGroupsDelegate> loadGroupsdelegate;
 @property id<ParseManagerAddGroupDelegate> addGroupdelegate;
+@property id<ParseManagerGetUserGroups> getUserGroupsdelegate;
 
 + (ParseManager*) getInstance;
 - (void) loginWithName:(NSString *)name andPassword:(NSString*) password;
@@ -45,7 +47,7 @@
 // distance between user and group
 - (double) getDistanceToGroup:(PFObject *) group;
 // Get User groups
-- (NSArray *) getUserGroups;
+- (void) getUserGroups;
 // Get Groups which currnt user not member at it
 - (NSArray *) getCandidateGroupsForCurrentUser;
 // get group users
@@ -59,6 +61,8 @@
 - (BOOL) addCurrentUserToGroup:(PFObject *) group;
 // Remove user from group
 - (BOOL) removeUserFromGroup:(PFObject *) group;
+//
+- (NSInteger) getNearUsersNumberInGroup:(PFObject *) group;
 
 
 @end
@@ -79,4 +83,8 @@
 
 @protocol ParseManagerAddGroupDelegate <NSObject>
 - (void) didAddGroupWithError:(NSError *) error;
+@end
+
+@protocol ParseManagerGetUserGroups <NSObject>
+- (void) didLoadUserGroups:(NSArray *)groups WithError:(NSError *) error;
 @end

@@ -15,6 +15,7 @@
 @implementation ParseManager
 static ParseManager *parseManager = nil;
 CLLocationManager *locationManger;
+PFUser *currentUser;
 + (ParseManager*) getInstance{
     @try {
         @synchronized(self)
@@ -23,6 +24,8 @@ CLLocationManager *locationManger;
             {
                 parseManager = [[ParseManager alloc] init];
                 locationManger = [[CLLocationManager alloc] init];
+                
+                currentUser = [PFUser currentUser];
             }
         }
         return parseManager;
@@ -501,6 +504,27 @@ CLLocationManager *locationManger;
     return [nearUsers count];
 }
 
+- (NSInteger) getNearUsersNumberInGroup:(PFObject *) group
+{
+    // User's location
+    PFGeoPoint *userGeoPoint = [[PFUser currentUser] objectForKey:@"CurrentLocation"];
+    
+    NSArray *usersInGroup = [group objectForKey:PF_GROUP_USER_ARRAY];
+    
+    //if has relation to users
+    // create the query on the relation
+    // Final list of objects
+    PFRelation *userRelation = [group relationForKey:PF_GROUP_Users_RELATION];
+    PFQuery *query = [userRelation query];
+    [query whereKey:@"CurrentLocation" nearGeoPoint:userGeoPoint withinMiles:K_NEAR_DISTANCE];
+    
+//    NSArray *nearUsers = [query findObjects];
+//    return [nearUsers count];
+
+   return [query countObjects];
+
+}
+
 - (NSArray *) getGroupUsers:(PFObject *) group
 {
     PFQuery *query = [PFUser query];
@@ -533,7 +557,7 @@ CLLocationManager *locationManger;
 }
 
 #pragma mark - Get Groups of user
-- (NSArray *) getUserGroups
+- (void) getUserGroups
 {
     @try {
         // if depend on realtions
@@ -548,8 +572,12 @@ CLLocationManager *locationManger;
         PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
         [query whereKey:PF_GROUPS_NAME containedIn:userGroups];
         [query includeKey:PF_GROUP_OWNER];
-        NSArray *groups = [query findObjects];
-        return groups;
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if ([self.getUserGroupsdelegate respondsToSelector:@selector(didLoadUserGroups:WithError:)]) {
+                [self.getUserGroupsdelegate didLoadUserGroups:objects WithError:error];
+            }
+        }];
+//        return groups;
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
@@ -592,8 +620,8 @@ CLLocationManager *locationManger;
         PFUser *currentUser = [PFUser currentUser];
         PFRelation *relation = [group relationForKey:PF_GROUP_Users_RELATION];
         [relation removeObject:currentUser];
-        
-        group[@"ArrayOfUsers"] = currentUser;
+        [group removeObject:currentUser forKey:PF_GROUP_USER_ARRAY];
+//        group[@"ArrayOfUsers"] = currentUser;
         [currentUser removeObject:[group objectForKey:PF_GROUPS_NAME] forKey:@"ArrayOfGroups"];
         [currentUser save];
         
@@ -640,4 +668,9 @@ CLLocationManager *locationManger;
     }
 }
 
+#pragma mark - Set the current user
+- (void) setCurrentUser:(PFUser *) user
+{
+    currentUser = user;
+}
 @end
