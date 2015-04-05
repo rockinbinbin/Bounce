@@ -13,6 +13,7 @@
 #import "AppConstant.h"
 #import "RequestManger.h"
 #import "HomeScreenViewController.h"
+#import "UIViewController+AMSlideMenu.h"
 
 @interface MessageScreenViewController ()
 @end
@@ -42,7 +43,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [self.navigationController setNavigationBarHidden:NO];
-    
+    [self disableSlidePanGestureForLeftMenu];
     // background
     self.title = @"New Message";
     self.view.backgroundColor = [UIColor whiteColor];

@@ -14,6 +14,8 @@
 #import <Parse/Parse.h>
 #import "ParseManager.h"
 #import "Utility.h"
+#import "UIViewController+AMSlideMenu.h"
+
 @interface EditGroupsViewController ()
 
 @end
@@ -37,10 +39,11 @@
                                    action:@selector(doneButtonClicked)];
     doneButton.tintColor = DEFAULT_COLOR;
     self.navigationItem.rightBarButtonItem = doneButton;
-    self.tableView.allowsMultipleSelectionDuringEditing = NO;
+//    self.tableView.allowsMultipleSelectionDuringEditing = NO;
 }
 - (void) viewWillAppear:(BOOL)animated
 {
+    [self disableSlidePanGestureForLeftMenu];
     [self getGroupsCreatedByUser];
 }
 - (void)didReceiveMemoryWarning {

@@ -18,6 +18,7 @@
 #import "Constants.h"
 #import "AddGroupUsersViewController.h"
 #import "AddLocationScreenViewController.h"
+#import "UIViewController+AMSlideMenu.h"
 
 @interface AddHomePointViewController ()
 
@@ -46,13 +47,12 @@
     
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     [self.view addGestureRecognizer:gestureRecognizer];
-    
-   
 }
 - (void)viewWillAppear:(BOOL)animated{
+    // Disable left Slide menu
+    [self disableSlidePanGestureForLeftMenu];
     // load all groups that doesn't contain current user
     [self loadGroupsData];
-
 }
 
 - (void)didReceiveMemoryWarning {

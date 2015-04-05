@@ -12,6 +12,8 @@
 #import "AppConstant.h"
 #import "Utility.h"
 #import "Constants.h"
+#import "UIViewController+AMSlideMenu.h"
+#import "HomeScreenViewController.h"
 
 @interface GroupsListViewController ()
 @end
@@ -41,6 +43,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     @try {
+        // Disable left Slide menu
+        [self disableSlidePanGestureForLeftMenu];
         //        [[ParseManager getInstance] setLoadGroupsdelegate:self];
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
             [[Utility getInstance] showProgressHudWithMessage:@"Loading..." withView:self.view];
@@ -92,7 +96,9 @@
 }
 
 -(void)backButtonClicked{
-    [self.navigationController popViewControllerAnimated:YES];
+    HomeScreenViewController *homeViewController = [[HomeScreenViewController alloc] initWithNibName:@"HomeScreenViewController" bundle:nil];
+    [self.navigationController pushViewController:homeViewController animated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)editButtonClicked{

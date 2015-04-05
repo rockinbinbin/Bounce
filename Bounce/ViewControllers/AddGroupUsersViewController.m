@@ -15,6 +15,7 @@
 #import "ParseManager.h"
 #import "Definitions.h"
 #import "Utility.h"
+#import "UIViewController+AMSlideMenu.h"
 
 @interface AddGroupUsersViewController ()
 
@@ -41,9 +42,13 @@
     for (int i = 0; i < useresCount-1; i++) {
         [self.userChecked  addObject:[NSNumber numberWithBool:NO]];
     }
-
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    // Disable left Slide menu
+    [self disableSlidePanGestureForLeftMenu];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -11,6 +11,7 @@
 #import "AppConstant.h"
 #import "Utility.h"
 #import "ProgressHUD.h"
+#import "UIViewController+AMSlideMenu.h"
 
 @interface GenderScreenViewController ()
 
@@ -41,6 +42,10 @@
     downArrow.contentMode=UIViewContentModeScaleAspectFill;
     [self.btnSelect addSubview:downArrow];
     
+}
+- (void) viewWillAppear:(BOOL)animated
+{
+    [self disableSlidePanGestureForLeftMenu];
 }
 
 - (void) incomingNotification:(NSNotification *)notification{

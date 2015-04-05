@@ -12,6 +12,7 @@
 #import <Parse/Parse.h>
 #import "ParseManager.h"
 #import <CoreLocation/CoreLocation.h>
+#import "UIViewController+AMSlideMenu.h"
 @interface AddLocationScreenViewController ()
 
 @end
@@ -43,9 +44,11 @@
     [self startReceivingSignificantLocationChanges];
     [self changeCenterToUserLocation];
     [self setUserTrackingMode];
-
 }
-
+- (void) viewWillAppear:(BOOL)animated{
+    // Disable left Slide menu
+    [self disableSlidePanGestureForLeftMenu];
+}
 -(IBAction)mapClicked:(UITapGestureRecognizer *)recognizer
 {
     CGPoint clickedPoint = [recognizer locationInView:self.map];

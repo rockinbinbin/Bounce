@@ -9,6 +9,8 @@
 #import "HomePointSuccessfulCreationViewController.h"
 #import "AppConstant.h"
 #import "GroupsListViewController.h"
+#import "UIViewController+AMSlideMenu.h"
+
 @interface HomePointSuccessfulCreationViewController ()
 
 @end
@@ -25,7 +27,10 @@
     self.view.backgroundColor = DEFAULT_COLOR;
     self.sweetButton.backgroundColor = LIGHT_BLUE_COLOR;
 }
-
+- (void) viewWillAppear:(BOOL)animated
+{
+    [self disableSlidePanGestureForLeftMenu];
+}
 -(void) justifyTextInLabel:(UILabel*) label{
     NSMutableParagraphStyle *paragraphStyles = [[NSMutableParagraphStyle alloc] init];
     paragraphStyles.alignment = NSTextAlignmentJustified;

@@ -25,11 +25,11 @@
     self.LoginButton.backgroundColor = LIGHT_BLUE_COLOR;
         self.facebookLogin.backgroundColor = [UIColor colorWithRed:81.0/250.0 green:117.0/250.0 blue:195.0/250.0 alpha:1.0];
     self.view.backgroundColor = DEFAULT_COLOR;
-    [self disableSlidePanGestureForLeftMenu];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [self disableSlidePanGestureForLeftMenu];
 }
 
 // i want this function to execute each time (to bypass login if already logged in)

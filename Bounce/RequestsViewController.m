@@ -38,6 +38,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [self disableSlidePanGestureForLeftMenu];
     [self loadRequests];
 }
 #pragma mark - Navigation Bar
@@ -202,20 +203,26 @@
     PFObject *request = [requests objectAtIndex:groupIndex];
     NSString *requestId = request.objectId;
     
-    if ([[Utility getInstance] isRequestValid:[request createdAt] andTimeAllocated:[[request objectForKey:PF_REQUEST_TIME_ALLOCATED] integerValue]]) {
-        [[ParseManager getInstance] createMessageItemForUser:[PFUser currentUser] WithGroupId:requestId andDescription:[request objectForKey:@"name"]];
-        
-        //    ChatView *chatView = [[ChatView alloc] initWith:requestId];
-        CustomChatViewController *chatView = [[CustomChatViewController alloc] initWith:requestId];
-        
-        chatView.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:chatView animated:YES];
-    }else{
-        // sho alert request time over
-        [[Utility getInstance] showAlertMessage:@"Request time over"];
-    }
+//    if ([[Utility getInstance] isRequestValid:[request createdAt] andTimeAllocated:[[request objectForKey:PF_REQUEST_TIME_ALLOCATED] integerValue]]) {
+//        [[ParseManager getInstance] createMessageItemForUser:[PFUser currentUser] WithGroupId:requestId andDescription:[request objectForKey:@"name"]];
+//        
+//        //    ChatView *chatView = [[ChatView alloc] initWith:requestId];
+//        CustomChatViewController *chatView = [[CustomChatViewController alloc] initWith:requestId];
+//        
+//        chatView.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:chatView animated:YES];
+//    }else{
+//        // sho alert request time over
+//        [[Utility getInstance] showAlertMessage:@"Request time over"];
+//    }
     
+    [[ParseManager getInstance] createMessageItemForUser:[PFUser currentUser] WithGroupId:requestId andDescription:[request objectForKey:@"name"]];
     
+    //    ChatView *chatView = [[ChatView alloc] initWith:requestId];
+    CustomChatViewController *chatView = [[CustomChatViewController alloc] initWith:requestId];
+    
+    chatView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:chatView animated:YES];
 }
 
 #pragma mark - String from Date
