@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIView *circularView;
 
 
+@property BOOL isSelected;
 @property (strong, nonatomic) NSString* numOfMessages;
 @property (strong, nonatomic) UILabel *numOfMessagesLabel;
 @property (strong, nonatomic) UIView* roundedView;

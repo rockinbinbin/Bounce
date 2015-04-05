@@ -75,6 +75,16 @@
                         <outlet property="delegate" destination="-1" id="TqO-Fa-gb8"/>
                     </connections>
                 </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7wg-F3-oio">
+                    <rect key="frame" x="0.0" y="260" width="600" height="4"/>
+                    <color key="backgroundColor" red="0.74325284090909083" green="0.74325284090909083" blue="0.74325284090909083" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="4" id="dEB-H1-Zfe"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -86,7 +96,10 @@
                 <constraint firstAttribute="trailing" secondItem="mjU-7a-CWs" secondAttribute="trailing" id="UwP-zK-6o9"/>
                 <constraint firstAttribute="centerX" secondItem="BAq-td-hth" secondAttribute="centerX" id="YM9-wf-VWE"/>
                 <constraint firstAttribute="centerX" secondItem="159-ic-k3y" secondAttribute="centerX" id="huK-Gq-tXX"/>
+                <constraint firstItem="7wg-F3-oio" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="rtd-Ry-zyo"/>
                 <constraint firstItem="BAq-td-hth" firstAttribute="top" secondItem="mjU-7a-CWs" secondAttribute="bottom" constant="50" id="siS-CB-Mlm"/>
+                <constraint firstItem="7wg-F3-oio" firstAttribute="top" secondItem="mjU-7a-CWs" secondAttribute="bottom" id="xIO-IL-v0o"/>
+                <constraint firstAttribute="trailing" secondItem="7wg-F3-oio" secondAttribute="trailing" id="yC5-hH-pkX"/>
             </constraints>
         </view>
     </objects>

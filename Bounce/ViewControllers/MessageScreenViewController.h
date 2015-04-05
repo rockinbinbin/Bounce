@@ -21,8 +21,9 @@
 #import "FUISegmentedControl.h"
 #import "UIPopoverController+FlatUI.h"
 #import "NIDropDown.h"
+#import "ParseManager.h"
 
-@interface MessageScreenViewController : UIViewController<NIDropDownDelegate>
+@interface MessageScreenViewController : UIViewController<NIDropDownDelegate, ParseManagerLoadingGroupsDelegate, ParseManagerGetUserGroups>
 @property (weak, nonatomic) IBOutlet UISegmentedControl *groupGenderSegment;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) NIDropDown *dropDown;
@@ -34,5 +35,13 @@
 @property NSString* distance;
 @property NSString* duration;
 @property BOOL isDistanceSent;
+@property BOOL isDataLoaded;
+@property NSMutableArray* groups;
+@property NSMutableArray *nearUsers;
+@property NSMutableArray *distanceToUserLocation;
+@property NSMutableArray * selectedCells;
+@property (nonatomic, strong) PFObject *Request;
+@property (nonatomic, strong) NSMutableArray *selectedGroups;
 
+@property (strong, nonatomic) CLLocationManager *location_manager;
 @end

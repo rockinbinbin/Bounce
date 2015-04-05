@@ -11,6 +11,8 @@
 #import "Utility.h"
 #import "ChatListCell.h"
 #import "AppConstant.h"
+#import "RequestManger.h"
+#import "HomeScreenViewController.h"
 
 @interface MessageScreenViewController ()
 @end
@@ -20,15 +22,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(incomingNotification:) name:@"SelectedStringNotification" object:nil];
-//
-//    UIBarButtonItem *CancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonPressed)];
-//    
-//    self.navigationItem.leftBarButtonItem = CancelButton;
-//    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
-//    [self.view addGestureRecognizer:gestureRecognizer];
     _distanceSelectButton.backgroundColor = LIGHT_SELECT_GRAY_COLOR;
     _durationSelectButton.backgroundColor = LIGHT_SELECT_GRAY_COLOR;
 
+    self.selectedGroups = [NSMutableArray array];
+    self.location_manager = [[CLLocationManager alloc] init];
     
     [self addArrowImageToButton:self.distanceSelectButton];
     [self addArrowImageToButton:self.durationSelectButton];
@@ -58,6 +56,36 @@
                                    action:@selector(sendButtonClicked)];
     sendButton.tintColor = DEFAULT_COLOR;
     self.navigationItem.rightBarButtonItem = sendButton;
+    
+    @try {
+        //        [[ParseManager getInstance] setLoadGroupsdelegate:self];
+        if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+            [[Utility getInstance] showProgressHudWithMessage:@"Loading..." withView:self.view];
+            [[ParseManager getInstance] setGetUserGroupsdelegate:self];
+            [[ParseManager getInstance] getUserGroups];
+            self.isDataLoaded = NO;
+//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//                //                [[ParseManager getInstance] loadAllGroups];
+//                self.groups = [[NSMutableArray alloc] initWithArray:[[ParseManager getInstance] getUserGroups]];
+//                self.nearUsers = [[NSMutableArray alloc] init];
+//                self.distanceToUserLocation = [[NSMutableArray alloc] init];
+//                for (PFObject *group in self.groups) {
+//                    [self.nearUsers addObject:[NSNumber numberWithInteger:[[ParseManager getInstance] getNearUsersInGroup:group]]];
+//                    [self.distanceToUserLocation addObject:[NSNumber numberWithDouble:[[ParseManager getInstance] getDistanceToGroup:group]]];
+//                }
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    // Update the UI on the main thread.
+//                    [[Utility getInstance] hideProgressHud];
+//                    [self.tableView reloadData];
+//                });
+//            });
+        }
+        
+    }
+    @catch (NSException *exception) {
+        NSLog(@"exception %@", exception);
+    }
+
 }
 
 - (void)viewDidUnload {
@@ -107,16 +135,31 @@
     }
     else {
         
-        SelectGroupsTableViewController *controller = [[SelectGroupsTableViewController alloc] init];
-        controller.radius = radius;
-        controller.timeAllocated = time;
-        if ([self.groupGenderSegment selectedSegmentIndex] == 0) {
-            controller.genderFilter = @"All";
-        } else if ([self.groupGenderSegment selectedSegmentIndex] == 1) {
-            PFUser* u = [PFUser currentUser];
-            controller.genderFilter = u[@"Gender"]; // Male or Female
+        for (int i = 0; i < self.selectedCells.count; i++) {
+            if ([[self.selectedCells objectAtIndex:i] boolValue]) { // if selected
+                [self.selectedGroups addObject:[self.groups objectAtIndex:i]];
+            }
         }
-        [self.navigationController pushViewController:controller animated:YES];
+        
+        if ([self.selectedGroups count]) {
+            if ([self.groupGenderSegment selectedSegmentIndex] == 0) {
+                [[RequestManger getInstance] createrequestToGroups:self.selectedGroups andGender:@"All" withinTime:time andInRadius:radius];
+            } else if ([self.groupGenderSegment selectedSegmentIndex] == 1) {
+                PFUser* u = [PFUser currentUser];
+                [[RequestManger getInstance] createrequestToGroups:self.selectedGroups andGender:u[@"Gender"] withinTime:time andInRadius:radius];
+            }
+            
+            // MOVE TO HOME
+            HomeScreenViewController *homeViewController = [[HomeScreenViewController alloc] init];
+            [self.navigationController pushViewController:homeViewController animated:YES];
+        }
+        else {
+            UIAlertView *zerolength = [[UIAlertView alloc] initWithTitle:@"yo!"
+                                                                 message:@"Please check at least one group!"
+                                                                delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [zerolength show];
+        }
+
     }
 }
 
@@ -184,7 +227,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;//[self.groups count];
+    return [self.groups count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -196,23 +239,75 @@
         cell = (ChatListCell *)[nib objectAtIndex:0];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    
+    cell.roundedView.hidden = YES;
     cell.numOfMessagesLabel.text = @"0";
-    // filling the cell data
-    //    cell.groupNameLabel.text = @"Group 1";
-    //    cell.groupDistanceLabel.text = @"2.1 miles away";
-    //    cell.numOfFriendsInGroupLabel.text = @"44";
     
-    cell.groupNameLabel.text = @"groupNameLabel"; //[[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
-    cell.groupDistanceLabel.text = @"groupDistanceLabel";// [NSString stringWithFormat:DISTANCE_MESSAGE, [[distanceToUserLocation objectAtIndex:indexPath.row] doubleValue]];
-    cell.numOfFriendsInGroupLabel.text = @"numOfFriendsInGroupLabel";// [NSString stringWithFormat:@"%@",[nearUsers objectAtIndex:indexPath.row]];
-//    NSLog(@"near users %@", [nearUsers objectAtIndex:indexPath.row]);
+    if ([[self.selectedCells objectAtIndex:indexPath.row] boolValue]) {
+        cell.nearbyLabel.hidden = YES;
+        cell.numOfFriendsInGroupLabel.hidden = YES;
+        cell.iconImageView.hidden = NO;
+        cell.iconImageView.image = [UIImage imageNamed:@"common_checkmark_icon"];
+    }
+    else{
+        cell.iconImageView.hidden = YES;
+        cell.iconImageView.image = nil;
+        cell.iconImageView.hidden = NO;
+        if (self.isDataLoaded) {
+            cell.groupDistanceLabel.hidden = NO;
+            cell.numOfFriendsInGroupLabel.hidden = NO;
+            cell.nearbyLabel.hidden = NO;
+        }
+        else{
+            cell.groupDistanceLabel.hidden = YES;
+            cell.numOfFriendsInGroupLabel.hidden = YES;
+            cell.nearbyLabel.hidden = YES;
+        }
+    }
+
+    for ( UIView* view in cell.contentView.subviews )
+    {
+        view.backgroundColor = [ UIColor clearColor ];
+    }
+    
+    cell.groupNameLabel.text = [[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
+    cell.groupDistanceLabel.text = [NSString stringWithFormat:DISTANCE_MESSAGE, [[self.distanceToUserLocation objectAtIndex:indexPath.row] doubleValue]];
+    cell.numOfFriendsInGroupLabel.text = [NSString stringWithFormat:@"%@",[self.nearUsers objectAtIndex:indexPath.row]];
     return cell;
 }
 
 #pragma mark - TableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (self.selectedCells.count > 0) {
+        if ([[self.selectedCells objectAtIndex:indexPath.row] boolValue]) {
+            [self.selectedCells replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithBool:NO]];
+        }
+        else{
+            [self.selectedCells replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithBool:YES]];
+        }
+        [self.tableView reloadData];
+    }
+//    NSLog(@"marked as true in %li", (long)indexPath.row);
+//    NSString* cellId = @"ChatListCell";
+//    ChatListCell *cell = (ChatListCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+//    if (!cell) {
+//        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
+//        cell = (ChatListCell *)[nib objectAtIndex:0];
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    }
+//    if (cell.isSelected) {
+//        cell.iconImageView.hidden = YES;
+//        cell.nearbyLabel.hidden = NO;
+//        cell.numOfFriendsInGroupLabel.hidden = NO;
+//        cell.isSelected = false;
+//    }
+//    else{
+//        cell.iconImageView.hidden = NO;
+//        cell.iconImageView.image = [UIImage imageNamed:@"common_checkmark_icon"];
+//        cell.nearbyLabel.hidden = YES;
+//        cell.numOfFriendsInGroupLabel.hidden = YES;
+//        cell.isSelected = true;
+//    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -273,4 +368,82 @@
     }
 }
 
+
+#pragma mark - Parse LoadGroups delegate
+- (void)didLoadUserGroups:(NSArray *)groups WithError:(NSError *)error
+{
+    @try {
+        if (error) {
+            [[Utility getInstance] hideProgressHud];
+            self.isDataLoaded = YES;
+        }else{
+            if(!self.groups)
+            {
+                self.groups = [[NSMutableArray alloc] init];
+            }
+            self.groups = [NSMutableArray arrayWithArray:groups];
+            self.selectedCells = [[NSMutableArray alloc] init];
+            for (int i = 0; i < self.groups.count; i++) {
+                [self.selectedCells addObject:[NSNumber numberWithBool:NO]];
+            }
+            // calculate the near users in each group
+            // calcultae the distance to the group
+            self.nearUsers = [[NSMutableArray alloc] init];
+            self.distanceToUserLocation = [[NSMutableArray alloc] init];
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                for (PFObject *group in groups) {
+                    [self.nearUsers addObject:[NSNumber numberWithInteger:[[ParseManager getInstance] getNearUsersNumberInGroup:group]]];
+                    [self.distanceToUserLocation addObject:[NSNumber numberWithDouble:[[ParseManager getInstance] getDistanceToGroup:group]]];
+                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // Update the UI on the main thread.
+                    [[Utility getInstance] hideProgressHud];
+                    self.isDataLoaded = YES;
+                    [self.tableView reloadData];
+                });
+            });
+        }
+    }
+    @catch (NSException *exception) {
+        
+    }
+}
+- (void)didLoadGroups:(NSArray *)groups withError:(NSError *)error
+{
+    @try {
+        
+        if (error) {
+            [[Utility getInstance] hideProgressHud];
+            self.isDataLoaded = YES;
+        }else{
+            if(!self.groups)
+            {
+                self.groups = [[NSMutableArray alloc] init];
+            }
+            self.groups = [NSMutableArray arrayWithArray:groups];
+            // calculate the near users in each group
+            // calcultae the distance to the group
+            self.nearUsers = [[NSMutableArray alloc] init];
+            self.distanceToUserLocation = [[NSMutableArray alloc] init];
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                for (PFObject *group in groups) {
+                    [self.nearUsers addObject:[NSNumber numberWithInteger:[[ParseManager getInstance] getNearUsersNumberInGroup:group]]];
+                    [self.distanceToUserLocation addObject:[NSNumber numberWithDouble:[[ParseManager getInstance] getDistanceToGroup:group]]];
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // Update the UI on the main thread.
+                    [[Utility getInstance] hideProgressHud];
+                    self.isDataLoaded = YES;
+                    [self.tableView reloadData];
+                });
+            });
+        }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"exception %@", exception);
+    }
+}
 @end
