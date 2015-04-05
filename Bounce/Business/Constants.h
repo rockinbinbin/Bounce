@@ -22,7 +22,10 @@
 #define IS_IPHONE5 ([[UIScreen mainScreen] bounds].size.height == 568)
 #define IS_IPHONE6 ([[UIScreen mainScreen] bounds].size.height == 667)
 #define IS_IPHONE6PLUS ([[UIScreen mainScreen] bounds].size.height == 736)
-
+// Colors
+#define DEFAULT_COLOR       [UIColor colorWithRed:230.0/250.0 green:89.0/250.0 blue:89.0/250.0 alpha:1.0]
+#define LIGHT_BLUE_COLOR    [UIColor colorWithRed:120.0/250.0 green:175.0/250.0 blue:212.0/250.0 alpha:1.0]
+#define LIGHT_SELECT_GRAY_COLOR    [UIColor colorWithRed:224.0/255.0 green:224.0/255.0 blue:224.0/255.0 alpha:1.0f]
 
 // Parse Request class
 #define PF_REQUET_CLASS_NAME @"Requests"

@@ -22,6 +22,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    UIButton *customButton = [[Utility getInstance] createCustomButton:[UIImage imageNamed:@"common_back_button"]];
+    [customButton addTarget:self action:@selector(backButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:customButton];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -92,6 +95,11 @@
     }
     @catch (NSException *exception) {
     }
+}
+
+#pragma mark - back Button Action
+-(void)backButtonClicked{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

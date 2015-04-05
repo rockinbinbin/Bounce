@@ -157,6 +157,7 @@
 		00CEE4271994493A00F40C12 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4261994493A00F40C12 /* CoreLocation.framework */; };
 		28F13A521A6C75A90069EBA4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F13A511A6C75A90069EBA4 /* MapKit.framework */; };
 		28F13A5B1A6C7F7B0069EBA4 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F13A5A1A6C7F7B0069EBA4 /* MapViewController.m */; };
+		67394DDC1AD1A1AD007810C4 /* chat_blank@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 67394DDB1AD1A1AD007810C4 /* chat_blank@2x.png */; };
 		6791817D1AC0057D00D0474C /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6791817C1AC0057D00D0474C /* FacebookSDK.framework */; };
 		67B484D61AC9572B002E57F4 /* RequestManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 67B484D41AC9572B002E57F4 /* RequestManger.m */; };
 		67B74C0C1ACA8FFB00B03C1F /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 67B74BF81ACA8FFB00B03C1F /* MBProgressHUD.m */; };
@@ -534,6 +535,7 @@
 		28F13A511A6C75A90069EBA4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		28F13A591A6C7F7B0069EBA4 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		28F13A5A1A6C7F7B0069EBA4 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		67394DDB1AD1A1AD007810C4 /* chat_blank@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_blank@2x.png"; sourceTree = "<group>"; };
 		6791817C1AC0057D00D0474C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		67B484D31AC9572B002E57F4 /* RequestManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestManger.h; sourceTree = "<group>"; };
 		67B484D41AC9572B002E57F4 /* RequestManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestManger.m; sourceTree = "<group>"; };
@@ -1334,6 +1336,7 @@
 		CA3ABBBE1AC7E64100E1B5DE /* Bounce Images */ = {
 			isa = PBXGroup;
 			children = (
+				67394DDB1AD1A1AD007810C4 /* chat_blank@2x.png */,
 				CA3ABBBF1AC7E64100E1B5DE /* First.imageset */,
 				CA3ABBC61AC7E64100E1B5DE /* Tutorial-1.imageset */,
 				CA3ABBCC1AC7E64100E1B5DE /* Tutorial-2.imageset */,
@@ -1617,6 +1620,7 @@
 				00414F1B1AADEE0600B25CEE /* JSQMessagesViewController.xib in Resources */,
 				CA3ABC4A1AC7E64100E1B5DE /* SignupScreenViewController.xib in Resources */,
 				00CEE3DE199434E700F40C12 /* InfoPlist.strings in Resources */,
+				67394DDC1AD1A1AD007810C4 /* chat_blank@2x.png in Resources */,
 				CA3ABC411AC7E64100E1B5DE /* HomeScreenViewController.xib in Resources */,
 				CAB71EBB1ACD61B300FB09FD /* Tutorial-1_iPhone6plus.png in Resources */,
 				007BA3C21A6C9BE400BF08DE /* Podfile in Resources */,

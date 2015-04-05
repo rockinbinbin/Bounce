@@ -106,4 +106,13 @@ static Utility *sharedUtility = nil;
         NSLog(@"Exception %@", exception);
     }
 }
+
+#pragma mark - Create button with action
+-(UIButton *)createCustomButton:(UIImage*) buttonImage
+{
+    UIButton *buttonItem = [UIButton buttonWithType:UIButtonTypeCustom];
+    buttonItem.bounds = CGRectMake( 0, 0, buttonImage.size.width, buttonImage.size.height );
+    [buttonItem setImage:buttonImage forState:UIControlStateNormal];
+    return buttonItem;
+}
 @end

@@ -25,4 +25,6 @@
 - (BOOL)isRequestValid:(NSDate *)craetedDate andTimeAllocated:(NSInteger) time;
 // navigate to home screen
 - (void) navigateToMainScreenFromNAvigationContorller:(UINavigationController *) navigationController;
+// Create custom button
+-(UIButton *)createCustomButton:(UIImage*) buttonImage;
 @end
