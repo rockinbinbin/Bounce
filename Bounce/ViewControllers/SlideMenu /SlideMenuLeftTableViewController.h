@@ -12,9 +12,13 @@
 
 
 #pragma mark - Outlets
-@property (strong, nonatomic) IBOutlet UITableView *view;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 #pragma mark - Properties
 @property (strong, nonatomic) NSMutableArray *tableData;
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *userCityLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *userProfileImageView;
+- (IBAction)signoutButtonClicked:(id)sender;
 
 @end

@@ -15,9 +15,7 @@
 #import "LoginScreenViewController.h"
 #import "IntroPagesViewController.h"
 
-#define Profile_Section 0
-#define Chats_Section 1
-#define Logout_Section 2
+#define Chats_Section 0
 @interface SlideMenuLeftTableViewController ()
 
 @end
@@ -31,7 +29,15 @@
     // Do any additional setup after loading the view from its nib.
     self.view.backgroundColor = [UIColor darkGrayColor];
     // Initilizing data souce
-    self.tableData = [@[@"Home",@"Chat", @"logout"] mutableCopy];
+    self.tableData = [@[@"Chat"] mutableCopy];
+}
+
+-(void) viewWillAppear:(BOOL)animated{
+    self.userProfileImageView.layer.cornerRadius = self.userProfileImageView.frame.size.height / 2;
+    self.userProfileImageView.clipsToBounds = YES;
+    self.userProfileImageView.layer.borderWidth = 3.0f;
+    self.userProfileImageView.layer.borderColor = DEFAULT_COLOR.CGColor;
+    [self setUserNameAndLocationAtCell];
 }
 
 #pragma mark - TableView Datasource
@@ -57,21 +63,6 @@
     bgColorView.backgroundColor = [UIColor darkGrayColor];
     [cell setSelectedBackgroundView:bgColorView];
 
-    if (indexPath.row == Profile_Section) {
-        int imageYPosition = cell.frame.origin.y + 20;
-        // adding profile picture
-        UIImageView* profileView = [[UIImageView alloc] initWithFrame:CGRectMake(SIDE_MENU_WIDTH / 2 - 50, imageYPosition, 100, 100)];
-        profileView.image = [UIImage imageNamed:@"Tutorial-1"];
-        profileView.layer.cornerRadius = profileView.frame.size.height / 2;
-        profileView.clipsToBounds = YES;
-        profileView.layer.borderWidth = 3.0f;
-        profileView.layer.borderColor = DEFAULT_COLOR.CGColor;
-        [cell addSubview:profileView];
-        // Set username and location
-        [self setUserNameAndLocationAtCell:cell andYPosition:imageYPosition];
-    }
-    else if(indexPath.row == Chats_Section){
-//        cell.textLabel.text = @"Chats";
         cell.textLabel.textColor = [UIColor whiteColor];
      
         int imageYPosition = cell.frame.origin.y + 20;
@@ -108,65 +99,23 @@
         usernameLabel.textColor = [UIColor whiteColor];
         usernameLabel.text = @"Chats";
         [cell addSubview:usernameLabel];
-    }
-    else{
-        // adding signout button
-        int buttonYPosition = cell.frame.size.height * 6;
-        NSLog(@"%i",buttonYPosition);
-        UIButton* signoutButton = [[UIButton alloc] initWithFrame:CGRectMake(SIDE_MENU_WIDTH / 2 - 70 , buttonYPosition, 140, 30)];
-        signoutButton.titleLabel.font = [UIFont fontWithName:@"FS Albert" size:12];
-        signoutButton.backgroundColor = [UIColor redColor];
-        [signoutButton setTitle:@"Sign out" forState:UIControlStateNormal];
-        [signoutButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [signoutButton addTarget:self   action:@selector(signoutButtonClicked) forControlEvents:UIControlEventTouchUpInside];
-        [cell addSubview:signoutButton];
-//        [cell setUserInteractionEnabled:NO];
-    }
-    
+        [cell setBackgroundColor:[UIColor darkGrayColor]];
+
     return cell;
 }
 #pragma mark - 
-- (void) setUserNameAndLocationAtCell:(UITableViewCell*) cell andYPosition:(int) imageYPosition
-{
+- (void) setUserNameAndLocationAtCell{
     @try {
         // adding user name
-        NSString *userName = [[PFUser currentUser] username];
-        
-        UILabel* usernameLabel = [[UILabel alloc] initWithFrame:CGRectMake(SIDE_MENU_WIDTH / 2 - 50, imageYPosition + 100, 100, 40)];
-        usernameLabel.font = [UIFont fontWithName:@"FS Albert" size:32];
-        usernameLabel.textColor = [UIColor whiteColor];
-        usernameLabel.text = userName;
-        [cell addSubview:usernameLabel];
-        
-        // adding user location
-        UILabel* userLocationLabel = [[UILabel alloc] initWithFrame:CGRectMake(SIDE_MENU_WIDTH / 2 - 50, imageYPosition + 120, 100, 40)];
-        userLocationLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
-        userLocationLabel.textColor = [UIColor lightTextColor];
-        userLocationLabel.text = @"New York City";
-        [cell addSubview:userLocationLabel];
+        PFUser* currentUser = [PFUser currentUser];
+        self.usernameLabel.text = [currentUser username];
+        self.userCityLabel.text = @"New York City";
+        //TODO: Get the actual address of the user by his latitude and longitude
+        PFGeoPoint *userGeoPoint = currentUser[@"CurrentLocation"];
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
     }
-}
-
--(void) signoutButtonClicked{
-    NSLog(@"sign out pressed!");
-    [PFUser logOut];
-    UINavigationController *nvc;
-    UIViewController *rootVC;
-            rootVC = [[LoginScreenViewController alloc] init];
-
-    
-//
-//    HomeScreenViewController* homeScreenViewController = [[HomeScreenViewController alloc] initWithNibName:@"HomeScreenViewController" bundle:nil];
-//
-//    [self.navigationController popToViewController:homeScreenViewController animated:YES];
-    
-    IntroPagesViewController* introPagesViewController = [[IntroPagesViewController alloc] initWithNibName:@"IntroPagesViewController" bundle:nil];
-    nvc = [[UINavigationController alloc] initWithRootViewController:introPagesViewController];
-    [self openContentNavigationController:nvc];
-
 }
 
 #pragma mark - TableView Delegate
@@ -175,22 +124,11 @@
     UINavigationController *nvc;
     UIViewController *rootVC;
     switch (indexPath.row) {
-        case Profile_Section:
-        {
-            rootVC = [[HomeScreenViewController alloc] initWithNibName:@"HomeScreenViewController" bundle:nil];
-        }
-            break;
         case Chats_Section:
         {
             rootVC = [[RequestsViewController alloc] initWithNibName:@"RequestsViewController" bundle:nil];
         }
             break;
-//        case Logout_Section:
-//        {
-//            [PFUser logOut];
-//            rootVC = [[LoginScreenViewController alloc] init];
-//
-//        }
         
         default:
             break;
@@ -202,15 +140,24 @@
 
 #pragma mark - TableView Datasource
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ( indexPath.row == Profile_Section) { //profile cell
-        return 180;
-    }
-    else if ( indexPath.row == Chats_Section) { //chats cell
-        return 40;
-    }
-    else { //sign out cell
-        return self.view.frame.size.height - 220;
-    }
+    return 40;
 }
 
+- (IBAction)signoutButtonClicked:(id)sender {
+    NSLog(@"sign out pressed!");
+    [PFUser logOut];
+    UINavigationController *nvc;
+    UIViewController *rootVC;
+    rootVC = [[LoginScreenViewController alloc] init];
+    
+    
+    //
+    //    HomeScreenViewController* homeScreenViewController = [[HomeScreenViewController alloc] initWithNibName:@"HomeScreenViewController" bundle:nil];
+    //
+    //    [self.navigationController popToViewController:homeScreenViewController animated:YES];
+    
+    IntroPagesViewController* introPagesViewController = [[IntroPagesViewController alloc] initWithNibName:@"IntroPagesViewController" bundle:nil];
+    nvc = [[UINavigationController alloc] initWithRootViewController:introPagesViewController];
+    [self openContentNavigationController:nvc];
+}
 @end

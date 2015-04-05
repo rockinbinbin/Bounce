@@ -221,6 +221,7 @@
 		CA3ABC4B1AC7E64100E1B5DE /* UsersListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABC141AC7E64100E1B5DE /* UsersListViewController.xib */; };
 		CA4964501ACAA26E00DAD523 /* AddLocationScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA49644E1ACAA26E00DAD523 /* AddLocationScreenViewController.m */; };
 		CA4964511ACAA26E00DAD523 /* AddLocationScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA49644F1ACAA26E00DAD523 /* AddLocationScreenViewController.xib */; };
+		CA5024A41AD184DA00561C4C /* SlideMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5024A31AD184DA00561C4C /* SlideMenuViewController.xib */; };
 		CA7F0A961AC92E5100AC5FCB /* GroupsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7F0A941AC92E5100AC5FCB /* GroupsListViewController.m */; };
 		CA7F0A971AC92E5100AC5FCB /* GroupsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA7F0A951AC92E5100AC5FCB /* GroupsListViewController.xib */; };
 		CA7F0A9B1AC92EF500AC5FCB /* ChatListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7F0A991AC92EF500AC5FCB /* ChatListCell.m */; };
@@ -628,6 +629,7 @@
 		CA49644D1ACAA26E00DAD523 /* AddLocationScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddLocationScreenViewController.h; sourceTree = "<group>"; };
 		CA49644E1ACAA26E00DAD523 /* AddLocationScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddLocationScreenViewController.m; sourceTree = "<group>"; };
 		CA49644F1ACAA26E00DAD523 /* AddLocationScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddLocationScreenViewController.xib; path = ../ViewControllers/AddLocationScreenViewController.xib; sourceTree = "<group>"; };
+		CA5024A31AD184DA00561C4C /* SlideMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SlideMenuViewController.xib; sourceTree = "<group>"; };
 		CA7F0A931AC92E5100AC5FCB /* GroupsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsListViewController.h; sourceTree = "<group>"; };
 		CA7F0A941AC92E5100AC5FCB /* GroupsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsListViewController.m; sourceTree = "<group>"; };
 		CA7F0A951AC92E5100AC5FCB /* GroupsListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GroupsListViewController.xib; path = ../ViewControllers/GroupsListViewController.xib; sourceTree = "<group>"; };
@@ -1304,6 +1306,7 @@
 				67B74C281ACABA2000B03C1F /* SlideMenuLeftTableViewController.h */,
 				67B74C291ACABA2000B03C1F /* SlideMenuLeftTableViewController.m */,
 				67B74C2A1ACABA2000B03C1F /* SlideMenuLeftTableViewController.xib */,
+				CA5024A31AD184DA00561C4C /* SlideMenuViewController.xib */,
 				67B74C1D1ACA9E9500B03C1F /* SlideMenuViewController.h */,
 				67B74C1E1ACA9E9500B03C1F /* SlideMenuViewController.m */,
 			);
@@ -1638,6 +1641,7 @@
 				CA3ABC281AC7E64100E1B5DE /* Tutorial-3@2x.png in Resources */,
 				CA3ABC201AC7E64100E1B5DE /* Contents.json in Resources */,
 				CA7F0A971AC92E5100AC5FCB /* GroupsListViewController.xib in Resources */,
+				CA5024A41AD184DA00561C4C /* SlideMenuViewController.xib in Resources */,
 				CA3ABC451AC7E64100E1B5DE /* IntroLoginScreenViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
