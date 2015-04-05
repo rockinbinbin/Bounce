@@ -28,14 +28,10 @@
     self.RegisterButton.backgroundColor = LIGHT_BLUE_COLOR;
     self.view.backgroundColor = DEFAULT_COLOR;
     self.facebookLogin.backgroundColor = [UIColor colorWithRed:81.0/250.0 green:117.0/250.0 blue:195.0/250.0 alpha:1.0];
-
     // hides keyboard when user hits background
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     [self.view addGestureRecognizer:gestureRecognizer];
-    
-//    UITapGestureRecognizer *facebookGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(facebookClicked)];
-//    self.facebookIconImageView.userInteractionEnabled = YES;
-//    [self.facebookIconImageView addGestureRecognizer:facebookGestureRecognizer];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -205,15 +201,11 @@
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
     HomeScreenViewController* homeScreenViewController = [[HomeScreenViewController alloc] initWithNibName:@"HomeScreenViewController" bundle:nil];
     [self.navigationController pushViewController:homeScreenViewController animated:YES];
-    //    [self performSegueWithIdentifier:@"SignUpToMain" sender:self];
 }
 
 
 - (IBAction)backButtonClicked:(id)sender {
-    AMSlideMenuMainViewController *mainVC = [self mainSlideMenu];
-    UIViewController *rootVC = [[IntroLoginScreenViewController alloc] init];
-    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:rootVC];
-    [mainVC.leftMenu openContentNavigationController:nvc];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Navigate to Home screem

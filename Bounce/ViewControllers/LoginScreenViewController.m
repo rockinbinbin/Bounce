@@ -8,18 +8,11 @@
 
 #import "LoginScreenViewController.h"
 #import <Parse/Parse.h>
-#import "SignUpViewController.h"
-#import "HomeScreenViewController.h"
-#import "UIViewController+AMSlideMenu.h"
-#import "Utility.h"
-
-#import "AppConstant.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "Utility.h"
 #import "SlideMenuViewController.h"
-#import "IntroLoginScreenViewController.h"
+#import "UIViewController+AMSlideMenu.h"
 
-//#import <FBSDKCoreKit/FBSDKCoreKit.h>
-//#import <FBSDKLoginKit/FBSDKLoginKit.h>
 @interface LoginScreenViewController ()
 
 @end
@@ -32,6 +25,7 @@
     self.LoginButton.backgroundColor = LIGHT_BLUE_COLOR;
         self.facebookLogin.backgroundColor = [UIColor colorWithRed:81.0/250.0 green:117.0/250.0 blue:195.0/250.0 alpha:1.0];
     self.view.backgroundColor = DEFAULT_COLOR;
+    [self disableSlidePanGestureForLeftMenu];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -41,21 +35,12 @@
 // i want this function to execute each time (to bypass login if already logged in)
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self disableSlidePanGestureForLeftMenu];
-
     [super viewDidAppear:animated];
     [self setupReturnButton];
     // hides keyboard when user hits background
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     [self.view addGestureRecognizer:gestureRecognizer];
 
-//    UITapGestureRecognizer *facebookGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(facebookClicked)];
-//    self.facebookIconImageView.userInteractionEnabled = YES;
-//    [self.facebookIconImageView addGestureRecognizer:facebookGestureRecognizer];
-    
-    //
-    [self.usernameField setText:@"shimaa"];
-    [self.passwordField setText:@"shimaa"];
 }
 
 - (void) hideKeyboard // when user hits background
@@ -79,8 +64,16 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+/// Sets up the done button on keyboard to be blue.
+- (void)setupReturnButton {
+    self.usernameField.delegate = self;
+    self.passwordField.delegate = self;
+    
+    [self.usernameField setReturnKeyType:UIReturnKeyNext];
+    [self.passwordField setReturnKeyType:UIReturnKeyDone];
+}
 
-
+#pragma MARK - Button Action
 - (IBAction)loginButton:(id)sender {
     NSString *username = [self.usernameField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString *password = [self.passwordField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -89,29 +82,20 @@
         [[Utility getInstance] showAlertWithMessage:@"Make sure you enter a username and password!" andTitle:@"Oops!"];
     }
     else {
-        
+        [[Utility getInstance] showProgressHudWithMessage:@"Login ..."];
         [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser *user, NSError *error) {
+            [[Utility getInstance] hideProgressHud];
             if (error) {
                 [[Utility getInstance] showAlertWithMessage:[error.userInfo objectForKey:@"error"] andTitle:@"Sorry!"];
             }
             else {
                 [self navigateToMainScreen];
-
                 ParsePushUserAssign();
                 [ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome back %@!", user[PF_USER_FULLNAME]]];
                 [self dismissViewControllerAnimated:YES completion:nil];
             }
         }];
     }
-}
-
-/// Sets up the done button on keyboard to be blue.
-- (void)setupReturnButton {
-    self.usernameField.delegate = self;
-    self.passwordField.delegate = self;
-    
-    [self.usernameField setReturnKeyType:UIReturnKeyNext];
-    [self.passwordField setReturnKeyType:UIReturnKeyDone];
 }
 
 - (IBAction)facebookLogin:(id)sender {
@@ -231,16 +215,8 @@
     [self navigateToMainScreen];
 }
 
-- (IBAction)signUpButtonClicked:(id)sender {
-    SignUpViewController *signUpController = [[SignUpViewController alloc] init];
-    [self.navigationController pushViewController:signUpController animated:YES];
-    
-}
 - (IBAction)backButtonClicked:(id)sender {
-    AMSlideMenuMainViewController *mainVC = [self mainSlideMenu];
-    UIViewController *rootVC = [[IntroLoginScreenViewController alloc] init];
-    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:rootVC];
-    [mainVC.leftMenu openContentNavigationController:nvc];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Navigate to Home screem

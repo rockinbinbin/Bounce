@@ -65,7 +65,8 @@
 - (NSInteger) getNearUsersNumberInGroup:(PFObject *) group;
 //
 - (void) addGroup:(NSString*) groupName withLocation:(PFGeoPoint*) location andPrivacy:(NSString*) privacy;
-
+// check if there is auser logged in
+- (BOOL) isThereLoggedUser;
 @end
 
 @protocol ParseManagerLoginDelegate <NSObject>

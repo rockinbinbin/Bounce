@@ -703,4 +703,13 @@ PFUser *currentUser;
 {
     currentUser = user;
 }
+
+#pragma mark - IS There Alogged user
+- (BOOL) isThereLoggedUser
+{
+    if ([PFUser currentUser]) {
+       return YES;
+    }
+    return NO;
+}
 @end

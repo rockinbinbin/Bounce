@@ -7,19 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MBProgressHUD.h"
+#import "ProgressHUD.h"
 #import "Reachability.h"
-//#import "Constants.h"
 
 @interface Utility : NSObject
 
 + (Utility*) getInstance;
+// progress Hud
 - (void) showProgressHudWithMessage:(NSString*)message withView:(UIView *)view;
+- (void) showProgressHudWithMessage:(NSString*)message;
 - (void) hideProgressHud;
+// NetWork Connection
 - (BOOL) checkReachabilityAndDisplayErrorMessage;
 - (void)showAlertMessage:(NSString *)message;
 -(void) showAlertWithMessage:(NSString*) message andTitle:(NSString*)title;
 //
 - (BOOL)isRequestValid:(NSDate *)craetedDate andTimeAllocated:(NSInteger) time;
-
+// navigate to home screen
+- (void) navigateToMainScreenFromNAvigationContorller:(UINavigationController *) navigationController;
 @end

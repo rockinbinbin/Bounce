@@ -7,11 +7,10 @@
 //
 
 #import "Utility.h"
+#import "SlideMenuViewController.h"
 
 @implementation Utility
-{
-    MBProgressHUD *progressHud;
-}
+
 static Utility *sharedUtility = nil;
 
 + (Utility*) getInstance{
@@ -32,15 +31,14 @@ static Utility *sharedUtility = nil;
 #pragma mark - progress hud
 #pragma mark - Progress Hud Methods
 - (void) showProgressHudWithMessage:(NSString*)message withView:(UIView *)view {
-    [self hideProgressHud];
-    progressHud = [MBProgressHUD showHUDAddedTo:view animated:YES];
-    progressHud.labelText = message;
+    [self showProgressHudWithMessage:message];
 }
-
+- (void) showProgressHudWithMessage:(NSString*)message {
+    [ProgressHUD dismiss];
+    [ProgressHUD show:message Interaction:NO];
+}
 - (void) hideProgressHud{
-    if(progressHud && ![progressHud isHidden]){
-        [progressHud hide:YES];
-    }
+  [ProgressHUD dismiss];
 }
 
 #pragma mark - Check Internet Reachability
@@ -93,6 +91,19 @@ static Utility *sharedUtility = nil;
         return NO;
     }else{
         return YES;
+    }
+}
+
+#pragma mark - Go Home screen
+#pragma mark - Navigate to Home screem
+- (void) navigateToMainScreenFromNAvigationContorller:(UINavigationController *) navigationController
+{
+    @try {
+        SlideMenuViewController* mainViewController = [[SlideMenuViewController alloc] init];
+        [navigationController pushViewController:mainViewController animated:YES];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
     }
 }
 @end

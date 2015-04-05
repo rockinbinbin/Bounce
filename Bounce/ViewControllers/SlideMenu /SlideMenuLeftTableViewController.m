@@ -8,11 +8,12 @@
 
 #import "SlideMenuLeftTableViewController.h"
 #import "HomeScreenViewController.h"
-#import "RequistsViewController.h"
+#import "RequestsViewController.h"
 #import "Constants.h"
 #import "AppConstant.h"
 #import <ParseManager.h>
 #import "LoginScreenViewController.h"
+#import "IntroPagesViewController.h"
 
 #define Profile_Section 0
 #define Chats_Section 1
@@ -66,20 +67,8 @@
         profileView.layer.borderWidth = 3.0f;
         profileView.layer.borderColor = DEFAULT_COLOR.CGColor;
         [cell addSubview:profileView];
-        
-        // adding user name
-        UILabel* usernameLabel = [[UILabel alloc] initWithFrame:CGRectMake(SIDE_MENU_WIDTH / 2 - 50, imageYPosition + 100, 100, 40)];
-        usernameLabel.font = [UIFont fontWithName:@"FS Albert" size:32];
-        usernameLabel.textColor = [UIColor whiteColor];
-        usernameLabel.text = @"Robin Mehta";
-        [cell addSubview:usernameLabel];
-        
-        // adding user location
-        UILabel* userLocationLabel = [[UILabel alloc] initWithFrame:CGRectMake(SIDE_MENU_WIDTH / 2 - 50, imageYPosition + 120, 100, 40)];
-        userLocationLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
-        userLocationLabel.textColor = [UIColor lightTextColor];
-        userLocationLabel.text = @"New York City";
-        [cell addSubview:userLocationLabel];
+        // Set username and location
+        [self setUserNameAndLocationAtCell:cell andYPosition:imageYPosition];
     }
     else if(indexPath.row == Chats_Section){
 //        cell.textLabel.text = @"Chats";
@@ -136,6 +125,30 @@
     
     return cell;
 }
+#pragma mark - 
+- (void) setUserNameAndLocationAtCell:(UITableViewCell*) cell andYPosition:(int) imageYPosition
+{
+    @try {
+        // adding user name
+        NSString *userName = [[PFUser currentUser] username];
+        
+        UILabel* usernameLabel = [[UILabel alloc] initWithFrame:CGRectMake(SIDE_MENU_WIDTH / 2 - 50, imageYPosition + 100, 100, 40)];
+        usernameLabel.font = [UIFont fontWithName:@"FS Albert" size:32];
+        usernameLabel.textColor = [UIColor whiteColor];
+        usernameLabel.text = userName;
+        [cell addSubview:usernameLabel];
+        
+        // adding user location
+        UILabel* userLocationLabel = [[UILabel alloc] initWithFrame:CGRectMake(SIDE_MENU_WIDTH / 2 - 50, imageYPosition + 120, 100, 40)];
+        userLocationLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
+        userLocationLabel.textColor = [UIColor lightTextColor];
+        userLocationLabel.text = @"New York City";
+        [cell addSubview:userLocationLabel];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
 
 -(void) signoutButtonClicked{
     NSLog(@"sign out pressed!");
@@ -144,13 +157,16 @@
     UIViewController *rootVC;
             rootVC = [[LoginScreenViewController alloc] init];
 
-    nvc = [[UINavigationController alloc] initWithRootViewController:rootVC];
     
-    [self openContentNavigationController:nvc];
 //
 //    HomeScreenViewController* homeScreenViewController = [[HomeScreenViewController alloc] initWithNibName:@"HomeScreenViewController" bundle:nil];
 //
 //    [self.navigationController popToViewController:homeScreenViewController animated:YES];
+    
+    IntroPagesViewController* introPagesViewController = [[IntroPagesViewController alloc] initWithNibName:@"IntroPagesViewController" bundle:nil];
+    nvc = [[UINavigationController alloc] initWithRootViewController:introPagesViewController];
+    [self openContentNavigationController:nvc];
+
 }
 
 #pragma mark - TableView Delegate
@@ -166,7 +182,7 @@
             break;
         case Chats_Section:
         {
-            rootVC = [[RequistsViewController alloc] initWithNibName:@"RequistsViewController" bundle:nil];
+            rootVC = [[RequestsViewController alloc] initWithNibName:@"RequestsViewController" bundle:nil];
         }
             break;
 //        case Logout_Section:

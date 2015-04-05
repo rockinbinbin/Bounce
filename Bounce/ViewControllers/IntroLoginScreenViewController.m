@@ -9,9 +9,6 @@
 #import "IntroLoginScreenViewController.h"
 #import "LoginScreenViewController.h"
 #import "SignupScreenViewController.h"
-#import "AppConstant.h"
-#import "SlideMenuViewController.h"
-#import "UIViewController+AMSlideMenu.h"
 
 @interface IntroLoginScreenViewController ()
 
@@ -24,15 +21,12 @@
     // Do any additional setup after loading the view from its nib.
     self.currentIndexPageControl.backgroundColor = [UIColor clearColor];
     self.currentIndexPageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
-
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     self.view.backgroundColor = DEFAULT_COLOR;
     [self customiseButtonShadow:self.loginButton];
     [self customiseButtonShadow:self.registerButton];
-    [self disableSlidePanGestureForLeftMenu];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
 
@@ -50,16 +44,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)loginButtonClicked:(id)sender {
     LoginScreenViewController* loginScreenViewController = [[LoginScreenViewController alloc] initWithNibName:@"LoginScreenViewController" bundle:nil];

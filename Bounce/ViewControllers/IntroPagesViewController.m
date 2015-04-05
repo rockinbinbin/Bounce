@@ -7,12 +7,12 @@
 //
 
 #import "IntroPagesViewController.h"
-#import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 #import "Intro1IDViewController.h"
 #import "Intro2IDViewController.h"
 #import "Intro3IDViewController.h"
 #import "IntroLoginScreenViewController.h"
+#import "UIViewController+AMSlideMenu.h"
 
 @interface IntroPagesViewController ()
 
@@ -38,12 +38,21 @@
     [self setViewControllers:@[intro1IDViewController]
                    direction:UIPageViewControllerNavigationDirectionForward
                     animated:NO completion:nil];
+    [self disableSlidePanGestureForLeftMenu];
 }
-
+#pragma mark - Page Control Data Source
 -(UIViewController *)viewControllerAtIndex:(NSUInteger)index{
     return myViewControllers[index];
 }
+-(NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController{
+    return myViewControllers.count;
+}
 
+-(NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController{
+    return 0;
+}
+
+#pragma mark - Page Control Delegate
 -(UIViewController *)pageViewController:(UIPageViewController *)pageViewController
      viewControllerBeforeViewController:(UIViewController *)viewController{
     NSUInteger currentIndex = [myViewControllers indexOfObject:viewController];
@@ -61,7 +70,8 @@
 -(UIViewController *)pageViewController:(UIPageViewController *)pageViewController
       viewControllerAfterViewController:(UIViewController *)viewController{
     NSUInteger currentIndex = [myViewControllers indexOfObject:viewController];
-    if (currentIndex == 3) {
+    if (currentIndex == ([myViewControllers count] - 1)) {
+        // last page
         return 0;
     }
     ++currentIndex;
@@ -69,13 +79,6 @@
     return [myViewControllers objectAtIndex:currentIndex];
 }
 
--(NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController{
-    return myViewControllers.count;
-}
-
--(NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController{
-    return 0;
-}
 
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];

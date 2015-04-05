@@ -13,8 +13,7 @@
 #import "IntroPages.h"
 #import "UsersListViewController.h"
 #import "IntroPagesViewController.h"
-
-#import "HomeScreenViewController.h"
+#import "SlideMenuViewController.h"
 @implementation AppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;
@@ -23,68 +22,35 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    // Override point for customization after application launch.
-//    self.window.backgroundColor = [UIColor whiteColor];
-//    [self.window makeKeyAndVisible];
-    [Parse setApplicationId:@"vVNUbdp3ci9MLKqNWJMFMYBQZ1tE8EjJ5DZBTCF7"
-                  clientKey:@"JvcX34MRd7rREhmtjFZrcU8mxqmRDFlbyC0yXzAv"];
-    
+    // set parse keys
+    [Parse setApplicationId:PARSE_APP_ID clientKey:PARSE_CLIENT_KEY];
     [PFFacebookUtils initializeFacebook];
-    
-//    MapViewController *mapView = [[MapViewController alloc] init];
-//    self.window.rootViewController = mapView;
-//    //self.window.backgroundColor = [UIColor whiteColor];
-//    [self.window makeKeyAndVisible];
-//    
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-        
+    // register for remote notifications
     if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
         // iOS 8
         UIUserNotificationSettings* settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
         [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
         [application registerForRemoteNotifications];
-        
     } else {
         // iOS 7 or iOS 6
         [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     }
+    // Set the appearane of the application segment controls
+    [self setSegmentControlAppearance];
 
-    
-    [PFImageView class];
-    
-    UIPageControl *pageControl = [UIPageControl appearance];
-    pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
-    pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
-    pageControl.backgroundColor = [UIColor whiteColor];
-    
-    
-    
-    [[UISegmentedControl appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateSelected];
-    [[UISegmentedControl appearance] setBackgroundColor:[UIColor whiteColor]];
-    [[UISegmentedControl appearance] setTintColor:DEFAULT_COLOR];
-
-
-//    UITabBarController *tabController = [[UITabBarController alloc] init];
-//
-//    HomeScreenViewController* homeScreenViewController = [[HomeScreenViewController alloc] initWithNibName:@"HomeScreenViewController" bundle:nil];
-//    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:homeScreenViewController];
-    
-    IntroPagesViewController* introPagesViewController = [[IntroPagesViewController alloc] initWithNibName:@"IntroPagesViewController" bundle:nil];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:introPagesViewController];
+    UINavigationController *navigationController;
+    // if user looged in skip the introduction screens and move to home screen
+    if ([[ParseManager getInstance] isThereLoggedUser]) {
+        SlideMenuViewController* mainViewController = [[SlideMenuViewController alloc] init];
+        navigationController  = [[UINavigationController alloc] initWithRootViewController:mainViewController];
+    }else{
+        IntroPagesViewController* introPagesViewController = [[IntroPagesViewController alloc] initWithNibName:@"IntroPagesViewController" bundle:nil];
+        navigationController  = [[UINavigationController alloc] initWithRootViewController:introPagesViewController];
+    }
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
-
-//
-//    //    UITabBarItem *item = [controller objectAtIndex:1];
-//    //    UITabBarItem *item2  = [[UITabBarItem alloc] in]
-//    //    item.
-//
-//    NSMutableArray * controller = [NSMutableArray arrayWithObject:navigation] ;
-//    tabController.viewControllers = [NSArray arrayWithArray:controller];
-//    
-
     return YES;
 }
 
@@ -229,4 +195,16 @@
     return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication withSession:[PFFacebookUtils session]];
 }
 
+#pragma mark - Segment Control Appearance
+- (void) setSegmentControlAppearance
+{
+    @try {
+        [[UISegmentedControl appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateSelected];
+        [[UISegmentedControl appearance] setBackgroundColor:[UIColor whiteColor]];
+        [[UISegmentedControl appearance] setTintColor:DEFAULT_COLOR];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
 @end
