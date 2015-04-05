@@ -242,7 +242,7 @@
         view.backgroundColor = [ UIColor clearColor ];
     }
 
-    cell.contentView.backgroundColor = [UIColor colorWithRed:224.0/255.0 green:224.0/255.0 blue:224.0/255.0 alpha:1.0f];
+    cell.contentView.backgroundColor = LIGHT_SELECT_GRAY_COLOR;
 
     // filling the cell data
     

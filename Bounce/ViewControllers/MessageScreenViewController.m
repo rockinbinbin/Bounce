@@ -26,8 +26,8 @@
 //    self.navigationItem.leftBarButtonItem = CancelButton;
 //    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
 //    [self.view addGestureRecognizer:gestureRecognizer];
-    _distanceSelectButton.backgroundColor = [UIColor grayColor];
-    _durationSelectButton.backgroundColor = [UIColor grayColor];
+    _distanceSelectButton.backgroundColor = LIGHT_SELECT_GRAY_COLOR;
+    _durationSelectButton.backgroundColor = LIGHT_SELECT_GRAY_COLOR;
 
     
     [self addArrowImageToButton:self.distanceSelectButton];
@@ -37,7 +37,7 @@
 -(void) addArrowImageToButton:(UIButton*) selectButton{
     UIImageView *downArrow = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"common_down_arrow"]];
     downArrow.contentMode = UIViewContentModeScaleToFill;
-    downArrow.frame = CGRectMake(170, 10, 20, 20);
+    downArrow.frame = CGRectMake(170, 16, 10, 10);
     downArrow.contentMode=UIViewContentModeScaleAspectFill;
     [selectButton addSubview:downArrow];
 }
@@ -111,10 +111,10 @@
         controller.radius = radius;
         controller.timeAllocated = time;
         if ([self.groupGenderSegment selectedSegmentIndex] == 0) {
-            controller.genderFilter = @"All genders";
+            controller.genderFilter = @"All";
         } else if ([self.groupGenderSegment selectedSegmentIndex] == 1) {
-            //TODO: check the current user gender and send it
-            controller.genderFilter = @"Gender matching";
+            PFUser* u = [PFUser currentUser];
+            controller.genderFilter = u[@"Gender"]; // Male or Female
         }
         [self.navigationController pushViewController:controller animated:YES];
     }

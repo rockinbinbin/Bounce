@@ -165,8 +165,8 @@
         self.groupsTableView.backgroundColor = [UIColor whiteColor];
     }else{
         // if request time out ==> added gray background
-        cell.contentView.backgroundColor = [UIColor colorWithRed:224.0/255.0 green:224.0/255.0 blue:224.0/255.0 alpha:1.0f];
-        self.groupsTableView.backgroundColor = [UIColor colorWithRed:224.0/255.0 green:224.0/255.0 blue:224.0/255.0 alpha:1.0f];
+        cell.contentView.backgroundColor = LIGHT_SELECT_GRAY_COLOR;
+        self.groupsTableView.backgroundColor = LIGHT_SELECT_GRAY_COLOR;
     }
 
     return cell;

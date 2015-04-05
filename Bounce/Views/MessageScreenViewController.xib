@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="BAq-td-hth">
-                    <rect key="frame" x="170" y="250" width="260" height="29"/>
+                    <rect key="frame" x="170" y="310" width="260" height="29"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="28" id="3ca-Um-viV"/>
@@ -36,7 +36,7 @@
                     </connections>
                 </segmentedControl>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="159-ic-k3y">
-                    <rect key="frame" x="200" y="298" width="200" height="40"/>
+                    <rect key="frame" x="200" y="358" width="200" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="200" id="H3S-QT-E0b"/>
                         <constraint firstAttribute="height" constant="40" id="Q39-sS-WPD"/>
@@ -50,7 +50,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vv9-fh-rM1">
-                    <rect key="frame" x="200" y="358" width="200" height="40"/>
+                    <rect key="frame" x="200" y="418" width="200" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="200" id="BQY-JP-fqf"/>
                         <constraint firstAttribute="height" constant="40" id="UYX-mi-ftY"/>
@@ -64,7 +64,7 @@
                     </connections>
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="mjU-7a-CWs">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
+                    <rect key="frame" x="0.0" y="60" width="600" height="200"/>
                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="200" id="ZHv-Z1-HVK"/>
@@ -81,7 +81,7 @@
                 <constraint firstItem="159-ic-k3y" firstAttribute="top" secondItem="BAq-td-hth" secondAttribute="bottom" constant="20" id="0l3-dq-0lg"/>
                 <constraint firstItem="mjU-7a-CWs" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="5by-E7-Ptv"/>
                 <constraint firstAttribute="centerX" secondItem="Vv9-fh-rM1" secondAttribute="centerX" id="7to-Mh-Cqf"/>
-                <constraint firstItem="mjU-7a-CWs" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="D1W-dh-GA1"/>
+                <constraint firstItem="mjU-7a-CWs" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="60" id="D1W-dh-GA1"/>
                 <constraint firstItem="Vv9-fh-rM1" firstAttribute="top" secondItem="159-ic-k3y" secondAttribute="bottom" constant="20" id="OE8-lR-bN2"/>
                 <constraint firstAttribute="trailing" secondItem="mjU-7a-CWs" secondAttribute="trailing" id="UwP-zK-6o9"/>
                 <constraint firstAttribute="centerX" secondItem="BAq-td-hth" secondAttribute="centerX" id="YM9-wf-VWE"/>
