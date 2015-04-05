@@ -10,7 +10,7 @@
 #import "utilities.h"
 #import <Parse/Parse.h>
 #import "UsersListViewController.h"
-#import "RequistsViewController.h"
+#import "RequestsViewController.h"
 
 @interface RootTabBarController ()
 
@@ -23,7 +23,7 @@
     
 //    UsersListViewController* userListViewController = [[UsersListViewController alloc] init];
 //    GroupsListViewController* groupListViewController = [[GroupsListViewController alloc] init];
-        RequistsViewController* requistsViewController = [[RequistsViewController alloc] init];
+        RequestsViewController* requistsViewController = [[RequestsViewController alloc] init];
 
     NSMutableArray * controller = [NSMutableArray arrayWithArray: self.viewControllers] ;
     

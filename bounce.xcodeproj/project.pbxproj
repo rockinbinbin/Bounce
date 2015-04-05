@@ -190,8 +190,8 @@
 		CA3ABC2A1AC7E64100E1B5DE /* Tutorial-3_iPhone6.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBD81AC7E64100E1B5DE /* Tutorial-3_iPhone6.png */; };
 		CA3ABC2B1AC7E64100E1B5DE /* Tutorial-3_iPhone6plus.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBD91AC7E64100E1B5DE /* Tutorial-3_iPhone6plus.png */; };
 		CA3ABC2D1AC7E64100E1B5DE /* ParseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3ABBE11AC7E64100E1B5DE /* ParseManager.m */; };
-		CA3ABC2F1AC7E64100E1B5DE /* RequistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3ABBE61AC7E64100E1B5DE /* RequistsViewController.m */; };
-		CA3ABC301AC7E64100E1B5DE /* RequistsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBE71AC7E64100E1B5DE /* RequistsViewController.xib */; };
+		CA3ABC2F1AC7E64100E1B5DE /* RequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3ABBE61AC7E64100E1B5DE /* RequestsViewController.m */; };
+		CA3ABC301AC7E64100E1B5DE /* RequestsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBE71AC7E64100E1B5DE /* RequestsViewController.xib */; };
 		CA3ABC311AC7E64100E1B5DE /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3ABBE81AC7E64100E1B5DE /* SignUpViewController.xib */; };
 		CA3ABC321AC7E64100E1B5DE /* NIDropDown.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3ABBEC1AC7E64100E1B5DE /* NIDropDown.m */; };
 		CA3ABC331AC7E64100E1B5DE /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3ABBEE1AC7E64100E1B5DE /* Utility.m */; };
@@ -581,9 +581,9 @@
 		CA3ABBDB1AC7E64100E1B5DE /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		CA3ABBE01AC7E64100E1B5DE /* ParseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseManager.h; sourceTree = "<group>"; };
 		CA3ABBE11AC7E64100E1B5DE /* ParseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseManager.m; sourceTree = "<group>"; };
-		CA3ABBE51AC7E64100E1B5DE /* RequistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RequistsViewController.h; path = ../RequistsViewController.h; sourceTree = "<group>"; };
-		CA3ABBE61AC7E64100E1B5DE /* RequistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RequistsViewController.m; path = ../RequistsViewController.m; sourceTree = "<group>"; };
-		CA3ABBE71AC7E64100E1B5DE /* RequistsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RequistsViewController.xib; path = ../RequistsViewController.xib; sourceTree = "<group>"; };
+		CA3ABBE51AC7E64100E1B5DE /* RequestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RequestsViewController.h; path = ../RequestsViewController.h; sourceTree = "<group>"; };
+		CA3ABBE61AC7E64100E1B5DE /* RequestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RequestsViewController.m; path = ../RequestsViewController.m; sourceTree = "<group>"; };
+		CA3ABBE71AC7E64100E1B5DE /* RequestsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RequestsViewController.xib; path = ../RequestsViewController.xib; sourceTree = "<group>"; };
 		CA3ABBE81AC7E64100E1B5DE /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
 		CA3ABBEB1AC7E64100E1B5DE /* NIDropDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIDropDown.h; sourceTree = "<group>"; };
 		CA3ABBEC1AC7E64100E1B5DE /* NIDropDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIDropDown.m; sourceTree = "<group>"; };
@@ -1457,8 +1457,8 @@
 				CA7F0A9E1AC948FF00AC5FCB /* EditGroupsViewController.m */,
 				CA7F0A981AC92EF500AC5FCB /* ChatListCell.h */,
 				CA7F0A991AC92EF500AC5FCB /* ChatListCell.m */,
-				CA3ABBE51AC7E64100E1B5DE /* RequistsViewController.h */,
-				CA3ABBE61AC7E64100E1B5DE /* RequistsViewController.m */,
+				CA3ABBE51AC7E64100E1B5DE /* RequestsViewController.h */,
+				CA3ABBE61AC7E64100E1B5DE /* RequestsViewController.m */,
 				CAB03D781AC993CC0043835F /* CustomChatViewController.h */,
 				CAB03D771AC993CC0043835F /* CustomChatViewController.m */,
 				CAB03D7A1AC995670043835F /* AddHomePointViewController.h */,
@@ -1496,7 +1496,7 @@
 				CA7F0A951AC92E5100AC5FCB /* GroupsListViewController.xib */,
 				CA7F0A9F1AC948FF00AC5FCB /* EditGroupsViewController.xib */,
 				CA7F0A9A1AC92EF500AC5FCB /* ChatListCell.xib */,
-				CA3ABBE71AC7E64100E1B5DE /* RequistsViewController.xib */,
+				CA3ABBE71AC7E64100E1B5DE /* RequestsViewController.xib */,
 				CA49644F1ACAA26E00DAD523 /* AddLocationScreenViewController.xib */,
 				CAB03D7F1AC997630043835F /* AddGroupUsersViewController.xib */,
 				CAB03D841AC99BAA0043835F /* HomePointSuccessfulCreationViewController.xib */,
@@ -1624,7 +1624,7 @@
 				00CEE3E9199434E700F40C12 /* Images.xcassets in Resources */,
 				CA3ABC161AC7E64100E1B5DE /* LandingView.png in Resources */,
 				CAB71EBD1ACD61B300FB09FD /* Tutorial-1@2x.png in Resources */,
-				CA3ABC301AC7E64100E1B5DE /* RequistsViewController.xib in Resources */,
+				CA3ABC301AC7E64100E1B5DE /* RequestsViewController.xib in Resources */,
 				CA3ABC241AC7E64100E1B5DE /* Tutorial-2_iPhone6.png in Resources */,
 				CA3ABC221AC7E64100E1B5DE /* Tutorial-2@2x.png in Resources */,
 				00414F3B1AADEE0600B25CEE /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
@@ -1667,7 +1667,7 @@
 				00296BD819EFA5BF003ADA30 /* APContact.m in Sources */,
 				00414F051AADEE0600B25CEE /* AFURLConnectionOperation.m in Sources */,
 				CA7F0A9B1AC92EF500AC5FCB /* ChatListCell.m in Sources */,
-				CA3ABC2F1AC7E64100E1B5DE /* RequistsViewController.m in Sources */,
+				CA3ABC2F1AC7E64100E1B5DE /* RequestsViewController.m in Sources */,
 				00414F351AADEE0600B25CEE /* JSQMessagesLoadEarlierHeaderView.m in Sources */,
 				00414F241AADEE0600B25CEE /* JSQLocationMediaItem.m in Sources */,
 				007BA4091A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.m in Sources */,

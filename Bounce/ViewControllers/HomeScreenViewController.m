@@ -12,7 +12,7 @@
 #import "utilities.h"
 #import "IntroPages.h"
 #import "MessageScreenViewController.h"
-#import "RequistsViewController.h"
+#import "RequestsViewController.h"
 #import "AppConstant.h"
 #import "GroupsListViewController.h"
 #import "UIViewController+AMSlideMenu.h"
@@ -183,7 +183,7 @@
 
 - (IBAction)repliesButtonClicked:(id)sender {
     // navigate to the request screen
-    RequistsViewController* requistsViewController = [[RequistsViewController alloc] initWithNibName:@"RequistsViewController" bundle:nil];
+    RequestsViewController* requistsViewController = [[RequestsViewController alloc] initWithNibName:@"RequestsViewController" bundle:nil];
     [self.navigationController pushViewController:requistsViewController animated:YES];
 }
 - (IBAction)endRequestButtonClicked:(id)sender {
@@ -195,7 +195,7 @@
     }
 }
 - (IBAction)privateChatButtonClicked:(id)sender {
-//    RequistsViewController *requistViewController = [[RequistsViewController alloc] init];
+//    RequestsViewController *requistViewController = [[RequestsViewController alloc] init];
 //    [self.navigationController pushViewController:requistViewController animated:YES];
     AMSlideMenuMainViewController *mainVC = [self mainSlideMenu];
     [mainVC openLeftMenu];

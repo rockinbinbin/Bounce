@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Shimaa Essam. All rights reserved.
 //
 
-#import "RequistsViewController.h"
+#import "RequestsViewController.h"
 
 #import "CustomChatViewController.h"
 #import "AppConstant.h"
@@ -16,13 +16,13 @@
 #import "HomeScreenViewController.h"
 #import "ChatListCell.h"
 
-@interface RequistsViewController ()
+@interface RequestsViewController ()
 {
     NSMutableArray *requests;
 }
 @end
 
-@implementation RequistsViewController
+@implementation RequestsViewController
 
 
 - (void)viewDidLoad {
