@@ -45,8 +45,8 @@
     
     self.addLocationButton.backgroundColor = LIGHT_BLUE_COLOR;
     
-    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
-    [self.view addGestureRecognizer:gestureRecognizer];
+//    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+//    [self.view addGestureRecognizer:gestureRecognizer];
 }
 - (void)viewWillAppear:(BOOL)animated{
     // Disable left Slide menu
@@ -352,5 +352,10 @@
 - (void) hideKeyboard
 {
     [self.groupNameTextField resignFirstResponder];
+}
+
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [[self view] endEditing:YES];
 }
 @end

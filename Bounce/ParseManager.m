@@ -336,11 +336,6 @@ PFUser *currentUser;
     // get the userRelation of the group
     // then append users to this relation
     
-    // Add relation
-    PFRelation *relation = [group relationForKey:@"groupUsers"];
-    for (PFUser *user in  users) {
-        [relation addObject:user];
-    }
     
     NSMutableArray *Userarray = [[NSMutableArray alloc] init];
     [Userarray addObject:users];
@@ -350,7 +345,16 @@ PFUser *currentUser;
     [user saveInBackground];
 
     
-    [group saveInBackground];
+//    [group saveInBackground];
+    [group saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        // Add relation
+        PFRelation *relation = [group relationForKey:@"groupUsers"];
+        for (PFUser *user in  users) {
+            [relation addObject:user];
+        }
+        [group save];
+
+    }];
     
 }
 

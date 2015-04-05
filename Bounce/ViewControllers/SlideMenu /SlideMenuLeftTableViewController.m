@@ -15,7 +15,9 @@
 #import "LoginScreenViewController.h"
 #import "IntroPagesViewController.h"
 
-#define Chats_Section 0
+
+#define Chats_Section 1
+#define Home_section 0
 @interface SlideMenuLeftTableViewController ()
 
 @end
@@ -29,7 +31,7 @@
     // Do any additional setup after loading the view from its nib.
     self.view.backgroundColor = [UIColor darkGrayColor];
     // Initilizing data souce
-    self.tableData = [@[@"Chat"] mutableCopy];
+    self.tableData = [@[@"", @"Chat"] mutableCopy];
 }
 
 -(void) viewWillAppear:(BOOL)animated{
@@ -66,6 +68,7 @@
         cell.textLabel.textColor = [UIColor whiteColor];
      
         int imageYPosition = cell.frame.origin.y + 20;
+    if (indexPath.row == Chats_Section) {
         // adding chats number
         UIImageView* chatsNumberView = [[UIImageView alloc] initWithFrame:CGRectMake(SIDE_MENU_WIDTH * 4 / 5, imageYPosition - 15, 30, 30)];
         chatsNumberView.backgroundColor = DEFAULT_COLOR;
@@ -73,7 +76,6 @@
         chatsNumberView.clipsToBounds = YES;
         chatsNumberView.layer.borderWidth = 3.0f;
         chatsNumberView.layer.borderColor = DEFAULT_COLOR.CGColor;
-        
         // number of messages for the group
         UILabel* numOfMessagesLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 4, 30, 20)];
         numOfMessagesLabel.textAlignment = NSTextAlignmentCenter;
@@ -83,7 +85,7 @@
         [numOfMessagesLabel setFont:[UIFont fontWithName: @"Trebuchet MS" size: 14.0f]];
         [chatsNumberView addSubview:numOfMessagesLabel];
         [cell addSubview:chatsNumberView];
-
+        
         // adding chats number
         UIImageView* redCircleView = [[UIImageView alloc] initWithFrame:CGRectMake(20 , imageYPosition - 5, 10, 10)];
         redCircleView.backgroundColor = DEFAULT_COLOR;
@@ -93,13 +95,14 @@
         redCircleView.layer.borderColor = DEFAULT_COLOR.CGColor;
         [cell addSubview:redCircleView];
         
-        // adding user name
         UILabel* usernameLabel = [[UILabel alloc] initWithFrame:CGRectMake(40 , imageYPosition - 20, 100, 40)];
         usernameLabel.font = [UIFont fontWithName:@"FS Albert" size:32];
         usernameLabel.textColor = [UIColor whiteColor];
         usernameLabel.text = @"Chats";
         [cell addSubview:usernameLabel];
         [cell setBackgroundColor:[UIColor darkGrayColor]];
+    }
+    
 
     return cell;
 }
@@ -124,6 +127,11 @@
     UINavigationController *nvc;
     UIViewController *rootVC;
     switch (indexPath.row) {
+        case Home_section:
+        {
+            rootVC = [[HomeScreenViewController alloc] initWithNibName:@"HomeScreenViewController" bundle:nil];
+        }
+            break;
         case Chats_Section:
         {
             rootVC = [[RequestsViewController alloc] initWithNibName:@"RequestsViewController" bundle:nil];
@@ -133,10 +141,12 @@
         default:
             break;
     }
-    nvc = [[UINavigationController alloc] initWithRootViewController:rootVC];
+    if (rootVC) {
+        nvc = [[UINavigationController alloc] initWithRootViewController:rootVC];
+        [self openContentNavigationController:nvc];
+    }
     
-    [self openContentNavigationController:nvc];
-}
+   }
 
 #pragma mark - TableView Datasource
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
