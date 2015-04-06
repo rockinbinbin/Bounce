@@ -93,6 +93,17 @@ static Utility *sharedUtility = nil;
         return YES;
     }
 }
+- (BOOL)isRequestValidWithEndDate:(NSDate *)endDate
+{
+    NSDate* currentdate = [NSDate date];
+    NSTimeInterval distanceBetweenDates = [endDate timeIntervalSinceDate:currentdate];
+    
+    if (distanceBetweenDates <= 0){
+        return NO;
+    }else{
+        return YES;
+    }
+}
 
 #pragma mark - Go Home screen
 #pragma mark - Navigate to Home screem

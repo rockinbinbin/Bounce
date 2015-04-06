@@ -23,6 +23,7 @@
 -(void) showAlertWithMessage:(NSString*) message andTitle:(NSString*)title;
 //
 - (BOOL)isRequestValid:(NSDate *)craetedDate andTimeAllocated:(NSInteger) time;
+- (BOOL)isRequestValidWithEndDate:(NSDate *)endDate;
 // navigate to home screen
 - (void) navigateToMainScreenFromNAvigationContorller:(UINavigationController *) navigationController;
 // Create custom button

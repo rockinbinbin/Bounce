@@ -749,4 +749,31 @@ PFUser *currentUser;
     }];
 
 }
+
+#pragma mark - Number of valid Requests
+- (void) getNumberOfValidRequests
+{
+    // load requests if the user is sender or receiver
+    PFQuery *query1 = [PFQuery queryWithClassName:PF_REQUET_CLASS_NAME];
+    [query1 whereKey:PF_REQUEST_SENDER equalTo:[[PFUser currentUser] username]];
+
+    PFQuery *query2 = [PFQuery queryWithClassName:PF_REQUET_CLASS_NAME];
+    [query2 whereKey:@"receivers" equalTo:[[PFUser currentUser] username]];
+    
+    PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:query1, query2, nil]];
+    [query whereKey:PF_REQUEST_END_DATE greaterThan:[NSDate date]];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+     {
+         if ([objects count] > 0) {
+             // fire notification to update the request numbers
+             NSDictionary* dict = [NSDictionary dictionaryWithObject:
+                                   [NSNumber numberWithInteger:[objects count]]
+                                                              forKey:@"Chat"];
+             [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateChatNumber" object:nil userInfo:dict];
+
+         }
+     }];
+
+}
 @end

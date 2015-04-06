@@ -22,6 +22,14 @@
     [super viewDidLoad];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    AMSlideMenuState oldState = [self menuState];
+    [super viewWillAppear:animated];
+    if (oldState == AMSlideMenuLeftOpened) {
+        [self openLeftMenu];
+    }
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -41,7 +49,7 @@
 
 - (BOOL)deepnessForLeftMenu
 {
-    return YES;
+    return NO;
 }
 
 - (CGFloat)maxDarknessWhileLeftMenu

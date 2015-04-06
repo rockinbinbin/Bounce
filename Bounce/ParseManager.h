@@ -77,6 +77,8 @@
 - (void) addGroup:(NSString*) groupName withLocation:(PFGeoPoint*) location andPrivacy:(NSString*) privacy;
 // check if there is auser logged in
 - (BOOL) isThereLoggedUser;
+// GET VALID REQUEST NUMBER
+- (void) getNumberOfValidRequests;
 
 @end
 

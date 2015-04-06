@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SlideMenuLeftTableViewController">
             <connections>
+                <outlet property="tableView" destination="Inl-rG-uRb" id="bg1-xr-1QV"/>
                 <outlet property="userCityLabel" destination="Gus-Rz-eZd" id="da7-7G-t2Y"/>
                 <outlet property="userProfileImageView" destination="ARW-3U-vVh" id="pdf-So-xYp"/>
                 <outlet property="usernameLabel" destination="RP3-Z0-MHJ" id="cnw-HC-xmu"/>
@@ -24,24 +25,34 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uyb-kx-y50" userLabel="header view">
                             <rect key="frame" x="0.0" y="0.0" width="225" height="200"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tutorial-1" translatesAutoresizingMaskIntoConstraints="NO" id="ARW-3U-vVh" userLabel="user imageview">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XQx-dR-bcB" userLabel="Change Profile image button">
+                                    <rect key="frame" x="0.0" y="0.0" width="225" height="200"/>
+                                    <state key="normal">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="changeImageButtonClicked:" destination="-1" eventType="touchUpInside" id="RRK-Uy-1n3"/>
+                                    </connections>
+                                </button>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ARW-3U-vVh" userLabel="user imageview">
                                     <rect key="frame" x="63" y="10" width="100" height="100"/>
+                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="100" id="7i8-fE-fHp"/>
                                         <constraint firstAttribute="height" constant="100" id="wRS-9H-r5l"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Robin Mehta" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RP3-Z0-MHJ">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Robin Mehta" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RP3-Z0-MHJ" userLabel="User name">
                                     <rect key="frame" x="13" y="120" width="200" height="36"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="36" id="0u8-jB-hp7"/>
                                         <constraint firstAttribute="width" constant="200" id="Woh-ae-WNe"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New York City" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gus-Rz-eZd">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New York City" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gus-Rz-eZd" userLabel="User City">
                                     <rect key="frame" x="24" y="164" width="180" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="UxS-wS-BeQ"/>
@@ -54,26 +65,20 @@
                             </subviews>
                             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstItem="XQx-dR-bcB" firstAttribute="leading" secondItem="uyb-kx-y50" secondAttribute="leading" id="AJG-6d-PKV"/>
                                 <constraint firstItem="RP3-Z0-MHJ" firstAttribute="top" secondItem="ARW-3U-vVh" secondAttribute="bottom" constant="10" id="DVD-fN-cd1"/>
                                 <constraint firstItem="Gus-Rz-eZd" firstAttribute="top" secondItem="RP3-Z0-MHJ" secondAttribute="bottom" constant="8" id="F6P-5e-gPO"/>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="Hxc-kw-JTd"/>
                                 <constraint firstAttribute="centerX" secondItem="ARW-3U-vVh" secondAttribute="centerX" constant="-0.5" id="TvS-hi-63Y"/>
+                                <constraint firstAttribute="trailing" secondItem="XQx-dR-bcB" secondAttribute="trailing" id="apA-xE-y3s"/>
                                 <constraint firstAttribute="centerX" secondItem="Gus-Rz-eZd" secondAttribute="centerX" constant="-1" id="bZm-qY-4MW"/>
+                                <constraint firstItem="XQx-dR-bcB" firstAttribute="top" secondItem="uyb-kx-y50" secondAttribute="top" id="dAH-a2-385"/>
                                 <constraint firstItem="ARW-3U-vVh" firstAttribute="top" secondItem="uyb-kx-y50" secondAttribute="top" constant="10" id="get-Tt-GnR"/>
+                                <constraint firstAttribute="bottom" secondItem="XQx-dR-bcB" secondAttribute="bottom" id="hok-DF-fLq"/>
                                 <constraint firstAttribute="height" constant="200" id="lTa-lj-hR8"/>
                                 <constraint firstAttribute="centerX" secondItem="RP3-Z0-MHJ" secondAttribute="centerX" id="v1i-av-HNk"/>
                             </constraints>
                         </view>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Inl-rG-uRb" userLabel="table view">
-                            <rect key="frame" x="0.0" y="202" width="225" height="314"/>
-                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <color key="sectionIndexBackgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <outlet property="dataSource" destination="-1" id="FJs-mH-knn"/>
-                                <outlet property="delegate" destination="-1" id="vw7-Wh-TUs"/>
-                            </connections>
-                        </tableView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j1h-Lp-Y3C" userLabel="footer view">
                             <rect key="frame" x="0.0" y="518" width="225" height="50"/>
                             <subviews>
@@ -100,6 +105,16 @@
                                 <constraint firstAttribute="centerX" secondItem="yNS-84-zU7" secondAttribute="centerX" id="aru-0l-Tw0"/>
                             </constraints>
                         </view>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Inl-rG-uRb" userLabel="table view">
+                            <rect key="frame" x="0.0" y="202" width="225" height="314"/>
+                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="sectionIndexBackgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="FJs-mH-knn"/>
+                                <outlet property="delegate" destination="-1" id="vw7-Wh-TUs"/>
+                            </connections>
+                        </tableView>
                     </subviews>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -132,9 +147,6 @@
             <point key="canvasLocation" x="219" y="356"/>
         </view>
     </objects>
-    <resources>
-        <image name="Tutorial-1" width="320" height="480"/>
-    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

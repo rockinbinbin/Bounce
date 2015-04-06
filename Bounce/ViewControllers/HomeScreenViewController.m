@@ -197,6 +197,8 @@
 - (IBAction)privateChatButtonClicked:(id)sender {
 //    RequestsViewController *requistViewController = [[RequestsViewController alloc] init];
 //    [self.navigationController pushViewController:requistViewController animated:YES];
+    // FIRST CALL THE PARSE MANAGER METHOD TO CALC THE CHAT NUMBER
+    [[ParseManager getInstance] getNumberOfValidRequests];
     AMSlideMenuMainViewController *mainVC = [self mainSlideMenu];
     [mainVC openLeftMenu];
 }
@@ -212,7 +214,7 @@
     @try {
 //        if (remainingTime > 0) {
             [self showTheReplyView];
-            self.timeLeftLabel.text  = [NSString stringWithFormat:REQUEST_TIME_LEFT_STRING, (long)remainingTime];
+            self.timeLeftLabel.text  = [NSString stringWithFormat:REQUEST_TIME_LEFT_STRING, remainingTime];
 //        }
     }
     @catch (NSException *exception) {
@@ -225,7 +227,7 @@
     @try {
         if (numberOfUnreadMessages > 0) {
             [self.roundedView setHidden:NO];
-            [self.numOfMessagesLabel setText:[NSString stringWithFormat:@"%ld", (long)numberOfUnreadMessages]];
+            [self.numOfMessagesLabel setText:[NSString stringWithFormat:@"%i", numberOfUnreadMessages]];
         }else{
             [self.roundedView setHidden:YES];
         }
@@ -244,6 +246,11 @@
 - (void)requestTimeOver
 {
     [self hideReplyView];
+}
+- (void)requestCreated
+{
+    self.timeLeftLabel.text  = [NSString stringWithFormat:REQUEST_TIME_LEFT_STRING, 0];
+    [self showTheReplyView];
 }
 #pragma mark - show Reply view
 - (void) showTheReplyView
