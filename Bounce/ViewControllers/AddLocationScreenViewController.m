@@ -13,6 +13,8 @@
 #import "ParseManager.h"
 #import <CoreLocation/CoreLocation.h>
 #import "UIViewController+AMSlideMenu.h"
+#import "Utility.h"
+
 @interface AddLocationScreenViewController ()
 
 @end
@@ -103,32 +105,40 @@
 
 -(void)doneButtonClicked{
     if (self.groupLocation) {
-        [self navigateToHomeGroupsAndSetItsData];
+        [self getAllUsers];
     }
     else{
-        UIAlertView *emptyLocation = [[UIAlertView alloc] initWithTitle:@"Oops!"
-                                                                message:@"Make sure you set the group location!"
-                                                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [emptyLocation show];
+        [[Utility getInstance] showAlertMessage:@"Make sure you set the group location!"];
     }
 }
 
 - (IBAction)dontAddLocationButtonClicked:(id)sender {
     //TODO: set the location in the new view controller!
     self.groupLocation = [PFUser currentUser][@"CurrentLocation"];
-
-    [self navigateToHomeGroupsAndSetItsData];
+    [self getAllUsers];
 }
-
--(void) navigateToHomeGroupsAndSetItsData{
-    AddGroupUsersViewController *contoller = [[AddGroupUsersViewController alloc]  init];
-    NSMutableArray *users  = [[NSMutableArray alloc] initWithArray:[[ParseManager getInstance] getAllUsers]];
+- (void) getAllUsers
+{
+    [[ParseManager getInstance] setDelegate:self];
+    [[ParseManager getInstance] getAllUsers];
+}
+#pragma mark - Parse Manager Delegate
+- (void)didloadAllObjects:(NSArray *)objects
+{
+    NSMutableArray *users  = [[NSMutableArray alloc] initWithArray:objects];
     PFUser *currentUser = [PFUser currentUser];
-    // move the current user to the first cell
-    [users removeObject:currentUser];
+    // Add the current user to the first cell
     [users insertObject:currentUser atIndex:0];
-
-    contoller.groupUsers = [NSArray arrayWithArray:users];
+    [self navigateToGroupUsersScreenAndSetData:([NSArray arrayWithArray:users])];
+ 
+}
+- (void)didFailWithError:(NSError *)error
+{
+    NSLog(@"Error in loading users from parse.com");
+}
+-(void) navigateToGroupUsersScreenAndSetData:(NSArray *) users{
+    AddGroupUsersViewController *contoller = [[AddGroupUsersViewController alloc]  init];
+    contoller.groupUsers = users;
     contoller.groupLocation = self.groupLocation;
     contoller.groupPrivacy = self.groupPrivacy;
     contoller.groupName = self.groupName;

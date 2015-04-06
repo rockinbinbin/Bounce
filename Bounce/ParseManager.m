@@ -572,11 +572,20 @@ PFUser *currentUser;
     return groupUser;
 }
 
-- (NSArray *) getAllUsers{
+- (void) getAllUsers{
     PFQuery *query = [PFUser query];
-    // Final list of objects
-    NSArray *groupUser = [query findObjects];
-    return groupUser;
+    [query whereKey:PF_USER_USERNAME notEqualTo:[[PFUser currentUser] username]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error) {
+            if ([self.delegate respondsToSelector:@selector(didFailWithError:)]) {
+                [self.delegate didFailWithError:error];
+            }
+        }else{
+            if ([self.delegate respondsToSelector:@selector(didloadAllObjects:)]) {
+                [self.delegate didloadAllObjects:objects];
+            }
+        }
+    }];
 }
 #pragma mark - Distance to HomePoint (Group)
 - (double) getDistanceToGroup:(PFObject *) group
@@ -648,18 +657,20 @@ PFUser *currentUser;
     }
 }
 #pragma mark - Out user from group
-- (BOOL) removeUserFromGroup:(PFObject *) group
+- (void) removeUserFromGroup:(PFObject *) group
 {
     @try {
         PFUser *currentUser = [PFUser currentUser];
         PFRelation *relation = [group relationForKey:PF_GROUP_Users_RELATION];
         [relation removeObject:currentUser];
         [group removeObject:currentUser forKey:PF_GROUP_USER_ARRAY];
-//        group[@"ArrayOfUsers"] = currentUser;
         [currentUser removeObject:[group objectForKey:PF_GROUPS_NAME] forKey:@"ArrayOfGroups"];
-        [currentUser save];
-        
-        return [group save];
+        [currentUser saveInBackground];
+        [group saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if ([self.updateGroupDelegate respondsToSelector:@selector(didRemoveUserFromGroup:)]) {
+                [self.updateGroupDelegate didRemoveUserFromGroup:succeeded];
+            }
+        }];
         
     }
     @catch (NSException *exception) {
@@ -683,19 +694,22 @@ PFUser *currentUser;
     }
 }
 #pragma mark - Add User to group
-- (BOOL) addCurrentUserToGroup:(PFObject *) group
+- (void) addCurrentUserToGroup:(PFObject *) group
 {
     @try {
         // Add relation
         PFUser *currentUser = [PFUser currentUser];
         PFRelation *relation = [group relationForKey:PF_GROUP_Users_RELATION];
         [relation addObject:currentUser];
-
+        
         [group addUniqueObject:currentUser forKey:@"ArrayOfUsers"];
         [currentUser addUniqueObject:[group objectForKey:PF_GROUPS_NAME] forKey:@"ArrayOfGroups"];
-        [currentUser save];
-        
-        return [group save];
+        [currentUser saveInBackground];
+        [group saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if ([self.updateGroupDelegate respondsToSelector:@selector(didAddUserToGroup:)]) {
+                [self.updateGroupDelegate didAddUserToGroup:succeeded];
+            }
+        }];
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
@@ -715,5 +729,24 @@ PFUser *currentUser;
        return YES;
     }
     return NO;
+}
+
+#pragma mark - Group name
+- (void) isGroupNameExist:(NSString *) name
+{
+    PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
+    [query whereKey:PF_GROUPS_NAME equalTo:name];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            if ([self.updateGroupDelegate respondsToSelector:@selector(groupNameExist:)]) {
+                [self.updateGroupDelegate groupNameExist:([objects count] > 0)];
+            }
+        }else{
+            if ([self.updateGroupDelegate respondsToSelector:@selector(didFailWithError:)]) {
+                [self.updateGroupDelegate didFailWithError:error];
+            }
+        }
+    }];
+
 }
 @end

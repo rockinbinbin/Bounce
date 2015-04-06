@@ -11,7 +11,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "ParseManager.h"
 
-@interface AddGroupUsersViewController : UIViewController
+@interface AddGroupUsersViewController : UIViewController<ParseManagerAddGroupDelegate>
 @property NSArray *groupUsers;
 @property NSMutableArray *userChecked;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

@@ -59,5 +59,13 @@
 #define MALE_GENDER @"Male"
 #define FEMALE_GENDER @"Female"
 
+// Group Privacy
+#define PUBLIC_GROUP @"Public"
+#define PRIVATE_GROUP @"Private"
+
+typedef enum{
+    publicGroup = 0,
+    privateGroup = 1
+}groupPrivacy;
 
 #endif

@@ -74,36 +74,13 @@
 }
 
 -(void)doneButtonClicked{
-    //TODO: make the location implementation, store it or make it nil ! then navigate to the new view controller
-    [[Utility getInstance] showProgressHudWithMessage:@"Saving ..." withView:self.view];
-
-    PFQuery *query = [PFQuery queryWithClassName:@"Group"];
-    [query whereKey:ParseGroupName equalTo:self.groupName];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            // works
-            if (objects.count) {
-                NSLog(@"NOT UNIQUE GROUP NAME"); // write alert to try a different username
-                UIAlertView *notuniqueusername = [[UIAlertView alloc] initWithTitle:@"Oops!"
-                                                                            message:@"This group name seems to be taken. Please choose another!"
-                                                                           delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                [notuniqueusername show];
-            }
-            else{
-                // get selected users
-               NSArray *users = [self getCheckedUsers];
-                [[ParseManager getInstance] addGroup:self.groupName withArrayOfUser:users withLocation:self.groupLocation andPrivacy:self.groupPrivacy];
-
-                HomePointSuccessfulCreationViewController* homePointSuccessfulCreationViewController = [[HomePointSuccessfulCreationViewController alloc] initWithNibName:@"HomePointSuccessfulCreationViewController" bundle:nil];
-                [self.navigationController pushViewController:homePointSuccessfulCreationViewController animated:YES];
-            }
-            [[Utility getInstance] hideProgressHud];
-        }
-        else {
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
-
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+        [[Utility getInstance] showProgressHudWithMessage:@"Saving ..." withView:self.view];
+        // get selected users
+        NSArray *users = [self getCheckedUsers];
+        [[ParseManager getInstance] setAddGroupdelegate:self];
+        [[ParseManager getInstance] addGroup:self.groupName withArrayOfUser:users withLocation:self.groupLocation andPrivacy:self.groupPrivacy];
+    }
 }
 
 #pragma mark - TableView Datasource
@@ -131,12 +108,10 @@
     
     cell.circularView.layer.borderWidth = 1.0f;
     cell.circularView.layer.borderColor = DEFAULT_COLOR.CGColor;
-    
+
     cell.circularViewWidth.constant = 40;
     cell.circularViewHeight.constant = 40;
     cell.circularView.layer.cornerRadius = 20;
-    cell.circularView.clipsToBounds = YES;
-
     cell.topSpaceTitleConstraints.constant = 0;
     
     // filling the cell data
@@ -146,22 +121,7 @@
         cell.iconImageView.image = [UIImage imageNamed:@"common_plus_icon"];
     }
     cell.groupNameLabel.text = [[self.groupUsers objectAtIndex:indexPath.row] objectForKey:PF_USER_USERNAME];
-//    cell.groupDistanceLabel.text = @"2.1 miles away";
     return cell;
-}
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return YES if you want the specified item to be editable.
-    return YES;
-}
-
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //add code here for when you hit delete
-        NSLog(@"%li index is deleted !", (long)indexPath.row);
-        //[self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-    }
 }
 
 #pragma mark - TableView Delegate
@@ -205,6 +165,21 @@
             }
         }
         return [NSArray arrayWithArray:selectedUsers];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
+
+#pragma mark - Parse Manger Add Group delegate
+- (void)didAddGroupWithError:(NSError *)error
+{
+    @try {
+        [[Utility getInstance] hideProgressHud];
+        if (!error) {
+            HomePointSuccessfulCreationViewController* homePointSuccessfulCreationViewController = [[HomePointSuccessfulCreationViewController alloc] initWithNibName:@"HomePointSuccessfulCreationViewController" bundle:nil];
+            [self.navigationController pushViewController:homePointSuccessfulCreationViewController animated:YES];
+        }
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);

@@ -12,7 +12,6 @@
 #import "AddGroupUsersViewController.h"
 #import "Definitions.h"
 #import <Parse/Parse.h>
-#import "ParseManager.h"
 #import "GroupsListViewController.h"
 #import "Utility.h"
 #import "Constants.h"
@@ -29,6 +28,7 @@
     NSMutableArray *groups;
     NSMutableArray *groupsDistance;
     NSMutableArray *userJoinedGroups;
+    NSInteger selectedIndex;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -44,13 +44,12 @@
     self.navigationItem.rightBarButtonItem = doneButton;
     
     self.addLocationButton.backgroundColor = LIGHT_BLUE_COLOR;
-    
-//    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
-//    [self.view addGestureRecognizer:gestureRecognizer];
 }
 - (void)viewWillAppear:(BOOL)animated{
     // Disable left Slide menu
     [self disableSlidePanGestureForLeftMenu];
+    // Set parse manager update group delegate
+    [[ParseManager getInstance] setUpdateGroupDelegate:self];
     // load all groups that doesn't contain current user
     [self loadGroupsData];
 }
@@ -111,93 +110,27 @@
 }
 
 -(void)doneButtonClicked{
-    //TODO: Go to the users screen to add them in the group
-   
-    
-    NSString *name = [self.groupNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    if ([name length] == 0) {
-        UIAlertView *zerolength = [[UIAlertView alloc] initWithTitle:@"Oops!"
-                                                             message:@"Make sure you entered the group name!"
-                                                            delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [zerolength show];
-    }
-    else{
-        PFQuery *query = [PFQuery queryWithClassName:@"Group"];
-        [query whereKey:ParseGroupName equalTo:name];
-        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if (!error) {
-                // works
-                if (objects.count) {
-                    NSLog(@"NOT UNIQUE GROUP NAME"); // write alert to try a different username
-                    UIAlertView *notuniqueusername = [[UIAlertView alloc] initWithTitle:@"Oops!"
-                                                                                message:@"This group name seems to be taken. Please choose another!"
-                                                                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                    [notuniqueusername show];
-                }
-                else{
-                    // here we add the current user location as default
-                    if ([self.groupPrivacySegmentedControl selectedSegmentIndex] == 0) {
-                        [[ParseManager getInstance] addGroup:name withLocation:[PFUser currentUser][@"CurrentLocation"] andPrivacy:@"Public"];
-                    } else if ([self.groupPrivacySegmentedControl selectedSegmentIndex] == 1) {
-                        [[ParseManager getInstance] addGroup:name withLocation:[PFUser currentUser][@"CurrentLocation"] andPrivacy:@"Private"];
-                    }
-                    GroupsListViewController* groupsListViewController = [[GroupsListViewController alloc] initWithNibName:@"GroupsListViewController" bundle:nil];
-                    [self.navigationController pushViewController:groupsListViewController animated:YES];
-                    
-                }
-            }
-            else {
-                NSLog(@"Error: %@ %@", error, [error userInfo]);
-            }
-        }];
-    }
-    
-//    HomePointGroupsViewController* homePointGroupsViewController = [[HomePointGroupsViewController alloc] initWithNibName:@"HomePointGroupsViewController" bundle:nil];
-//    [self.navigationController pushViewController:homePointGroupsViewController animated:YES];
+    // move to the GroupsList screen
+    // TODO: Adjust the action of this button
+    GroupsListViewController *groupsListViewController = [[GroupsListViewController alloc] initWithNibName:@"GroupsListViewController" bundle:nil];
+    [self.navigationController pushViewController:groupsListViewController animated:YES];
 }
 
 - (IBAction)segmentedControlClicked:(id)sender {
 }
 
 - (IBAction)addLocationButtonClicked:(id)sender {
-
-    NSString *name = [self.groupNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-
-    PFQuery *query = [PFQuery queryWithClassName:@"Group"];
-    [query whereKey:ParseGroupName equalTo:name];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            // works
-            if (objects.count) {
-                NSLog(@"NOT UNIQUE GROUP NAME"); // write alert to try a different username
-                UIAlertView *notuniqueusername = [[UIAlertView alloc] initWithTitle:@"Oops!"
-                                                                            message:@"This group name seems to be taken. Please choose another!"
-                                                                           delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                [notuniqueusername show];
-            }
-            else{
-                if ([name length] == 0) {
-                    UIAlertView *zerolength = [[UIAlertView alloc] initWithTitle:@"Oops!"
-                                                                         message:@"Make sure you entered the group name!"
-                                                                        delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                    [zerolength show];
-                }
-                else{
-                    AddLocationScreenViewController *addLocationScreenViewController = [[AddLocationScreenViewController alloc]  initWithNibName:@"AddLocationScreenViewController" bundle:nil];
-                    if ([self.groupPrivacySegmentedControl selectedSegmentIndex] == 0) {
-                        addLocationScreenViewController.groupPrivacy = @"Public";
-                    } else if ([self.groupPrivacySegmentedControl selectedSegmentIndex] == 1) {
-                        addLocationScreenViewController.groupPrivacy = @"Private";
-                    }
-                    addLocationScreenViewController.groupName = self.groupNameTextField.text;
-                    [self.navigationController pushViewController:addLocationScreenViewController animated:YES];
-                }
-            }
+    @try {
+        NSString *name = [self.groupNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        if ([name length] == 0) {
+            [[Utility getInstance] showAlertMessage:@"Make sure you entered the group name!"];
+            return;
         }
-        else {
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
+        [[ParseManager getInstance] isGroupNameExist:name];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
 }
 
 #pragma mark - TableView Datasource
@@ -227,10 +160,7 @@
     cell.circularViewWidth.constant = 40;
     cell.circularViewHeight.constant = 40;
     cell.circularView.layer.cornerRadius = 20;
-    cell.circularView.clipsToBounds = YES;
     cell.circularView.layer.borderWidth = 0;
-    cell.circularView.layer.borderColor = [UIColor whiteColor].CGColor;
-
 
     if ([[userJoinedGroups objectAtIndex:indexPath.row] boolValue] == YES) {
         cell.iconImageView.image = [UIImage imageNamed:@"common_checkmark_icon"];
@@ -251,21 +181,6 @@
 
     return cell;
 }
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return YES if you want the specified item to be editable.
-    return YES;
-}
-
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //add code here for when you hit delete
-        NSLog(@"%li index is deleted !", (long)indexPath.row);
-        //[self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-    }
-}
-
 
 #pragma mark - TableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -290,20 +205,16 @@
         PFObject *group = [groups objectAtIndex:index];
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
             [[Utility getInstance] showProgressHudWithMessage:[NSString stringWithFormat:@"Add user to %@", [group objectForKey:PF_GROUPS_NAME]] withView:self.view];
+            selectedIndex = index;
             [[ParseManager getInstance] addCurrentUserToGroup:group];
-            [[Utility getInstance] hideProgressHud];
-            
-            // update group cell
-            [userJoinedGroups insertObject:[NSNumber numberWithBool:YES] atIndex:index];
-            [self updateRowAtIndex:index];
         }
-        
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
     }
 }
-#pragma mark - 
+
+#pragma mark -
 - (BOOL) isUserJoinedGroup:(PFObject *) group
 {
     @try {
@@ -326,20 +237,51 @@
         PFObject *group = [groups objectAtIndex:index];
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
             [[Utility getInstance] showProgressHudWithMessage:[NSString stringWithFormat:@"Delete user from %@", [group objectForKey:PF_GROUPS_NAME]] withView:self.view];
+            selectedIndex = index;
             [[ParseManager getInstance] removeUserFromGroup:group];
-            [[Utility getInstance] hideProgressHud];
-            
-            // update group cell
-            [userJoinedGroups insertObject:[NSNumber numberWithBool:NO] atIndex:index];
-            [self updateRowAtIndex:index];
         }
-        
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
     }
 }
 
+#pragma mark - Parse Manager Update Group delegate
+- (void)didRemoveUserFromGroup:(BOOL)succeed
+{
+    [[Utility getInstance] hideProgressHud];
+    if (succeed) {
+        // update group cell
+        [userJoinedGroups insertObject:[NSNumber numberWithBool:NO] atIndex:selectedIndex];
+        [self updateRowAtIndex:selectedIndex];
+    }
+}
+
+- (void)didAddUserToGroup:(BOOL)succeed
+{
+    [[Utility getInstance] hideProgressHud];
+    if (succeed) {
+        // update group cell
+        [userJoinedGroups insertObject:[NSNumber numberWithBool:YES] atIndex:selectedIndex];
+        [self updateRowAtIndex:selectedIndex];
+    }
+}
+
+- (void)groupNameExist:(BOOL)exist
+{
+    if (exist) {
+        NSLog(@"NOT UNIQUE GROUP NAME"); // write alert to try a different username
+        [[Utility getInstance] showAlertMessage:@"This group name seems to be taken. Please choose another!"];
+    }
+    else{
+        [self navigateToAddLocationScreen];
+    }
+}
+
+- (void)didFailWithError:(NSError *)error
+{
+    NSLog(@"Error: %@ %@", error, [error userInfo]);
+}
 #pragma mark - update Row
 - (void) updateRowAtIndex:(NSInteger) index
 {
@@ -358,4 +300,22 @@
 {
     [[self view] endEditing:YES];
 }
+#pragma mark - AddLocation screen
+- (void) navigateToAddLocationScreen
+{
+    @try {
+        AddLocationScreenViewController *addLocationScreenViewController = [[AddLocationScreenViewController alloc]  initWithNibName:@"AddLocationScreenViewController" bundle:nil];
+        if ([self.groupPrivacySegmentedControl selectedSegmentIndex] == publicGroup) {
+            addLocationScreenViewController.groupPrivacy = PUBLIC_GROUP;
+        } else if ([self.groupPrivacySegmentedControl selectedSegmentIndex] == privateGroup) {
+            addLocationScreenViewController.groupPrivacy = PRIVATE_GROUP;
+        }
+        addLocationScreenViewController.groupName = self.groupNameTextField.text;
+        [self.navigationController pushViewController:addLocationScreenViewController animated:YES];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
+
 @end

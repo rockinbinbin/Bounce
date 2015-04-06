@@ -14,6 +14,9 @@
 @protocol ParseManagerLoadingGroupsDelegate;
 @protocol ParseManagerAddGroupDelegate;
 @protocol ParseManagerGetUserGroups;
+@protocol ParseManagerUpdateGroupDelegate;
+@protocol ParseManagerFailureDelegate;
+@protocol ParseManagerDelegate;
 
 @interface ParseManager : NSObject
 
@@ -22,6 +25,9 @@
 @property id<ParseManagerLoadingGroupsDelegate> loadGroupsdelegate;
 @property id<ParseManagerAddGroupDelegate> addGroupdelegate;
 @property id<ParseManagerGetUserGroups> getUserGroupsdelegate;
+@property id<ParseManagerUpdateGroupDelegate> updateGroupDelegate;
+@property id<ParseManagerFailureDelegate> failureDelegaet;
+@property id<ParseManagerDelegate> delegate;
 
 + (ParseManager*) getInstance;
 - (void) loginWithName:(NSString *)name andPassword:(NSString*) password;
@@ -54,19 +60,24 @@
 - (NSArray *) getGroupUsers:(PFObject *) group;
 // remove group
 - (BOOL) removeGroup:(PFObject *) group;
-- (NSArray *) getAllUsers;
+
+// Useres Operations
+- (void) getAllUsers;
 // Get all groups except created by user
 - (NSArray *) getAllGroupsExceptCreatedByUser;
+// Group updates
 // Add user to group
-- (BOOL) addCurrentUserToGroup:(PFObject *) group;
+- (void) addCurrentUserToGroup:(PFObject *) group;
 // Remove user from group
-- (BOOL) removeUserFromGroup:(PFObject *) group;
+- (void) removeUserFromGroup:(PFObject *) group;
+- (void) isGroupNameExist:(NSString *) name;
 //
 - (NSInteger) getNearUsersNumberInGroup:(PFObject *) group;
 //
 - (void) addGroup:(NSString*) groupName withLocation:(PFGeoPoint*) location andPrivacy:(NSString*) privacy;
 // check if there is auser logged in
 - (BOOL) isThereLoggedUser;
+
 @end
 
 @protocol ParseManagerLoginDelegate <NSObject>
@@ -89,4 +100,22 @@
 
 @protocol ParseManagerGetUserGroups <NSObject>
 - (void) didLoadUserGroups:(NSArray *)groups WithError:(NSError *) error;
+@end
+
+@protocol ParseManagerUpdateGroupDelegate<NSObject>
+- (void) didAddUserToGroup:(BOOL) succeed;
+- (void) didRemoveUserFromGroup:(BOOL) succeed;
+- (void) groupNameExist:(BOOL) exist;
+- (void) didFailWithError:(NSError *)error;
+@optional
+- (void) didUpdateGroupData:(BOOL) succeed;
+@end
+
+@protocol ParseManagerFailureDelegate <NSObject>
+- (void) didFailWithError:(NSError *) error;
+@end
+
+@protocol ParseManagerDelegate <NSObject>
+- (void) didloadAllObjects:(NSArray *) objects;
+- (void) didFailWithError:(NSError *) error;
 @end
