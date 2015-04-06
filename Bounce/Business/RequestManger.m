@@ -213,6 +213,10 @@ static RequestManger *sharedRequestManger = nil;
                 }
                 // start request updating
                 activeRequest = request;
+                // update the home screen view
+                if ([self.requestManagerDelegate respondsToSelector:@selector(requestCreated)]) {
+                    [self.requestManagerDelegate requestCreated];
+                }
                 [self startRequestUpdating];
             }];
         });

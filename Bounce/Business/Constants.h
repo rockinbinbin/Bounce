@@ -52,7 +52,7 @@
 #define OBJECT_ID @"objectId"
 #define PF_GENDER @"Gender"
 // Home screen
-#define REQUEST_TIME_LEFT_STRING @"%ld minute left"
+#define REQUEST_TIME_LEFT_STRING @"%i minute left"
 
 // Gender cases
 #define ALL_GENDER @"All"

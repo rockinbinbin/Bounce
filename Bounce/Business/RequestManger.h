@@ -28,5 +28,6 @@
 - (void) updateRequestUnreadMessage:(NSInteger) numberOfUnreadMessages;
 - (void) didEndRequestWithError:(NSError *) error;
 - (void) requestTimeOver;
+- (void) requestCreated;
 //- (void) didLoadActiveRequest;
 @end
