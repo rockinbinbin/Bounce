@@ -189,7 +189,7 @@ static RequestManger *sharedRequestManger = nil;
             }
             // Set the request data
             PFObject *request;
-            request = [PFObject objectWithClassName:PF_REQUET_CLASS_NAME];
+            request = [PFObject objectWithClassName:PF_REQUEST_CLASS_NAME];
             request[PF_REQUEST_SENDER] = currentUser.username;
             request[PF_REQUEST_RECEIVER] = resultUsernames;
             request[PF_REQUEST_SELECTED_GROUPS] = selectedGroups;
@@ -375,7 +375,7 @@ static RequestManger *sharedRequestManger = nil;
 - (void) loadActiveRequest
 {
     // retreive request data from server
-    PFQuery *query = [PFQuery queryWithClassName:PF_REQUET_CLASS_NAME];
+    PFQuery *query = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
     [query whereKey:PF_REQUEST_SENDER equalTo:[[PFUser currentUser] username]];
     [query orderByDescending:@"createdAt"];
     

@@ -28,7 +28,7 @@
 #define LIGHT_SELECT_GRAY_COLOR    [UIColor colorWithRed:224.0/255.0 green:224.0/255.0 blue:224.0/255.0 alpha:1.0f]
 
 // Parse Request class
-#define PF_REQUET_CLASS_NAME @"Requests"
+#define PF_REQUEST_CLASS_NAME @"Requests"
 #define PF_REQUEST_TIME_ALLOCATED @"TimeAllocated"
 #define PF_REQUEST_TIME @"TimeAllocated"
 #define PF_REQUEST_SELECTED_GROUPS @"RequestedGroups"
@@ -51,6 +51,7 @@
 
 #define OBJECT_ID @"objectId"
 #define PF_GENDER @"Gender"
+#define PF_CREATED_AT @"createdAt"
 // Home screen
 #define REQUEST_TIME_LEFT_STRING @"%i minute left"
 

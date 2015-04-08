@@ -19,6 +19,7 @@
 - (void) endRequest;
 - (BOOL) hasActiveRequest;
 - (void) loadActiveRequest;
+- (void) invalidateCurrentRequest;
 
 @end
 
