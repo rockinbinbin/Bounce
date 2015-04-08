@@ -12,6 +12,8 @@
 
 
 #pragma mark - Outlets
+@property (weak, nonatomic) IBOutlet UIView *mainView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *MainViewWidth;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 #pragma mark - Properties

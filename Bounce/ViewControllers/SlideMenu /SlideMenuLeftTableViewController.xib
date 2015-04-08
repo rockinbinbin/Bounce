@@ -7,6 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SlideMenuLeftTableViewController">
             <connections>
+                <outlet property="MainViewWidth" destination="lPR-Kc-Tuy" id="c1h-aC-jmK"/>
+                <outlet property="mainView" destination="s0k-bk-rXO" id="Nh4-o0-1pw"/>
                 <outlet property="tableView" destination="Inl-rG-uRb" id="bg1-xr-1QV"/>
                 <outlet property="userCityLabel" destination="Gus-Rz-eZd" id="da7-7G-t2Y"/>
                 <outlet property="userProfileImageView" destination="ARW-3U-vVh" id="pdf-So-xYp"/>

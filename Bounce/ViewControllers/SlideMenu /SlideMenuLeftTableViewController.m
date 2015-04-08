@@ -32,6 +32,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+//    self.mainView.bounds = CGRectMake(self.mainView.frame.origin.x, self.mainView.frame.origin.y, 400, self.mainView.frame.size.height);
+    self.MainViewWidth.constant = SIDE_MENU_WIDTH;
     [[self.navigationController navigationBar] setHidden:YES];
     // Do any additional setup after loading the view from its nib.
     self.view.backgroundColor = [UIColor darkGrayColor];
@@ -189,6 +191,8 @@
 - (IBAction)signoutButtonClicked:(id)sender {
     NSLog(@"sign out pressed!");
     [PFUser logOut];
+    // stop the request manager update
+    [[RequestManger getInstance] invalidateCurrentRequest];
     UINavigationController *nvc;
     UIViewController *rootVC;
     rootVC = [[LoginScreenViewController alloc] init];

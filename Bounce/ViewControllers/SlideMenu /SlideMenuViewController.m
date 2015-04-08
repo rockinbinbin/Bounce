@@ -9,6 +9,7 @@
 #import "SlideMenuViewController.h"
 #import "SlideMenuLeftTableViewController.h"
 #import "Constants.h"
+#import "ParseManager.h"
 @interface SlideMenuViewController ()
 
 @end
@@ -62,6 +63,8 @@
 }
 - (void)openLeftMenu
 {
+    NSLog(@"openLeftMenu");
+    [[ParseManager getInstance] getNumberOfValidRequests];
     [self openLeftMenuAnimated:YES];
 }
 - (CGFloat)leftMenuWidth
