@@ -126,4 +126,18 @@ static Utility *sharedUtility = nil;
     [buttonItem setImage:buttonImage forState:UIControlStateNormal];
     return buttonItem;
 }
+
+#pragma mark - Round View
+- (void) addRoundedBorderToView:(UIView *) view
+{
+    @try {
+        view.layer.cornerRadius = view.frame.size.height / 2;
+        view.clipsToBounds = YES;
+        view.layer.borderWidth = COMMON_CORNER_WIDTH;
+        view.layer.borderColor = [UIColor whiteColor].CGColor;
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
 @end

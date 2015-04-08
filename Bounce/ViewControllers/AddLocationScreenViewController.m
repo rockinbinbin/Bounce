@@ -42,6 +42,7 @@
     tapRecognizer.numberOfTouchesRequired = 1;
     
     [self.map addGestureRecognizer:tapRecognizer];
+    [self.map setDelegate:self];
 
     [self startReceivingSignificantLocationChanges];
     [self changeCenterToUserLocation];
@@ -198,6 +199,61 @@
     currentUser[@"CurrentLocation"] = geoPoint;
     [currentUser saveInBackground];
     NSLog(@"location called");
+}
+#pragma mark - MapView delegate
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    // If it's the user location, just return nil.
+    if ([annotation isKindOfClass:[MKUserLocation class]]){
+        return nil;
+    }
+    // Handle any custom annotations.
+    if ([annotation isKindOfClass:[MKPointAnnotation class]])
+    {
+        // Try to dequeue an existing pin view first.
+        MKAnnotationView *pinView = (MKAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"CustomPinAnnotationView"];
+        if (!pinView)
+        {
+            // If an existing pin view was not available, create one.
+            pinView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomPinAnnotationView"];
+            UIView *customView = [self createCustomPinAnnotaionView];
+            customView.center = pinView.center;
+            [pinView addSubview:customView];
+
+        } else {
+            pinView.annotation = annotation;
+        }
+        return pinView;
+    }
+    return nil;
+}
+
+#pragma mark - Create Custom view pin annotaion
+- (UIView*) createCustomPinAnnotaionView
+{
+    @try {
+        UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0 , 0, INNER_VIEW_ICON_RADIUS, INNER_VIEW_ICON_RADIUS)];
+        // circular icon view
+        UIView *innerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, INNER_VIEW_RADIUS, INNER_VIEW_RADIUS)];
+        [imageview setContentMode:UIViewContentModeScaleToFill];
+        imageview.image = [UIImage imageNamed:@"common_app_logo"];
+        innerView.backgroundColor = DEFAULT_COLOR;
+        // Add icon image to the inner view
+        imageview.center = innerView.center;
+        [innerView addSubview:imageview];
+        [[Utility getInstance] addRoundedBorderToView:innerView];
+        //Outer view
+        UIView *outerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, OUTER_VIEW_RADIUS, OUTER_VIEW_RADIUS)];
+        outerView.backgroundColor = CUSTOM_ANNOTAION_OVERLAY_COLOR;
+        [[Utility getInstance] addRoundedBorderToView:outerView];
+        // Add inner view to the outer view
+        innerView.center = outerView.center;
+        [outerView addSubview:innerView];
+        return outerView;
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
 }
 
 @end

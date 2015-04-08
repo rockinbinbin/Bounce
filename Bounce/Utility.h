@@ -28,4 +28,6 @@
 - (void) navigateToMainScreenFromNAvigationContorller:(UINavigationController *) navigationController;
 // Create custom button
 -(UIButton *)createCustomButton:(UIImage*) buttonImage;
+// Rounde view with border
+- (void) addRoundedBorderToView:(UIView *) view;
 @end
