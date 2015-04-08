@@ -17,6 +17,7 @@
 @protocol ParseManagerUpdateGroupDelegate;
 @protocol ParseManagerFailureDelegate;
 @protocol ParseManagerDelegate;
+@protocol ParseManagerDeleteDelegate;
 
 @interface ParseManager : NSObject
 
@@ -28,6 +29,7 @@
 @property id<ParseManagerUpdateGroupDelegate> updateGroupDelegate;
 @property id<ParseManagerFailureDelegate> failureDelegaet;
 @property id<ParseManagerDelegate> delegate;
+@property id<ParseManagerDeleteDelegate> deleteDelegate;
 
 + (ParseManager*) getInstance;
 - (void) loginWithName:(NSString *)name andPassword:(NSString*) password;
@@ -79,6 +81,10 @@
 - (BOOL) isThereLoggedUser;
 // GET VALID REQUEST NUMBER
 - (void) getNumberOfValidRequests;
+// Get user requests
+- (void) getUserRequests;
+// Delete Request
+-(void) deleteRequest:(PFObject *) request;
 
 @end
 
@@ -120,4 +126,8 @@
 @protocol ParseManagerDelegate <NSObject>
 - (void) didloadAllObjects:(NSArray *) objects;
 - (void) didFailWithError:(NSError *) error;
+@end
+
+@protocol ParseManagerDeleteDelegate <NSObject>
+- (void) didDeleteObject:(BOOL) succeeded;
 @end

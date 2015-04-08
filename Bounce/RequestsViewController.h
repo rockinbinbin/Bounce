@@ -10,7 +10,7 @@
 #import "Utility.h"
 #import "ParseManager.h"
 
-@interface RequestsViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UITableView *groupsTableView;
+@interface RequestsViewController : UIViewController<ParseManagerDelegate, ParseManagerDeleteDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *requestsTableView;
 
 @end

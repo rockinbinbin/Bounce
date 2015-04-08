@@ -19,11 +19,12 @@
 @interface RequestsViewController ()
 {
     NSMutableArray *requests;
+    NSInteger deletedIndex;
+    NSMutableArray *requestValidation;
 }
 @end
 
 @implementation RequestsViewController
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -57,64 +58,44 @@
 }
 -(void)backButtonClicked{
     
-//    [self.navigationController popViewControllerAnimated:YES];
     AMSlideMenuMainViewController *mainVC = [self mainSlideMenu];
     UIViewController *rootVC = [[HomeScreenViewController alloc] init];
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:rootVC];
     [mainVC.leftMenu openContentNavigationController:nvc];
-//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-//    [mainVC openContentViewControllerForMenu:AMSlideMenuLeft atIndexPath:indexPath];
 }
-#pragma mark - Load Groups
+#pragma mark - Load Requests
 - (void) loadRequests{
     @try {
-        
-        // load requests if the user is sender or receiver
-        PFQuery *query1 = [PFQuery queryWithClassName:@"Requests"];
-        [query1 whereKey:@"Sender" equalTo:[[PFUser currentUser] username]];
-        PFQuery *query2 = [PFQuery queryWithClassName:@"Requests"];
-        [query2 whereKey:@"receivers" equalTo:[[PFUser currentUser] username]];
-        
-        PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:query1, query2, nil]];
-        [query orderByDescending:@"createdAt"];
-//        NSArray *resultUsers = [query findObjects];
-        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-         {
-             requests = [NSMutableArray arrayWithArray:objects];
-             if ([requests count] > 0) {
-                 [self.groupsTableView reloadData];
-             }
-         }];
-//        if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]){
-//           [[Utility getInstance] showProgressHudWithMessage:@"Loading ..." withView:self.view];
-//           // Call parse manager load all groups
-//            [[ParseManager getInstance] setLoadGroupsdelegate:self];
-//            [[ParseManager getInstance] loadAllGroups];
-//        }else{
-//            [[Utility getInstance] showAlertMessage:@"Please Fill All Login Fields"];
-//        }
-
-    }
+        [[ParseManager getInstance] setDelegate:self];
+        [[ParseManager getInstance] getUserRequests];
+     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
     }
 }
-#pragma mark - ParseManger load groups delegate
-- (void) didLoadGroups:(NSArray *)groupsList withError:(NSError *)error{
+#pragma mark - ParseManger delegate
+- (void)didloadAllObjects:(NSArray *)objects
+{
     [[Utility getInstance] hideProgressHud];
-    if (error) {
-        [[Utility getInstance] showAlertMessage:@"Network Error"];
-    }else{
-        // set the groups array
-        //        if (!groups) {
-        //            groups = [[NSMutableArray alloc] init];
-        //        }
-        
-        requests = [NSMutableArray arrayWithArray:groupsList];
-        if ([requests count] > 0) {
-            [self.groupsTableView reloadData];
+    requests = [NSMutableArray arrayWithArray:objects];
+    requestValidation = [[NSMutableArray alloc] init];
+    if ([requests count] > 0) {
+        BOOL noMoreValid = NO;
+        for (PFObject *request in requests) {
+            if (!noMoreValid && [[Utility getInstance] isRequestValid:[request createdAt] andTimeAllocated:[[request objectForKey:PF_REQUEST_TIME_ALLOCATED] integerValue]] && ![[request objectForKey:PF_REQUEST_IS_ENDED] boolValue] ) {
+                [requestValidation addObject:[NSNumber numberWithBool:YES]];
+            }else{
+                noMoreValid = YES;
+                [requestValidation addObject:[NSNumber numberWithBool:NO]];
+            }
         }
+        [self.requestsTableView reloadData];
+        
     }
+}
+- (void)didFailWithError:(NSError *)error
+{
+    [[Utility getInstance] hideProgressHud];
 }
 #pragma mark - TableView Datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -127,7 +108,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString* cellId = @"ChatListCell";
-    ChatListCell *cell = [self.groupsTableView dequeueReusableCellWithIdentifier:cellId];
+    ChatListCell *cell = [self.requestsTableView dequeueReusableCellWithIdentifier:cellId];
     
     if (!cell) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
@@ -163,11 +144,11 @@
     }
     if ([[Utility getInstance] isRequestValid:[request createdAt] andTimeAllocated:[[request objectForKey:PF_REQUEST_TIME_ALLOCATED] integerValue]]) {
         cell.contentView.backgroundColor = [UIColor whiteColor];
-        self.groupsTableView.backgroundColor = [UIColor whiteColor];
+        self.requestsTableView.backgroundColor = [UIColor whiteColor];
     }else{
         // if request time out ==> added gray background
         cell.contentView.backgroundColor = LIGHT_SELECT_GRAY_COLOR;
-        self.groupsTableView.backgroundColor = LIGHT_SELECT_GRAY_COLOR;
+        self.requestsTableView.backgroundColor = LIGHT_SELECT_GRAY_COLOR;
     }
 
     return cell;
@@ -185,15 +166,18 @@
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return YES if you want the specified item to be editable.
-    return YES;
+    return ![[requestValidation objectAtIndex:indexPath.row] boolValue];
 }
 
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //add code here for when you hit delete
         NSLog(@"%li index is deleted !", (long)indexPath.row);
-        //[self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+        if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+            [[Utility getInstance] showProgressHudWithMessage:@"Delete .." withView:self.view];
+            [[ParseManager getInstance] setDeleteDelegate:self];
+            [[ParseManager getInstance] deleteRequest:[requests objectAtIndex:indexPath.row]];
+        }
     }
 }
 
@@ -232,5 +216,14 @@
     @catch (NSException *exception) {
         NSLog(@"");
     }
+}
+#pragma mark - Parse Manager Delete Delegate
+- (void)didDeleteObject:(BOOL)succeeded
+{
+    [[Utility getInstance] hideProgressHud];
+    [requests removeObjectAtIndex:deletedIndex];
+    
+    [self.requestsTableView reloadData];
+
 }
 @end
