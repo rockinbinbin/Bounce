@@ -165,6 +165,7 @@
          user[PF_USER_FACEBOOKID] = userData[@"id"];
          user[PF_USER_PICTURE] = filePicture;
          user[PF_USER_THUMBNAIL] = fileThumbnail;
+         user[PF_GENDER] = userData[@"gender"];
          [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
           {
               if (error == nil)

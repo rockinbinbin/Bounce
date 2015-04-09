@@ -106,7 +106,8 @@
      {
          if (user != nil)
          {
-             if (user[PF_USER_FACEBOOKID] == nil) // Not signed in facebook
+             if (user.isNew) // Not signed in facebook
+//                 if (user[PF_USER_FACEBOOKID] == nil) // Not signed in facebook
              {
                  [self requestFacebook:user];
              }
@@ -177,6 +178,7 @@
          user[PF_USER_FACEBOOKID] = userData[@"id"];
          user[PF_USER_PICTURE] = filePicture;
          user[PF_USER_THUMBNAIL] = fileThumbnail;
+         user[PF_GENDER] = userData[@"gender"];
          [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
           {
               if (error == nil)

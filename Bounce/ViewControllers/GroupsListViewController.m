@@ -96,9 +96,7 @@
 }
 
 -(void)backButtonClicked{
-    HomeScreenViewController *homeViewController = [[HomeScreenViewController alloc] initWithNibName:@"HomeScreenViewController" bundle:nil];
-    [self.navigationController pushViewController:homeViewController animated:YES];
-//    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 -(void)editButtonClicked{
