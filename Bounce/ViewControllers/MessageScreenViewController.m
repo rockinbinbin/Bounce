@@ -151,8 +151,7 @@
             }
             
             // MOVE TO HOME
-            HomeScreenViewController *homeViewController = [[HomeScreenViewController alloc] init];
-            [self.navigationController pushViewController:homeViewController animated:YES];
+            [self.navigationController popToRootViewControllerAnimated:YES];
         }
         else {
             UIAlertView *zerolength = [[UIAlertView alloc] initWithTitle:@"yo!"
@@ -288,45 +287,10 @@
         }
         [self.tableView reloadData];
     }
-//    NSLog(@"marked as true in %li", (long)indexPath.row);
-//    NSString* cellId = @"ChatListCell";
-//    ChatListCell *cell = (ChatListCell*)[self.tableView cellForRowAtIndexPath:indexPath];
-//    if (!cell) {
-//        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
-//        cell = (ChatListCell *)[nib objectAtIndex:0];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//    }
-//    if (cell.isSelected) {
-//        cell.iconImageView.hidden = YES;
-//        cell.nearbyLabel.hidden = NO;
-//        cell.numOfFriendsInGroupLabel.hidden = NO;
-//        cell.isSelected = false;
-//    }
-//    else{
-//        cell.iconImageView.hidden = NO;
-//        cell.iconImageView.image = [UIImage imageNamed:@"common_checkmark_icon"];
-//        cell.nearbyLabel.hidden = YES;
-//        cell.numOfFriendsInGroupLabel.hidden = YES;
-//        cell.isSelected = true;
-//    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 80;
-}
-
-- (IBAction)selectClicked:(id)sender {
-    NSArray * arr = [[NSArray alloc] init];
-    arr = [NSArray arrayWithObjects:@"Male", @"Female",nil];
-    if(_dropDown == nil) {
-        CGFloat f = 80;
-        _dropDown = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"down"];
-        _dropDown.delegate = self;
-    }
-    else {
-        [_dropDown hideDropDown:sender];
-        [self rel];
-    }
 }
 
 - (void) niDropDownDelegateMethod: (NIDropDown *) sender {
@@ -342,7 +306,7 @@
 - (IBAction)distanceSelectButtonClicked:(id)sender{
     self.isDistanceSent = true;
     NSArray * arr = [[NSArray alloc] init];
-    arr = [NSArray arrayWithObjects:@"People within 50 miles", @"People within 100 miles",nil];
+    arr = [NSArray arrayWithObjects:@"People within 100 feets", @"People within 300 feets", @"People within 500 feets",nil];
     if(_dropDown == nil) {
         CGFloat f = 80;
         _dropDown = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"down"];
@@ -357,7 +321,7 @@
 - (IBAction)durationSelectButtonClicked:(id)sender{
     self.isDistanceSent = false;
     NSArray * arr = [[NSArray alloc] init];
-    arr = [NSArray arrayWithObjects:@"Expires in 10 minutes", @"Expires in 20 minutes",nil];
+    arr = [NSArray arrayWithObjects:@"Expires in 15 minutes", @"Expires in 20 minutes", @"Expires in 60 minutes", nil];
     if(_dropDown == nil) {
         CGFloat f = 80;
         _dropDown = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"down"];

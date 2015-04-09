@@ -355,7 +355,8 @@ PFUser *currentUser;
        groupGeoPoint = [PFGeoPoint  geoPointWithLatitude:31.0 longitude:29.0] ;
     }
 
-    return [userGeoPoint distanceInMilesTo:groupGeoPoint];
+//    return [userGeoPoint distanceInMilesTo:groupGeoPoint];
+    return ([userGeoPoint distanceInKilometersTo:groupGeoPoint] * FEET_IN_KILOMETER);
 }
 
 #pragma mark - Get Groups of user

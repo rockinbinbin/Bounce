@@ -257,7 +257,9 @@ static RequestManger *sharedRequestManger = nil;
                 [query whereKey:PF_GENDER equalTo:gender];
             }
             [query whereKey:@"ArrayOfGroups" equalTo:groupName];
-            [query whereKey:@"CurrentLocation" nearGeoPoint:location withinMiles:radius];
+//            [query whereKey:@"CurrentLocation" nearGeoPoint:location withinMiles:radius];
+            [query whereKey:@"CurrentLocation" nearGeoPoint:location withinKilometers:radius/FEET_IN_KILOMETER];
+
             [queries addObject:query];
         }
         query = [PFQuery orQueryWithSubqueries:queries];

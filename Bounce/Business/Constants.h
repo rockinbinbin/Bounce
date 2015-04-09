@@ -45,7 +45,8 @@
 
 
 //
-#define DISTANCE_MESSAGE @"%.1f miles away"
+//#define DISTANCE_MESSAGE @"%.1f miles away"
+#define DISTANCE_MESSAGE @"%.1f feets away"
 
 #define SIDE_MENU_WIDTH (IS_IPHONE? 225:375)
 
@@ -74,6 +75,11 @@
 #define INNER_VIEW_RADIUS 70
 #define OUTER_VIEW_RADIUS 140
 #define INNER_VIEW_ICON_RADIUS 50
+
+
+//
+#define FEET_IN_KILOMETER 3281
+
 typedef enum{
     publicGroup = 0,
     privateGroup = 1
