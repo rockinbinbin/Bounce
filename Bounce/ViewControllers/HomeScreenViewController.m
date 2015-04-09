@@ -84,14 +84,6 @@
 -(void) viewWillAppear:(BOOL)animated{
     [[RequestManger getInstance] setRequestManagerDelegate:self];
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
-//    if ([[RequestManger getInstance] hasActiveRequest]) {
-//        [self.repliesView setHidden:NO];
-////        // set the replies view data
-////        self.numOfMessagesLabel.text = [NSString stringWithFormat:@"%ld", [[RequestManger getInstance] unReadReplies]];
-////        self.timeLeftLabel.text = [NSString stringWithFormat:REQUEST_TIME_LEFT_STRING, [[RequestManger getInstance] requestLeftTimeInMinute]];
-//    }else{
-//        [self.repliesView setHidden:YES];
-//    }
 }
 - (void) viewWillDisappear:(BOOL)animated
 {
@@ -195,8 +187,6 @@
     }
 }
 - (IBAction)privateChatButtonClicked:(id)sender {
-//    RequestsViewController *requistViewController = [[RequestsViewController alloc] init];
-//    [self.navigationController pushViewController:requistViewController animated:YES];
     // FIRST CALL THE PARSE MANAGER METHOD TO CALC THE CHAT NUMBER
     [[ParseManager getInstance] getNumberOfValidRequests];
     AMSlideMenuMainViewController *mainVC = [self mainSlideMenu];
@@ -212,10 +202,8 @@
 - (void)updateRequestRemainingTime:(NSInteger)remainingTime
 {
     @try {
-//        if (remainingTime > 0) {
             [self showTheReplyView];
-            self.timeLeftLabel.text  = [NSString stringWithFormat:REQUEST_TIME_LEFT_STRING, remainingTime];
-//        }
+            self.timeLeftLabel.text  = [NSString stringWithFormat:REQUEST_TIME_REMAINING_STRING, remainingTime];
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
@@ -249,7 +237,8 @@
 }
 - (void)requestCreated
 {
-    self.timeLeftLabel.text  = [NSString stringWithFormat:REQUEST_TIME_LEFT_STRING, 0];
+//    self.timeLeftLabel.text  = [NSString stringWithFormat:REQUEST_TIME_LEFT_STRING, 0];
+    self.timeLeftLabel.text  = [NSString stringWithFormat:REQUEST_TIME_REMAINING_STRING, [[RequestManger getInstance] requestLeftTimeInMinute]];
     [self showTheReplyView];
 }
 #pragma mark - show Reply view

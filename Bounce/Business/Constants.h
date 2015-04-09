@@ -54,6 +54,8 @@
 #define PF_CREATED_AT @"createdAt"
 // Home screen
 #define REQUEST_TIME_LEFT_STRING @"%i minute left"
+#define REQUEST_TIME_REMAINING_STRING @"%i minute remaining"
+
 
 // Gender cases
 #define ALL_GENDER @"All"
