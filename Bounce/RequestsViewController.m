@@ -135,7 +135,7 @@
     cell.groupNameLabel.text = [NSString stringWithFormat:@"%@ send request",[[requests objectAtIndex:indexPath.row] valueForKey:@"Sender"]];
     cell.groupDistanceLabel.textColor = [UIColor grayColor];
     cell.groupDistanceLabel.text = [self convertDateToString:[request createdAt]]; // it should be the message content
-    cell.timeLabel.text = @"Fri, Feb. 25";
+    cell.timeLabel.text = cell.groupDistanceLabel.text;
     //    cell.iconImageView.image = [UIImage imageNamed:@"common_plus_icon"]; // it should be the user profile
 
     for ( UIView* view in cell.contentView.subviews )
@@ -207,10 +207,15 @@
 - (NSString*) convertDateToString:(NSDate *) date
 {
     @try {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss zzz"];
-        
-    NSString *stringFromDate = [formatter stringFromDate:date];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        //        if ([[NSCalendar currentCalendar] isDateInToday:date]) {
+        //            [formatter setDateFormat:@"hh:mm aaa"];
+        //
+        //        }else{
+        //    [formatter setDateFormat:@"EEE,MMM,d"];
+        //        }
+        [formatter setDateFormat:@"EEE,MMM,d"];
+        NSString *stringFromDate = [formatter stringFromDate:date];
         return stringFromDate;
     }
     @catch (NSException *exception) {

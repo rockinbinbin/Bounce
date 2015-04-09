@@ -38,7 +38,7 @@
     }
     // Set the appearane of the application segment controls
     [self setSegmentControlAppearance];
-
+    [self setTableViewAppearance];
     UINavigationController *navigationController;
     // if user looged in skip the introduction screens and move to home screen
     if ([[ParseManager getInstance] isThereLoggedUser]) {
@@ -202,6 +202,16 @@
         [[UISegmentedControl appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateSelected];
         [[UISegmentedControl appearance] setBackgroundColor:[UIColor whiteColor]];
         [[UISegmentedControl appearance] setTintColor:DEFAULT_COLOR];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
+- (void) setTableViewAppearance
+{
+    @try {
+        // remove empty cells
+        [[UITableView appearance] setTableFooterView: [[UIView alloc] initWithFrame:CGRectZero]];
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);

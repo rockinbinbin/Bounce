@@ -12,6 +12,7 @@
                 <outlet property="iconView" destination="574-VI-820" id="ntu-Sf-G2V"/>
                 <outlet property="leftMenuButton" destination="RzX-9y-Ebr" id="4lY-SH-33J"/>
                 <outlet property="map" destination="uRR-L3-cLI" id="oa7-94-R4o"/>
+                <outlet property="numOfMessagesLabel" destination="pbn-Rj-tG3" id="RIf-K4-pbz"/>
                 <outlet property="repliesButton" destination="EzP-kZ-dFS" id="cOX-A3-OvW"/>
                 <outlet property="repliesView" destination="sAn-zb-a6X" id="3kq-4E-cHA"/>
                 <outlet property="timeLeftLabel" destination="knq-px-JSH" id="8xY-Yi-uBx"/>
@@ -76,6 +77,23 @@
                                         <action selector="repliesButtonClicked:" destination="-1" eventType="touchUpInside" id="qdV-D7-RFG"/>
                                     </connections>
                                 </button>
+                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pbn-Rj-tG3" userLabel="UnRead Message Label">
+                                    <rect key="frame" x="370" y="73" width="25" height="25"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="30" id="WOE-wS-oSU"/>
+                                        <constraint firstAttribute="height" constant="20" id="lR1-6v-lkr"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="WOE-wS-oSU"/>
+                                            <exclude reference="lR1-6v-lkr"/>
+                                        </mask>
+                                    </variation>
+                                </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v1e-1e-A2R">
                                     <rect key="frame" x="241" y="153" width="120" height="40"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -105,17 +123,28 @@
                             </subviews>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstItem="pbn-Rj-tG3" firstAttribute="leading" secondItem="EzP-kZ-dFS" secondAttribute="leading" constant="150" id="7bm-Gf-Cu8"/>
+                                <constraint firstItem="pbn-Rj-tG3" firstAttribute="bottom" secondItem="EzP-kZ-dFS" secondAttribute="bottom" constant="-40" id="91u-0b-nVv"/>
                                 <constraint firstAttribute="centerY" secondItem="EzP-kZ-dFS" secondAttribute="centerY" id="DH9-cy-hvP"/>
                                 <constraint firstItem="v1e-1e-A2R" firstAttribute="top" secondItem="EzP-kZ-dFS" secondAttribute="bottom" constant="20" id="GJi-jk-hLF"/>
                                 <constraint firstItem="EzP-kZ-dFS" firstAttribute="top" secondItem="knq-px-JSH" secondAttribute="bottom" constant="20" id="ITY-vc-6CZ"/>
+                                <constraint firstItem="pbn-Rj-tG3" firstAttribute="bottom" secondItem="EzP-kZ-dFS" secondAttribute="bottom" constant="-35" id="ZZ5-mT-v1P"/>
+                                <constraint firstItem="pbn-Rj-tG3" firstAttribute="trailing" secondItem="EzP-kZ-dFS" secondAttribute="trailing" constant="15" id="aGw-aR-Ac0"/>
                                 <constraint firstAttribute="centerX" secondItem="EzP-kZ-dFS" secondAttribute="centerX" id="b74-z8-jHl"/>
                                 <constraint firstAttribute="centerX" secondItem="knq-px-JSH" secondAttribute="centerX" constant="-0.5" id="fHD-q9-MgH"/>
+                                <constraint firstItem="pbn-Rj-tG3" firstAttribute="baseline" secondItem="EzP-kZ-dFS" secondAttribute="baseline" constant="-31" id="hUB-li-EtI"/>
+                                <constraint firstItem="pbn-Rj-tG3" firstAttribute="leading" secondItem="EzP-kZ-dFS" secondAttribute="leading" constant="150" id="loW-9m-tUw"/>
                                 <constraint firstAttribute="centerX" secondItem="v1e-1e-A2R" secondAttribute="centerX" constant="-0.5" id="rId-Oa-DeH"/>
                                 <constraint firstAttribute="bottom" secondItem="v1e-1e-A2R" secondAttribute="bottom" constant="10" id="rtE-CS-qzY"/>
+                                <constraint firstItem="pbn-Rj-tG3" firstAttribute="top" secondItem="EzP-kZ-dFS" secondAttribute="top" constant="-10" id="xyV-fU-mdl"/>
+                                <constraint firstItem="pbn-Rj-tG3" firstAttribute="centerY" secondItem="EzP-kZ-dFS" secondAttribute="centerY" constant="-22.5" id="yHX-dA-dxP"/>
                             </constraints>
                             <variation key="default">
                                 <mask key="constraints">
                                     <exclude reference="rtE-CS-qzY"/>
+                                    <exclude reference="7bm-Gf-Cu8"/>
+                                    <exclude reference="91u-0b-nVv"/>
+                                    <exclude reference="hUB-li-EtI"/>
                                 </mask>
                             </variation>
                         </view>

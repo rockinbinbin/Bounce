@@ -184,6 +184,7 @@ static RequestManger *sharedRequestManger = nil;
         [startRequestTimer invalidate];
         startRequestTimer = nil;
     }
+    activeRequest = nil;
 }
 
 #pragma mark - Request
@@ -349,7 +350,6 @@ static RequestManger *sharedRequestManger = nil;
     // FIXME: adjust this part to delete the request or mark it ended
     [[ParseManager getInstance] deleteAllRequestData:activeRequest];
     [self invalidateCurrentRequest];
-    activeRequest = nil;
     if ([self.requestManagerDelegate respondsToSelector:@selector(didEndRequestWithError:)]) {
         [self.requestManagerDelegate didEndRequestWithError:nil];
     }

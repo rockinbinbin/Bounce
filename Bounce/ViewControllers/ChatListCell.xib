@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -19,9 +19,9 @@
                         <rect key="frame" x="8" y="8" width="304" height="63"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ipg-oR-qoh">
-                                <rect key="frame" x="85" y="3" width="200" height="29"/>
+                                <rect key="frame" x="85" y="3" width="220" height="29"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="jIy-tU-mUz"/>
+                                    <constraint firstAttribute="width" constant="220" id="jIy-tU-mUz"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -97,6 +97,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Arl-do-QdW" firstAttribute="leading" secondItem="Tlb-Ug-cbn" secondAttribute="leading" constant="6" id="4gw-mE-q8h"/>
                             <constraint firstAttribute="centerX" secondItem="Ipg-oR-qoh" secondAttribute="centerX" constant="-33" id="6z6-3Y-b0h"/>
                             <constraint firstItem="Ipg-oR-qoh" firstAttribute="leading" secondItem="pmu-FP-Shd" secondAttribute="leading" id="8p1-ch-QF8"/>
                             <constraint firstItem="pmu-FP-Shd" firstAttribute="top" secondItem="Ipg-oR-qoh" secondAttribute="bottom" constant="4" id="Nby-M6-Oio"/>
@@ -106,10 +107,13 @@
                             <constraint firstItem="Arl-do-QdW" firstAttribute="centerX" secondItem="4i2-ET-GI2" secondAttribute="centerX" id="iuH-UF-FWN"/>
                             <constraint firstAttribute="centerY" secondItem="Ipg-oR-qoh" secondAttribute="centerY" constant="14" id="lke-Wu-vqI"/>
                             <constraint firstAttribute="centerY" secondItem="Arl-do-QdW" secondAttribute="centerY" id="pef-NT-Kgg"/>
+                            <constraint firstItem="Ipg-oR-qoh" firstAttribute="leading" secondItem="Arl-do-QdW" secondAttribute="leading" constant="79" id="vPN-5T-wi1"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="YHA-LM-mmM"/>
+                                <exclude reference="6z6-3Y-b0h"/>
+                                <exclude reference="Z4m-HY-jAJ"/>
                             </mask>
                         </variation>
                     </view>

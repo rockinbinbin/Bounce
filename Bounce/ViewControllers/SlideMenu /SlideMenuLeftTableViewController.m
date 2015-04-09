@@ -28,6 +28,7 @@
     UIActionSheet *imageActionSheet;
     UIImage* profileImage;
     NSInteger activeChatNumber;
+    UINavigationController *homeNavigationViewController;
 }
 - (void)viewDidLoad
 {
@@ -74,6 +75,7 @@
     if (!cell)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     cell.backgroundColor = [UIColor darkGrayColor];
     UIView *bgColorView = [[UIView alloc] init];
@@ -141,24 +143,26 @@
     switch (indexPath.row) {
         case Home_section:
         {
-            rootVC = [[HomeScreenViewController alloc] initWithNibName:@"HomeScreenViewController" bundle:nil];
+            if (!homeNavigationViewController) {
+                rootVC = [[HomeScreenViewController alloc] initWithNibName:@"HomeScreenViewController" bundle:nil];
+                homeNavigationViewController = [[UINavigationController alloc] initWithRootViewController:rootVC];
+            }
+            [self openContentNavigationController:homeNavigationViewController];
         }
             break;
         case Chats_Section:
         {
             rootVC = [[RequestsViewController alloc] initWithNibName:@"RequestsViewController" bundle:nil];
+            nvc = [[UINavigationController alloc] initWithRootViewController:rootVC];
+            [self openContentNavigationController:nvc];
         }
             break;
         
         default:
             break;
     }
-    if (rootVC) {
-        nvc = [[UINavigationController alloc] initWithRootViewController:rootVC];
-        [self openContentNavigationController:nvc];
-    }
-    
-   }
+
+}
 
 
 #pragma mark -
@@ -169,7 +173,7 @@
         self.usernameLabel.text = [currentUser username];
         self.userCityLabel.text = @"New York City";
         //TODO: Get the actual address of the user by his latitude and longitude
-        PFGeoPoint *userGeoPoint = currentUser[@"CurrentLocation"];
+//        PFGeoPoint *userGeoPoint = currentUser[@"CurrentLocation"];
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);

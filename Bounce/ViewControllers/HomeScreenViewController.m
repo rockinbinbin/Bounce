@@ -35,33 +35,15 @@
     self.repliesButton.clipsToBounds = YES;
     self.repliesButton.backgroundColor = DEFAULT_COLOR;
     self.repliesView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
+    // round number of message label
+    [self.numOfMessagesLabel setFont:[UIFont fontWithName: @"Trebuchet MS" size: 16.0f]];
+    self.numOfMessagesLabel.layer.cornerRadius = self.numOfMessagesLabel.frame.size.height/2;
+    self.numOfMessagesLabel.layer.masksToBounds = YES;
+    self.numOfMessagesLabel.backgroundColor = [UIColor redColor];
     
-    // rounded view on the left
-    CGRect userOnlineFrame = CGRectMake(self.repliesButton.frame.origin.x + 8, self.repliesButton.frame.origin.y - 14 , 20, 20);
-    self.roundedView = [[UIView alloc] initWithFrame: userOnlineFrame];
-    self.roundedView.layer.cornerRadius = 10;
-    self.roundedView.layer.masksToBounds = YES;
-    self.roundedView.backgroundColor = [UIColor redColor];
-    
-    // number of messages for the group
-    self.numOfMessagesLabel = [[UILabel alloc] initWithFrame:CGRectMake(-5, 0, 30, 20)];
-    self.numOfMessagesLabel.textAlignment = NSTextAlignmentCenter;
-    self.numOfMessagesLabel.text = @"";
-    [self.numOfMessagesLabel setTextColor:[UIColor whiteColor]];
-    [self.numOfMessagesLabel setBackgroundColor:[UIColor clearColor]];
-    [self.numOfMessagesLabel setFont:[UIFont fontWithName: @"Trebuchet MS" size: 14.0f]];
-    [self.roundedView addSubview:self.numOfMessagesLabel];
-    [self.repliesView addSubview:self.roundedView];
-
-    
-    self.iconView.layer.cornerRadius = self.iconView.frame.size.height / 2;
-    self.iconView.clipsToBounds = YES;
-    self.iconView.layer.borderWidth = 3.0f;
-    self.iconView.layer.borderColor = [UIColor whiteColor].CGColor;
+    [[Utility getInstance] addRoundedBorderToView:self.iconView];
     self.iconView.backgroundColor = DEFAULT_COLOR;
     
-//    [self setBarButtonItemLeft:@"nav_bar_profile_menu_icon"];
-    //[self setBarButtonItemRight:@"nav_bar_group_icon"];
     self.navigationItem.title = @"bounce";
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
     self.location_manager = [[CLLocationManager alloc] init];
@@ -214,10 +196,10 @@
 {
     @try {
         if (numberOfUnreadMessages > 0) {
-            [self.roundedView setHidden:NO];
+            [self.numOfMessagesLabel setHidden:NO];
             [self.numOfMessagesLabel setText:[NSString stringWithFormat:@"%i", numberOfUnreadMessages]];
         }else{
-            [self.roundedView setHidden:YES];
+            [self.numOfMessagesLabel setHidden:YES];
         }
     }
     @catch (NSException *exception) {
@@ -249,6 +231,6 @@
 - (void) hideReplyView
 {
     [self.repliesView setHidden:YES];
-    [self.roundedView setHidden:YES];
+    [self.numOfMessagesLabel setHidden:YES];
 }
 @end
