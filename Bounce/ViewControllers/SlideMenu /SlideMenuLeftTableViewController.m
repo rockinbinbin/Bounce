@@ -171,7 +171,7 @@
         // adding user name
         PFUser* currentUser = [PFUser currentUser];
         self.usernameLabel.text = [currentUser username];
-        self.userCityLabel.text = @"New York City";
+//        self.userCityLabel.text = @"New York City";
         //TODO: Get the actual address of the user by his latitude and longitude
 //        PFGeoPoint *userGeoPoint = currentUser[@"CurrentLocation"];
     }
