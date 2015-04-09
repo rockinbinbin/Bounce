@@ -85,6 +85,9 @@
 - (void) getUserRequests;
 // Delete Request
 -(void) deleteRequest:(PFObject *) request;
+// Delete usr from request
+- (void) deleteUser:(PFUser *) user FromRequest:(PFObject *) request;
+- (void) deleteAllRequestData:(PFObject *) request;
 
 @end
 

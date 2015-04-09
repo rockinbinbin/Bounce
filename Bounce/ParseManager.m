@@ -524,14 +524,12 @@ PFUser *currentUser;
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
      {
-         if ([objects count] > 0) {
-             // fire notification to update the request numbers
-             NSDictionary* dict = [NSDictionary dictionaryWithObject:
-                                   [NSNumber numberWithInteger:[objects count]]
-                                                              forKey:@"Chat"];
-             [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateChatNumber" object:nil userInfo:dict];
+         // fire notification to update the request numbers
+         NSDictionary* dict = [NSDictionary dictionaryWithObject:
+                               [NSNumber numberWithInteger:[objects count]]
+                                                          forKey:@"Chat"];
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateChatNumber" object:nil userInfo:dict];
 
-         }
      }];
 
 }
@@ -579,64 +577,81 @@ PFUser *currentUser;
                 if ([self.deleteDelegate respondsToSelector:@selector(didDeleteObject:)]) {
                     [self.deleteDelegate didDeleteObject:succeeded];
                 }
-                [self deleteChatDataRelatedToRequestId:requestId ForAllUser:YES];
+                [self deleteChatDataRelatedToRequestId:requestId ForExactUser:nil];
             }];
         }else{
             // remove the current user from the receivers
-            [self deleteCurrentUserFromRequest:request];
+            [self deleteUser:[PFUser currentUser] FromRequest:request];
         }
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
     }
 }
-#pragma mark - Detete User from request
-- (void) deleteCurrentUserFromRequest:(PFObject *) request
+- (void) deleteAllRequestData:(PFObject *) request
 {
     @try {
         NSString *requestId = [request objectId];
-       // delete user from the receiver relation
-        PFRelation *receiversRelation = [request relationForKey:PF_REQUEST_RECEIVERS_RELATION];
-        [receiversRelation removeObject:[PFUser currentUser]];
-       // delete him from reveiver
-        [request removeObject:[[PFUser currentUser] username] forKey:PF_REQUEST_RECEIVER];
-        [request saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if ([self.deleteDelegate respondsToSelector:@selector(didDeleteObject:)]) {
-                [self.deleteDelegate didDeleteObject:succeeded];
-            }
-            // delete message
-            // delete chat messages
-            [self deleteChatDataRelatedToRequestId:requestId ForAllUser:NO];
+        [request deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            [self deleteChatDataRelatedToRequestId:requestId ForExactUser:nil];
         }];
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
     }
 }
-- (void) deleteChatDataRelatedToRequestId:(NSString *) requestId ForAllUser:(BOOL) allUser
+#pragma mark - Detete User from request
+- (void) deleteUser:(PFUser *) user FromRequest:(PFObject *) request
+{
+    @try {
+        NSString *requestId = [request objectId];
+       // delete user from the receiver relation
+        PFRelation *receiversRelation = [request relationForKey:PF_REQUEST_RECEIVERS_RELATION];
+        [receiversRelation removeObject:user];
+       // delete him from reveiver
+        [request removeObject:[user username] forKey:PF_REQUEST_RECEIVER];
+        [request saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if ([[user username] isEqualToString:[[PFUser currentUser] username]]) {
+                // this called from requests screen  and must return to it
+                if ([self.deleteDelegate respondsToSelector:@selector(didDeleteObject:)]) {
+                    [self.deleteDelegate didDeleteObject:succeeded];
+                }
+            }
+            // delete message
+            // delete chat messages
+            [self deleteChatDataRelatedToRequestId:requestId ForExactUser:user];
+        }];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
+- (void) deleteChatDataRelatedToRequestId:(NSString *) requestId ForExactUser:(PFUser *) user
 {
     @try {
         // delete chat object
         PFQuery *query = [PFQuery queryWithClassName:PF_MESSAGES_CLASS_NAME];
         [query whereKey:PF_MESSAGES_GROUPID equalTo:requestId];
-        if (!allUser) {
-            [query whereKey:PF_MESSAGES_USER equalTo:[PFUser currentUser]];
+        if (user) {
+            [query whereKey:PF_MESSAGES_USER equalTo:user];
         }
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
          {
              if (error == nil)
              {
-                 if ([objects count] > 0)
-                 {
-                     [[objects objectAtIndex:0] deleteInBackground];
-                 }             }
+                 if (objects > 0) {
+                     for (int i = 0; i<[objects count]; i++) {
+                         [[objects objectAtIndex:i] deleteInBackground];
+                     }
+                 }
+             }
              else NSLog(@"CreateMessageItem query error.");
          }];
         // delete chat messages
         PFQuery *cahtMessagesQuery = [PFQuery queryWithClassName:PF_CHAT_CLASS_NAME];
         [cahtMessagesQuery whereKey:PF_CHAT_GROUPID equalTo:requestId];
-        if (!allUser) {
-            [cahtMessagesQuery whereKey:PF_CHAT_USER equalTo:[PFUser currentUser]];\
+        if (user) {
+            [cahtMessagesQuery whereKey:PF_CHAT_USER equalTo:user];
         }
         [cahtMessagesQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
             if (objects > 0) {

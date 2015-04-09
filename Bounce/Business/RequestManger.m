@@ -67,15 +67,24 @@ static RequestManger *sharedRequestManger = nil;
             
         }else{
             // invalidate the request
-            activeRequest = nil;
-            [self invalidateCurrentRequest];
-            if ([self.requestManagerDelegate respondsToSelector:@selector(requestTimeOver)]) {
-                [self.requestManagerDelegate requestTimeOver];
-            }
+            [self requestBecomeInvalid];
         }
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
+    }
+}
+
+#pragma mark - Request time over
+- (void) requestBecomeInvalid
+{
+    [[ParseManager getInstance] deleteAllRequestData:activeRequest];
+    activeRequest = nil;
+    [self invalidateCurrentRequest];
+    // delete request data
+    // update the reply view in home screen
+    if ([self.requestManagerDelegate respondsToSelector:@selector(requestTimeOver)]) {
+        [self.requestManagerDelegate requestTimeOver];
     }
 }
 #pragma mark - Update Request Users
@@ -84,16 +93,16 @@ static RequestManger *sharedRequestManger = nil;
     @try {
         PFUser *currentUser = [PFUser currentUser];
         PFGeoPoint *userGeoPoint = currentUser[@"CurrentLocation"];
-        NSArray *oldUsers = [activeRequest objectForKey:@"receivers"];
         NSArray *selectedGroups = [activeRequest objectForKey:PF_REQUEST_SELECTED_GROUPS];
         NSInteger radius = [[activeRequest objectForKey:PF_REQUEST_RADIUS] integerValue];
-        NSMutableArray *oldUsersNames = [[NSMutableArray alloc] initWithArray:oldUsers];
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             // get User in the selected groups and within the radius
             NSArray *resultUsers = [self getUsersInSelectedGroups:selectedGroups withGender:[activeRequest objectForKey:PF_GENDER] WithinRequestRadius:radius withSenderName:[currentUser username] andSenderLocation:userGeoPoint];
            
             dispatch_async(dispatch_get_main_queue(), ^{
+                NSArray *oldUsers = [activeRequest objectForKey:@"receivers"];
+                NSMutableArray *oldUsersNames = [[NSMutableArray alloc] initWithArray:oldUsers];
                 NSMutableArray *resultUsernames = [[NSMutableArray alloc] init];
                 NSMutableArray *addedUsers = [[NSMutableArray alloc] init];
                 NSMutableArray *removedUsers = [[NSMutableArray alloc] init];
@@ -125,13 +134,8 @@ static RequestManger *sharedRequestManger = nil;
                             [[ParseManager getInstance] createMessageItemForUser:user WithGroupId:requestId andDescription:@""];
                         }
                         // TODO: Adjust this part
-                        
-                        //                    for (PFUser* user in removedUsers) {
-                        //                        // remove chat if found
-                        //                        //                    [[ParseManager getInstance] createMessageItemForUser:user WithGroupId:requestId andDescription:@""];
-                        //                    }
+                        [self removeRequestDataForRemovedUser:removedUsers];
                     }];
-                    
                 } else {
                     NSLog(@"There were no users found.");
                 }
@@ -143,7 +147,21 @@ static RequestManger *sharedRequestManger = nil;
         NSLog(@"Exception %@", exception);
     }
 }
-
+- (void) removeRequestDataForRemovedUser:(NSArray *)removedUsers
+{
+    // remove related chatting data
+    for (NSString* userName in removedUsers) {
+        
+        // remove chat if found
+        PFQuery *query = [PFUser query];
+        [query whereKey:PF_USER_USERNAME equalTo:userName];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if ([objects count] > 0) {
+                [[ParseManager getInstance] deleteUser:[objects objectAtIndex:0] FromRequest:activeRequest];
+            }
+        }];
+    }
+}
 #pragma mark - Compare dates
 - (BOOL)isEndDateIsSmallerThanCurrent:(NSDate *)checkEndDate
 {
@@ -214,6 +232,7 @@ static RequestManger *sharedRequestManger = nil;
                 // start request updating
                 activeRequest = request;
                 // update the home screen view
+                self.requestLeftTimeInMinute = timeAllocated;
                 if ([self.requestManagerDelegate respondsToSelector:@selector(requestCreated)]) {
                     [self.requestManagerDelegate requestCreated];
                 }
@@ -315,16 +334,23 @@ static RequestManger *sharedRequestManger = nil;
     // update request data
     // close the update thread
     // remove the reply view
-    [activeRequest setObject:[NSDate date] forKey:PF_REQUEST_END_DATE];
-    [activeRequest setObject:[NSNumber numberWithBool:YES] forKey:PF_REQUEST_IS_ENDED];
-    [activeRequest saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (!error) {
-            [self invalidateCurrentRequest];
-        }
-        if ([self.requestManagerDelegate respondsToSelector:@selector(didEndRequestWithError:)]) {
-            [self.requestManagerDelegate didEndRequestWithError:error];
-        }
-    }];
+//    [activeRequest setObject:[NSDate date] forKey:PF_REQUEST_END_DATE];
+//    [activeRequest setObject:[NSNumber numberWithBool:YES] forKey:PF_REQUEST_IS_ENDED];
+//    [activeRequest saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//        if (!error) {
+//            [self invalidateCurrentRequest];
+//        }
+//        if ([self.requestManagerDelegate respondsToSelector:@selector(didEndRequestWithError:)]) {
+//            [self.requestManagerDelegate didEndRequestWithError:error];
+//        }
+//    }];
+    // FIXME: adjust this part to delete the request or mark it ended
+    [[ParseManager getInstance] deleteAllRequestData:activeRequest];
+    [self invalidateCurrentRequest];
+    activeRequest = nil;
+    if ([self.requestManagerDelegate respondsToSelector:@selector(didEndRequestWithError:)]) {
+        [self.requestManagerDelegate didEndRequestWithError:nil];
+    }
 }
 
 #pragma mark - Get Number of Unreaded messages
@@ -353,7 +379,8 @@ static RequestManger *sharedRequestManger = nil;
 - (void) calculateRequestTimeOver
 {
     @try {
-        self.requestLeftTimeInMinute = [[NSDate date] timeIntervalSinceDate:[activeRequest createdAt]]/60;
+//        self.requestLeftTimeInMinute = [[NSDate date] timeIntervalSinceDate:[activeRequest createdAt]]/60;
+        self.requestLeftTimeInMinute = [[activeRequest objectForKey:PF_REQUEST_TIME_ALLOCATED] integerValue] - ([[NSDate date] timeIntervalSinceDate:[activeRequest createdAt]]/60) ;
         if ([self.requestManagerDelegate respondsToSelector:@selector(updateRequestRemainingTime:)]) {
             [self.requestManagerDelegate updateRequestRemainingTime:self.requestLeftTimeInMinute];
         }
@@ -393,6 +420,8 @@ static RequestManger *sharedRequestManger = nil;
                 activeRequest = nil;
                 self.unReadReplies = 0;
                 self.requestLeftTimeInMinute = 0;
+                //TODO: remove this request with it's chat data
+                [[ParseManager getInstance] deleteAllRequestData:[objects objectAtIndex:0]];
             }
         }
     }];
