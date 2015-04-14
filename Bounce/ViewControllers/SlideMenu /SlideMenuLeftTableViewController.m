@@ -183,7 +183,8 @@
 #pragma mark - St profile Image
 - (void) setProfileImage
 {
-    PFFile *imageFile = [[PFUser currentUser] objectForKey:PF_USER_THUMBNAIL];
+//    PFFile *imageFile = [[PFUser currentUser] objectForKey:PF_USER_THUMBNAIL];
+    PFFile *imageFile = [[PFUser currentUser] objectForKey:PF_USER_PICTURE];
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!error) {
             profileImage = [UIImage imageWithData:data];
@@ -321,7 +322,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     if (image) {
         profileImage = image;
         self.userProfileImageView.image = image;
-//        self.userProfileImageView.contentMode = UIViewContentModeScaleToFill;
+        self.userProfileImageView.contentMode = UIViewContentModeScaleAspectFit;
         [self saveProfileImageOnCloud];
         } else {
         UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Error!!" message:@"Error in uploading image." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -347,7 +348,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     }
     else{
         [[Utility getInstance] showProgressHudWithMessage:@"Uploading Image" withView:self.view];
-        if (profileImage.size.width > 100) profileImage = SquareImage(profileImage, 100);
+//        if (profileImage.size.width > 100) profileImage = SquareImage(profileImage, 100);
         data = UIImageJPEGRepresentation(profileImage, 1.0);
         imageFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@%@", [[PFUser currentUser] username], @".jpg"] data:data];
         [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
