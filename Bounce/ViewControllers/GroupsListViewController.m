@@ -21,6 +21,7 @@
 @implementation GroupsListViewController
 {
     BOOL loadingData;
+    NSInteger selectedIndex;
 }
 @synthesize nearUsers = nearUsers;
 @synthesize distanceToUserLocation = distanceToUserLocation;
@@ -193,6 +194,23 @@
     return [self.groups count];
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return YES if you want the specified item to be editable.
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //add code here for when you hit delete
+        if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+            [[Utility getInstance] showProgressHudWithMessage:@"Delete .." withView:self.view];
+            selectedIndex = indexPath.row;
+            [[ParseManager getInstance] setDeleteDelegate:self];
+            [[ParseManager getInstance] deleteGroup:[self.groups objectAtIndex:selectedIndex]];
+        }
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString* cellId = @"ChatListCell";
     ChatListCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellId];
@@ -203,12 +221,8 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
   
-    cell.numOfMessagesLabel.text = @"0";
     // filling the cell data
-//    cell.groupNameLabel.text = @"Group 1";
-//    cell.groupDistanceLabel.text = @"2.1 miles away";
-//    cell.numOfFriendsInGroupLabel.text = @"44";
-    
+    cell.numOfMessagesLabel.text = @"0";
     cell.groupNameLabel.text = [[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
     cell.groupDistanceLabel.text = [NSString stringWithFormat:DISTANCE_MESSAGE, [[distanceToUserLocation objectAtIndex:indexPath.row] doubleValue]];
     cell.numOfFriendsInGroupLabel.text = [NSString stringWithFormat:@"%@",[nearUsers objectAtIndex:indexPath.row]];
@@ -225,5 +239,21 @@
     return 80;
 }
 
+#pragma mark - Parse Manger delete delegate
+- (void)didDeleteObject:(BOOL)succeeded
+{
+    @try {
+        [[Utility getInstance] hideProgressHud];
+        if (succeeded) {
+            [self.groups removeObjectAtIndex:selectedIndex];
+            [distanceToUserLocation removeObjectAtIndex:selectedIndex];
+            [nearUsers removeObjectAtIndex:selectedIndex];
+            [self.tableView reloadData];
+        }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
 
 @end

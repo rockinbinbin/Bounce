@@ -61,8 +61,8 @@
 // get group users
 - (NSArray *) getGroupUsers:(PFObject *) group;
 // remove group
-- (BOOL) removeGroup:(PFObject *) group;
-
+- (void) removeGroup:(PFObject *) group;
+- (void) deleteGroup:(PFObject *) group;
 // Useres Operations
 - (void) getAllUsers;
 // Get all groups except created by user

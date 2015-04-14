@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Constants.h"
+#import "ParseManager.h"
 
-@interface EditGroupsViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+@interface EditGroupsViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, ParseManagerDeleteDelegate>
 @property NSMutableArray* groups;
 @property NSMutableArray *nearUsers;
 @property NSMutableArray *distanceToUserLocation;

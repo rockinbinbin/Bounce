@@ -25,6 +25,7 @@
     NSMutableArray *groupsCreatedBYUser;
     NSMutableArray *groupsDistance;
     NSMutableArray *groupsNearUsers;
+    NSInteger selectedIndex;
 
 }
 - (void)viewDidLoad {
@@ -114,14 +115,9 @@
         //add code here for when you hit delete
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
             [[Utility getInstance] showProgressHudWithMessage:@"Delete .." withView:self.view];
-            [[ParseManager getInstance] removeGroup:[groupsCreatedBYUser objectAtIndex:indexPath.row]];
-            [[Utility getInstance] hideProgressHud];
-            NSLog(@"%li index is deleted !", (long)indexPath.row);
-            [groupsCreatedBYUser removeObjectAtIndex:indexPath.row];
-            [groupsDistance removeObjectAtIndex:indexPath.row];
-            [groupsNearUsers removeObjectAtIndex:indexPath.row];
-
-            [self.tableView reloadData];
+            selectedIndex = indexPath.row;
+            [[ParseManager getInstance] setDeleteDelegate:self];
+            [[ParseManager getInstance] removeGroup:[groupsCreatedBYUser objectAtIndex:selectedIndex]];
         }
     }
 }
@@ -165,5 +161,20 @@
     }
 }
 
-
+#pragma mark - Parse Manger delete delegate
+- (void)didDeleteObject:(BOOL)succeeded
+{
+    @try {
+        [[Utility getInstance] hideProgressHud];
+        if (succeeded) {
+            [groupsCreatedBYUser removeObjectAtIndex:selectedIndex];
+            [groupsDistance removeObjectAtIndex:selectedIndex];
+            [groupsNearUsers removeObjectAtIndex:selectedIndex];
+            [self.tableView reloadData];
+        }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
 @end

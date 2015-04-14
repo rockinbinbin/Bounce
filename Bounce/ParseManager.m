@@ -402,15 +402,28 @@ PFUser *currentUser;
 }
 
 #pragma mark - Remove Group
-- (BOOL) removeGroup:(PFObject *) group
+- (void) removeGroup:(PFObject *) group
 {
     @try {
-        PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
-        [query whereKey:OBJECT_ID equalTo:[group objectId]];
-        NSArray *groups = [query findObjects];
-        BOOL deleted = [[groups objectAtIndex:0] delete];
-        
-        return deleted;
+        [group deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if ([self.deleteDelegate respondsToSelector:@selector(didDeleteObject:)]) {
+                [self.deleteDelegate didDeleteObject:succeeded];
+            }
+        }];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
+
+- (void) deleteGroup:(PFObject *) group
+{
+    @try {
+        if ([[[group objectForKey:PF_GROUP_OWNER] username] isEqualToString:[[PFUser currentUser] username]]) {
+            [self removeGroup:group];
+        }else{
+            [self deleteCurrentUserFromGroup:group];
+        }
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
@@ -439,6 +452,26 @@ PFUser *currentUser;
 
 }
 
+- (void) deleteCurrentUserFromGroup:(PFObject *) group
+{
+    @try {
+        PFUser *currentUser = [PFUser currentUser];
+        PFRelation *relation = [group relationForKey:PF_GROUP_Users_RELATION];
+        [relation removeObject:currentUser];
+        [group removeObject:currentUser forKey:PF_GROUP_USER_ARRAY];
+        [currentUser removeObject:[group objectForKey:PF_GROUPS_NAME] forKey:@"ArrayOfGroups"];
+        [currentUser saveInBackground];
+        [group saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if ([self.deleteDelegate respondsToSelector:@selector(didDeleteObject:)]) {
+                [self.deleteDelegate didDeleteObject:succeeded];
+            }
+        }];
+        
+    }
+    @catch (NSException *exception) {
+        
+    }
+}
 #pragma mark - Get all Groups in the system except created by user
 - (NSArray *) getAllGroupsExceptCreatedByUser
 {
