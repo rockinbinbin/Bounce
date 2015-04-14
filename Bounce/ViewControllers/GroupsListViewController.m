@@ -204,6 +204,12 @@
     cell.numOfMessagesLabel.text = @"0";
     cell.roundedView.hidden = YES;
 
+    if ([[[PFUser currentUser] username] isEqualToString:[[[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUP_OWNER] username]] ) {
+        cell.timeLabel.hidden = NO;
+        [cell.timeLabel setText:@"created by me"];
+    }else{
+        cell.timeLabel.hidden = YES;
+    }
     cell.groupNameLabel.text = [[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
     cell.groupDistanceLabel.text = [NSString stringWithFormat:DISTANCE_MESSAGE, [[distanceToUserLocation objectAtIndex:indexPath.row] doubleValue]];
     cell.numOfFriendsInGroupLabel.text = [NSString stringWithFormat:@"%@",[nearUsers objectAtIndex:indexPath.row]];
