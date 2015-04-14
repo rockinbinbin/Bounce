@@ -7,13 +7,14 @@
 //
 
 #import "GroupsListViewController.h"
-#import "EditGroupsViewController.h"
+#import "AddHomePointViewController.h"
 #import "ChatListCell.h"
 #import "AppConstant.h"
 #import "Utility.h"
 #import "Constants.h"
 #import "UIViewController+AMSlideMenu.h"
 #import "HomeScreenViewController.h"
+#import "AddGroupUsersViewController.h"
 
 @interface GroupsListViewController ()
 @end
@@ -22,6 +23,7 @@
 {
     BOOL loadingData;
     NSInteger selectedIndex;
+    NSMutableArray *groupUsers;
 }
 @synthesize nearUsers = nearUsers;
 @synthesize distanceToUserLocation = distanceToUserLocation;
@@ -29,16 +31,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self.navigationController setNavigationBarHidden:NO];
-
     [self setBarButtonItemLeft:@"common_back_button"];
+    [self setBarButtonItemRight:@"common_plus_icon_red"];
     self.navigationItem.title = @"homepoints";
-    UIBarButtonItem *editButton = [[UIBarButtonItem alloc]
-                                   initWithTitle:@"Edit"
-                                   style:UIBarButtonItemStylePlain
-                                   target:self
-                                   action:@selector(editButtonClicked)];
-    editButton.tintColor = DEFAULT_COLOR;
-    self.navigationItem.rightBarButtonItem = editButton;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -46,30 +41,12 @@
     @try {
         // Disable left Slide menu
         [self disableSlidePanGestureForLeftMenu];
-        //        [[ParseManager getInstance] setLoadGroupsdelegate:self];
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
             [[Utility getInstance] showProgressHudWithMessage:@"Loading..." withView:self.view];
             [[ParseManager getInstance] setGetUserGroupsdelegate:self];
             loadingData = YES;
             [[ParseManager getInstance] getUserGroups];
-            
-//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//                //                [[ParseManager getInstance] loadAllGroups];
-//                self.groups = [[NSMutableArray alloc] initWithArray:[[ParseManager getInstance] getUserGroups]];
-//                nearUsers = [[NSMutableArray alloc] init];
-//                distanceToUserLocation = [[NSMutableArray alloc] init];
-//                for (PFObject *group in self.groups) {
-//                    [nearUsers addObject:[NSNumber numberWithInteger:[[ParseManager getInstance] getNearUsersInGroup:group]]];
-//                    [distanceToUserLocation addObject:[NSNumber numberWithDouble:[[ParseManager getInstance] getDistanceToGroup:group]]];
-//                }
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    // Update the UI on the main thread.
-//                    [[Utility getInstance] hideProgressHud];
-//                    [self.tableView reloadData];
-//                });
-//            });
         }
-        
     }
     @catch (NSException *exception) {
         NSLog(@"exception %@", exception);
@@ -87,6 +64,12 @@
     self.navigationItem.leftBarButtonItem = [self initialiseBarButton:back withAction:@selector(backButtonClicked)];
 }
 
+-(void) setBarButtonItemRight:(NSString*) imageName{
+    
+    UIImage *add = [UIImage imageNamed:imageName];
+    self.navigationItem.rightBarButtonItem = [self initialiseBarButton:add withAction:@selector(addButtonClicked)];
+}
+
 -(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action{
     UIButton *buttonItem = [UIButton buttonWithType:UIButtonTypeCustom];
     buttonItem.bounds = CGRectMake( 0, 0, buttonImage.size.width, buttonImage.size.height );
@@ -100,16 +83,12 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
--(void)editButtonClicked{
+-(void)addButtonClicked{
     if (!loadingData) {
-        EditGroupsViewController* editGroupViewController = [[EditGroupsViewController alloc] initWithNibName:@"EditGroupsViewController" bundle:nil];
-        [editGroupViewController setGroups:self.groups];
-        [editGroupViewController setNearUsers:self.nearUsers];
-        [editGroupViewController setDistanceToUserLocation:self.distanceToUserLocation];
-        [self.navigationController pushViewController:editGroupViewController animated:YES];
+        AddHomePointViewController* addHomePointViewController = [[AddHomePointViewController alloc] initWithNibName:@"AddHomePointViewController" bundle:nil];
+        [self.navigationController pushViewController:addHomePointViewController animated:YES];
     }
 }
-
 #pragma mark - Parse LoadGroups delegate
 - (void)didLoadUserGroups:(NSArray *)groups WithError:(NSError *)error
 {
@@ -223,6 +202,8 @@
   
     // filling the cell data
     cell.numOfMessagesLabel.text = @"0";
+    cell.roundedView.hidden = YES;
+
     cell.groupNameLabel.text = [[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
     cell.groupDistanceLabel.text = [NSString stringWithFormat:DISTANCE_MESSAGE, [[distanceToUserLocation objectAtIndex:indexPath.row] doubleValue]];
     cell.numOfFriendsInGroupLabel.text = [NSString stringWithFormat:@"%@",[nearUsers objectAtIndex:indexPath.row]];
@@ -233,6 +214,9 @@
 #pragma mark - TableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    // Open Group Users
+    selectedIndex = indexPath.row;
+    [self editGroupUsers:[self.groups objectAtIndex:indexPath.row]];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -256,4 +240,56 @@
     }
 }
 
+#pragma mark - Edit User group
+- (void) editGroupUsers:(PFObject *) group
+{
+    // get group user
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+        [[Utility getInstance] showProgressHudWithMessage:@"Load Users..." withView:self.view];
+        [[ParseManager getInstance] setDelegate:self];
+        [[ParseManager getInstance] getGroupUsers:group];
+    }
+}
+#pragma mark - Parse amnger delegate
+- (void)didloadAllObjects:(NSArray *)objects
+{
+    // get remaining users
+    groupUsers =  [[NSMutableArray alloc] initWithArray:objects];
+    [groupUsers insertObject:[PFUser currentUser] atIndex:0];
+    // if the user is group creator
+    if ([[[PFUser currentUser] username] isEqualToString:[[[self.groups objectAtIndex:selectedIndex] objectForKey:PF_GROUP_OWNER] username]] ) {
+
+        [[ParseManager getInstance] setLoadNewUsers:self];
+        [[ParseManager getInstance] getCandidateUsersForGroup:[self.groups objectAtIndex:selectedIndex]];
+    }else{
+        [[Utility getInstance] hideProgressHud];
+        [self openGroupUsersScreenForEditWithNewUsers:nil];
+    }
+}
+- (void)didloadNewUsers:(NSArray *)users WithError:(NSError *)error
+{
+        [[Utility getInstance] hideProgressHud];
+    if (!error) {
+        // navigate to group user5s screen
+        [self openGroupUsersScreenForEditWithNewUsers:users];
+    }
+}
+- (void)didFailWithError:(NSError *)error
+{
+    [[Utility getInstance] hideProgressHud];
+
+}
+
+#pragma mark - Navigate to GroupUsers screen
+- (void) openGroupUsersScreenForEditWithNewUsers:(NSArray *) users
+{
+    AddGroupUsersViewController * addUser = [[AddGroupUsersViewController alloc] initWithNibName:@"AddGroupUsersViewController" bundle:nil];
+    //    addUser.groupUsers = objects;
+    addUser.editGroup = YES;
+    addUser.originalGroupUsers = groupUsers;
+    addUser.remainingUsers = users;
+    addUser.updatedGroup = [self.groups objectAtIndex:selectedIndex];
+    [self.navigationController pushViewController:addUser animated:YES];
+
+}
 @end

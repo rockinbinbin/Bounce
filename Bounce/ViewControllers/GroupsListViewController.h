@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ParseManager.h"
-@interface GroupsListViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, ParseManagerLoadingGroupsDelegate, ParseManagerGetUserGroups, ParseManagerDeleteDelegate>
+@interface GroupsListViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, ParseManagerLoadingGroupsDelegate, ParseManagerGetUserGroups, ParseManagerDeleteDelegate, ParseManagerDelegate, ParseManagerLoadNewUsers>
 @property NSMutableArray* groups;
 @property NSMutableArray *nearUsers;
 @property NSMutableArray *distanceToUserLocation;

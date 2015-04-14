@@ -22,25 +22,72 @@
 @end
 
 @implementation AddGroupUsersViewController
-
+{
+    BOOL enableSelection;
+    NSMutableArray *addedUsers;
+    NSMutableArray *deletedUsers;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setBarButtonItemLeft:@"common_back_button"];
+    if (self.editGroup) {
+        [self setEditData];
+    }else{
+        self.navigationItem.title = @"add to group";
+        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]
+                                       initWithTitle:@"Done"
+                                       style:UIBarButtonItemStylePlain
+                                       target:self
+                                       action:@selector(doneButtonClicked)];
+        doneButton.tintColor = DEFAULT_COLOR;
+        self.navigationItem.rightBarButtonItem = doneButton;
+        // create checked array
+        self.userChecked  = [[NSMutableArray alloc] init];
+        NSInteger useresCount = [self.groupUsers count];
+        [self.userChecked  addObject:[NSNumber numberWithBool:YES]];
+        for (int i = 0; i < useresCount-1; i++) {
+            [self.userChecked  addObject:[NSNumber numberWithBool:NO]];
+        }
+    }
+}
+
+- (void) setEditData
+{
     self.navigationItem.title = @"add to group";
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]
-                                   initWithTitle:@"Done"
+                                   initWithTitle:@"save"
                                    style:UIBarButtonItemStylePlain
                                    target:self
-                                   action:@selector(doneButtonClicked)];
+                                   action:@selector(saveButtonClicked)];
     doneButton.tintColor = DEFAULT_COLOR;
     self.navigationItem.rightBarButtonItem = doneButton;
     // create checked array
     self.userChecked  = [[NSMutableArray alloc] init];
-    NSInteger useresCount = [self.groupUsers count];
-    [self.userChecked  addObject:[NSNumber numberWithBool:YES]];
-    for (int i = 0; i < useresCount-1; i++) {
-        [self.userChecked  addObject:[NSNumber numberWithBool:NO]];
+    NSMutableArray *allUsers = [[NSMutableArray alloc] initWithArray:self.originalGroupUsers];
+    
+    NSInteger groupUseresCount = [self.originalGroupUsers count];
+//    [self.userChecked  addObject:[NSNumber numberWithBool:YES]];
+    for (int i = 0; i < groupUseresCount; i++) {
+        [self.userChecked  addObject:[NSNumber numberWithBool:YES]];
+    }
+    
+    if (self.remainingUsers) {
+        [allUsers addObjectsFromArray:self.remainingUsers];
+        NSInteger remainingUsersCount = [self.remainingUsers count];
+        for (int i = 0; i < remainingUsersCount; i++) {
+            [self.userChecked  addObject:[NSNumber numberWithBool:NO]];
+        }
+    }
+    
+    self.groupUsers = [NSArray arrayWithArray:allUsers];
+
+    
+    if ([[[PFUser currentUser] username] isEqualToString:[[self.updatedGroup objectForKey:PF_GROUP_OWNER] username]] ) {
+        enableSelection = YES;
+        self.navigationItem.title = @"Edit group users";
+    }else{
+        self.navigationItem.title = @"Group users";
     }
 }
 
@@ -82,6 +129,19 @@
         [[ParseManager getInstance] addGroup:self.groupName withArrayOfUser:users withLocation:self.groupLocation andPrivacy:self.groupPrivacy];
     }
 }
+
+-(void)saveButtonClicked{
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+        [[Utility getInstance] showProgressHudWithMessage:@"Saving ..." withView:self.view];
+         //get selected users
+        [self getAddedAndDeletedUsers];
+        [[ParseManager getInstance] setUpdateGroupDelegate:self];
+//        [[ParseManager getInstance] addListOfUsers:users toGroup:self.updatedGroup];
+        [[ParseManager getInstance] addListOfUsers:addedUsers toGroup:self.updatedGroup andRemove:deletedUsers];
+
+    }
+}
+
 
 #pragma mark - TableView Datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -128,7 +188,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     // mark this user as checked
-    if (indexPath.row != 0) {
+    if ((indexPath.row != 0 && !self.editGroup) || (indexPath.row != 0 && self.editGroup && enableSelection)) {
         BOOL checked;
         if ([[self.userChecked objectAtIndex:indexPath.row] boolValue]) {
             // mark it to add to group
@@ -170,6 +230,27 @@
         NSLog(@"Exception %@", exception);
     }
 }
+- (void) getAddedAndDeletedUsers
+{
+    @try {
+        addedUsers = [[NSMutableArray alloc] init];
+        deletedUsers = [[NSMutableArray alloc] init];
+
+        for (int i = 0; i<[self.originalGroupUsers count]; i++) {
+            if (![[self.userChecked objectAtIndex:i] boolValue]) {
+                [deletedUsers addObject:[self.groupUsers objectAtIndex:i]];
+            }
+        }
+        for (int i = [self.originalGroupUsers count]; i<[self.groupUsers count]; i++) {
+            if ([[self.userChecked objectAtIndex:i] boolValue]) {
+                [addedUsers addObject:[self.groupUsers objectAtIndex:i]];
+            }
+        }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
 
 #pragma mark - Parse Manger Add Group delegate
 - (void)didAddGroupWithError:(NSError *)error
@@ -179,6 +260,22 @@
         if (!error) {
             HomePointSuccessfulCreationViewController* homePointSuccessfulCreationViewController = [[HomePointSuccessfulCreationViewController alloc] initWithNibName:@"HomePointSuccessfulCreationViewController" bundle:nil];
             [self.navigationController pushViewController:homePointSuccessfulCreationViewController animated:YES];
+        }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
+#pragma mark - Parse Manger Update group delegate
+- (void)didUpdateGroupData:(BOOL)succeed
+{
+    @try {
+        [[Utility getInstance] hideProgressHud];
+        if (succeed) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            //show error message
+            [[Utility getInstance] showAlertMessage:@"Updates not saved try again"];
         }
     }
     @catch (NSException *exception) {

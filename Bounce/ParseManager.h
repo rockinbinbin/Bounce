@@ -18,6 +18,7 @@
 @protocol ParseManagerFailureDelegate;
 @protocol ParseManagerDelegate;
 @protocol ParseManagerDeleteDelegate;
+@protocol ParseManagerLoadNewUsers;
 
 @interface ParseManager : NSObject
 
@@ -30,6 +31,7 @@
 @property id<ParseManagerFailureDelegate> failureDelegaet;
 @property id<ParseManagerDelegate> delegate;
 @property id<ParseManagerDeleteDelegate> deleteDelegate;
+@property id<ParseManagerLoadNewUsers> loadNewUsers;
 
 + (ParseManager*) getInstance;
 - (void) loginWithName:(NSString *)name andPassword:(NSString*) password;
@@ -59,7 +61,7 @@
 // Get Groups which currnt user not member at it
 - (void) getCandidateGroupsForCurrentUser;
 // get group users
-- (NSArray *) getGroupUsers:(PFObject *) group;
+- (void) getGroupUsers:(PFObject *) group;
 // remove group
 - (void) removeGroup:(PFObject *) group;
 - (void) deleteGroup:(PFObject *) group;
@@ -88,6 +90,9 @@
 // Delete usr from request
 - (void) deleteUser:(PFUser *) user FromRequest:(PFObject *) request;
 - (void) deleteAllRequestData:(PFObject *) request;
+//
+- (void) getCandidateUsersForGroup:(PFObject *) group;
+- (void) addListOfUsers:(NSArray *) users toGroup:(PFObject *) group andRemove:(NSArray *) removedUsers;
 
 @end
 
@@ -114,12 +119,14 @@
 @end
 
 @protocol ParseManagerUpdateGroupDelegate<NSObject>
+
+@optional
+- (void) didUpdateGroupData:(BOOL) succeed;
 - (void) didAddUserToGroup:(BOOL) succeed;
 - (void) didRemoveUserFromGroup:(BOOL) succeed;
 - (void) groupNameExist:(BOOL) exist;
 - (void) didFailWithError:(NSError *)error;
-@optional
-- (void) didUpdateGroupData:(BOOL) succeed;
+
 @end
 
 @protocol ParseManagerFailureDelegate <NSObject>
@@ -133,4 +140,8 @@
 
 @protocol ParseManagerDeleteDelegate <NSObject>
 - (void) didDeleteObject:(BOOL) succeeded;
+@end
+
+@protocol ParseManagerLoadNewUsers <NSObject>
+- (void) didloadNewUsers:(NSArray *)users WithError:(NSError *) error;
 @end
