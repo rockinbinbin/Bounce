@@ -51,7 +51,8 @@
     // Set parse manager update group delegate
     [[ParseManager getInstance] setUpdateGroupDelegate:self];
     // load all groups that doesn't contain current user
-    [self loadGroupsData];
+//    [self loadGroupsData];
+    [self loadGroups];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -90,6 +91,52 @@
         NSLog(@"Exception %@", exception);
     }
 }
+
+- (void) loadGroups
+{
+    @try {
+        if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+            [[Utility getInstance] showProgressHudWithMessage:@"Loading..." withView:self.view];
+            [[ParseManager getInstance] setDelegate:self];
+            [[ParseManager getInstance] getCandidateGroupsForCurrentUser];
+        }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
+#pragma mark - Parse Manager Delegate
+- (void)didloadAllObjects:(NSArray *)objects
+{
+    @try {
+        groups = [[NSMutableArray alloc] initWithArray:objects];
+        groupsDistance = [[NSMutableArray alloc] init];
+        userJoinedGroups = [[NSMutableArray alloc] init];
+        
+        for (PFObject *group in groups) {
+            [groupsDistance addObject:[NSNumber numberWithDouble:[[ParseManager getInstance] getDistanceToGroup:group]]];
+            // if user joined the group mark it joined
+            if ([self isUserJoinedGroup:group]) {
+                [userJoinedGroups addObject:[NSNumber numberWithBool:YES]];
+            }else{
+                [userJoinedGroups addObject:[NSNumber numberWithBool:NO]];
+            }
+        }
+        
+        [[Utility getInstance] hideProgressHud];
+        [self.tableView reloadData];
+
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
+
+- (void)didFailWithError:(NSError *)error
+{
+    [[Utility getInstance] hideProgressHud];
+}
+
 #pragma mark - Navigation Bar
 -(void) setBarButtonItemLeft:(NSString*) imageName{
     UIImage *menuImage = [UIImage imageNamed:imageName];
@@ -278,10 +325,6 @@
     }
 }
 
-- (void)didFailWithError:(NSError *)error
-{
-    NSLog(@"Error: %@ %@", error, [error userInfo]);
-}
 #pragma mark - update Row
 - (void) updateRowAtIndex:(NSInteger) index
 {
@@ -317,5 +360,4 @@
         NSLog(@"Exception %@", exception);
     }
 }
-
 @end

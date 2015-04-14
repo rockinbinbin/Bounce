@@ -363,38 +363,44 @@ PFUser *currentUser;
 - (void) getUserGroups
 {
     @try {
-        // if depend on realtions
-        //    PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
-        //    [query whereKey:PF_GROUP_Users_RELATION equalTo:[PFUser currentUser]];
-        //    [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
-        //        // results contains all the groups of user
-        //
-        //    }];
-        
-        NSArray *userGroups = [[PFUser currentUser] objectForKey:@"ArrayOfGroups"];
         PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
-        [query whereKey:PF_GROUPS_NAME containedIn:userGroups];
+        // If use the list of groups name Instead the relation UnCommet the following 2 lines
+//        NSArray *userGroups = [[PFUser currentUser] objectForKey:@"ArrayOfGroups"];
+//        [query whereKey:PF_GROUPS_NAME containedIn:userGroups];
+        [query whereKey:PF_GROUP_Users_RELATION equalTo:[PFUser currentUser]];
         [query includeKey:PF_GROUP_OWNER];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if ([self.getUserGroupsdelegate respondsToSelector:@selector(didLoadUserGroups:WithError:)]) {
                 [self.getUserGroupsdelegate didLoadUserGroups:objects WithError:error];
             }
         }];
-//        return groups;
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
     }
 }
 
-- (NSArray *) getCandidateGroupsForCurrentUser
+- (void) getCandidateGroupsForCurrentUser
 {
     @try {
-        NSArray *userGroups = [[PFUser currentUser] objectForKey:@"ArrayOfGroups"];
         PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
-        [query whereKey:PF_GROUPS_NAME notContainedIn:userGroups];
-        NSArray *groups = [query findObjects];
-        return groups;
+//        NSArray *userGroups = [[PFUser currentUser] objectForKey:@"ArrayOfGroups"];
+//        [query whereKey:PF_GROUPS_NAME notContainedIn:userGroups];
+        [query whereKey:PF_GROUP_Users_RELATION notEqualTo:[PFUser currentUser]];
+        [query whereKey:PF_GROUP_PRIVACY equalTo:PUBLIC_GROUP];
+        [query whereKey:PF_GROUP_LOCATION nearGeoPoint:[[PFUser currentUser] objectForKey:PF_USER_LOCATION]];
+        [query setLimit:10];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (error) {
+                if ([self.updateGroupDelegate respondsToSelector:@selector(didFailWithError:)]) {
+                    [self.updateGroupDelegate didFailWithError:error];
+                }
+            }else{
+                if ([self.delegate respondsToSelector:@selector(didloadAllObjects:)]) {
+                    [self.delegate didloadAllObjects:objects];
+                }
+            }
+        }];
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
