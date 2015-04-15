@@ -240,6 +240,34 @@
 #pragma mark - Change image
 #pragma mark - UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+//    if (profileImage != nil && ![self isProfileDefaultImage]) {
+//        if (buttonIndex == 0) { // remove photo
+//            profileImage = nil;
+//            [self setDefaultImage];
+//            [self saveProfileImageOnCloud];
+//        } else if (buttonIndex == 1) { //upload photo
+//            [self showPhotoPicker];
+//        } else if (buttonIndex == 2) { //take photo
+//            [self showCameraPicker];
+//        }
+//        else if (buttonIndex == actionSheet.cancelButtonIndex) {
+//            if (!profileImage) {
+//                [self setDefaultImage];
+//            }
+//        }
+//    } else {
+//        if (buttonIndex == 0) { //upload photo
+//            [self showPhotoPicker];
+//        } else if (buttonIndex == 1) { //take photo
+//            [self showCameraPicker];
+//        }
+//        else if (buttonIndex == actionSheet.cancelButtonIndex) {
+//            [self setDefaultImage];
+//        }
+//    }
+}
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex;  // after animation
+{
     if (profileImage != nil && ![self isProfileDefaultImage]) {
         if (buttonIndex == 0) { // remove photo
             profileImage = nil;

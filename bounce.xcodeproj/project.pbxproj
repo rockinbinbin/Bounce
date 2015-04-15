@@ -157,6 +157,7 @@
 		00CEE4271994493A00F40C12 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4261994493A00F40C12 /* CoreLocation.framework */; };
 		28F13A521A6C75A90069EBA4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F13A511A6C75A90069EBA4 /* MapKit.framework */; };
 		28F13A5B1A6C7F7B0069EBA4 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F13A5A1A6C7F7B0069EBA4 /* MapViewController.m */; };
+		672FFF271ADE99A700C446CF /* PFObject+PFObject_isEqual.m in Sources */ = {isa = PBXBuildFile; fileRef = 672FFF261ADE99A700C446CF /* PFObject+PFObject_isEqual.m */; };
 		67394DDC1AD1A1AD007810C4 /* chat_blank@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 67394DDB1AD1A1AD007810C4 /* chat_blank@2x.png */; };
 		6791817D1AC0057D00D0474C /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6791817C1AC0057D00D0474C /* FacebookSDK.framework */; };
 		67B484D61AC9572B002E57F4 /* RequestManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 67B484D41AC9572B002E57F4 /* RequestManger.m */; };
@@ -535,6 +536,8 @@
 		28F13A511A6C75A90069EBA4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		28F13A591A6C7F7B0069EBA4 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		28F13A5A1A6C7F7B0069EBA4 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		672FFF251ADE99A700C446CF /* PFObject+PFObject_isEqual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PFObject+PFObject_isEqual.h"; sourceTree = "<group>"; };
+		672FFF261ADE99A700C446CF /* PFObject+PFObject_isEqual.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PFObject+PFObject_isEqual.m"; sourceTree = "<group>"; };
 		67394DDB1AD1A1AD007810C4 /* chat_blank@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_blank@2x.png"; sourceTree = "<group>"; };
 		6791817C1AC0057D00D0474C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		67B484D31AC9572B002E57F4 /* RequestManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestManger.h; sourceTree = "<group>"; };
@@ -1402,6 +1405,8 @@
 				67B484D31AC9572B002E57F4 /* RequestManger.h */,
 				67B484D41AC9572B002E57F4 /* RequestManger.m */,
 				CA3ABBDB1AC7E64100E1B5DE /* Constants.h */,
+				672FFF251ADE99A700C446CF /* PFObject+PFObject_isEqual.h */,
+				672FFF261ADE99A700C446CF /* PFObject+PFObject_isEqual.m */,
 			);
 			path = Business;
 			sourceTree = "<group>";
@@ -1661,6 +1666,7 @@
 				001196E819A41D6C002D2757 /* CreateGroupViewController.m in Sources */,
 				CA3ABC321AC7E64100E1B5DE /* NIDropDown.m in Sources */,
 				00414F141AADEE0600B25CEE /* NSString+JSQMessages.m in Sources */,
+				672FFF271ADE99A700C446CF /* PFObject+PFObject_isEqual.m in Sources */,
 				CA3ABC381AC7E64100E1B5DE /* Intro3IDViewController.m in Sources */,
 				CA3ABC331AC7E64100E1B5DE /* Utility.m in Sources */,
 				00414F211AADEE0600B25CEE /* JSQMessagesCollectionViewFlowLayout.m in Sources */,
@@ -1935,8 +1941,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Mohamed AboShamaa (7B692GFEFN)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mohamed AboShamaa (7B692GFEFN)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Robin Mehta (GFEX9Y3G7Y)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robin Mehta (GFEX9Y3G7Y)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2005,7 +2011,7 @@
 					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/xctool/xctool/xctool-tests/TestData/tests-osx-test-bundle",
 				);
 				PRODUCT_NAME = bounce;
-				PROVISIONING_PROFILE = "e935613c-736e-47ad-9b75-297720517e39";
+				PROVISIONING_PROFILE = "615d5999-dc0f-40c3-87f3-311dfab4bc83";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
 				WRAPPER_EXTENSION = app;
@@ -2018,8 +2024,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Mohamed AboShamaa (7B692GFEFN)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mohamed AboShamaa (7B692GFEFN)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Robin Mehta (GFEX9Y3G7Y)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robin Mehta (GFEX9Y3G7Y)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2088,7 +2094,7 @@
 					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/xctool/xctool/xctool-tests/TestData/tests-osx-test-bundle",
 				);
 				PRODUCT_NAME = bounce;
-				PROVISIONING_PROFILE = "e935613c-736e-47ad-9b75-297720517e39";
+				PROVISIONING_PROFILE = "615d5999-dc0f-40c3-87f3-311dfab4bc83";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
 				WRAPPER_EXTENSION = app;

@@ -138,7 +138,8 @@
         
         for (int i = 0; i < self.selectedCells.count; i++) {
             if ([[self.selectedCells objectAtIndex:i] boolValue]) { // if selected
-                [self.selectedGroups addObject:[[self.groups objectAtIndex:i] objectForKey:PF_GROUPS_NAME]];
+//                [self.selectedGroups addObject:[[self.groups objectAtIndex:i] objectForKey:PF_GROUPS_NAME]];
+                [self.selectedGroups addObject:[self.groups objectAtIndex:i]];
             }
         }
         

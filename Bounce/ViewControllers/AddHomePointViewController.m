@@ -60,38 +60,6 @@
     // Dispose of any resources that can be recreated.
 }
 #pragma mark - load groups
-- (void) loadGroupsData
-{
-    @try {
-        if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
-            [[Utility getInstance] showProgressHudWithMessage:@"Loading..." withView:self.view];
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                groups = [[NSMutableArray alloc] initWithArray:[[ParseManager getInstance] getAllGroupsExceptCreatedByUser]];
-                groupsDistance = [[NSMutableArray alloc] init];
-                userJoinedGroups = [[NSMutableArray alloc] init];
-
-                for (PFObject *group in groups) {
-                    [groupsDistance addObject:[NSNumber numberWithDouble:[[ParseManager getInstance] getDistanceToGroup:group]]];
-                    // if user joined the group mark it joined
-                    if ([self isUserJoinedGroup:group]) {
-                        [userJoinedGroups addObject:[NSNumber numberWithBool:YES]];
-                    }else{
-                        [userJoinedGroups addObject:[NSNumber numberWithBool:NO]];
-                    }
-                }
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    // Update the UI on the main thread.
-                    [[Utility getInstance] hideProgressHud];
-                    [self.tableView reloadData];
-                });
-            });
-        }
-    }
-    @catch (NSException *exception) {
-        NSLog(@"Exception %@", exception);
-    }
-}
-
 - (void) loadGroups
 {
     @try {
@@ -115,12 +83,7 @@
         
         for (PFObject *group in groups) {
             [groupsDistance addObject:[NSNumber numberWithDouble:[[ParseManager getInstance] getDistanceToGroup:group]]];
-            // if user joined the group mark it joined
-            if ([self isUserJoinedGroup:group]) {
-                [userJoinedGroups addObject:[NSNumber numberWithBool:YES]];
-            }else{
-                [userJoinedGroups addObject:[NSNumber numberWithBool:NO]];
-            }
+            [userJoinedGroups addObject:[NSNumber numberWithBool:NO]];
         }
         
         [[Utility getInstance] hideProgressHud];
@@ -255,22 +218,6 @@
             selectedIndex = index;
             [[ParseManager getInstance] addCurrentUserToGroup:group];
         }
-    }
-    @catch (NSException *exception) {
-        NSLog(@"Exception %@", exception);
-    }
-}
-
-#pragma mark -
-- (BOOL) isUserJoinedGroup:(PFObject *) group
-{
-    @try {
-        NSArray *userGroups = [[PFUser currentUser] objectForKey:PF_USER_ARRAYOFGROUPS];
-        if ([userGroups containsObject:[group objectForKey:PF_GROUPS_NAME]]) {
-            return YES;
-        }
-        
-        return NO;
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);

@@ -105,7 +105,7 @@
      */
     
     if ([self.SelectedGroups count]) {
-        [[ParseManager getInstance] createrequestToGroups:self.SelectedGroups andGender:@"" withinTime:self.timeAllocated andInRadius:self.radius];
+//        [[ParseManager getInstance] createrequestToGroups:self.SelectedGroups andGender:@"" withinTime:self.timeAllocated andInRadius:self.radius];
 //        PFQuery *query = [PFUser query];
 //        PFUser *currentUser = [PFUser currentUser];
 //        PFGeoPoint *userGeoPoint = currentUser[@"CurrentLocation"];

@@ -60,8 +60,8 @@
 
 // Gender cases
 #define ALL_GENDER @"All"
-#define MALE_GENDER @"Male"
-#define FEMALE_GENDER @"Female"
+#define MALE_GENDER @"male"
+#define FEMALE_GENDER @"female"
 
 // Group Privacy
 #define PUBLIC_GROUP @"Public"
@@ -79,6 +79,14 @@
 
 //
 #define FEET_IN_KILOMETER 3281
+
+// Update chat number notification
+#define CHAT @"Chat"
+#define REQUEST_NUMBER_POST_NOTIFICATION @"UpdateChatNumber"
+
+// near distance that user when get the distance to homepoint
+// It is in miles
+#define K_NEAR_DISTANCE 5
 
 typedef enum{
     publicGroup = 0,

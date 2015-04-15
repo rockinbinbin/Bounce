@@ -38,20 +38,16 @@
 - (void) signupWithUserName:(NSString *) name andEmail:(NSString*)email andPassword:(NSString*) password;
 // Chat message
 - (void) createMessageItemForUser:(PFUser *)user WithGroupId:(NSString *) groupId andDescription:(NSString *)description;
-// Load chat groups
+// Groups
+- (NSArray *) getAllGroupsExceptCreatedByUser;
+- (void) isGroupNameExist:(NSString *) name;
+- (void) addGroup:(NSString*) groupName withLocation:(PFGeoPoint*) location andPrivacy:(NSString*) privacy;
 - (void) loadAllGroups;
-// Add Chat group
 - (void) addGroup:(NSString*) groupName withArrayOfUser:(NSArray *)users withLocation:(PFGeoPoint*) location andPrivacy:(NSString*) privacy;
-// Request
-- (void) createrequestToGroups:(NSArray *) selectedGroups andGender:(NSString *)gender  withinTime:(NSInteger)timeAllocated andInRadius:(NSInteger) radius;
-// Append users to group
-- (void) addListOfUsers:(NSArray *) users toGroup:(PFObject *) group;
 // get request uodates
-- (PFObject *) retrieveRequest:(PFObject *) requst;
 - (PFObject *) retrieveRequestUpdate:(NSString *) requstId;
 // valid receiver
 - (BOOL) isValidRequestReceiver:(PFObject*) request;
-
 // nearUsers in group
 - (NSInteger) getNearUsersInGroup:(PFObject *) group;
 // distance between user and group
@@ -60,26 +56,12 @@
 - (void) getUserGroups;
 // Get Groups which currnt user not member at it
 - (void) getCandidateGroupsForCurrentUser;
-// get group users
-- (void) getGroupUsers:(PFObject *) group;
 // remove group
 - (void) removeGroup:(PFObject *) group;
 - (void) deleteGroup:(PFObject *) group;
 // Useres Operations
 - (void) getAllUsers;
-// Get all groups except created by user
-- (NSArray *) getAllGroupsExceptCreatedByUser;
-// Group updates
-// Add user to group
-- (void) addCurrentUserToGroup:(PFObject *) group;
-// Remove user from group
-- (void) removeUserFromGroup:(PFObject *) group;
-- (void) isGroupNameExist:(NSString *) name;
-//
-- (NSInteger) getNearUsersNumberInGroup:(PFObject *) group;
-//
-- (void) addGroup:(NSString*) groupName withLocation:(PFGeoPoint*) location andPrivacy:(NSString*) privacy;
-// check if there is auser logged in
+// check if there is a user logged in
 - (BOOL) isThereLoggedUser;
 // GET VALID REQUEST NUMBER
 - (void) getNumberOfValidRequests;
@@ -87,12 +69,16 @@
 - (void) getUserRequests;
 // Delete Request
 -(void) deleteRequest:(PFObject *) request;
-// Delete usr from request
 - (void) deleteUser:(PFUser *) user FromRequest:(PFObject *) request;
 - (void) deleteAllRequestData:(PFObject *) request;
-//
+// Users in group
 - (void) getCandidateUsersForGroup:(PFObject *) group;
+- (void) getGroupUsers:(PFObject *) group;
 - (void) addListOfUsers:(NSArray *) users toGroup:(PFObject *) group andRemove:(NSArray *) removedUsers;
+- (NSInteger) getNearUsersNumberInGroup:(PFObject *) group;
+- (void) addCurrentUserToGroup:(PFObject *) group;
+- (void) removeUserFromGroup:(PFObject *) group;
+- (void) addListOfUsers:(NSArray *) users toGroup:(PFObject *) group;
 
 @end
 

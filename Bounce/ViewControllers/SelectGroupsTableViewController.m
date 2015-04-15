@@ -113,7 +113,7 @@
 - (void)doneButtonPressed{
     
     if ([self.SelectedGroups count]) {
-        [[RequestManger getInstance] createrequestToGroups:self.SelectedGroups andGender:self.genderFilter withinTime:self.timeAllocated andInRadius:self.radius];
+//        [[RequestManger getInstance] createrequestToGroups:self.SelectedGroups andGender:self.genderFilter withinTime:self.timeAllocated andInRadius:self.radius];
         
         // MOVE TO HOME
         HomeScreenViewController *homeViewController = [[HomeScreenViewController alloc] init];
