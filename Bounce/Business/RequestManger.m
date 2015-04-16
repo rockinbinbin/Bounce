@@ -121,28 +121,32 @@ static RequestManger *sharedRequestManger = nil;
             // After finish the remaining users in the oldUserNames ==> are the removed users
             removedUsers = [NSMutableArray arrayWithArray:oldUsers];
             // update request record
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if ([addedUsers count] != 0 || [removedUsers count] > 0) {
-                    activeRequest[PF_REQUEST_RECEIVER] = resultUsernames;
-                    [activeRequest saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
-                        NSString *requestId = activeRequest.objectId;
-                        // update request user srelation
-                        [self appendUsers:resultUsers toRequestUserRelation:activeRequest];
-                        
-                        for (PFUser* user in addedUsers) {
-                            // send push notification for new users
-                            [self sendPushNotificationForUser:user from:[currentUser username]];
-                            // creat chat
-                            [[ParseManager getInstance] createMessageItemForUser:user WithGroupId:requestId andDescription:@""];
-                        }
-                        [self removeRequestDataForRemovedUser:removedUsers];
-                        isUpdating = NO;
-                    }];
-                } else {
-                    NSLog(@"No update in request users");
-                    isUpdating = NO;
-                }
+            if ([addedUsers count] != 0 || [removedUsers count] > 0) {
+                activeRequest[PF_REQUEST_RECEIVER] = resultUsernames;
+//                [activeRequest saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+//                }];
+                [activeRequest saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+                }];
+                NSString *requestId = activeRequest.objectId;
+                // update request user srelation
+                [self appendUsers:resultUsers toRequestUserRelation:activeRequest];
                 
+                for (PFUser* user in addedUsers) {
+                    // send push notification for new users
+                    [self sendPushNotificationForUser:user from:[currentUser username]];
+                    // creat chat
+                    [[ParseManager getInstance] createMessageItemForUser:user WithGroupId:requestId andDescription:@""];
+                }
+                [self removeRequestDataForRemovedUser:removedUsers];
+                isUpdating = NO;
+
+            } else {
+                NSLog(@"No update in request users");
+                isUpdating = NO;
+            }
+
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
             });
         });
         
