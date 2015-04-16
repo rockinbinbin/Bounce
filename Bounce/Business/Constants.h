@@ -88,6 +88,16 @@
 // It is in miles
 #define K_NEAR_DISTANCE 5
 
+// request Updating interval time
+#define REQUEST_UPDATE_REPEATINTERVAL 10
+
+
+// Hud Messages
+#define COMMON_HUD_SEND_MESSAGE @"Sending..."
+
+// Alert Messages
+#define FAILURE_SEND_MESSAGE @"An error occur, please try to send the request again"
+
 typedef enum{
     publicGroup = 0,
     privateGroup = 1

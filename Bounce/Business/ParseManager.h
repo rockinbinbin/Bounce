@@ -71,6 +71,7 @@
 -(void) deleteRequest:(PFObject *) request;
 - (void) deleteUser:(PFUser *) user FromRequest:(PFObject *) request;
 - (void) deleteAllRequestData:(PFObject *) request;
+- (void) deleteChatDataRelatedToRequestId:(NSString *) requestId ForExactUser:(PFUser *) user;
 // Users in group
 - (void) getCandidateUsersForGroup:(PFObject *) group;
 - (void) getGroupUsers:(PFObject *) group;

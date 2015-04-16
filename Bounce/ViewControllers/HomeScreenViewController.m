@@ -64,6 +64,9 @@
 -(void) viewWillAppear:(BOOL)animated{
     [[RequestManger getInstance] setRequestManagerDelegate:self];
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
+    if ([[RequestManger getInstance] hasActiveRequest]) {
+        [self requestCreated];
+    }
 }
 - (void) viewWillDisappear:(BOOL)animated
 {

@@ -58,34 +58,16 @@
     self.navigationItem.rightBarButtonItem = sendButton;
     
     @try {
-        //        [[ParseManager getInstance] setLoadGroupsdelegate:self];
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
             [[Utility getInstance] showProgressHudWithMessage:@"Loading..." withView:self.view];
             [[ParseManager getInstance] setGetUserGroupsdelegate:self];
             [[ParseManager getInstance] getUserGroups];
             self.isDataLoaded = NO;
-//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//                //                [[ParseManager getInstance] loadAllGroups];
-//                self.groups = [[NSMutableArray alloc] initWithArray:[[ParseManager getInstance] getUserGroups]];
-//                self.nearUsers = [[NSMutableArray alloc] init];
-//                self.distanceToUserLocation = [[NSMutableArray alloc] init];
-//                for (PFObject *group in self.groups) {
-//                    [self.nearUsers addObject:[NSNumber numberWithInteger:[[ParseManager getInstance] getNearUsersInGroup:group]]];
-//                    [self.distanceToUserLocation addObject:[NSNumber numberWithDouble:[[ParseManager getInstance] getDistanceToGroup:group]]];
-//                }
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    // Update the UI on the main thread.
-//                    [[Utility getInstance] hideProgressHud];
-//                    [self.tableView reloadData];
-//                });
-//            });
         }
-        
     }
     @catch (NSException *exception) {
         NSLog(@"exception %@", exception);
     }
-
 }
 
 - (void)viewDidUnload {
@@ -126,32 +108,23 @@
     
     NSString *TimeString = [self.duration stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
-    int radius = [self getNumberInString:RadiusString];
-    int time = [self getNumberInString:TimeString];
-    
     // INPUT ERROR MESSAGES
     if ([RadiusString length] == 0 || [TimeString length] == 0) {
         [[Utility getInstance] showAlertWithMessage:@"Please Enter a radius and time value!" andTitle:@"Oops!"];
     }
     else {
         
+        int radius = [self getNumberInString:RadiusString];
+        int time = [self getNumberInString:TimeString];
+        
         for (int i = 0; i < self.selectedCells.count; i++) {
             if ([[self.selectedCells objectAtIndex:i] boolValue]) { // if selected
-//                [self.selectedGroups addObject:[[self.groups objectAtIndex:i] objectForKey:PF_GROUPS_NAME]];
                 [self.selectedGroups addObject:[self.groups objectAtIndex:i]];
             }
         }
         
         if ([self.selectedGroups count]) {
-            if ([self.groupGenderSegment selectedSegmentIndex] == 0) {
-                [[RequestManger getInstance] createrequestToGroups:self.selectedGroups andGender:@"All" withinTime:time andInRadius:radius];
-            } else if ([self.groupGenderSegment selectedSegmentIndex] == 1) {
-                PFUser* u = [PFUser currentUser];
-                [[RequestManger getInstance] createrequestToGroups:self.selectedGroups andGender:u[@"Gender"] withinTime:time andInRadius:radius];
-            }
-            
-            // MOVE TO HOME
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            [self creatMessageRequestToSelectedGroup:self.selectedGroups withRadius:radius andTimeAllocated:time];
         }
         else {
             UIAlertView *zerolength = [[UIAlertView alloc] initWithTitle:@"yo!"
@@ -173,6 +146,27 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark -
+- (void) creatMessageRequestToSelectedGroup:(NSArray *) selectedGroups withRadius:(int) radius andTimeAllocated:(int) timeAllocated
+{
+    @try {
+        NSString *genderMatching;
+        if ([self.groupGenderSegment selectedSegmentIndex] == 0) {
+            genderMatching = ALL_GENDER;
+        } else if ([self.groupGenderSegment selectedSegmentIndex] == 1) {
+            PFUser* u = [PFUser currentUser];
+            genderMatching = u[PF_GENDER];
+        }
+        if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+            [[Utility getInstance] showProgressHudWithMessage:COMMON_HUD_SEND_MESSAGE];
+            [[RequestManger getInstance] setCreateRequestDelegate:self];
+            [[RequestManger getInstance] createrequestToGroups:self.selectedGroups andGender:genderMatching withinTime:timeAllocated andInRadius:radius];
+        }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
 
 // hides keyboard when user clicks return
 - (BOOL) textFieldShouldReturn: (UITextField *)textField {
@@ -189,8 +183,6 @@
 }
 
 #pragma mark - Navigation
-
-
 -(int) getNumberInString:(NSString*) string{
     NSString *numberString;
     
@@ -405,6 +397,24 @@
                     [self.tableView reloadData];
                 });
             });
+        }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"exception %@", exception);
+    }
+}
+
+#pragma mark - Request Manager Create Request delegate
+- (void)didCreateRequestWithError:(NSError *)error
+{
+    @try {
+        [[Utility getInstance] hideProgressHud];
+        if (error) {
+            //
+            [[Utility getInstance] showAlertMessage:FAILURE_SEND_MESSAGE];
+        }else{
+            // MOVE TO HOME
+            [self.navigationController popToRootViewControllerAnimated:YES];
         }
     }
     @catch (NSException *exception) {

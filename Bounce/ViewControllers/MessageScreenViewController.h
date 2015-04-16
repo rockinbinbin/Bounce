@@ -21,8 +21,9 @@
 #import "UIPopoverController+FlatUI.h"
 #import "NIDropDown.h"
 #import "ParseManager.h"
+#import "RequestManger.h"
 
-@interface MessageScreenViewController : UIViewController<NIDropDownDelegate, ParseManagerLoadingGroupsDelegate, ParseManagerGetUserGroups>
+@interface MessageScreenViewController : UIViewController<NIDropDownDelegate, ParseManagerLoadingGroupsDelegate, ParseManagerGetUserGroups, RequestManagerCreateRequestDelegate>
 @property (weak, nonatomic) IBOutlet UISegmentedControl *groupGenderSegment;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) NIDropDown *dropDown;

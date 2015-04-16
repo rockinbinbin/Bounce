@@ -398,14 +398,6 @@ PFUser *currentUser;
         return YES;
     }
     return NO;
-//    // or return the relation objects
-//    PFRelation *relation = [request relationForKey:PF_REQUEST_RECEIVERS_RELATION];
-//    PFQuery *query = [relation query];
-//    [query whereKey:@"objectId" equalTo:[[PFUser currentUser] objectId]];
-//    [query getFirstObject];
-//    [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
-//        // results contains all the people who liked Sid's BBQ who are in Savannah
-//    }];
 }
 
 #pragma mark - Get Group Users near current User
@@ -552,6 +544,7 @@ PFUser *currentUser;
     }
 }
 #pragma mark - Detete User from request
+// called from request screens
 - (void) deleteUser:(PFUser *) user FromRequest:(PFObject *) request
 {
     @try {
