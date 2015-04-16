@@ -17,6 +17,21 @@
 
 @implementation HomePointSuccessfulCreationViewController
 
+- (void)updateViewConstraints {
+    [super updateViewConstraints];
+    if (IS_IPAD) {
+        self.createdHomePointLabel.font = [self.createdHomePointLabel.font fontWithSize:40];
+        self.firstLabel.font = [self.firstLabel.font fontWithSize:30];
+        self.secondLabel.font = [self.secondLabel.font fontWithSize:30];
+        self.iconWidth.constant = 180;
+        self.iconHeight.constant = 180;
+        self.leftSpaceForLabel.constant = 60;
+        self.rightSpaceForLabel.constant = 60;
+        self.verticalDistanceBetweenFirstLabelAndIcon.constant = 60;
+        self.verticalDistanceBetweenLabels.constant = 60;
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[self navigationController] setNavigationBarHidden:YES animated:YES];

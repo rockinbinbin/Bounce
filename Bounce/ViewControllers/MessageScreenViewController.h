@@ -42,6 +42,8 @@
 @property NSMutableArray * selectedCells;
 @property (nonatomic, strong) PFObject *Request;
 @property (nonatomic, strong) NSMutableArray *selectedGroups;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *verticalSpaceBetweenTableAndGenderButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomSpaceToButtons;
 
 @property (strong, nonatomic) CLLocationManager *location_manager;
 @end

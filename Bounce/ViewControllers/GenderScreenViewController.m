@@ -27,6 +27,26 @@
     return self;
 }
 
+- (void)updateViewConstraints {
+    [super updateViewConstraints];
+    if (IS_IPAD) {
+        self.awesomeLabel.font = [self.awesomeLabel.font fontWithSize:60];
+        self.weNeedLabel.font = [self.weNeedLabel.font fontWithSize:30];
+        self.weUseLabel.font = [self.weUseLabel.font fontWithSize:30];
+        self.rightSpaceForLabels.constant = 60;
+        self.leftSpaceForLabels .constant = 60;
+        self.bottomSpaceForGotItButton.constant = 60;
+        self.verticalDistanceBetweenGenderButtonAndLabel.constant = 120;
+        self.genderButtonYPosition.constant = -100;
+    }
+    if (IS_IPHONE4) {
+        self.bottomSpaceForGotItButton.constant = 20;
+        self.verticalDistanceBetweenIconAndAboveLabel.constant = 10;
+        self.verticalDistanceBetweenGenderButtonAndLabel.constant = 20;
+        self.weNeedLabelHeight.constant = 50;
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(incomingNotification:) name:@"SelectedStringNotification" object:nil];

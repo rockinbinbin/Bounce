@@ -24,5 +24,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *circularViewHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topSpaceTitleConstraints;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *groupNameHeight;
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
 @end

@@ -130,6 +130,11 @@
     cell.circularView.layer.cornerRadius = 20;
     cell.circularView.clipsToBounds = YES;
 
+    if (IS_IPAD) {
+        cell.groupNameLabel.font=[cell.groupNameLabel.font fontWithSize:20];
+        cell.groupDistanceLabel.font=[cell.groupDistanceLabel.font fontWithSize:12];
+    }
+
     // Setting the elements data
     PFObject *request = [requests objectAtIndex:indexPath.row];
     cell.groupNameLabel.text = [NSString stringWithFormat:@"%@ send request",[[requests objectAtIndex:indexPath.row] valueForKey:@"Sender"]];

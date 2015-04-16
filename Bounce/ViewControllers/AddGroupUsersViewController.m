@@ -173,7 +173,12 @@
     cell.circularViewHeight.constant = 40;
     cell.circularView.layer.cornerRadius = 20;
     cell.topSpaceTitleConstraints.constant = 0;
-    
+
+    if (IS_IPAD) {
+        cell.groupNameLabel.font=[cell.groupNameLabel.font fontWithSize:20];
+        cell.groupDistanceLabel.font=[cell.groupDistanceLabel.font fontWithSize:12];
+    }
+
     // filling the cell data
     if ([[self.userChecked objectAtIndex:indexPath.row] boolValue]) {
         cell.iconImageView.image = [UIImage imageNamed:@"common_checkmark_icon"];

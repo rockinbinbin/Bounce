@@ -19,6 +19,14 @@
 
 @implementation MessageScreenViewController
 
+- (void)updateViewConstraints {
+    [super updateViewConstraints];
+    if (IS_IPAD) {
+        self.verticalSpaceBetweenTableAndGenderButton.constant = 200;
+        self.bottomSpaceToButtons.constant = 180;
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(incomingNotification:) name:@"SelectedStringNotification" object:nil];
@@ -254,6 +262,11 @@
             cell.numOfFriendsInGroupLabel.hidden = YES;
             cell.nearbyLabel.hidden = YES;
         }
+    }
+
+    if (IS_IPAD) {
+        cell.groupNameLabel.font=[cell.groupNameLabel.font fontWithSize:20];
+        cell.groupDistanceLabel.font=[cell.groupDistanceLabel.font fontWithSize:12];
     }
 
     for ( UIView* view in cell.contentView.subviews )

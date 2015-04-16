@@ -95,8 +95,12 @@
         cell = (ChatListCell *)[nib objectAtIndex:0];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.roundedView.hidden = YES;
-
     }
+    if (IS_IPAD) {
+        cell.groupNameLabel.font=[cell.groupNameLabel.font fontWithSize:20];
+        cell.groupDistanceLabel.font=[cell.groupDistanceLabel.font fontWithSize:12];
+    }
+
     // filling the cell data
     cell.groupNameLabel.text = [[groupsCreatedBYUser objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
     cell.groupDistanceLabel.text = [NSString stringWithFormat:DISTANCE_MESSAGE, [[groupsDistance objectAtIndex:indexPath.row] doubleValue]];

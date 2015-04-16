@@ -30,10 +30,20 @@
     NSMutableArray *userJoinedGroups;
     NSInteger selectedIndex;
 }
+
+- (void)updateViewConstraints {
+    [super updateViewConstraints];
+    if (IS_IPAD) {
+        self.verticalDistanceBetweenTableAndItsBottom.constant = 250;
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setBarButtonItemLeft:@"common_close_icon"];
+    self.groupNameTextField.delegate = self;
+
     self.navigationItem.title = @"add homepoint";
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]
                                    initWithTitle:@"Done"
@@ -44,7 +54,27 @@
     self.navigationItem.rightBarButtonItem = doneButton;
     
     self.addLocationButton.backgroundColor = LIGHT_BLUE_COLOR;
+    [self.groupNameTextField addTarget:self
+                                action:@selector(textFieldDidChange:)
+                      forControlEvents:UIControlEventEditingDidBegin];
+    [self.groupNameTextField addTarget:self
+                                action:@selector(textFieldDidChangeEnd:)
+                      forControlEvents:UIControlEventEditingDidEnd];
 }
+
+-(void)textFieldDidChange :(UITextField *)theTextField{
+    self.bottomSpaceToGroupName.constant += 200;
+}
+
+-(void)textFieldDidChangeEnd :(UITextField *)theTextField{
+    self.bottomSpaceToGroupName.constant -= 200;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
 - (void)viewWillAppear:(BOOL)animated{
     // Disable left Slide menu
     [self disableSlidePanGestureForLeftMenu];
@@ -164,13 +194,10 @@
     cell.numOfFriendsInGroupLabel.hidden = YES;
     cell.nearbyLabel.hidden = YES;
     cell.roundedView.hidden = YES;
-    cell.groupNameLabel.font=[cell.groupNameLabel.font fontWithSize:16];
-    cell.groupDistanceLabel.font=[cell.groupDistanceLabel.font fontWithSize:10];
-
-    cell.circularViewWidth.constant = 40;
-    cell.circularViewHeight.constant = 40;
-    cell.circularView.layer.cornerRadius = 20;
-    cell.circularView.layer.borderWidth = 0;
+    if (IS_IPAD) {
+        cell.groupNameLabel.font=[cell.groupNameLabel.font fontWithSize:20];
+        cell.groupDistanceLabel.font=[cell.groupDistanceLabel.font fontWithSize:12];
+    }
 
     if ([[userJoinedGroups objectAtIndex:indexPath.row] boolValue] == YES) {
         cell.iconImageView.image = [UIImage imageNamed:@"common_checkmark_icon"];
@@ -205,7 +232,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50;
+    return 80;
 }
 
 #pragma mark - Add User to selected group
