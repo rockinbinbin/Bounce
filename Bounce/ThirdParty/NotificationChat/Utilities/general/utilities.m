@@ -10,10 +10,7 @@
 // THE SOFTWARE.
 
 #import "utilities.h"
-#import "MapViewController.h"
 #import "NavigationController.h"
-#import "LoginViewController.h"
-#import "IntroPages.h"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 void LoginUser(id target)

@@ -126,25 +126,25 @@ static RequestManger *sharedRequestManger = nil;
 //                [activeRequest saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
 //                }];
                 [activeRequest saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+                    
+                    NSString *requestId = activeRequest.objectId;
+                    // update request user srelation
+                    [self appendUsers:resultUsers toRequestUserRelation:activeRequest];
+                    
+                    for (PFUser* user in addedUsers) {
+                        // send push notification for new users
+                        [self sendPushNotificationForUser:user from:[currentUser username]];
+                        // creat chat
+                        [[ParseManager getInstance] createMessageItemForUser:user WithGroupId:requestId andDescription:@""];
+                    }
+                    [self removeRequestDataForRemovedUser:removedUsers];
+                    isUpdating = NO;
                 }];
-                NSString *requestId = activeRequest.objectId;
-                // update request user srelation
-                [self appendUsers:resultUsers toRequestUserRelation:activeRequest];
-                
-                for (PFUser* user in addedUsers) {
-                    // send push notification for new users
-                    [self sendPushNotificationForUser:user from:[currentUser username]];
-                    // creat chat
-                    [[ParseManager getInstance] createMessageItemForUser:user WithGroupId:requestId andDescription:@""];
-                }
-                [self removeRequestDataForRemovedUser:removedUsers];
-                isUpdating = NO;
-
             } else {
                 NSLog(@"No update in request users");
                 isUpdating = NO;
             }
-
+            
             
             dispatch_async(dispatch_get_main_queue(), ^{
             });

@@ -10,10 +10,9 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
-#import "IntroPages.h"
-#import "UsersListViewController.h"
 #import "IntroPagesViewController.h"
 #import "SlideMenuViewController.h"
+#import "ParseManager.h"
 @implementation AppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;

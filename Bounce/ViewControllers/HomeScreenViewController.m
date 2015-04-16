@@ -7,10 +7,8 @@
 //
 
 #import "HomeScreenViewController.h"
-#import "MapViewController.h"
 #import <Parse/Parse.h>
 #import "utilities.h"
-#import "IntroPages.h"
 #import "MessageScreenViewController.h"
 #import "RequestsViewController.h"
 #import "AppConstant.h"

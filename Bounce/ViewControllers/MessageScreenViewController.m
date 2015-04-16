@@ -7,7 +7,6 @@
 //
 
 #import "MessageScreenViewController.h"
-#import "SelectGroupsTableViewController.h"
 #import "Utility.h"
 #import "ChatListCell.h"
 #import "AppConstant.h"

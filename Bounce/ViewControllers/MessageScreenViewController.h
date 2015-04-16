@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 hobble. All rights reserved.
 //
 #import <UIKit/UIKit.h>
-#import "AddGroupsTableViewController.h"
 #import "UIColor+FlatUI.h"
 #import "UISlider+FlatUI.h"
 #import "UIStepper+FlatUI.h"
