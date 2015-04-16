@@ -50,7 +50,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(incomingNotification:) name:@"SelectedStringNotification" object:nil];
-
+    
     // Do any additional setup after loading the view from its nib.
     _btnSelect.backgroundColor = [UIColor whiteColor];
     self.gotItButton.backgroundColor = LIGHT_BLUE_COLOR;
@@ -85,10 +85,10 @@
 
 - (IBAction)selectClicked:(id)sender {
     NSArray * arr = [[NSArray alloc] init];
-    arr = [NSArray arrayWithObjects:@"Male", @"Female",nil];
+    arr = [NSArray arrayWithObjects:MALE_GENDER, FEMALE_GENDER, nil];
     if(_dropDown == nil) {
         CGFloat f = 80;
-        _dropDown = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"down"];
+        _dropDown = [[NIDropDown alloc]showDropDown:sender withHeight:&f andData:arr images:nil direction:@"down"];
         _dropDown.delegate = self;
     }
     else {
@@ -105,7 +105,9 @@
     PFUser* signUpUser = self.currentUser;
     if (!(self.gender == nil || self.gender.length == 0)) {
         signUpUser[@"Gender"] = self.gender;
+        [[Utility getInstance] showProgressHudWithMessage:@"Register..."];
         [signUpUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            [[Utility getInstance] hideProgressHud];
             if (!error) {
                 NSLog(@"Signup is performed successfully");
                 [[PFInstallation currentInstallation] setObject:[PFUser currentUser] forKey:@"user"];
@@ -117,7 +119,7 @@
                 
                 HomeScreenViewController* homeScreenViewController = [[HomeScreenViewController alloc] initWithNibName:@"HomeScreenViewController" bundle:nil];
                 [self.navigationController pushViewController:homeScreenViewController animated:YES];
-
+                
             } else {
                 [[Utility getInstance] showAlertWithMessage:[error.userInfo objectForKey:@"error"] andTitle:@"Sorry!"];
             }
@@ -126,7 +128,7 @@
     else{
         [[Utility getInstance] showAlertWithMessage:@"Make sure you selected the gender!" andTitle:@"Oops!"];
     }
-
+    
 }
 
 -(void)rel{

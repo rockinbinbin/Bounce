@@ -40,7 +40,7 @@
 #define PF_REQUEST_RECEIVERS_RELATION @"RequestReceivers"
 #define PF_REQUEST_LOCATION @"Location"
 #define PF_REQUEST_IS_ENDED @"isEnded"
-// save end date instead save the timee allocate 
+// save end date instead save the timee allocate
 #define PF_REQUEST_END_DATE @"EndDate"
 #define PF_REQUEST_GENDER @"gender";
 
@@ -95,6 +95,7 @@
 
 // Hud Messages
 #define COMMON_HUD_SEND_MESSAGE @"Sending..."
+#define COMMON_HUD_LOADING_MESSAGE @"Loading..."
 
 // Alert Messages
 #define FAILURE_SEND_MESSAGE @"An error occur, please try to send the request again"

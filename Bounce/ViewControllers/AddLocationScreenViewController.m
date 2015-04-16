@@ -43,7 +43,7 @@
     
     [self.map addGestureRecognizer:tapRecognizer];
     [self.map setDelegate:self];
-
+    
     [self startReceivingSignificantLocationChanges];
     [self changeCenterToUserLocation];
     [self setUserTrackingMode];
@@ -120,21 +120,26 @@
 }
 - (void) getAllUsers
 {
-    [[ParseManager getInstance] setDelegate:self];
-    [[ParseManager getInstance] getAllUsers];
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+        [[Utility getInstance] showProgressHudWithMessage:COMMON_HUD_LOADING_MESSAGE];
+        [[ParseManager getInstance] setDelegate:self];
+        [[ParseManager getInstance] getAllUsers];
+    }
 }
 #pragma mark - Parse Manager Delegate
 - (void)didloadAllObjects:(NSArray *)objects
 {
+    [[Utility getInstance] hideProgressHud];
     NSMutableArray *users  = [[NSMutableArray alloc] initWithArray:objects];
     PFUser *currentUser = [PFUser currentUser];
     // Add the current user to the first cell
     [users insertObject:currentUser atIndex:0];
     [self navigateToGroupUsersScreenAndSetData:([NSArray arrayWithArray:users])];
- 
+    
 }
 - (void)didFailWithError:(NSError *)error
 {
+    [[Utility getInstance] hideProgressHud];
     NSLog(@"Error in loading users from parse.com");
 }
 -(void) navigateToGroupUsersScreenAndSetData:(NSArray *) users{
@@ -219,7 +224,7 @@
             UIView *customView = [self createCustomPinAnnotaionView];
             customView.center = pinView.center;
             [pinView addSubview:customView];
-
+            
         } else {
             pinView.annotation = annotation;
         }

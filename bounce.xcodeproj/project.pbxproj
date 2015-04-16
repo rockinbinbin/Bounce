@@ -64,7 +64,6 @@
 		67BB92641ADFA8D10050164B /* Tutorial-3_iPhone5.png in Resources */ = {isa = PBXBuildFile; fileRef = 67BB90EA1ADFA8D00050164B /* Tutorial-3_iPhone5.png */; };
 		67BB92651ADFA8D10050164B /* Tutorial-3_iPhone6.png in Resources */ = {isa = PBXBuildFile; fileRef = 67BB90EB1ADFA8D00050164B /* Tutorial-3_iPhone6.png */; };
 		67BB92661ADFA8D10050164B /* Tutorial-3_iPhone6plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 67BB90EC1ADFA8D00050164B /* Tutorial-3_iPhone6plus.png */; };
-		67BB92671ADFA8D10050164B /* bounce-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67BB90ED1ADFA8D00050164B /* bounce-Info.plist */; };
 		67BB92691ADFA8D10050164B /* ParseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB90F41ADFA8D00050164B /* ParseManager.m */; };
 		67BB926A1ADFA8D10050164B /* PFObject+PFObject_isEqual.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB90F61ADFA8D00050164B /* PFObject+PFObject_isEqual.m */; };
 		67BB926B1ADFA8D10050164B /* RequestManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB90F81ADFA8D00050164B /* RequestManger.m */; };
@@ -1940,7 +1939,6 @@
 				67BB92FB1ADFA8D10050164B /* MessageScreenViewController.xib in Resources */,
 				67BB92641ADFA8D10050164B /* Tutorial-3_iPhone5.png in Resources */,
 				67BB92F11ADFA8D10050164B /* GenderScreenViewController.xib in Resources */,
-				67BB92671ADFA8D10050164B /* bounce-Info.plist in Resources */,
 				67BB92F41ADFA8D10050164B /* HomeScreenViewController.xib in Resources */,
 				67BB92651ADFA8D10050164B /* Tutorial-3_iPhone6.png in Resources */,
 				67BB94491ADFABCD0050164B /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,

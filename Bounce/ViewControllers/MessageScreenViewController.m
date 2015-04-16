@@ -32,7 +32,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(incomingNotification:) name:@"SelectedStringNotification" object:nil];
     _distanceSelectButton.backgroundColor = LIGHT_SELECT_GRAY_COLOR;
     _durationSelectButton.backgroundColor = LIGHT_SELECT_GRAY_COLOR;
-
+    
     self.selectedGroups = [NSMutableArray array];
     self.location_manager = [[CLLocationManager alloc] init];
     
@@ -140,7 +140,7 @@
                                                                 delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [zerolength show];
         }
-
+        
     }
 }
 
@@ -263,12 +263,12 @@
             cell.nearbyLabel.hidden = YES;
         }
     }
-
+    
     if (IS_IPAD) {
         cell.groupNameLabel.font=[cell.groupNameLabel.font fontWithSize:20];
         cell.groupDistanceLabel.font=[cell.groupDistanceLabel.font fontWithSize:12];
     }
-
+    
     for ( UIView* view in cell.contentView.subviews )
     {
         view.backgroundColor = [ UIColor clearColor ];
@@ -314,7 +314,7 @@
     arr = [NSArray arrayWithObjects:@"People within 100 feets", @"People within 300 feets", @"People within 500 feets",nil];
     if(_dropDown == nil) {
         CGFloat f = 80;
-        _dropDown = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"down"];
+        _dropDown = [[NIDropDown alloc]showDropDown:sender withHeight:&f andData:arr images:nil direction:@"down"];
         _dropDown.delegate = self;
     }
     else {
@@ -329,7 +329,7 @@
     arr = [NSArray arrayWithObjects:@"Expires in 15 minutes", @"Expires in 20 minutes", @"Expires in 60 minutes", nil];
     if(_dropDown == nil) {
         CGFloat f = 80;
-        _dropDown = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"down"];
+        _dropDown = [[NIDropDown alloc]showDropDown:sender withHeight:&f andData:arr images:nil direction:@"down"];
         _dropDown.delegate = self;
     }
     else {

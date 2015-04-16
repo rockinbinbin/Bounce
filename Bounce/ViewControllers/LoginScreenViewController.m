@@ -23,7 +23,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.LoginButton.backgroundColor = LIGHT_BLUE_COLOR;
-        self.facebookLogin.backgroundColor = [UIColor colorWithRed:81.0/250.0 green:117.0/250.0 blue:195.0/250.0 alpha:1.0];
+    self.facebookLogin.backgroundColor = [UIColor colorWithRed:81.0/250.0 green:117.0/250.0 blue:195.0/250.0 alpha:1.0];
     self.view.backgroundColor = DEFAULT_COLOR;
 }
 
@@ -40,7 +40,7 @@
     // hides keyboard when user hits background
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     [self.view addGestureRecognizer:gestureRecognizer];
-
+    
 }
 
 - (void) hideKeyboard // when user hits background
@@ -107,7 +107,7 @@
          if (user != nil)
          {
              if (user.isNew) // Not signed in facebook
-//                 if (user[PF_USER_FACEBOOKID] == nil) // Not signed in facebook
+                 //                 if (user[PF_USER_FACEBOOKID] == nil) // Not signed in facebook
              {
                  [self requestFacebook:user];
              }
@@ -144,60 +144,60 @@
 - (void)processFacebook:(PFUser *)user UserData:(NSDictionary *)userData{
     NSString *link = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=large", userData[@"id"]];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:link]];
-     
+    
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     operation.responseSerializer = [AFImageResponseSerializer serializer];
-     
+    
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject){
-         UIImage *image = (UIImage *)responseObject;
-           if (image.size.width > 140) {
+        UIImage *image = (UIImage *)responseObject;
+        if (image.size.width > 140) {
+            
+            image = ResizeImage(image, 140, 140);
+        }
+        PFFile *filePicture = [PFFile fileWithName:@"picture.jpg" data:UIImageJPEGRepresentation(image, 0.6)];
+        [filePicture saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+         {
+             if (error != nil) {
+                 [ProgressHUD showError:error.userInfo[@"error"]];
+             }
+         }];
+        if (image.size.width > 30) image = ResizeImage(image, 30, 30);
+        PFFile *fileThumbnail = [PFFile fileWithName:@"thumbnail.jpg" data:UIImageJPEGRepresentation(image, 0.6)];
+        [fileThumbnail saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+         {
+             if (error != nil)
+             {
+                 [ProgressHUD showError:error.userInfo[@"error"]];
+             }
              
-             image = ResizeImage(image, 140, 140);
-         }
-           PFFile *filePicture = [PFFile fileWithName:@"picture.jpg" data:UIImageJPEGRepresentation(image, 0.6)];
-         [filePicture saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-          {
-              if (error != nil) {
-                  [ProgressHUD showError:error.userInfo[@"error"]];
-              }
-          }];
-           if (image.size.width > 30) image = ResizeImage(image, 30, 30);
-           PFFile *fileThumbnail = [PFFile fileWithName:@"thumbnail.jpg" data:UIImageJPEGRepresentation(image, 0.6)];
-         [fileThumbnail saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-          {
-              if (error != nil)
-              {
-                  [ProgressHUD showError:error.userInfo[@"error"]];
-              }
-              
-          }];
-         user[PF_USER_EMAILCOPY] = userData[@"email"];
-         user[PF_USER_USERNAME] = userData[@"name"];
-         user[PF_USER_FULLNAME_KEY] = userData[@"name"];
-         user[PF_USER_FULLNAME_LOWER] = [userData[@"name"] lowercaseString];
-         user[PF_USER_FACEBOOKID] = userData[@"id"];
-         user[PF_USER_PICTURE] = filePicture;
-         user[PF_USER_THUMBNAIL] = fileThumbnail;
-         user[PF_GENDER] = userData[@"gender"];
-         [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-          {
-              if (error == nil)
-              {
-                  [self userLoggedIn:user isUserNew:YES];
-              }
-              else
-              {
-                  [PFUser logOut];
-                  [ProgressHUD showError:error.userInfo[@"error"]];
-              }
-          }];
-     }
+         }];
+        user[PF_USER_EMAILCOPY] = userData[@"email"];
+        user[PF_USER_USERNAME] = userData[@"name"];
+        user[PF_USER_FULLNAME_KEY] = userData[@"name"];
+        user[PF_USER_FULLNAME_LOWER] = [userData[@"name"] lowercaseString];
+        user[PF_USER_FACEBOOKID] = userData[@"id"];
+        user[PF_USER_PICTURE] = filePicture;
+        user[PF_USER_THUMBNAIL] = fileThumbnail;
+        user[PF_GENDER] = userData[@"gender"];
+        [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+         {
+             if (error == nil)
+             {
+                 [self userLoggedIn:user isUserNew:YES];
+             }
+             else
+             {
+                 [PFUser logOut];
+                 [ProgressHUD showError:error.userInfo[@"error"]];
+             }
+         }];
+    }
                                      failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          [PFUser logOut];
          [ProgressHUD showError:@"Failed to fetch Facebook profile picture."];
      }];
-     
+    
     [[NSOperationQueue mainQueue] addOperation:operation];
 }
 

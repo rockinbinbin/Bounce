@@ -22,5 +22,5 @@
 @property (nonatomic, retain) NSString *animationDirection;
 @property (nonatomic, retain) NSString *selectedString;
 -(void)hideDropDown:(UIButton *)b;
-- (id)showDropDown:(UIButton *)b:(CGFloat *)height:(NSArray *)arr:(NSArray *)imgArr:(NSString *)direction;
+- (id)showDropDown:(UIButton *)b withHeight:(CGFloat *)height andData:(NSArray *)arr images:(NSArray *)imgArr direction:(NSString *)direction;
 @end

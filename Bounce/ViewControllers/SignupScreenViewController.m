@@ -30,14 +30,14 @@
     // hides keyboard when user hits background
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     [self.view addGestureRecognizer:gestureRecognizer];
-
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
     [self disableSlidePanGestureForLeftMenu];
-
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -66,37 +66,41 @@
 
 - (IBAction)signupButton:(id)sender {
     
-    
     NSString *username = [self.usernameField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString *password = [self.passwordField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
-    PFQuery *query = [PFUser query];
-    [query whereKey:@"username" equalTo:username];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (objects.count) {
-            NSLog(@"NOT UNIQUE USERNAME"); // write alert to try a different username
-            [[Utility getInstance] showAlertWithMessage:@"This user handle seems to be taken. Please choose another!" andTitle:@"Oops!"];
+    if ([username length] == 0 || [password length] == 0){
+        [[Utility getInstance] showAlertWithMessage:@"Make sure you enter a username, password!" andTitle:@"Oops!"];
+    }
+    else if (![username hasPrefix:@"@"]) {
+        [[Utility getInstance] showAlertWithMessage:@"User handles must begin with an "@" symbol." andTitle:@"Oops!"];
+    }else{
+        if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+            [[Utility getInstance] showProgressHudWithMessage:@"Check name availability..."];
+            PFQuery *query = [PFUser query];
+            [query whereKey:@"username" equalTo:username];
+            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                [[Utility getInstance] hideProgressHud];
+                if (objects.count) {
+                    NSLog(@"NOT UNIQUE USERNAME"); // write alert to try a different username
+                    [[Utility getInstance] showAlertWithMessage:@"This user handle seems to be taken. Please choose another!" andTitle:@"Oops!"];
+                }
+                else {
+                    
+                    PFUser *signUpUser = [PFUser user];
+                    signUpUser.username = username;
+                    //                signUpUser.email = password;
+                    signUpUser.password = password;
+                    
+                    GenderScreenViewController* genderScreenViewController = [[GenderScreenViewController alloc] initWithNibName:@"GenderScreenViewController" bundle:nil];
+                    genderScreenViewController.currentUser = signUpUser;
+                    [self.navigationController pushViewController:genderScreenViewController animated:YES];
+                }
+            }];
+            
         }
-        else {
-            if ([username length] == 0 || [password length] == 0){
-                [[Utility getInstance] showAlertWithMessage:@"Make sure you enter a username, password!" andTitle:@"Oops!"];
-            }
-            else if (![username hasPrefix:@"@"]) {
-                [[Utility getInstance] showAlertWithMessage:@"User handles must begin with an "@" symbol." andTitle:@"Oops!"];
-            }
-            else {
-                PFUser *signUpUser = [PFUser user];
-                signUpUser.username = username;
-                //                signUpUser.email = password;
-                signUpUser.password = password;
-                
-                GenderScreenViewController* genderScreenViewController = [[GenderScreenViewController alloc] initWithNibName:@"GenderScreenViewController" bundle:nil];
-                genderScreenViewController.currentUser = signUpUser;
-                [self.navigationController pushViewController:genderScreenViewController animated:YES];
-            }
-        }
-    }];
+    }
 }
+
 - (IBAction)facebookSignin:(id)sender {
     [ProgressHUD show:@"Signing in..." Interaction:NO];
     

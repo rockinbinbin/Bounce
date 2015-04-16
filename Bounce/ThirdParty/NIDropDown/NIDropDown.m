@@ -24,7 +24,7 @@
 @synthesize delegate;
 @synthesize animationDirection;
 
-- (id)showDropDown:(UIButton *)b:(CGFloat *)height:(NSArray *)arr:(NSArray *)imgArr:(NSString *)direction {
+- (id)showDropDown:(UIButton *)b withHeight:(CGFloat *)height andData:(NSArray *)arr images:(NSArray *)imgArr direction:(NSString *)direction{
     btnSender = b;
     animationDirection = direction;
     self.table = (UITableView *)[super init];
@@ -41,10 +41,10 @@
             self.layer.shadowOffset = CGSizeMake(-5, 5);
         }
         
-//        self.layer.masksToBounds = NO;
-//        self.layer.cornerRadius = 8;
-//        self.layer.shadowRadius = 5;
-//        self.layer.shadowOpacity = 0.5;
+        //        self.layer.masksToBounds = NO;
+        //        self.layer.cornerRadius = 8;
+        //        self.layer.shadowRadius = 5;
+        //        self.layer.shadowOpacity = 0.5;
         
         table = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, btn.size.width, 0)];
         table.delegate = self;
@@ -113,7 +113,7 @@
     UIView * v = [[UIView alloc] init];
     v.backgroundColor = [UIColor grayColor];
     cell.selectedBackgroundView = v;
-
+    
     return cell;
 }
 
@@ -123,7 +123,7 @@
     UITableViewCell *c = [tableView cellForRowAtIndexPath:indexPath];
     self.selectedString = [NSString stringWithString:[list objectAtIndex:indexPath.row]];
     [[NSNotificationCenter defaultCenter] postNotificationName: @"SelectedStringNotification" object: self.selectedString];
-
+    
     [btnSender setTitle:c.textLabel.text forState:UIControlStateNormal];
     
     for (UIView *subview in btnSender.subviews) {
@@ -143,9 +143,9 @@
 }
 
 -(void)dealloc {
-//    [super dealloc];
-//    [table release];
-//    [self release];
+    //    [super dealloc];
+    //    [table release];
+    //    [self release];
 }
 
 @end

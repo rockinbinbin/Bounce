@@ -43,7 +43,7 @@
     // Do any additional setup after loading the view from its nib.
     [self setBarButtonItemLeft:@"common_close_icon"];
     self.groupNameTextField.delegate = self;
-
+    
     self.navigationItem.title = @"add homepoint";
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]
                                    initWithTitle:@"Done"
@@ -81,7 +81,7 @@
     // Set parse manager update group delegate
     [[ParseManager getInstance] setUpdateGroupDelegate:self];
     // load all groups that doesn't contain current user
-//    [self loadGroupsData];
+    //    [self loadGroupsData];
     [self loadGroups];
 }
 
@@ -118,7 +118,7 @@
         
         [[Utility getInstance] hideProgressHud];
         [self.tableView reloadData];
-
+        
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
@@ -166,7 +166,10 @@
             [[Utility getInstance] showAlertMessage:@"Make sure you entered the group name!"];
             return;
         }
-        [[ParseManager getInstance] isGroupNameExist:name];
+        if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+            [[Utility getInstance] showProgressHudWithMessage:@""];
+            [[ParseManager getInstance] isGroupNameExist:name];
+        }
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
@@ -198,7 +201,7 @@
         cell.groupNameLabel.font=[cell.groupNameLabel.font fontWithSize:20];
         cell.groupDistanceLabel.font=[cell.groupDistanceLabel.font fontWithSize:12];
     }
-
+    
     if ([[userJoinedGroups objectAtIndex:indexPath.row] boolValue] == YES) {
         cell.iconImageView.image = [UIImage imageNamed:@"common_checkmark_icon"];
     }else{
@@ -208,14 +211,14 @@
     {
         view.backgroundColor = [ UIColor clearColor ];
     }
-
+    
     cell.contentView.backgroundColor = LIGHT_SELECT_GRAY_COLOR;
-
+    
     // filling the cell data
     
     cell.groupNameLabel.text = [[groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
     cell.groupDistanceLabel.text = [NSString stringWithFormat:DISTANCE_MESSAGE, [[groupsDistance objectAtIndex:indexPath.row] doubleValue]];
-
+    
     return cell;
 }
 
@@ -290,6 +293,7 @@
 
 - (void)groupNameExist:(BOOL)exist
 {
+    [[Utility getInstance] hideProgressHud];
     if (exist) {
         NSLog(@"NOT UNIQUE GROUP NAME"); // write alert to try a different username
         [[Utility getInstance] showAlertMessage:@"This group name seems to be taken. Please choose another!"];
@@ -307,7 +311,7 @@
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
     [self.tableView endUpdates];
 }
-#pragma mark - 
+#pragma mark -
 - (void) hideKeyboard
 {
     [self.groupNameTextField resignFirstResponder];
