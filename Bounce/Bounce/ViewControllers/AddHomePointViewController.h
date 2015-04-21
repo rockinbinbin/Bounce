@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ParseManager.h"
 
-@interface AddHomePointViewController : UIViewController<ParseManagerUpdateGroupDelegate, ParseManagerDelegate, UITextFieldDelegate>
+@interface AddHomePointViewController : UIViewController<ParseManagerUpdateGroupDelegate, ParseManagerDelegate, UITextFieldDelegate, ParseManagerLoadingGroupsDelegate>
 @property (weak, nonatomic) IBOutlet UISegmentedControl *groupPrivacySegmentedControl;
 @property (weak, nonatomic) IBOutlet UIButton *addLocationButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

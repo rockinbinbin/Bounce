@@ -270,14 +270,8 @@ PFUser *currentUser;
         [query whereKey:PF_GROUP_LOCATION nearGeoPoint:[[PFUser currentUser] objectForKey:PF_USER_LOCATION]];
         [query setLimit:10];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if (error) {
-                if ([self.updateGroupDelegate respondsToSelector:@selector(didFailWithError:)]) {
-                    [self.updateGroupDelegate didFailWithError:error];
-                }
-            }else{
-                if ([self.delegate respondsToSelector:@selector(didloadAllObjects:)]) {
-                    [self.delegate didloadAllObjects:objects];
-                }
+            if ([self.loadGroupsdelegate respondsToSelector:@selector(didLoadGroups:withError:)]) {
+                [self.loadGroupsdelegate didLoadGroups:objects withError:error];
             }
         }];
     }

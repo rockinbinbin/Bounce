@@ -29,6 +29,7 @@
     NSMutableArray *groupsDistance;
     NSMutableArray *userJoinedGroups;
     NSInteger selectedIndex;
+    BOOL createButtonClicked;
 }
 
 - (void)updateViewConstraints {
@@ -46,7 +47,7 @@
     
     self.navigationItem.title = @"add homepoint";
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]
-                                   initWithTitle:@"Done"
+                                   initWithTitle:@"Create"
                                    style:UIBarButtonItemStylePlain
                                    target:self
                                    action:@selector(doneButtonClicked)];
@@ -76,12 +77,12 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    createButtonClicked = NO;
     // Disable left Slide menu
     [self disableSlidePanGestureForLeftMenu];
     // Set parse manager update group delegate
     [[ParseManager getInstance] setUpdateGroupDelegate:self];
     // load all groups that doesn't contain current user
-    //    [self loadGroupsData];
     [self loadGroups];
 }
 
@@ -95,7 +96,7 @@
     @try {
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
             [[Utility getInstance] showProgressHudWithMessage:@"Loading..." withView:self.view];
-            [[ParseManager getInstance] setDelegate:self];
+            [[ParseManager getInstance] setLoadGroupsdelegate:self];
             [[ParseManager getInstance] getCandidateGroupsForCurrentUser];
         }
     }
@@ -103,31 +104,27 @@
         NSLog(@"Exception %@", exception);
     }
 }
-#pragma mark - Parse Manager Delegate
-- (void)didloadAllObjects:(NSArray *)objects
+#pragma mark - Parse Loading Groups Manager Delegate
+- (void)didLoadGroups:(NSArray *)objects withError:(NSError *)error
 {
     @try {
-        groups = [[NSMutableArray alloc] initWithArray:objects];
-        groupsDistance = [[NSMutableArray alloc] init];
-        userJoinedGroups = [[NSMutableArray alloc] init];
-        
-        for (PFObject *group in groups) {
-            [groupsDistance addObject:[NSNumber numberWithDouble:[[ParseManager getInstance] getDistanceToGroup:group]]];
-            [userJoinedGroups addObject:[NSNumber numberWithBool:NO]];
-        }
-        
         [[Utility getInstance] hideProgressHud];
-        [self.tableView reloadData];
-        
+        if (!error) {
+            groups = [[NSMutableArray alloc] initWithArray:objects];
+            groupsDistance = [[NSMutableArray alloc] init];
+            userJoinedGroups = [[NSMutableArray alloc] init];
+            for (PFObject *group in groups) {
+                [groupsDistance addObject:[NSNumber numberWithDouble:[[ParseManager getInstance] getDistanceToGroup:group]]];
+                [userJoinedGroups addObject:[NSNumber numberWithBool:NO]];
+            }
+            [[Utility getInstance] hideProgressHud];
+            [self.tableView reloadData];
+        }
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
     }
-}
 
-- (void)didFailWithError:(NSError *)error
-{
-    [[Utility getInstance] hideProgressHud];
 }
 
 #pragma mark - Navigation Bar
@@ -150,10 +147,9 @@
 }
 
 -(void)doneButtonClicked{
-    // move to the GroupsList screen
-    // TODO: Adjust the action of this button
-    GroupsListViewController *groupsListViewController = [[GroupsListViewController alloc] initWithNibName:@"GroupsListViewController" bundle:nil];
-    [self.navigationController pushViewController:groupsListViewController animated:YES];
+    // will Create group with user location and navigate to add group users screen
+    createButtonClicked = YES;
+    [self checkGroupNameValidation];
 }
 
 - (IBAction)segmentedControlClicked:(id)sender {
@@ -161,9 +157,20 @@
 
 - (IBAction)addLocationButtonClicked:(id)sender {
     @try {
+        [self checkGroupNameValidation];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
+
+- (void) checkGroupNameValidation
+{
+    @try {
         NSString *name = [self.groupNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         if ([name length] == 0) {
             [[Utility getInstance] showAlertMessage:@"Make sure you entered the group name!"];
+            createButtonClicked = NO;
             return;
         }
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
@@ -299,8 +306,16 @@
         [[Utility getInstance] showAlertMessage:@"This group name seems to be taken. Please choose another!"];
     }
     else{
-        [self navigateToAddLocationScreen];
+        if (createButtonClicked) {
+            // if called from Done Button
+            // get all users to load the next view
+            [self getAllUsers];
+        }else{
+            // if called from add location button
+            [self navigateToAddLocationScreen];
+        }
     }
+    createButtonClicked = NO;
 }
 
 #pragma mark - update Row
@@ -326,13 +341,59 @@
 {
     @try {
         AddLocationScreenViewController *addLocationScreenViewController = [[AddLocationScreenViewController alloc]  initWithNibName:@"AddLocationScreenViewController" bundle:nil];
-        if ([self.groupPrivacySegmentedControl selectedSegmentIndex] == publicGroup) {
-            addLocationScreenViewController.groupPrivacy = PUBLIC_GROUP;
-        } else if ([self.groupPrivacySegmentedControl selectedSegmentIndex] == privateGroup) {
-            addLocationScreenViewController.groupPrivacy = PRIVATE_GROUP;
-        }
+        addLocationScreenViewController.groupPrivacy = [self getSelectedPrivacy];
         addLocationScreenViewController.groupName = self.groupNameTextField.text;
         [self.navigationController pushViewController:addLocationScreenViewController animated:YES];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
+
+#pragma mark - Get Privacy
+- (NSString *) getSelectedPrivacy
+{
+    if ([self.groupPrivacySegmentedControl selectedSegmentIndex] == publicGroup) {
+        return PUBLIC_GROUP;
+    } else {
+        return  PRIVATE_GROUP;
+    }
+}
+#pragma mark - Get all user
+- (void) getAllUsers
+{
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+        [[Utility getInstance] showProgressHudWithMessage:COMMON_HUD_LOADING_MESSAGE];
+        [[ParseManager getInstance] setDelegate:self];
+        [[ParseManager getInstance] getAllUsers];
+    }
+}
+#pragma mark - Parse Manager Delegate
+- (void)didloadAllObjects:(NSArray *)objects
+{
+    [[Utility getInstance] hideProgressHud];
+    NSMutableArray *users  = [[NSMutableArray alloc] initWithArray:objects];
+    PFUser *currentUser = [PFUser currentUser];
+    // Add the current user to the first cell
+    [users insertObject:currentUser atIndex:0];
+    [self navigateToAddGroupUsersScreenWithUsers:([NSArray arrayWithArray:users])];
+    
+}
+- (void)didFailWithError:(NSError *)error
+{
+    [[Utility getInstance] hideProgressHud];
+}
+
+#pragma mark - AddLocation screen
+- (void) navigateToAddGroupUsersScreenWithUsers:(NSArray *) users
+{
+    @try {
+        AddGroupUsersViewController *addGroupUsersViewController = [[AddGroupUsersViewController alloc]  initWithNibName:@"AddGroupUsersViewController" bundle:nil];
+        addGroupUsersViewController.groupPrivacy = [self getSelectedPrivacy];
+        addGroupUsersViewController.groupName = self.groupNameTextField.text;
+        addGroupUsersViewController.groupLocation = [[PFUser currentUser] objectForKey:PF_USER_LOCATION];
+        addGroupUsersViewController.groupUsers = users;
+        [self.navigationController pushViewController:addGroupUsersViewController animated:YES];
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
