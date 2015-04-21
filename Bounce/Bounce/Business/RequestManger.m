@@ -43,6 +43,9 @@ static RequestManger *sharedRequestManger = nil;
         if (![gender isEqualToString:ALL_GENDER]) {
             gender = [currentUser objectForKey:PF_GENDER];
         }
+        if (!gender) {
+            gender = ALL_GENDER;
+        }
         PFGeoPoint *userGeoPoint = currentUser[PF_USER_LOCATION];
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             // get User in the selected groups and within the radius
