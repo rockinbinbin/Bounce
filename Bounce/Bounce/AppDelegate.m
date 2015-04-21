@@ -13,8 +13,14 @@
 #import "IntroPagesViewController.h"
 #import "SlideMenuViewController.h"
 #import "ParseManager.h"
-@implementation AppDelegate
+#import "RequestsViewController.h"
+#import "CustomChatViewController.h"
 
+@implementation AppDelegate
+{
+    SlideMenuViewController* mainViewController;
+    NSString *notificationRequestId;
+}
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
@@ -25,24 +31,22 @@
     [Parse setApplicationId:PARSE_APP_ID clientKey:PARSE_CLIENT_KEY];
     [PFFacebookUtils initializeFacebook];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    // register for remote notifications
-    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
-        // iOS 8
-        UIUserNotificationSettings* settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-        [application registerForRemoteNotifications];
-    } else {
-        // iOS 7 or iOS 6
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
-    }
+    [self registerRemoteNotification:application];
     // Set the appearane of the application segment controls
     [self setSegmentControlAppearance];
     [self setTableViewAppearance];
     UINavigationController *navigationController;
+    
     // if user looged in skip the introduction screens and move to home screen
     if ([[ParseManager getInstance] isThereLoggedUser]) {
-        SlideMenuViewController* mainViewController = [[SlideMenuViewController alloc] init];
+        NSString *requestId = [launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey] objectForKey:OBJECT_ID];
+        if (requestId) {
+            [self openRequestViewController:requestId];
+        }else{
+            mainViewController = [[SlideMenuViewController alloc] init];
+        }
         navigationController  = [[UINavigationController alloc] initWithRootViewController:mainViewController];
+
     }else{
         IntroPagesViewController* introPagesViewController = [[IntroPagesViewController alloc] initWithNibName:@"IntroPagesViewController" bundle:nil];
         navigationController  = [[UINavigationController alloc] initWithRootViewController:introPagesViewController];
@@ -185,11 +189,29 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    [PFPush handlePush:userInfo];
+    if ( application.applicationState == UIApplicationStateActive ){
+        // app was already in the foreground
+//        [PFPush handlePush:userInfo];
+        if ([[userInfo objectForKey:@"aps"] objectForKey:NOTIFICATION_ALERT_MESSAGE]) {
+            NSString *message = [[userInfo objectForKey:@"aps"] objectForKey:NOTIFICATION_ALERT_MESSAGE];
+            notificationRequestId = [userInfo objectForKey:OBJECT_ID];
+            if (mainViewController) {
+                if ([self isRequestChatViewOpened]) {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: nil
+                                                                    message: message
+                                                                   delegate: self
+                                                          cancelButtonTitle: @"OK"
+                                                          otherButtonTitles: nil];
+                    [alert show];
+                }
+            }
+        }
+    }else{
+        [self appOpendFromNotification:userInfo];
+    }
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
     return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication withSession:[PFFacebookUtils session]];
 }
@@ -214,6 +236,99 @@
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
+    }
+}
+
+#pragma mark 
+- (void) registerRemoteNotification:(UIApplication *) application
+{
+    // register for remote notifications
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        // iOS 8
+        UIUserNotificationSettings* settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        [application registerForRemoteNotifications];
+    } else {
+        // iOS 7 or iOS 6
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    }
+
+}
+
+- (void) appOpendFromNotification:(NSDictionary *)userInfo{
+    @try {
+        
+        NSString *requestId = [userInfo objectForKey:OBJECT_ID];
+        if (requestId && [[ParseManager getInstance] isThereLoggedUser]) {
+            [self openRequestViewController:requestId];
+        }
+    }
+    @catch (NSException *exception) {
+    }
+}
+
+-(void)openRequestViewController:(NSString *) requestId
+{
+    UIViewController *rootVC = [[RequestsViewController alloc] initWithNibName:@"RequestsViewController" bundle:nil];
+    NSMutableArray *viewControllers = [[NSMutableArray alloc] init];
+    [viewControllers addObject:rootVC];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:rootVC];
+    BOOL requestValid = [self isValidRequest:requestId];
+    
+    if (mainViewController) {
+        // if the app in back ground
+        if (requestValid) {
+            // open chat view
+            CustomChatViewController *chatView = [[Utility getInstance] createChatViewWithRequestId:requestId];
+            [viewControllers addObject:chatView];
+            [nvc setViewControllers:[NSArray arrayWithArray:viewControllers]];
+        }
+        [mainViewController.leftMenu openContentNavigationController:nvc];
+    }else{
+        // if the app launched
+        // make app open in chat view not home
+        mainViewController = [[SlideMenuViewController alloc] init];
+        mainViewController.initialIndex = 1;
+        if (requestValid) {
+            mainViewController.requestId = requestId;
+        }else{
+            mainViewController.requestId = nil;
+        }
+    }
+}
+
+#pragma mark get request
+- (BOOL) isValidRequest:(NSString *) requestId
+{
+    PFObject *request = [[ParseManager getInstance] retrieveRequestUpdate:requestId];
+    if ([[ParseManager getInstance] isValidRequestReceiver:request]) {
+        if ([[Utility getInstance] isRequestValid:[request createdAt] andTimeAllocated:[[request objectForKey:PF_REQUEST_TIME_ALLOCATED] integerValue]] && ![[request objectForKey:PF_REQUEST_IS_ENDED] boolValue] ){
+        NSLog(@"valid");
+        return YES;
+        }
+        return  NO;
+    }
+    else
+        return NO;
+}
+
+#pragma mark - Alert View Delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (notificationRequestId && [[ParseManager getInstance] isThereLoggedUser]) {
+        // current active chat thread not equal to the notification chat thread
+        [self openRequestViewController:notificationRequestId];
+    }
+}
+#pragma mark - Request Chat View
+- (BOOL) isRequestChatViewOpened
+{
+    UIViewController *activeViewController = [[mainViewController currentActiveNVC] topViewController];
+    BOOL activeViewControllerIsChatView = [activeViewController isKindOfClass:[CustomChatViewController class]];
+    if (!activeViewControllerIsChatView || (activeViewControllerIsChatView && ![[(CustomChatViewController*)activeViewController groupId] isEqualToString:notificationRequestId])) {
+        return YES;
+    }else{
+        return NO;
     }
 }
 @end

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ProgressHUD.h"
 #import "Reachability.h"
+#import "CustomChatViewController.h"
 
 @interface Utility : NSObject
 
@@ -30,4 +31,6 @@
 -(UIButton *)createCustomButton:(UIImage*) buttonImage;
 // Rounde view with border
 - (void) addRoundedBorderToView:(UIView *) view;
+- (CustomChatViewController *) createChatViewWithRequestId:(NSString *) requestId;
+
 @end

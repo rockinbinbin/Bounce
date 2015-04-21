@@ -14,7 +14,7 @@ static NSString * const ParseGroupRelation = @"groupsRelation";
 static NSString * const ParseGroupName = @"groupName";
 
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

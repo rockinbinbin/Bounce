@@ -10,4 +10,6 @@
 
 @interface SlideMenuViewController : AMSlideMenuMainViewController
 
+@property int initialIndex;
+@property NSString *requestId;
 @end

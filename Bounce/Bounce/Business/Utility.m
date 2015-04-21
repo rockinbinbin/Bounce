@@ -8,6 +8,7 @@
 
 #import "Utility.h"
 #import "SlideMenuViewController.h"
+#import "ParseManager.h"
 
 @implementation Utility
 
@@ -139,5 +140,11 @@ static Utility *sharedUtility = nil;
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
     }
+}
+- (CustomChatViewController *) createChatViewWithRequestId:(NSString *) requestId
+{
+    [[ParseManager getInstance] createMessageItemForUser:[PFUser currentUser] WithGroupId:requestId andDescription:@""];
+    CustomChatViewController *chatView = [[CustomChatViewController alloc] initWith:requestId];
+    return chatView;
 }
 @end

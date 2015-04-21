@@ -100,6 +100,9 @@
 // Alert Messages
 #define FAILURE_SEND_MESSAGE @"An error occur, please try to send the request again"
 
+// Notification
+#define NOTIFICATION_ALERT_MESSAGE @"alert"
+
 typedef enum{
     publicGroup = 0,
     privateGroup = 1

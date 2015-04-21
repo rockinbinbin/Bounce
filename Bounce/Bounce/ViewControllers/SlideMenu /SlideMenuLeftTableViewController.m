@@ -17,6 +17,8 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <Photos/Photos.h>
 
+#import "SlideMenuViewController.h"
+
 #define Chats_Section 1
 #define Home_section 0
 @interface SlideMenuLeftTableViewController ()
@@ -154,6 +156,19 @@
         {
             rootVC = [[RequestsViewController alloc] initWithNibName:@"RequestsViewController" bundle:nil];
             nvc = [[UINavigationController alloc] initWithRootViewController:rootVC];
+            NSMutableArray *viewControllers = [[NSMutableArray alloc] init];
+            [viewControllers addObject:rootVC];
+            
+            UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:rootVC];
+            if ([self.mainVC isKindOfClass:[SlideMenuViewController class]]) {
+                if ([(SlideMenuViewController *)self.mainVC initialIndex] == 1 && [(SlideMenuViewController *)self.mainVC requestId]) {
+                     CustomChatViewController *chatView = [[Utility getInstance] createChatViewWithRequestId:[(SlideMenuViewController *)self.mainVC requestId]];
+                     [viewControllers addObject:chatView];
+                     [nvc setViewControllers:[NSArray arrayWithArray:viewControllers]];
+                }
+                [(SlideMenuViewController *)self.mainVC setInitialIndex:0] ;
+            }
+            
             [self openContentNavigationController:nvc];
         }
             break;

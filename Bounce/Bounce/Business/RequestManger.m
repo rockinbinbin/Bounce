@@ -157,7 +157,7 @@ static RequestManger *sharedRequestManger = nil;
             // Create chat item
             [[ParseManager getInstance] createMessageItemForUser:user WithGroupId:requestId andDescription:@""];
             // Notify the user with the request
-            [self sendPushNotificationForUser:user from:[currentUser username]];
+            [self sendPushNotificationForUser:user from:[currentUser username] WithRequestId:requestId];
         }
     }
     @catch (NSException *exception) {
@@ -166,7 +166,7 @@ static RequestManger *sharedRequestManger = nil;
 }
 
 #pragma mark - Add chat to request receiver
-- (void) sendPushNotificationForUser:(PFUser *) user from:(NSString *) senderName
+- (void) sendPushNotificationForUser:(PFUser *) user from:(NSString *) senderName WithRequestId:(NSString *) requestId
 {
     @try {
         PFQuery *queryInstallation = [PFInstallation query];
@@ -174,7 +174,10 @@ static RequestManger *sharedRequestManger = nil;
         
         PFPush *push = [[PFPush alloc] init];
         [push setQuery:queryInstallation];
-        [push setMessage:[NSString stringWithFormat:@"%@ send request to you", senderName]];
+//        [push setMessage:[NSString stringWithFormat:@"%@ send request to you", senderName]];
+        NSString *alertMessage = [NSString stringWithFormat:@"%@ send request to you", senderName];
+        NSDictionary *data = [[NSDictionary alloc] initWithObjects:@[requestId, alertMessage] forKeys:@[OBJECT_ID, NOTIFICATION_ALERT_MESSAGE]];
+        [push setData:data];
         [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
          {
              if (error != nil)

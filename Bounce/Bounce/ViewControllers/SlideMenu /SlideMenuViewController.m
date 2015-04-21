@@ -72,4 +72,9 @@
     return SIDE_MENU_WIDTH;
 }
 
+- (NSIndexPath *)initialIndexPathForLeftMenu
+{
+    return [NSIndexPath indexPathForRow:self.initialIndex inSection:0];
+
+}
 @end
