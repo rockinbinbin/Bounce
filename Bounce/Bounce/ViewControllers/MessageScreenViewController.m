@@ -313,7 +313,7 @@
     NSArray * arr = [[NSArray alloc] init];
     arr = [NSArray arrayWithObjects:@"People within 100 feets", @"People within 300 feets", @"People within 500 feets",nil];
     if(_dropDown == nil) {
-        CGFloat f = 80;
+        CGFloat f = 60;
         _dropDown = [[NIDropDown alloc]showDropDown:sender withHeight:&f andData:arr images:nil direction:@"down"];
         _dropDown.delegate = self;
     }
@@ -328,7 +328,7 @@
     NSArray * arr = [[NSArray alloc] init];
     arr = [NSArray arrayWithObjects:@"Expires in 15 minutes", @"Expires in 20 minutes", @"Expires in 60 minutes", nil];
     if(_dropDown == nil) {
-        CGFloat f = 80;
+        CGFloat f = 60;
         _dropDown = [[NIDropDown alloc]showDropDown:sender withHeight:&f andData:arr images:nil direction:@"down"];
         _dropDown.delegate = self;
     }
