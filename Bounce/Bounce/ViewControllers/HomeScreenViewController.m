@@ -228,10 +228,12 @@
 - (void) showTheReplyView
 {
     [self.repliesView setHidden:NO];
+    [self.getHomeButton setHidden:YES];
 }
 - (void) hideReplyView
 {
     [self.repliesView setHidden:YES];
     [self.numOfMessagesLabel setHidden:YES];
+    [self.getHomeButton setHidden:NO];
 }
 @end

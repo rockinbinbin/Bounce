@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIView *repliesView;
 @property (weak, nonatomic) IBOutlet UIView *iconView;
 @property (strong, nonatomic) IBOutlet UILabel *numOfMessagesLabel;
+@property (weak, nonatomic) IBOutlet UIButton *getHomeButton;
 @property (strong, nonatomic) UIView* roundedView;
 - (IBAction)endRequestButtonClicked:(id)sender;
 - (IBAction)repliesButtonClicked:(id)sender;
