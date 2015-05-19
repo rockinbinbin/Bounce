@@ -9,7 +9,7 @@
 #ifndef bounce_Constants_h
 #define bounce_Constants_h
 
-// Parse creadential
+// Parse credentials
 #define PARSE_APP_ID @"vVNUbdp3ci9MLKqNWJMFMYBQZ1tE8EjJ5DZBTCF7"
 #define PARSE_CLIENT_KEY @"JvcX34MRd7rREhmtjFZrcU8mxqmRDFlbyC0yXzAv"
 
@@ -40,14 +40,14 @@
 #define PF_REQUEST_RECEIVERS_RELATION @"RequestReceivers"
 #define PF_REQUEST_LOCATION @"Location"
 #define PF_REQUEST_IS_ENDED @"isEnded"
-// save end date instead save the timee allocate
+// save end date instead save the time allocate
 #define PF_REQUEST_END_DATE @"EndDate"
 #define PF_REQUEST_GENDER @"gender";
 
 
 //
 //#define DISTANCE_MESSAGE @"%.1f miles away"
-#define DISTANCE_MESSAGE @"%.1f feets away"
+#define DISTANCE_MESSAGE @"%.1f ft away"
 
 #define SIDE_MENU_WIDTH (IS_IPHONE? 225:375)
 
@@ -55,8 +55,8 @@
 #define PF_GENDER @"Gender"
 #define PF_CREATED_AT @"createdAt"
 // Home screen
-#define REQUEST_TIME_LEFT_STRING @"%i minute left"
-#define REQUEST_TIME_REMAINING_STRING @"%i minute remaining"
+#define REQUEST_TIME_LEFT_STRING @"%i min left"
+#define REQUEST_TIME_REMAINING_STRING @"%i min remaining"
 
 
 // Gender cases
@@ -98,14 +98,14 @@
 #define COMMON_HUD_LOADING_MESSAGE @"Loading..."
 
 // Alert Messages
-#define FAILURE_SEND_MESSAGE @"An error occur, please try to send the request again"
+#define FAILURE_SEND_MESSAGE @"Error! Please try to send the request again!"
 
 // Notification
 #define NOTIFICATION_ALERT_MESSAGE @"alert"
 
-typedef enum{
+typedef enum {
     publicGroup = 0,
     privateGroup = 1
-}groupPrivacy;
+} groupPrivacy;
 
 #endif

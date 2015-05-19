@@ -91,7 +91,7 @@
     self.navigationItem.leftBarButtonItem = [self initialiseBarButton:menuImage withAction:@selector(cancelButtonClicked)];
 }
 
--(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action{
+-(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action {
     UIButton *buttonItem = [UIButton buttonWithType:UIButtonTypeCustom];
     buttonItem.bounds = CGRectMake( 0, 0, buttonImage.size.width, buttonImage.size.height );
     [buttonItem addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];

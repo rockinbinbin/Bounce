@@ -21,20 +21,22 @@
 
 @end
 
-@implementation AddGroupUsersViewController
-{
+@implementation AddGroupUsersViewController {
     BOOL enableSelection;
     NSMutableArray *addedUsers;
     NSMutableArray *deletedUsers;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
     [self setBarButtonItemLeft:@"common_back_button"];
+    
     if (self.editGroup) {
         [self setEditData];
-    }else{
-        self.navigationItem.title = @"add to group";
+    }
+    else {
+        self.navigationItem.title = @"Add to Homepoint";
         UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]
                                        initWithTitle:@"Done"
                                        style:UIBarButtonItemStylePlain
@@ -52,16 +54,16 @@
     }
 }
 
-- (void) setEditData
-{
-    self.navigationItem.title = @"add to group";
+- (void) setEditData {
+    self.navigationItem.title = @"Add to Homepoint";
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]
-                                   initWithTitle:@"save"
+                                   initWithTitle:@"Save"
                                    style:UIBarButtonItemStylePlain
                                    target:self
                                    action:@selector(saveButtonClicked)];
     doneButton.tintColor = DEFAULT_COLOR;
     self.navigationItem.rightBarButtonItem = doneButton;
+    
     // create checked array
     self.userChecked  = [[NSMutableArray alloc] init];
     NSMutableArray *allUsers = [[NSMutableArray alloc] initWithArray:self.originalGroupUsers];
@@ -73,8 +75,10 @@
     }
     
     if (self.remainingUsers) {
+        
         [allUsers addObjectsFromArray:self.remainingUsers];
         NSInteger remainingUsersCount = [self.remainingUsers count];
+        
         for (int i = 0; i < remainingUsersCount; i++) {
             [self.userChecked  addObject:[NSNumber numberWithBool:NO]];
         }
@@ -85,14 +89,14 @@
     
     if ([[[PFUser currentUser] username] isEqualToString:[[self.updatedGroup objectForKey:PF_GROUP_OWNER] username]] ) {
         enableSelection = YES;
-        self.navigationItem.title = @"Edit group users";
-    }else{
-        self.navigationItem.title = @"Group users";
+        self.navigationItem.title = @"Edit Users";
+    }
+    else {
+        self.navigationItem.title = @"Homepoint Users";
     }
 }
 
-- (void) viewWillAppear:(BOOL)animated
-{
+- (void) viewWillAppear:(BOOL)animated {
     // Disable left Slide menu
     [self disableSlidePanGestureForLeftMenu];
 }
@@ -102,12 +106,16 @@
 }
 
 #pragma mark - Navigation Bar
--(void) setBarButtonItemLeft:(NSString*) imageName{
+
+// Sets left nav bar button
+-(void) setBarButtonItemLeft:(NSString*) imageName {
     UIImage *menuImage = [UIImage imageNamed:imageName];
     self.navigationItem.leftBarButtonItem = [self initialiseBarButton:menuImage withAction:@selector(cancelButtonClicked)];
 }
 
--(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action{
+// Sets nav bar button item with image
+-(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action {
+    
     UIButton *buttonItem = [UIButton buttonWithType:UIButtonTypeCustom];
     buttonItem.bounds = CGRectMake( 0, 0, buttonImage.size.width, buttonImage.size.height );
     [buttonItem addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
@@ -122,7 +130,7 @@
 
 -(void)doneButtonClicked{
     if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
-        [[Utility getInstance] showProgressHudWithMessage:@"Saving ..." withView:self.view];
+        [[Utility getInstance] showProgressHudWithMessage:@"Saving..." withView:self.view];
         // get selected users
         NSArray *users = [self getCheckedUsers];
         [[ParseManager getInstance] setAddGroupdelegate:self];
@@ -132,7 +140,7 @@
 
 -(void)saveButtonClicked{
     if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
-        [[Utility getInstance] showProgressHudWithMessage:@"Saving ..." withView:self.view];
+        [[Utility getInstance] showProgressHudWithMessage:@"Saving..." withView:self.view];
          //get selected users
         [self getAddedAndDeletedUsers];
         [[ParseManager getInstance] setUpdateGroupDelegate:self];
@@ -160,6 +168,7 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
         cell = (ChatListCell *)[nib objectAtIndex:0];
     }
+    
     cell.numOfMessagesLabel.hidden = YES;
     cell.numOfFriendsInGroupLabel.hidden = YES;
     cell.nearbyLabel.hidden = YES;
@@ -179,18 +188,20 @@
         cell.groupDistanceLabel.font=[cell.groupDistanceLabel.font fontWithSize:12];
     }
 
-    // filling the cell data
+    // filling the cell data: CHECKMARKS
     if ([[self.userChecked objectAtIndex:indexPath.row] boolValue]) {
         cell.iconImageView.image = [UIImage imageNamed:@"common_checkmark_icon"];
-    }else{
+    }
+    else {
         cell.iconImageView.image = [UIImage imageNamed:@"common_plus_icon"];
     }
+    
     cell.groupNameLabel.text = [[self.groupUsers objectAtIndex:indexPath.row] objectForKey:PF_USER_USERNAME];
     return cell;
 }
 
 #pragma mark - TableView Delegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     // mark this user as checked
     if ((indexPath.row != 0 && !self.editGroup) || (indexPath.row != 0 && self.editGroup && enableSelection)) {
@@ -198,10 +209,12 @@
         if ([[self.userChecked objectAtIndex:indexPath.row] boolValue]) {
             // mark it to add to group
             checked = NO;
-        }else{
+        }
+        else {
             // mark it as not in the group
             checked = YES;
         }
+        
         [self.userChecked replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithBool:checked]];
         [self updateRowAtIndex:indexPath];
     }
@@ -212,19 +225,17 @@
 }
 
 #pragma mark - update Row
-- (void) updateRowAtIndex:(NSIndexPath*) indexPath
-{
+- (void) updateRowAtIndex:(NSIndexPath*) indexPath {
     [self.tableView beginUpdates];
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
     [self.tableView endUpdates];
 }
 #pragma mark - get Selected users
-- (NSArray *) getCheckedUsers
-{
+- (NSArray *) getCheckedUsers {
     @try {
         NSMutableArray *selectedUsers = [[NSMutableArray alloc] init];
         
-        for (int i = 0; i<[self.groupUsers count]; i++) {
+        for (int i = 0; i < [self.groupUsers count]; i++) {
             if ([[self.userChecked objectAtIndex:i] boolValue]) {
                 [selectedUsers addObject:[self.groupUsers objectAtIndex:i]];
             }
@@ -246,7 +257,7 @@
                 [deletedUsers addObject:[self.groupUsers objectAtIndex:i]];
             }
         }
-        for (int i = [self.originalGroupUsers count]; i<[self.groupUsers count]; i++) {
+        for (int i = [self.originalGroupUsers count]; i < [self.groupUsers count]; i++) {
             if ([[self.userChecked objectAtIndex:i] boolValue]) {
                 [addedUsers addObject:[self.groupUsers objectAtIndex:i]];
             }
@@ -258,8 +269,7 @@
 }
 
 #pragma mark - Parse Manger Add Group delegate
-- (void)didAddGroupWithError:(NSError *)error
-{
+- (void)didAddGroupWithError:(NSError *)error {
     @try {
         [[Utility getInstance] hideProgressHud];
         if (!error) {
@@ -272,15 +282,14 @@
     }
 }
 #pragma mark - Parse Manger Update group delegate
-- (void)didUpdateGroupData:(BOOL)succeed
-{
+- (void)didUpdateGroupData:(BOOL)succeed {
     @try {
         [[Utility getInstance] hideProgressHud];
         if (succeed) {
             [self.navigationController popViewControllerAnimated:YES];
         }else{
             //show error message
-            [[Utility getInstance] showAlertMessage:@"Updates not saved try again"];
+            [[Utility getInstance] showAlertMessage:@"Updates not saved. Please try again"];
         }
     }
     @catch (NSException *exception) {

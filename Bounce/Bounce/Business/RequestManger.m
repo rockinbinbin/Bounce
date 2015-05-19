@@ -178,7 +178,7 @@ static RequestManger *sharedRequestManger = nil;
         PFPush *push = [[PFPush alloc] init];
         [push setQuery:queryInstallation];
 //        [push setMessage:[NSString stringWithFormat:@"%@ send request to you", senderName]];
-        NSString *alertMessage = [NSString stringWithFormat:@"%@ send request to you", senderName];
+        NSString *alertMessage = [NSString stringWithFormat:@"%@ sent a request to you!", senderName];
         NSDictionary *data = [[NSDictionary alloc] initWithObjects:@[requestId, alertMessage] forKeys:@[OBJECT_ID, NOTIFICATION_ALERT_MESSAGE]];
         [push setData:data];
         [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error)

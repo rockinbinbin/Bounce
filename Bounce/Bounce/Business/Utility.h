@@ -14,10 +14,12 @@
 @interface Utility : NSObject
 
 + (Utility*) getInstance;
+
 // progress Hud
 - (void) showProgressHudWithMessage:(NSString*)message withView:(UIView *)view;
 - (void) showProgressHudWithMessage:(NSString*)message;
 - (void) hideProgressHud;
+
 // NetWork Connection
 - (BOOL) checkReachabilityAndDisplayErrorMessage;
 - (void)showAlertMessage:(NSString *)message;
@@ -25,10 +27,13 @@
 //
 - (BOOL)isRequestValid:(NSDate *)craetedDate andTimeAllocated:(NSInteger) time;
 - (BOOL)isRequestValidWithEndDate:(NSDate *)endDate;
+
 // navigate to home screen
 - (void) navigateToMainScreenFromNAvigationContorller:(UINavigationController *) navigationController;
+
 // Create custom button
 -(UIButton *)createCustomButton:(UIImage*) buttonImage;
+
 // Rounde view with border
 - (void) addRoundedBorderToView:(UIView *) view;
 - (CustomChatViewController *) createChatViewWithRequestId:(NSString *) requestId;

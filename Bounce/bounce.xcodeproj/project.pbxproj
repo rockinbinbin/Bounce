@@ -454,7 +454,7 @@
 		67BB90EA1ADFA8D00050164B /* Tutorial-3_iPhone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-3_iPhone5.png"; sourceTree = "<group>"; };
 		67BB90EB1ADFA8D00050164B /* Tutorial-3_iPhone6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-3_iPhone6.png"; sourceTree = "<group>"; };
 		67BB90EC1ADFA8D00050164B /* Tutorial-3_iPhone6plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-3_iPhone6plus.png"; sourceTree = "<group>"; };
-		67BB90ED1ADFA8D00050164B /* bounce-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "bounce-Info.plist"; sourceTree = "<group>"; };
+		67BB90ED1ADFA8D00050164B /* bounce-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "bounce-Info.plist"; path = "Bounce/bounce-Info.plist"; sourceTree = "<group>"; };
 		67BB90EE1ADFA8D00050164B /* bounce-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "bounce-Prefix.pch"; sourceTree = "<group>"; };
 		67BB90F01ADFA8D00050164B /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		67BB90F31ADFA8D00050164B /* ParseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseManager.h; sourceTree = "<group>"; };
@@ -1105,6 +1105,7 @@
 		00CEE3C5199434E700F40C12 = {
 			isa = PBXGroup;
 			children = (
+				67BB90ED1ADFA8D00050164B /* bounce-Info.plist */,
 				67BB90CC1ADFA8D00050164B /* Bounce */,
 				67BB92371ADFA8D10050164B /* hobble.1.1 */,
 				007BA4041A6CDF7500BF08DE /* keyboard */,
@@ -1181,7 +1182,6 @@
 				67BB90CE1ADFA8D00050164B /* AppDelegate.h */,
 				67BB90CF1ADFA8D00050164B /* AppDelegate.m */,
 				67BB90D01ADFA8D00050164B /* Bounce Images */,
-				67BB90ED1ADFA8D00050164B /* bounce-Info.plist */,
 				67BB90EE1ADFA8D00050164B /* bounce-Prefix.pch */,
 				67BB90EF1ADFA8D00050164B /* Business */,
 				67BB90FB1ADFA8D00050164B /* CustomCells */,
