@@ -10,12 +10,15 @@
 #import "ParseManager.h"
 
 @interface AddHomePointViewController : UIViewController<ParseManagerUpdateGroupDelegate, ParseManagerDelegate, UITextFieldDelegate, ParseManagerLoadingGroupsDelegate>
+
 @property (weak, nonatomic) IBOutlet UISegmentedControl *groupPrivacySegmentedControl;
 @property (weak, nonatomic) IBOutlet UIButton *addLocationButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextField *groupNameTextField;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *verticalDistanceBetweenTableAndItsBottom;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomSpaceToGroupName;
+
+
 - (IBAction)segmentedControlClicked:(id)sender;
 - (IBAction)addLocationButtonClicked:(id)sender;
 

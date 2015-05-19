@@ -63,7 +63,7 @@
             NSLog(@"Error %@ %@", error, [error userInfo]);
         }
         else {
-            self.friendUsers = objects; // warning OK
+            self.friendUsers =(NSMutableArray *)objects; // warning OK
         }
     }];
     
@@ -137,9 +137,9 @@
     }];
     
     
-    for (PFUser *user in self.friendUsers) {
-        NSLog(user.username);
-    }
+//    for (PFUser *user in self.friendUsers) {
+//        NSLog(user.username);
+//    }
     
 }
 

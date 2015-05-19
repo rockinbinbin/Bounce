@@ -615,7 +615,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" mapType="standard" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dSY-iw-bRd">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="430"/>
+                                <rect key="frame" x="0.0" y="1" width="600" height="430"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="600" id="Eoe-mW-ZSF"/>
                                 </constraints>

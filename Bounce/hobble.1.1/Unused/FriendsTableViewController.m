@@ -50,12 +50,12 @@
 - (BOOL)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         NSLog(@"user pressed Cancel");
-        NSLog(@"%d", buttonIndex);
+        NSLog(@"%ld", (long)buttonIndex);
         return NO;
     }
     else {
     NSLog(@"user pressed OK");
-    NSLog(@"%d", buttonIndex);
+    NSLog(@"%ld", (long)buttonIndex);
         return YES;
     }
 }
@@ -71,7 +71,7 @@
             NSLog(@"Error %@ %@", error, [error userInfo]);
         }
         else {
-            self.friends = objects; // warning OK
+            self.friends = (NSMutableArray *)objects; // warning OK
             [self.tableView reloadData];
         }
     }];

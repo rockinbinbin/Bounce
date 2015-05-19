@@ -28,6 +28,7 @@
     self.delegate = self;
     self.dataSource = self;
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
+    
     Intro1IDViewController* intro1IDViewController = [[Intro1IDViewController alloc] initWithNibName:@"Intro1IDViewController" bundle:nil];
     Intro2IDViewController* intro2IDViewController = [[Intro2IDViewController alloc] initWithNibName:@"Intro2IDViewController" bundle:nil];
     Intro3IDViewController* intro3IDViewController = [[Intro3IDViewController alloc] initWithNibName:@"Intro3IDViewController" bundle:nil];
@@ -40,15 +41,16 @@
                     animated:NO completion:nil];
     [self disableSlidePanGestureForLeftMenu];
 }
+
 #pragma mark - Page Control Data Source
--(UIViewController *)viewControllerAtIndex:(NSUInteger)index{
+-(UIViewController *)viewControllerAtIndex:(NSUInteger)index {
     return myViewControllers[index];
 }
--(NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController{
+-(NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController {
     return myViewControllers.count;
 }
 
--(NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController{
+-(NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {
     return 0;
 }
 
@@ -68,7 +70,7 @@
 }
 
 -(UIViewController *)pageViewController:(UIPageViewController *)pageViewController
-      viewControllerAfterViewController:(UIViewController *)viewController{
+      viewControllerAfterViewController:(UIViewController *)viewController {
     NSUInteger currentIndex = [myViewControllers indexOfObject:viewController];
     if (currentIndex == ([myViewControllers count] - 1)) {
         // last page

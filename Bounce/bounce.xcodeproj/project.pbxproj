@@ -119,8 +119,6 @@
 		67BB92FB1ADFA8D10050164B /* MessageScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92341ADFA8D10050164B /* MessageScreenViewController.xib */; };
 		67BB92FC1ADFA8D10050164B /* RequestsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92351ADFA8D10050164B /* RequestsViewController.xib */; };
 		67BB92FD1ADFA8D10050164B /* SignupScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92361ADFA8D10050164B /* SignupScreenViewController.xib */; };
-		67BB92FE1ADFA8D10050164B /* Chatcell.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92391ADFA8D10050164B /* Chatcell.m */; };
-		67BB92FF1ADFA8D10050164B /* ChatRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB923B1ADFA8D10050164B /* ChatRoomViewController.m */; };
 		67BB93001ADFA8D10050164B /* Definitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB923D1ADFA8D10050164B /* Definitions.m */; };
 		67BB93011ADFA8D10050164B /* hobble_1_1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 67BB923E1ADFA8D10050164B /* hobble_1_1.xcdatamodeld */; };
 		67BB93021ADFA8D10050164B /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92401ADFA8D10050164B /* MainStoryboard.storyboard */; };
@@ -427,9 +425,9 @@
 		67BB90C51ADFA8B20050164B /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = FrameWorks/Parse.framework; sourceTree = "<group>"; };
 		67BB90C61ADFA8B20050164B /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = FrameWorks/ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		67BB90C71ADFA8B20050164B /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = FrameWorks/ParseUI.framework; sourceTree = "<group>"; };
-		67BB90CD1ADFA8D00050164B /* AppConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConstant.h; sourceTree = "<group>"; };
-		67BB90CE1ADFA8D00050164B /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		67BB90CF1ADFA8D00050164B /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		67BB90CD1ADFA8D00050164B /* AppConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppConstant.h; path = Bounce/AppConstant.h; sourceTree = "<group>"; };
+		67BB90CE1ADFA8D00050164B /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Bounce/AppDelegate.h; sourceTree = "<group>"; };
+		67BB90CF1ADFA8D00050164B /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Bounce/AppDelegate.m; sourceTree = "<group>"; };
 		67BB90D11ADFA8D00050164B /* chat_blank@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_blank@2x.png"; sourceTree = "<group>"; };
 		67BB90D31ADFA8D00050164B /* Contents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
 		67BB90D41ADFA8D00050164B /* LandingView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LandingView.png; sourceTree = "<group>"; };
@@ -455,7 +453,7 @@
 		67BB90EB1ADFA8D00050164B /* Tutorial-3_iPhone6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-3_iPhone6.png"; sourceTree = "<group>"; };
 		67BB90EC1ADFA8D00050164B /* Tutorial-3_iPhone6plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tutorial-3_iPhone6plus.png"; sourceTree = "<group>"; };
 		67BB90ED1ADFA8D00050164B /* bounce-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "bounce-Info.plist"; path = "Bounce/bounce-Info.plist"; sourceTree = "<group>"; };
-		67BB90EE1ADFA8D00050164B /* bounce-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "bounce-Prefix.pch"; sourceTree = "<group>"; };
+		67BB90EE1ADFA8D00050164B /* bounce-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "bounce-Prefix.pch"; path = "Bounce/bounce-Prefix.pch"; sourceTree = "<group>"; };
 		67BB90F01ADFA8D00050164B /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		67BB90F31ADFA8D00050164B /* ParseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseManager.h; sourceTree = "<group>"; };
 		67BB90F41ADFA8D00050164B /* ParseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseManager.m; sourceTree = "<group>"; };
@@ -531,10 +529,6 @@
 		67BB92341ADFA8D10050164B /* MessageScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageScreenViewController.xib; sourceTree = "<group>"; };
 		67BB92351ADFA8D10050164B /* RequestsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RequestsViewController.xib; sourceTree = "<group>"; };
 		67BB92361ADFA8D10050164B /* SignupScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignupScreenViewController.xib; sourceTree = "<group>"; };
-		67BB92381ADFA8D10050164B /* Chatcell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chatcell.h; sourceTree = "<group>"; };
-		67BB92391ADFA8D10050164B /* Chatcell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chatcell.m; sourceTree = "<group>"; };
-		67BB923A1ADFA8D10050164B /* ChatRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRoomViewController.h; sourceTree = "<group>"; };
-		67BB923B1ADFA8D10050164B /* ChatRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRoomViewController.m; sourceTree = "<group>"; };
 		67BB923C1ADFA8D10050164B /* Definitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Definitions.h; sourceTree = "<group>"; };
 		67BB923D1ADFA8D10050164B /* Definitions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Definitions.m; sourceTree = "<group>"; };
 		67BB923F1ADFA8D10050164B /* hobble_1_1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hobble_1_1.xcdatamodel; sourceTree = "<group>"; };
@@ -1106,6 +1100,10 @@
 			isa = PBXGroup;
 			children = (
 				67BB90ED1ADFA8D00050164B /* bounce-Info.plist */,
+				67BB90CD1ADFA8D00050164B /* AppConstant.h */,
+				67BB90CE1ADFA8D00050164B /* AppDelegate.h */,
+				67BB90CF1ADFA8D00050164B /* AppDelegate.m */,
+				67BB90EE1ADFA8D00050164B /* bounce-Prefix.pch */,
 				67BB90CC1ADFA8D00050164B /* Bounce */,
 				67BB92371ADFA8D10050164B /* hobble.1.1 */,
 				007BA4041A6CDF7500BF08DE /* keyboard */,
@@ -1178,11 +1176,7 @@
 			isa = PBXGroup;
 			children = (
 				67BB93091ADFABCD0050164B /* ThirdParty */,
-				67BB90CD1ADFA8D00050164B /* AppConstant.h */,
-				67BB90CE1ADFA8D00050164B /* AppDelegate.h */,
-				67BB90CF1ADFA8D00050164B /* AppDelegate.m */,
 				67BB90D01ADFA8D00050164B /* Bounce Images */,
-				67BB90EE1ADFA8D00050164B /* bounce-Prefix.pch */,
 				67BB90EF1ADFA8D00050164B /* Business */,
 				67BB90FB1ADFA8D00050164B /* CustomCells */,
 				67BB90FF1ADFA8D00050164B /* InfoPlist.strings */,
@@ -1304,15 +1298,15 @@
 				67BB92071ADFA8D10050164B /* HomePointSuccessfulCreationViewController.m */,
 				67BB92081ADFA8D10050164B /* HomeScreenViewController.h */,
 				67BB92091ADFA8D10050164B /* HomeScreenViewController.m */,
+				67BB92171ADFA8D10050164B /* MessageScreenViewController.h */,
+				67BB92181ADFA8D10050164B /* MessageScreenViewController.m */,
+				67BB92191ADFA8D10050164B /* RequestsViewController.h */,
+				67BB921A1ADFA8D10050164B /* RequestsViewController.m */,
 				003F19421B0B09DC0024EE9A /* SettingsViewController.h */,
 				003F19431B0B09DC0024EE9A /* SettingsViewController.m */,
 				67BB920A1ADFA8D10050164B /* IntoductionView */,
 				67BB92151ADFA8D10050164B /* LoginScreenViewController.h */,
 				67BB92161ADFA8D10050164B /* LoginScreenViewController.m */,
-				67BB92171ADFA8D10050164B /* MessageScreenViewController.h */,
-				67BB92181ADFA8D10050164B /* MessageScreenViewController.m */,
-				67BB92191ADFA8D10050164B /* RequestsViewController.h */,
-				67BB921A1ADFA8D10050164B /* RequestsViewController.m */,
 				67BB921B1ADFA8D10050164B /* SignupScreenViewController.h */,
 				67BB921C1ADFA8D10050164B /* SignupScreenViewController.m */,
 				001C73781B0B0E3C008D7058 /* Terms_of_Use_ViewController.h */,
@@ -1385,10 +1379,6 @@
 		67BB92371ADFA8D10050164B /* hobble.1.1 */ = {
 			isa = PBXGroup;
 			children = (
-				67BB92381ADFA8D10050164B /* Chatcell.h */,
-				67BB92391ADFA8D10050164B /* Chatcell.m */,
-				67BB923A1ADFA8D10050164B /* ChatRoomViewController.h */,
-				67BB923B1ADFA8D10050164B /* ChatRoomViewController.m */,
 				67BB923C1ADFA8D10050164B /* Definitions.h */,
 				67BB923D1ADFA8D10050164B /* Definitions.m */,
 				67BB923E1ADFA8D10050164B /* hobble_1_1.xcdatamodeld */,
@@ -1872,7 +1862,7 @@
 		00CEE3C6199434E700F40C12 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = hobble;
 				TargetAttributes = {
 					00CEE3CD199434E700F40C12 = {
@@ -2086,7 +2076,6 @@
 				67BB94581ADFABCD0050164B /* ChatView.m in Sources */,
 				67BB94451ADFABCD0050164B /* JSQMessagesCollectionViewCell.m in Sources */,
 				67BB940A1ADFABCD0050164B /* UIImageView+AFNetworking.m in Sources */,
-				67BB92FF1ADFA8D10050164B /* ChatRoomViewController.m in Sources */,
 				67BB94561ADFABCD0050164B /* NIDropDown.m in Sources */,
 				67BB94381ADFABCD0050164B /* JSQMessagesToolbarButtonFactory.m in Sources */,
 				67BB94221ADFABCD0050164B /* UIPopoverController+FlatUI.m in Sources */,
@@ -2125,7 +2114,6 @@
 				67BB93061ADFA8D10050164B /* UIViewController+infopagestempfile.m in Sources */,
 				67BB943B1ADFABCD0050164B /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */,
 				67BB94201ADFABCD0050164B /* UIImage+FlatUI.m in Sources */,
-				67BB92FE1ADFA8D10050164B /* Chatcell.m in Sources */,
 				67BB94411ADFABCD0050164B /* JSQPhotoMediaItem.m in Sources */,
 				67BB941B1ADFABCD0050164B /* FUISwitch.m in Sources */,
 			);
@@ -2201,7 +2189,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -2243,7 +2230,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -2279,7 +2265,6 @@
 		00CEE401199434E700F40C12 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Robin Mehta (GFEX9Y3G7Y)";
@@ -2356,7 +2341,6 @@
 		00CEE402199434E700F40C12 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Robin Mehta (GFEX9Y3G7Y)";

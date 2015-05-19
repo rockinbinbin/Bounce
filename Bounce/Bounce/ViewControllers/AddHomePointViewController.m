@@ -10,7 +10,7 @@
 #import "AppConstant.h"
 #import "ChatListCell.h"
 #import "AddGroupUsersViewController.h"
-#import "Definitions.h"
+//#import "Definitions.h"
 #import <Parse/Parse.h>
 #import "GroupsListViewController.h"
 #import "Utility.h"

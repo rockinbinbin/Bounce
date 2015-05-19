@@ -49,8 +49,11 @@
 // valid receiver
 - (BOOL) isValidRequestReceiver:(PFObject*) request;
 // nearUsers in group
-- (NSInteger) getNearUsersInGroup:(PFObject *) group;
+
+// COMMENTED OUT TO SILENCE WARNING
+//- (NSInteger) getNearUsersInGroup:(PFObject *) group;
 // distance between user and group
+
 - (double) getDistanceToGroup:(PFObject *) group;
 // Get User groups
 - (void) getUserGroups;

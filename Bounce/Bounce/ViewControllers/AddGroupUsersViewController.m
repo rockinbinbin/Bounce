@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 hobble. All rights reserved.
 //
 
+// COME BACK TO ANNOTATE
+
 #import "AddGroupUsersViewController.h"
 #import "AppConstant.h"
 #import "ChatListCell.h"
@@ -13,7 +15,7 @@
 #import <Parse/Parse.h>
 #import "AppConstant.h"
 #import "ParseManager.h"
-#import "Definitions.h"
+//#import "Definitions.h"
 #import "Utility.h"
 #import "UIViewController+AMSlideMenu.h"
 
@@ -32,18 +34,22 @@
 
     [self setBarButtonItemLeft:@"common_back_button"];
     
-    if (self.editGroup) {
+    if (self.editGroup) { // IF 'EDIT' BOOL -> ADD USERS TO HOMEPOINT (?)
         [self setEditData];
     }
     else {
         self.navigationItem.title = @"Add to Homepoint";
+        
         UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]
                                        initWithTitle:@"Done"
                                        style:UIBarButtonItemStylePlain
                                        target:self
                                        action:@selector(doneButtonClicked)];
+        
         doneButton.tintColor = DEFAULT_COLOR;
+        
         self.navigationItem.rightBarButtonItem = doneButton;
+        
         // create checked array
         self.userChecked  = [[NSMutableArray alloc] init];
         NSInteger useresCount = [self.groupUsers count];
@@ -257,7 +263,7 @@
                 [deletedUsers addObject:[self.groupUsers objectAtIndex:i]];
             }
         }
-        for (int i = [self.originalGroupUsers count]; i < [self.groupUsers count]; i++) {
+        for (unsigned long i = [self.originalGroupUsers count]; i < [self.groupUsers count]; i++) {
             if ([[self.userChecked objectAtIndex:i] boolValue]) {
                 [addedUsers addObject:[self.groupUsers objectAtIndex:i]];
             }

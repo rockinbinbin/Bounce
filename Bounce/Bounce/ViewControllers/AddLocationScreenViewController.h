@@ -12,6 +12,8 @@
 #import "ParseManager.h"
 
 @interface AddLocationScreenViewController : UIViewController <CLLocationManagerDelegate,MKMapViewDelegate, ParseManagerDelegate>
+
+
 @property (strong, nonatomic) CLLocationManager *location_manager;
 @property (nonatomic, strong) PFGeoPoint * groupLocation;
 @property (strong, nonatomic) NSString* groupPrivacy;

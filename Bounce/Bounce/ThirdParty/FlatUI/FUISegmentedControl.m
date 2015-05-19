@@ -109,13 +109,13 @@
         // Pre-iOS6 methods
         selectedAttributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
                                         self.selectedFontColor,
-                                        UITextAttributeTextColor,
+                                        NSForegroundColorAttributeName,
                                         [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0],
-                                        UITextAttributeTextShadowColor,
+                                        NSShadowAttributeName,
                                         [NSValue valueWithUIOffset:UIOffsetMake(0, 0)],
-                                        UITextAttributeTextShadowOffset,
+                                        NSShadowAttributeName,
                                         self.selectedFont,
-                                        UITextAttributeFont,
+                                        NSFontAttributeName,
                                         nil];
     }
     
@@ -139,13 +139,13 @@
         // pre-iOS6 methods
         deselectedAttributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
                                           self.deselectedFontColor,
-                                          UITextAttributeTextColor,
+                                          NSForegroundColorAttributeName,
                                           [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0],
-                                          UITextAttributeTextShadowColor,
+                                          NSShadowAttributeName,
                                           [NSValue valueWithUIOffset:UIOffsetMake(0, 0)],
-                                          UITextAttributeTextShadowOffset,
+                                          NSShadowAttributeName,
                                           self.deselectedFont,
-                                          UITextAttributeFont,
+                                          NSFontAttributeName,
                                           nil];
     }
     [self setTitleTextAttributes:deselectedAttributesDictionary forState:UIControlStateNormal];
@@ -168,13 +168,13 @@
         // pre-iOS6 methods
         disabledAttributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
                 self.disabledFontColor,
-                UITextAttributeTextColor,
+                NSForegroundColorAttributeName,
                 [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0],
-                UITextAttributeTextShadowColor,
+                NSShadowAttributeName,
                 [NSValue valueWithUIOffset:UIOffsetMake(0, 0)],
-                UITextAttributeTextShadowOffset,
+                NSShadowAttributeName,
                 self.disabledFont,
-                UITextAttributeFont,
+                NSFontAttributeName,
                 nil];
     }
 

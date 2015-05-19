@@ -108,7 +108,7 @@
         // number of messages for the group
         UILabel* numOfMessagesLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 4, 30, 20)];
         numOfMessagesLabel.textAlignment = NSTextAlignmentCenter;
-        numOfMessagesLabel.text = [NSString stringWithFormat:@"%i", activeChatNumber];
+        numOfMessagesLabel.text = [NSString stringWithFormat:@"%li", (long)activeChatNumber];
         [numOfMessagesLabel setTextColor:[UIColor whiteColor]];
         [numOfMessagesLabel setBackgroundColor:[UIColor clearColor]];
         [numOfMessagesLabel setFont:[UIFont fontWithName: @"Trebuchet MS" size: 14.0f]];

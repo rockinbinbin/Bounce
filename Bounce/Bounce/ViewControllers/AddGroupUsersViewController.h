@@ -13,10 +13,10 @@
 
 @interface AddGroupUsersViewController : UIViewController<ParseManagerAddGroupDelegate, ParseManagerUpdateGroupDelegate>
 
+// PROPERTIES
 
 @property NSArray *groupUsers;
-@property NSMutableArray *userChecked;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property NSMutableArray *userChecked; // array of selected users
 @property (nonatomic, assign) PFGeoPoint * groupLocation;
 @property (nonatomic, assign) NSString* groupPrivacy;
 @property (strong, nonatomic) NSString* groupName;
@@ -24,5 +24,9 @@
 @property NSArray *originalGroupUsers;
 @property NSArray *remainingUsers;
 @property PFObject *updatedGroup;
+
+// OUTLETS
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
