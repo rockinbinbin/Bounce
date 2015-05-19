@@ -158,8 +158,8 @@
 
 - (IBAction)repliesButtonClicked:(id)sender {
     // navigate to the request screen
-    RequestsViewController* requistsViewController = [[RequestsViewController alloc] initWithNibName:@"RequestsViewController" bundle:nil];
-    [self.navigationController pushViewController:requistsViewController animated:YES];
+    RequestsViewController* requestsViewController = [[RequestsViewController alloc] initWithNibName:@"RequestsViewController" bundle:nil];
+    [self.navigationController pushViewController:requestsViewController animated:YES];
 }
 - (IBAction)endRequestButtonClicked:(id)sender {
     // call the request manager
@@ -181,7 +181,7 @@
     [self.navigationController pushViewController:groupsListViewController animated:YES];
 }
 
-#pragma mark - RequestManger Delegat
+#pragma mark - RequestManger Delegate
 - (void)updateRequestRemainingTime:(NSInteger)remainingTime
 {
     @try {

@@ -4,7 +4,9 @@
 //
 //  Created by Shimaa Essam on 3/31/15.
 //  Copyright (c) 2015 hobble. All rights reserved.
-//
+
+// subclass of slideviewmainviewcontroller, so it has left / right properties built in.
+// override old main menu methods
 
 #import "SlideMenuViewController.h"
 #import "SlideMenuLeftTableViewController.h"
@@ -19,6 +21,7 @@
 - (void)viewDidLoad {
     self.leftMenu = [[SlideMenuLeftTableViewController alloc] initWithNibName:@"SlideMenuLeftTableViewController" bundle:nil];
     self.rightMenu = nil;
+    
     
     [super viewDidLoad];
 }
@@ -57,16 +60,19 @@
 {
     return 0.3f;
 }
+
 - (void)closeLeftMenu
 {
     [self closeLeftMenuAnimated:YES];
 }
+
 - (void)openLeftMenu
 {
     NSLog(@"openLeftMenu");
     [[ParseManager getInstance] getNumberOfValidRequests];
     [self openLeftMenuAnimated:YES];
 }
+
 - (CGFloat)leftMenuWidth
 {
     return SIDE_MENU_WIDTH;

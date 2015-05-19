@@ -18,9 +18,16 @@
 #import <Photos/Photos.h>
 
 #import "SlideMenuViewController.h"
+#import "SettingsViewController.h"
+#import "Terms_of_Use_ViewController.h"
+#import "Privacy_Policy_ViewController.h"
 
 #define Chats_Section 1
 #define Home_section 0
+#define Settings_Section 2
+#define Terms_Section 3
+#define Privacy_Section 4
+
 @interface SlideMenuLeftTableViewController ()
 
 @end
@@ -41,7 +48,7 @@
     // Do any additional setup after loading the view from its nib.
     self.view.backgroundColor = [UIColor darkGrayColor];
     // Initilizing data souce
-    self.tableData = [@[@"", @"Chat"] mutableCopy];
+    self.tableData = [@[@"", @"Chat", @"Settings", @"Terms of Use", @"Privacy Policy"] mutableCopy];
     [self setProfileImage];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateChatNumber:) name:@"UpdateChatNumber" object:nil];
 }
@@ -71,22 +78,24 @@
     return [self.tableData count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    if (!cell)
-    {
+    
+    if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    
     cell.backgroundColor = [UIColor darkGrayColor];
     UIView *bgColorView = [[UIView alloc] init];
     bgColorView.backgroundColor = [UIColor darkGrayColor];
     [cell setSelectedBackgroundView:bgColorView];
 
-        cell.textLabel.textColor = [UIColor whiteColor];
+    cell.textLabel.textColor = [UIColor whiteColor];
      
-        int imageYPosition = cell.frame.origin.y + 20;
+    int imageYPosition = cell.frame.origin.y + 20;
+    
     if (indexPath.row == Chats_Section) {
         cell.userInteractionEnabled = YES;
         // adding chats number
@@ -121,9 +130,38 @@
         usernameLabel.text = @"Chats";
         [cell addSubview:usernameLabel];
         [cell setBackgroundColor:[UIColor darkGrayColor]];
-    }else if (Home_section)
-    {
+    }
+    if (Home_section) {
         cell.userInteractionEnabled = NO;
+    }
+    if (indexPath.row == Settings_Section) {
+        cell.userInteractionEnabled = YES;
+        UILabel *settingsLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, imageYPosition - 20, 100, 40)];
+        settingsLabel.font = [UIFont fontWithName:@"FS Albert" size:32];
+        settingsLabel.textColor = [UIColor whiteColor];
+        settingsLabel.text = @"Settings";
+        [cell addSubview:settingsLabel];
+        [cell setBackgroundColor:[UIColor darkGrayColor]];
+    }
+     if (indexPath.row == Terms_Section) {
+        cell.userInteractionEnabled = YES;
+        UILabel *terms = [[UILabel alloc] initWithFrame:CGRectMake(40, imageYPosition - 20, 100, 40)];
+        terms.font = [UIFont fontWithName:@"FS Albert" size:32];
+        terms.textColor = [UIColor whiteColor];
+        terms.text = @"Terms of Use";
+        [cell addSubview:terms];
+        [cell setBackgroundColor:[UIColor darkGrayColor]];
+
+    }
+     if (indexPath.row == Privacy_Section) {
+        cell.userInteractionEnabled = YES;
+        UILabel *privacy = [[UILabel alloc] initWithFrame:CGRectMake(40, imageYPosition - 20, 100, 40)];
+        privacy.font = [UIFont fontWithName:@"FS Albert" size:32];
+        privacy.textColor = [UIColor whiteColor];
+        privacy.text = @"Privacy Policy";
+        [cell addSubview:privacy];
+        [cell setBackgroundColor:[UIColor darkGrayColor]];
+
     }
     
 
@@ -138,13 +176,14 @@
     }
     return indexPath;
 }
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     UINavigationController *nvc;
     UIViewController *rootVC;
+    
     switch (indexPath.row) {
-        case Home_section:
-        {
+            
+        case Home_section: {
             if (!homeNavigationViewController) {
                 rootVC = [[HomeScreenViewController alloc] initWithNibName:@"HomeScreenViewController" bundle:nil];
                 homeNavigationViewController = [[UINavigationController alloc] initWithRootViewController:rootVC];
@@ -152,8 +191,8 @@
             [self openContentNavigationController:homeNavigationViewController];
         }
             break;
-        case Chats_Section:
-        {
+            
+        case Chats_Section: {
             rootVC = [[RequestsViewController alloc] initWithNibName:@"RequestsViewController" bundle:nil];
             nvc = [[UINavigationController alloc] initWithRootViewController:rootVC];
             NSMutableArray *viewControllers = [[NSMutableArray alloc] init];
@@ -173,6 +212,73 @@
         }
             break;
         
+        case Settings_Section: {
+            rootVC = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
+            nvc = [[UINavigationController alloc] initWithRootViewController:rootVC];
+            NSMutableArray *viewControllers = [[NSMutableArray alloc] init];
+            [viewControllers addObject:rootVC];
+            
+            UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:rootVC];
+            
+            if ([self.mainVC isKindOfClass:[SlideMenuViewController class]]) {
+
+                
+                //if ([(SlideMenuViewController *)self.mainVC initialIndex] == 1 && [(SlideMenuViewController *)self.mainVC requestId]) {
+
+                    
+                    SettingsViewController *settingsView = [[SettingsViewController alloc] init];
+                
+                    [viewControllers addObject:settingsView];
+                    [nvc setViewControllers:[NSArray arrayWithArray:viewControllers]];
+                
+                [(SlideMenuViewController *)self.mainVC setInitialIndex:0];
+                [self openContentNavigationController:nvc];
+                
+                //}
+            }
+        }
+            break;
+            
+        case Terms_Section: {
+            rootVC = [[Terms_of_Use_ViewController alloc] initWithNibName:@"Terms_of_Use_ViewController" bundle:nil];
+            nvc = [[UINavigationController alloc] initWithRootViewController:rootVC];
+            NSMutableArray *viewControllers = [[NSMutableArray alloc]init];
+            [viewControllers addObject:rootVC];
+            
+            UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:rootVC];
+            
+            if ([self.mainVC isKindOfClass:[SlideMenuViewController class]]) {
+                
+                Terms_of_Use_ViewController *termsView = [[Terms_of_Use_ViewController alloc] init];
+                
+                [viewControllers addObject:termsView];
+                [nvc setViewControllers:[NSArray arrayWithArray:viewControllers]];
+                [(SlideMenuViewController *)self.mainVC setInitialIndex:0];
+                [self openContentNavigationController:nvc];
+            }
+        }
+            break;
+        
+        case Privacy_Section: {
+            rootVC = [[Privacy_Policy_ViewController alloc] initWithNibName:@"Privacy_Policy_ViewController" bundle:nil];
+            nvc = [[UINavigationController alloc] initWithRootViewController:rootVC];
+            NSMutableArray *viewControllers = [[NSMutableArray alloc]init];
+            [viewControllers addObject:rootVC];
+            
+            UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:rootVC];
+            
+            if ([self.mainVC isKindOfClass:[SlideMenuViewController class]]) {
+                
+                Privacy_Policy_ViewController *privacyView = [[Privacy_Policy_ViewController alloc] init];
+                
+                [viewControllers addObject:privacyView];
+                [nvc setViewControllers:[NSArray arrayWithArray:viewControllers]];
+                [(SlideMenuViewController *)self.mainVC setInitialIndex:0];
+                [self openContentNavigationController:nvc];
+            }
+        }
+            break;
+            
         default:
             break;
     }

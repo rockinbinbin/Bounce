@@ -71,9 +71,10 @@
     if ([username length] == 0 || [password length] == 0){
         [[Utility getInstance] showAlertWithMessage:@"Make sure you enter a username, password!" andTitle:@"Oops!"];
     }
-    else if (![username hasPrefix:@"@"]) {
-        [[Utility getInstance] showAlertWithMessage:@"User handles must begin with an "@" symbol." andTitle:@"Oops!"];
-    }else{
+//    else if (![username hasPrefix:@"@"]) {
+//        [[Utility getInstance] showAlertWithMessage:@"User handles must begin with an "@" symbol." andTitle:@"Oops!"];
+//    }
+    else{
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
             [[Utility getInstance] showProgressHudWithMessage:@"Check name availability..."];
             PFQuery *query = [PFUser query];
@@ -119,6 +120,7 @@
          }
          else {
              [ProgressHUD showError:error.userInfo[@"error"]];
+            [[Utility getInstance] showAlertWithMessage:@"Please go to Settings > Facebook > Bounce, and allow us to log you in!" andTitle:@"Permission Needed!"];
          }
      }];
 }

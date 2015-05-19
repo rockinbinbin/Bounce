@@ -117,6 +117,7 @@
          }
          else {
              [ProgressHUD showError:error.userInfo[@"error"]];
+             [[Utility getInstance] showAlertWithMessage:@"Please go to Settings > Facebook > Bounce, and allow us to log you in!" andTitle:@"Permission Needed!"];
          }
      }];
 }
