@@ -186,7 +186,7 @@
 {
     @try {
             [self showTheReplyView];
-            self.timeLeftLabel.text  = [NSString stringWithFormat:REQUEST_TIME_REMAINING_STRING, remainingTime];
+            self.timeLeftLabel.text  = [NSString stringWithFormat:REQUEST_TIME_REMAINING_STRING, (long)remainingTime];
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
@@ -198,8 +198,9 @@
     @try {
         if (numberOfUnreadMessages > 0) {
             [self.numOfMessagesLabel setHidden:NO];
-            [self.numOfMessagesLabel setText:[NSString stringWithFormat:@"%i", numberOfUnreadMessages]];
-        }else{
+            [self.numOfMessagesLabel setText:[NSString stringWithFormat:@"%li", (long)numberOfUnreadMessages]];
+        }
+        else {
             [self.numOfMessagesLabel setHidden:YES];
         }
     }
@@ -221,7 +222,7 @@
 - (void)requestCreated
 {
 //    self.timeLeftLabel.text  = [NSString stringWithFormat:REQUEST_TIME_LEFT_STRING, 0];
-    self.timeLeftLabel.text  = [NSString stringWithFormat:REQUEST_TIME_REMAINING_STRING, [[RequestManger getInstance] requestLeftTimeInMinute]];
+    self.timeLeftLabel.text  = [NSString stringWithFormat:REQUEST_TIME_REMAINING_STRING, (long)[[RequestManger getInstance] requestLeftTimeInMinute]];
     [self showTheReplyView];
 }
 #pragma mark - show Reply view

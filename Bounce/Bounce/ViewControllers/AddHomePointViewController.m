@@ -78,12 +78,11 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     createButtonClicked = NO;
-    // Disable left Slide menu
-    [self disableSlidePanGestureForLeftMenu];
-    // Set parse manager update group delegate
-    [[ParseManager getInstance] setUpdateGroupDelegate:self];
-    // load all groups that doesn't contain current user
-    [self loadGroups];
+    [self disableSlidePanGestureForLeftMenu];     // Disable left Slide menu
+
+    [[ParseManager getInstance] setUpdateGroupDelegate:self];     // Set parse manager update group delegate
+
+    [self loadGroups];     // load all groups that doesn't contain current user
 }
 
 - (void)didReceiveMemoryWarning {

@@ -27,10 +27,10 @@
     self.RegisterButton.backgroundColor = LIGHT_BLUE_COLOR;
     self.view.backgroundColor = DEFAULT_COLOR;
     self.facebookLogin.backgroundColor = [UIColor colorWithRed:81.0/250.0 green:117.0/250.0 blue:195.0/250.0 alpha:1.0];
+    
     // hides keyboard when user hits background
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     [self.view addGestureRecognizer:gestureRecognizer];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {

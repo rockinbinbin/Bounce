@@ -119,7 +119,6 @@
 		67BB92FB1ADFA8D10050164B /* MessageScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92341ADFA8D10050164B /* MessageScreenViewController.xib */; };
 		67BB92FC1ADFA8D10050164B /* RequestsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92351ADFA8D10050164B /* RequestsViewController.xib */; };
 		67BB92FD1ADFA8D10050164B /* SignupScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92361ADFA8D10050164B /* SignupScreenViewController.xib */; };
-		67BB93001ADFA8D10050164B /* Definitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB923D1ADFA8D10050164B /* Definitions.m */; };
 		67BB93011ADFA8D10050164B /* hobble_1_1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 67BB923E1ADFA8D10050164B /* hobble_1_1.xcdatamodeld */; };
 		67BB93021ADFA8D10050164B /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92401ADFA8D10050164B /* MainStoryboard.storyboard */; };
 		67BB93031ADFA8D10050164B /* MessagesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92411ADFA8D10050164B /* MessagesCell.xib */; };
@@ -529,8 +528,6 @@
 		67BB92341ADFA8D10050164B /* MessageScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageScreenViewController.xib; sourceTree = "<group>"; };
 		67BB92351ADFA8D10050164B /* RequestsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RequestsViewController.xib; sourceTree = "<group>"; };
 		67BB92361ADFA8D10050164B /* SignupScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignupScreenViewController.xib; sourceTree = "<group>"; };
-		67BB923C1ADFA8D10050164B /* Definitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Definitions.h; sourceTree = "<group>"; };
-		67BB923D1ADFA8D10050164B /* Definitions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Definitions.m; sourceTree = "<group>"; };
 		67BB923F1ADFA8D10050164B /* hobble_1_1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hobble_1_1.xcdatamodel; sourceTree = "<group>"; };
 		67BB92401ADFA8D10050164B /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		67BB92411ADFA8D10050164B /* MessagesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessagesCell.xib; sourceTree = "<group>"; };
@@ -1379,8 +1376,6 @@
 		67BB92371ADFA8D10050164B /* hobble.1.1 */ = {
 			isa = PBXGroup;
 			children = (
-				67BB923C1ADFA8D10050164B /* Definitions.h */,
-				67BB923D1ADFA8D10050164B /* Definitions.m */,
 				67BB923E1ADFA8D10050164B /* hobble_1_1.xcdatamodeld */,
 				67BB92401ADFA8D10050164B /* MainStoryboard.storyboard */,
 				67BB92411ADFA8D10050164B /* MessagesCell.xib */,
@@ -1989,7 +1984,6 @@
 				67BB94081ADFABCD0050164B /* UIAlertView+AFNetworking.m in Sources */,
 				67BB94121ADFABCD0050164B /* AMSlideMenuRightMenuSegue.m in Sources */,
 				67BB926C1ADFA8D10050164B /* Utility.m in Sources */,
-				67BB93001ADFA8D10050164B /* Definitions.m in Sources */,
 				67BB94061ADFABCD0050164B /* AFNetworkActivityIndicatorManager.m in Sources */,
 				67BB94461ADFABCD0050164B /* JSQMessagesCollectionViewCellIncoming.m in Sources */,
 				67BB942F1ADFABCD0050164B /* UIImage+JSQMessages.m in Sources */,

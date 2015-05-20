@@ -124,7 +124,7 @@
                                         <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2UG-nj-hcg" customClass="FUIButton">
-                                        <rect key="frame" x="370" y="363" width="92" height="30"/>
+                                        <rect key="frame" x="370" y="364" width="92" height="30"/>
                                         <state key="normal" title="REGISTER">
                                             <color key="titleColor" red="1" green="0.11370802878725628" blue="0.072334916332364663" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1003,12 +1003,12 @@
                                 <rect key="frame" x="0.0" y="44" width="600" height="556"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Group Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="67B-9B-aUp" customClass="FUITextField">
-                                        <rect key="frame" x="63" y="127" width="183" height="51"/>
+                                        <rect key="frame" x="63" y="128" width="183" height="51"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1zm-5t-Eu4" customClass="FUIButton">
-                                        <rect key="frame" x="63" y="216" width="183" height="38"/>
+                                        <rect key="frame" x="63" y="218" width="183" height="38"/>
                                         <state key="normal" title="Done">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
