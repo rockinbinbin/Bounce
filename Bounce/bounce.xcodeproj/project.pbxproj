@@ -121,8 +121,6 @@
 		67BB92FD1ADFA8D10050164B /* SignupScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92361ADFA8D10050164B /* SignupScreenViewController.xib */; };
 		67BB93011ADFA8D10050164B /* hobble_1_1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 67BB923E1ADFA8D10050164B /* hobble_1_1.xcdatamodeld */; };
 		67BB93021ADFA8D10050164B /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92401ADFA8D10050164B /* MainStoryboard.storyboard */; };
-		67BB93031ADFA8D10050164B /* MessagesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92411ADFA8D10050164B /* MessagesCell.xib */; };
-		67BB93041ADFA8D10050164B /* MessagesTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92431ADFA8D10050164B /* MessagesTableCell.m */; };
 		67BB93061ADFA8D10050164B /* UIViewController+infopagestempfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92481ADFA8D10050164B /* UIViewController+infopagestempfile.m */; };
 		67BB93071ADFA8D10050164B /* FriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB924B1ADFA8D10050164B /* FriendsTableViewController.m */; };
 		67BB93081ADFA8D10050164B /* SearchFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB924D1ADFA8D10050164B /* SearchFriendsViewController.m */; };
@@ -530,9 +528,6 @@
 		67BB92361ADFA8D10050164B /* SignupScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignupScreenViewController.xib; sourceTree = "<group>"; };
 		67BB923F1ADFA8D10050164B /* hobble_1_1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hobble_1_1.xcdatamodel; sourceTree = "<group>"; };
 		67BB92401ADFA8D10050164B /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
-		67BB92411ADFA8D10050164B /* MessagesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessagesCell.xib; sourceTree = "<group>"; };
-		67BB92421ADFA8D10050164B /* MessagesTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesTableCell.h; sourceTree = "<group>"; };
-		67BB92431ADFA8D10050164B /* MessagesTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesTableCell.m; sourceTree = "<group>"; };
 		67BB92471ADFA8D10050164B /* UIViewController+infopagestempfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+infopagestempfile.h"; sourceTree = "<group>"; };
 		67BB92481ADFA8D10050164B /* UIViewController+infopagestempfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+infopagestempfile.m"; sourceTree = "<group>"; };
 		67BB924A1ADFA8D10050164B /* FriendsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsTableViewController.h; sourceTree = "<group>"; };
@@ -1378,9 +1373,6 @@
 			children = (
 				67BB923E1ADFA8D10050164B /* hobble_1_1.xcdatamodeld */,
 				67BB92401ADFA8D10050164B /* MainStoryboard.storyboard */,
-				67BB92411ADFA8D10050164B /* MessagesCell.xib */,
-				67BB92421ADFA8D10050164B /* MessagesTableCell.h */,
-				67BB92431ADFA8D10050164B /* MessagesTableCell.m */,
 				67BB92461ADFA8D10050164B /* onboarding */,
 				67BB92491ADFA8D10050164B /* Unused */,
 			);
@@ -1939,7 +1931,6 @@
 				67BB92F71ADFA8D10050164B /* Intro3IDViewController.xib in Resources */,
 				67BB94291ADFABCD0050164B /* JSQMessagesAssets.bundle in Resources */,
 				67BB925C1ADFA8D10050164B /* Tutorial-2.png in Resources */,
-				67BB93031ADFA8D10050164B /* MessagesCell.xib in Resources */,
 				67BB92541ADFA8D10050164B /* LandingView_iPhone6.png in Resources */,
 				67BB92FA1ADFA8D10050164B /* LoginScreenViewController.xib in Resources */,
 				67BB945E1ADFABCD0050164B /* ProgressHUD.bundle in Resources */,
@@ -2008,7 +1999,6 @@
 				67BB942E1ADFABCD0050164B /* UIDevice+JSQMessages.m in Sources */,
 				67BB943F1ADFABCD0050164B /* JSQMessagesAvatarImage.m in Sources */,
 				67BB94361ADFABCD0050164B /* JSQMessagesMediaViewBubbleImageMasker.m in Sources */,
-				67BB93041ADFA8D10050164B /* MessagesTableCell.m in Sources */,
 				67BB92E11ADFA8D10050164B /* Intro3IDViewController.m in Sources */,
 				67BB943C1ADFABCD0050164B /* JSQLocationMediaItem.m in Sources */,
 				67BB94141ADFABCD0050164B /* UIViewController+AMSlideMenu.m in Sources */,
