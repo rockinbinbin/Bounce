@@ -58,12 +58,13 @@
     // find all friends
     PFQuery *querytwo = [self.friendsRelation query];
     [querytwo orderByAscending:ParseUsername];
+    MAKE_A_WEAKSELF;
     [querytwo findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
             NSLog(@"Error %@ %@", error, [error userInfo]);
         }
         else {
-            self.friendUsers =(NSMutableArray *)objects; // warning OK
+            weakSelf.friendUsers =(NSMutableArray *)objects; // warning OK
         }
     }];
     

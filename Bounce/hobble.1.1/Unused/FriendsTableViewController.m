@@ -66,13 +66,15 @@
     
     PFQuery *query = [self.friendsRelation query];
     [query orderByAscending:ParseUsername];
+    
+    MAKE_A_WEAKSELF;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
             NSLog(@"Error %@ %@", error, [error userInfo]);
         }
         else {
-            self.friends = (NSMutableArray *)objects; // warning OK
-            [self.tableView reloadData];
+            weakSelf.friends = (NSMutableArray *)objects; // warning OK
+            [weakSelf.tableView reloadData];
         }
     }];
 }

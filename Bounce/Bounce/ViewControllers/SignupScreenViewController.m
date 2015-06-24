@@ -79,6 +79,7 @@
             [[Utility getInstance] showProgressHudWithMessage:@"Check name availability..."];
             PFQuery *query = [PFUser query];
             [query whereKey:@"username" equalTo:username];
+            MAKE_A_WEAKSELF;
             [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                 [[Utility getInstance] hideProgressHud];
                 if (objects.count) {
@@ -94,7 +95,7 @@
                     
                     GenderScreenViewController* genderScreenViewController = [[GenderScreenViewController alloc] initWithNibName:@"GenderScreenViewController" bundle:nil];
                     genderScreenViewController.currentUser = signUpUser;
-                    [self.navigationController pushViewController:genderScreenViewController animated:YES];
+                    [weakSelf.navigationController pushViewController:genderScreenViewController animated:YES];
                 }
             }];
             
@@ -106,16 +107,17 @@
     [ProgressHUD show:@"Signing in..." Interaction:NO];
     
     [PFUser logOut];
+    MAKE_A_WEAKSELF;
     [PFFacebookUtils logInWithPermissions:@[@"public_profile", @"email", @"user_friends"] block:^(PFUser *user, NSError *error)
      {
          if (user != nil)
          {
              if (user[PF_USER_FACEBOOKID] == nil) // Not signed in facebook
              {
-                 [self requestFacebook:user];
+                 [weakSelf requestFacebook:user];
              }
              else {
-                 [self userLoggedIn:user isUserNew:NO]; // Signed in facebook
+                 [weakSelf userLoggedIn:user isUserNew:NO]; // Signed in facebook
              }
          }
          else {
@@ -153,16 +155,20 @@
          UIImage *image = (UIImage *)responseObject;
          if (image.size.width > 140) image = ResizeImage(image, 140, 140);
          PFFile *filePicture = [PFFile fileWithName:@"picture.jpg" data:UIImageJPEGRepresentation(image, 0.6)];
+         
          [filePicture saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
           {
               if (error != nil) [ProgressHUD showError:error.userInfo[@"error"]];
           }];
+         
          if (image.size.width > 30) image = ResizeImage(image, 30, 30);
          PFFile *fileThumbnail = [PFFile fileWithName:@"thumbnail.jpg" data:UIImageJPEGRepresentation(image, 0.6)];
+         
          [fileThumbnail saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
           {
               if (error != nil) [ProgressHUD showError:error.userInfo[@"error"]];
           }];
+         
          user[PF_USER_EMAILCOPY] = userData[@"email"];
          user[PF_USER_FULLNAME] = userData[@"name"];
          user[PF_USER_FULLNAME_KEY] = userData[@"name"];
@@ -171,11 +177,13 @@
          user[PF_USER_PICTURE] = filePicture;
          user[PF_USER_THUMBNAIL] = fileThumbnail;
          user[PF_GENDER] = userData[@"gender"];
+         
+         MAKE_A_WEAKSELF;
          [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
           {
               if (error == nil)
               {
-                  [self userLoggedIn:user isUserNew:YES];
+                  [weakSelf userLoggedIn:user isUserNew:YES];
               }
               else
               {

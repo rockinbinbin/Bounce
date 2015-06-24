@@ -306,10 +306,12 @@
 {
 //    PFFile *imageFile = [[PFUser currentUser] objectForKey:PF_USER_THUMBNAIL];
     PFFile *imageFile = [[PFUser currentUser] objectForKey:PF_USER_PICTURE];
+    
+    MAKE_A_WEAKSELF;
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!error) {
             profileImage = [UIImage imageWithData:data];
-            self.userProfileImageView.image = profileImage;
+            weakSelf.userProfileImageView.image = profileImage;
         }
     }];
 
@@ -500,16 +502,20 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
 //        if (profileImage.size.width > 100) profileImage = SquareImage(profileImage, 100);
         data = UIImageJPEGRepresentation(profileImage, 1.0);
         imageFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@%@", [[PFUser currentUser] username], @".jpg"] data:data];
+        
+        MAKE_A_WEAKSELF;
         [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (!error) {
                 if (succeeded) {
                     currentUser[PF_USER_THUMBNAIL] = imageFile;
                     // update the profile image view
-                    self.userProfileImageView.image = profileImage;
+                    weakSelf.userProfileImageView.image = profileImage;
                     [currentUser saveInBackground];
                 }
             } else {
                 // Handle error
+                
+                NSLog(@"FIX DIS BLOCK ERROR");
             }
         } progressBlock:^(int percentDone) {
             if (percentDone >= 100) {

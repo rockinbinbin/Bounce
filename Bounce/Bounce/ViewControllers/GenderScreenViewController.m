@@ -106,6 +106,8 @@
     if (!(self.gender == nil || self.gender.length == 0)) {
         signUpUser[@"Gender"] = self.gender;
         [[Utility getInstance] showProgressHudWithMessage:@"Register..."];
+        
+        MAKE_A_WEAKSELF;
         [signUpUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             [[Utility getInstance] hideProgressHud];
             if (!error) {
@@ -115,10 +117,10 @@
                 [[PFInstallation currentInstallation] saveEventually];
                 //                        [self.navigationController popToRootViewControllerAnimated:YES];
                 [ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome %@!", signUpUser[PF_USER_FULLNAME]]];
-                [self dismissViewControllerAnimated:YES completion:nil];
+                [weakSelf dismissViewControllerAnimated:YES completion:nil];
                 
                 HomeScreenViewController* homeScreenViewController = [[HomeScreenViewController alloc] initWithNibName:@"HomeScreenViewController" bundle:nil];
-                [self.navigationController pushViewController:homeScreenViewController animated:YES];
+                [weakSelf.navigationController pushViewController:homeScreenViewController animated:YES];
                 
             } else {
                 [[Utility getInstance] showAlertWithMessage:[error.userInfo objectForKey:@"error"] andTitle:@"Sorry!"];

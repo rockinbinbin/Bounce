@@ -83,13 +83,14 @@
     }
     else {
         [[Utility getInstance] showProgressHudWithMessage:@"Login ..."];
+        MAKE_A_WEAKSELF;
         [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser *user, NSError *error) {
             [[Utility getInstance] hideProgressHud];
             if (error) {
                 [[Utility getInstance] showAlertWithMessage:[error.userInfo objectForKey:@"error"] andTitle:@"Sorry!"];
             }
             else {
-                [self navigateToMainScreen];
+                [weakSelf navigateToMainScreen];
                 ParsePushUserAssign();
                 [ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome back %@!", user[PF_USER_FULLNAME]]];
                 [self dismissViewControllerAnimated:YES completion:nil];
@@ -99,9 +100,12 @@
 }
 
 - (IBAction)facebookLogin:(id)sender {
+    NSLog(@"facebookLogin");
     [ProgressHUD show:@"Logging in..." Interaction:NO];
     
     [PFUser logOut];
+    
+    MAKE_A_WEAKSELF;
     [PFFacebookUtils logInWithPermissions:@[@"public_profile", @"email", @"user_friends"] block:^(PFUser *user, NSError *error)
      {
          if (user != nil)
@@ -109,10 +113,10 @@
              if (user.isNew) // Not signed in facebook
                  //                 if (user[PF_USER_FACEBOOKID] == nil) // Not signed in facebook
              {
-                 [self requestFacebook:user];
+                 [weakSelf requestFacebook:user];
              }
              else {
-                 [self userLoggedIn:user isUserNew:NO]; // Signed in facebook
+                 [weakSelf userLoggedIn:user isUserNew:NO]; // Signed in facebook
              }
          }
          else {
@@ -125,6 +129,7 @@
 
 
 - (void)requestFacebook:(PFUser *)user{
+    NSLog(@"requestFacebook");
     FBRequest *request = [FBRequest requestForMe];
     [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error)
      {
@@ -143,6 +148,7 @@
 }
 
 - (void)processFacebook:(PFUser *)user UserData:(NSDictionary *)userData{
+    NSLog(@"processFacebook");
     NSString *link = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=large", userData[@"id"]];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:link]];
     
@@ -180,11 +186,13 @@
         user[PF_USER_PICTURE] = filePicture;
         user[PF_USER_THUMBNAIL] = fileThumbnail;
         user[PF_GENDER] = userData[@"gender"];
+        
+        MAKE_A_WEAKSELF;
         [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
          {
              if (error == nil)
              {
-                 [self userLoggedIn:user isUserNew:YES];
+                 [weakSelf userLoggedIn:user isUserNew:YES];
              }
              else
              {
@@ -203,6 +211,8 @@
 }
 
 - (void)userLoggedIn:(PFUser *)user isUserNew:(BOOL) isNew{
+    
+    NSLog(@"userLoggedIn");
     ParsePushUserAssign();
     if (isNew) {
         [ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome %@!", user[PF_USER_FULLNAME]]];

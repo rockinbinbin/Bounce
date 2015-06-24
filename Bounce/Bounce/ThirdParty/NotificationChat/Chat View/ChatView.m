@@ -114,21 +114,23 @@
 		[query includeKey:PF_CHAT_USER];
 		[query orderByDescending:PF_CHAT_CREATEDAT];
 		[query setLimit:50];
+        
+        MAKE_A_WEAKSELF;
 		[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
 		{
 			if (error == nil)
 			{
-				self.automaticallyScrollsToMostRecentMessage = NO;
+				weakSelf.automaticallyScrollsToMostRecentMessage = NO;
 				for (PFObject *object in [objects reverseObjectEnumerator])
 				{
-					[self addMessage:object];
+					[weakSelf addMessage:object];
 				}
 				if ([objects count] != 0)
 				{
-					[self finishReceivingMessage];
-					[self scrollToBottomAnimated:NO];
+					[weakSelf finishReceivingMessage];
+					[weakSelf scrollToBottomAnimated:NO];
 				}
-				self.automaticallyScrollsToMostRecentMessage = YES;
+				weakSelf.automaticallyScrollsToMostRecentMessage = YES;
 			}
 			else [ProgressHUD showError:@"Network error."];
 			isLoading = NO;
@@ -166,37 +168,34 @@
 		mediaItem.appliesMediaViewMaskAsOutgoing = [user.objectId isEqualToString:self.senderId];
 		message = [[JSQMessage alloc] initWithSenderId:user.objectId senderDisplayName:name date:object.createdAt media:mediaItem];
 
+        MAKE_A_WEAKSELF;
 		[filePicture getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error)
 		{
 			if (error == nil)
 			{
 				mediaItem.image = [UIImage imageWithData:imageData];
-				[self.collectionView reloadData];
+				[weakSelf.collectionView reloadData];
 			}
 		}];
 	}
-	//---------------------------------------------------------------------------------------------------------------------------------------------
 	[users addObject:user];
 	[messages addObject:message];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)sendMessage:(NSString *)text Video:(NSURL *)video Picture:(UIImage *)picture
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	PFFile *fileVideo = nil;
 	PFFile *filePicture = nil;
-	//---------------------------------------------------------------------------------------------------------------------------------------------
 	if (video != nil)
 	{
 		text = @"[Video message]";
 		fileVideo = [PFFile fileWithName:@"video.mp4" data:[[NSFileManager defaultManager] contentsAtPath:video.path]];
+        
 		[fileVideo saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
 		{
 			if (error != nil) [ProgressHUD showError:@"Network error."];
 		}];
 	}
-	//---------------------------------------------------------------------------------------------------------------------------------------------
 	if (picture != nil)
 	{
 		text = @"[Picture message]";
@@ -206,26 +205,25 @@
 			if (error != nil) [ProgressHUD showError:@"Picture save error."];
 		}];
 	}
-	//---------------------------------------------------------------------------------------------------------------------------------------------
 	PFObject *object = [PFObject objectWithClassName:PF_CHAT_CLASS_NAME];
 	object[PF_CHAT_USER] = [PFUser currentUser];
 	object[PF_CHAT_GROUPID] = groupId;
 	object[PF_CHAT_TEXT] = text;
 	if (fileVideo != nil) object[PF_CHAT_VIDEO] = fileVideo;
 	if (filePicture != nil) object[PF_CHAT_PICTURE] = filePicture;
+    
+    MAKE_A_WEAKSELF;
 	[object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
 	{
 		if (error == nil)
 		{
 			[JSQSystemSoundPlayer jsq_playMessageSentSound];
-			[self loadMessages];
+			[weakSelf loadMessages];
 		}
 		else [ProgressHUD showError:@"Network error."];;
 	}];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
 	SendPushNotification(groupId, text);
 	UpdateMessageCounter(groupId, text);
-	//---------------------------------------------------------------------------------------------------------------------------------------------
 	[self finishSendingMessage];
 }
 
@@ -277,12 +275,14 @@
 	if (avatars[user.objectId] == nil)
 	{
 		PFFile *fileThumbnail = user[PF_USER_THUMBNAIL];
+        
+        MAKE_A_WEAKSELF;
 		[fileThumbnail getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error)
 		{
 			if (error == nil)
 			{
 				avatars[user.objectId] = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageWithData:imageData] diameter:30.0];
-				[self.collectionView reloadData];
+				[weakSelf.collectionView reloadData];
 			}
 		}];
 		return avatarImageBlank;
