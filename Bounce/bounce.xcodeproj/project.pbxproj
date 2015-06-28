@@ -114,7 +114,6 @@
 		67BB92FC1ADFA8D10050164B /* RequestsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92351ADFA8D10050164B /* RequestsViewController.xib */; };
 		67BB92FD1ADFA8D10050164B /* SignupScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92361ADFA8D10050164B /* SignupScreenViewController.xib */; };
 		67BB93011ADFA8D10050164B /* hobble_1_1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 67BB923E1ADFA8D10050164B /* hobble_1_1.xcdatamodeld */; };
-		67BB93021ADFA8D10050164B /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92401ADFA8D10050164B /* MainStoryboard.storyboard */; };
 		67BB93061ADFA8D10050164B /* UIViewController+infopagestempfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92481ADFA8D10050164B /* UIViewController+infopagestempfile.m */; };
 		67BB93FD1ADFABCD0050164B /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB930D1ADFABCD0050164B /* AFHTTPRequestOperation.m */; };
 		67BB93FE1ADFABCD0050164B /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB930F1ADFABCD0050164B /* AFHTTPRequestOperationManager.m */; };
@@ -507,7 +506,6 @@
 		67BB92351ADFA8D10050164B /* RequestsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RequestsViewController.xib; sourceTree = "<group>"; };
 		67BB92361ADFA8D10050164B /* SignupScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignupScreenViewController.xib; sourceTree = "<group>"; };
 		67BB923F1ADFA8D10050164B /* hobble_1_1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hobble_1_1.xcdatamodel; sourceTree = "<group>"; };
-		67BB92401ADFA8D10050164B /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		67BB92471ADFA8D10050164B /* UIViewController+infopagestempfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+infopagestempfile.h"; sourceTree = "<group>"; };
 		67BB92481ADFA8D10050164B /* UIViewController+infopagestempfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+infopagestempfile.m"; sourceTree = "<group>"; };
 		67BB930C1ADFABCD0050164B /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -1336,7 +1334,6 @@
 			isa = PBXGroup;
 			children = (
 				67BB923E1ADFA8D10050164B /* hobble_1_1.xcdatamodeld */,
-				67BB92401ADFA8D10050164B /* MainStoryboard.storyboard */,
 				67BB92461ADFA8D10050164B /* onboarding */,
 			);
 			path = hobble.1.1;
@@ -1874,7 +1871,6 @@
 				67BB92F21ADFA8D10050164B /* GroupsListViewController.xib in Resources */,
 				67BB92EF1ADFA8D10050164B /* AddLocationScreenViewController.xib in Resources */,
 				67BB92EA1ADFA8D10050164B /* SlideMenuLeftTableViewController.xib in Resources */,
-				67BB93021ADFA8D10050164B /* MainStoryboard.storyboard in Resources */,
 				67BB92701ADFA8D10050164B /* Images.xcassets in Resources */,
 				67BB94471ADFABCD0050164B /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
 				67BB92611ADFA8D10050164B /* Contents.json in Resources */,
