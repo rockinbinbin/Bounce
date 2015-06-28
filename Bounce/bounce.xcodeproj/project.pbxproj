@@ -11,15 +11,9 @@
 		001C737C1B0B0E3C008D7058 /* Terms_of_Use_ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 001C737A1B0B0E3C008D7058 /* Terms_of_Use_ViewController.xib */; };
 		001C73801B0B0E4D008D7058 /* Privacy_Policy_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001C737E1B0B0E4D008D7058 /* Privacy_Policy_ViewController.m */; };
 		001C73811B0B0E4D008D7058 /* Privacy_Policy_ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 001C737F1B0B0E4D008D7058 /* Privacy_Policy_ViewController.xib */; };
-		00296BD619EFA5BF003ADA30 /* APAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 00296BCA19EFA5BF003ADA30 /* APAddress.m */; };
-		00296BD719EFA5BF003ADA30 /* APAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 00296BCC19EFA5BF003ADA30 /* APAddressBook.m */; };
-		00296BD819EFA5BF003ADA30 /* APContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 00296BCE19EFA5BF003ADA30 /* APContact.m */; };
-		00296BD919EFA5BF003ADA30 /* APPhoneWithLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 00296BD019EFA5BF003ADA30 /* APPhoneWithLabel.m */; };
-		00296BDA19EFA5BF003ADA30 /* APSocialProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 00296BD219EFA5BF003ADA30 /* APSocialProfile.m */; };
 		003F19451B0B09DC0024EE9A /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 003F19431B0B09DC0024EE9A /* SettingsViewController.m */; };
 		003F19461B0B09DC0024EE9A /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 003F19441B0B09DC0024EE9A /* SettingsViewController.xib */; };
 		00414F691AAE2B3200B25CEE /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 00414F681AAE2B3200B25CEE /* libicucore.dylib */; };
-		007BA3C21A6C9BE400BF08DE /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 007BA3C11A6C9BE400BF08DE /* Podfile */; };
 		007BA4091A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 007BA4061A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.m */; };
 		007BA40A1A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 007BA4081A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
 		007CF29A1AA3E516007D7C33 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF2991AA3E516007D7C33 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -122,8 +116,6 @@
 		67BB93011ADFA8D10050164B /* hobble_1_1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 67BB923E1ADFA8D10050164B /* hobble_1_1.xcdatamodeld */; };
 		67BB93021ADFA8D10050164B /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92401ADFA8D10050164B /* MainStoryboard.storyboard */; };
 		67BB93061ADFA8D10050164B /* UIViewController+infopagestempfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92481ADFA8D10050164B /* UIViewController+infopagestempfile.m */; };
-		67BB93071ADFA8D10050164B /* FriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB924B1ADFA8D10050164B /* FriendsTableViewController.m */; };
-		67BB93081ADFA8D10050164B /* SearchFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB924D1ADFA8D10050164B /* SearchFriendsViewController.m */; };
 		67BB93FD1ADFABCD0050164B /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB930D1ADFABCD0050164B /* AFHTTPRequestOperation.m */; };
 		67BB93FE1ADFABCD0050164B /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB930F1ADFABCD0050164B /* AFHTTPRequestOperationManager.m */; };
 		67BB93FF1ADFABCD0050164B /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB93111ADFABCD0050164B /* AFHTTPSessionManager.m */; };
@@ -234,17 +226,6 @@
 		001C737E1B0B0E4D008D7058 /* Privacy_Policy_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Privacy_Policy_ViewController.m; path = "SlideMenu /Privacy_Policy_ViewController.m"; sourceTree = "<group>"; };
 		001C737F1B0B0E4D008D7058 /* Privacy_Policy_ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Privacy_Policy_ViewController.xib; path = "../ViewControllers/SlideMenu /Privacy_Policy_ViewController.xib"; sourceTree = "<group>"; };
 		001DFA0B1ABF4175008C9D1F /* PF_EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PF_EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
-		00296BC919EFA5BF003ADA30 /* APAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APAddress.h; sourceTree = "<group>"; };
-		00296BCA19EFA5BF003ADA30 /* APAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APAddress.m; sourceTree = "<group>"; };
-		00296BCB19EFA5BF003ADA30 /* APAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APAddressBook.h; sourceTree = "<group>"; };
-		00296BCC19EFA5BF003ADA30 /* APAddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APAddressBook.m; sourceTree = "<group>"; };
-		00296BCD19EFA5BF003ADA30 /* APContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APContact.h; sourceTree = "<group>"; };
-		00296BCE19EFA5BF003ADA30 /* APContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APContact.m; sourceTree = "<group>"; };
-		00296BCF19EFA5BF003ADA30 /* APPhoneWithLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPhoneWithLabel.h; sourceTree = "<group>"; };
-		00296BD019EFA5BF003ADA30 /* APPhoneWithLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APPhoneWithLabel.m; sourceTree = "<group>"; };
-		00296BD119EFA5BF003ADA30 /* APSocialProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APSocialProfile.h; sourceTree = "<group>"; };
-		00296BD219EFA5BF003ADA30 /* APSocialProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APSocialProfile.m; sourceTree = "<group>"; };
-		00296BD319EFA5BF003ADA30 /* APTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APTypes.h; sourceTree = "<group>"; };
 		00296BD519EFA5BF003ADA30 /* APAddressBook-Bridging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "APAddressBook-Bridging.h"; sourceTree = "<group>"; };
 		003F19421B0B09DC0024EE9A /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = ../../SettingsViewController.h; sourceTree = "<group>"; };
 		003F19431B0B09DC0024EE9A /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = ../../SettingsViewController.m; sourceTree = "<group>"; };
@@ -390,7 +371,6 @@
 		00414EFE1AADEE0600B25CEE /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
 		00414EFF1AADEE0600B25CEE /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
 		00414F681AAE2B3200B25CEE /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
-		007BA3C11A6C9BE400BF08DE /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Podfile; path = "Objective-C/Podfile"; sourceTree = "<group>"; };
 		007BA4051A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
 		007BA4061A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
 		007BA4071A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
@@ -530,10 +510,6 @@
 		67BB92401ADFA8D10050164B /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		67BB92471ADFA8D10050164B /* UIViewController+infopagestempfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+infopagestempfile.h"; sourceTree = "<group>"; };
 		67BB92481ADFA8D10050164B /* UIViewController+infopagestempfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+infopagestempfile.m"; sourceTree = "<group>"; };
-		67BB924A1ADFA8D10050164B /* FriendsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsTableViewController.h; sourceTree = "<group>"; };
-		67BB924B1ADFA8D10050164B /* FriendsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsTableViewController.m; sourceTree = "<group>"; };
-		67BB924C1ADFA8D10050164B /* SearchFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFriendsViewController.h; sourceTree = "<group>"; };
-		67BB924D1ADFA8D10050164B /* SearchFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFriendsViewController.m; sourceTree = "<group>"; };
 		67BB930C1ADFABCD0050164B /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		67BB930D1ADFABCD0050164B /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		67BB930E1ADFABCD0050164B /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -799,18 +775,6 @@
 		00296BC819EFA5BF003ADA30 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				00296BC919EFA5BF003ADA30 /* APAddress.h */,
-				00296BCA19EFA5BF003ADA30 /* APAddress.m */,
-				00296BCB19EFA5BF003ADA30 /* APAddressBook.h */,
-				00296BCC19EFA5BF003ADA30 /* APAddressBook.m */,
-				00296BCD19EFA5BF003ADA30 /* APContact.h */,
-				00296BCE19EFA5BF003ADA30 /* APContact.m */,
-				00296BCF19EFA5BF003ADA30 /* APPhoneWithLabel.h */,
-				00296BD019EFA5BF003ADA30 /* APPhoneWithLabel.m */,
-				00296BD119EFA5BF003ADA30 /* APSocialProfile.h */,
-				00296BD219EFA5BF003ADA30 /* APSocialProfile.m */,
-				00296BD319EFA5BF003ADA30 /* APTypes.h */,
-				007BA3C11A6C9BE400BF08DE /* Podfile */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -1374,7 +1338,6 @@
 				67BB923E1ADFA8D10050164B /* hobble_1_1.xcdatamodeld */,
 				67BB92401ADFA8D10050164B /* MainStoryboard.storyboard */,
 				67BB92461ADFA8D10050164B /* onboarding */,
-				67BB92491ADFA8D10050164B /* Unused */,
 			);
 			path = hobble.1.1;
 			sourceTree = "<group>";
@@ -1386,17 +1349,6 @@
 				67BB92481ADFA8D10050164B /* UIViewController+infopagestempfile.m */,
 			);
 			path = onboarding;
-			sourceTree = "<group>";
-		};
-		67BB92491ADFA8D10050164B /* Unused */ = {
-			isa = PBXGroup;
-			children = (
-				67BB924A1ADFA8D10050164B /* FriendsTableViewController.h */,
-				67BB924B1ADFA8D10050164B /* FriendsTableViewController.m */,
-				67BB924C1ADFA8D10050164B /* SearchFriendsViewController.h */,
-				67BB924D1ADFA8D10050164B /* SearchFriendsViewController.m */,
-			);
-			path = Unused;
 			sourceTree = "<group>";
 		};
 		67BB93091ADFABCD0050164B /* ThirdParty */ = {
@@ -1927,7 +1879,6 @@
 				67BB94471ADFABCD0050164B /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
 				67BB92611ADFA8D10050164B /* Contents.json in Resources */,
 				67BB94511ADFABCD0050164B /* JSQMessagesToolbarContentView.xib in Resources */,
-				007BA3C21A6C9BE400BF08DE /* Podfile in Resources */,
 				67BB92F71ADFA8D10050164B /* Intro3IDViewController.xib in Resources */,
 				67BB94291ADFABCD0050164B /* JSQMessagesAssets.bundle in Resources */,
 				67BB925C1ADFA8D10050164B /* Tutorial-2.png in Resources */,
@@ -1981,7 +1932,6 @@
 				67BB92E21ADFA8D10050164B /* IntroLoginScreenViewController.m in Sources */,
 				67BB941A1ADFABCD0050164B /* FUISegmentedControl.m in Sources */,
 				67BB94031ADFABCD0050164B /* AFURLRequestSerialization.m in Sources */,
-				00296BD819EFA5BF003ADA30 /* APContact.m in Sources */,
 				67BB94131ADFABCD0050164B /* AMSlideMenuRightTableViewController.m in Sources */,
 				67BB94401ADFABCD0050164B /* JSQMessagesBubbleImage.m in Sources */,
 				67BB92711ADFA8D10050164B /* main.m in Sources */,
@@ -1991,9 +1941,7 @@
 				007BA4091A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.m in Sources */,
 				67BB941C1ADFABCD0050164B /* FUITextField.m in Sources */,
 				67BB94421ADFABCD0050164B /* JSQVideoMediaItem.m in Sources */,
-				67BB93081ADFA8D10050164B /* SearchFriendsViewController.m in Sources */,
 				67BB94041ADFABCD0050164B /* AFURLResponseSerialization.m in Sources */,
-				00296BD919EFA5BF003ADA30 /* APPhoneWithLabel.m in Sources */,
 				67BB92DA1ADFA8D10050164B /* EditGroupsViewController.m in Sources */,
 				67BB945F1ADFABCD0050164B /* ProgressHUD.m in Sources */,
 				67BB942E1ADFABCD0050164B /* UIDevice+JSQMessages.m in Sources */,
@@ -2005,7 +1953,6 @@
 				67BB942C1ADFABCD0050164B /* NSString+JSQMessages.m in Sources */,
 				67BB94231ADFABCD0050164B /* UIProgressView+FlatUI.m in Sources */,
 				67BB94001ADFABCD0050164B /* AFNetworkReachabilityManager.m in Sources */,
-				00296BDA19EFA5BF003ADA30 /* APSocialProfile.m in Sources */,
 				67BB940B1ADFABCD0050164B /* UIProgressView+AFNetworking.m in Sources */,
 				67BB92E01ADFA8D10050164B /* Intro2IDViewController.m in Sources */,
 				67BB94571ADFABCD0050164B /* NavigationController.m in Sources */,
@@ -2030,7 +1977,6 @@
 				67BB944D1ADFABCD0050164B /* JSQMessagesLoadEarlierHeaderView.m in Sources */,
 				67BB941E1ADFABCD0050164B /* UIColor+FlatUI.m in Sources */,
 				67BB94011ADFABCD0050164B /* AFSecurityPolicy.m in Sources */,
-				00296BD619EFA5BF003ADA30 /* APAddress.m in Sources */,
 				67BB93011ADFA8D10050164B /* hobble_1_1.xcdatamodeld in Sources */,
 				67BB94341ADFABCD0050164B /* JSQMessagesAvatarImageFactory.m in Sources */,
 				67BB94321ADFABCD0050164B /* JSQMessagesViewController.m in Sources */,
@@ -2071,7 +2017,6 @@
 				67BB943E1ADFABCD0050164B /* JSQMessage.m in Sources */,
 				67BB92D91ADFA8D10050164B /* CustomChatViewController.m in Sources */,
 				67BB92E61ADFA8D10050164B /* RequestsViewController.m in Sources */,
-				67BB93071ADFA8D10050164B /* FriendsTableViewController.m in Sources */,
 				67BB93FF1ADFABCD0050164B /* AFHTTPSessionManager.m in Sources */,
 				67BB94271ADFABCD0050164B /* UITableViewCell+FlatUI.m in Sources */,
 				67BB94601ADFABCD0050164B /* Reachability.m in Sources */,
@@ -2094,7 +2039,6 @@
 				67BB924E1ADFA8D10050164B /* AppDelegate.m in Sources */,
 				67BB944A1ADFABCD0050164B /* JSQMessagesComposerTextView.m in Sources */,
 				003F19451B0B09DC0024EE9A /* SettingsViewController.m in Sources */,
-				00296BD719EFA5BF003ADA30 /* APAddressBook.m in Sources */,
 				67BB93061ADFA8D10050164B /* UIViewController+infopagestempfile.m in Sources */,
 				67BB943B1ADFABCD0050164B /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */,
 				67BB94201ADFABCD0050164B /* UIImage+FlatUI.m in Sources */,
