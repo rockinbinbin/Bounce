@@ -32,7 +32,6 @@
     [self disableSlidePanGestureForLeftMenu];
 }
 
-// i want this function to execute each time (to bypass login if already logged in)
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -101,7 +100,7 @@
 
 - (IBAction)facebookLogin:(id)sender {
     NSLog(@"facebookLogin");
-    [ProgressHUD show:@"Logging in..." Interaction:NO];
+    [ProgressHUD show:@"Logging in..." Interaction:NO]; // TODO: replace with a nice loading animation
     
     [PFUser logOut];
     
