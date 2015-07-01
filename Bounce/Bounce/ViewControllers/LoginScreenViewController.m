@@ -24,7 +24,7 @@
     // Do any additional setup after loading the view from its nib.
     self.LoginButton.backgroundColor = LIGHT_BLUE_COLOR;
     self.facebookLogin.backgroundColor = [UIColor colorWithRed:81.0/250.0 green:117.0/250.0 blue:195.0/250.0 alpha:1.0];
-    self.view.backgroundColor = DEFAULT_COLOR;
+    self.view.backgroundColor = BounceRed;
 }
 
 - (void)viewWillAppear:(BOOL)animated{

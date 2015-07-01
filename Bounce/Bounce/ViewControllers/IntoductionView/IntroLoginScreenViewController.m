@@ -24,7 +24,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.view.backgroundColor = DEFAULT_COLOR;
+    self.view.backgroundColor = BounceRed;
     [self customiseButtonShadow:self.loginButton];
     [self customiseButtonShadow:self.registerButton];
     [self.navigationController setNavigationBarHidden:YES animated:animated];

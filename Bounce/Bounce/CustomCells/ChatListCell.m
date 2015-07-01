@@ -32,7 +32,7 @@
         self.circularView.clipsToBounds = YES;
         self.circularView.layer.borderWidth = 3.0f;
         self.circularView.layer.borderColor = [UIColor whiteColor].CGColor;
-        self.circularView.backgroundColor = DEFAULT_COLOR;
+        self.circularView.backgroundColor = BounceRed;
         
         // rounded view on the left
         CGRect userOnlineFrame = CGRectMake(self.circularView.frame.origin.x + 48, self.circularView.frame.origin.y + 8, 20, 20);

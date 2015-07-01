@@ -38,7 +38,7 @@
                                    style:UIBarButtonItemStylePlain
                                    target:self
                                    action:@selector(doneButtonClicked)];
-    doneButton.tintColor = DEFAULT_COLOR;
+    doneButton.tintColor = BounceRed;
     self.navigationItem.rightBarButtonItem = doneButton;
 //    self.tableView.allowsMultipleSelectionDuringEditing = NO;
 }

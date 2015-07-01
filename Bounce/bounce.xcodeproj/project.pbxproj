@@ -34,6 +34,8 @@
 		00CEE4231994492700F40C12 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4221994492700F40C12 /* QuartzCore.framework */; };
 		00CEE4251994493500F40C12 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4241994493500F40C12 /* StoreKit.framework */; };
 		00CEE4271994493A00F40C12 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4261994493A00F40C12 /* CoreLocation.framework */; };
+		00DF1FDD1B439FAE004F056A /* Tutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DF1FDC1B439FAE004F056A /* Tutorial.swift */; };
+		00DF1FDF1B43A1C7004F056A /* InstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DF1FDE1B43A1C7004F056A /* InstructionView.swift */; };
 		28F13A521A6C75A90069EBA4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F13A511A6C75A90069EBA4 /* MapKit.framework */; };
 		67BB90C81ADFA8B20050164B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BB90C41ADFA8B20050164B /* Bolts.framework */; };
 		67BB90C91ADFA8B20050164B /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BB90C51ADFA8B20050164B /* Parse.framework */; };
@@ -395,6 +397,9 @@
 		00CEE4221994492700F40C12 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		00CEE4241994493500F40C12 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		00CEE4261994493A00F40C12 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		00DF1FDC1B439FAE004F056A /* Tutorial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tutorial.swift; sourceTree = "<group>"; };
+		00DF1FDE1B43A1C7004F056A /* InstructionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionView.swift; sourceTree = "<group>"; };
+		00DF1FE01B43A8CF004F056A /* bounce-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "bounce-Bridging-Header.h"; sourceTree = "<group>"; };
 		28F13A511A6C75A90069EBA4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6791817C1AC0057D00D0474C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		67BB90C41ADFA8B20050164B /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = FrameWorks/Bolts.framework; sourceTree = "<group>"; };
@@ -1053,6 +1058,7 @@
 		00CEE3C5199434E700F40C12 = {
 			isa = PBXGroup;
 			children = (
+				00DF1FE01B43A8CF004F056A /* bounce-Bridging-Header.h */,
 				67BB90ED1ADFA8D00050164B /* bounce-Info.plist */,
 				67BB90CD1ADFA8D00050164B /* AppConstant.h */,
 				67BB90CE1ADFA8D00050164B /* AppDelegate.h */,
@@ -1285,6 +1291,8 @@
 				67BB92121ADFA8D10050164B /* IntroLoginScreenViewController.m */,
 				67BB92131ADFA8D10050164B /* IntroPagesViewController.h */,
 				67BB92141ADFA8D10050164B /* IntroPagesViewController.m */,
+				00DF1FDC1B439FAE004F056A /* Tutorial.swift */,
+				00DF1FDE1B43A1C7004F056A /* InstructionView.swift */,
 			);
 			path = IntoductionView;
 			sourceTree = "<group>";
@@ -1980,6 +1988,7 @@
 				67BB94591ADFABCD0050164B /* messages.m in Sources */,
 				67BB94091ADFABCD0050164B /* UIButton+AFNetworking.m in Sources */,
 				67BB943A1ADFABCD0050164B /* JSQMessagesCollectionViewFlowLayoutInvalidationContext.m in Sources */,
+				00DF1FDD1B439FAE004F056A /* Tutorial.swift in Sources */,
 				67BB940D1ADFABCD0050164B /* UIWebView+AFNetworking.m in Sources */,
 				67BB94241ADFABCD0050164B /* UISlider+FlatUI.m in Sources */,
 				67BB93FD1ADFABCD0050164B /* AFHTTPRequestOperation.m in Sources */,
@@ -2010,6 +2019,7 @@
 				67BB94171ADFABCD0050164B /* FUIButton.m in Sources */,
 				67BB92EB1ADFA8D10050164B /* SlideMenuViewController.m in Sources */,
 				67BB92D81ADFA8D10050164B /* AddLocationScreenViewController.m in Sources */,
+				00DF1FDF1B43A1C7004F056A /* InstructionView.swift in Sources */,
 				67BB943E1ADFABCD0050164B /* JSQMessage.m in Sources */,
 				67BB92D91ADFA8D10050164B /* CustomChatViewController.m in Sources */,
 				67BB92E61ADFA8D10050164B /* RequestsViewController.m in Sources */,
@@ -2191,6 +2201,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Robin Mehta (GFEX9Y3G7Y)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robin Mehta (GFEX9Y3G7Y)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2212,6 +2223,7 @@
 				GCC_PREFIX_HEADER = "Bounce/bounce-Prefix.pch";
 				INFOPLIST_FILE = "Bounce/bounce-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKCoreKit/build/FBSDKCoreKit.build/Debug-iphoneos/FBSDKCoreKit.build/Objects-normal/arm64",
@@ -2256,6 +2268,8 @@
 				);
 				PRODUCT_NAME = bounce;
 				PROVISIONING_PROFILE = "615d5999-dc0f-40c3-87f3-311dfab4bc83";
+				SWIFT_OBJC_BRIDGING_HEADER = "bounce-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
 				WRAPPER_EXTENSION = app;
@@ -2267,6 +2281,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Robin Mehta (GFEX9Y3G7Y)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robin Mehta (GFEX9Y3G7Y)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2288,6 +2303,7 @@
 				GCC_PREFIX_HEADER = "Bounce/bounce-Prefix.pch";
 				INFOPLIST_FILE = "Bounce/bounce-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKCoreKit/build/FBSDKCoreKit.build/Debug-iphoneos/FBSDKCoreKit.build/Objects-normal/arm64",
@@ -2332,6 +2348,7 @@
 				);
 				PRODUCT_NAME = bounce;
 				PROVISIONING_PROFILE = "615d5999-dc0f-40c3-87f3-311dfab4bc83";
+				SWIFT_OBJC_BRIDGING_HEADER = "bounce-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
 				WRAPPER_EXTENSION = app;
