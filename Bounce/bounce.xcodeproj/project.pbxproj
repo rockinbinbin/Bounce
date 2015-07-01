@@ -103,7 +103,6 @@
 		67BB92F31ADFA8D10050164B /* HomePointSuccessfulCreationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB922C1ADFA8D10050164B /* HomePointSuccessfulCreationViewController.xib */; };
 		67BB92F41ADFA8D10050164B /* HomeScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB922D1ADFA8D10050164B /* HomeScreenViewController.xib */; };
 		67BB92F81ADFA8D10050164B /* IntroLoginScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92311ADFA8D10050164B /* IntroLoginScreenViewController.xib */; };
-		67BB92F91ADFA8D10050164B /* IntroPagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92321ADFA8D10050164B /* IntroPagesViewController.xib */; };
 		67BB92FA1ADFA8D10050164B /* LoginScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92331ADFA8D10050164B /* LoginScreenViewController.xib */; };
 		67BB92FB1ADFA8D10050164B /* MessageScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92341ADFA8D10050164B /* MessageScreenViewController.xib */; };
 		67BB92FC1ADFA8D10050164B /* RequestsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92351ADFA8D10050164B /* RequestsViewController.xib */; };
@@ -487,7 +486,6 @@
 		67BB922C1ADFA8D10050164B /* HomePointSuccessfulCreationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomePointSuccessfulCreationViewController.xib; sourceTree = "<group>"; };
 		67BB922D1ADFA8D10050164B /* HomeScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeScreenViewController.xib; sourceTree = "<group>"; };
 		67BB92311ADFA8D10050164B /* IntroLoginScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroLoginScreenViewController.xib; sourceTree = "<group>"; };
-		67BB92321ADFA8D10050164B /* IntroPagesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroPagesViewController.xib; sourceTree = "<group>"; };
 		67BB92331ADFA8D10050164B /* LoginScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginScreenViewController.xib; sourceTree = "<group>"; };
 		67BB92341ADFA8D10050164B /* MessageScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageScreenViewController.xib; sourceTree = "<group>"; };
 		67BB92351ADFA8D10050164B /* RequestsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RequestsViewController.xib; sourceTree = "<group>"; };
@@ -1297,7 +1295,6 @@
 				67BB922C1ADFA8D10050164B /* HomePointSuccessfulCreationViewController.xib */,
 				67BB922D1ADFA8D10050164B /* HomeScreenViewController.xib */,
 				67BB92311ADFA8D10050164B /* IntroLoginScreenViewController.xib */,
-				67BB92321ADFA8D10050164B /* IntroPagesViewController.xib */,
 				67BB92331ADFA8D10050164B /* LoginScreenViewController.xib */,
 				67BB92341ADFA8D10050164B /* MessageScreenViewController.xib */,
 				67BB92351ADFA8D10050164B /* RequestsViewController.xib */,
@@ -1859,7 +1856,6 @@
 				67BB945E1ADFABCD0050164B /* ProgressHUD.bundle in Resources */,
 				67BB92601ADFA8D10050164B /* Tutorial-2_iPhone6plus.png in Resources */,
 				67BB924F1ADFA8D10050164B /* chat_blank@2x.png in Resources */,
-				67BB92F91ADFA8D10050164B /* IntroPagesViewController.xib in Resources */,
 				67BB92F81ADFA8D10050164B /* IntroLoginScreenViewController.xib in Resources */,
 				67BB92FB1ADFA8D10050164B /* MessageScreenViewController.xib in Resources */,
 				67BB92641ADFA8D10050164B /* Tutorial-3_iPhone5.png in Resources */,
