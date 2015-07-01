@@ -84,11 +84,7 @@
 		67BB92DC1ADFA8D10050164B /* GroupsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92051ADFA8D10050164B /* GroupsListViewController.m */; };
 		67BB92DD1ADFA8D10050164B /* HomePointSuccessfulCreationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92071ADFA8D10050164B /* HomePointSuccessfulCreationViewController.m */; };
 		67BB92DE1ADFA8D10050164B /* HomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92091ADFA8D10050164B /* HomeScreenViewController.m */; };
-		67BB92DF1ADFA8D10050164B /* Intro1IDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB920C1ADFA8D10050164B /* Intro1IDViewController.m */; };
-		67BB92E01ADFA8D10050164B /* Intro2IDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB920E1ADFA8D10050164B /* Intro2IDViewController.m */; };
-		67BB92E11ADFA8D10050164B /* Intro3IDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92101ADFA8D10050164B /* Intro3IDViewController.m */; };
 		67BB92E21ADFA8D10050164B /* IntroLoginScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92121ADFA8D10050164B /* IntroLoginScreenViewController.m */; };
-		67BB92E31ADFA8D10050164B /* IntroPagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92141ADFA8D10050164B /* IntroPagesViewController.m */; };
 		67BB92E41ADFA8D10050164B /* LoginScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92161ADFA8D10050164B /* LoginScreenViewController.m */; };
 		67BB92E51ADFA8D10050164B /* MessageScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92181ADFA8D10050164B /* MessageScreenViewController.m */; };
 		67BB92E61ADFA8D10050164B /* RequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB921A1ADFA8D10050164B /* RequestsViewController.m */; };
@@ -106,9 +102,6 @@
 		67BB92F21ADFA8D10050164B /* GroupsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB922B1ADFA8D10050164B /* GroupsListViewController.xib */; };
 		67BB92F31ADFA8D10050164B /* HomePointSuccessfulCreationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB922C1ADFA8D10050164B /* HomePointSuccessfulCreationViewController.xib */; };
 		67BB92F41ADFA8D10050164B /* HomeScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB922D1ADFA8D10050164B /* HomeScreenViewController.xib */; };
-		67BB92F51ADFA8D10050164B /* Intro1IDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB922E1ADFA8D10050164B /* Intro1IDViewController.xib */; };
-		67BB92F61ADFA8D10050164B /* Intro2IDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB922F1ADFA8D10050164B /* Intro2IDViewController.xib */; };
-		67BB92F71ADFA8D10050164B /* Intro3IDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92301ADFA8D10050164B /* Intro3IDViewController.xib */; };
 		67BB92F81ADFA8D10050164B /* IntroLoginScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92311ADFA8D10050164B /* IntroLoginScreenViewController.xib */; };
 		67BB92F91ADFA8D10050164B /* IntroPagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92321ADFA8D10050164B /* IntroPagesViewController.xib */; };
 		67BB92FA1ADFA8D10050164B /* LoginScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92331ADFA8D10050164B /* LoginScreenViewController.xib */; };
@@ -468,16 +461,8 @@
 		67BB92071ADFA8D10050164B /* HomePointSuccessfulCreationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePointSuccessfulCreationViewController.m; sourceTree = "<group>"; };
 		67BB92081ADFA8D10050164B /* HomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeScreenViewController.h; sourceTree = "<group>"; };
 		67BB92091ADFA8D10050164B /* HomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreenViewController.m; sourceTree = "<group>"; };
-		67BB920B1ADFA8D10050164B /* Intro1IDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Intro1IDViewController.h; sourceTree = "<group>"; };
-		67BB920C1ADFA8D10050164B /* Intro1IDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Intro1IDViewController.m; sourceTree = "<group>"; };
-		67BB920D1ADFA8D10050164B /* Intro2IDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Intro2IDViewController.h; sourceTree = "<group>"; };
-		67BB920E1ADFA8D10050164B /* Intro2IDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Intro2IDViewController.m; sourceTree = "<group>"; };
-		67BB920F1ADFA8D10050164B /* Intro3IDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Intro3IDViewController.h; sourceTree = "<group>"; };
-		67BB92101ADFA8D10050164B /* Intro3IDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Intro3IDViewController.m; sourceTree = "<group>"; };
 		67BB92111ADFA8D10050164B /* IntroLoginScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroLoginScreenViewController.h; sourceTree = "<group>"; };
 		67BB92121ADFA8D10050164B /* IntroLoginScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroLoginScreenViewController.m; sourceTree = "<group>"; };
-		67BB92131ADFA8D10050164B /* IntroPagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroPagesViewController.h; sourceTree = "<group>"; };
-		67BB92141ADFA8D10050164B /* IntroPagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroPagesViewController.m; sourceTree = "<group>"; };
 		67BB92151ADFA8D10050164B /* LoginScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginScreenViewController.h; sourceTree = "<group>"; };
 		67BB92161ADFA8D10050164B /* LoginScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginScreenViewController.m; sourceTree = "<group>"; };
 		67BB92171ADFA8D10050164B /* MessageScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageScreenViewController.h; sourceTree = "<group>"; };
@@ -501,9 +486,6 @@
 		67BB922B1ADFA8D10050164B /* GroupsListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupsListViewController.xib; sourceTree = "<group>"; };
 		67BB922C1ADFA8D10050164B /* HomePointSuccessfulCreationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomePointSuccessfulCreationViewController.xib; sourceTree = "<group>"; };
 		67BB922D1ADFA8D10050164B /* HomeScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeScreenViewController.xib; sourceTree = "<group>"; };
-		67BB922E1ADFA8D10050164B /* Intro1IDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Intro1IDViewController.xib; sourceTree = "<group>"; };
-		67BB922F1ADFA8D10050164B /* Intro2IDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Intro2IDViewController.xib; sourceTree = "<group>"; };
-		67BB92301ADFA8D10050164B /* Intro3IDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Intro3IDViewController.xib; sourceTree = "<group>"; };
 		67BB92311ADFA8D10050164B /* IntroLoginScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroLoginScreenViewController.xib; sourceTree = "<group>"; };
 		67BB92321ADFA8D10050164B /* IntroPagesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroPagesViewController.xib; sourceTree = "<group>"; };
 		67BB92331ADFA8D10050164B /* LoginScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginScreenViewController.xib; sourceTree = "<group>"; };
@@ -1281,16 +1263,8 @@
 		67BB920A1ADFA8D10050164B /* IntoductionView */ = {
 			isa = PBXGroup;
 			children = (
-				67BB920B1ADFA8D10050164B /* Intro1IDViewController.h */,
-				67BB920C1ADFA8D10050164B /* Intro1IDViewController.m */,
-				67BB920D1ADFA8D10050164B /* Intro2IDViewController.h */,
-				67BB920E1ADFA8D10050164B /* Intro2IDViewController.m */,
-				67BB920F1ADFA8D10050164B /* Intro3IDViewController.h */,
-				67BB92101ADFA8D10050164B /* Intro3IDViewController.m */,
 				67BB92111ADFA8D10050164B /* IntroLoginScreenViewController.h */,
 				67BB92121ADFA8D10050164B /* IntroLoginScreenViewController.m */,
-				67BB92131ADFA8D10050164B /* IntroPagesViewController.h */,
-				67BB92141ADFA8D10050164B /* IntroPagesViewController.m */,
 				00DF1FDC1B439FAE004F056A /* Tutorial.swift */,
 				00DF1FDE1B43A1C7004F056A /* InstructionView.swift */,
 			);
@@ -1322,9 +1296,6 @@
 				67BB922B1ADFA8D10050164B /* GroupsListViewController.xib */,
 				67BB922C1ADFA8D10050164B /* HomePointSuccessfulCreationViewController.xib */,
 				67BB922D1ADFA8D10050164B /* HomeScreenViewController.xib */,
-				67BB922E1ADFA8D10050164B /* Intro1IDViewController.xib */,
-				67BB922F1ADFA8D10050164B /* Intro2IDViewController.xib */,
-				67BB92301ADFA8D10050164B /* Intro3IDViewController.xib */,
 				67BB92311ADFA8D10050164B /* IntroLoginScreenViewController.xib */,
 				67BB92321ADFA8D10050164B /* IntroPagesViewController.xib */,
 				67BB92331ADFA8D10050164B /* LoginScreenViewController.xib */,
@@ -1864,13 +1835,11 @@
 				67BB92511ADFA8D10050164B /* LandingView.png in Resources */,
 				67BB92631ADFA8D10050164B /* Tutorial-3@2x.png in Resources */,
 				67BB925E1ADFA8D10050164B /* Tutorial-2_iPhone5.png in Resources */,
-				67BB92F51ADFA8D10050164B /* Intro1IDViewController.xib in Resources */,
 				67BB92ED1ADFA8D10050164B /* AddGroupUsersViewController.xib in Resources */,
 				67BB92FC1ADFA8D10050164B /* RequestsViewController.xib in Resources */,
 				67BB92EE1ADFA8D10050164B /* AddHomePointViewController.xib in Resources */,
 				67BB94531ADFABCD0050164B /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
 				67BB925D1ADFA8D10050164B /* Tutorial-2@2x.png in Resources */,
-				67BB92F61ADFA8D10050164B /* Intro2IDViewController.xib in Resources */,
 				67BB92531ADFA8D10050164B /* LandingView_iPhone5.png in Resources */,
 				001C73811B0B0E4D008D7058 /* Privacy_Policy_ViewController.xib in Resources */,
 				67BB94331ADFABCD0050164B /* JSQMessagesViewController.xib in Resources */,
@@ -1883,7 +1852,6 @@
 				67BB94471ADFABCD0050164B /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
 				67BB92611ADFA8D10050164B /* Contents.json in Resources */,
 				67BB94511ADFABCD0050164B /* JSQMessagesToolbarContentView.xib in Resources */,
-				67BB92F71ADFA8D10050164B /* Intro3IDViewController.xib in Resources */,
 				67BB94291ADFABCD0050164B /* JSQMessagesAssets.bundle in Resources */,
 				67BB925C1ADFA8D10050164B /* Tutorial-2.png in Resources */,
 				67BB92541ADFA8D10050164B /* LandingView_iPhone6.png in Resources */,
@@ -1951,14 +1919,12 @@
 				67BB942E1ADFABCD0050164B /* UIDevice+JSQMessages.m in Sources */,
 				67BB943F1ADFABCD0050164B /* JSQMessagesAvatarImage.m in Sources */,
 				67BB94361ADFABCD0050164B /* JSQMessagesMediaViewBubbleImageMasker.m in Sources */,
-				67BB92E11ADFA8D10050164B /* Intro3IDViewController.m in Sources */,
 				67BB943C1ADFABCD0050164B /* JSQLocationMediaItem.m in Sources */,
 				67BB94141ADFABCD0050164B /* UIViewController+AMSlideMenu.m in Sources */,
 				67BB942C1ADFABCD0050164B /* NSString+JSQMessages.m in Sources */,
 				67BB94231ADFABCD0050164B /* UIProgressView+FlatUI.m in Sources */,
 				67BB94001ADFABCD0050164B /* AFNetworkReachabilityManager.m in Sources */,
 				67BB940B1ADFABCD0050164B /* UIProgressView+AFNetworking.m in Sources */,
-				67BB92E01ADFA8D10050164B /* Intro2IDViewController.m in Sources */,
 				67BB94571ADFABCD0050164B /* NavigationController.m in Sources */,
 				67BB94521ADFABCD0050164B /* JSQMessagesTypingIndicatorFooterView.m in Sources */,
 				67BB941F1ADFABCD0050164B /* UIFont+FlatUI.m in Sources */,
@@ -1967,7 +1933,6 @@
 				67BB94261ADFABCD0050164B /* UITabBar+FlatUI.m in Sources */,
 				67BB92E41ADFA8D10050164B /* LoginScreenViewController.m in Sources */,
 				67BB945B1ADFABCD0050164B /* camera.m in Sources */,
-				67BB92DF1ADFA8D10050164B /* Intro1IDViewController.m in Sources */,
 				67BB92E71ADFA8D10050164B /* SignupScreenViewController.m in Sources */,
 				67BB92DE1ADFA8D10050164B /* HomeScreenViewController.m in Sources */,
 				67BB94071ADFABCD0050164B /* UIActivityIndicatorView+AFNetworking.m in Sources */,
@@ -2014,7 +1979,6 @@
 				67BB94561ADFABCD0050164B /* NIDropDown.m in Sources */,
 				67BB94381ADFABCD0050164B /* JSQMessagesToolbarButtonFactory.m in Sources */,
 				67BB94221ADFABCD0050164B /* UIPopoverController+FlatUI.m in Sources */,
-				67BB92E31ADFA8D10050164B /* IntroPagesViewController.m in Sources */,
 				67BB92E91ADFA8D10050164B /* SlideMenuLeftTableViewController.m in Sources */,
 				67BB94171ADFABCD0050164B /* FUIButton.m in Sources */,
 				67BB92EB1ADFA8D10050164B /* SlideMenuViewController.m in Sources */,

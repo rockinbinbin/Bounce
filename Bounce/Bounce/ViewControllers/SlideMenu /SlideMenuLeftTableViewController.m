@@ -13,7 +13,7 @@
 #import "AppConstant.h"
 #import <ParseManager.h>
 #import "LoginScreenViewController.h"
-#import "IntroPagesViewController.h"
+//#import "IntroPagesViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <Photos/Photos.h>
 
@@ -21,6 +21,7 @@
 #import "SettingsViewController.h"
 #import "Terms_of_Use_ViewController.h"
 #import "Privacy_Policy_ViewController.h"
+#import "bounce-Swift.h"
 
 #define Chats_Section 1
 #define Home_section 0
@@ -324,7 +325,8 @@
     UINavigationController *nvc;
     UIViewController *rootVC;
     rootVC = [[LoginScreenViewController alloc] init];
-    IntroPagesViewController* introPagesViewController = [[IntroPagesViewController alloc] initWithNibName:@"IntroPagesViewController" bundle:nil];
+    
+    Tutorial *introPagesViewController = [[Tutorial alloc] initWithNibName:@"IntroPagesViewController" bundle:nil];
     nvc = [[UINavigationController alloc] initWithRootViewController:introPagesViewController];
     [self openContentNavigationController:nvc];
 }

@@ -10,7 +10,6 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
-#import "IntroPagesViewController.h"
 #import "SlideMenuViewController.h"
 #import "ParseManager.h"
 #import "RequestsViewController.h"
