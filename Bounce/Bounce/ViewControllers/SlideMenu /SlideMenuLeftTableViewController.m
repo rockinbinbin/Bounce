@@ -12,8 +12,6 @@
 #import "Constants.h"
 #import "AppConstant.h"
 #import <ParseManager.h>
-#import "LoginScreenViewController.h"
-//#import "IntroPagesViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <Photos/Photos.h>
 
@@ -324,7 +322,7 @@
     [[RequestManger getInstance] invalidateCurrentRequest];
     UINavigationController *nvc;
     UIViewController *rootVC;
-    rootVC = [[LoginScreenViewController alloc] init];
+    rootVC = [[Tutorial alloc] init];
     
     Tutorial *introPagesViewController = [[Tutorial alloc] initWithNibName:@"IntroPagesViewController" bundle:nil];
     nvc = [[UINavigationController alloc] initWithRootViewController:introPagesViewController];
