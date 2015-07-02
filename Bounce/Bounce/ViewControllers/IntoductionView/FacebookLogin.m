@@ -59,21 +59,18 @@
     
     [PFUser logOut];
     
-    MAKE_A_WEAKSELF;
     [PFFacebookUtils logInWithPermissions:@[@"public_profile", @"email", @"user_friends"] block:^(PFUser *user, NSError *error)
      {
-         MAKE_A_STRONGSELF;
          NSLog(@"inside permissions");
-         if (user != nil)
-         {
+         if (user != nil) {
              NSLog(@"inside user != nil");
              if (user.isNew) {
                  NSLog(@"user is new");
-                 [strongSelf requestFacebook:user];
+                 [self requestFacebook:user];
              }
              else {
                  NSLog(@"user is not new");
-                 [strongSelf userLoggedIn:user isUserNew:NO];
+                 [self userLoggedIn:user isUserNew:NO];
              }
          }
          else {
@@ -123,16 +120,16 @@
                  [ProgressHUD showError:error.userInfo[@"error"]];
              }
          }];
+        
         if (image.size.width > 30) image = ResizeImage(image, 30, 30);
+        
         PFFile *fileThumbnail = [PFFile fileWithName:@"thumbnail.jpg" data:UIImageJPEGRepresentation(image, 0.6)];
-        [fileThumbnail saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-         {
-             if (error != nil)
-             {
+        [fileThumbnail saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+             if (error != nil) {
                  [ProgressHUD showError:error.userInfo[@"error"]];
              }
-             
          }];
+        
         user[PF_USER_EMAILCOPY] = userData[@"email"];
         user[PF_USER_USERNAME] = userData[@"name"];
         user[PF_USER_FULLNAME_KEY] = userData[@"name"];
@@ -142,15 +139,12 @@
         user[PF_USER_THUMBNAIL] = fileThumbnail;
         user[PF_GENDER] = userData[@"gender"];
         
-        MAKE_A_WEAKSELF;
         [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
          {
-             if (error == nil)
-             {
-                 [weakSelf userLoggedIn:user isUserNew:YES];
+             if (error == nil) {
+                 [self userLoggedIn:user isUserNew:YES];
              }
-             else
-             {
+             else {
                  [PFUser logOut];
                  [ProgressHUD showError:error.userInfo[@"error"]];
              }
@@ -174,6 +168,7 @@
     else{
         [ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome back %@!", user[PF_USER_FULLNAME]]];
     }
+    [self navigateToMainScreen];
 }
 
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
