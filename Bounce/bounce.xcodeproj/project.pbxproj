@@ -36,6 +36,7 @@
 		00CEE4271994493A00F40C12 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4261994493A00F40C12 /* CoreLocation.framework */; };
 		00DF1FDD1B439FAE004F056A /* Tutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DF1FDC1B439FAE004F056A /* Tutorial.swift */; };
 		00DF1FDF1B43A1C7004F056A /* InstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DF1FDE1B43A1C7004F056A /* InstructionView.swift */; };
+		00DF1FE31B43CDA6004F056A /* FacebookLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DF1FE21B43CDA6004F056A /* FacebookLogin.m */; };
 		28F13A521A6C75A90069EBA4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F13A511A6C75A90069EBA4 /* MapKit.framework */; };
 		67BB90C81ADFA8B20050164B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BB90C41ADFA8B20050164B /* Bolts.framework */; };
 		67BB90C91ADFA8B20050164B /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BB90C51ADFA8B20050164B /* Parse.framework */; };
@@ -392,6 +393,8 @@
 		00DF1FDC1B439FAE004F056A /* Tutorial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tutorial.swift; sourceTree = "<group>"; };
 		00DF1FDE1B43A1C7004F056A /* InstructionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionView.swift; sourceTree = "<group>"; };
 		00DF1FE01B43A8CF004F056A /* bounce-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "bounce-Bridging-Header.h"; sourceTree = "<group>"; };
+		00DF1FE11B43CDA6004F056A /* FacebookLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookLogin.h; sourceTree = "<group>"; };
+		00DF1FE21B43CDA6004F056A /* FacebookLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookLogin.m; sourceTree = "<group>"; };
 		28F13A511A6C75A90069EBA4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6791817C1AC0057D00D0474C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		67BB90C41ADFA8B20050164B /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = FrameWorks/Bolts.framework; sourceTree = "<group>"; };
@@ -1264,6 +1267,8 @@
 				67BB92111ADFA8D10050164B /* IntroLoginScreenViewController.h */,
 				67BB92121ADFA8D10050164B /* IntroLoginScreenViewController.m */,
 				00DF1FDC1B439FAE004F056A /* Tutorial.swift */,
+				00DF1FE11B43CDA6004F056A /* FacebookLogin.h */,
+				00DF1FE21B43CDA6004F056A /* FacebookLogin.m */,
 				00DF1FDE1B43A1C7004F056A /* InstructionView.swift */,
 			);
 			path = IntoductionView;
@@ -1976,6 +1981,7 @@
 				67BB94381ADFABCD0050164B /* JSQMessagesToolbarButtonFactory.m in Sources */,
 				67BB94221ADFABCD0050164B /* UIPopoverController+FlatUI.m in Sources */,
 				67BB92E91ADFA8D10050164B /* SlideMenuLeftTableViewController.m in Sources */,
+				00DF1FE31B43CDA6004F056A /* FacebookLogin.m in Sources */,
 				67BB94171ADFABCD0050164B /* FUIButton.m in Sources */,
 				67BB92EB1ADFA8D10050164B /* SlideMenuViewController.m in Sources */,
 				67BB92D81ADFA8D10050164B /* AddLocationScreenViewController.m in Sources */,

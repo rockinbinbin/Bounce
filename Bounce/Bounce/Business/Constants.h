@@ -14,6 +14,7 @@
 #define PARSE_CLIENT_KEY @"JvcX34MRd7rREhmtjFZrcU8mxqmRDFlbyC0yXzAv"
 
 #define MAKE_A_WEAKSELF     __weak typeof(self) weakSelf = self
+#define MAKE_A_STRONGSELF   __strong typeof(weakSelf) strongSelf = weakSelf
 
 #pragma mark - General Constants
 #define IS_IOS8 ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0)

@@ -10,7 +10,14 @@ import UIKit
 import Parse
 
 let BounceRed = UIColor(red: 255/255.0, green: 127/255.0, blue: 127/255.0, alpha: 1.0)    // #FF7F7F
-
+struct Fonts {
+    struct Avenir {
+        static let Large = UIFont(name: "AvenirNext-Medium", size: 26)
+        static let Medium = UIFont(name: "AvenirNext-Regular", size: 18)
+        static let Small = UIFont(name: "AvenirNext-Regular", size: 14)
+        static let Tiny = UIFont(name: "AvenirNext-Regular", size: 12)
+    }
+}
 class Tutorial: UIViewController, UIPageViewControllerDataSource {
     // MARK: - Page View Controller Content
     
@@ -69,7 +76,7 @@ class Tutorial: UIViewController, UIPageViewControllerDataSource {
         loginButton.setTitle("Log in with Facebook", forState: UIControlState.Normal)
         loginButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         loginButton.setTitleColor(UIColor(red: 255.0, green: 255.0, blue: 255.0, alpha: 0.5), forState: UIControlState.Highlighted)
-        //loginButton.titleLabel?.font = Constants.Fonts.Avenir.Medium
+        loginButton.titleLabel?.font = Fonts.Avenir.Medium
         
         let facebookImage = UIImage(named: "Facebook-Rounded-Square")
         let facebookImageView = UIImageView(image: facebookImage)
@@ -156,26 +163,9 @@ class Tutorial: UIViewController, UIPageViewControllerDataSource {
     }
     
     func loginButtonPressed(sender: UIButton!) {
-        // FB login
-        PFFacebookUtils.logInWithPermissions(["public_profile"], block: {
-            (user: PFUser?, error: NSError?) -> Void in
-            if user == nil {
-                println("Uh oh. The user cancelled the Facebook login.")
-            } else if user!.isNew {
-                println("User signed up and logged in through Facebook! \(user)")
-            } else {
-                println("User logged in through Facebook! \(user)")
-            }
-            
-            if user != nil {
-                //self.presentViewController(MainViewController(), animated: true, completion: nil)
-                println("user nilllllllll");
-            }
-        })
+        // fix dis
+        let fbLogin = FacebookLogin(navigationController: self.navigationController)
+        fbLogin.facebookLogin()
+        
     }
-    
-    //    func requestFacebook(PFUser user) {
-    //        var request = FBRequest()
-    //
-    //    }
 }

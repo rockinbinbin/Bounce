@@ -37,7 +37,7 @@ class InstructionView: UIViewController {
         titleLabel.textColor = UIColor.whiteColor()
         titleLabel.text = titleText
         titleLabel.textAlignment = .Center
-        //titleLabel.font = Constants.Fonts.Avenir.Large
+        titleLabel.font = Fonts.Avenir.Large
         view.addSubview(titleLabel)
         
         let bodyTextHeight : CGFloat = 90
@@ -50,13 +50,13 @@ class InstructionView: UIViewController {
         contentLabel.textAlignment = .Center
         contentLabel.lineBreakMode = .ByWordWrapping
         contentLabel.numberOfLines = 0
-        //contentLabel.font = Constants.Fonts.Avenir.Medium
+        contentLabel.font = Fonts.Avenir.Medium
         view.addSubview(contentLabel)
         
         if (pageIndex == 3) {
             let freepikLabel = UILabel()
             freepikLabel.text = "Designed by Freepik"
-            //freepikLabel.font = Constants.Fonts.Avenir.Tiny
+            freepikLabel.font = Fonts.Avenir.Tiny
             freepikLabel.textAlignment = .Right
             freepikLabel.frame = CGRectMake(view.frame.width - 150, 0, 150, 20)
             freepikLabel.textColor = UIColor(white: 1.0, alpha: 0.3)
