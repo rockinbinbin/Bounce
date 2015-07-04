@@ -150,14 +150,16 @@
         }
 
         __block CGFloat startingButtonY = self.alertContentContainer.frame.size.height - [self totalButtonHeight];
+        
+        MAKE_A_WEAKSELF;
         [self.buttons enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             UIButton *button = obj;
-            if (self.hasCancelButton && idx == 0) {
-                CGFloat lastButtonY = self.alertContentContainer.frame.size.height - button.frame.size.height;
-                [self setButton:obj atHeight:lastButtonY];
+            if (weakSelf.hasCancelButton && idx == 0) {
+                CGFloat lastButtonY = weakSelf.alertContentContainer.frame.size.height - button.frame.size.height;
+                [weakSelf setButton:obj atHeight:lastButtonY];
             } else {
-                [self setButton:obj atHeight:startingButtonY];
-                startingButtonY += (button.frame.size.height + self.buttonSpacing);
+                [weakSelf setButton:obj atHeight:startingButtonY];
+                startingButtonY += (button.frame.size.height + weakSelf.buttonSpacing);
             }
         }];
         if(self.messageLabel.superview&&![self.messageLabel.superview isEqual:self.alertContentContainer]) {
@@ -189,6 +191,7 @@
 
 - (CGFloat) totalButtonHeight {
     __block CGFloat buttonHeight = 0;
+    
     [self.buttons enumerateObjectsUsingBlock:^(FUIButton *button, NSUInteger idx, BOOL *stop) {
         buttonHeight += (button.frame.size.height + self.buttonSpacing);
     }];

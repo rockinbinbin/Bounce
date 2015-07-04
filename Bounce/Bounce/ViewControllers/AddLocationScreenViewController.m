@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.dontAddLocationButton.backgroundColor = DEFAULT_COLOR;
+    self.dontAddLocationButton.backgroundColor = BounceRed;
     [self setBarButtonItemLeft:@"common_back_button"];
     self.navigationItem.title = @"set location";
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]
@@ -32,7 +32,7 @@
                                    style:UIBarButtonItemStylePlain
                                    target:self
                                    action:@selector(doneButtonClicked)];
-    doneButton.tintColor = DEFAULT_COLOR;
+    doneButton.tintColor = BounceRed;
     self.navigationItem.rightBarButtonItem = doneButton;
     
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapClicked:)];
@@ -242,7 +242,7 @@
         UIView *innerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, INNER_VIEW_RADIUS, INNER_VIEW_RADIUS)];
         [imageview setContentMode:UIViewContentModeScaleToFill];
         imageview.image = [UIImage imageNamed:@"common_app_logo"];
-        innerView.backgroundColor = DEFAULT_COLOR;
+        innerView.backgroundColor = BounceRed;
         // Add icon image to the inner view
         imageview.center = innerView.center;
         [innerView addSubview:imageview];

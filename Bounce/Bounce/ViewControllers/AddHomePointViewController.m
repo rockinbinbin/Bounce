@@ -51,7 +51,7 @@
                                    style:UIBarButtonItemStylePlain
                                    target:self
                                    action:@selector(doneButtonClicked)];
-    doneButton.tintColor = DEFAULT_COLOR;
+    doneButton.tintColor = BounceRed;
     self.navigationItem.rightBarButtonItem = doneButton;
     
     self.addLocationButton.backgroundColor = LIGHT_BLUE_COLOR;

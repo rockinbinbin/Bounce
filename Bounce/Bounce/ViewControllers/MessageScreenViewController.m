@@ -62,7 +62,7 @@
                                    style:UIBarButtonItemStylePlain
                                    target:self
                                    action:@selector(sendButtonClicked)];
-    sendButton.tintColor = DEFAULT_COLOR;
+    sendButton.tintColor = BounceRed;
     self.navigationItem.rightBarButtonItem = sendButton;
     
     @try {

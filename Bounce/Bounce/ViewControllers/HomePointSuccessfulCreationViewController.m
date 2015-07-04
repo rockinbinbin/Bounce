@@ -39,7 +39,7 @@
     [self justifyTextInLabel:self.firstLabel];
     [self justifyTextInLabel:self.secondLabel];
 
-    self.view.backgroundColor = DEFAULT_COLOR;
+    self.view.backgroundColor = BounceRed;
     self.sweetButton.backgroundColor = LIGHT_BLUE_COLOR;
 }
 - (void) viewWillAppear:(BOOL)animated
