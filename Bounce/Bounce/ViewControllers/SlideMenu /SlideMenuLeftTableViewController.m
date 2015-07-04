@@ -324,7 +324,7 @@
     UIViewController *rootVC;
     rootVC = [[Tutorial alloc] init];
     
-    Tutorial *introPagesViewController = [[Tutorial alloc] initWithNibName:@"IntroPagesViewController" bundle:nil];
+    Tutorial *introPagesViewController = [[Tutorial alloc] init];
     nvc = [[UINavigationController alloc] initWithRootViewController:introPagesViewController];
     [self openContentNavigationController:nvc];
 }

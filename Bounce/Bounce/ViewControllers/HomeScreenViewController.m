@@ -28,7 +28,8 @@
     
     [super viewDidLoad];
     [[RequestManger getInstance] loadActiveRequest];
-
+    
+    self.navigationController.navigationBar.hidden = NO;
     self.repliesButton.layer.cornerRadius = 4;
     self.repliesButton.clipsToBounds = YES;
     self.repliesButton.backgroundColor = BounceRed;
