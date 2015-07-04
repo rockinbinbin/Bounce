@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000234901B48823B000B7630 /* launchLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0002348F1B48823B000B7630 /* launchLogo.png */; };
 		001C737B1B0B0E3C008D7058 /* Terms_of_Use_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001C73791B0B0E3C008D7058 /* Terms_of_Use_ViewController.m */; };
 		001C737C1B0B0E3C008D7058 /* Terms_of_Use_ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 001C737A1B0B0E3C008D7058 /* Terms_of_Use_ViewController.xib */; };
 		001C73801B0B0E4D008D7058 /* Privacy_Policy_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001C737E1B0B0E4D008D7058 /* Privacy_Policy_ViewController.m */; };
@@ -209,6 +210,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0002348F1B48823B000B7630 /* launchLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchLogo.png; sourceTree = "<group>"; };
 		001C73781B0B0E3C008D7058 /* Terms_of_Use_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Terms_of_Use_ViewController.h; path = "SlideMenu /Terms_of_Use_ViewController.h"; sourceTree = "<group>"; };
 		001C73791B0B0E3C008D7058 /* Terms_of_Use_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Terms_of_Use_ViewController.m; path = "SlideMenu /Terms_of_Use_ViewController.m"; sourceTree = "<group>"; };
 		001C737A1B0B0E3C008D7058 /* Terms_of_Use_ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Terms_of_Use_ViewController.xib; path = "../ViewControllers/SlideMenu /Terms_of_Use_ViewController.xib"; sourceTree = "<group>"; };
@@ -1031,6 +1033,7 @@
 			isa = PBXGroup;
 			children = (
 				00ABD56F1B4846CC004A2FB0 /* LaunchScreen.storyboard */,
+				0002348F1B48823B000B7630 /* launchLogo.png */,
 				00DF1FE01B43A8CF004F056A /* bounce-Bridging-Header.h */,
 				67BB90ED1ADFA8D00050164B /* bounce-Info.plist */,
 				67BB90CD1ADFA8D00050164B /* AppConstant.h */,
@@ -1863,6 +1866,7 @@
 				67BB92501ADFA8D10050164B /* Contents.json in Resources */,
 				67BB942A1ADFABCD0050164B /* JSQMessages.strings in Resources */,
 				67BB925A1ADFA8D10050164B /* Tutorial-1_iPhone6plus.png in Resources */,
+				000234901B48823B000B7630 /* launchLogo.png in Resources */,
 				67BB92621ADFA8D10050164B /* Tutorial-3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
