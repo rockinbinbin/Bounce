@@ -19,6 +19,7 @@
 		007CF29A1AA3E516007D7C33 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF2991AA3E516007D7C33 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		007CF29C1AA3E529007D7C33 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF29B1AA3E529007D7C33 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		007CF29E1AA3E532007D7C33 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF29D1AA3E532007D7C33 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		00ABD56A1B478C2D004A2FB0 /* UIView+KGNAutoLayout in Resources */ = {isa = PBXBuildFile; fileRef = 00ABD5691B478C2D004A2FB0 /* UIView+KGNAutoLayout */; };
 		00CEE3D2199434E700F40C12 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE3D1199434E700F40C12 /* Foundation.framework */; };
 		00CEE3D4199434E700F40C12 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE3D3199434E700F40C12 /* CoreGraphics.framework */; };
 		00CEE3D6199434E700F40C12 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE3D5199434E700F40C12 /* UIKit.framework */; };
@@ -366,6 +367,7 @@
 		007CF2991AA3E516007D7C33 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		007CF29B1AA3E529007D7C33 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		007CF29D1AA3E532007D7C33 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		00ABD5691B478C2D004A2FB0 /* UIView+KGNAutoLayout */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "UIView+KGNAutoLayout"; sourceTree = "<group>"; };
 		00CEE3CE199434E700F40C12 /* bounce.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bounce.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00CEE3D1199434E700F40C12 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		00CEE3D3199434E700F40C12 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -1319,6 +1321,7 @@
 				67BB93E21ADFABCD0050164B /* NotificationChat */,
 				67BB93F61ADFABCD0050164B /* ProgressHUD */,
 				67BB93FA1ADFABCD0050164B /* Reachability */,
+				00ABD5691B478C2D004A2FB0 /* UIView+KGNAutoLayout */,
 			);
 			path = ThirdParty;
 			sourceTree = "<group>";
@@ -1827,6 +1830,7 @@
 				67BB92EF1ADFA8D10050164B /* AddLocationScreenViewController.xib in Resources */,
 				67BB92EA1ADFA8D10050164B /* SlideMenuLeftTableViewController.xib in Resources */,
 				67BB92701ADFA8D10050164B /* Images.xcassets in Resources */,
+				00ABD56A1B478C2D004A2FB0 /* UIView+KGNAutoLayout in Resources */,
 				67BB94471ADFABCD0050164B /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
 				67BB92611ADFA8D10050164B /* Contents.json in Resources */,
 				67BB94511ADFABCD0050164B /* JSQMessagesToolbarContentView.xib in Resources */,
