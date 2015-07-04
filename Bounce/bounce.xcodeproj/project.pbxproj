@@ -20,6 +20,7 @@
 		007CF29C1AA3E529007D7C33 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF29B1AA3E529007D7C33 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		007CF29E1AA3E532007D7C33 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF29D1AA3E532007D7C33 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		00ABD56A1B478C2D004A2FB0 /* UIView+KGNAutoLayout in Resources */ = {isa = PBXBuildFile; fileRef = 00ABD5691B478C2D004A2FB0 /* UIView+KGNAutoLayout */; };
+		00ABD56E1B479C1B004A2FB0 /* FinishedIcon in Resources */ = {isa = PBXBuildFile; fileRef = 00ABD56D1B479C1B004A2FB0 /* FinishedIcon */; };
 		00CEE3D2199434E700F40C12 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE3D1199434E700F40C12 /* Foundation.framework */; };
 		00CEE3D4199434E700F40C12 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE3D3199434E700F40C12 /* CoreGraphics.framework */; };
 		00CEE3D6199434E700F40C12 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE3D5199434E700F40C12 /* UIKit.framework */; };
@@ -368,6 +369,7 @@
 		007CF29B1AA3E529007D7C33 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		007CF29D1AA3E532007D7C33 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		00ABD5691B478C2D004A2FB0 /* UIView+KGNAutoLayout */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "UIView+KGNAutoLayout"; sourceTree = "<group>"; };
+		00ABD56D1B479C1B004A2FB0 /* FinishedIcon */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FinishedIcon; path = "Bounce Images/FinishedIcon"; sourceTree = "<group>"; };
 		00CEE3CE199434E700F40C12 /* bounce.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bounce.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00CEE3D1199434E700F40C12 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		00CEE3D3199434E700F40C12 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -1111,6 +1113,7 @@
 				67BB90FB1ADFA8D00050164B /* CustomCells */,
 				67BB90FF1ADFA8D00050164B /* InfoPlist.strings */,
 				67BB91011ADFA8D00050164B /* Images.xcassets */,
+				00ABD56D1B479C1B004A2FB0 /* FinishedIcon */,
 				67BB91021ADFA8D00050164B /* main.m */,
 				67BB91F71ADFA8D10050164B /* ViewControllers */,
 				67BB92251ADFA8D10050164B /* Views */,
@@ -1844,6 +1847,7 @@
 				67BB92641ADFA8D10050164B /* Tutorial-3_iPhone5.png in Resources */,
 				67BB92F11ADFA8D10050164B /* GenderScreenViewController.xib in Resources */,
 				67BB92F41ADFA8D10050164B /* HomeScreenViewController.xib in Resources */,
+				00ABD56E1B479C1B004A2FB0 /* FinishedIcon in Resources */,
 				67BB92651ADFA8D10050164B /* Tutorial-3_iPhone6.png in Resources */,
 				67BB94491ADFABCD0050164B /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
 				67BB92F01ADFA8D10050164B /* EditGroupsViewController.xib in Resources */,
