@@ -54,7 +54,7 @@
     // Do any additional setup after loading the view from its nib.
     _btnSelect.backgroundColor = [UIColor whiteColor];
     self.gotItButton.backgroundColor = LIGHT_BLUE_COLOR;
-    self.view.backgroundColor = DEFAULT_COLOR;
+    self.view.backgroundColor = BounceRed;
     
     UIImageView *downArrow = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"common_down_arrow"]];
     downArrow.contentMode = UIViewContentModeScaleToFill;

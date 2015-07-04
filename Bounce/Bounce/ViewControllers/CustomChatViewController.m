@@ -51,12 +51,12 @@
             if (self.currentRequest&& !requestEnded && [[Utility getInstance] isRequestValid:self.currentRequest.createdAt andTimeAllocated:[[self.currentRequest objectForKey:PF_REQUEST_TIME_ALLOCATED] integerValue]]) {
                 if (![self isUserStillReceiverForTheRequest]) {
                     [self clearMessagesAndStopUpdate];
-                    [self showAlertViewWithMessage:@"You become out the request radius"];
+                    [self showAlertViewWithMessage:@"You became out the request radius"];
                 }
-            }else{
+            }
+            else {
                 // delete all messages
                 [self clearMessagesAndStopUpdate];
-                // show alert view
                 [self showAlertViewWithMessage:@"Request time over"];
             }
 

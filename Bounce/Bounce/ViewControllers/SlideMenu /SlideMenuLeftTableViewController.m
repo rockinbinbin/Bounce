@@ -12,8 +12,6 @@
 #import "Constants.h"
 #import "AppConstant.h"
 #import <ParseManager.h>
-#import "LoginScreenViewController.h"
-#import "IntroPagesViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <Photos/Photos.h>
 
@@ -21,6 +19,7 @@
 #import "SettingsViewController.h"
 #import "Terms_of_Use_ViewController.h"
 #import "Privacy_Policy_ViewController.h"
+#import "bounce-Swift.h"
 
 #define Chats_Section 1
 #define Home_section 0
@@ -57,7 +56,7 @@
     self.userProfileImageView.layer.cornerRadius = self.userProfileImageView.frame.size.height / 2;
     self.userProfileImageView.clipsToBounds = YES;
     self.userProfileImageView.layer.borderWidth = 3.0f;
-    self.userProfileImageView.layer.borderColor = DEFAULT_COLOR.CGColor;
+    self.userProfileImageView.layer.borderColor = BounceRed.CGColor;
 //    [self setProfileImage];
     [self setUserNameAndLocationAtCell];
 }
@@ -100,11 +99,11 @@
         cell.userInteractionEnabled = YES;
         // adding chats number
         UIImageView* chatsNumberView = [[UIImageView alloc] initWithFrame:CGRectMake(SIDE_MENU_WIDTH * 4 / 5, imageYPosition - 15, 30, 30)];
-        chatsNumberView.backgroundColor = DEFAULT_COLOR;
+        chatsNumberView.backgroundColor = BounceRed;
         chatsNumberView.layer.cornerRadius = chatsNumberView.frame.size.height / 2;
         chatsNumberView.clipsToBounds = YES;
         chatsNumberView.layer.borderWidth = 3.0f;
-        chatsNumberView.layer.borderColor = DEFAULT_COLOR.CGColor;
+        chatsNumberView.layer.borderColor = BounceRed.CGColor;
         // number of messages for the group
         UILabel* numOfMessagesLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 4, 30, 20)];
         numOfMessagesLabel.textAlignment = NSTextAlignmentCenter;
@@ -117,11 +116,11 @@
         
         // adding chats number
         UIImageView* redCircleView = [[UIImageView alloc] initWithFrame:CGRectMake(20 , imageYPosition - 5, 10, 10)];
-        redCircleView.backgroundColor = DEFAULT_COLOR;
+        redCircleView.backgroundColor = BounceRed;
         redCircleView.layer.cornerRadius = redCircleView.frame.size.height / 2;
         redCircleView.clipsToBounds = YES;
         redCircleView.layer.borderWidth = 3.0f;
-        redCircleView.layer.borderColor = DEFAULT_COLOR.CGColor;
+        redCircleView.layer.borderColor = BounceRed.CGColor;
         [cell addSubview:redCircleView];
         
         UILabel* usernameLabel = [[UILabel alloc] initWithFrame:CGRectMake(40 , imageYPosition - 20, 100, 40)];
@@ -323,8 +322,9 @@
     [[RequestManger getInstance] invalidateCurrentRequest];
     UINavigationController *nvc;
     UIViewController *rootVC;
-    rootVC = [[LoginScreenViewController alloc] init];
-    IntroPagesViewController* introPagesViewController = [[IntroPagesViewController alloc] initWithNibName:@"IntroPagesViewController" bundle:nil];
+    rootVC = [[Tutorial alloc] init];
+    
+    Tutorial *introPagesViewController = [[Tutorial alloc] init];
     nvc = [[UINavigationController alloc] initWithRootViewController:introPagesViewController];
     [self openContentNavigationController:nvc];
 }

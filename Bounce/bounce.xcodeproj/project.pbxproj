@@ -19,6 +19,10 @@
 		007CF29A1AA3E516007D7C33 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF2991AA3E516007D7C33 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		007CF29C1AA3E529007D7C33 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF29B1AA3E529007D7C33 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		007CF29E1AA3E532007D7C33 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF29D1AA3E532007D7C33 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		00ABD56A1B478C2D004A2FB0 /* UIView+KGNAutoLayout in Resources */ = {isa = PBXBuildFile; fileRef = 00ABD5691B478C2D004A2FB0 /* UIView+KGNAutoLayout */; };
+		00ABD56E1B479C1B004A2FB0 /* FinishedIcon in Resources */ = {isa = PBXBuildFile; fileRef = 00ABD56D1B479C1B004A2FB0 /* FinishedIcon */; };
+		00ABD5701B4846CC004A2FB0 /* StoryboardLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00ABD56F1B4846CC004A2FB0 /* StoryboardLaunchScreen.storyboard */; };
+		00ABD5721B4860C6004A2FB0 /* launchLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 00ABD5711B4860C6004A2FB0 /* launchLogo.png */; };
 		00CEE3D2199434E700F40C12 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE3D1199434E700F40C12 /* Foundation.framework */; };
 		00CEE3D4199434E700F40C12 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE3D3199434E700F40C12 /* CoreGraphics.framework */; };
 		00CEE3D6199434E700F40C12 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE3D5199434E700F40C12 /* UIKit.framework */; };
@@ -34,6 +38,9 @@
 		00CEE4231994492700F40C12 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4221994492700F40C12 /* QuartzCore.framework */; };
 		00CEE4251994493500F40C12 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4241994493500F40C12 /* StoreKit.framework */; };
 		00CEE4271994493A00F40C12 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4261994493A00F40C12 /* CoreLocation.framework */; };
+		00DF1FDD1B439FAE004F056A /* Tutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DF1FDC1B439FAE004F056A /* Tutorial.swift */; };
+		00DF1FDF1B43A1C7004F056A /* InstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DF1FDE1B43A1C7004F056A /* InstructionView.swift */; };
+		00DF1FE31B43CDA6004F056A /* FacebookLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DF1FE21B43CDA6004F056A /* FacebookLogin.m */; };
 		28F13A521A6C75A90069EBA4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F13A511A6C75A90069EBA4 /* MapKit.framework */; };
 		67BB90C81ADFA8B20050164B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BB90C41ADFA8B20050164B /* Bolts.framework */; };
 		67BB90C91ADFA8B20050164B /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BB90C51ADFA8B20050164B /* Parse.framework */; };
@@ -82,15 +89,8 @@
 		67BB92DC1ADFA8D10050164B /* GroupsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92051ADFA8D10050164B /* GroupsListViewController.m */; };
 		67BB92DD1ADFA8D10050164B /* HomePointSuccessfulCreationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92071ADFA8D10050164B /* HomePointSuccessfulCreationViewController.m */; };
 		67BB92DE1ADFA8D10050164B /* HomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92091ADFA8D10050164B /* HomeScreenViewController.m */; };
-		67BB92DF1ADFA8D10050164B /* Intro1IDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB920C1ADFA8D10050164B /* Intro1IDViewController.m */; };
-		67BB92E01ADFA8D10050164B /* Intro2IDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB920E1ADFA8D10050164B /* Intro2IDViewController.m */; };
-		67BB92E11ADFA8D10050164B /* Intro3IDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92101ADFA8D10050164B /* Intro3IDViewController.m */; };
-		67BB92E21ADFA8D10050164B /* IntroLoginScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92121ADFA8D10050164B /* IntroLoginScreenViewController.m */; };
-		67BB92E31ADFA8D10050164B /* IntroPagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92141ADFA8D10050164B /* IntroPagesViewController.m */; };
-		67BB92E41ADFA8D10050164B /* LoginScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92161ADFA8D10050164B /* LoginScreenViewController.m */; };
 		67BB92E51ADFA8D10050164B /* MessageScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92181ADFA8D10050164B /* MessageScreenViewController.m */; };
 		67BB92E61ADFA8D10050164B /* RequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB921A1ADFA8D10050164B /* RequestsViewController.m */; };
-		67BB92E71ADFA8D10050164B /* SignupScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB921C1ADFA8D10050164B /* SignupScreenViewController.m */; };
 		67BB92E81ADFA8D10050164B /* SlideLeftMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB921E1ADFA8D10050164B /* SlideLeftMenu.xib */; };
 		67BB92E91ADFA8D10050164B /* SlideMenuLeftTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92201ADFA8D10050164B /* SlideMenuLeftTableViewController.m */; };
 		67BB92EA1ADFA8D10050164B /* SlideMenuLeftTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92211ADFA8D10050164B /* SlideMenuLeftTableViewController.xib */; };
@@ -104,15 +104,8 @@
 		67BB92F21ADFA8D10050164B /* GroupsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB922B1ADFA8D10050164B /* GroupsListViewController.xib */; };
 		67BB92F31ADFA8D10050164B /* HomePointSuccessfulCreationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB922C1ADFA8D10050164B /* HomePointSuccessfulCreationViewController.xib */; };
 		67BB92F41ADFA8D10050164B /* HomeScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB922D1ADFA8D10050164B /* HomeScreenViewController.xib */; };
-		67BB92F51ADFA8D10050164B /* Intro1IDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB922E1ADFA8D10050164B /* Intro1IDViewController.xib */; };
-		67BB92F61ADFA8D10050164B /* Intro2IDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB922F1ADFA8D10050164B /* Intro2IDViewController.xib */; };
-		67BB92F71ADFA8D10050164B /* Intro3IDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92301ADFA8D10050164B /* Intro3IDViewController.xib */; };
-		67BB92F81ADFA8D10050164B /* IntroLoginScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92311ADFA8D10050164B /* IntroLoginScreenViewController.xib */; };
-		67BB92F91ADFA8D10050164B /* IntroPagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92321ADFA8D10050164B /* IntroPagesViewController.xib */; };
-		67BB92FA1ADFA8D10050164B /* LoginScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92331ADFA8D10050164B /* LoginScreenViewController.xib */; };
 		67BB92FB1ADFA8D10050164B /* MessageScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92341ADFA8D10050164B /* MessageScreenViewController.xib */; };
 		67BB92FC1ADFA8D10050164B /* RequestsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92351ADFA8D10050164B /* RequestsViewController.xib */; };
-		67BB92FD1ADFA8D10050164B /* SignupScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92361ADFA8D10050164B /* SignupScreenViewController.xib */; };
 		67BB93011ADFA8D10050164B /* hobble_1_1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 67BB923E1ADFA8D10050164B /* hobble_1_1.xcdatamodeld */; };
 		67BB93061ADFA8D10050164B /* UIViewController+infopagestempfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92481ADFA8D10050164B /* UIViewController+infopagestempfile.m */; };
 		67BB93FD1ADFABCD0050164B /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB930D1ADFABCD0050164B /* AFHTTPRequestOperation.m */; };
@@ -377,6 +370,10 @@
 		007CF2991AA3E516007D7C33 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		007CF29B1AA3E529007D7C33 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		007CF29D1AA3E532007D7C33 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		00ABD5691B478C2D004A2FB0 /* UIView+KGNAutoLayout */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "UIView+KGNAutoLayout"; sourceTree = "<group>"; };
+		00ABD56D1B479C1B004A2FB0 /* FinishedIcon */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FinishedIcon; path = "Bounce Images/FinishedIcon"; sourceTree = "<group>"; };
+		00ABD56F1B4846CC004A2FB0 /* StoryboardLaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = StoryboardLaunchScreen.storyboard; path = Bounce/StoryboardLaunchScreen.storyboard; sourceTree = "<group>"; };
+		00ABD5711B4860C6004A2FB0 /* launchLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launchLogo.png; path = Bounce/Images.xcassets/LaunchImage.launchimage/launchLogo.png; sourceTree = "<group>"; };
 		00CEE3CE199434E700F40C12 /* bounce.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bounce.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00CEE3D1199434E700F40C12 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		00CEE3D3199434E700F40C12 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -395,6 +392,11 @@
 		00CEE4221994492700F40C12 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		00CEE4241994493500F40C12 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		00CEE4261994493A00F40C12 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		00DF1FDC1B439FAE004F056A /* Tutorial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tutorial.swift; sourceTree = "<group>"; };
+		00DF1FDE1B43A1C7004F056A /* InstructionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionView.swift; sourceTree = "<group>"; };
+		00DF1FE01B43A8CF004F056A /* bounce-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "bounce-Bridging-Header.h"; sourceTree = "<group>"; };
+		00DF1FE11B43CDA6004F056A /* FacebookLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookLogin.h; sourceTree = "<group>"; };
+		00DF1FE21B43CDA6004F056A /* FacebookLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookLogin.m; sourceTree = "<group>"; };
 		28F13A511A6C75A90069EBA4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6791817C1AC0057D00D0474C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		67BB90C41ADFA8B20050164B /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = FrameWorks/Bolts.framework; sourceTree = "<group>"; };
@@ -463,24 +465,10 @@
 		67BB92071ADFA8D10050164B /* HomePointSuccessfulCreationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePointSuccessfulCreationViewController.m; sourceTree = "<group>"; };
 		67BB92081ADFA8D10050164B /* HomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeScreenViewController.h; sourceTree = "<group>"; };
 		67BB92091ADFA8D10050164B /* HomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreenViewController.m; sourceTree = "<group>"; };
-		67BB920B1ADFA8D10050164B /* Intro1IDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Intro1IDViewController.h; sourceTree = "<group>"; };
-		67BB920C1ADFA8D10050164B /* Intro1IDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Intro1IDViewController.m; sourceTree = "<group>"; };
-		67BB920D1ADFA8D10050164B /* Intro2IDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Intro2IDViewController.h; sourceTree = "<group>"; };
-		67BB920E1ADFA8D10050164B /* Intro2IDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Intro2IDViewController.m; sourceTree = "<group>"; };
-		67BB920F1ADFA8D10050164B /* Intro3IDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Intro3IDViewController.h; sourceTree = "<group>"; };
-		67BB92101ADFA8D10050164B /* Intro3IDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Intro3IDViewController.m; sourceTree = "<group>"; };
-		67BB92111ADFA8D10050164B /* IntroLoginScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroLoginScreenViewController.h; sourceTree = "<group>"; };
-		67BB92121ADFA8D10050164B /* IntroLoginScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroLoginScreenViewController.m; sourceTree = "<group>"; };
-		67BB92131ADFA8D10050164B /* IntroPagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroPagesViewController.h; sourceTree = "<group>"; };
-		67BB92141ADFA8D10050164B /* IntroPagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroPagesViewController.m; sourceTree = "<group>"; };
-		67BB92151ADFA8D10050164B /* LoginScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginScreenViewController.h; sourceTree = "<group>"; };
-		67BB92161ADFA8D10050164B /* LoginScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginScreenViewController.m; sourceTree = "<group>"; };
 		67BB92171ADFA8D10050164B /* MessageScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageScreenViewController.h; sourceTree = "<group>"; };
 		67BB92181ADFA8D10050164B /* MessageScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageScreenViewController.m; sourceTree = "<group>"; };
 		67BB92191ADFA8D10050164B /* RequestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestsViewController.h; sourceTree = "<group>"; };
 		67BB921A1ADFA8D10050164B /* RequestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestsViewController.m; sourceTree = "<group>"; };
-		67BB921B1ADFA8D10050164B /* SignupScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupScreenViewController.h; sourceTree = "<group>"; };
-		67BB921C1ADFA8D10050164B /* SignupScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupScreenViewController.m; sourceTree = "<group>"; };
 		67BB921E1ADFA8D10050164B /* SlideLeftMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SlideLeftMenu.xib; sourceTree = "<group>"; };
 		67BB921F1ADFA8D10050164B /* SlideMenuLeftTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideMenuLeftTableViewController.h; sourceTree = "<group>"; };
 		67BB92201ADFA8D10050164B /* SlideMenuLeftTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideMenuLeftTableViewController.m; sourceTree = "<group>"; };
@@ -496,15 +484,8 @@
 		67BB922B1ADFA8D10050164B /* GroupsListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupsListViewController.xib; sourceTree = "<group>"; };
 		67BB922C1ADFA8D10050164B /* HomePointSuccessfulCreationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomePointSuccessfulCreationViewController.xib; sourceTree = "<group>"; };
 		67BB922D1ADFA8D10050164B /* HomeScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeScreenViewController.xib; sourceTree = "<group>"; };
-		67BB922E1ADFA8D10050164B /* Intro1IDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Intro1IDViewController.xib; sourceTree = "<group>"; };
-		67BB922F1ADFA8D10050164B /* Intro2IDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Intro2IDViewController.xib; sourceTree = "<group>"; };
-		67BB92301ADFA8D10050164B /* Intro3IDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Intro3IDViewController.xib; sourceTree = "<group>"; };
-		67BB92311ADFA8D10050164B /* IntroLoginScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroLoginScreenViewController.xib; sourceTree = "<group>"; };
-		67BB92321ADFA8D10050164B /* IntroPagesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroPagesViewController.xib; sourceTree = "<group>"; };
-		67BB92331ADFA8D10050164B /* LoginScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginScreenViewController.xib; sourceTree = "<group>"; };
 		67BB92341ADFA8D10050164B /* MessageScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageScreenViewController.xib; sourceTree = "<group>"; };
 		67BB92351ADFA8D10050164B /* RequestsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RequestsViewController.xib; sourceTree = "<group>"; };
-		67BB92361ADFA8D10050164B /* SignupScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignupScreenViewController.xib; sourceTree = "<group>"; };
 		67BB923F1ADFA8D10050164B /* hobble_1_1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hobble_1_1.xcdatamodel; sourceTree = "<group>"; };
 		67BB92471ADFA8D10050164B /* UIViewController+infopagestempfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+infopagestempfile.h"; sourceTree = "<group>"; };
 		67BB92481ADFA8D10050164B /* UIViewController+infopagestempfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+infopagestempfile.m"; sourceTree = "<group>"; };
@@ -1053,6 +1034,9 @@
 		00CEE3C5199434E700F40C12 = {
 			isa = PBXGroup;
 			children = (
+				00ABD56F1B4846CC004A2FB0 /* StoryboardLaunchScreen.storyboard */,
+				00DF1FE01B43A8CF004F056A /* bounce-Bridging-Header.h */,
+				00ABD5711B4860C6004A2FB0 /* launchLogo.png */,
 				67BB90ED1ADFA8D00050164B /* bounce-Info.plist */,
 				67BB90CD1ADFA8D00050164B /* AppConstant.h */,
 				67BB90CE1ADFA8D00050164B /* AppDelegate.h */,
@@ -1135,6 +1119,7 @@
 				67BB90FB1ADFA8D00050164B /* CustomCells */,
 				67BB90FF1ADFA8D00050164B /* InfoPlist.strings */,
 				67BB91011ADFA8D00050164B /* Images.xcassets */,
+				00ABD56D1B479C1B004A2FB0 /* FinishedIcon */,
 				67BB91021ADFA8D00050164B /* main.m */,
 				67BB91F71ADFA8D10050164B /* ViewControllers */,
 				67BB92251ADFA8D10050164B /* Views */,
@@ -1259,10 +1244,6 @@
 				003F19421B0B09DC0024EE9A /* SettingsViewController.h */,
 				003F19431B0B09DC0024EE9A /* SettingsViewController.m */,
 				67BB920A1ADFA8D10050164B /* IntoductionView */,
-				67BB92151ADFA8D10050164B /* LoginScreenViewController.h */,
-				67BB92161ADFA8D10050164B /* LoginScreenViewController.m */,
-				67BB921B1ADFA8D10050164B /* SignupScreenViewController.h */,
-				67BB921C1ADFA8D10050164B /* SignupScreenViewController.m */,
 				001C73781B0B0E3C008D7058 /* Terms_of_Use_ViewController.h */,
 				001C73791B0B0E3C008D7058 /* Terms_of_Use_ViewController.m */,
 				001C737D1B0B0E4D008D7058 /* Privacy_Policy_ViewController.h */,
@@ -1275,16 +1256,10 @@
 		67BB920A1ADFA8D10050164B /* IntoductionView */ = {
 			isa = PBXGroup;
 			children = (
-				67BB920B1ADFA8D10050164B /* Intro1IDViewController.h */,
-				67BB920C1ADFA8D10050164B /* Intro1IDViewController.m */,
-				67BB920D1ADFA8D10050164B /* Intro2IDViewController.h */,
-				67BB920E1ADFA8D10050164B /* Intro2IDViewController.m */,
-				67BB920F1ADFA8D10050164B /* Intro3IDViewController.h */,
-				67BB92101ADFA8D10050164B /* Intro3IDViewController.m */,
-				67BB92111ADFA8D10050164B /* IntroLoginScreenViewController.h */,
-				67BB92121ADFA8D10050164B /* IntroLoginScreenViewController.m */,
-				67BB92131ADFA8D10050164B /* IntroPagesViewController.h */,
-				67BB92141ADFA8D10050164B /* IntroPagesViewController.m */,
+				00DF1FDC1B439FAE004F056A /* Tutorial.swift */,
+				00DF1FE11B43CDA6004F056A /* FacebookLogin.h */,
+				00DF1FE21B43CDA6004F056A /* FacebookLogin.m */,
+				00DF1FDE1B43A1C7004F056A /* InstructionView.swift */,
 			);
 			path = IntoductionView;
 			sourceTree = "<group>";
@@ -1314,15 +1289,8 @@
 				67BB922B1ADFA8D10050164B /* GroupsListViewController.xib */,
 				67BB922C1ADFA8D10050164B /* HomePointSuccessfulCreationViewController.xib */,
 				67BB922D1ADFA8D10050164B /* HomeScreenViewController.xib */,
-				67BB922E1ADFA8D10050164B /* Intro1IDViewController.xib */,
-				67BB922F1ADFA8D10050164B /* Intro2IDViewController.xib */,
-				67BB92301ADFA8D10050164B /* Intro3IDViewController.xib */,
-				67BB92311ADFA8D10050164B /* IntroLoginScreenViewController.xib */,
-				67BB92321ADFA8D10050164B /* IntroPagesViewController.xib */,
-				67BB92331ADFA8D10050164B /* LoginScreenViewController.xib */,
 				67BB92341ADFA8D10050164B /* MessageScreenViewController.xib */,
 				67BB92351ADFA8D10050164B /* RequestsViewController.xib */,
-				67BB92361ADFA8D10050164B /* SignupScreenViewController.xib */,
 				001C737A1B0B0E3C008D7058 /* Terms_of_Use_ViewController.xib */,
 				001C737F1B0B0E4D008D7058 /* Privacy_Policy_ViewController.xib */,
 				003F19441B0B09DC0024EE9A /* SettingsViewController.xib */,
@@ -1362,6 +1330,7 @@
 				67BB93E21ADFABCD0050164B /* NotificationChat */,
 				67BB93F61ADFABCD0050164B /* ProgressHUD */,
 				67BB93FA1ADFABCD0050164B /* Reachability */,
+				00ABD5691B478C2D004A2FB0 /* UIView+KGNAutoLayout */,
 			);
 			path = ThirdParty;
 			sourceTree = "<group>";
@@ -1802,7 +1771,7 @@
 				ORGANIZATIONNAME = hobble;
 				TargetAttributes = {
 					00CEE3CD199434E700F40C12 = {
-						DevelopmentTeam = 4ET98LDP9Q;
+						DevelopmentTeam = KM659CVM6Q;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1855,14 +1824,13 @@
 				67BB926E1ADFA8D10050164B /* ChatListCell.xib in Resources */,
 				67BB92511ADFA8D10050164B /* LandingView.png in Resources */,
 				67BB92631ADFA8D10050164B /* Tutorial-3@2x.png in Resources */,
+				00ABD5701B4846CC004A2FB0 /* StoryboardLaunchScreen.storyboard in Resources */,
 				67BB925E1ADFA8D10050164B /* Tutorial-2_iPhone5.png in Resources */,
-				67BB92F51ADFA8D10050164B /* Intro1IDViewController.xib in Resources */,
 				67BB92ED1ADFA8D10050164B /* AddGroupUsersViewController.xib in Resources */,
 				67BB92FC1ADFA8D10050164B /* RequestsViewController.xib in Resources */,
 				67BB92EE1ADFA8D10050164B /* AddHomePointViewController.xib in Resources */,
 				67BB94531ADFABCD0050164B /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
 				67BB925D1ADFA8D10050164B /* Tutorial-2@2x.png in Resources */,
-				67BB92F61ADFA8D10050164B /* Intro2IDViewController.xib in Resources */,
 				67BB92531ADFA8D10050164B /* LandingView_iPhone5.png in Resources */,
 				001C73811B0B0E4D008D7058 /* Privacy_Policy_ViewController.xib in Resources */,
 				67BB94331ADFABCD0050164B /* JSQMessagesViewController.xib in Resources */,
@@ -1872,23 +1840,21 @@
 				67BB92EF1ADFA8D10050164B /* AddLocationScreenViewController.xib in Resources */,
 				67BB92EA1ADFA8D10050164B /* SlideMenuLeftTableViewController.xib in Resources */,
 				67BB92701ADFA8D10050164B /* Images.xcassets in Resources */,
+				00ABD56A1B478C2D004A2FB0 /* UIView+KGNAutoLayout in Resources */,
 				67BB94471ADFABCD0050164B /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
 				67BB92611ADFA8D10050164B /* Contents.json in Resources */,
 				67BB94511ADFABCD0050164B /* JSQMessagesToolbarContentView.xib in Resources */,
-				67BB92F71ADFA8D10050164B /* Intro3IDViewController.xib in Resources */,
 				67BB94291ADFABCD0050164B /* JSQMessagesAssets.bundle in Resources */,
 				67BB925C1ADFA8D10050164B /* Tutorial-2.png in Resources */,
 				67BB92541ADFA8D10050164B /* LandingView_iPhone6.png in Resources */,
-				67BB92FA1ADFA8D10050164B /* LoginScreenViewController.xib in Resources */,
 				67BB945E1ADFABCD0050164B /* ProgressHUD.bundle in Resources */,
 				67BB92601ADFA8D10050164B /* Tutorial-2_iPhone6plus.png in Resources */,
 				67BB924F1ADFA8D10050164B /* chat_blank@2x.png in Resources */,
-				67BB92F91ADFA8D10050164B /* IntroPagesViewController.xib in Resources */,
-				67BB92F81ADFA8D10050164B /* IntroLoginScreenViewController.xib in Resources */,
 				67BB92FB1ADFA8D10050164B /* MessageScreenViewController.xib in Resources */,
 				67BB92641ADFA8D10050164B /* Tutorial-3_iPhone5.png in Resources */,
 				67BB92F11ADFA8D10050164B /* GenderScreenViewController.xib in Resources */,
 				67BB92F41ADFA8D10050164B /* HomeScreenViewController.xib in Resources */,
+				00ABD56E1B479C1B004A2FB0 /* FinishedIcon in Resources */,
 				67BB92651ADFA8D10050164B /* Tutorial-3_iPhone6.png in Resources */,
 				67BB94491ADFABCD0050164B /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
 				67BB92F01ADFA8D10050164B /* EditGroupsViewController.xib in Resources */,
@@ -1898,12 +1864,12 @@
 				001C737C1B0B0E3C008D7058 /* Terms_of_Use_ViewController.xib in Resources */,
 				67BB925F1ADFA8D10050164B /* Tutorial-2_iPhone6.png in Resources */,
 				67BB925B1ADFA8D10050164B /* Contents.json in Resources */,
-				67BB92FD1ADFA8D10050164B /* SignupScreenViewController.xib in Resources */,
 				67BB92EC1ADFA8D10050164B /* SlideMenuViewController.xib in Resources */,
 				67BB92591ADFA8D10050164B /* Tutorial-1_iPhone6.png in Resources */,
 				67BB92581ADFA8D10050164B /* Tutorial-1_iPhone5.png in Resources */,
 				67BB92501ADFA8D10050164B /* Contents.json in Resources */,
 				67BB942A1ADFABCD0050164B /* JSQMessages.strings in Resources */,
+				00ABD5721B4860C6004A2FB0 /* launchLogo.png in Resources */,
 				67BB925A1ADFA8D10050164B /* Tutorial-1_iPhone6plus.png in Resources */,
 				67BB92621ADFA8D10050164B /* Tutorial-3.png in Resources */,
 			);
@@ -1925,7 +1891,6 @@
 				67BB94061ADFABCD0050164B /* AFNetworkActivityIndicatorManager.m in Sources */,
 				67BB94461ADFABCD0050164B /* JSQMessagesCollectionViewCellIncoming.m in Sources */,
 				67BB942F1ADFABCD0050164B /* UIImage+JSQMessages.m in Sources */,
-				67BB92E21ADFA8D10050164B /* IntroLoginScreenViewController.m in Sources */,
 				67BB941A1ADFABCD0050164B /* FUISegmentedControl.m in Sources */,
 				67BB94031ADFABCD0050164B /* AFURLRequestSerialization.m in Sources */,
 				67BB94131ADFABCD0050164B /* AMSlideMenuRightTableViewController.m in Sources */,
@@ -1943,24 +1908,19 @@
 				67BB942E1ADFABCD0050164B /* UIDevice+JSQMessages.m in Sources */,
 				67BB943F1ADFABCD0050164B /* JSQMessagesAvatarImage.m in Sources */,
 				67BB94361ADFABCD0050164B /* JSQMessagesMediaViewBubbleImageMasker.m in Sources */,
-				67BB92E11ADFA8D10050164B /* Intro3IDViewController.m in Sources */,
 				67BB943C1ADFABCD0050164B /* JSQLocationMediaItem.m in Sources */,
 				67BB94141ADFABCD0050164B /* UIViewController+AMSlideMenu.m in Sources */,
 				67BB942C1ADFABCD0050164B /* NSString+JSQMessages.m in Sources */,
 				67BB94231ADFABCD0050164B /* UIProgressView+FlatUI.m in Sources */,
 				67BB94001ADFABCD0050164B /* AFNetworkReachabilityManager.m in Sources */,
 				67BB940B1ADFABCD0050164B /* UIProgressView+AFNetworking.m in Sources */,
-				67BB92E01ADFA8D10050164B /* Intro2IDViewController.m in Sources */,
 				67BB94571ADFABCD0050164B /* NavigationController.m in Sources */,
 				67BB94521ADFABCD0050164B /* JSQMessagesTypingIndicatorFooterView.m in Sources */,
 				67BB941F1ADFABCD0050164B /* UIFont+FlatUI.m in Sources */,
 				67BB945A1ADFABCD0050164B /* pushnotification.m in Sources */,
 				67BB945D1ADFABCD0050164B /* utilities.m in Sources */,
 				67BB94261ADFABCD0050164B /* UITabBar+FlatUI.m in Sources */,
-				67BB92E41ADFA8D10050164B /* LoginScreenViewController.m in Sources */,
 				67BB945B1ADFABCD0050164B /* camera.m in Sources */,
-				67BB92DF1ADFA8D10050164B /* Intro1IDViewController.m in Sources */,
-				67BB92E71ADFA8D10050164B /* SignupScreenViewController.m in Sources */,
 				67BB92DE1ADFA8D10050164B /* HomeScreenViewController.m in Sources */,
 				67BB94071ADFABCD0050164B /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				67BB92691ADFA8D10050164B /* ParseManager.m in Sources */,
@@ -1980,6 +1940,7 @@
 				67BB94591ADFABCD0050164B /* messages.m in Sources */,
 				67BB94091ADFABCD0050164B /* UIButton+AFNetworking.m in Sources */,
 				67BB943A1ADFABCD0050164B /* JSQMessagesCollectionViewFlowLayoutInvalidationContext.m in Sources */,
+				00DF1FDD1B439FAE004F056A /* Tutorial.swift in Sources */,
 				67BB940D1ADFABCD0050164B /* UIWebView+AFNetworking.m in Sources */,
 				67BB94241ADFABCD0050164B /* UISlider+FlatUI.m in Sources */,
 				67BB93FD1ADFABCD0050164B /* AFHTTPRequestOperation.m in Sources */,
@@ -2005,11 +1966,12 @@
 				67BB94561ADFABCD0050164B /* NIDropDown.m in Sources */,
 				67BB94381ADFABCD0050164B /* JSQMessagesToolbarButtonFactory.m in Sources */,
 				67BB94221ADFABCD0050164B /* UIPopoverController+FlatUI.m in Sources */,
-				67BB92E31ADFA8D10050164B /* IntroPagesViewController.m in Sources */,
 				67BB92E91ADFA8D10050164B /* SlideMenuLeftTableViewController.m in Sources */,
+				00DF1FE31B43CDA6004F056A /* FacebookLogin.m in Sources */,
 				67BB94171ADFABCD0050164B /* FUIButton.m in Sources */,
 				67BB92EB1ADFA8D10050164B /* SlideMenuViewController.m in Sources */,
 				67BB92D81ADFA8D10050164B /* AddLocationScreenViewController.m in Sources */,
+				00DF1FDF1B43A1C7004F056A /* InstructionView.swift in Sources */,
 				67BB943E1ADFABCD0050164B /* JSQMessage.m in Sources */,
 				67BB92D91ADFA8D10050164B /* CustomChatViewController.m in Sources */,
 				67BB92E61ADFA8D10050164B /* RequestsViewController.m in Sources */,
@@ -2191,8 +2153,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Robin Mehta (GFEX9Y3G7Y)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robin Mehta (GFEX9Y3G7Y)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2212,6 +2175,7 @@
 				GCC_PREFIX_HEADER = "Bounce/bounce-Prefix.pch";
 				INFOPLIST_FILE = "Bounce/bounce-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKCoreKit/build/FBSDKCoreKit.build/Debug-iphoneos/FBSDKCoreKit.build/Objects-normal/arm64",
@@ -2255,7 +2219,9 @@
 					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/xctool/xctool/xctool-tests/TestData/tests-osx-test-bundle",
 				);
 				PRODUCT_NAME = bounce;
-				PROVISIONING_PROFILE = "615d5999-dc0f-40c3-87f3-311dfab4bc83";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "bounce-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
 				WRAPPER_EXTENSION = app;
@@ -2267,8 +2233,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Robin Mehta (GFEX9Y3G7Y)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robin Mehta (GFEX9Y3G7Y)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2288,6 +2255,7 @@
 				GCC_PREFIX_HEADER = "Bounce/bounce-Prefix.pch";
 				INFOPLIST_FILE = "Bounce/bounce-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKCoreKit/build/FBSDKCoreKit.build/Debug-iphoneos/FBSDKCoreKit.build/Objects-normal/arm64",
@@ -2331,7 +2299,8 @@
 					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/xctool/xctool/xctool-tests/TestData/tests-osx-test-bundle",
 				);
 				PRODUCT_NAME = bounce;
-				PROVISIONING_PROFILE = "615d5999-dc0f-40c3-87f3-311dfab4bc83";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "bounce-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
 				WRAPPER_EXTENSION = app;

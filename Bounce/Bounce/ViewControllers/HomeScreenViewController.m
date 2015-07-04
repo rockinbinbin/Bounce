@@ -28,10 +28,11 @@
     
     [super viewDidLoad];
     [[RequestManger getInstance] loadActiveRequest];
-
+    
+    self.navigationController.navigationBar.hidden = NO;
     self.repliesButton.layer.cornerRadius = 4;
     self.repliesButton.clipsToBounds = YES;
-    self.repliesButton.backgroundColor = DEFAULT_COLOR;
+    self.repliesButton.backgroundColor = BounceRed;
     self.repliesView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
     // round number of message label
     [self.numOfMessagesLabel setFont:[UIFont fontWithName: @"Trebuchet MS" size: 16.0f]];
@@ -40,7 +41,7 @@
     self.numOfMessagesLabel.backgroundColor = [UIColor redColor];
     
     [[Utility getInstance] addRoundedBorderToView:self.iconView];
-    self.iconView.backgroundColor = DEFAULT_COLOR;
+    self.iconView.backgroundColor = BounceRed;
     
     self.navigationItem.title = @"bounce";
     [[self navigationController] setNavigationBarHidden:NO animated:YES];

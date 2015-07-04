@@ -14,6 +14,7 @@
 #define PARSE_CLIENT_KEY @"JvcX34MRd7rREhmtjFZrcU8mxqmRDFlbyC0yXzAv"
 
 #define MAKE_A_WEAKSELF     __weak typeof(self) weakSelf = self
+#define MAKE_A_STRONGSELF   __strong typeof(weakSelf) strongSelf = weakSelf
 
 #pragma mark - General Constants
 #define IS_IOS8 ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0)
@@ -26,7 +27,12 @@
 #define IS_IPHONE6PLUS ([[UIScreen mainScreen] bounds].size.height == 736)
 #define IS_IPAD ([[UIScreen mainScreen] bounds].size.height > 736)
 // Colors
-#define DEFAULT_COLOR       [UIColor colorWithRed:230.0/250.0 green:89.0/250.0 blue:89.0/250.0 alpha:1.0]
+#define BounceRed       [UIColor colorWithRed:255/255.0 green:127/255.0 blue:127/255.0 alpha:1.0] // #FF7F7F
+#define BounceGreen     [UIColor colorWithRed:202/255.0 green: 231/255.0 blue:185/255.0 alpha:1.0] // #CAE789
+#define BounceYellow    [UIColor colorWithRed:234/255.0 green: 222/255.0 blue:138/255.0 alpha:1.0] //#F3DE8A
+#define BounceBlue      [UIColor colorWithRed:115/255.0 green:127/255.0 blue:154/255.0 alpha:1.0] //#7E7F9A
+#define BounceGrey      [UIColor colorWithRed:151/255.0 green:167/255.0 blue:179/255.0 alpha:1.0] //#97A7B3
+
 #define LIGHT_BLUE_COLOR    [UIColor colorWithRed:120.0/250.0 green:175.0/250.0 blue:212.0/250.0 alpha:1.0]
 #define LIGHT_SELECT_GRAY_COLOR    [UIColor colorWithRed:224.0/255.0 green:224.0/255.0 blue:224.0/255.0 alpha:1.0f]
 

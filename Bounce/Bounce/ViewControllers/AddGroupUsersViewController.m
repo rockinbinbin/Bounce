@@ -46,7 +46,7 @@
                                        target:self
                                        action:@selector(doneButtonClicked)];
         
-        doneButton.tintColor = DEFAULT_COLOR;
+        doneButton.tintColor = BounceRed;
         
         self.navigationItem.rightBarButtonItem = doneButton;
         
@@ -67,7 +67,7 @@
                                    style:UIBarButtonItemStylePlain
                                    target:self
                                    action:@selector(saveButtonClicked)];
-    doneButton.tintColor = DEFAULT_COLOR;
+    doneButton.tintColor = BounceRed;
     self.navigationItem.rightBarButtonItem = doneButton;
     
     // create checked array
@@ -182,7 +182,7 @@
     cell.groupDistanceLabel.hidden = YES;
     
     cell.circularView.layer.borderWidth = 1.0f;
-    cell.circularView.layer.borderColor = DEFAULT_COLOR.CGColor;
+    cell.circularView.layer.borderColor = BounceRed.CGColor;
 
     cell.circularViewWidth.constant = 40;
     cell.circularViewHeight.constant = 40;

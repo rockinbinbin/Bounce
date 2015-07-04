@@ -10,11 +10,11 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
-#import "IntroPagesViewController.h"
 #import "SlideMenuViewController.h"
 #import "ParseManager.h"
 #import "RequestsViewController.h"
 #import "CustomChatViewController.h"
+#import "bounce-Swift.h"
 
 @implementation AppDelegate
 {
@@ -27,29 +27,30 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // set parse keys
     [Parse setApplicationId:PARSE_APP_ID clientKey:PARSE_CLIENT_KEY];
     [PFFacebookUtils initializeFacebook];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [self registerRemoteNotification:application];
-    // Set the appearane of the application segment controls
+
     [self setSegmentControlAppearance];
     [self setTableViewAppearance];
     UINavigationController *navigationController;
     
-    // if user looged in skip the introduction screens and move to home screen
     if ([[ParseManager getInstance] isThereLoggedUser]) {
         NSString *requestId = [launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey] objectForKey:OBJECT_ID];
         if (requestId) {
             [self openRequestViewController:requestId];
-        }else{
+        }
+        else {
             mainViewController = [[SlideMenuViewController alloc] init];
         }
         navigationController  = [[UINavigationController alloc] initWithRootViewController:mainViewController];
-
-    }else{
-        IntroPagesViewController* introPagesViewController = [[IntroPagesViewController alloc] initWithNibName:@"IntroPagesViewController" bundle:nil];
-        navigationController  = [[UINavigationController alloc] initWithRootViewController:introPagesViewController];
+    }
+    else {
+        //IntroPagesViewController* introPagesViewController = [[IntroPagesViewController alloc] initWithNibName:@"IntroPagesViewController" bundle:nil];
+        Tutorial* tutorial = [[Tutorial alloc]init];
+        
+        navigationController  = [[UINavigationController alloc] initWithRootViewController:tutorial];
     }
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = navigationController;
@@ -222,7 +223,7 @@
     @try {
         [[UISegmentedControl appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateSelected];
         [[UISegmentedControl appearance] setBackgroundColor:[UIColor whiteColor]];
-        [[UISegmentedControl appearance] setTintColor:DEFAULT_COLOR];
+        [[UISegmentedControl appearance] setTintColor:BounceRed];
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
