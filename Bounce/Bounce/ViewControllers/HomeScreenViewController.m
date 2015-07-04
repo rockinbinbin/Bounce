@@ -46,7 +46,15 @@
     //[[Utility getInstance] addRoundedBorderToView:self.iconView];
     //self.iconView.backgroundColor = BounceRed;
     
-    self.navigationItem.title = @"bounce";
+    UILabel *navLabel = [[UILabel alloc]init];
+    navLabel.textColor = [UIColor whiteColor];
+    //navLabel.font = [UIFont boldSystemFontOfSize: 20.0f];
+    navLabel.backgroundColor = [UIColor clearColor];
+    navLabel.textAlignment = NSTextAlignmentCenter;
+    navLabel.font = [UIFont fontWithName:@"Quicksand-Light" size:20.0f];
+    self.navigationItem.titleView = navLabel;
+    navLabel.text = @"bounce";
+    [navLabel sizeToFit];
 
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
     self.location_manager = [[CLLocationManager alloc] init];

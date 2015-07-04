@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		000234901B48823B000B7630 /* launchLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0002348F1B48823B000B7630 /* launchLogo.png */; };
+		000234921B4885B6000B7630 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 000234911B4885B6000B7630 /* Fonts */; };
+		000234941B488F67000B7630 /* Quicksand_Dash.otf in Resources */ = {isa = PBXBuildFile; fileRef = 000234931B488F67000B7630 /* Quicksand_Dash.otf */; };
+		000234961B488F7E000B7630 /* Quicksand-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 000234951B488F7E000B7630 /* Quicksand-Bold.otf */; };
+		000234981B488F89000B7630 /* Quicksand-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 000234971B488F89000B7630 /* Quicksand-BoldItalic.otf */; };
+		0002349A1B488F8E000B7630 /* Quicksand-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 000234991B488F8E000B7630 /* Quicksand-Italic.otf */; };
+		0002349C1B488F93000B7630 /* Quicksand-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0002349B1B488F93000B7630 /* Quicksand-Light.otf */; };
+		0002349E1B488F98000B7630 /* Quicksand-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0002349D1B488F98000B7630 /* Quicksand-LightItalic.otf */; };
+		000234A01B488F9F000B7630 /* Quicksand-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0002349F1B488F9F000B7630 /* Quicksand-Regular.otf */; };
 		001C737B1B0B0E3C008D7058 /* Terms_of_Use_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001C73791B0B0E3C008D7058 /* Terms_of_Use_ViewController.m */; };
 		001C737C1B0B0E3C008D7058 /* Terms_of_Use_ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 001C737A1B0B0E3C008D7058 /* Terms_of_Use_ViewController.xib */; };
 		001C73801B0B0E4D008D7058 /* Privacy_Policy_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001C737E1B0B0E4D008D7058 /* Privacy_Policy_ViewController.m */; };
@@ -211,6 +219,14 @@
 
 /* Begin PBXFileReference section */
 		0002348F1B48823B000B7630 /* launchLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchLogo.png; sourceTree = "<group>"; };
+		000234911B4885B6000B7630 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = Bounce/ViewControllers/Fonts; sourceTree = "<group>"; };
+		000234931B488F67000B7630 /* Quicksand_Dash.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Quicksand_Dash.otf; path = Bounce/ViewControllers/Fonts/Quicksand_Dash.otf; sourceTree = "<group>"; };
+		000234951B488F7E000B7630 /* Quicksand-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Bold.otf"; path = "Bounce/ViewControllers/Fonts/Quicksand-Bold.otf"; sourceTree = "<group>"; };
+		000234971B488F89000B7630 /* Quicksand-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-BoldItalic.otf"; path = "Bounce/ViewControllers/Fonts/Quicksand-BoldItalic.otf"; sourceTree = "<group>"; };
+		000234991B488F8E000B7630 /* Quicksand-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Italic.otf"; path = "Bounce/ViewControllers/Fonts/Quicksand-Italic.otf"; sourceTree = "<group>"; };
+		0002349B1B488F93000B7630 /* Quicksand-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Light.otf"; path = "Bounce/ViewControllers/Fonts/Quicksand-Light.otf"; sourceTree = "<group>"; };
+		0002349D1B488F98000B7630 /* Quicksand-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-LightItalic.otf"; path = "Bounce/ViewControllers/Fonts/Quicksand-LightItalic.otf"; sourceTree = "<group>"; };
+		0002349F1B488F9F000B7630 /* Quicksand-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Regular.otf"; path = "Bounce/ViewControllers/Fonts/Quicksand-Regular.otf"; sourceTree = "<group>"; };
 		001C73781B0B0E3C008D7058 /* Terms_of_Use_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Terms_of_Use_ViewController.h; path = "SlideMenu /Terms_of_Use_ViewController.h"; sourceTree = "<group>"; };
 		001C73791B0B0E3C008D7058 /* Terms_of_Use_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Terms_of_Use_ViewController.m; path = "SlideMenu /Terms_of_Use_ViewController.m"; sourceTree = "<group>"; };
 		001C737A1B0B0E3C008D7058 /* Terms_of_Use_ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Terms_of_Use_ViewController.xib; path = "../ViewControllers/SlideMenu /Terms_of_Use_ViewController.xib"; sourceTree = "<group>"; };
@@ -1032,6 +1048,14 @@
 		00CEE3C5199434E700F40C12 = {
 			isa = PBXGroup;
 			children = (
+				0002349F1B488F9F000B7630 /* Quicksand-Regular.otf */,
+				0002349D1B488F98000B7630 /* Quicksand-LightItalic.otf */,
+				0002349B1B488F93000B7630 /* Quicksand-Light.otf */,
+				000234991B488F8E000B7630 /* Quicksand-Italic.otf */,
+				000234971B488F89000B7630 /* Quicksand-BoldItalic.otf */,
+				000234951B488F7E000B7630 /* Quicksand-Bold.otf */,
+				000234931B488F67000B7630 /* Quicksand_Dash.otf */,
+				000234911B4885B6000B7630 /* Fonts */,
 				00ABD56F1B4846CC004A2FB0 /* LaunchScreen.storyboard */,
 				0002348F1B48823B000B7630 /* launchLogo.png */,
 				00DF1FE01B43A8CF004F056A /* bounce-Bridging-Header.h */,
@@ -1860,6 +1884,14 @@
 				001C737C1B0B0E3C008D7058 /* Terms_of_Use_ViewController.xib in Resources */,
 				67BB925F1ADFA8D10050164B /* Tutorial-2_iPhone6.png in Resources */,
 				67BB925B1ADFA8D10050164B /* Contents.json in Resources */,
+				000234921B4885B6000B7630 /* Fonts in Resources */,
+				000234941B488F67000B7630 /* Quicksand_Dash.otf in Resources */,
+				000234961B488F7E000B7630 /* Quicksand-Bold.otf in Resources */,
+				000234981B488F89000B7630 /* Quicksand-BoldItalic.otf in Resources */,
+				0002349A1B488F8E000B7630 /* Quicksand-Italic.otf in Resources */,
+				0002349C1B488F93000B7630 /* Quicksand-Light.otf in Resources */,
+				0002349E1B488F98000B7630 /* Quicksand-LightItalic.otf in Resources */,
+				000234A01B488F9F000B7630 /* Quicksand-Regular.otf in Resources */,
 				67BB92EC1ADFA8D10050164B /* SlideMenuViewController.xib in Resources */,
 				67BB92591ADFA8D10050164B /* Tutorial-1_iPhone6.png in Resources */,
 				67BB92581ADFA8D10050164B /* Tutorial-1_iPhone5.png in Resources */,
