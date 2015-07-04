@@ -119,7 +119,7 @@
                 [ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome %@!", signUpUser[PF_USER_FULLNAME]]];
                 [weakSelf dismissViewControllerAnimated:YES completion:nil];
                 
-                HomeScreenViewController* homeScreenViewController = [[HomeScreenViewController alloc] initWithNibName:@"HomeScreenViewController" bundle:nil];
+                HomeScreenViewController* homeScreenViewController = [[HomeScreenViewController alloc] init];
                 [weakSelf.navigationController pushViewController:homeScreenViewController animated:YES];
                 
             } else {

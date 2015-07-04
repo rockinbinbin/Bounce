@@ -184,7 +184,7 @@
             
         case Home_section: {
             if (!homeNavigationViewController) {
-                rootVC = [[HomeScreenViewController alloc] initWithNibName:@"HomeScreenViewController" bundle:nil];
+                rootVC = [[HomeScreenViewController alloc] init];
                 homeNavigationViewController = [[UINavigationController alloc] initWithRootViewController:rootVC];
             }
             [self openContentNavigationController:homeNavigationViewController];

@@ -30,6 +30,9 @@
     [[RequestManger getInstance] loadActiveRequest];
     
     self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.navigationBar.barTintColor = BounceRed;
+    self.navigationController.navigationBar.translucent = NO;
+    
     self.repliesButton.layer.cornerRadius = 4;
     self.repliesButton.clipsToBounds = YES;
     self.repliesButton.backgroundColor = BounceRed;
@@ -40,10 +43,11 @@
     self.numOfMessagesLabel.layer.masksToBounds = YES;
     self.numOfMessagesLabel.backgroundColor = [UIColor redColor];
     
-    [[Utility getInstance] addRoundedBorderToView:self.iconView];
-    self.iconView.backgroundColor = BounceRed;
+    //[[Utility getInstance] addRoundedBorderToView:self.iconView];
+    //self.iconView.backgroundColor = BounceRed;
     
     self.navigationItem.title = @"bounce";
+
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
     self.location_manager = [[CLLocationManager alloc] init];
     if (IS_IOS8){
@@ -64,7 +68,6 @@
 
 -(void) viewWillAppear:(BOOL)animated{
     [[RequestManger getInstance] setRequestManagerDelegate:self];
-    [[self navigationController] setNavigationBarHidden:YES animated:YES];
     if ([[RequestManger getInstance] hasActiveRequest]) {
         [self requestCreated];
     }
