@@ -12,7 +12,7 @@
 #import <Parse/Parse.h>
 #import "RequestManger.h"
 
-@interface HomeScreenViewController : UIViewController <CLLocationManagerDelegate, RequestManagerDelegate>
+@interface HomeScreenViewController : UIViewController <CLLocationManagerDelegate, RequestManagerDelegate, MKOverlay>
 
 @property (strong, nonatomic) CLLocationManager *location_manager;
 @property (weak, nonatomic) IBOutlet UILabel *timeLeftLabel;

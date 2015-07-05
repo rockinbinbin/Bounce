@@ -31,14 +31,25 @@
     
     self.map = [[MKMapView alloc] initWithFrame:self.view.frame];
     [self.view addSubview:self.map];
+
+    
+    UIView *bottomView = [[UIView alloc] init];
+    bottomView.frame = CGRectMake(0, self.view.frame.size.height - self.view.frame.size.height/3.5, self.view.frame.size.width, self.view.frame.size.height/3.5);
+    bottomView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:bottomView];
+    
+    NSArray *itemArray = [NSArray arrayWithObjects: @"All genders", @"Gender matching", nil];
+    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:itemArray];
+    segmentedControl.tintColor = BounceSeaGreen;
+    segmentedControl.frame = CGRectMake(50, 20, self.view.frame.size.width - 100, 30);
+    [segmentedControl addTarget:self action:@selector(MySegmentControlAction:) forControlEvents: UIControlEventValueChanged];
+    segmentedControl.selectedSegmentIndex = 1;
+    [bottomView addSubview:segmentedControl];
     
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.barTintColor = BounceRed;
     self.navigationController.navigationBar.translucent = NO;
     
-    self.repliesButton.layer.cornerRadius = 4;
-    self.repliesButton.clipsToBounds = YES;
-    self.repliesButton.backgroundColor = BounceRed;
     self.repliesView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
     // round number of message label
     [self.numOfMessagesLabel setFont:[UIFont fontWithName: @"Quicksand-Regular" size: 16.0f]];
@@ -48,6 +59,18 @@
     
     //[[Utility getInstance] addRoundedBorderToView:self.iconView];
     //self.iconView.backgroundColor = BounceRed;
+    
+    
+    CGRect frame = CGRectMake(60, 80, 250.0, 10.0);
+    UISlider *slider = [[UISlider alloc] initWithFrame:frame];
+    [slider addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventValueChanged];
+    [slider setBackgroundColor: [UIColor clearColor]];
+    slider.minimumValue = 5;
+    slider.maximumValue = 120;
+    slider.continuous = YES;
+    slider.value = 25.0;
+    [slider setMinimumTrackTintColor:BounceSeaGreen];
+    [bottomView addSubview:slider];
     
     UILabel *navLabel = [[UILabel alloc]init];
     navLabel.textColor = [UIColor whiteColor];
@@ -76,6 +99,25 @@
     [self setUserTrackingMode];
     [self hideReplyView];
 }
+
+- (void)MySegmentControlAction:(UISegmentedControl *)segment
+{
+    if(segment.selectedSegmentIndex == 0)
+    {
+        NSLog(@"All genders selected");
+    }
+    else if (segment.selectedSegmentIndex == 1) {
+        NSLog(@"Gender matching selected");
+    }
+}
+
+-(void)sliderAction:(id)sender
+{
+    UISlider *slider = (UISlider*)sender;
+    float value = slider.value;
+    //-- Do further actions
+}
+
 
 -(void) viewWillAppear:(BOOL)animated{
     [[RequestManger getInstance] setRequestManagerDelegate:self];
@@ -136,7 +178,6 @@
     MKCoordinateRegion region;
     region.center = CLLocationCoordinate2DMake(self.location_manager.location.coordinate.latitude,
                                                self.location_manager.location.coordinate.longitude);
-    
     MKCoordinateSpan span;
     span.latitudeDelta = 0.1;
     span.longitudeDelta = 0.1;
@@ -252,4 +293,8 @@
     [self.numOfMessagesLabel setHidden:YES];
     [self.getHomeButton setHidden:NO];
 }
+
+#pragma mark - MKOverlay Delegate
+
+
 @end
