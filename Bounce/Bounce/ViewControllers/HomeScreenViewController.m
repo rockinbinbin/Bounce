@@ -29,6 +29,9 @@
     [super viewDidLoad];
     [[RequestManger getInstance] loadActiveRequest];
     
+    self.map = [[MKMapView alloc] initWithFrame:self.view.frame];
+    [self.view addSubview:self.map];
+    
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.barTintColor = BounceRed;
     self.navigationController.navigationBar.translucent = NO;
@@ -38,7 +41,7 @@
     self.repliesButton.backgroundColor = BounceRed;
     self.repliesView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
     // round number of message label
-    [self.numOfMessagesLabel setFont:[UIFont fontWithName: @"Trebuchet MS" size: 16.0f]];
+    [self.numOfMessagesLabel setFont:[UIFont fontWithName: @"Quicksand-Regular" size: 16.0f]];
     self.numOfMessagesLabel.layer.cornerRadius = self.numOfMessagesLabel.frame.size.height/2;
     self.numOfMessagesLabel.layer.masksToBounds = YES;
     self.numOfMessagesLabel.backgroundColor = [UIColor redColor];
@@ -51,7 +54,7 @@
     //navLabel.font = [UIFont boldSystemFontOfSize: 20.0f];
     navLabel.backgroundColor = [UIColor clearColor];
     navLabel.textAlignment = NSTextAlignmentCenter;
-    navLabel.font = [UIFont fontWithName:@"Quicksand-Light" size:20.0f];
+    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:28.0f];
     self.navigationItem.titleView = navLabel;
     navLabel.text = @"bounce";
     [navLabel sizeToFit];

@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLeftLabel;
 @property (weak, nonatomic) IBOutlet UIButton *repliesButton;
 @property (weak, nonatomic) IBOutlet UIButton *endRequestButton;
-@property (weak, nonatomic) IBOutlet MKMapView *map;
+@property (strong, nonatomic) IBOutlet MKMapView *map; // changed from weak to strong
 @property (weak, nonatomic) IBOutlet UIView *repliesView;
 @property (weak, nonatomic) IBOutlet UIView *iconView;
 @property (strong, nonatomic) IBOutlet UILabel *numOfMessagesLabel;
