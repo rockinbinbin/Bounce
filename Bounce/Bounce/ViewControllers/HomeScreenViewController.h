@@ -15,14 +15,15 @@
 @interface HomeScreenViewController : UIViewController <CLLocationManagerDelegate, RequestManagerDelegate>
 
 @property (strong, nonatomic) CLLocationManager *location_manager;
-@property (weak, nonatomic) IBOutlet UILabel *timeLeftLabel;
-@property (weak, nonatomic) IBOutlet UIButton *repliesButton;
-@property (weak, nonatomic) IBOutlet UIButton *endRequestButton;
-@property (weak, nonatomic) IBOutlet MKMapView *map;
-@property (weak, nonatomic) IBOutlet UIView *repliesView;
+@property (strong, nonatomic) IBOutlet UILabel *timeLeftLabel;
+@property (strong, nonatomic) IBOutlet UIButton *repliesButton;
+@property (strong, nonatomic) IBOutlet UIButton *endRequestButton;
+@property (strong, nonatomic) IBOutlet MKMapView *map; // changed from weak to strong
+@property (strong, nonatomic) IBOutlet UIView *repliesView;
+@property (strong, nonatomic) UIView *bottomView;
 @property (weak, nonatomic) IBOutlet UIView *iconView;
 @property (strong, nonatomic) IBOutlet UILabel *numOfMessagesLabel;
-@property (weak, nonatomic) IBOutlet UIButton *getHomeButton;
+@property (strong, nonatomic) IBOutlet UIButton *getHomeButton;
 @property (strong, nonatomic) UIView* roundedView;
 - (IBAction)endRequestButtonClicked:(id)sender;
 - (IBAction)repliesButtonClicked:(id)sender;
@@ -30,5 +31,8 @@
 - (IBAction)privateChatButtonClicked:(id)sender;
 - (IBAction)groupsChatButtonClicked:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *leftMenuButton;
+
+@property (weak, nonatomic) NSString *genderMatching;
+@property (nonatomic) float timeAllocated;
 
 @end

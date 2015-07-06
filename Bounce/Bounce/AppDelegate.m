@@ -26,7 +26,7 @@
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+{    
     [Parse setApplicationId:PARSE_APP_ID clientKey:PARSE_CLIENT_KEY];
     [PFFacebookUtils initializeFacebook];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];

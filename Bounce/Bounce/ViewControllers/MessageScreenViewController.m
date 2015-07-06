@@ -21,34 +21,31 @@
 
 - (void)updateViewConstraints {
     [super updateViewConstraints];
-    if (IS_IPAD) {
-        self.verticalSpaceBetweenTableAndGenderButton.constant = 200;
-        self.bottomSpaceToButtons.constant = 180;
-    }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSLog(@"TIME ALLOCATED: ");
+    NSLog(@"%f", self.timeAllocated);
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(incomingNotification:) name:@"SelectedStringNotification" object:nil];
-    _distanceSelectButton.backgroundColor = LIGHT_SELECT_GRAY_COLOR;
-    _durationSelectButton.backgroundColor = LIGHT_SELECT_GRAY_COLOR;
     
-    self.selectedGroups = [NSMutableArray array];
-    self.location_manager = [[CLLocationManager alloc] init];
+    UILabel *navLabel = [[UILabel alloc]init];
+    navLabel.textColor = [UIColor whiteColor];
+    navLabel.backgroundColor = [UIColor clearColor];
+    navLabel.textAlignment = NSTextAlignmentCenter;
+    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:25.0f];
+    self.navigationItem.titleView = navLabel;
+    navLabel.text = @"Where's home?";
+    [navLabel sizeToFit];
     
-    [self addArrowImageToButton:self.distanceSelectButton];
-    [self addArrowImageToButton:self.durationSelectButton];
-}
-
--(void) addArrowImageToButton:(UIButton*) selectButton{
-    UIImageView *downArrow = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"common_down_arrow"]];
-    downArrow.contentMode = UIViewContentModeScaleToFill;
-    downArrow.frame = CGRectMake(170, 16, 10, 10);
-    downArrow.contentMode=UIViewContentModeScaleAspectFill;
-    [selectButton addSubview:downArrow];
-}
-
-- (void)viewWillAppear:(BOOL)animated{
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.view addSubview:self.tableView];
+    
+    
     [self.navigationController setNavigationBarHidden:NO];
     [self disableSlidePanGestureForLeftMenu];
     // background
@@ -56,16 +53,17 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self setBarButtonItemLeft:@"common_back_button"];
-    self.navigationItem.title = @"contact nearby";
-    UIBarButtonItem *sendButton = [[UIBarButtonItem alloc]
-                                   initWithTitle:@"Send"
-                                   style:UIBarButtonItemStylePlain
-                                   target:self
-                                   action:@selector(sendButtonClicked)];
-    sendButton.tintColor = BounceRed;
-    self.navigationItem.rightBarButtonItem = sendButton;
+    UIImage *sendImage = [UIImage imageNamed:@"sendButton"];
     
-    @try {
+    UIBarButtonItem *sendButton = [[UIBarButtonItem alloc] initWithImage:[sendImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(sendButtonClicked)];
+    self.navigationItem.rightBarButtonItem = sendButton;
+
+    self.selectedGroups = [NSMutableArray array];
+    self.location_manager = [[CLLocationManager alloc] init];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+        @try {
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
             [[Utility getInstance] showProgressHudWithMessage:@"Loading..." withView:self.view];
             [[ParseManager getInstance] setGetUserGroupsdelegate:self];
@@ -79,10 +77,6 @@
 }
 
 - (void)viewDidUnload {
-    _distanceSelectButton = nil;
-    _durationSelectButton = nil;
-    [self setDistanceSelectButton:nil];
-    [self setDurationSelectButton:nil];
     [super viewDidUnload];
 }
 
@@ -111,20 +105,8 @@
     return barButtonItem;
 }
 
--(void)sendButtonClicked{
-    NSString *RadiusString = [self.distance stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+-(void)sendButtonClicked {
     
-    NSString *TimeString = [self.duration stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
-    // INPUT ERROR MESSAGES
-    if ([RadiusString length] == 0 || [TimeString length] == 0) {
-        [[Utility getInstance] showAlertWithMessage:@"Please Enter a radius and time value!" andTitle:@"Oops!"];
-    }
-    else {
-        
-        int radius = [self getNumberInString:RadiusString];
-        int time = [self getNumberInString:TimeString];
-        
         for (int i = 0; i < self.selectedCells.count; i++) {
             if ([[self.selectedCells objectAtIndex:i] boolValue]) { // if selected
                 [self.selectedGroups addObject:[self.groups objectAtIndex:i]];
@@ -132,16 +114,15 @@
         }
         
         if ([self.selectedGroups count]) {
-            [self creatMessageRequestToSelectedGroup:self.selectedGroups withRadius:radius andTimeAllocated:time];
+            [self creatMessageRequestToSelectedGroup:self.selectedGroups];
         }
         else {
-            UIAlertView *zerolength = [[UIAlertView alloc] initWithTitle:@"yo!"
-                                                                 message:@"Please check at least one group!"
+            UIAlertView *zerolength = [[UIAlertView alloc] initWithTitle:@"Oops!"
+                                                                 message:@"Please select some homepoints!"
                                                                 delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [zerolength show];
         }
-        
-    }
+    
 }
 
 -(void)backButtonClicked{
@@ -155,20 +136,13 @@
 }
 
 #pragma mark -
-- (void) creatMessageRequestToSelectedGroup:(NSArray *) selectedGroups withRadius:(int) radius andTimeAllocated:(int) timeAllocated
-{
+- (void) creatMessageRequestToSelectedGroup:(NSArray *) selectedGroups {
     @try {
-        NSString *genderMatching;
-        if ([self.groupGenderSegment selectedSegmentIndex] == 0) {
-            genderMatching = ALL_GENDER;
-        } else if ([self.groupGenderSegment selectedSegmentIndex] == 1) {
-            PFUser* u = [PFUser currentUser];
-            genderMatching = u[PF_GENDER];
-        }
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+            int radius = 500; // hardcoded radius
             [[Utility getInstance] showProgressHudWithMessage:COMMON_HUD_SEND_MESSAGE];
             [[RequestManger getInstance] setCreateRequestDelegate:self];
-            [[RequestManger getInstance] createrequestToGroups:self.selectedGroups andGender:genderMatching withinTime:timeAllocated andInRadius:radius];
+            [[RequestManger getInstance] createrequestToGroups:self.selectedGroups andGender:self.genderMatching withinTime:self.timeAllocated andInRadius:radius];
         }
     }
     @catch (NSException *exception) {
@@ -211,14 +185,6 @@
 
 - (IBAction)cancelButtonPressed{
     [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (IBAction)genderSegmentClicked:(id)sender {
-    if ([self.groupGenderSegment selectedSegmentIndex] == 0) {
-        NSLog(@"all genders!");
-    } else if ([self.groupGenderSegment selectedSegmentIndex] == 1) {
-        NSLog(@"same genders!");
-    }
 }
 
 #pragma mark - TableView Datasource
@@ -295,49 +261,8 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 80;
+    return 150;
 }
-
-- (void) niDropDownDelegateMethod: (NIDropDown *) sender {
-    [self rel];
-}
-
-
--(void)rel{
-    //    [dropDown release];
-    _dropDown = nil;
-}
-
-- (IBAction)distanceSelectButtonClicked:(id)sender{
-    self.isDistanceSent = true;
-    NSArray * arr = [[NSArray alloc] init];
-    arr = [NSArray arrayWithObjects:@"People within 100 feets", @"People within 300 feets", @"People within 500 feets",nil];
-    if(_dropDown == nil) {
-        CGFloat f = 60;
-        _dropDown = [[NIDropDown alloc]showDropDown:sender withHeight:&f andData:arr images:nil direction:@"down"];
-        _dropDown.delegate = self;
-    }
-    else {
-        [_dropDown hideDropDown:sender];
-        [self rel];
-    }
-}
-
-- (IBAction)durationSelectButtonClicked:(id)sender{
-    self.isDistanceSent = false;
-    NSArray * arr = [[NSArray alloc] init];
-    arr = [NSArray arrayWithObjects:@"Expires in 15 minutes", @"Expires in 20 minutes", @"Expires in 60 minutes", nil];
-    if(_dropDown == nil) {
-        CGFloat f = 60;
-        _dropDown = [[NIDropDown alloc]showDropDown:sender withHeight:&f andData:arr images:nil direction:@"down"];
-        _dropDown.delegate = self;
-    }
-    else {
-        [_dropDown hideDropDown:sender];
-        [self rel];
-    }
-}
-
 
 #pragma mark - Parse LoadGroups delegate
 - (void)didLoadUserGroups:(NSArray *)groups WithError:(NSError *)error

@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000234901B48823B000B7630 /* launchLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0002348F1B48823B000B7630 /* launchLogo.png */; };
+		000234921B4885B6000B7630 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 000234911B4885B6000B7630 /* Fonts */; };
+		000234941B488F67000B7630 /* Quicksand_Dash.otf in Resources */ = {isa = PBXBuildFile; fileRef = 000234931B488F67000B7630 /* Quicksand_Dash.otf */; };
+		000234961B488F7E000B7630 /* Quicksand-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 000234951B488F7E000B7630 /* Quicksand-Bold.otf */; };
+		000234981B488F89000B7630 /* Quicksand-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 000234971B488F89000B7630 /* Quicksand-BoldItalic.otf */; };
+		0002349A1B488F8E000B7630 /* Quicksand-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 000234991B488F8E000B7630 /* Quicksand-Italic.otf */; };
+		0002349C1B488F93000B7630 /* Quicksand-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0002349B1B488F93000B7630 /* Quicksand-Light.otf */; };
+		0002349E1B488F98000B7630 /* Quicksand-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0002349D1B488F98000B7630 /* Quicksand-LightItalic.otf */; };
+		000234A01B488F9F000B7630 /* Quicksand-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0002349F1B488F9F000B7630 /* Quicksand-Regular.otf */; };
 		001C737B1B0B0E3C008D7058 /* Terms_of_Use_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001C73791B0B0E3C008D7058 /* Terms_of_Use_ViewController.m */; };
 		001C737C1B0B0E3C008D7058 /* Terms_of_Use_ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 001C737A1B0B0E3C008D7058 /* Terms_of_Use_ViewController.xib */; };
 		001C73801B0B0E4D008D7058 /* Privacy_Policy_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001C737E1B0B0E4D008D7058 /* Privacy_Policy_ViewController.m */; };
@@ -21,8 +30,7 @@
 		007CF29E1AA3E532007D7C33 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF29D1AA3E532007D7C33 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		00ABD56A1B478C2D004A2FB0 /* UIView+KGNAutoLayout in Resources */ = {isa = PBXBuildFile; fileRef = 00ABD5691B478C2D004A2FB0 /* UIView+KGNAutoLayout */; };
 		00ABD56E1B479C1B004A2FB0 /* FinishedIcon in Resources */ = {isa = PBXBuildFile; fileRef = 00ABD56D1B479C1B004A2FB0 /* FinishedIcon */; };
-		00ABD5701B4846CC004A2FB0 /* StoryboardLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00ABD56F1B4846CC004A2FB0 /* StoryboardLaunchScreen.storyboard */; };
-		00ABD5721B4860C6004A2FB0 /* launchLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 00ABD5711B4860C6004A2FB0 /* launchLogo.png */; };
+		00ABD5701B4846CC004A2FB0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00ABD56F1B4846CC004A2FB0 /* LaunchScreen.storyboard */; };
 		00CEE3D2199434E700F40C12 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE3D1199434E700F40C12 /* Foundation.framework */; };
 		00CEE3D4199434E700F40C12 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE3D3199434E700F40C12 /* CoreGraphics.framework */; };
 		00CEE3D6199434E700F40C12 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE3D5199434E700F40C12 /* UIKit.framework */; };
@@ -58,18 +66,13 @@
 		67BB92571ADFA8D10050164B /* Tutorial-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 67BB90DB1ADFA8D00050164B /* Tutorial-1@2x.png */; };
 		67BB92581ADFA8D10050164B /* Tutorial-1_iPhone5.png in Resources */ = {isa = PBXBuildFile; fileRef = 67BB90DC1ADFA8D00050164B /* Tutorial-1_iPhone5.png */; };
 		67BB92591ADFA8D10050164B /* Tutorial-1_iPhone6.png in Resources */ = {isa = PBXBuildFile; fileRef = 67BB90DD1ADFA8D00050164B /* Tutorial-1_iPhone6.png */; };
-		67BB925A1ADFA8D10050164B /* Tutorial-1_iPhone6plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 67BB90DE1ADFA8D00050164B /* Tutorial-1_iPhone6plus.png */; };
-		67BB925B1ADFA8D10050164B /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = 67BB90E01ADFA8D00050164B /* Contents.json */; };
 		67BB925C1ADFA8D10050164B /* Tutorial-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 67BB90E11ADFA8D00050164B /* Tutorial-2.png */; };
 		67BB925D1ADFA8D10050164B /* Tutorial-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 67BB90E21ADFA8D00050164B /* Tutorial-2@2x.png */; };
 		67BB925E1ADFA8D10050164B /* Tutorial-2_iPhone5.png in Resources */ = {isa = PBXBuildFile; fileRef = 67BB90E31ADFA8D00050164B /* Tutorial-2_iPhone5.png */; };
 		67BB925F1ADFA8D10050164B /* Tutorial-2_iPhone6.png in Resources */ = {isa = PBXBuildFile; fileRef = 67BB90E41ADFA8D00050164B /* Tutorial-2_iPhone6.png */; };
 		67BB92601ADFA8D10050164B /* Tutorial-2_iPhone6plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 67BB90E51ADFA8D00050164B /* Tutorial-2_iPhone6plus.png */; };
-		67BB92611ADFA8D10050164B /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = 67BB90E71ADFA8D00050164B /* Contents.json */; };
-		67BB92621ADFA8D10050164B /* Tutorial-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 67BB90E81ADFA8D00050164B /* Tutorial-3.png */; };
 		67BB92631ADFA8D10050164B /* Tutorial-3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 67BB90E91ADFA8D00050164B /* Tutorial-3@2x.png */; };
 		67BB92641ADFA8D10050164B /* Tutorial-3_iPhone5.png in Resources */ = {isa = PBXBuildFile; fileRef = 67BB90EA1ADFA8D00050164B /* Tutorial-3_iPhone5.png */; };
-		67BB92651ADFA8D10050164B /* Tutorial-3_iPhone6.png in Resources */ = {isa = PBXBuildFile; fileRef = 67BB90EB1ADFA8D00050164B /* Tutorial-3_iPhone6.png */; };
 		67BB92661ADFA8D10050164B /* Tutorial-3_iPhone6plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 67BB90EC1ADFA8D00050164B /* Tutorial-3_iPhone6plus.png */; };
 		67BB92691ADFA8D10050164B /* ParseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB90F41ADFA8D00050164B /* ParseManager.m */; };
 		67BB926A1ADFA8D10050164B /* PFObject+PFObject_isEqual.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB90F61ADFA8D00050164B /* PFObject+PFObject_isEqual.m */; };
@@ -103,8 +106,6 @@
 		67BB92F11ADFA8D10050164B /* GenderScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB922A1ADFA8D10050164B /* GenderScreenViewController.xib */; };
 		67BB92F21ADFA8D10050164B /* GroupsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB922B1ADFA8D10050164B /* GroupsListViewController.xib */; };
 		67BB92F31ADFA8D10050164B /* HomePointSuccessfulCreationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB922C1ADFA8D10050164B /* HomePointSuccessfulCreationViewController.xib */; };
-		67BB92F41ADFA8D10050164B /* HomeScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB922D1ADFA8D10050164B /* HomeScreenViewController.xib */; };
-		67BB92FB1ADFA8D10050164B /* MessageScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92341ADFA8D10050164B /* MessageScreenViewController.xib */; };
 		67BB92FC1ADFA8D10050164B /* RequestsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92351ADFA8D10050164B /* RequestsViewController.xib */; };
 		67BB93011ADFA8D10050164B /* hobble_1_1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 67BB923E1ADFA8D10050164B /* hobble_1_1.xcdatamodeld */; };
 		67BB93061ADFA8D10050164B /* UIViewController+infopagestempfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92481ADFA8D10050164B /* UIViewController+infopagestempfile.m */; };
@@ -133,25 +134,6 @@
 		67BB94131ADFABCD0050164B /* AMSlideMenuRightTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB933E1ADFABCD0050164B /* AMSlideMenuRightTableViewController.m */; };
 		67BB94141ADFABCD0050164B /* UIViewController+AMSlideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB93401ADFABCD0050164B /* UIViewController+AMSlideMenu.m */; };
 		67BB94151ADFABCD0050164B /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BB93421ADFABCD0050164B /* FacebookSDK.framework */; };
-		67BB94161ADFABCD0050164B /* FUIAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB93461ADFABCD0050164B /* FUIAlertView.m */; };
-		67BB94171ADFABCD0050164B /* FUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB93481ADFABCD0050164B /* FUIButton.m */; };
-		67BB94181ADFABCD0050164B /* FUICellBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB934A1ADFABCD0050164B /* FUICellBackgroundView.m */; };
-		67BB94191ADFABCD0050164B /* FUIPopoverBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB934C1ADFABCD0050164B /* FUIPopoverBackgroundView.m */; };
-		67BB941A1ADFABCD0050164B /* FUISegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB934E1ADFABCD0050164B /* FUISegmentedControl.m */; };
-		67BB941B1ADFABCD0050164B /* FUISwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB93501ADFABCD0050164B /* FUISwitch.m */; };
-		67BB941C1ADFABCD0050164B /* FUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB93521ADFABCD0050164B /* FUITextField.m */; };
-		67BB941D1ADFABCD0050164B /* UIBarButtonItem+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB93541ADFABCD0050164B /* UIBarButtonItem+FlatUI.m */; };
-		67BB941E1ADFABCD0050164B /* UIColor+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB93561ADFABCD0050164B /* UIColor+FlatUI.m */; };
-		67BB941F1ADFABCD0050164B /* UIFont+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB93581ADFABCD0050164B /* UIFont+FlatUI.m */; };
-		67BB94201ADFABCD0050164B /* UIImage+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB935A1ADFABCD0050164B /* UIImage+FlatUI.m */; };
-		67BB94211ADFABCD0050164B /* UINavigationBar+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB935C1ADFABCD0050164B /* UINavigationBar+FlatUI.m */; };
-		67BB94221ADFABCD0050164B /* UIPopoverController+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB935E1ADFABCD0050164B /* UIPopoverController+FlatUI.m */; };
-		67BB94231ADFABCD0050164B /* UIProgressView+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB93601ADFABCD0050164B /* UIProgressView+FlatUI.m */; };
-		67BB94241ADFABCD0050164B /* UISlider+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB93621ADFABCD0050164B /* UISlider+FlatUI.m */; };
-		67BB94251ADFABCD0050164B /* UIStepper+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB93641ADFABCD0050164B /* UIStepper+FlatUI.m */; };
-		67BB94261ADFABCD0050164B /* UITabBar+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB93661ADFABCD0050164B /* UITabBar+FlatUI.m */; };
-		67BB94271ADFABCD0050164B /* UITableViewCell+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB93681ADFABCD0050164B /* UITableViewCell+FlatUI.m */; };
-		67BB94281ADFABCD0050164B /* UIToolbar+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB936A1ADFABCD0050164B /* UIToolbar+FlatUI.m */; };
 		67BB94291ADFABCD0050164B /* JSQMessagesAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 67BB936D1ADFABCD0050164B /* JSQMessagesAssets.bundle */; };
 		67BB942A1ADFABCD0050164B /* JSQMessages.strings in Resources */ = {isa = PBXBuildFile; fileRef = 67BB936F1ADFABCD0050164B /* JSQMessages.strings */; };
 		67BB942B1ADFABCD0050164B /* JSQSystemSoundPlayer+JSQMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB93811ADFABCD0050164B /* JSQSystemSoundPlayer+JSQMessages.m */; };
@@ -211,6 +193,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0002348F1B48823B000B7630 /* launchLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchLogo.png; sourceTree = "<group>"; };
+		000234911B4885B6000B7630 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = Bounce/ViewControllers/Fonts; sourceTree = "<group>"; };
+		000234931B488F67000B7630 /* Quicksand_Dash.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Quicksand_Dash.otf; path = Bounce/ViewControllers/Fonts/Quicksand_Dash.otf; sourceTree = "<group>"; };
+		000234951B488F7E000B7630 /* Quicksand-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Bold.otf"; path = "Bounce/ViewControllers/Fonts/Quicksand-Bold.otf"; sourceTree = "<group>"; };
+		000234971B488F89000B7630 /* Quicksand-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-BoldItalic.otf"; path = "Bounce/ViewControllers/Fonts/Quicksand-BoldItalic.otf"; sourceTree = "<group>"; };
+		000234991B488F8E000B7630 /* Quicksand-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Italic.otf"; path = "Bounce/ViewControllers/Fonts/Quicksand-Italic.otf"; sourceTree = "<group>"; };
+		0002349B1B488F93000B7630 /* Quicksand-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Light.otf"; path = "Bounce/ViewControllers/Fonts/Quicksand-Light.otf"; sourceTree = "<group>"; };
+		0002349D1B488F98000B7630 /* Quicksand-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-LightItalic.otf"; path = "Bounce/ViewControllers/Fonts/Quicksand-LightItalic.otf"; sourceTree = "<group>"; };
+		0002349F1B488F9F000B7630 /* Quicksand-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Regular.otf"; path = "Bounce/ViewControllers/Fonts/Quicksand-Regular.otf"; sourceTree = "<group>"; };
 		001C73781B0B0E3C008D7058 /* Terms_of_Use_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Terms_of_Use_ViewController.h; path = "SlideMenu /Terms_of_Use_ViewController.h"; sourceTree = "<group>"; };
 		001C73791B0B0E3C008D7058 /* Terms_of_Use_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Terms_of_Use_ViewController.m; path = "SlideMenu /Terms_of_Use_ViewController.m"; sourceTree = "<group>"; };
 		001C737A1B0B0E3C008D7058 /* Terms_of_Use_ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Terms_of_Use_ViewController.xib; path = "../ViewControllers/SlideMenu /Terms_of_Use_ViewController.xib"; sourceTree = "<group>"; };
@@ -372,8 +363,7 @@
 		007CF29D1AA3E532007D7C33 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		00ABD5691B478C2D004A2FB0 /* UIView+KGNAutoLayout */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "UIView+KGNAutoLayout"; sourceTree = "<group>"; };
 		00ABD56D1B479C1B004A2FB0 /* FinishedIcon */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FinishedIcon; path = "Bounce Images/FinishedIcon"; sourceTree = "<group>"; };
-		00ABD56F1B4846CC004A2FB0 /* StoryboardLaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = StoryboardLaunchScreen.storyboard; path = Bounce/StoryboardLaunchScreen.storyboard; sourceTree = "<group>"; };
-		00ABD5711B4860C6004A2FB0 /* launchLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launchLogo.png; path = Bounce/Images.xcassets/LaunchImage.launchimage/launchLogo.png; sourceTree = "<group>"; };
+		00ABD56F1B4846CC004A2FB0 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Bounce/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		00CEE3CE199434E700F40C12 /* bounce.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bounce.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00CEE3D1199434E700F40C12 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		00CEE3D3199434E700F40C12 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -464,7 +454,7 @@
 		67BB92061ADFA8D10050164B /* HomePointSuccessfulCreationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePointSuccessfulCreationViewController.h; sourceTree = "<group>"; };
 		67BB92071ADFA8D10050164B /* HomePointSuccessfulCreationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePointSuccessfulCreationViewController.m; sourceTree = "<group>"; };
 		67BB92081ADFA8D10050164B /* HomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeScreenViewController.h; sourceTree = "<group>"; };
-		67BB92091ADFA8D10050164B /* HomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreenViewController.m; sourceTree = "<group>"; };
+		67BB92091ADFA8D10050164B /* HomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreenViewController.m; sourceTree = "<group>"; wrapsLines = 1; };
 		67BB92171ADFA8D10050164B /* MessageScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageScreenViewController.h; sourceTree = "<group>"; };
 		67BB92181ADFA8D10050164B /* MessageScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageScreenViewController.m; sourceTree = "<group>"; };
 		67BB92191ADFA8D10050164B /* RequestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestsViewController.h; sourceTree = "<group>"; };
@@ -483,8 +473,6 @@
 		67BB922A1ADFA8D10050164B /* GenderScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GenderScreenViewController.xib; sourceTree = "<group>"; };
 		67BB922B1ADFA8D10050164B /* GroupsListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupsListViewController.xib; sourceTree = "<group>"; };
 		67BB922C1ADFA8D10050164B /* HomePointSuccessfulCreationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomePointSuccessfulCreationViewController.xib; sourceTree = "<group>"; };
-		67BB922D1ADFA8D10050164B /* HomeScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeScreenViewController.xib; sourceTree = "<group>"; };
-		67BB92341ADFA8D10050164B /* MessageScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageScreenViewController.xib; sourceTree = "<group>"; };
 		67BB92351ADFA8D10050164B /* RequestsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RequestsViewController.xib; sourceTree = "<group>"; };
 		67BB923F1ADFA8D10050164B /* hobble_1_1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hobble_1_1.xcdatamodel; sourceTree = "<group>"; };
 		67BB92471ADFA8D10050164B /* UIViewController+infopagestempfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+infopagestempfile.h"; sourceTree = "<group>"; };
@@ -541,45 +529,6 @@
 		67BB933F1ADFABCD0050164B /* UIViewController+AMSlideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+AMSlideMenu.h"; sourceTree = "<group>"; };
 		67BB93401ADFABCD0050164B /* UIViewController+AMSlideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+AMSlideMenu.m"; sourceTree = "<group>"; };
 		67BB93421ADFABCD0050164B /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
-		67BB93441ADFABCD0050164B /* FlatUIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlatUIKit.h; sourceTree = "<group>"; };
-		67BB93451ADFABCD0050164B /* FUIAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FUIAlertView.h; sourceTree = "<group>"; };
-		67BB93461ADFABCD0050164B /* FUIAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FUIAlertView.m; sourceTree = "<group>"; };
-		67BB93471ADFABCD0050164B /* FUIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FUIButton.h; sourceTree = "<group>"; };
-		67BB93481ADFABCD0050164B /* FUIButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FUIButton.m; sourceTree = "<group>"; };
-		67BB93491ADFABCD0050164B /* FUICellBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FUICellBackgroundView.h; sourceTree = "<group>"; };
-		67BB934A1ADFABCD0050164B /* FUICellBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FUICellBackgroundView.m; sourceTree = "<group>"; };
-		67BB934B1ADFABCD0050164B /* FUIPopoverBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FUIPopoverBackgroundView.h; sourceTree = "<group>"; };
-		67BB934C1ADFABCD0050164B /* FUIPopoverBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FUIPopoverBackgroundView.m; sourceTree = "<group>"; };
-		67BB934D1ADFABCD0050164B /* FUISegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FUISegmentedControl.h; sourceTree = "<group>"; };
-		67BB934E1ADFABCD0050164B /* FUISegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FUISegmentedControl.m; sourceTree = "<group>"; };
-		67BB934F1ADFABCD0050164B /* FUISwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FUISwitch.h; sourceTree = "<group>"; };
-		67BB93501ADFABCD0050164B /* FUISwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FUISwitch.m; sourceTree = "<group>"; };
-		67BB93511ADFABCD0050164B /* FUITextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FUITextField.h; sourceTree = "<group>"; };
-		67BB93521ADFABCD0050164B /* FUITextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FUITextField.m; sourceTree = "<group>"; };
-		67BB93531ADFABCD0050164B /* UIBarButtonItem+FlatUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+FlatUI.h"; sourceTree = "<group>"; };
-		67BB93541ADFABCD0050164B /* UIBarButtonItem+FlatUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+FlatUI.m"; sourceTree = "<group>"; };
-		67BB93551ADFABCD0050164B /* UIColor+FlatUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+FlatUI.h"; sourceTree = "<group>"; };
-		67BB93561ADFABCD0050164B /* UIColor+FlatUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+FlatUI.m"; sourceTree = "<group>"; };
-		67BB93571ADFABCD0050164B /* UIFont+FlatUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+FlatUI.h"; sourceTree = "<group>"; };
-		67BB93581ADFABCD0050164B /* UIFont+FlatUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+FlatUI.m"; sourceTree = "<group>"; };
-		67BB93591ADFABCD0050164B /* UIImage+FlatUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FlatUI.h"; sourceTree = "<group>"; };
-		67BB935A1ADFABCD0050164B /* UIImage+FlatUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FlatUI.m"; sourceTree = "<group>"; };
-		67BB935B1ADFABCD0050164B /* UINavigationBar+FlatUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+FlatUI.h"; sourceTree = "<group>"; };
-		67BB935C1ADFABCD0050164B /* UINavigationBar+FlatUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+FlatUI.m"; sourceTree = "<group>"; };
-		67BB935D1ADFABCD0050164B /* UIPopoverController+FlatUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIPopoverController+FlatUI.h"; sourceTree = "<group>"; };
-		67BB935E1ADFABCD0050164B /* UIPopoverController+FlatUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIPopoverController+FlatUI.m"; sourceTree = "<group>"; };
-		67BB935F1ADFABCD0050164B /* UIProgressView+FlatUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIProgressView+FlatUI.h"; sourceTree = "<group>"; };
-		67BB93601ADFABCD0050164B /* UIProgressView+FlatUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIProgressView+FlatUI.m"; sourceTree = "<group>"; };
-		67BB93611ADFABCD0050164B /* UISlider+FlatUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISlider+FlatUI.h"; sourceTree = "<group>"; };
-		67BB93621ADFABCD0050164B /* UISlider+FlatUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISlider+FlatUI.m"; sourceTree = "<group>"; };
-		67BB93631ADFABCD0050164B /* UIStepper+FlatUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIStepper+FlatUI.h"; sourceTree = "<group>"; };
-		67BB93641ADFABCD0050164B /* UIStepper+FlatUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIStepper+FlatUI.m"; sourceTree = "<group>"; };
-		67BB93651ADFABCD0050164B /* UITabBar+FlatUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBar+FlatUI.h"; sourceTree = "<group>"; };
-		67BB93661ADFABCD0050164B /* UITabBar+FlatUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+FlatUI.m"; sourceTree = "<group>"; };
-		67BB93671ADFABCD0050164B /* UITableViewCell+FlatUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+FlatUI.h"; sourceTree = "<group>"; };
-		67BB93681ADFABCD0050164B /* UITableViewCell+FlatUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+FlatUI.m"; sourceTree = "<group>"; };
-		67BB93691ADFABCD0050164B /* UIToolbar+FlatUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIToolbar+FlatUI.h"; sourceTree = "<group>"; };
-		67BB936A1ADFABCD0050164B /* UIToolbar+FlatUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIToolbar+FlatUI.m"; sourceTree = "<group>"; };
 		67BB936D1ADFABCD0050164B /* JSQMessagesAssets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JSQMessagesAssets.bundle; sourceTree = "<group>"; };
 		67BB93701ADFABCD0050164B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/JSQMessages.strings; sourceTree = "<group>"; };
 		67BB93711ADFABCD0050164B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/JSQMessages.strings; sourceTree = "<group>"; };
@@ -1034,9 +983,17 @@
 		00CEE3C5199434E700F40C12 = {
 			isa = PBXGroup;
 			children = (
-				00ABD56F1B4846CC004A2FB0 /* StoryboardLaunchScreen.storyboard */,
+				0002349F1B488F9F000B7630 /* Quicksand-Regular.otf */,
+				0002349D1B488F98000B7630 /* Quicksand-LightItalic.otf */,
+				0002349B1B488F93000B7630 /* Quicksand-Light.otf */,
+				000234991B488F8E000B7630 /* Quicksand-Italic.otf */,
+				000234971B488F89000B7630 /* Quicksand-BoldItalic.otf */,
+				000234951B488F7E000B7630 /* Quicksand-Bold.otf */,
+				000234931B488F67000B7630 /* Quicksand_Dash.otf */,
+				000234911B4885B6000B7630 /* Fonts */,
+				00ABD56F1B4846CC004A2FB0 /* LaunchScreen.storyboard */,
+				0002348F1B48823B000B7630 /* launchLogo.png */,
 				00DF1FE01B43A8CF004F056A /* bounce-Bridging-Header.h */,
-				00ABD5711B4860C6004A2FB0 /* launchLogo.png */,
 				67BB90ED1ADFA8D00050164B /* bounce-Info.plist */,
 				67BB90CD1ADFA8D00050164B /* AppConstant.h */,
 				67BB90CE1ADFA8D00050164B /* AppDelegate.h */,
@@ -1288,8 +1245,6 @@
 				67BB922A1ADFA8D10050164B /* GenderScreenViewController.xib */,
 				67BB922B1ADFA8D10050164B /* GroupsListViewController.xib */,
 				67BB922C1ADFA8D10050164B /* HomePointSuccessfulCreationViewController.xib */,
-				67BB922D1ADFA8D10050164B /* HomeScreenViewController.xib */,
-				67BB92341ADFA8D10050164B /* MessageScreenViewController.xib */,
 				67BB92351ADFA8D10050164B /* RequestsViewController.xib */,
 				001C737A1B0B0E3C008D7058 /* Terms_of_Use_ViewController.xib */,
 				001C737F1B0B0E4D008D7058 /* Privacy_Policy_ViewController.xib */,
@@ -1322,7 +1277,6 @@
 				67BB930A1ADFABCD0050164B /* AFNetworking */,
 				67BB93311ADFABCD0050164B /* AMSlideMenu */,
 				67BB93411ADFABCD0050164B /* FacebookSDK */,
-				67BB93431ADFABCD0050164B /* FlatUI */,
 				67BB936B1ADFABCD0050164B /* JSQMessagesViewController */,
 				67BB93D81ADFABCD0050164B /* JSQSystemSoundPlayer */,
 				67BB93DC1ADFABCD0050164B /* MBProgressHUD */,
@@ -1422,52 +1376,6 @@
 				67BB93421ADFABCD0050164B /* FacebookSDK.framework */,
 			);
 			path = FacebookSDK;
-			sourceTree = "<group>";
-		};
-		67BB93431ADFABCD0050164B /* FlatUI */ = {
-			isa = PBXGroup;
-			children = (
-				67BB93441ADFABCD0050164B /* FlatUIKit.h */,
-				67BB93451ADFABCD0050164B /* FUIAlertView.h */,
-				67BB93461ADFABCD0050164B /* FUIAlertView.m */,
-				67BB93471ADFABCD0050164B /* FUIButton.h */,
-				67BB93481ADFABCD0050164B /* FUIButton.m */,
-				67BB93491ADFABCD0050164B /* FUICellBackgroundView.h */,
-				67BB934A1ADFABCD0050164B /* FUICellBackgroundView.m */,
-				67BB934B1ADFABCD0050164B /* FUIPopoverBackgroundView.h */,
-				67BB934C1ADFABCD0050164B /* FUIPopoverBackgroundView.m */,
-				67BB934D1ADFABCD0050164B /* FUISegmentedControl.h */,
-				67BB934E1ADFABCD0050164B /* FUISegmentedControl.m */,
-				67BB934F1ADFABCD0050164B /* FUISwitch.h */,
-				67BB93501ADFABCD0050164B /* FUISwitch.m */,
-				67BB93511ADFABCD0050164B /* FUITextField.h */,
-				67BB93521ADFABCD0050164B /* FUITextField.m */,
-				67BB93531ADFABCD0050164B /* UIBarButtonItem+FlatUI.h */,
-				67BB93541ADFABCD0050164B /* UIBarButtonItem+FlatUI.m */,
-				67BB93551ADFABCD0050164B /* UIColor+FlatUI.h */,
-				67BB93561ADFABCD0050164B /* UIColor+FlatUI.m */,
-				67BB93571ADFABCD0050164B /* UIFont+FlatUI.h */,
-				67BB93581ADFABCD0050164B /* UIFont+FlatUI.m */,
-				67BB93591ADFABCD0050164B /* UIImage+FlatUI.h */,
-				67BB935A1ADFABCD0050164B /* UIImage+FlatUI.m */,
-				67BB935B1ADFABCD0050164B /* UINavigationBar+FlatUI.h */,
-				67BB935C1ADFABCD0050164B /* UINavigationBar+FlatUI.m */,
-				67BB935D1ADFABCD0050164B /* UIPopoverController+FlatUI.h */,
-				67BB935E1ADFABCD0050164B /* UIPopoverController+FlatUI.m */,
-				67BB935F1ADFABCD0050164B /* UIProgressView+FlatUI.h */,
-				67BB93601ADFABCD0050164B /* UIProgressView+FlatUI.m */,
-				67BB93611ADFABCD0050164B /* UISlider+FlatUI.h */,
-				67BB93621ADFABCD0050164B /* UISlider+FlatUI.m */,
-				67BB93631ADFABCD0050164B /* UIStepper+FlatUI.h */,
-				67BB93641ADFABCD0050164B /* UIStepper+FlatUI.m */,
-				67BB93651ADFABCD0050164B /* UITabBar+FlatUI.h */,
-				67BB93661ADFABCD0050164B /* UITabBar+FlatUI.m */,
-				67BB93671ADFABCD0050164B /* UITableViewCell+FlatUI.h */,
-				67BB93681ADFABCD0050164B /* UITableViewCell+FlatUI.m */,
-				67BB93691ADFABCD0050164B /* UIToolbar+FlatUI.h */,
-				67BB936A1ADFABCD0050164B /* UIToolbar+FlatUI.m */,
-			);
-			path = FlatUI;
 			sourceTree = "<group>";
 		};
 		67BB936B1ADFABCD0050164B /* JSQMessagesViewController */ = {
@@ -1824,7 +1732,7 @@
 				67BB926E1ADFA8D10050164B /* ChatListCell.xib in Resources */,
 				67BB92511ADFA8D10050164B /* LandingView.png in Resources */,
 				67BB92631ADFA8D10050164B /* Tutorial-3@2x.png in Resources */,
-				00ABD5701B4846CC004A2FB0 /* StoryboardLaunchScreen.storyboard in Resources */,
+				00ABD5701B4846CC004A2FB0 /* LaunchScreen.storyboard in Resources */,
 				67BB925E1ADFA8D10050164B /* Tutorial-2_iPhone5.png in Resources */,
 				67BB92ED1ADFA8D10050164B /* AddGroupUsersViewController.xib in Resources */,
 				67BB92FC1ADFA8D10050164B /* RequestsViewController.xib in Resources */,
@@ -1842,7 +1750,6 @@
 				67BB92701ADFA8D10050164B /* Images.xcassets in Resources */,
 				00ABD56A1B478C2D004A2FB0 /* UIView+KGNAutoLayout in Resources */,
 				67BB94471ADFABCD0050164B /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
-				67BB92611ADFA8D10050164B /* Contents.json in Resources */,
 				67BB94511ADFABCD0050164B /* JSQMessagesToolbarContentView.xib in Resources */,
 				67BB94291ADFABCD0050164B /* JSQMessagesAssets.bundle in Resources */,
 				67BB925C1ADFA8D10050164B /* Tutorial-2.png in Resources */,
@@ -1850,12 +1757,9 @@
 				67BB945E1ADFABCD0050164B /* ProgressHUD.bundle in Resources */,
 				67BB92601ADFA8D10050164B /* Tutorial-2_iPhone6plus.png in Resources */,
 				67BB924F1ADFA8D10050164B /* chat_blank@2x.png in Resources */,
-				67BB92FB1ADFA8D10050164B /* MessageScreenViewController.xib in Resources */,
 				67BB92641ADFA8D10050164B /* Tutorial-3_iPhone5.png in Resources */,
 				67BB92F11ADFA8D10050164B /* GenderScreenViewController.xib in Resources */,
-				67BB92F41ADFA8D10050164B /* HomeScreenViewController.xib in Resources */,
 				00ABD56E1B479C1B004A2FB0 /* FinishedIcon in Resources */,
-				67BB92651ADFA8D10050164B /* Tutorial-3_iPhone6.png in Resources */,
 				67BB94491ADFABCD0050164B /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
 				67BB92F01ADFA8D10050164B /* EditGroupsViewController.xib in Resources */,
 				67BB92521ADFA8D10050164B /* LandingView@2x.png in Resources */,
@@ -1863,15 +1767,20 @@
 				67BB92551ADFA8D10050164B /* LandingView_iPhone6plus.png in Resources */,
 				001C737C1B0B0E3C008D7058 /* Terms_of_Use_ViewController.xib in Resources */,
 				67BB925F1ADFA8D10050164B /* Tutorial-2_iPhone6.png in Resources */,
-				67BB925B1ADFA8D10050164B /* Contents.json in Resources */,
+				000234921B4885B6000B7630 /* Fonts in Resources */,
+				000234941B488F67000B7630 /* Quicksand_Dash.otf in Resources */,
+				000234961B488F7E000B7630 /* Quicksand-Bold.otf in Resources */,
+				000234981B488F89000B7630 /* Quicksand-BoldItalic.otf in Resources */,
+				0002349A1B488F8E000B7630 /* Quicksand-Italic.otf in Resources */,
+				0002349C1B488F93000B7630 /* Quicksand-Light.otf in Resources */,
+				0002349E1B488F98000B7630 /* Quicksand-LightItalic.otf in Resources */,
+				000234A01B488F9F000B7630 /* Quicksand-Regular.otf in Resources */,
 				67BB92EC1ADFA8D10050164B /* SlideMenuViewController.xib in Resources */,
 				67BB92591ADFA8D10050164B /* Tutorial-1_iPhone6.png in Resources */,
 				67BB92581ADFA8D10050164B /* Tutorial-1_iPhone5.png in Resources */,
 				67BB92501ADFA8D10050164B /* Contents.json in Resources */,
 				67BB942A1ADFABCD0050164B /* JSQMessages.strings in Resources */,
-				00ABD5721B4860C6004A2FB0 /* launchLogo.png in Resources */,
-				67BB925A1ADFA8D10050164B /* Tutorial-1_iPhone6plus.png in Resources */,
-				67BB92621ADFA8D10050164B /* Tutorial-3.png in Resources */,
+				000234901B48823B000B7630 /* launchLogo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1891,16 +1800,13 @@
 				67BB94061ADFABCD0050164B /* AFNetworkActivityIndicatorManager.m in Sources */,
 				67BB94461ADFABCD0050164B /* JSQMessagesCollectionViewCellIncoming.m in Sources */,
 				67BB942F1ADFABCD0050164B /* UIImage+JSQMessages.m in Sources */,
-				67BB941A1ADFABCD0050164B /* FUISegmentedControl.m in Sources */,
 				67BB94031ADFABCD0050164B /* AFURLRequestSerialization.m in Sources */,
 				67BB94131ADFABCD0050164B /* AMSlideMenuRightTableViewController.m in Sources */,
 				67BB94401ADFABCD0050164B /* JSQMessagesBubbleImage.m in Sources */,
 				67BB92711ADFA8D10050164B /* main.m in Sources */,
 				67BB94101ADFABCD0050164B /* AMSlideMenuLeftTableViewController.m in Sources */,
 				67BB94501ADFABCD0050164B /* JSQMessagesToolbarContentView.m in Sources */,
-				67BB94161ADFABCD0050164B /* FUIAlertView.m in Sources */,
 				007BA4091A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.m in Sources */,
-				67BB941C1ADFABCD0050164B /* FUITextField.m in Sources */,
 				67BB94421ADFABCD0050164B /* JSQVideoMediaItem.m in Sources */,
 				67BB94041ADFABCD0050164B /* AFURLResponseSerialization.m in Sources */,
 				67BB92DA1ADFA8D10050164B /* EditGroupsViewController.m in Sources */,
@@ -1911,15 +1817,12 @@
 				67BB943C1ADFABCD0050164B /* JSQLocationMediaItem.m in Sources */,
 				67BB94141ADFABCD0050164B /* UIViewController+AMSlideMenu.m in Sources */,
 				67BB942C1ADFABCD0050164B /* NSString+JSQMessages.m in Sources */,
-				67BB94231ADFABCD0050164B /* UIProgressView+FlatUI.m in Sources */,
 				67BB94001ADFABCD0050164B /* AFNetworkReachabilityManager.m in Sources */,
 				67BB940B1ADFABCD0050164B /* UIProgressView+AFNetworking.m in Sources */,
 				67BB94571ADFABCD0050164B /* NavigationController.m in Sources */,
 				67BB94521ADFABCD0050164B /* JSQMessagesTypingIndicatorFooterView.m in Sources */,
-				67BB941F1ADFABCD0050164B /* UIFont+FlatUI.m in Sources */,
 				67BB945A1ADFABCD0050164B /* pushnotification.m in Sources */,
 				67BB945D1ADFABCD0050164B /* utilities.m in Sources */,
-				67BB94261ADFABCD0050164B /* UITabBar+FlatUI.m in Sources */,
 				67BB945B1ADFABCD0050164B /* camera.m in Sources */,
 				67BB92DE1ADFA8D10050164B /* HomeScreenViewController.m in Sources */,
 				67BB94071ADFABCD0050164B /* UIActivityIndicatorView+AFNetworking.m in Sources */,
@@ -1927,11 +1830,9 @@
 				67BB94431ADFABCD0050164B /* JSQMessagesCellTextView.m in Sources */,
 				67BB92DB1ADFA8D10050164B /* GenderScreenViewController.m in Sources */,
 				67BB944C1ADFABCD0050164B /* JSQMessagesLabel.m in Sources */,
-				67BB94251ADFABCD0050164B /* UIStepper+FlatUI.m in Sources */,
 				67BB940F1ADFABCD0050164B /* AMSlideMenuLeftMenuSegue.m in Sources */,
 				67BB92E51ADFA8D10050164B /* MessageScreenViewController.m in Sources */,
 				67BB944D1ADFABCD0050164B /* JSQMessagesLoadEarlierHeaderView.m in Sources */,
-				67BB941E1ADFABCD0050164B /* UIColor+FlatUI.m in Sources */,
 				67BB94011ADFABCD0050164B /* AFSecurityPolicy.m in Sources */,
 				67BB93011ADFA8D10050164B /* hobble_1_1.xcdatamodeld in Sources */,
 				67BB94341ADFABCD0050164B /* JSQMessagesAvatarImageFactory.m in Sources */,
@@ -1942,15 +1843,11 @@
 				67BB943A1ADFABCD0050164B /* JSQMessagesCollectionViewFlowLayoutInvalidationContext.m in Sources */,
 				00DF1FDD1B439FAE004F056A /* Tutorial.swift in Sources */,
 				67BB940D1ADFABCD0050164B /* UIWebView+AFNetworking.m in Sources */,
-				67BB94241ADFABCD0050164B /* UISlider+FlatUI.m in Sources */,
 				67BB93FD1ADFABCD0050164B /* AFHTTPRequestOperation.m in Sources */,
 				67BB94051ADFABCD0050164B /* AFURLSessionManager.m in Sources */,
 				67BB94391ADFABCD0050164B /* JSQMessagesCollectionViewFlowLayout.m in Sources */,
 				67BB94371ADFABCD0050164B /* JSQMessagesTimestampFormatter.m in Sources */,
 				67BB94541ADFABCD0050164B /* JSQSystemSoundPlayer.m in Sources */,
-				67BB94211ADFABCD0050164B /* UINavigationBar+FlatUI.m in Sources */,
-				67BB94281ADFABCD0050164B /* UIToolbar+FlatUI.m in Sources */,
-				67BB94191ADFABCD0050164B /* FUIPopoverBackgroundView.m in Sources */,
 				001C737B1B0B0E3C008D7058 /* Terms_of_Use_ViewController.m in Sources */,
 				67BB940C1ADFABCD0050164B /* UIRefreshControl+AFNetworking.m in Sources */,
 				67BB94301ADFABCD0050164B /* UIView+JSQMessages.m in Sources */,
@@ -1965,10 +1862,8 @@
 				67BB940A1ADFABCD0050164B /* UIImageView+AFNetworking.m in Sources */,
 				67BB94561ADFABCD0050164B /* NIDropDown.m in Sources */,
 				67BB94381ADFABCD0050164B /* JSQMessagesToolbarButtonFactory.m in Sources */,
-				67BB94221ADFABCD0050164B /* UIPopoverController+FlatUI.m in Sources */,
 				67BB92E91ADFA8D10050164B /* SlideMenuLeftTableViewController.m in Sources */,
 				00DF1FE31B43CDA6004F056A /* FacebookLogin.m in Sources */,
-				67BB94171ADFABCD0050164B /* FUIButton.m in Sources */,
 				67BB92EB1ADFA8D10050164B /* SlideMenuViewController.m in Sources */,
 				67BB92D81ADFA8D10050164B /* AddLocationScreenViewController.m in Sources */,
 				00DF1FDF1B43A1C7004F056A /* InstructionView.swift in Sources */,
@@ -1976,19 +1871,16 @@
 				67BB92D91ADFA8D10050164B /* CustomChatViewController.m in Sources */,
 				67BB92E61ADFA8D10050164B /* RequestsViewController.m in Sources */,
 				67BB93FF1ADFABCD0050164B /* AFHTTPSessionManager.m in Sources */,
-				67BB94271ADFABCD0050164B /* UITableViewCell+FlatUI.m in Sources */,
 				67BB94601ADFABCD0050164B /* Reachability.m in Sources */,
 				67BB944B1ADFABCD0050164B /* JSQMessagesInputToolbar.m in Sources */,
 				67BB94111ADFABCD0050164B /* AMSlideMenuMainViewController.m in Sources */,
 				67BB942B1ADFABCD0050164B /* JSQSystemSoundPlayer+JSQMessages.m in Sources */,
 				007BA40A1A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				67BB94481ADFABCD0050164B /* JSQMessagesCollectionViewCellOutgoing.m in Sources */,
-				67BB941D1ADFABCD0050164B /* UIBarButtonItem+FlatUI.m in Sources */,
 				67BB92D71ADFA8D10050164B /* AddHomePointViewController.m in Sources */,
 				67BB92DD1ADFA8D10050164B /* HomePointSuccessfulCreationViewController.m in Sources */,
 				67BB926A1ADFA8D10050164B /* PFObject+PFObject_isEqual.m in Sources */,
 				67BB926D1ADFA8D10050164B /* ChatListCell.m in Sources */,
-				67BB94181ADFABCD0050164B /* FUICellBackgroundView.m in Sources */,
 				67BB94311ADFABCD0050164B /* JSQMessagesKeyboardController.m in Sources */,
 				67BB94441ADFABCD0050164B /* JSQMessagesCollectionView.m in Sources */,
 				67BB944F1ADFABCD0050164B /* JSQMessagesMediaPlaceholderView.m in Sources */,
@@ -1999,9 +1891,7 @@
 				003F19451B0B09DC0024EE9A /* SettingsViewController.m in Sources */,
 				67BB93061ADFA8D10050164B /* UIViewController+infopagestempfile.m in Sources */,
 				67BB943B1ADFABCD0050164B /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */,
-				67BB94201ADFABCD0050164B /* UIImage+FlatUI.m in Sources */,
 				67BB94411ADFABCD0050164B /* JSQPhotoMediaItem.m in Sources */,
-				67BB941B1ADFABCD0050164B /* FUISwitch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2160,13 +2050,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Frameworks",
-					"$(PROJECT_DIR)/facebook-ios-sdk/Bolts-IOS/build/ios",
-					"$(PROJECT_DIR)/facebook-ios-sdk/Bolts-IOS/build/osx",
-					"$(PROJECT_DIR)/facebook-ios-sdk/Bolts-IOS/build/Release",
-					"$(PROJECT_DIR)/facebook-ios-sdk/Bolts-IOS/build/Release-iphoneos",
-					"$(PROJECT_DIR)/facebook-ios-sdk/Bolts-IOS/build/Release-iphonesimulator",
-					"$(PROJECT_DIR)/facebook-ios-sdk/Bolts-IOS/build/Release-universal",
-					"$(PROJECT_DIR)/FrameWorks",
 					"$(PROJECT_DIR)/Bounce",
 					"$(PROJECT_DIR)/Bounce/ThirdParty",
 					"$(PROJECT_DIR)/Bounce/ThirdParty/FacebookSDK",
@@ -2176,48 +2059,7 @@
 				INFOPLIST_FILE = "Bounce/bounce-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKCoreKit/build/FBSDKCoreKit.build/Debug-iphoneos/FBSDKCoreKit.build/Objects-normal/arm64",
-					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKCoreKit/build/FBSDKCoreKit.build/Debug-iphoneos/FBSDKCoreKit.build/Objects-normal/armv7",
-					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKCoreKit/build/FBSDKCoreKit.build/Debug-iphoneos/FBSDKCoreKit.build/Objects-normal/armv7s",
-					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKCoreKit/build/FBSDKCoreKit.build/Debug-iphonesimulator/FBSDKCoreKit.build/Objects-normal/i386",
-					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKCoreKit/build/FBSDKCoreKit.build/Debug-iphonesimulator/FBSDKCoreKit.build/Objects-normal/x86_64",
-					"$(PROJECT_DIR)/facebook-ios-sdk/Bolts-IOS/build/Bolts.build/Release-iphoneos/Bolts.build/Objects-normal/arm64",
-					"$(PROJECT_DIR)/facebook-ios-sdk/Bolts-IOS/build/Bolts.build/Release-iphoneos/Bolts.build/Objects-normal/armv7",
-					"$(PROJECT_DIR)/facebook-ios-sdk/Bolts-IOS/build/Bolts.build/Release-iphoneos/Bolts.build/Objects-normal/armv7s",
-					"$(PROJECT_DIR)/facebook-ios-sdk/Bolts-IOS/build/Bolts.build/Release-iphonesimulator/Bolts.build/Objects-normal/i386",
-					"$(PROJECT_DIR)/facebook-ios-sdk/Bolts-IOS/build/Bolts.build/Release-iphonesimulator/Bolts.build/Objects-normal/x86_64",
-					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKLoginKit/build/FBSDKLoginKit.build/Debug-iphoneos/FBSDKLoginKit.build/Objects-normal/arm64",
-					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKLoginKit/build/FBSDKLoginKit.build/Debug-iphoneos/FBSDKLoginKit.build/Objects-normal/armv7",
-					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKLoginKit/build/FBSDKLoginKit.build/Debug-iphoneos/FBSDKLoginKit.build/Objects-normal/armv7s",
-					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKLoginKit/build/FBSDKLoginKit.build/Debug-iphonesimulator/FBSDKLoginKit.build/Objects-normal/i386",
-					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKLoginKit/build/FBSDKLoginKit.build/Debug-iphonesimulator/FBSDKLoginKit.build/Objects-normal/x86_64",
-					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKShareKit/build/FBSDKShareKit.build/Debug-iphoneos/FBSDKShareKit.build/Objects-normal/arm64",
-					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKShareKit/build/FBSDKShareKit.build/Debug-iphoneos/FBSDKShareKit.build/Objects-normal/armv7",
-					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKShareKit/build/FBSDKShareKit.build/Debug-iphoneos/FBSDKShareKit.build/Objects-normal/armv7s",
-					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKShareKit/build/FBSDKShareKit.build/Debug-iphonesimulator/FBSDKShareKit.build/Objects-normal/i386",
-					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKShareKit/build/FBSDKShareKit.build/Debug-iphonesimulator/FBSDKShareKit.build/Objects-normal/x86_64",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/appledoc/Libraries",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/OCMock/Examples/iOS5Example/usr/lib",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/OCMock/Examples/iOS7Example/usr/lib",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/OCMock/Examples/iPhoneExample/Libraries",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/OCMock/Examples/SwiftExamples/usr/lib",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/xctool/build/b8a5965/6C131e/Intermediates/otest-query.build/Release/otest-query-lib-ios.build/Objects-normal/i386",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/xctool/build/b8a5965/6C131e/Intermediates/otest-query.build/Release/otest-query-lib-ios.build/Objects-normal/x86_64",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/xctool/build/b8a5965/6C131e/Intermediates/otest-query.build/Release/otest-query-lib-osx.build/Objects-normal/i386",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/xctool/build/b8a5965/6C131e/Intermediates/otest-query.build/Release/otest-query-lib-osx.build/Objects-normal/x86_64",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/xctool/build/b8a5965/6C131e/Intermediates/otest-shim.build/Release/otest-shim-ios.build/Objects-normal/i386",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/xctool/build/b8a5965/6C131e/Intermediates/otest-shim.build/Release/otest-shim-ios.build/Objects-normal/x86_64",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/xctool/build/b8a5965/6C131e/Intermediates/otest-shim.build/Release/otest-shim-osx.build/Objects-normal/i386",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/xctool/build/b8a5965/6C131e/Intermediates/otest-shim.build/Release/otest-shim-osx.build/Objects-normal/x86_64",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/xctool/build/b8a5965/6C131e/Intermediates/sim-shim.build/Release/sim-shim.build/Objects-normal/i386",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/xctool/build/b8a5965/6C131e/Intermediates/sim-shim.build/Release/sim-shim.build/Objects-normal/x86_64",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/xctool/build/b8a5965/6C131e/Products/Release/lib",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/xctool/build/b8a5965/6C131e/Products/Release",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/xctool/xctool/xctool-tests/TestData/KiwiTests/Build/Products/Debug-iphonesimulator",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/xctool/xctool/xctool-tests/TestData/tests-osx-test-bundle",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = bounce;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "bounce-Bridging-Header.h";
@@ -2240,13 +2082,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Frameworks",
-					"$(PROJECT_DIR)/facebook-ios-sdk/Bolts-IOS/build/ios",
-					"$(PROJECT_DIR)/facebook-ios-sdk/Bolts-IOS/build/osx",
-					"$(PROJECT_DIR)/facebook-ios-sdk/Bolts-IOS/build/Release",
-					"$(PROJECT_DIR)/facebook-ios-sdk/Bolts-IOS/build/Release-iphoneos",
-					"$(PROJECT_DIR)/facebook-ios-sdk/Bolts-IOS/build/Release-iphonesimulator",
-					"$(PROJECT_DIR)/facebook-ios-sdk/Bolts-IOS/build/Release-universal",
-					"$(PROJECT_DIR)/FrameWorks",
 					"$(PROJECT_DIR)/Bounce",
 					"$(PROJECT_DIR)/Bounce/ThirdParty",
 					"$(PROJECT_DIR)/Bounce/ThirdParty/FacebookSDK",
@@ -2256,48 +2091,7 @@
 				INFOPLIST_FILE = "Bounce/bounce-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKCoreKit/build/FBSDKCoreKit.build/Debug-iphoneos/FBSDKCoreKit.build/Objects-normal/arm64",
-					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKCoreKit/build/FBSDKCoreKit.build/Debug-iphoneos/FBSDKCoreKit.build/Objects-normal/armv7",
-					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKCoreKit/build/FBSDKCoreKit.build/Debug-iphoneos/FBSDKCoreKit.build/Objects-normal/armv7s",
-					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKCoreKit/build/FBSDKCoreKit.build/Debug-iphonesimulator/FBSDKCoreKit.build/Objects-normal/i386",
-					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKCoreKit/build/FBSDKCoreKit.build/Debug-iphonesimulator/FBSDKCoreKit.build/Objects-normal/x86_64",
-					"$(PROJECT_DIR)/facebook-ios-sdk/Bolts-IOS/build/Bolts.build/Release-iphoneos/Bolts.build/Objects-normal/arm64",
-					"$(PROJECT_DIR)/facebook-ios-sdk/Bolts-IOS/build/Bolts.build/Release-iphoneos/Bolts.build/Objects-normal/armv7",
-					"$(PROJECT_DIR)/facebook-ios-sdk/Bolts-IOS/build/Bolts.build/Release-iphoneos/Bolts.build/Objects-normal/armv7s",
-					"$(PROJECT_DIR)/facebook-ios-sdk/Bolts-IOS/build/Bolts.build/Release-iphonesimulator/Bolts.build/Objects-normal/i386",
-					"$(PROJECT_DIR)/facebook-ios-sdk/Bolts-IOS/build/Bolts.build/Release-iphonesimulator/Bolts.build/Objects-normal/x86_64",
-					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKLoginKit/build/FBSDKLoginKit.build/Debug-iphoneos/FBSDKLoginKit.build/Objects-normal/arm64",
-					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKLoginKit/build/FBSDKLoginKit.build/Debug-iphoneos/FBSDKLoginKit.build/Objects-normal/armv7",
-					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKLoginKit/build/FBSDKLoginKit.build/Debug-iphoneos/FBSDKLoginKit.build/Objects-normal/armv7s",
-					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKLoginKit/build/FBSDKLoginKit.build/Debug-iphonesimulator/FBSDKLoginKit.build/Objects-normal/i386",
-					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKLoginKit/build/FBSDKLoginKit.build/Debug-iphonesimulator/FBSDKLoginKit.build/Objects-normal/x86_64",
-					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKShareKit/build/FBSDKShareKit.build/Debug-iphoneos/FBSDKShareKit.build/Objects-normal/arm64",
-					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKShareKit/build/FBSDKShareKit.build/Debug-iphoneos/FBSDKShareKit.build/Objects-normal/armv7",
-					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKShareKit/build/FBSDKShareKit.build/Debug-iphoneos/FBSDKShareKit.build/Objects-normal/armv7s",
-					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKShareKit/build/FBSDKShareKit.build/Debug-iphonesimulator/FBSDKShareKit.build/Objects-normal/i386",
-					"$(PROJECT_DIR)/facebook-ios-sdk/FBSDKShareKit/build/FBSDKShareKit.build/Debug-iphonesimulator/FBSDKShareKit.build/Objects-normal/x86_64",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/appledoc/Libraries",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/OCMock/Examples/iOS5Example/usr/lib",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/OCMock/Examples/iOS7Example/usr/lib",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/OCMock/Examples/iPhoneExample/Libraries",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/OCMock/Examples/SwiftExamples/usr/lib",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/xctool/build/b8a5965/6C131e/Intermediates/otest-query.build/Release/otest-query-lib-ios.build/Objects-normal/i386",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/xctool/build/b8a5965/6C131e/Intermediates/otest-query.build/Release/otest-query-lib-ios.build/Objects-normal/x86_64",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/xctool/build/b8a5965/6C131e/Intermediates/otest-query.build/Release/otest-query-lib-osx.build/Objects-normal/i386",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/xctool/build/b8a5965/6C131e/Intermediates/otest-query.build/Release/otest-query-lib-osx.build/Objects-normal/x86_64",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/xctool/build/b8a5965/6C131e/Intermediates/otest-shim.build/Release/otest-shim-ios.build/Objects-normal/i386",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/xctool/build/b8a5965/6C131e/Intermediates/otest-shim.build/Release/otest-shim-ios.build/Objects-normal/x86_64",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/xctool/build/b8a5965/6C131e/Intermediates/otest-shim.build/Release/otest-shim-osx.build/Objects-normal/i386",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/xctool/build/b8a5965/6C131e/Intermediates/otest-shim.build/Release/otest-shim-osx.build/Objects-normal/x86_64",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/xctool/build/b8a5965/6C131e/Intermediates/sim-shim.build/Release/sim-shim.build/Objects-normal/i386",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/xctool/build/b8a5965/6C131e/Intermediates/sim-shim.build/Release/sim-shim.build/Objects-normal/x86_64",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/xctool/build/b8a5965/6C131e/Products/Release/lib",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/xctool/build/b8a5965/6C131e/Products/Release",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/xctool/xctool/xctool-tests/TestData/KiwiTests/Build/Products/Debug-iphonesimulator",
-					"$(PROJECT_DIR)/facebook-ios-sdk/vendor/xctool/xctool/xctool-tests/TestData/tests-osx-test-bundle",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = bounce;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "bounce-Bridging-Header.h";
