@@ -31,4 +31,7 @@
 - (IBAction)groupsChatButtonClicked:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *leftMenuButton;
 
+@property (weak, nonatomic) NSString *genderMatching;
+@property (nonatomic) float timeAllocated;
+
 @end

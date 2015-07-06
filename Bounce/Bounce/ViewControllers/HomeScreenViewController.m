@@ -29,6 +29,10 @@
     [super viewDidLoad];
     [[RequestManger getInstance] loadActiveRequest];
     
+    // initialize incase no controls are touched
+    self.genderMatching = ALL_GENDER;
+    self.timeAllocated = 5.0;
+    
     self.map = [[MKMapView alloc] initWithFrame:self.view.frame];
     [self.view addSubview:self.map];
     
@@ -69,7 +73,6 @@
     
     UILabel *navLabel = [[UILabel alloc]init];
     navLabel.textColor = [UIColor whiteColor];
-    //navLabel.font = [UIFont boldSystemFontOfSize: 20.0f];
     navLabel.backgroundColor = [UIColor clearColor];
     navLabel.textAlignment = NSTextAlignmentCenter;
     navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:28.0f];
@@ -109,9 +112,12 @@
 {
     if(segment.selectedSegmentIndex == 0)
     {
+        self.genderMatching = ALL_GENDER;
         NSLog(@"All genders selected");
     }
     else if (segment.selectedSegmentIndex == 1) {
+        PFUser* u = [PFUser currentUser];
+        self.genderMatching = u[PF_GENDER];
         NSLog(@"Gender matching selected");
     }
 }
@@ -120,7 +126,7 @@
 {
     UISlider *slider = (UISlider*)sender;
     float value = slider.value;
-    //-- Do further actions
+    self.timeAllocated = value;
 }
 
 
@@ -231,7 +237,8 @@
 }
 
 - (IBAction)messageButtonClicked:(id)sender {
-    MessageScreenViewController* messageScreenViewController = [[MessageScreenViewController alloc] initWithNibName:@"MessageScreenViewController" bundle:nil];
+    MessageScreenViewController* messageScreenViewController = [[MessageScreenViewController alloc] init];
+    messageScreenViewController.genderMatching = self.genderMatching;
     [self.navigationController pushViewController:messageScreenViewController animated:YES];
 }
 

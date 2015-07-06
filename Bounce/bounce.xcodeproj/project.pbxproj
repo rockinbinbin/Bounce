@@ -111,7 +111,6 @@
 		67BB92F11ADFA8D10050164B /* GenderScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB922A1ADFA8D10050164B /* GenderScreenViewController.xib */; };
 		67BB92F21ADFA8D10050164B /* GroupsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB922B1ADFA8D10050164B /* GroupsListViewController.xib */; };
 		67BB92F31ADFA8D10050164B /* HomePointSuccessfulCreationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB922C1ADFA8D10050164B /* HomePointSuccessfulCreationViewController.xib */; };
-		67BB92FB1ADFA8D10050164B /* MessageScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92341ADFA8D10050164B /* MessageScreenViewController.xib */; };
 		67BB92FC1ADFA8D10050164B /* RequestsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92351ADFA8D10050164B /* RequestsViewController.xib */; };
 		67BB93011ADFA8D10050164B /* hobble_1_1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 67BB923E1ADFA8D10050164B /* hobble_1_1.xcdatamodeld */; };
 		67BB93061ADFA8D10050164B /* UIViewController+infopagestempfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92481ADFA8D10050164B /* UIViewController+infopagestempfile.m */; };
@@ -498,7 +497,6 @@
 		67BB922A1ADFA8D10050164B /* GenderScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GenderScreenViewController.xib; sourceTree = "<group>"; };
 		67BB922B1ADFA8D10050164B /* GroupsListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupsListViewController.xib; sourceTree = "<group>"; };
 		67BB922C1ADFA8D10050164B /* HomePointSuccessfulCreationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomePointSuccessfulCreationViewController.xib; sourceTree = "<group>"; };
-		67BB92341ADFA8D10050164B /* MessageScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageScreenViewController.xib; sourceTree = "<group>"; };
 		67BB92351ADFA8D10050164B /* RequestsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RequestsViewController.xib; sourceTree = "<group>"; };
 		67BB923F1ADFA8D10050164B /* hobble_1_1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hobble_1_1.xcdatamodel; sourceTree = "<group>"; };
 		67BB92471ADFA8D10050164B /* UIViewController+infopagestempfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+infopagestempfile.h"; sourceTree = "<group>"; };
@@ -1310,7 +1308,6 @@
 				67BB922A1ADFA8D10050164B /* GenderScreenViewController.xib */,
 				67BB922B1ADFA8D10050164B /* GroupsListViewController.xib */,
 				67BB922C1ADFA8D10050164B /* HomePointSuccessfulCreationViewController.xib */,
-				67BB92341ADFA8D10050164B /* MessageScreenViewController.xib */,
 				67BB92351ADFA8D10050164B /* RequestsViewController.xib */,
 				001C737A1B0B0E3C008D7058 /* Terms_of_Use_ViewController.xib */,
 				001C737F1B0B0E4D008D7058 /* Privacy_Policy_ViewController.xib */,
@@ -1871,7 +1868,6 @@
 				67BB945E1ADFABCD0050164B /* ProgressHUD.bundle in Resources */,
 				67BB92601ADFA8D10050164B /* Tutorial-2_iPhone6plus.png in Resources */,
 				67BB924F1ADFA8D10050164B /* chat_blank@2x.png in Resources */,
-				67BB92FB1ADFA8D10050164B /* MessageScreenViewController.xib in Resources */,
 				67BB92641ADFA8D10050164B /* Tutorial-3_iPhone5.png in Resources */,
 				67BB92F11ADFA8D10050164B /* GenderScreenViewController.xib in Resources */,
 				00ABD56E1B479C1B004A2FB0 /* FinishedIcon in Resources */,
