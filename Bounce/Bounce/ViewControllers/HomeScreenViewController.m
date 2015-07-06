@@ -36,10 +36,10 @@
     self.map = [[MKMapView alloc] initWithFrame:self.view.frame];
     [self.view addSubview:self.map];
     
-    UIView *bottomView = [[UIView alloc] init];
-    bottomView.frame = CGRectMake(0, self.view.frame.size.height - self.view.frame.size.height/3.5, self.view.frame.size.width, self.view.frame.size.height/3.5);
-    bottomView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:bottomView];
+    self.bottomView = [[UIView alloc] init];
+    self.bottomView.frame = CGRectMake(0, self.view.frame.size.height - self.view.frame.size.height/3.5, self.view.frame.size.width, self.view.frame.size.height/3.5);
+    self.bottomView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.bottomView];
     
     NSArray *itemArray = [NSArray arrayWithObjects: @"All genders", @"Gender matching", nil];
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:itemArray];
@@ -47,13 +47,35 @@
     segmentedControl.frame = CGRectMake(50, 20, self.view.frame.size.width - 100, 30);
     [segmentedControl addTarget:self action:@selector(MySegmentControlAction:) forControlEvents: UIControlEventValueChanged];
     segmentedControl.selectedSegmentIndex = 1;
-    [bottomView addSubview:segmentedControl];
+    [self.bottomView addSubview:segmentedControl];
     
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.barTintColor = BounceRed;
     self.navigationController.navigationBar.translucent = NO;
-    
+
+    self.repliesView = [[UIView alloc] init];
+    self.repliesView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height/3);
     self.repliesView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
+    [self.map addSubview:self.repliesView];
+    
+    
+    self.repliesButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.repliesButton.frame = CGRectMake(self.repliesView.frame.origin.x + 65, self.repliesView.frame.origin.y + 40, self.repliesView.frame.size.width/1.5, self.repliesView.frame.size.height/4);
+    [self.repliesButton setTitle:@"Coordinate trip home" forState:UIControlStateNormal];
+    self.repliesButton.titleLabel.font = [UIFont fontWithName:@"Quicksand-Bold" size:18.0f];
+    self.repliesButton.backgroundColor = BounceRed;
+    self.repliesButton.tintColor = [UIColor whiteColor];
+    self.repliesButton.layer.cornerRadius = 10;
+    self.repliesButton.clipsToBounds = YES;
+    [self.repliesButton addTarget:self action:@selector(repliesButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.repliesView addSubview:self.repliesButton];
+    
+    self.timeLeftLabel = [[UILabel alloc] init];
+    self.timeLeftLabel.frame = CGRectMake(self.repliesView.frame.origin.x + 120, self.repliesView.frame.origin.y + 120, self.repliesView.frame.size.width/1.5, self.repliesView.frame.size.height/4);
+    self.timeLeftLabel.textColor = [UIColor whiteColor];
+    self.timeLeftLabel.font = [UIFont fontWithName:@"Avenir-Next" size:11];
+    [self.repliesView addSubview:self.timeLeftLabel];
+    
     // round number of message label
     [self.numOfMessagesLabel setFont:[UIFont fontWithName: @"Quicksand-Regular" size: 16.0f]];
     self.numOfMessagesLabel.layer.cornerRadius = self.numOfMessagesLabel.frame.size.height/2;
@@ -69,7 +91,7 @@
     slider.continuous = YES;
     slider.value = 25.0;
     [slider setMinimumTrackTintColor:BounceSeaGreen];
-    [bottomView addSubview:slider];
+    [self.bottomView addSubview:slider];
     
     UILabel *navLabel = [[UILabel alloc]init];
     navLabel.textColor = [UIColor whiteColor];
@@ -95,12 +117,21 @@
     CGSize size = self.view.frame.size;
     [self.view setCenter:CGPointMake(size.width/2, size.height/2)];
     
-    UIButton *getHome = [[UIButton alloc] init];
-    getHome.frame = CGRectMake(90, 200, 200, 100);
+    self.getHomeButton = [[UIButton alloc] init];
+    self.getHomeButton.frame = CGRectMake(90, 200, 200, 100);
     UIImage *img = [UIImage imageNamed:@"getHome"];
-    [getHome setImage:img forState:UIControlStateNormal];
-    [getHome addTarget:self action:@selector(messageButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.map addSubview:getHome];
+    [self.getHomeButton setImage:img forState:UIControlStateNormal];
+    [self.getHomeButton addTarget:self action:@selector(messageButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.map addSubview:self.getHomeButton];
+    
+    self.endRequestButton = [[UIButton alloc]init];
+    self.endRequestButton.frame = CGRectMake(0, self.view.frame.size.height - 108, self.view.frame.size.width, 45);
+    self.endRequestButton.tintColor = [UIColor whiteColor];
+    self.endRequestButton.backgroundColor = BounceSeaGreen;
+    [self.endRequestButton setTitle:@"cancel request" forState:UIControlStateNormal];
+    self.endRequestButton.titleLabel.font = [UIFont fontWithName:@"Avenir-Next" size:11];
+    [self.endRequestButton addTarget:self action:@selector(endRequestButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.map addSubview:self.endRequestButton];
     
     [self startReceivingSignificantLocationChanges];
     [self changeCenterToUserLocation];
@@ -274,8 +305,8 @@
 - (void)updateRequestRemainingTime:(NSInteger)remainingTime
 {
     @try {
-            [self showTheReplyView];
-            self.timeLeftLabel.text  = [NSString stringWithFormat:REQUEST_TIME_REMAINING_STRING, (long)remainingTime];
+        [self showTheReplyView];
+        self.timeLeftLabel.text  = [NSString stringWithFormat:REQUEST_TIME_REMAINING_STRING, (long)remainingTime];
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
@@ -310,7 +341,6 @@
 }
 - (void)requestCreated
 {
-//    self.timeLeftLabel.text  = [NSString stringWithFormat:REQUEST_TIME_LEFT_STRING, 0];
     self.timeLeftLabel.text  = [NSString stringWithFormat:REQUEST_TIME_REMAINING_STRING, (long)[[RequestManger getInstance] requestLeftTimeInMinute]];
     [self showTheReplyView];
 }
@@ -319,12 +349,18 @@
 {
     [self.repliesView setHidden:NO];
     [self.getHomeButton setHidden:YES];
+    [self.bottomView setHidden:YES];
+    [self.endRequestButton setHidden:NO];
+    [self.timeLeftLabel setHidden:NO];
 }
 - (void) hideReplyView
 {
     [self.repliesView setHidden:YES];
     [self.numOfMessagesLabel setHidden:YES];
     [self.getHomeButton setHidden:NO];
+    [self.bottomView setHidden:NO];
+    [self.endRequestButton setHidden:YES];
+    [self.timeLeftLabel setHidden:YES];
 }
 
 #pragma mark - MKOverlay Delegate
