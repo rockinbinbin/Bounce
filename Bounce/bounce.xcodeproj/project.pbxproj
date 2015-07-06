@@ -479,7 +479,7 @@
 		67BB92061ADFA8D10050164B /* HomePointSuccessfulCreationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePointSuccessfulCreationViewController.h; sourceTree = "<group>"; };
 		67BB92071ADFA8D10050164B /* HomePointSuccessfulCreationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePointSuccessfulCreationViewController.m; sourceTree = "<group>"; };
 		67BB92081ADFA8D10050164B /* HomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeScreenViewController.h; sourceTree = "<group>"; };
-		67BB92091ADFA8D10050164B /* HomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreenViewController.m; sourceTree = "<group>"; };
+		67BB92091ADFA8D10050164B /* HomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreenViewController.m; sourceTree = "<group>"; wrapsLines = 1; };
 		67BB92171ADFA8D10050164B /* MessageScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageScreenViewController.h; sourceTree = "<group>"; };
 		67BB92181ADFA8D10050164B /* MessageScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageScreenViewController.m; sourceTree = "<group>"; };
 		67BB92191ADFA8D10050164B /* RequestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestsViewController.h; sourceTree = "<group>"; };

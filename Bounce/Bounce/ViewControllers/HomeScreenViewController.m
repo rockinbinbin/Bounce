@@ -31,7 +31,6 @@
     
     self.map = [[MKMapView alloc] initWithFrame:self.view.frame];
     [self.view addSubview:self.map];
-
     
     UIView *bottomView = [[UIView alloc] init];
     bottomView.frame = CGRectMake(0, self.view.frame.size.height - self.view.frame.size.height/3.5, self.view.frame.size.width, self.view.frame.size.height/3.5);
@@ -56,10 +55,6 @@
     self.numOfMessagesLabel.layer.cornerRadius = self.numOfMessagesLabel.frame.size.height/2;
     self.numOfMessagesLabel.layer.masksToBounds = YES;
     self.numOfMessagesLabel.backgroundColor = [UIColor redColor];
-    
-    //[[Utility getInstance] addRoundedBorderToView:self.iconView];
-    //self.iconView.backgroundColor = BounceRed;
-    
     
     CGRect frame = CGRectMake(60, 80, 250.0, 10.0);
     UISlider *slider = [[UISlider alloc] initWithFrame:frame];
@@ -93,6 +88,16 @@
     if ([PFUser currentUser] == nil) {
         LoginUser(self);
     }
+    
+    CGSize size = self.view.frame.size;
+    [self.view setCenter:CGPointMake(size.width/2, size.height/2)];
+    
+    UIButton *getHome = [[UIButton alloc] init];
+    getHome.frame = CGRectMake(90, 200, 200, 100);
+    UIImage *img = [UIImage imageNamed:@"getHome"];
+    [getHome setImage:img forState:UIControlStateNormal];
+    [getHome addTarget:self action:@selector(messageButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.map addSubview:getHome];
     
     [self startReceivingSignificantLocationChanges];
     [self changeCenterToUserLocation];
@@ -205,6 +210,24 @@
     currentUser[@"CurrentLocation"] = geoPoint;
     [currentUser saveInBackground];
     NSLog(@"location called");
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    if ([annotation isKindOfClass:[MKUserLocation class]])
+        return nil;
+    
+    static NSString *reuseId = @"pin";
+    MKPinAnnotationView *pav = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseId];
+    if (pav == nil) {
+        pav = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId];
+        pav.draggable = YES;
+        pav.canShowCallout = YES;
+    }
+    else {
+        pav.annotation = annotation;
+    }
+    return pav;
 }
 
 - (IBAction)messageButtonClicked:(id)sender {
