@@ -64,8 +64,8 @@
     UISlider *slider = [[UISlider alloc] initWithFrame:frame];
     [slider addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventValueChanged];
     [slider setBackgroundColor: [UIColor clearColor]];
-    slider.minimumValue = 5;
-    slider.maximumValue = 120;
+    slider.minimumValue = 5.0;
+    slider.maximumValue = 120.0;
     slider.continuous = YES;
     slider.value = 25.0;
     [slider setMinimumTrackTintColor:BounceSeaGreen];
@@ -127,6 +127,8 @@
     UISlider *slider = (UISlider*)sender;
     float value = slider.value;
     self.timeAllocated = value;
+    NSLog(@"TIME ALLOCATED");
+    NSLog(@"%f", self.timeAllocated);
 }
 
 
@@ -239,6 +241,7 @@
 - (IBAction)messageButtonClicked:(id)sender {
     MessageScreenViewController* messageScreenViewController = [[MessageScreenViewController alloc] init];
     messageScreenViewController.genderMatching = self.genderMatching;
+    messageScreenViewController.timeAllocated = self.timeAllocated;
     [self.navigationController pushViewController:messageScreenViewController animated:YES];
 }
 

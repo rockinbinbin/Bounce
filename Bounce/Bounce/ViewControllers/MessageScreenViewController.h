@@ -23,11 +23,10 @@
 #import "ParseManager.h"
 #import "RequestManger.h"
 
-@interface MessageScreenViewController : UIViewController<NIDropDownDelegate, ParseManagerLoadingGroupsDelegate, ParseManagerGetUserGroups, RequestManagerCreateRequestDelegate>
+@interface MessageScreenViewController : UIViewController<ParseManagerLoadingGroupsDelegate, ParseManagerGetUserGroups, RequestManagerCreateRequestDelegate>
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *groupGenderSegment;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) NIDropDown *dropDown;
 @property NSString* distance;
 @property NSString* duration;
 @property BOOL isDistanceSent;

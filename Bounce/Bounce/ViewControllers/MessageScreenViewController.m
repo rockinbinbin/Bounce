@@ -25,6 +25,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSLog(@"TIME ALLOCATED: ");
+    NSLog(@"%f", self.timeAllocated);
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(incomingNotification:) name:@"SelectedStringNotification" object:nil];
     
     UILabel *navLabel = [[UILabel alloc]init];
@@ -258,14 +262,6 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 150;
-}
-
-- (void) niDropDownDelegateMethod: (NIDropDown *) sender {
-    [self rel];
-}
-
--(void)rel {
-    _dropDown = nil;
 }
 
 #pragma mark - Parse LoadGroups delegate
