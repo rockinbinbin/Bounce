@@ -284,11 +284,21 @@
     [self.navigationController pushViewController:requestsViewController animated:YES];
 }
 - (IBAction)endRequestButtonClicked:(id)sender {
-    // call the request manager
-    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
-        [[Utility getInstance] showProgressHudWithMessage:@"End Request..." withView:self.view];
-        [[RequestManger getInstance] setRequestManagerDelegate:self];
-        [[RequestManger getInstance] endRequest];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Are you sure you want to cancel the request?"
+                                                    message:@"All of the recepients will be notified."
+                                                   delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:@"Don't cancel", nil];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+            [[Utility getInstance] showProgressHudWithMessage:@"End Request..." withView:self.view];
+            [[RequestManger getInstance] setRequestManagerDelegate:self];
+            [[RequestManger getInstance] endRequest];
+        }
     }
 }
 - (IBAction)privateChatButtonClicked:(id)sender {
