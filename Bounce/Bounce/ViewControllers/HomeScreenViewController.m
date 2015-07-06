@@ -37,8 +37,10 @@
     [self.view addSubview:self.map];
     
     self.bottomView = [[UIView alloc] init];
-    self.bottomView.frame = CGRectMake(0, self.view.frame.size.height - self.view.frame.size.height/3.5, self.view.frame.size.width, self.view.frame.size.height/3.5);
+    self.bottomView.frame = CGRectMake(0, self.view.frame.size.height - self.view.frame.size.height/3.5, self.view.frame.size.width, self.view.frame.size.height/5.3);
     self.bottomView.backgroundColor = [UIColor whiteColor];
+    self.bottomView.layer.borderColor = BounceSeaGreen.CGColor;
+    self.bottomView.layer.borderWidth = 3.0f;
     [self.view addSubview:self.bottomView];
     
     NSArray *itemArray = [NSArray arrayWithObjects: @"All genders", @"Gender matching", nil];
@@ -55,7 +57,7 @@
 
     self.repliesView = [[UIView alloc] init];
     self.repliesView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height/3);
-    self.repliesView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
+    self.repliesView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
     [self.map addSubview:self.repliesView];
     
     
@@ -89,7 +91,7 @@
     slider.minimumValue = 5.0;
     slider.maximumValue = 120.0;
     slider.continuous = YES;
-    slider.value = 25.0;
+    slider.value = 5.0;
     [slider setMinimumTrackTintColor:BounceSeaGreen];
     [self.bottomView addSubview:slider];
     

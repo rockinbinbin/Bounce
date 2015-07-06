@@ -32,8 +32,8 @@
 #define BounceYellow    [UIColor colorWithRed:234/255.0 green: 222/255.0 blue:138/255.0 alpha:1.0] //#F3DE8A
 #define BounceBlue      [UIColor colorWithRed:115/255.0 green:127/255.0 blue:154/255.0 alpha:1.0] //#7E7F9A
 #define BounceGrey      [UIColor colorWithRed:151/255.0 green:167/255.0 blue:179/255.0 alpha:1.0] //#97A7B3
-
 #define BounceSeaGreen  [UIColor colorWithRed:0.314 green:0.89 blue:0.761 alpha:1.0]
+#define BounceLightGray [UIColor colorWithRed:0.961 green:0.961 blue:0.961 alpha:1] /*#f5f5f5*/
 
 #define LIGHT_BLUE_COLOR    [UIColor colorWithRed:120.0/250.0 green:175.0/250.0 blue:212.0/250.0 alpha:1.0]
 #define LIGHT_SELECT_GRAY_COLOR    [UIColor colorWithRed:224.0/255.0 green:224.0/255.0 blue:224.0/255.0 alpha:1.0f]
