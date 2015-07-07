@@ -34,8 +34,6 @@
 @property id<ParseManagerLoadNewUsers> loadNewUsers;
 
 + (ParseManager*) getInstance;
-- (void) loginWithName:(NSString *)name andPassword:(NSString*) password;
-- (void) signupWithUserName:(NSString *) name andEmail:(NSString*)email andPassword:(NSString*) password;
 // Chat message
 - (void) createMessageItemForUser:(PFUser *)user WithGroupId:(NSString *) groupId andDescription:(NSString *)description;
 // Groups

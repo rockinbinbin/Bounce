@@ -65,27 +65,27 @@ static RequestManger *sharedRequestManger = nil;
             request[PF_REQUEST_TIME_ALLOCATED] = [NSNumber numberWithInteger:timeAllocated];
             request[PF_REQUEST_LOCATION] = [[PFUser currentUser] objectForKey:PF_USER_LOCATION];
             request[PF_GENDER] = gender;
-            MAKE_A_WEAKSELF;
+
             [request saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
                 // Set the request end date
                 request[PF_REQUEST_END_DATE] = [[request createdAt] dateByAddingTimeInterval:(timeAllocated*60)];
                 // save the request relations
-                [weakSelf setRequestGroupRelation:request withGroups:selectedGroups];
-                [weakSelf appendUsers:resultUsers toRequestUserRelation:request];
-                MAKE_A_WEAKSELF;
+                [self setRequestGroupRelation:request withGroups:selectedGroups];
+                [self appendUsers:resultUsers toRequestUserRelation:request];
+
                 [request saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                     if (!error) {
                         // create Chat item with all users
                         NSString *requestId = request.objectId;
                         [[ParseManager getInstance] createMessageItemForUser:currentUser WithGroupId:requestId andDescription:@"request"];
-                        [weakSelf createChatItemAndSendNotificationToUsers:resultUsers withRequestId:requestId];
+                        [self createChatItemAndSendNotificationToUsers:resultUsers withRequestId:requestId];
                         activeRequest = request;
                         // Start request updataing
-                        weakSelf.requestLeftTimeInMinute = timeAllocated;
-                        [weakSelf startRequestUpdating];
+                        self.requestLeftTimeInMinute = timeAllocated;
+                        [self startRequestUpdating];
                     }
-                    if ([weakSelf.createRequestDelegate respondsToSelector:@selector(didCreateRequestWithError:)]) {
-                        [weakSelf.createRequestDelegate didCreateRequestWithError:error];
+                    if ([self.createRequestDelegate respondsToSelector:@selector(didCreateRequestWithError:)]) {
+                        [self.createRequestDelegate didCreateRequestWithError:error];
                     }
                 }];
             }];
@@ -404,13 +404,13 @@ static RequestManger *sharedRequestManger = nil;
         PFQuery *query = [PFQuery queryWithClassName:PF_MESSAGES_CLASS_NAME];
         [query whereKey:PF_MESSAGES_USER equalTo:[PFUser currentUser]];
         [query whereKey:PF_MESSAGES_GROUPID equalTo:[activeRequest objectId]];
-        MAKE_A_WEAKSELF;
+
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
          {
              NSInteger unReadMessages = [[objects objectAtIndex:0][PF_MESSAGES_COUNTER] intValue];
-             weakSelf.unReadReplies = unReadMessages;
-             if ([weakSelf.requestManagerDelegate respondsToSelector:@selector(updateRequestUnreadMessage:)]) {
-                 [weakSelf.requestManagerDelegate updateRequestUnreadMessage:unReadMessages];
+             self.unReadReplies = unReadMessages;
+             if ([self.requestManagerDelegate respondsToSelector:@selector(updateRequestUnreadMessage:)]) {
+                 [self.requestManagerDelegate updateRequestUnreadMessage:unReadMessages];
              }
              
          }];
@@ -447,21 +447,21 @@ static RequestManger *sharedRequestManger = nil;
     PFQuery *query = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
     [query whereKey:PF_REQUEST_SENDER equalTo:[[PFUser currentUser] username]];
     [query orderByDescending:PF_CREATED_AT];
-    MAKE_A_WEAKSELF;
+
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         // set the default data
         if ([objects count] >0) {
             activeRequest = [objects objectAtIndex:0];
-            if (![weakSelf isEndDateIsSmallerThanCurrent:[activeRequest objectForKey:PF_REQUEST_END_DATE]]) {
+            if (![self isEndDateIsSmallerThanCurrent:[activeRequest objectForKey:PF_REQUEST_END_DATE]]) {
                 // remaining time
-                [weakSelf calculateRequestTimeOver];
+                [self calculateRequestTimeOver];
                 // unreaded message
-                [weakSelf getNumberOfUnReadMessages];
-                [weakSelf startRequestUpdating];
-            }else{
+                [self getNumberOfUnReadMessages];
+                [self startRequestUpdating];
+            } else {
                 activeRequest = nil;
-                weakSelf.unReadReplies = 0;
-                weakSelf.requestLeftTimeInMinute = 0;
+                self.unReadReplies = 0;
+                self.requestLeftTimeInMinute = 0;
                 //remove this request with it's chat data
                 [[ParseManager getInstance] deleteAllRequestData:[objects objectAtIndex:0]];
             }

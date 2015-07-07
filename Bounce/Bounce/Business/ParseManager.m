@@ -34,67 +34,6 @@ PFUser *currentUser;
     }
 }
 
-#pragma mark - login
-- (void) loginWithName:(NSString *)name andPassword:(NSString*) password {
-    MAKE_A_WEAKSELF;
-    [PFUser logInWithUsernameInBackground:name password:password  block:^(PFUser *user, NSError *error){
-        if(!error){
-            NSLog(@"No error");
-            if([PFUser currentUser]){
-                NSLog(@"User is login successfully");
-                [[PFInstallation currentInstallation] setObject:[PFUser currentUser] forKey:@"user"];
-                [[PFInstallation currentInstallation] setObject:@"true" forKey:@"State"];
-                [[PFInstallation currentInstallation] saveEventually];
-                // call login succeed
-                if ([weakSelf.loginDelegate respondsToSelector:@selector(loginSucceed)]) {
-                    [weakSelf.loginDelegate loginSucceed];
-                }
-            }else{
-                NSLog(@"Login isn't performed successfully");
-                if ([weakSelf.loginDelegate respondsToSelector:@selector(loginFailWithError:)]) {
-                    [weakSelf.loginDelegate loginFailWithError:error];
-                }
-            }
-        }else{
-            //show error message in alert dialog
-            if ([weakSelf.loginDelegate respondsToSelector:@selector(loginFailWithError:)]) {
-                [weakSelf.loginDelegate loginFailWithError:error];
-            }
-        }
-    }];
-}
-
-#pragma mark - Signup
-- (void) signupWithUserName:(NSString *) name andEmail:(NSString*)email andPassword:(NSString*) password{
-    @try {
-        PFUser *signUpUser = [PFUser user];
-        signUpUser.username = name;
-        signUpUser.email = email;
-        signUpUser.password = password;
-        
-        MAKE_A_WEAKSELF;
-        [signUpUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (!error) {
-                NSLog(@"Signup is performed successfully");
-                [[PFInstallation currentInstallation] setObject:[PFUser currentUser] forKey:@"user"];
-                [[PFInstallation currentInstallation] setObject:@"true" forKey:@"State"];
-                [[PFInstallation currentInstallation] saveEventually];
-                // call sign up succeed delegate method
-                if ([weakSelf.signupDelegate respondsToSelector:@selector(signupSucceed)]) {
-                    [weakSelf.signupDelegate signupSucceed];
-                }
-            } else {
-                if ([weakSelf.signupDelegate respondsToSelector:@selector(signupFailWithError:)]) {
-                    [weakSelf.signupDelegate signupFailWithError:error];
-                }
-            }
-        }];
-    }
-    @catch (NSException *exception) {
-        NSLog(@"Exception %@", exception);
-    }
-}
-
 #pragma mark - Create Chat message channel
 - (void) createMessageItemForUser:(PFUser *)user WithGroupId:(NSString *) groupId andDescription:(NSString *)description
 {
@@ -128,11 +67,9 @@ PFUser *currentUser;
 #pragma mark - Load Chat Groups
 - (void) loadAllGroups{
     PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
-    MAKE_A_WEAKSELF;
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-     {
-         if ([weakSelf.loadGroupsdelegate respondsToSelector:@selector(didLoadGroups:withError:)]) {
-             [weakSelf.loadGroupsdelegate didLoadGroups:objects withError:error];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+         if ([self.loadGroupsdelegate respondsToSelector:@selector(didLoadGroups:withError:)]) {
+             [self.loadGroupsdelegate didLoadGroups:objects withError:error];
          }
      }];
 }
@@ -144,15 +81,14 @@ PFUser *currentUser;
     object[PF_GROUP_LOCATION] = location;
     object[PF_GROUP_PRIVACY] = privacy;
     object[PF_GROUP_OWNER] = [PFUser currentUser];
-    MAKE_A_WEAKSELF;
-    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-     {
-         // Added the user to GroupUsers relation
+    
+    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
          PFRelation *usersRelation = [object relationForKey:PF_GROUP_Users_RELATION];
          [usersRelation addObject:[PFUser currentUser]];
          [object saveInBackground];
-         if ([weakSelf.addGroupdelegate respondsToSelector:@selector(didAddGroupWithError:)]) {
-             [weakSelf.addGroupdelegate didAddGroupWithError:error];
+        
+         if ([self.addGroupdelegate respondsToSelector:@selector(didAddGroupWithError:)]) {
+             [self.addGroupdelegate didAddGroupWithError:error];
          }
      }];
 }
@@ -163,17 +99,15 @@ PFUser *currentUser;
     object[PF_GROUP_LOCATION] = location;
     object[PF_GROUP_PRIVACY] = privacy;
     object[PF_GROUP_OWNER] = [PFUser currentUser];
-    MAKE_A_WEAKSELF;
-    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-     {
-         // Added the user to GroupUsers relation
+
+    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
          PFRelation *usersRelation = [object relationForKey:PF_GROUP_Users_RELATION];
          for (PFUser *user in users) {
              [usersRelation addObject:user];
          }
          [object saveInBackground];
-         if ([weakSelf.addGroupdelegate respondsToSelector:@selector(didAddGroupWithError:)]) {
-             [weakSelf.addGroupdelegate didAddGroupWithError:error];
+         if ([self.addGroupdelegate respondsToSelector:@selector(didAddGroupWithError:)]) {
+             [self.addGroupdelegate didAddGroupWithError:error];
          }
      }];
 }
@@ -183,15 +117,14 @@ PFUser *currentUser;
 {
     PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
     [query whereKey:PF_GROUPS_NAME equalTo:name];
-    MAKE_A_WEAKSELF;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            if ([weakSelf.updateGroupDelegate respondsToSelector:@selector(groupNameExist:)]) {
-                [weakSelf.updateGroupDelegate groupNameExist:([objects count] > 0)];
+            if ([self.updateGroupDelegate respondsToSelector:@selector(groupNameExist:)]) {
+                [self.updateGroupDelegate groupNameExist:([objects count] > 0)];
             }
-        }else{
-            if ([weakSelf.updateGroupDelegate respondsToSelector:@selector(didFailWithError:)]) {
-                [weakSelf.updateGroupDelegate didFailWithError:error];
+        } else {
+            if ([self.updateGroupDelegate respondsToSelector:@selector(didFailWithError:)]) {
+                [self.updateGroupDelegate didFailWithError:error];
             }
         }
     }];
@@ -205,10 +138,9 @@ PFUser *currentUser;
     for (PFUser *user in  users) {
         [relation addObject:user];
     }
-    MAKE_A_WEAKSELF;
     [group saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if ([weakSelf.updateGroupDelegate respondsToSelector:@selector(didUpdateGroupData:)]) {
-            [weakSelf.updateGroupDelegate didUpdateGroupData:succeeded];
+        if ([self.updateGroupDelegate respondsToSelector:@selector(didUpdateGroupData:)]) {
+            [self.updateGroupDelegate didUpdateGroupData:succeeded];
         }
     }];
 }
@@ -225,10 +157,9 @@ PFUser *currentUser;
     for (PFUser *user in  removedUsers) {
         [relation removeObject:user];
     }
-    MAKE_A_WEAKSELF;
     [group saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if ([weakSelf.updateGroupDelegate respondsToSelector:@selector(didUpdateGroupData:)]) {
-            [weakSelf.updateGroupDelegate didUpdateGroupData:succeeded];
+        if ([self.updateGroupDelegate respondsToSelector:@selector(didUpdateGroupData:)]) {
+            [self.updateGroupDelegate didUpdateGroupData:succeeded];
         }
     }];
 }
@@ -239,15 +170,14 @@ PFUser *currentUser;
     PFRelation *usersRelation = [group relationForKey:PF_GROUP_Users_RELATION];
     PFQuery *query = [usersRelation query];
     [query whereKey:OBJECT_ID notEqualTo:[[PFUser currentUser] objectId]];
-    MAKE_A_WEAKSELF;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
-            if ([weakSelf.delegate respondsToSelector:@selector(didFailWithError:)]) {
-                [weakSelf.delegate didFailWithError:error];
+            if ([self.delegate respondsToSelector:@selector(didFailWithError:)]) {
+                [self.delegate didFailWithError:error];
             }
-        }else{
-            if ([weakSelf.delegate respondsToSelector:@selector(didloadAllObjects:)]) {
-                [weakSelf.delegate didloadAllObjects:objects];
+        } else {
+            if ([self.delegate respondsToSelector:@selector(didloadAllObjects:)]) {
+                [self.delegate didloadAllObjects:objects];
             }
         }
     }];
@@ -261,10 +191,9 @@ PFUser *currentUser;
         [query whereKey:PF_GROUP_Users_RELATION equalTo:[PFUser currentUser]];
         [query includeKey:PF_GROUP_OWNER];
         
-        MAKE_A_WEAKSELF;
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if ([weakSelf.getUserGroupsdelegate respondsToSelector:@selector(didLoadUserGroups:WithError:)]) {
-                [weakSelf.getUserGroupsdelegate didLoadUserGroups:objects WithError:error];
+            if ([self.getUserGroupsdelegate respondsToSelector:@selector(didLoadUserGroups:WithError:)]) {
+                [self.getUserGroupsdelegate didLoadUserGroups:objects WithError:error];
             }
         }];
     }
@@ -281,10 +210,10 @@ PFUser *currentUser;
         [query whereKey:PF_GROUP_PRIVACY equalTo:PUBLIC_GROUP];
         [query whereKey:PF_GROUP_LOCATION nearGeoPoint:[[PFUser currentUser] objectForKey:PF_USER_LOCATION]];
         [query setLimit:10];
-        MAKE_A_WEAKSELF;
+
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if ([weakSelf.loadGroupsdelegate respondsToSelector:@selector(didLoadGroups:withError:)]) {
-                [weakSelf.loadGroupsdelegate didLoadGroups:objects withError:error];
+            if ([self.loadGroupsdelegate respondsToSelector:@selector(didLoadGroups:withError:)]) {
+                [self.loadGroupsdelegate didLoadGroups:objects withError:error];
             }
         }];
     }
@@ -297,10 +226,10 @@ PFUser *currentUser;
 - (void) removeGroup:(PFObject *) group
 {
     @try {
-        MAKE_A_WEAKSELF;
+
         [group deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if ([weakSelf.deleteDelegate respondsToSelector:@selector(didDeleteObject:)]) {
-                [weakSelf.deleteDelegate didDeleteObject:succeeded];
+            if ([self.deleteDelegate respondsToSelector:@selector(didDeleteObject:)]) {
+                [self.deleteDelegate didDeleteObject:succeeded];
             }
         }];
     }
@@ -329,10 +258,10 @@ PFUser *currentUser;
         PFUser *currentUser = [PFUser currentUser];
         PFRelation *relation = [group relationForKey:PF_GROUP_Users_RELATION];
         [relation removeObject:currentUser];
-        MAKE_A_WEAKSELF;
+
         [group saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if ([weakSelf.updateGroupDelegate respondsToSelector:@selector(didRemoveUserFromGroup:)]) {
-                [weakSelf.updateGroupDelegate didRemoveUserFromGroup:succeeded];
+            if ([self.updateGroupDelegate respondsToSelector:@selector(didRemoveUserFromGroup:)]) {
+                [self.updateGroupDelegate didRemoveUserFromGroup:succeeded];
             }
         }];
     }
@@ -347,10 +276,9 @@ PFUser *currentUser;
         PFUser *currentUser = [PFUser currentUser];
         PFRelation *relation = [group relationForKey:PF_GROUP_Users_RELATION];
         [relation removeObject:currentUser];
-        MAKE_A_WEAKSELF;
         [group saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if ([weakSelf.deleteDelegate respondsToSelector:@selector(didDeleteObject:)]) {
-                [weakSelf.deleteDelegate didDeleteObject:succeeded];
+            if ([self.deleteDelegate respondsToSelector:@selector(didDeleteObject:)]) {
+                [self.deleteDelegate didDeleteObject:succeeded];
             }
         }];
     }
@@ -380,10 +308,10 @@ PFUser *currentUser;
         PFUser *currentUser = [PFUser currentUser];
         PFRelation *relation = [group relationForKey:PF_GROUP_Users_RELATION];
         [relation addObject:currentUser];
-        MAKE_A_WEAKSELF;
+
         [group saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if ([weakSelf.updateGroupDelegate respondsToSelector:@selector(didAddUserToGroup:)]) {
-                [weakSelf.updateGroupDelegate didAddUserToGroup:succeeded];
+            if ([self.updateGroupDelegate respondsToSelector:@selector(didAddUserToGroup:)]) {
+                [self.updateGroupDelegate didAddUserToGroup:succeeded];
             }
         }];
     }
@@ -427,15 +355,15 @@ PFUser *currentUser;
 - (void) getAllUsers{
     PFQuery *query = [PFUser query];
     [query whereKey:PF_USER_USERNAME notEqualTo:[[PFUser currentUser] username]];
-    MAKE_A_WEAKSELF;
+
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
-            if ([weakSelf.delegate respondsToSelector:@selector(didFailWithError:)]) {
-                [weakSelf.delegate didFailWithError:error];
+            if ([self.delegate respondsToSelector:@selector(didFailWithError:)]) {
+                [self.delegate didFailWithError:error];
             }
         } else {
-            if ([weakSelf.delegate respondsToSelector:@selector(didloadAllObjects:)]) {
-                [weakSelf.delegate didloadAllObjects:objects];
+            if ([self.delegate respondsToSelector:@selector(didloadAllObjects:)]) {
+                [self.delegate didloadAllObjects:objects];
             }
         }
     }];
@@ -499,16 +427,16 @@ PFUser *currentUser;
         [query2 whereKey:PF_REQUEST_RECEIVER equalTo:[[PFUser currentUser] username]];
         PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:query1, query2, nil]];
         [query orderByDescending:PF_CREATED_AT];
-        MAKE_A_WEAKSELF;
+
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
          {
              if (error) {
-                 if ([weakSelf.delegate respondsToSelector:@selector(didFailWithError:)]) {
-                     [weakSelf.delegate didFailWithError:error];
+                 if ([self.delegate respondsToSelector:@selector(didFailWithError:)]) {
+                     [self.delegate didFailWithError:error];
                  }
              } else {
-                 if ([weakSelf.delegate respondsToSelector:@selector(didloadAllObjects:)]) {
-                     [weakSelf.delegate didloadAllObjects:objects];
+                 if ([self.delegate respondsToSelector:@selector(didloadAllObjects:)]) {
+                     [self.delegate didloadAllObjects:objects];
                  }
              }
          }];
@@ -529,12 +457,12 @@ PFUser *currentUser;
     @try {
         NSString *requestId = [request objectId];
         if ([[request objectForKey:PF_REQUEST_SENDER] isEqualToString:[[PFUser currentUser] username]]) {
-            MAKE_A_WEAKSELF;
+
             [request deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if ([weakSelf.deleteDelegate respondsToSelector:@selector(didDeleteObject:)]) {
-                    [weakSelf.deleteDelegate didDeleteObject:succeeded];
+                if ([self.deleteDelegate respondsToSelector:@selector(didDeleteObject:)]) {
+                    [self.deleteDelegate didDeleteObject:succeeded];
                 }
-                [weakSelf deleteChatDataRelatedToRequestId:requestId ForExactUser:nil];
+                [self deleteChatDataRelatedToRequestId:requestId ForExactUser:nil];
             }];
         } else {
             // remove the current user from the receivers
@@ -549,9 +477,8 @@ PFUser *currentUser;
 {
     @try {
         NSString *requestId = [request objectId];
-        MAKE_A_WEAKSELF;
         [request deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            [weakSelf deleteChatDataRelatedToRequestId:requestId ForExactUser:nil];
+            [self deleteChatDataRelatedToRequestId:requestId ForExactUser:nil];
         }];
     }
     @catch (NSException *exception) {
@@ -570,17 +497,16 @@ PFUser *currentUser;
        // delete him from reveiver
         [request removeObject:[user username] forKey:PF_REQUEST_RECEIVER];
         
-        MAKE_A_WEAKSELF;
         [request saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if ([[user username] isEqualToString:[[PFUser currentUser] username]]) {
                 // this called from requests screen  and must return to it
-                if ([weakSelf.deleteDelegate respondsToSelector:@selector(didDeleteObject:)]) {
-                    [weakSelf.deleteDelegate didDeleteObject:succeeded];
+                if ([self.deleteDelegate respondsToSelector:@selector(didDeleteObject:)]) {
+                    [self.deleteDelegate didDeleteObject:succeeded];
                 }
             }
             // delete message
             // delete chat messages
-            [weakSelf deleteChatDataRelatedToRequestId:requestId ForExactUser:user];
+            [self deleteChatDataRelatedToRequestId:requestId ForExactUser:user];
         }];
     }
     @catch (NSException *exception) {
@@ -634,10 +560,10 @@ PFUser *currentUser;
         PFQuery *groupUsersQuery = [usersRelation query];
         PFQuery *query = [PFUser query];
         [query whereKey:OBJECT_ID  doesNotMatchKey:OBJECT_ID inQuery:groupUsersQuery];
-        MAKE_A_WEAKSELF;
+
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                if ([weakSelf.loadNewUsers respondsToSelector:@selector(didloadNewUsers:WithError:)]) {
-                    [weakSelf.loadNewUsers didloadNewUsers:objects WithError:error];
+                if ([self.loadNewUsers respondsToSelector:@selector(didloadNewUsers:WithError:)]) {
+                    [self.loadNewUsers didloadNewUsers:objects WithError:error];
                 }
         }];
     }

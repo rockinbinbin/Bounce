@@ -398,15 +398,13 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 #if NS_BLOCKS_AVAILABLE
 
 - (void)showAnimated:(BOOL)animated whileExecutingBlock:(dispatch_block_t)block {
-    MAKE_A_WEAKSELF;
 	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-	[weakSelf showAnimated:animated whileExecutingBlock:block onQueue:queue completionBlock:NULL];
+	[self showAnimated:animated whileExecutingBlock:block onQueue:queue completionBlock:NULL];
 }
 
 - (void)showAnimated:(BOOL)animated whileExecutingBlock:(dispatch_block_t)block completionBlock:(void (^)())completion {
-    MAKE_A_WEAKSELF;
 	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-	[weakSelf showAnimated:animated whileExecutingBlock:block onQueue:queue completionBlock:completion];
+	[self showAnimated:animated whileExecutingBlock:block onQueue:queue completionBlock:completion];
 }
 
 - (void)showAnimated:(BOOL)animated whileExecutingBlock:(dispatch_block_t)block onQueue:(dispatch_queue_t)queue {
@@ -420,8 +418,10 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
     MAKE_A_WEAKSELF;
 	dispatch_async(queue, ^(void) {
 		block();
+        MAKE_A_STRONGSELF;
+        if (!strongSelf) return;
 		dispatch_async(dispatch_get_main_queue(), ^(void) {
-			[weakSelf cleanUp];
+			[strongSelf cleanUp];
 		});
 	});
 	[self show:animated];

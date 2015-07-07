@@ -21,12 +21,14 @@
 #import "utilities.h"
 #import "AppConstant.h"
 #import "images.h"
+#import "bounce-Swift.h"
 
 @implementation FacebookLogin
 
 - (id)init
 {
-    UINavigationController *navController = [[UINavigationController alloc]init];
+    Tutorial *temp = [[Tutorial alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:temp];
     return [self initWithNavigationController:navController];
 }
 
@@ -38,70 +40,55 @@
     return self;
 }
 
-
 - (void)facebookLogin {
     NSLog(@"facebookLogin");
     [ProgressHUD show:@"Logging in..." Interaction:NO]; // TODO: replace with a nice loading animation
     
     [PFUser logOut];
     
-    [PFFacebookUtils logInWithPermissions:@[@"public_profile", @"email", @"user_friends"] block:^(PFUser *user, NSError *error)
-     {
-         NSLog(@"inside permissions");
+    [PFFacebookUtils logInWithPermissions:@[@"public_profile", @"email", @"user_friends"] block:^(PFUser *user, NSError *error) {
          if (user != nil) {
-             NSLog(@"inside user != nil");
              if (user.isNew) {
-                 NSLog(@"user is new");
                  [self requestFacebook:user];
              }
              else {
-                 NSLog(@"user is not new");
                  [self userLoggedIn:user isUserNew:NO];
              }
          }
          else {
-             NSLog(@"errrror");
-             [ProgressHUD showError:error.userInfo[@"error"]];
              [[Utility getInstance] showAlertWithMessage:@"Please go to Settings > Facebook > Bounce, and allow us to log you in!" andTitle:@"Permission Needed!"];
          }
      }];
 }
 
 - (void)requestFacebook:(PFUser *)user{
-    NSLog(@"requestFacebook");
     FBRequest *request = [FBRequest requestForMe];
-    [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error)
-     {
-         if (error == nil)
-         {
+    [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+         if (error == nil) {
              NSDictionary *userData = (NSDictionary *)result;
              [self processFacebook:user UserData:userData];
          }
-         else
-         {
+         else {
              [PFUser logOut];
              [ProgressHUD showError:@"Failed to fetch Facebook user data."];
          }
      }];
 }
 
-- (void)processFacebook:(PFUser *)user UserData:(NSDictionary *)userData{
-    NSLog(@"processFacebook");
+- (void)processFacebook:(PFUser *)user UserData:(NSDictionary *)userData {
     NSString *link = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=large", userData[@"id"]];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:link]];
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     operation.responseSerializer = [AFImageResponseSerializer serializer];
     
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject){
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         UIImage *image = (UIImage *)responseObject;
         if (image.size.width > 140) {
-            
             image = ResizeImage(image, 140, 140);
         }
         PFFile *filePicture = [PFFile fileWithName:@"picture.jpg" data:UIImageJPEGRepresentation(image, 0.6)];
-        [filePicture saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-         {
+        [filePicture saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
              if (error != nil) {
                  [ProgressHUD showError:error.userInfo[@"error"]];
              }
@@ -125,8 +112,7 @@
         user[PF_USER_THUMBNAIL] = fileThumbnail;
         user[PF_GENDER] = userData[@"gender"];
         
-        [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-         {
+        [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
              if (error == nil) {
                  [self userLoggedIn:user isUserNew:YES];
              }
@@ -141,17 +127,15 @@
          [PFUser logOut];
          [ProgressHUD showError:@"Failed to fetch Facebook profile picture."];
      }];
-    
     [[NSOperationQueue mainQueue] addOperation:operation];
 }
 
 - (void)userLoggedIn:(PFUser *)user isUserNew:(BOOL) isNew{
-    NSLog(@"userLoggedIn");
     ParsePushUserAssign();
     if (isNew) {
         [ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome %@!", user[PF_USER_FULLNAME]]];
     }
-    else{
+    else {
         [ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome back %@!", user[PF_USER_FULLNAME]]];
     }
     [self navigateToMainScreen];
@@ -161,7 +145,7 @@
     [self navigateToMainScreen];
 }
 
-#pragma mark - Navigate to Home screem
+#pragma mark - Navigate to Home screen
 - (void) navigateToMainScreen {
     @try {
         SlideMenuViewController* mainViewController = [[SlideMenuViewController alloc] init];

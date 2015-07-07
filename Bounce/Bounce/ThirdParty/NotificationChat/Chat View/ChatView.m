@@ -83,8 +83,7 @@
 #pragma mark - Backend methods
 
 - (void)loadMessages {
-	if (isLoading == NO)
-	{
+	if (isLoading == NO) {
 		isLoading = YES;
 		JSQMessage *message_last = [messages lastObject];
 
@@ -95,22 +94,19 @@
 		[query orderByDescending:PF_CHAT_CREATEDAT];
 		[query setLimit:50];
         
-        MAKE_A_WEAKSELF;
-		[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-		{
-			if (error == nil)
-			{
-				weakSelf.automaticallyScrollsToMostRecentMessage = NO;
+		[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+			if (error == nil) {
+				self.automaticallyScrollsToMostRecentMessage = NO;
 				for (PFObject *object in [objects reverseObjectEnumerator])
 				{
-					[weakSelf addMessage:object];
+					[self addMessage:object];
 				}
 				if ([objects count] != 0)
 				{
-					[weakSelf finishReceivingMessage];
-					[weakSelf scrollToBottomAnimated:NO];
+					[self finishReceivingMessage];
+					[self scrollToBottomAnimated:NO];
 				}
-				weakSelf.automaticallyScrollsToMostRecentMessage = YES;
+				self.automaticallyScrollsToMostRecentMessage = YES;
 			}
 			else [ProgressHUD showError:@"Network error."];
 			isLoading = NO;
@@ -146,13 +142,10 @@
 		mediaItem.appliesMediaViewMaskAsOutgoing = [user.objectId isEqualToString:self.senderId];
 		message = [[JSQMessage alloc] initWithSenderId:user.objectId senderDisplayName:name date:object.createdAt media:mediaItem];
 
-        MAKE_A_WEAKSELF;
-		[filePicture getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error)
-		{
-			if (error == nil)
-			{
+		[filePicture getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+			if (error == nil) {
 				mediaItem.image = [UIImage imageWithData:imageData];
-				[weakSelf.collectionView reloadData];
+				[self.collectionView reloadData];
 			}
 		}];
 	}
@@ -190,13 +183,10 @@
 	if (fileVideo != nil) object[PF_CHAT_VIDEO] = fileVideo;
 	if (filePicture != nil) object[PF_CHAT_PICTURE] = filePicture;
     
-    MAKE_A_WEAKSELF;
-	[object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-	{
-		if (error == nil)
-		{
+	[object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+		if (error == nil) {
 			[JSQSystemSoundPlayer jsq_playMessageSentSound];
-			[weakSelf loadMessages];
+			[self loadMessages];
 		}
 		else [ProgressHUD showError:@"Network error."];;
 	}];
@@ -240,13 +230,10 @@
 	{
 		PFFile *fileThumbnail = user[PF_USER_THUMBNAIL];
         
-        MAKE_A_WEAKSELF;
-		[fileThumbnail getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error)
-		{
-			if (error == nil)
-			{
+		[fileThumbnail getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+			if (error == nil) {
 				avatars[user.objectId] = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageWithData:imageData] diameter:30.0];
-				[weakSelf.collectionView reloadData];
+				[self.collectionView reloadData];
 			}
 		}];
 		return avatarImageBlank;

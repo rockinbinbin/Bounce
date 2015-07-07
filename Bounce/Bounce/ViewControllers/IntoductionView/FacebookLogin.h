@@ -11,7 +11,7 @@
 
 @interface FacebookLogin : NSObject
 
-@property (nonatomic, strong) UINavigationController *navigationController;
+@property (nonatomic, weak) UINavigationController *navigationController;
 
 - (id)initWithNavigationController:(UINavigationController *)navController;
 - (void)facebookLogin;

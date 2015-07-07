@@ -306,11 +306,10 @@
 //    PFFile *imageFile = [[PFUser currentUser] objectForKey:PF_USER_THUMBNAIL];
     PFFile *imageFile = [[PFUser currentUser] objectForKey:PF_USER_PICTURE];
     
-    MAKE_A_WEAKSELF;
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!error) {
             profileImage = [UIImage imageWithData:data];
-            weakSelf.userProfileImageView.image = profileImage;
+            self.userProfileImageView.image = profileImage;
         }
     }];
 
@@ -503,13 +502,12 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
         data = UIImageJPEGRepresentation(profileImage, 1.0);
         imageFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@%@", [[PFUser currentUser] username], @".jpg"] data:data];
         
-        MAKE_A_WEAKSELF;
         [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (!error) {
                 if (succeeded) {
                     currentUser[PF_USER_THUMBNAIL] = imageFile;
                     // update the profile image view
-                    weakSelf.userProfileImageView.image = profileImage;
+                    self.userProfileImageView.image = profileImage;
                     [currentUser saveInBackground];
                 }
             } else {

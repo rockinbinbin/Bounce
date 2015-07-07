@@ -174,9 +174,8 @@ static const int kStateKey;
 
     // Ordinarily we'd use -setContentOffset:animated:YES here, but it does not appear to
     // scroll to the desired content offset. So we wrap in our own animation block.
-    MAKE_A_WEAKSELF;
     [UIView animateWithDuration:0.25 animations:^{
-        [weakSelf setContentOffset:idealOffset animated:NO];
+        [self setContentOffset:idealOffset animated:NO];
     }];
 }
 

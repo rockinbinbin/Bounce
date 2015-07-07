@@ -18,6 +18,19 @@
 
 @interface HomeScreenViewController ()
 
+@property (strong, nonatomic) CLLocationManager *location_manager;
+@property (strong, nonatomic) IBOutlet UILabel *timeLeftLabel;
+@property (strong, nonatomic) IBOutlet UIButton *repliesButton;
+@property (strong, nonatomic) IBOutlet UIButton *endRequestButton;
+@property (weak, nonatomic) IBOutlet MKMapView *map;
+@property (strong, nonatomic) IBOutlet UIView *repliesView;
+@property (strong, nonatomic) UIView *bottomView;
+@property (weak, nonatomic) IBOutlet UIView *iconView;
+@property (strong, nonatomic) IBOutlet UILabel *numOfMessagesLabel;
+@property (strong, nonatomic) IBOutlet UIButton *getHomeButton;
+@property (strong, nonatomic) UIView* roundedView;
+
+
 @end
 
 @implementation HomeScreenViewController
