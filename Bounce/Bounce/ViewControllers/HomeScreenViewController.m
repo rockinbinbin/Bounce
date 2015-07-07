@@ -18,6 +18,7 @@
 
 @interface HomeScreenViewController ()
 
+// TODO: fix all of these from strong to weak
 @property (strong, nonatomic) CLLocationManager *location_manager;
 @property (strong, nonatomic) IBOutlet UILabel *timeLeftLabel;
 @property (strong, nonatomic) IBOutlet UIButton *repliesButton;
@@ -46,9 +47,10 @@
     self.genderMatching = ALL_GENDER;
     self.timeAllocated = 5.0;
     
-    self.map = [[MKMapView alloc] initWithFrame:self.view.frame];
-    self.map.scrollEnabled = NO;
-    [self.view addSubview:self.map];
+    MKMapView *tempMap = [[MKMapView alloc] initWithFrame:self.view.frame];
+    tempMap.scrollEnabled = NO;
+    [self.view addSubview:tempMap];
+    self.map = tempMap;
     
     self.bottomView = [[UIView alloc] init];
     self.bottomView.frame = CGRectMake(0, self.view.frame.size.height - self.view.frame.size.height/3.5, self.view.frame.size.width, self.view.frame.size.height/5.3);
