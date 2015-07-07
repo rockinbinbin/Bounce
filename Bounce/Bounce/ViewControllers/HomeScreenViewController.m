@@ -34,6 +34,7 @@
     self.timeAllocated = 5.0;
     
     self.map = [[MKMapView alloc] initWithFrame:self.view.frame];
+    self.map.scrollEnabled = NO;
     [self.view addSubview:self.map];
     
     self.bottomView = [[UIView alloc] init];
