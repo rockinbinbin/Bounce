@@ -14,14 +14,4 @@
 
 @interface HomeScreenViewController : UIViewController <CLLocationManagerDelegate, RequestManagerDelegate>
 
-- (IBAction)endRequestButtonClicked:(id)sender;
-- (IBAction)repliesButtonClicked:(id)sender;
-- (IBAction)messageButtonClicked:(id)sender;
-- (IBAction)privateChatButtonClicked:(id)sender;
-- (IBAction)groupsChatButtonClicked:(id)sender;
-@property (weak, nonatomic) IBOutlet UIButton *leftMenuButton;
-
-@property (weak, nonatomic) NSString *genderMatching;
-@property (nonatomic) float timeAllocated;
-
 @end

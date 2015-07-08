@@ -18,19 +18,17 @@
 
 @interface HomeScreenViewController ()
 
-// TODO: fix all of these from strong to weak
 @property (strong, nonatomic) CLLocationManager *location_manager;
-@property (strong, nonatomic) IBOutlet UILabel *timeLeftLabel;
-@property (strong, nonatomic) IBOutlet UIButton *repliesButton;
-@property (strong, nonatomic) IBOutlet UIButton *endRequestButton;
-@property (weak, nonatomic) IBOutlet MKMapView *map;
-@property (strong, nonatomic) IBOutlet UIView *repliesView;
-@property (strong, nonatomic) UIView *bottomView;
-@property (weak, nonatomic) IBOutlet UIView *iconView;
-@property (strong, nonatomic) IBOutlet UILabel *numOfMessagesLabel;
-@property (strong, nonatomic) IBOutlet UIButton *getHomeButton;
-@property (strong, nonatomic) UIView* roundedView;
+@property (weak, nonatomic) UILabel *timeRemainingLabel;
+@property (weak, nonatomic) MKMapView *map;
+@property (weak, nonatomic) UIView *repliesView;
+@property (weak, nonatomic) UIView *bottomView;
+@property (weak, nonatomic) UIButton *getHomeButton;
+@property (weak, nonatomic) IBOutlet UIButton *leftMenuButton;
+@property (weak, nonatomic) NSString *genderMatching;
+@property (nonatomic) float timeAllocated;
 
+@property (strong, nonatomic) IBOutlet UILabel *numOfMessagesLabel; // TODO: what is this for?
 
 @end
 
@@ -43,7 +41,6 @@
     [super viewDidLoad];
     [[RequestManger getInstance] loadActiveRequest];
     
-    // initialize incase no controls are touched
     self.genderMatching = ALL_GENDER;
     self.timeAllocated = 5.0;
     
@@ -52,12 +49,13 @@
     [self.view addSubview:tempMap];
     self.map = tempMap;
     
-    self.bottomView = [[UIView alloc] init];
-    self.bottomView.frame = CGRectMake(0, self.view.frame.size.height - self.view.frame.size.height/3.5, self.view.frame.size.width, self.view.frame.size.height/5.3);
-    self.bottomView.backgroundColor = [UIColor whiteColor];
-    self.bottomView.layer.borderColor = BounceSeaGreen.CGColor;
-    self.bottomView.layer.borderWidth = 3.0f;
-    [self.view addSubview:self.bottomView];
+    UIView *bottomView = [[UIView alloc] init];
+    bottomView.frame = CGRectMake(0, self.view.frame.size.height - self.view.frame.size.height/3.5, self.view.frame.size.width, self.view.frame.size.height/5.3);
+    bottomView.backgroundColor = [UIColor whiteColor];
+    bottomView.layer.borderColor = BounceSeaGreen.CGColor;
+    bottomView.layer.borderWidth = 3.0f;
+    [self.view addSubview:bottomView];
+    self.bottomView = bottomView;
     
     NSArray *itemArray = [NSArray arrayWithObjects: @"All genders", @"Gender matching", nil];
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:itemArray];
@@ -71,28 +69,29 @@
     self.navigationController.navigationBar.barTintColor = BounceRed;
     self.navigationController.navigationBar.translucent = NO;
 
-    self.repliesView = [[UIView alloc] init];
-    self.repliesView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height/3);
-    self.repliesView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
-    [self.map addSubview:self.repliesView];
+    UIView *replies = [[UIView alloc] init];
+    replies.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height/3);
+    replies.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+    [self.map addSubview:replies];
+    self.repliesView = replies;
     
+    UIButton *repliesButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    repliesButton.frame = CGRectMake(self.repliesView.frame.origin.x + 65, self.repliesView.frame.origin.y + 40, self.repliesView.frame.size.width/1.5, self.repliesView.frame.size.height/4);
+    [repliesButton setTitle:@"Coordinate trip home" forState:UIControlStateNormal];
+    repliesButton.titleLabel.font = [UIFont fontWithName:@"Quicksand-Bold" size:18.0f];
+    repliesButton.backgroundColor = BounceRed;
+    repliesButton.tintColor = [UIColor whiteColor];
+    repliesButton.layer.cornerRadius = 10;
+    repliesButton.clipsToBounds = YES;
+    [repliesButton addTarget:self action:@selector(repliesButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.repliesView addSubview:repliesButton];
     
-    self.repliesButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.repliesButton.frame = CGRectMake(self.repliesView.frame.origin.x + 65, self.repliesView.frame.origin.y + 40, self.repliesView.frame.size.width/1.5, self.repliesView.frame.size.height/4);
-    [self.repliesButton setTitle:@"Coordinate trip home" forState:UIControlStateNormal];
-    self.repliesButton.titleLabel.font = [UIFont fontWithName:@"Quicksand-Bold" size:18.0f];
-    self.repliesButton.backgroundColor = BounceRed;
-    self.repliesButton.tintColor = [UIColor whiteColor];
-    self.repliesButton.layer.cornerRadius = 10;
-    self.repliesButton.clipsToBounds = YES;
-    [self.repliesButton addTarget:self action:@selector(repliesButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.repliesView addSubview:self.repliesButton];
-    
-    self.timeLeftLabel = [[UILabel alloc] init];
-    self.timeLeftLabel.frame = CGRectMake(self.repliesView.frame.origin.x + 120, self.repliesView.frame.origin.y + 120, self.repliesView.frame.size.width/1.5, self.repliesView.frame.size.height/4);
-    self.timeLeftLabel.textColor = [UIColor whiteColor];
-    self.timeLeftLabel.font = [UIFont fontWithName:@"Avenir-Next" size:11];
-    [self.repliesView addSubview:self.timeLeftLabel];
+    UILabel *timeLeftLabel = [[UILabel alloc] init];
+    timeLeftLabel.frame = CGRectMake(self.repliesView.frame.origin.x + 120, self.repliesView.frame.origin.y + 120, self.repliesView.frame.size.width/1.5, self.repliesView.frame.size.height/4);
+    timeLeftLabel.textColor = [UIColor whiteColor];
+    timeLeftLabel.font = [UIFont fontWithName:@"Avenir-Next" size:11];
+    [self.repliesView addSubview:timeLeftLabel];
+    self.timeRemainingLabel = timeLeftLabel;
     
     // round number of message label
     [self.numOfMessagesLabel setFont:[UIFont fontWithName: @"Quicksand-Regular" size: 16.0f]];
@@ -135,21 +134,23 @@
     CGSize size = self.view.frame.size;
     [self.view setCenter:CGPointMake(size.width/2, size.height/2)];
     
-    self.getHomeButton = [[UIButton alloc] init];
-    self.getHomeButton.frame = CGRectMake(90, 200, 200, 100);
+    UIButton *getHomeButton = [[UIButton alloc] init];
+    getHomeButton.frame = CGRectMake(90, 200, 200, 100);
     UIImage *img = [UIImage imageNamed:@"getHome"];
-    [self.getHomeButton setImage:img forState:UIControlStateNormal];
-    [self.getHomeButton addTarget:self action:@selector(messageButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.map addSubview:self.getHomeButton];
+    [getHomeButton setImage:img forState:UIControlStateNormal];
+    [getHomeButton addTarget:self action:@selector(messageButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.map addSubview:getHomeButton];
+    self.getHomeButton = getHomeButton;
     
-    self.endRequestButton = [[UIButton alloc]init];
-    self.endRequestButton.frame = CGRectMake(0, self.view.frame.size.height - 108, self.view.frame.size.width, 45);
-    self.endRequestButton.tintColor = [UIColor whiteColor];
-    self.endRequestButton.backgroundColor = BounceSeaGreen;
-    [self.endRequestButton setTitle:@"cancel request" forState:UIControlStateNormal];
-    self.endRequestButton.titleLabel.font = [UIFont fontWithName:@"Avenir-Next" size:11];
-    [self.endRequestButton addTarget:self action:@selector(endRequestButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.map addSubview:self.endRequestButton];
+    
+    UIButton *endRequestButton = [[UIButton alloc]init];
+    endRequestButton.frame = CGRectMake(0, self.view.frame.size.height - 108, self.view.frame.size.width, 45);
+    endRequestButton.tintColor = [UIColor whiteColor];
+    endRequestButton.backgroundColor = BounceSeaGreen;
+    [endRequestButton setTitle:@"cancel request" forState:UIControlStateNormal];
+    endRequestButton.titleLabel.font = [UIFont fontWithName:@"Avenir-Next" size:11];
+    [endRequestButton addTarget:self action:@selector(endRequestButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.map addSubview:endRequestButton];
     
     [self startReceivingSignificantLocationChanges];
     [self changeCenterToUserLocation];
@@ -157,27 +158,20 @@
     [self hideReplyView];
 }
 
-- (void)MySegmentControlAction:(UISegmentedControl *)segment
-{
-    if(segment.selectedSegmentIndex == 0)
-    {
+- (void)MySegmentControlAction:(UISegmentedControl *)segment {
+    if(segment.selectedSegmentIndex == 0) {
         self.genderMatching = ALL_GENDER;
-        NSLog(@"All genders selected");
     }
     else if (segment.selectedSegmentIndex == 1) {
         PFUser* u = [PFUser currentUser];
         self.genderMatching = u[PF_GENDER];
-        NSLog(@"Gender matching selected");
     }
 }
 
--(void)sliderAction:(id)sender
-{
+-(void)sliderAction:(id)sender {
     UISlider *slider = (UISlider*)sender;
     float value = slider.value;
     self.timeAllocated = value;
-    NSLog(@"TIME ALLOCATED");
-    NSLog(@"%f", self.timeAllocated);
 }
 
 
@@ -303,8 +297,8 @@
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Are you sure you want to cancel the request?"
                                                     message:@"All of the recepients will be notified."
                                                    delegate:self
-                                          cancelButtonTitle:@"Cancel"
-                                          otherButtonTitles:@"Don't cancel", nil];
+                                          cancelButtonTitle:@"End Request"
+                                          otherButtonTitles:@"Don't End", nil];
     [alert show];
 }
 
@@ -334,7 +328,7 @@
 {
     @try {
         [self showTheReplyView];
-        self.timeLeftLabel.text  = [NSString stringWithFormat:REQUEST_TIME_REMAINING_STRING, (long)remainingTime];
+        self.timeRemainingLabel.text  = [NSString stringWithFormat:REQUEST_TIME_REMAINING_STRING, (long)remainingTime];
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
@@ -369,7 +363,7 @@
 }
 - (void)requestCreated
 {
-    self.timeLeftLabel.text  = [NSString stringWithFormat:REQUEST_TIME_REMAINING_STRING, (long)[[RequestManger getInstance] requestLeftTimeInMinute]];
+    self.timeRemainingLabel.text  = [NSString stringWithFormat:REQUEST_TIME_REMAINING_STRING, (long)[[RequestManger getInstance] requestLeftTimeInMinute]];
     [self showTheReplyView];
 }
 #pragma mark - show Reply view
@@ -378,8 +372,6 @@
     [self.repliesView setHidden:NO];
     [self.getHomeButton setHidden:YES];
     [self.bottomView setHidden:YES];
-    [self.endRequestButton setHidden:NO];
-    [self.timeLeftLabel setHidden:NO];
 }
 - (void) hideReplyView
 {
@@ -387,8 +379,6 @@
     [self.numOfMessagesLabel setHidden:YES];
     [self.getHomeButton setHidden:NO];
     [self.bottomView setHidden:NO];
-    [self.endRequestButton setHidden:YES];
-    [self.timeLeftLabel setHidden:YES];
 }
 
 #pragma mark - MKOverlay Delegate
