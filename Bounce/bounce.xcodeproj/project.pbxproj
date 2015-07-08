@@ -694,17 +694,9 @@
 		00296BC719EFA5BF003ADA30 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				00296BC819EFA5BF003ADA30 /* Core */,
 				00296BD419EFA5BF003ADA30 /* Swift */,
 			);
 			path = Pod;
-			sourceTree = "<group>";
-		};
-		00296BC819EFA5BF003ADA30 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Core;
 			sourceTree = "<group>";
 		};
 		00296BD419EFA5BF003ADA30 /* Swift */ = {

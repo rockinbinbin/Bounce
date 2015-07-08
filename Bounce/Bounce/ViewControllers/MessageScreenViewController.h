@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 hobble. All rights reserved.
 //
 #import <UIKit/UIKit.h>
-#import "NIDropDown.h"
 #import "ParseManager.h"
 #import "RequestManger.h"
 

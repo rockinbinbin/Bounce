@@ -41,7 +41,6 @@
 }
 
 - (void)facebookLogin {
-    NSLog(@"facebookLogin");
     [ProgressHUD show:@"Logging in..." Interaction:NO]; // TODO: replace with a nice loading animation
     
     [PFUser logOut];

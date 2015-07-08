@@ -27,8 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *leftMenuButton;
 @property (weak, nonatomic) NSString *genderMatching;
 @property (nonatomic) float timeAllocated;
-
-@property (strong, nonatomic) IBOutlet UILabel *numOfMessagesLabel; // TODO: what is this for?
+@property (weak, nonatomic) IBOutlet UILabel *numOfMessagesLabel;
 
 @end
 
@@ -37,8 +36,13 @@
 # pragma mark Builtin Functions
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
+    
+    self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.navigationBar.barTintColor = BounceRed;
+    self.navigationController.navigationBar.translucent = NO;
+    
+    
     [[RequestManger getInstance] loadActiveRequest];
     
     self.genderMatching = ALL_GENDER;
@@ -64,10 +68,6 @@
     [segmentedControl addTarget:self action:@selector(MySegmentControlAction:) forControlEvents: UIControlEventValueChanged];
     segmentedControl.selectedSegmentIndex = 1;
     [self.bottomView addSubview:segmentedControl];
-    
-    self.navigationController.navigationBar.hidden = NO;
-    self.navigationController.navigationBar.barTintColor = BounceRed;
-    self.navigationController.navigationBar.translucent = NO;
 
     UIView *replies = [[UIView alloc] init];
     replies.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height/3);
@@ -93,14 +93,17 @@
     [self.repliesView addSubview:timeLeftLabel];
     self.timeRemainingLabel = timeLeftLabel;
     
-    // round number of message label
-    [self.numOfMessagesLabel setFont:[UIFont fontWithName: @"Quicksand-Regular" size: 16.0f]];
-    self.numOfMessagesLabel.layer.cornerRadius = self.numOfMessagesLabel.frame.size.height/2;
-    self.numOfMessagesLabel.layer.masksToBounds = YES;
-    self.numOfMessagesLabel.backgroundColor = [UIColor redColor];
+    // TODO: TEST NOTIFICATION VIEW
+    UILabel *numOfMessagesLabel = [[UILabel alloc] init];
+    [numOfMessagesLabel setFont:[UIFont fontWithName: @"Avenir-Next" size: 16.0f]];
+    numOfMessagesLabel.layer.cornerRadius = self.numOfMessagesLabel.frame.size.height/2;
+    numOfMessagesLabel.layer.masksToBounds = YES;
+    numOfMessagesLabel.textColor = [UIColor redColor];
+    self.numOfMessagesLabel = numOfMessagesLabel;
+    [self.repliesView addSubview:numOfMessagesLabel];
+    numOfMessagesLabel.frame = CGRectMake(repliesButton.frame.origin.x + repliesButton.frame.size.width, repliesButton.frame.origin.y, 5, 5);
     
-    CGRect frame = CGRectMake(60, 80, 250.0, 10.0);
-    UISlider *slider = [[UISlider alloc] initWithFrame:frame];
+    UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(60, 80, 250.0, 10.0)];
     [slider addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventValueChanged];
     [slider setBackgroundColor: [UIColor clearColor]];
     slider.minimumValue = 5.0;
@@ -131,8 +134,7 @@
         LoginUser(self);
     }
     
-    CGSize size = self.view.frame.size;
-    [self.view setCenter:CGPointMake(size.width/2, size.height/2)];
+    [self.view setCenter:CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2)];
     
     UIButton *getHomeButton = [[UIButton alloc] init];
     getHomeButton.frame = CGRectMake(90, 200, 200, 100);
@@ -141,7 +143,6 @@
     [getHomeButton addTarget:self action:@selector(messageButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.map addSubview:getHomeButton];
     self.getHomeButton = getHomeButton;
-    
     
     UIButton *endRequestButton = [[UIButton alloc]init];
     endRequestButton.frame = CGRectMake(0, self.view.frame.size.height - 108, self.view.frame.size.width, 45);

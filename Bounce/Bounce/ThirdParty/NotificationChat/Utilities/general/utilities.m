@@ -11,31 +11,21 @@
 
 #import "utilities.h"
 #import "NavigationController.h"
+#import "bounce-Swift.h"
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-void LoginUser(id target)
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
+void LoginUser(id target) { // TODO: TEST THIS METHOD
     NSLog(@"LoginUser(id target) called");
     
-//    UIStoryboard* mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-//    NavigationController *navigationController = [[NavigationController alloc] initWithRootViewController:(IntroPages*)[mainStoryboard instantiateViewControllerWithIdentifier:@"IntroPages"]];
-//    [navigationController setNavigationBarHidden: YES animated:YES];
-//	[target presentViewController:navigationController animated:YES completion:nil];
-
+    Tutorial *tutorial = [[Tutorial alloc] init];
+    NavigationController *navigationController = [[NavigationController alloc] initWithRootViewController:tutorial];
+    [target presentViewController:navigationController animated:YES completion:nil];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-void PostNotification(NSString *notification)
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
+void PostNotification(NSString *notification) {
 	[[NSNotificationCenter defaultCenter] postNotificationName:notification object:nil];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-NSString* TimeElapsed(NSTimeInterval seconds)
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
+NSString* TimeElapsed(NSTimeInterval seconds) {
 	NSString *elapsed;
 	if (seconds < 60)
 	{
