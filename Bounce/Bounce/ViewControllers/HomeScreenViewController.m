@@ -24,10 +24,10 @@
 @property (weak, nonatomic) UIView *repliesView;
 @property (weak, nonatomic) UIView *bottomView;
 @property (weak, nonatomic) UIButton *getHomeButton;
-@property (weak, nonatomic) IBOutlet UIButton *leftMenuButton;
+@property (weak, nonatomic) UIButton *leftMenuButton;
 @property (weak, nonatomic) NSString *genderMatching;
 @property (nonatomic) float timeAllocated;
-@property (weak, nonatomic) IBOutlet UILabel *numOfMessagesLabel;
+@property (weak, nonatomic) UILabel *numOfMessagesLabel;
 
 @end
 
@@ -64,7 +64,7 @@
     NSArray *itemArray = [NSArray arrayWithObjects: @"All genders", @"Gender matching", nil];
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:itemArray];
     segmentedControl.tintColor = BounceSeaGreen;
-    segmentedControl.frame = CGRectMake(50, 20, self.view.frame.size.width - 100, 30);
+    segmentedControl.frame = CGRectMake(50, 15, self.view.frame.size.width - 100, 30);
     [segmentedControl addTarget:self action:@selector(MySegmentControlAction:) forControlEvents: UIControlEventValueChanged];
     segmentedControl.selectedSegmentIndex = 1;
     [self.bottomView addSubview:segmentedControl];
@@ -103,15 +103,32 @@
     [self.repliesView addSubview:numOfMessagesLabel];
     numOfMessagesLabel.frame = CGRectMake(repliesButton.frame.origin.x + repliesButton.frame.size.width, repliesButton.frame.origin.y, 5, 5);
     
-    UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(60, 80, 250.0, 10.0)];
+    UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(60, 85, 250.0, 10.0)];
     [slider addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventValueChanged];
-    [slider setBackgroundColor: [UIColor clearColor]];
+    slider.maximumValue = 120;
     slider.minimumValue = 5.0;
-    slider.maximumValue = 120.0;
     slider.continuous = YES;
-    slider.value = 5.0;
+    slider.value = 30.0;
     [slider setMinimumTrackTintColor:BounceSeaGreen];
     [self.bottomView addSubview:slider];
+    
+    UILabel *leavingIn = [[UILabel alloc]init];
+    leavingIn.textColor = [UIColor blackColor];
+    leavingIn.backgroundColor = [UIColor clearColor];
+    leavingIn.textAlignment = NSTextAlignmentCenter;
+    leavingIn.font = [leavingIn.font fontWithSize:11.0f];
+    leavingIn.text = @"Leaving in...";
+    leavingIn.frame = CGRectMake(slider.frame.origin.x - 27, slider.frame.origin.y - 70, 100, 100);
+    [bottomView addSubview:leavingIn];
+      
+    UILabel *twohr = [[UILabel alloc]init];
+    twohr.textColor = [UIColor blackColor];
+    twohr.backgroundColor = [UIColor clearColor];
+    twohr.textAlignment = NSTextAlignmentCenter;
+    twohr.font = [twohr.font fontWithSize:11.0f];
+    twohr.text = @"2 hrs";
+    twohr.frame = CGRectMake(slider.frame.origin.x + slider.frame.size.width , slider.frame.origin.y - 20, 30, 50);
+    [bottomView addSubview:twohr];
     
     UILabel *navLabel = [[UILabel alloc]init];
     navLabel.textColor = [UIColor whiteColor];
