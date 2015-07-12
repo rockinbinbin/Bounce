@@ -12,7 +12,7 @@
 
 #pragma mark - Pin: Superview
 
-/** 
+/**
  Pin a view to all four edges of it's super view.
  @return The top, right, bottom, and left NSLayoutConstraint constraints.
  */
@@ -22,7 +22,7 @@
  Pin a view to all four edges of it's super view, with an offset(inset from the edges).
  @param offset How far to offset(inset) the edges of the view from the superview's edges.
  @return The top, right, bottom, and left NSLayoutConstraint constraints.
- */array
+ */
 - (NSArray *)kgn_pinToEdgesOfSuperviewWithOffset:(CGFloat)offset;
 
 
@@ -502,7 +502,7 @@
 
 /**
  Horizontally layout views and then bound the left and right edges of the view to the left and right edges of the first and last views.
- This method is useful for filling scroll views with views becuase the passed views will be laid out, 
+ This method is useful for filling scroll views with views becuase the passed views will be laid out,
  and then the calling view(scroll view) will be bound to their total width.
  @param views An array of views to layout horizontally. The left and right edges of the view are bound to the left and right edges of first and last views.
  */
@@ -510,7 +510,7 @@
 
 /**
  Horizontally layout views and then bound the left and right edges of the view to the left and right edges of the first and last views.
-  This method is useful for filling scroll views with views becuase the passed views will be laid out, 
+ This method is useful for filling scroll views with views becuase the passed views will be laid out,
  and then the calling view(scroll view) will be bound to their total width.
  @param views An array of views to layout horizontally. The left and right edges of the view are bound to the left and right edges of first and last views.
  @param separation The separation between the views.

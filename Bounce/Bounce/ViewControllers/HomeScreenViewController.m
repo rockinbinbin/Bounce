@@ -15,6 +15,8 @@
 #import "GroupsListViewController.h"
 #import "UIViewController+AMSlideMenu.h"
 #import "RequestManger.h"
+#import "bounce-Swift.h"
+#import "UIView+AutoLayout.h"
 
 @interface HomeScreenViewController ()
 
@@ -42,41 +44,47 @@
     self.navigationController.navigationBar.barTintColor = BounceRed;
     self.navigationController.navigationBar.translucent = NO;
     
-    
     [[RequestManger getInstance] loadActiveRequest];
     
     self.genderMatching = ALL_GENDER;
     self.timeAllocated = 5.0;
     
-    MKMapView *tempMap = [[MKMapView alloc] initWithFrame:self.view.frame];
+    MKMapView *tempMap = [MKMapView new];
     tempMap.scrollEnabled = NO;
     [self.view addSubview:tempMap];
+    [tempMap kgn_pinToEdgesOfSuperview];
     self.map = tempMap;
     
     UIView *bottomView = [[UIView alloc] init];
-    bottomView.frame = CGRectMake(0, self.view.frame.size.height - self.view.frame.size.height/3.5, self.view.frame.size.width, self.view.frame.size.height/5.3);
     bottomView.backgroundColor = [UIColor whiteColor];
     bottomView.layer.borderColor = BounceSeaGreen.CGColor;
     bottomView.layer.borderWidth = 3.0f;
     [self.view addSubview:bottomView];
+    [bottomView kgn_pinToBottomEdgeOfSuperview];
+    [bottomView kgn_sizeToHeight:self.view.frame.size.height/5.3];
+    [bottomView kgn_sizeToWidth:self.view.frame.size.width];
     self.bottomView = bottomView;
     
     NSArray *itemArray = [NSArray arrayWithObjects: @"All genders", @"Gender matching", nil];
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:itemArray];
     segmentedControl.tintColor = BounceSeaGreen;
-    segmentedControl.frame = CGRectMake(50, 15, self.view.frame.size.width - 100, 30);
     [segmentedControl addTarget:self action:@selector(MySegmentControlAction:) forControlEvents: UIControlEventValueChanged];
     segmentedControl.selectedSegmentIndex = 1;
     [self.bottomView addSubview:segmentedControl];
+    [segmentedControl kgn_sizeToWidth:self.view.frame.size.width - 100];
+    [segmentedControl kgn_sizeToHeight:self.view.frame.size.height/20];
+    [segmentedControl kgn_centerHorizontallyInSuperview];
+    [segmentedControl kgn_pinToTopEdgeOfSuperviewWithOffset:15];
 
     UIView *replies = [[UIView alloc] init];
-    replies.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height/3);
     replies.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
     [self.map addSubview:replies];
+    [replies kgn_sizeToHeight:self.view.frame.size.height/3];
+    [replies kgn_sizeToWidth:self.view.frame.size.width];
+    [replies kgn_pinToTopEdgeOfSuperview];
     self.repliesView = replies;
     
     UIButton *repliesButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    repliesButton.frame = CGRectMake(self.repliesView.frame.origin.x + 65, self.repliesView.frame.origin.y + 40, self.repliesView.frame.size.width/1.5, self.repliesView.frame.size.height/4);
     [repliesButton setTitle:@"Coordinate trip home" forState:UIControlStateNormal];
     repliesButton.titleLabel.font = [UIFont fontWithName:@"Quicksand-Bold" size:18.0f];
     repliesButton.backgroundColor = BounceRed;
@@ -85,12 +93,18 @@
     repliesButton.clipsToBounds = YES;
     [repliesButton addTarget:self action:@selector(repliesButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.repliesView addSubview:repliesButton];
+    [repliesButton kgn_sizeToWidth:self.view.frame.size.width/1.5];
+    [repliesButton kgn_sizeToHeight:self.view.frame.size.height/12];
+    [repliesButton kgn_centerHorizontallyInSuperview];
+    [repliesButton kgn_pinToTopEdgeOfSuperviewWithOffset:self.view.frame.size.height/14];
     
     UILabel *timeLeftLabel = [[UILabel alloc] init];
-    timeLeftLabel.frame = CGRectMake(self.repliesView.frame.origin.x + 120, self.repliesView.frame.origin.y + 120, self.repliesView.frame.size.width/1.5, self.repliesView.frame.size.height/4);
     timeLeftLabel.textColor = [UIColor whiteColor];
     timeLeftLabel.font = [UIFont fontWithName:@"Avenir-Next" size:11];
     [self.repliesView addSubview:timeLeftLabel];
+    [timeLeftLabel sizeToFit];
+    [timeLeftLabel kgn_pinTopEdgeToTopEdgeOfItem:repliesButton withOffset:-80];
+    [timeLeftLabel kgn_centerHorizontallyInSuperview];
     self.timeRemainingLabel = timeLeftLabel;
     
     // TODO: TEST NOTIFICATION VIEW
@@ -99,11 +113,13 @@
     numOfMessagesLabel.layer.cornerRadius = self.numOfMessagesLabel.frame.size.height/2;
     numOfMessagesLabel.layer.masksToBounds = YES;
     numOfMessagesLabel.textColor = [UIColor redColor];
-    self.numOfMessagesLabel = numOfMessagesLabel;
     [self.repliesView addSubview:numOfMessagesLabel];
-    numOfMessagesLabel.frame = CGRectMake(repliesButton.frame.origin.x + repliesButton.frame.size.width, repliesButton.frame.origin.y, 5, 5);
+    [numOfMessagesLabel kgn_pinLeftEdgeToLeftEdgeOfItem:repliesButton withOffset:-(self.view.frame.size.width/1.5)];
+    [numOfMessagesLabel kgn_pinTopEdgeToTopEdgeOfItem:repliesButton];
+    self.numOfMessagesLabel = numOfMessagesLabel;
+    /////////////////////////////////////////////////
     
-    UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(60, 85, 250.0, 10.0)];
+    UISlider *slider = [UISlider new];
     [slider addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventValueChanged];
     slider.maximumValue = 120;
     slider.minimumValue = 5.0;
@@ -111,24 +127,32 @@
     slider.value = 30.0;
     [slider setMinimumTrackTintColor:BounceSeaGreen];
     [self.bottomView addSubview:slider];
+    [slider kgn_sizeToWidth:self.view.frame.size.width - 100];
+    [slider kgn_sizeToHeight:10];
+    [slider kgn_centerHorizontallyInSuperview];
+    [slider kgn_pinToBottomEdgeOfSuperviewWithOffset:25];
     
-    UILabel *leavingIn = [[UILabel alloc]init];
+    UILabel *leavingIn = [UILabel new];
     leavingIn.textColor = [UIColor blackColor];
     leavingIn.backgroundColor = [UIColor clearColor];
     leavingIn.textAlignment = NSTextAlignmentCenter;
     leavingIn.font = [leavingIn.font fontWithSize:11.0f];
     leavingIn.text = @"Leaving in...";
-    leavingIn.frame = CGRectMake(slider.frame.origin.x - 27, slider.frame.origin.y - 70, 100, 100);
     [bottomView addSubview:leavingIn];
-      
-    UILabel *twohr = [[UILabel alloc]init];
+    [leavingIn sizeToFit];
+    [leavingIn kgn_pinTopEdgeToTopEdgeOfItem:slider withOffset:30];
+    [leavingIn kgn_pinLeftEdgeToLeftEdgeOfItem:slider];
+    
+    UILabel *twohr = [UILabel new];
     twohr.textColor = [UIColor blackColor];
     twohr.backgroundColor = [UIColor clearColor];
     twohr.textAlignment = NSTextAlignmentCenter;
     twohr.font = [twohr.font fontWithSize:11.0f];
     twohr.text = @"2 hrs";
-    twohr.frame = CGRectMake(slider.frame.origin.x + slider.frame.size.width , slider.frame.origin.y - 20, 30, 50);
     [bottomView addSubview:twohr];
+    [twohr sizeToFit];
+    [twohr kgn_pinTopEdgeToTopEdgeOfItem:slider];
+    [twohr kgn_pinRightEdgeToRightEdgeOfItem:slider withOffset:30];
     
     UILabel *navLabel = [[UILabel alloc]init];
     navLabel.textColor = [UIColor whiteColor];
@@ -153,22 +177,27 @@
     
     [self.view setCenter:CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2)];
     
-    UIButton *getHomeButton = [[UIButton alloc] init];
-    getHomeButton.frame = CGRectMake(90, 200, 200, 100);
+    UIButton *getHomeButton = [UIButton new];
     UIImage *img = [UIImage imageNamed:@"getHome"];
     [getHomeButton setImage:img forState:UIControlStateNormal];
     [getHomeButton addTarget:self action:@selector(messageButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.map addSubview:getHomeButton];
+    [getHomeButton kgn_sizeToWidth:200];
+    [getHomeButton kgn_sizeToHeight:100];
+    [getHomeButton kgn_centerHorizontallyInSuperview];
+    [getHomeButton kgn_centerVerticallyInSuperviewWithOffset:-45];
     self.getHomeButton = getHomeButton;
     
-    UIButton *endRequestButton = [[UIButton alloc]init];
-    endRequestButton.frame = CGRectMake(0, self.view.frame.size.height - 108, self.view.frame.size.width, 45);
+    UIButton *endRequestButton = [UIButton new];
     endRequestButton.tintColor = [UIColor whiteColor];
     endRequestButton.backgroundColor = BounceSeaGreen;
     [endRequestButton setTitle:@"cancel request" forState:UIControlStateNormal];
     endRequestButton.titleLabel.font = [UIFont fontWithName:@"Avenir-Next" size:11];
     [endRequestButton addTarget:self action:@selector(endRequestButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.map addSubview:endRequestButton];
+    [endRequestButton kgn_sizeToHeight:self.view.frame.size.height/14];
+    [endRequestButton kgn_sizeToWidth:self.view.frame.size.width];
+    [endRequestButton kgn_pinToBottomEdgeOfSuperview];
     
     [self startReceivingSignificantLocationChanges];
     [self changeCenterToUserLocation];

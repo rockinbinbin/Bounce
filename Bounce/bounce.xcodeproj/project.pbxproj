@@ -28,7 +28,6 @@
 		007CF29A1AA3E516007D7C33 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF2991AA3E516007D7C33 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		007CF29C1AA3E529007D7C33 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF29B1AA3E529007D7C33 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		007CF29E1AA3E532007D7C33 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF29D1AA3E532007D7C33 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		00ABD56A1B478C2D004A2FB0 /* UIView+KGNAutoLayout in Resources */ = {isa = PBXBuildFile; fileRef = 00ABD5691B478C2D004A2FB0 /* UIView+KGNAutoLayout */; };
 		00ABD56E1B479C1B004A2FB0 /* FinishedIcon in Resources */ = {isa = PBXBuildFile; fileRef = 00ABD56D1B479C1B004A2FB0 /* FinishedIcon */; };
 		00ABD5701B4846CC004A2FB0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00ABD56F1B4846CC004A2FB0 /* LaunchScreen.storyboard */; };
 		00CEE3D2199434E700F40C12 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE3D1199434E700F40C12 /* Foundation.framework */; };
@@ -49,6 +48,7 @@
 		00DF1FDD1B439FAE004F056A /* Tutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DF1FDC1B439FAE004F056A /* Tutorial.swift */; };
 		00DF1FDF1B43A1C7004F056A /* InstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DF1FDE1B43A1C7004F056A /* InstructionView.swift */; };
 		00DF1FE31B43CDA6004F056A /* FacebookLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DF1FE21B43CDA6004F056A /* FacebookLogin.m */; };
+		00E2CBB41B53073700B316D1 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2CBB31B53073700B316D1 /* UIView+AutoLayout.m */; };
 		28F13A521A6C75A90069EBA4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F13A511A6C75A90069EBA4 /* MapKit.framework */; };
 		67BB90C81ADFA8B20050164B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BB90C41ADFA8B20050164B /* Bolts.framework */; };
 		67BB90C91ADFA8B20050164B /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BB90C51ADFA8B20050164B /* Parse.framework */; };
@@ -361,7 +361,6 @@
 		007CF2991AA3E516007D7C33 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		007CF29B1AA3E529007D7C33 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		007CF29D1AA3E532007D7C33 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
-		00ABD5691B478C2D004A2FB0 /* UIView+KGNAutoLayout */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "UIView+KGNAutoLayout"; sourceTree = "<group>"; };
 		00ABD56D1B479C1B004A2FB0 /* FinishedIcon */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FinishedIcon; path = "Bounce Images/FinishedIcon"; sourceTree = "<group>"; };
 		00ABD56F1B4846CC004A2FB0 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Bounce/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		00CEE3CE199434E700F40C12 /* bounce.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bounce.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -387,6 +386,8 @@
 		00DF1FE01B43A8CF004F056A /* bounce-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "bounce-Bridging-Header.h"; sourceTree = "<group>"; };
 		00DF1FE11B43CDA6004F056A /* FacebookLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookLogin.h; sourceTree = "<group>"; };
 		00DF1FE21B43CDA6004F056A /* FacebookLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookLogin.m; sourceTree = "<group>"; };
+		00E2CBB21B53073700B316D1 /* UIView+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
+		00E2CBB31B53073700B316D1 /* UIView+AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
 		28F13A511A6C75A90069EBA4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6791817C1AC0057D00D0474C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		67BB90C41ADFA8B20050164B /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = FrameWorks/Bolts.framework; sourceTree = "<group>"; };
@@ -1168,6 +1169,8 @@
 		67BB91F71ADFA8D10050164B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				00E2CBB21B53073700B316D1 /* UIView+AutoLayout.h */,
+				00E2CBB31B53073700B316D1 /* UIView+AutoLayout.m */,
 				67BB91F81ADFA8D10050164B /* AddGroupUsersViewController.h */,
 				67BB91F91ADFA8D10050164B /* AddGroupUsersViewController.m */,
 				67BB91FA1ADFA8D10050164B /* AddHomePointViewController.h */,
@@ -1276,7 +1279,6 @@
 				67BB93E21ADFABCD0050164B /* NotificationChat */,
 				67BB93F61ADFABCD0050164B /* ProgressHUD */,
 				67BB93FA1ADFABCD0050164B /* Reachability */,
-				00ABD5691B478C2D004A2FB0 /* UIView+KGNAutoLayout */,
 			);
 			path = ThirdParty;
 			sourceTree = "<group>";
@@ -1740,7 +1742,6 @@
 				67BB92EF1ADFA8D10050164B /* AddLocationScreenViewController.xib in Resources */,
 				67BB92EA1ADFA8D10050164B /* SlideMenuLeftTableViewController.xib in Resources */,
 				67BB92701ADFA8D10050164B /* Images.xcassets in Resources */,
-				00ABD56A1B478C2D004A2FB0 /* UIView+KGNAutoLayout in Resources */,
 				67BB94471ADFABCD0050164B /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
 				67BB94511ADFABCD0050164B /* JSQMessagesToolbarContentView.xib in Resources */,
 				67BB94291ADFABCD0050164B /* JSQMessagesAssets.bundle in Resources */,
@@ -1807,6 +1808,7 @@
 				67BB943F1ADFABCD0050164B /* JSQMessagesAvatarImage.m in Sources */,
 				67BB94361ADFABCD0050164B /* JSQMessagesMediaViewBubbleImageMasker.m in Sources */,
 				67BB943C1ADFABCD0050164B /* JSQLocationMediaItem.m in Sources */,
+				00E2CBB41B53073700B316D1 /* UIView+AutoLayout.m in Sources */,
 				67BB94141ADFABCD0050164B /* UIViewController+AMSlideMenu.m in Sources */,
 				67BB942C1ADFABCD0050164B /* NSString+JSQMessages.m in Sources */,
 				67BB94001ADFABCD0050164B /* AFNetworkReachabilityManager.m in Sources */,
@@ -1986,7 +1988,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "615d5999-dc0f-40c3-87f3-311dfab4bc83";
 				SDKROOT = iphoneos;
@@ -2021,7 +2023,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "615d5999-dc0f-40c3-87f3-311dfab4bc83";
 				SDKROOT = iphoneos;
@@ -2049,7 +2051,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bounce/bounce-Prefix.pch";
 				INFOPLIST_FILE = "Bounce/bounce-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = bounce;
@@ -2081,7 +2083,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bounce/bounce-Prefix.pch";
 				INFOPLIST_FILE = "Bounce/bounce-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = bounce;
