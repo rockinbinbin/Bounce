@@ -13,6 +13,7 @@
 #import "RequestManger.h"
 #import "HomeScreenViewController.h"
 #import "UIViewController+AMSlideMenu.h"
+#import "UIView+AutoLayout.h"
 
 @interface MessageScreenViewController ()
 @end
@@ -25,13 +26,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    NSLog(@"TIME ALLOCATED: ");
-    NSLog(@"%f", self.timeAllocated);
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(incomingNotification:) name:@"SelectedStringNotification" object:nil];
-    
-    UILabel *navLabel = [[UILabel alloc]init];
+    UILabel *navLabel = [UILabel new];
     navLabel.textColor = [UIColor whiteColor];
     navLabel.backgroundColor = [UIColor clearColor];
     navLabel.textAlignment = NSTextAlignmentCenter;
@@ -60,6 +56,17 @@
 
     self.selectedGroups = [NSMutableArray array];
     self.location_manager = [[CLLocationManager alloc] init];
+    
+    UIImage *img = [UIImage imageNamed:@"attic"];
+    UIImage *img2 = [UIImage imageNamed:@"door"];
+    UIImage *img3 = [UIImage imageNamed:@"cups"];
+    UIImage *img4 = [UIImage imageNamed:@"bed"];
+    UIImage *img5 = [UIImage imageNamed:@"table"];
+    UIImage *img6 = [UIImage imageNamed:@"forestHouse"];
+    UIImage *img7 = [UIImage imageNamed:@"newYork"];
+    UIImage *img8 = [UIImage imageNamed:@"sanFrancisco"];
+    UIImage *img9 = [UIImage imageNamed:@"person"];
+    self.images = [[NSArray alloc] initWithObjects:img, img2, img3, img4, img5, img6, img7, img8, img9, nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -122,7 +129,6 @@
                                                                 delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [zerolength show];
         }
-    
 }
 
 -(void)backButtonClicked{
@@ -148,39 +154,6 @@
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
     }
-}
-
-// hides keyboard when user clicks return
-- (BOOL) textFieldShouldReturn: (UITextField *)textField {
-    [textField resignFirstResponder];
-    return YES;
-}
-
--(BOOL)isNumeric:(NSString*)inputString{
-    BOOL isValid = NO;
-    NSCharacterSet *alphaNumbersSet = [NSCharacterSet decimalDigitCharacterSet];
-    NSCharacterSet *stringSet = [NSCharacterSet characterSetWithCharactersInString:inputString];
-    isValid = [alphaNumbersSet isSupersetOfSet:stringSet];
-    return isValid;
-}
-
-#pragma mark - Navigation
--(int) getNumberInString:(NSString*) string{
-    NSString *numberString;
-    
-    NSScanner *scanner = [NSScanner scannerWithString:string];
-    NSCharacterSet *numbers = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
-    
-    // Throw away characters before the first number.
-    [scanner scanUpToCharactersFromSet:numbers intoString:NULL];
-    
-    // Collect numbers.
-    [scanner scanCharactersFromSet:numbers intoString:&numberString];
-    
-    // Result.
-    int number = (int)[numberString integerValue];
-    NSLog(@"%i", number);
-    return number;
 }
 
 - (IBAction)cancelButtonPressed{
@@ -214,7 +187,7 @@
         cell.iconImageView.hidden = NO;
         cell.iconImageView.image = [UIImage imageNamed:@"common_checkmark_icon"];
     }
-    else{
+    else {
         cell.iconImageView.hidden = YES;
         cell.iconImageView.image = nil;
         cell.iconImageView.hidden = NO;
@@ -223,7 +196,7 @@
             cell.numOfFriendsInGroupLabel.hidden = NO;
             cell.nearbyLabel.hidden = NO;
         }
-        else{
+        else {
             cell.groupDistanceLabel.hidden = YES;
             cell.numOfFriendsInGroupLabel.hidden = YES;
             cell.nearbyLabel.hidden = YES;
@@ -235,14 +208,87 @@
         cell.groupDistanceLabel.font=[cell.groupDistanceLabel.font fontWithSize:12];
     }
     
-    for ( UIView* view in cell.contentView.subviews )
-    {
-        view.backgroundColor = [ UIColor clearColor ];
+    for (UIView* view in cell.contentView.subviews) {
+        view.backgroundColor = [UIColor clearColor];
     }
     
-    cell.groupNameLabel.text = [[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
+    ////////////// THE STUPID CODE
+    if (indexPath.row == 0) {
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height/3)];
+        imgView.image = self.images[0];
+        UIView *overlay = [[UIView alloc] initWithFrame:imgView.frame];
+        [overlay setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.3]];
+        [imgView addSubview:overlay];
+        [cell.contentView addSubview:imgView];
+    }
+    if (indexPath.row == 1) {
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height/3)];
+        imgView.image = self.images[1];
+        UIView *overlay = [[UIView alloc] initWithFrame:imgView.frame];
+        [overlay setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.3]];
+        [imgView addSubview:overlay];
+        [cell.contentView addSubview:imgView];
+    }
+    if (indexPath.row == 2) {
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height/3)];
+        imgView.image = self.images[2];
+        UIView *overlay = [[UIView alloc] initWithFrame:imgView.frame];
+        [overlay setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.3]];
+        [imgView addSubview:overlay];
+        [cell.contentView addSubview:imgView];
+    }
+    if (indexPath.row == 3) {
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height/3)];
+        imgView.image = self.images[3];
+        UIView *overlay = [[UIView alloc] initWithFrame:imgView.frame];
+        [overlay setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.3]];
+        [imgView addSubview:overlay];
+        [cell.contentView addSubview:imgView];
+    }
+    if (indexPath.row == 4) {
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height/3)];
+        imgView.image = self.images[4];
+        UIView *overlay = [[UIView alloc] initWithFrame:imgView.frame];
+        [overlay setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.3]];
+        [imgView addSubview:overlay];
+        [cell.contentView addSubview:imgView];
+    }
+    if (indexPath.row == 5) {
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height/3)];
+        imgView.image = self.images[5];
+        UIView *overlay = [[UIView alloc] initWithFrame:imgView.frame];
+        [overlay setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.3]];
+        [imgView addSubview:overlay];
+        [cell.contentView addSubview:imgView];
+    }
+    if (indexPath.row == 6) {
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height/3)];
+        imgView.image = self.images[6];
+        UIView *overlay = [[UIView alloc] initWithFrame:imgView.frame];
+        [overlay setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.3]];
+        [imgView addSubview:overlay];
+        [cell.contentView addSubview:imgView];
+    }
+    if (indexPath.row == 7) {
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height/3)];
+        imgView.image = self.images[7];
+        UIView *overlay = [[UIView alloc] initWithFrame:imgView.frame];
+        [overlay setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.3]];
+        [imgView addSubview:overlay];
+        [cell.contentView addSubview:imgView];
+    }
+    
+    UILabel *label = [UILabel new];
+    label.text = [[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
+    label.textColor = [UIColor whiteColor];
+    label.font = [UIFont fontWithName:@"Quicksand-Regular" size:30];
+    [cell.contentView addSubview:label];
+    [label kgn_centerHorizontallyInSuperview];
+    [label kgn_centerVerticallyInSuperview];
+    
     cell.groupDistanceLabel.text = [NSString stringWithFormat:DISTANCE_MESSAGE, [[self.distanceToUserLocation objectAtIndex:indexPath.row] doubleValue]];
     cell.numOfFriendsInGroupLabel.text = [NSString stringWithFormat:@"%@",[self.nearUsers objectAtIndex:indexPath.row]];
+    
     return cell;
 }
 
@@ -261,7 +307,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 150;
+    return self.view.frame.size.height/3;
 }
 
 #pragma mark - Parse LoadGroups delegate

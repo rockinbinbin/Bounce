@@ -49,6 +49,7 @@
 		00DF1FDF1B43A1C7004F056A /* InstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DF1FDE1B43A1C7004F056A /* InstructionView.swift */; };
 		00DF1FE31B43CDA6004F056A /* FacebookLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DF1FE21B43CDA6004F056A /* FacebookLogin.m */; };
 		00E2CBB41B53073700B316D1 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2CBB31B53073700B316D1 /* UIView+AutoLayout.m */; };
+		00E2CBB61B5384B600B316D1 /* homepoint images in Resources */ = {isa = PBXBuildFile; fileRef = 00E2CBB51B5384B500B316D1 /* homepoint images */; };
 		28F13A521A6C75A90069EBA4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F13A511A6C75A90069EBA4 /* MapKit.framework */; };
 		67BB90C81ADFA8B20050164B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BB90C41ADFA8B20050164B /* Bolts.framework */; };
 		67BB90C91ADFA8B20050164B /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BB90C51ADFA8B20050164B /* Parse.framework */; };
@@ -388,6 +389,7 @@
 		00DF1FE21B43CDA6004F056A /* FacebookLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookLogin.m; sourceTree = "<group>"; };
 		00E2CBB21B53073700B316D1 /* UIView+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
 		00E2CBB31B53073700B316D1 /* UIView+AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
+		00E2CBB51B5384B500B316D1 /* homepoint images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "homepoint images"; path = "ViewControllers/homepoint images"; sourceTree = "<group>"; };
 		28F13A511A6C75A90069EBA4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6791817C1AC0057D00D0474C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		67BB90C41ADFA8B20050164B /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = FrameWorks/Bolts.framework; sourceTree = "<group>"; };
@@ -1071,6 +1073,7 @@
 				67BB91011ADFA8D00050164B /* Images.xcassets */,
 				00ABD56D1B479C1B004A2FB0 /* FinishedIcon */,
 				67BB91021ADFA8D00050164B /* main.m */,
+				00E2CBB51B5384B500B316D1 /* homepoint images */,
 				67BB91F71ADFA8D10050164B /* ViewControllers */,
 				67BB92251ADFA8D10050164B /* Views */,
 			);
@@ -1769,6 +1772,7 @@
 				0002349E1B488F98000B7630 /* Quicksand-LightItalic.otf in Resources */,
 				000234A01B488F9F000B7630 /* Quicksand-Regular.otf in Resources */,
 				67BB92EC1ADFA8D10050164B /* SlideMenuViewController.xib in Resources */,
+				00E2CBB61B5384B600B316D1 /* homepoint images in Resources */,
 				67BB92591ADFA8D10050164B /* Tutorial-1_iPhone6.png in Resources */,
 				67BB92581ADFA8D10050164B /* Tutorial-1_iPhone5.png in Resources */,
 				67BB92501ADFA8D10050164B /* Contents.json in Resources */,

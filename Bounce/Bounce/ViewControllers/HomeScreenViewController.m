@@ -7,16 +7,6 @@
 //
 
 #import "HomeScreenViewController.h"
-#import <Parse/Parse.h>
-#import "utilities.h"
-#import "MessageScreenViewController.h"
-#import "RequestsViewController.h"
-#import "AppConstant.h"
-#import "GroupsListViewController.h"
-#import "UIViewController+AMSlideMenu.h"
-#import "RequestManger.h"
-#import "bounce-Swift.h"
-#import "UIView+AutoLayout.h"
 
 @interface HomeScreenViewController ()
 
@@ -55,7 +45,7 @@
     [tempMap kgn_pinToEdgesOfSuperview];
     self.map = tempMap;
     
-    UIView *bottomView = [[UIView alloc] init];
+    UIView *bottomView = [UIView new];
     bottomView.backgroundColor = [UIColor whiteColor];
     bottomView.layer.borderColor = BounceSeaGreen.CGColor;
     bottomView.layer.borderWidth = 3.0f;
@@ -76,7 +66,7 @@
     [segmentedControl kgn_centerHorizontallyInSuperview];
     [segmentedControl kgn_pinToTopEdgeOfSuperviewWithOffset:self.view.frame.size.height/40];
 
-    UIView *replies = [[UIView alloc] init];
+    UIView *replies = [UIView new];
     replies.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
     [self.map addSubview:replies];
     [replies kgn_sizeToHeight:self.view.frame.size.height/3];
@@ -98,7 +88,7 @@
     [repliesButton kgn_centerHorizontallyInSuperview];
     [repliesButton kgn_pinToTopEdgeOfSuperviewWithOffset:self.view.frame.size.height/14];
     
-    UILabel *timeLeftLabel = [[UILabel alloc] init];
+    UILabel *timeLeftLabel = [UILabel new];
     timeLeftLabel.textColor = [UIColor whiteColor];
     timeLeftLabel.font = [UIFont fontWithName:@"Avenir-Next" size:11];
     [self.repliesView addSubview:timeLeftLabel];
@@ -108,7 +98,7 @@
     self.timeRemainingLabel = timeLeftLabel;
     
     // TODO: TEST NOTIFICATION VIEW
-    UILabel *numOfMessagesLabel = [[UILabel alloc] init];
+    UILabel *numOfMessagesLabel = [UILabel new];
     [numOfMessagesLabel setFont:[UIFont fontWithName: @"Avenir-Next" size: 16.0f]];
     numOfMessagesLabel.layer.cornerRadius = self.numOfMessagesLabel.frame.size.height/2;
     numOfMessagesLabel.layer.masksToBounds = YES;
@@ -154,7 +144,7 @@
     [twohr kgn_pinTopEdgeToTopEdgeOfItem:slider];
     [twohr kgn_pinRightEdgeToRightEdgeOfItem:slider withOffset:30];
     
-    UILabel *navLabel = [[UILabel alloc]init];
+    UILabel *navLabel = [UILabel new];
     navLabel.textColor = [UIColor whiteColor];
     navLabel.backgroundColor = [UIColor clearColor];
     navLabel.textAlignment = NSTextAlignmentCenter;
