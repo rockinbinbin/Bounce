@@ -61,7 +61,7 @@
     bottomView.layer.borderWidth = 3.0f;
     [self.view addSubview:bottomView];
     [bottomView kgn_pinToBottomEdgeOfSuperview];
-    [bottomView kgn_sizeToHeight:self.view.frame.size.height/5.3];
+    [bottomView kgn_sizeToHeight:self.view.frame.size.height/4.9];
     [bottomView kgn_sizeToWidth:self.view.frame.size.width];
     self.bottomView = bottomView;
     
@@ -74,7 +74,7 @@
     [segmentedControl kgn_sizeToWidth:self.view.frame.size.width - 100];
     [segmentedControl kgn_sizeToHeight:self.view.frame.size.height/20];
     [segmentedControl kgn_centerHorizontallyInSuperview];
-    [segmentedControl kgn_pinToTopEdgeOfSuperviewWithOffset:15];
+    [segmentedControl kgn_pinToTopEdgeOfSuperviewWithOffset:self.view.frame.size.height/40];
 
     UIView *replies = [[UIView alloc] init];
     replies.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
@@ -130,17 +130,17 @@
     [slider kgn_sizeToWidth:self.view.frame.size.width - 100];
     [slider kgn_sizeToHeight:10];
     [slider kgn_centerHorizontallyInSuperview];
-    [slider kgn_pinToBottomEdgeOfSuperviewWithOffset:25];
+    [slider kgn_pinToBottomEdgeOfSuperviewWithOffset:20];
     
     UILabel *leavingIn = [UILabel new];
     leavingIn.textColor = [UIColor blackColor];
     leavingIn.backgroundColor = [UIColor clearColor];
     leavingIn.textAlignment = NSTextAlignmentCenter;
-    leavingIn.font = [leavingIn.font fontWithSize:11.0f];
+    leavingIn.font = [leavingIn.font fontWithSize:self.view.frame.size.height/50];
     leavingIn.text = @"Leaving in...";
     [bottomView addSubview:leavingIn];
     [leavingIn sizeToFit];
-    [leavingIn kgn_pinTopEdgeToTopEdgeOfItem:slider withOffset:30];
+    [leavingIn kgn_pinTopEdgeToTopEdgeOfItem:slider withOffset:self.view.frame.size.height/18];
     [leavingIn kgn_pinLeftEdgeToLeftEdgeOfItem:slider];
     
     UILabel *twohr = [UILabel new];
