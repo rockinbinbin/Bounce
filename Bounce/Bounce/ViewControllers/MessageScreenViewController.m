@@ -232,7 +232,11 @@
     
     NSString *friendsinHP = [self.nearUsers objectAtIndex:indexPath.row];
     int numFriends = (int)[friendsinHP integerValue];
-    if (numFriends > 0) {
+
+    if (numFriends == 1) {
+        cell.friendsinHomepoint.text = [NSString stringWithFormat:@"1 friend in homepoint"];
+    }
+    else if (numFriends != 0) {
         cell.friendsinHomepoint.text = [NSString stringWithFormat:@"%@ friends in homepoint",friendsinHP];
     }
     return cell;
