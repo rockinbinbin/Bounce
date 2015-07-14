@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "newYork.jpeg"
+      "filename" : "whiteCheck@1x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "newYork-1.jpeg"
+      "filename" : "whiteCheck@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "newYork-2.jpeg"
+      "filename" : "whiteCheck@3x.png"
     }
   ],
   "info" : {

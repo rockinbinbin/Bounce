@@ -8,12 +8,12 @@
 
 #import "MessageScreenViewController.h"
 #import "Utility.h"
-#import "ChatListCell.h"
 #import "AppConstant.h"
 #import "RequestManger.h"
 #import "HomeScreenViewController.h"
 #import "UIViewController+AMSlideMenu.h"
 #import "UIView+AutoLayout.h"
+#import "homepointCell.h"
 
 @interface MessageScreenViewController ()
 @end
@@ -57,16 +57,13 @@
     self.selectedGroups = [NSMutableArray array];
     self.location_manager = [[CLLocationManager alloc] init];
     
-    UIImage *img = [UIImage imageNamed:@"attic"];
-    UIImage *img2 = [UIImage imageNamed:@"door"];
-    UIImage *img3 = [UIImage imageNamed:@"cups"];
-    UIImage *img4 = [UIImage imageNamed:@"bed"];
-    UIImage *img5 = [UIImage imageNamed:@"table"];
-    UIImage *img6 = [UIImage imageNamed:@"forestHouse"];
-    UIImage *img7 = [UIImage imageNamed:@"newYork"];
-    UIImage *img8 = [UIImage imageNamed:@"sanFrancisco"];
-    UIImage *img9 = [UIImage imageNamed:@"person"];
-    self.images = [[NSArray alloc] initWithObjects:img, img2, img3, img4, img5, img6, img7, img8, img9, nil];
+    UIImage *img = [UIImage imageNamed:@"bed"];
+    UIImage *img2 = [UIImage imageNamed:@"cups"];
+    UIImage *img3 = [UIImage imageNamed:@"door"];
+    UIImage *img4 = [UIImage imageNamed:@"table"];
+    UIImage *img5 = [UIImage imageNamed:@"attic"];
+
+    self.images = [[NSArray alloc] initWithObjects:img, img2, img3, img4, img5, nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -170,125 +167,74 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString* cellId = @"ChatListCell";
-    ChatListCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellId];
+    NSString* cellId = @"homepointCell";
+    homepointCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellId];
     
     if (!cell) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
-        cell = (ChatListCell *)[nib objectAtIndex:0];
+        cell = [homepointCell new];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    cell.roundedView.hidden = YES;
-    cell.numOfMessagesLabel.text = @"0";
+//    cell.roundedView.hidden = YES;
+//    cell.numOfMessagesLabel.text = @"0";
     
     if ([[self.selectedCells objectAtIndex:indexPath.row] boolValue]) {
-        cell.nearbyLabel.hidden = YES;
-        cell.numOfFriendsInGroupLabel.hidden = YES;
-        cell.iconImageView.hidden = NO;
-        cell.iconImageView.image = [UIImage imageNamed:@"common_checkmark_icon"];
+//        cell.nearbyLabel.hidden = YES;
+//        cell.numOfFriendsInGroupLabel.hidden = YES;
+//        cell.iconImageView.hidden = NO;
+        UIImageView *imgView = [UIImageView new];
+        imgView.image = [UIImage imageNamed:@"whiteCheck"];
+        [cell addSubview:imgView];
+        [imgView kgn_pinToRightEdgeOfSuperviewWithOffset:20];
+        [imgView kgn_pinToBottomEdgeOfSuperviewWithOffset:20];
     }
     else {
-        cell.iconImageView.hidden = YES;
-        cell.iconImageView.image = nil;
-        cell.iconImageView.hidden = NO;
+//        cell.iconImageView.hidden = YES;
+//        cell.iconImageView.image = nil;
+//        cell.iconImageView.hidden = NO;
         if (self.isDataLoaded) {
-            cell.groupDistanceLabel.hidden = NO;
-            cell.numOfFriendsInGroupLabel.hidden = NO;
-            cell.nearbyLabel.hidden = NO;
+//            cell.groupDistanceLabel.hidden = NO;
+//            cell.numOfFriendsInGroupLabel.hidden = NO;
+//            cell.nearbyLabel.hidden = NO;
         }
         else {
-            cell.groupDistanceLabel.hidden = YES;
-            cell.numOfFriendsInGroupLabel.hidden = YES;
-            cell.nearbyLabel.hidden = YES;
+//            cell.groupDistanceLabel.hidden = YES;
+//            cell.numOfFriendsInGroupLabel.hidden = YES;
+//            cell.nearbyLabel.hidden = YES;
         }
     }
     
-    if (IS_IPAD) {
-        cell.groupNameLabel.font=[cell.groupNameLabel.font fontWithSize:20];
-        cell.groupDistanceLabel.font=[cell.groupDistanceLabel.font fontWithSize:12];
-    }
-    
-    for (UIView* view in cell.contentView.subviews) {
-        view.backgroundColor = [UIColor clearColor];
-    }
-    
-    ////////////// THE STUPID CODE
     if (indexPath.row == 0) {
-        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height/3)];
-        imgView.image = self.images[0];
-        UIView *overlay = [[UIView alloc] initWithFrame:imgView.frame];
-        [overlay setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.3]];
-        [imgView addSubview:overlay];
-        [cell.contentView addSubview:imgView];
+        cell.cellBackground.image = self.images[0];
     }
     if (indexPath.row == 1) {
-        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height/3)];
-        imgView.image = self.images[1];
-        UIView *overlay = [[UIView alloc] initWithFrame:imgView.frame];
-        [overlay setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.3]];
-        [imgView addSubview:overlay];
-        [cell.contentView addSubview:imgView];
+        cell.cellBackground.image = self.images[1];
     }
     if (indexPath.row == 2) {
-        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height/3)];
-        imgView.image = self.images[2];
-        UIView *overlay = [[UIView alloc] initWithFrame:imgView.frame];
-        [overlay setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.3]];
-        [imgView addSubview:overlay];
-        [cell.contentView addSubview:imgView];
+        cell.cellBackground.image = self.images[2];
     }
     if (indexPath.row == 3) {
-        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height/3)];
-        imgView.image = self.images[3];
-        UIView *overlay = [[UIView alloc] initWithFrame:imgView.frame];
-        [overlay setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.3]];
-        [imgView addSubview:overlay];
-        [cell.contentView addSubview:imgView];
+        cell.cellBackground.image = self.images[3];
     }
     if (indexPath.row == 4) {
-        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height/3)];
-        imgView.image = self.images[4];
-        UIView *overlay = [[UIView alloc] initWithFrame:imgView.frame];
-        [overlay setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.3]];
-        [imgView addSubview:overlay];
-        [cell.contentView addSubview:imgView];
+        cell.cellBackground.image = self.images[4];
     }
-    if (indexPath.row == 5) {
-        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height/3)];
-        imgView.image = self.images[5];
-        UIView *overlay = [[UIView alloc] initWithFrame:imgView.frame];
-        [overlay setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.3]];
-        [imgView addSubview:overlay];
-        [cell.contentView addSubview:imgView];
+
+    cell.homepointName.text = [[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
+    
+    double distance = [[self.distanceToUserLocation objectAtIndex:indexPath.row] doubleValue];
+    if (distance > 500) {
+        distance = distance*0.000189394;
+        cell.distanceAway.text = [NSString stringWithFormat:DISTANCE_MESSAGE_IN_MILES, distance];
     }
-    if (indexPath.row == 6) {
-        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height/3)];
-        imgView.image = self.images[6];
-        UIView *overlay = [[UIView alloc] initWithFrame:imgView.frame];
-        [overlay setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.3]];
-        [imgView addSubview:overlay];
-        [cell.contentView addSubview:imgView];
-    }
-    if (indexPath.row == 7) {
-        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height/3)];
-        imgView.image = self.images[7];
-        UIView *overlay = [[UIView alloc] initWithFrame:imgView.frame];
-        [overlay setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.3]];
-        [imgView addSubview:overlay];
-        [cell.contentView addSubview:imgView];
+    else {
+       cell.distanceAway.text = [NSString stringWithFormat:DISTANCE_MESSAGE_IN_FEET, (int)distance];
     }
     
-    UILabel *label = [UILabel new];
-    label.text = [[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
-    label.textColor = [UIColor whiteColor];
-    label.font = [UIFont fontWithName:@"Quicksand-Regular" size:30];
-    [cell.contentView addSubview:label];
-    [label kgn_centerHorizontallyInSuperview];
-    [label kgn_centerVerticallyInSuperview];
-    
-    cell.groupDistanceLabel.text = [NSString stringWithFormat:DISTANCE_MESSAGE, [[self.distanceToUserLocation objectAtIndex:indexPath.row] doubleValue]];
-    cell.numOfFriendsInGroupLabel.text = [NSString stringWithFormat:@"%@",[self.nearUsers objectAtIndex:indexPath.row]];
-    
+    NSString *friendsinHP = [self.nearUsers objectAtIndex:indexPath.row];
+    int numFriends = (int)[friendsinHP integerValue];
+    if (numFriends > 0) {
+        cell.friendsinHomepoint.text = [NSString stringWithFormat:@"%@ friends in homepoint",friendsinHP];
+    }
     return cell;
 }
 
@@ -307,7 +253,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return self.view.frame.size.height/3;
+    return self.view.frame.size.height/2.5;
 }
 
 #pragma mark - Parse LoadGroups delegate

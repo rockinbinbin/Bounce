@@ -211,13 +211,13 @@
     self.timeAllocated = value;
 }
 
-
 -(void) viewWillAppear:(BOOL)animated{
     [[RequestManger getInstance] setRequestManagerDelegate:self];
     if ([[RequestManger getInstance] hasActiveRequest]) {
         [self requestCreated];
     }
 }
+
 - (void) viewWillDisappear:(BOOL)animated
 {
     [[RequestManger getInstance] setRequestManagerDelegate:nil];

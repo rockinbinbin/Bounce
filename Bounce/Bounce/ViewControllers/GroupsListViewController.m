@@ -215,7 +215,7 @@
         cell.groupDistanceLabel.font=[cell.groupDistanceLabel.font fontWithSize:12];
     }
     cell.groupNameLabel.text = [[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
-    cell.groupDistanceLabel.text = [NSString stringWithFormat:DISTANCE_MESSAGE, [[distanceToUserLocation objectAtIndex:indexPath.row] doubleValue]];
+    cell.groupDistanceLabel.text = [NSString stringWithFormat:DISTANCE_MESSAGE_IN_FEET, [[distanceToUserLocation objectAtIndex:indexPath.row] doubleValue]];
     cell.numOfFriendsInGroupLabel.text = [NSString stringWithFormat:@"%@",[nearUsers objectAtIndex:indexPath.row]];
     NSLog(@"near users %@", [nearUsers objectAtIndex:indexPath.row]);
     return cell;

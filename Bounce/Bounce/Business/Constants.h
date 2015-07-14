@@ -54,10 +54,8 @@
 #define PF_REQUEST_END_DATE @"EndDate"
 #define PF_REQUEST_GENDER @"gender";
 
-
-//
-//#define DISTANCE_MESSAGE @"%.1f miles away"
-#define DISTANCE_MESSAGE @"%.1f ft away"
+#define DISTANCE_MESSAGE_IN_MILES @"%.1f miles away"
+#define DISTANCE_MESSAGE_IN_FEET @"%d ft away"
 
 #define SIDE_MENU_WIDTH (IS_IPHONE? 225:375)
 

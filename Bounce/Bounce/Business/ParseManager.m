@@ -374,7 +374,7 @@ PFUser *currentUser;
     PFGeoPoint *userGeoPoint = [[PFUser currentUser] objectForKey:PF_USER_LOCATION];
     PFGeoPoint *groupGeoPoint = [group objectForKey:PF_GROUP_LOCATION];
     if (!groupGeoPoint) {
-       groupGeoPoint = [PFGeoPoint  geoPointWithLatitude:31.0 longitude:29.0] ;
+       groupGeoPoint = [PFGeoPoint  geoPointWithLatitude:31.0 longitude:29.0];
     }
 //    return [userGeoPoint distanceInMilesTo:groupGeoPoint];
     return ([userGeoPoint distanceInKilometersTo:groupGeoPoint] * FEET_IN_KILOMETER);
