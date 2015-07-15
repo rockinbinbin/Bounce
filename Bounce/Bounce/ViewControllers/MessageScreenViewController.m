@@ -31,7 +31,7 @@
     navLabel.textColor = [UIColor whiteColor];
     navLabel.backgroundColor = [UIColor clearColor];
     navLabel.textAlignment = NSTextAlignmentCenter;
-    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:25.0f];
+    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/23];
     self.navigationItem.titleView = navLabel;
     navLabel.text = @"Where's home?";
     [navLabel sizeToFit];
@@ -62,7 +62,6 @@
     UIImage *img3 = [UIImage imageNamed:@"door"];
     UIImage *img4 = [UIImage imageNamed:@"table"];
     UIImage *img5 = [UIImage imageNamed:@"attic"];
-
     self.images = [[NSArray alloc] initWithObjects:img, img2, img3, img4, img5, nil];
 }
 
@@ -174,33 +173,13 @@
         cell = [homepointCell new];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-//    cell.roundedView.hidden = YES;
-//    cell.numOfMessagesLabel.text = @"0";
-    
+
     if ([[self.selectedCells objectAtIndex:indexPath.row] boolValue]) {
-//        cell.nearbyLabel.hidden = YES;
-//        cell.numOfFriendsInGroupLabel.hidden = YES;
-//        cell.iconImageView.hidden = NO;
         UIImageView *imgView = [UIImageView new];
         imgView.image = [UIImage imageNamed:@"whiteCheck"];
         [cell addSubview:imgView];
         [imgView kgn_pinToRightEdgeOfSuperviewWithOffset:20];
         [imgView kgn_pinToBottomEdgeOfSuperviewWithOffset:20];
-    }
-    else {
-//        cell.iconImageView.hidden = YES;
-//        cell.iconImageView.image = nil;
-//        cell.iconImageView.hidden = NO;
-        if (self.isDataLoaded) {
-//            cell.groupDistanceLabel.hidden = NO;
-//            cell.numOfFriendsInGroupLabel.hidden = NO;
-//            cell.nearbyLabel.hidden = NO;
-        }
-        else {
-//            cell.groupDistanceLabel.hidden = YES;
-//            cell.numOfFriendsInGroupLabel.hidden = YES;
-//            cell.nearbyLabel.hidden = YES;
-        }
     }
     
     if (indexPath.row == 0) {

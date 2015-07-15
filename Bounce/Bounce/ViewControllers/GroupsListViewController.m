@@ -15,8 +15,10 @@
 #import "UIViewController+AMSlideMenu.h"
 #import "HomeScreenViewController.h"
 #import "AddGroupUsersViewController.h"
+#import "homepointListCell.h"
 
 @interface GroupsListViewController ()
+@property NSArray *images;
 @end
 
 @implementation GroupsListViewController
@@ -25,21 +27,37 @@
     NSInteger selectedIndex;
     NSMutableArray *groupUsers;
 }
+
 @synthesize nearUsers = nearUsers;
 @synthesize distanceToUserLocation = distanceToUserLocation;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self.navigationController setNavigationBarHidden:NO];
     [self setBarButtonItemLeft:@"common_back_button"];
-    [self setBarButtonItemRight:@"common_plus_icon_red"];
-    self.navigationItem.title = @"homepoints";
+    [self setBarButtonItemRight:@"common_plus_icon"];
+
+    UILabel *navLabel = [UILabel new];
+    navLabel.textColor = [UIColor whiteColor];
+    navLabel.backgroundColor = [UIColor clearColor];
+    navLabel.textAlignment = NSTextAlignmentCenter;
+    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/23];
+    self.navigationItem.titleView = navLabel;
+    navLabel.text = @"bounce";
+    [navLabel sizeToFit];
+    
+    
+    UIImage *img = [UIImage imageNamed:@"bed"];
+    UIImage *img2 = [UIImage imageNamed:@"cups"];
+    UIImage *img3 = [UIImage imageNamed:@"door"];
+    UIImage *img4 = [UIImage imageNamed:@"table"];
+    UIImage *img5 = [UIImage imageNamed:@"attic"];
+    self.images = [[NSArray alloc] initWithObjects:img, img2, img3, img4, img5, nil];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     @try {
-        // Disable left Slide menu
         [self disableSlidePanGestureForLeftMenu];
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
             [[Utility getInstance] showProgressHudWithMessage:@"Loading..." withView:self.view];
@@ -129,7 +147,6 @@
 - (void)didLoadGroups:(NSArray *)groups withError:(NSError *)error
 {
     @try {
-        
         if (error) {
             [[Utility getInstance] hideProgressHud];
             loadingData = NO;
@@ -180,9 +197,8 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //add code here for when you hit delete
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
-            [[Utility getInstance] showProgressHudWithMessage:@"Delete .." withView:self.view];
+            [[Utility getInstance] showProgressHudWithMessage:@"Deleting..." withView:self.view];
             selectedIndex = indexPath.row;
             [[ParseManager getInstance] setDeleteDelegate:self];
             [[ParseManager getInstance] deleteGroup:[self.groups objectAtIndex:selectedIndex]];
@@ -191,33 +207,57 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString* cellId = @"ChatListCell";
-    ChatListCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellId];
+    NSString* cellId = @"homepointListCell";
+    homepointListCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellId];
     
     if (!cell) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
-        cell = (ChatListCell *)[nib objectAtIndex:0];
+        cell = [homepointListCell new];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-  
-    // filling the cell data
-    cell.numOfMessagesLabel.text = @"0";
-    cell.roundedView.hidden = YES;
+    
+    if (indexPath.row == 0) {
+        cell.cellBackground.image = self.images[0];
+    }
+    if (indexPath.row == 1) {
+        cell.cellBackground.image = self.images[1];
+    }
+    if (indexPath.row == 2) {
+        cell.cellBackground.image = self.images[2];
+    }
+    if (indexPath.row == 3) {
+        cell.cellBackground.image = self.images[3];
+    }
+    if (indexPath.row == 4) {
+        cell.cellBackground.image = self.images[4];
+    }
 
-    if ([[[PFUser currentUser] username] isEqualToString:[[[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUP_OWNER] username]] ) {
-        cell.timeLabel.hidden = NO;
-        [cell.timeLabel setText:@"created by me"];
-    }else{
-        cell.timeLabel.hidden = YES;
+//    if ([[[PFUser currentUser] username] isEqualToString:[[[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUP_OWNER] username]] ) {
+//        cell.timeLabel.hidden = NO;
+//        [cell.timeLabel setText:@"created by me"];
+//    } else {
+//        cell.timeLabel.hidden = YES;
+//    }
+
+    cell.homepointName.text = [[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
+    
+    double distance = [[self.distanceToUserLocation objectAtIndex:indexPath.row] doubleValue];
+    if (distance > 500) {
+        distance = distance*0.000189394;
+        cell.distanceAway.text = [NSString stringWithFormat:DISTANCE_MESSAGE_IN_MILES, distance];
     }
-    if (IS_IPAD) {
-        cell.groupNameLabel.font=[cell.groupNameLabel.font fontWithSize:20];
-        cell.groupDistanceLabel.font=[cell.groupDistanceLabel.font fontWithSize:12];
+    else {
+        cell.distanceAway.text = [NSString stringWithFormat:DISTANCE_MESSAGE_IN_FEET, (int)distance];
     }
-    cell.groupNameLabel.text = [[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
-    cell.groupDistanceLabel.text = [NSString stringWithFormat:DISTANCE_MESSAGE_IN_FEET, [[distanceToUserLocation objectAtIndex:indexPath.row] doubleValue]];
-    cell.numOfFriendsInGroupLabel.text = [NSString stringWithFormat:@"%@",[nearUsers objectAtIndex:indexPath.row]];
-    NSLog(@"near users %@", [nearUsers objectAtIndex:indexPath.row]);
+
+    NSString *friendsNearby = [nearUsers objectAtIndex:indexPath.row];
+    int numFriends = (int)[friendsNearby integerValue];
+    
+    if (numFriends == 1) {
+        cell.friendsNearby.text = [NSString stringWithFormat:@"1 friend nearby"];
+    }
+    else if (numFriends != 0) {
+        cell.friendsNearby.text = [NSString stringWithFormat:@"%@ friends nearby", friendsNearby];
+    }
     return cell;
 }
 
@@ -230,7 +270,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 80;
+    return self.view.frame.size.height/2.5;
 }
 
 #pragma mark - Parse Manger delete delegate

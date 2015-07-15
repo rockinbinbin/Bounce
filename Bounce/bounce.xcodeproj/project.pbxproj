@@ -53,6 +53,7 @@
 		00E2CBB91B54B9B000B316D1 /* homepointCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2CBB81B54B9AF00B316D1 /* homepointCell.m */; };
 		00E2CBBD1B5506C800B316D1 /* ChatListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2CBBB1B5506C800B316D1 /* ChatListCell.m */; };
 		00E2CBBE1B5506C800B316D1 /* ChatListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00E2CBBC1B5506C800B316D1 /* ChatListCell.xib */; };
+		00E2CBC11B560B3600B316D1 /* homepointListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2CBC01B560B3600B316D1 /* homepointListCell.m */; };
 		28F13A521A6C75A90069EBA4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F13A511A6C75A90069EBA4 /* MapKit.framework */; };
 		67BB90C81ADFA8B20050164B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BB90C41ADFA8B20050164B /* Bolts.framework */; };
 		67BB90C91ADFA8B20050164B /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BB90C51ADFA8B20050164B /* Parse.framework */; };
@@ -396,6 +397,8 @@
 		00E2CBBA1B5506C800B316D1 /* ChatListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListCell.h; sourceTree = "<group>"; };
 		00E2CBBB1B5506C800B316D1 /* ChatListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListCell.m; sourceTree = "<group>"; };
 		00E2CBBC1B5506C800B316D1 /* ChatListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatListCell.xib; sourceTree = "<group>"; };
+		00E2CBBF1B560B3600B316D1 /* homepointListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = homepointListCell.h; sourceTree = "<group>"; };
+		00E2CBC01B560B3600B316D1 /* homepointListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = homepointListCell.m; sourceTree = "<group>"; };
 		28F13A511A6C75A90069EBA4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6791817C1AC0057D00D0474C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		67BB90C41ADFA8B20050164B /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = FrameWorks/Bolts.framework; sourceTree = "<group>"; };
@@ -1183,6 +1186,8 @@
 				67BB92031ADFA8D10050164B /* GenderScreenViewController.m */,
 				67BB92041ADFA8D10050164B /* GroupsListViewController.h */,
 				67BB92051ADFA8D10050164B /* GroupsListViewController.m */,
+				00E2CBBF1B560B3600B316D1 /* homepointListCell.h */,
+				00E2CBC01B560B3600B316D1 /* homepointListCell.m */,
 				67BB92061ADFA8D10050164B /* HomePointSuccessfulCreationViewController.h */,
 				67BB92071ADFA8D10050164B /* HomePointSuccessfulCreationViewController.m */,
 				67BB92081ADFA8D10050164B /* HomeScreenViewController.h */,
@@ -1818,6 +1823,7 @@
 				67BB94571ADFABCD0050164B /* NavigationController.m in Sources */,
 				67BB94521ADFABCD0050164B /* JSQMessagesTypingIndicatorFooterView.m in Sources */,
 				67BB945A1ADFABCD0050164B /* pushnotification.m in Sources */,
+				00E2CBC11B560B3600B316D1 /* homepointListCell.m in Sources */,
 				67BB945D1ADFABCD0050164B /* utilities.m in Sources */,
 				67BB945B1ADFABCD0050164B /* camera.m in Sources */,
 				67BB92DE1ADFA8D10050164B /* HomeScreenViewController.m in Sources */,
