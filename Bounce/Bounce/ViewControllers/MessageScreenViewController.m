@@ -26,7 +26,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UIView *backgroundView = [UIView new];
+    backgroundView.frame = self.view.frame;
+    backgroundView.backgroundColor = BounceLightGray;
+    [self.tableView setBackgroundView:backgroundView];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(incomingNotification:) name:@"SelectedStringNotification" object:nil];
+    
     UILabel *navLabel = [UILabel new];
     navLabel.textColor = [UIColor whiteColor];
     navLabel.backgroundColor = [UIColor clearColor];

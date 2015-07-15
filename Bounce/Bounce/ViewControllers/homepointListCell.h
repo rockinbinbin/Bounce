@@ -13,7 +13,7 @@
 @property (nonatomic, weak) UIImageView *cellBackground;
 @property (nonatomic, weak) UIImage *cellImage;
 @property (nonatomic, weak) UILabel *homepointName;
-@property (nonatomic, weak) UILabel *friendsNearby;
+@property (nonatomic, weak) UILabel *usersNearby;
 @property (nonatomic, weak) UILabel *distanceAway;
 
 @end

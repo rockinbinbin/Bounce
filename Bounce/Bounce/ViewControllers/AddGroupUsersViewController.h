@@ -18,7 +18,7 @@
 @property NSArray *groupUsers;
 @property NSMutableArray *userChecked; // array of selected users
 @property (nonatomic, assign) PFGeoPoint * groupLocation;
-@property (nonatomic, assign) NSString* groupPrivacy;
+
 @property (strong, nonatomic) NSString* groupName;
 @property BOOL editGroup;
 @property NSArray *originalGroupUsers;

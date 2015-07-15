@@ -340,7 +340,6 @@
 {
     @try {
         AddLocationScreenViewController *addLocationScreenViewController = [[AddLocationScreenViewController alloc]  initWithNibName:@"AddLocationScreenViewController" bundle:nil];
-        addLocationScreenViewController.groupPrivacy = [self getSelectedPrivacy];
         addLocationScreenViewController.groupName = self.groupNameTextField.text;
         [self.navigationController pushViewController:addLocationScreenViewController animated:YES];
     }
@@ -349,15 +348,6 @@
     }
 }
 
-#pragma mark - Get Privacy
-- (NSString *) getSelectedPrivacy
-{
-    if ([self.groupPrivacySegmentedControl selectedSegmentIndex] == publicGroup) {
-        return PUBLIC_GROUP;
-    } else {
-        return  PRIVATE_GROUP;
-    }
-}
 #pragma mark - Get all user
 - (void) getAllUsers
 {
@@ -388,7 +378,6 @@
 {
     @try {
         AddGroupUsersViewController *addGroupUsersViewController = [[AddGroupUsersViewController alloc]  initWithNibName:@"AddGroupUsersViewController" bundle:nil];
-        addGroupUsersViewController.groupPrivacy = [self getSelectedPrivacy];
         addGroupUsersViewController.groupName = self.groupNameTextField.text;
         addGroupUsersViewController.groupLocation = [[PFUser currentUser] objectForKey:PF_USER_LOCATION];
         addGroupUsersViewController.groupUsers = users;

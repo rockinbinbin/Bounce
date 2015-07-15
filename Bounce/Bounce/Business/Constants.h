@@ -95,7 +95,7 @@
 
 // near distance that user when get the distance to homepoint
 // It is in miles
-#define K_NEAR_DISTANCE 5
+#define K_NEAR_DISTANCE 1
 
 // request Updating interval time
 #define REQUEST_UPDATE_REPEATINTERVAL 10

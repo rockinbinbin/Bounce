@@ -16,7 +16,6 @@
 
 @property (strong, nonatomic) CLLocationManager *location_manager;
 @property (nonatomic, strong) PFGeoPoint * groupLocation;
-@property (strong, nonatomic) NSString* groupPrivacy;
 @property (strong, nonatomic) NSString* groupName;
 @property __block NSArray *groupUsers;
 

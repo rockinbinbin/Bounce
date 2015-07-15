@@ -39,9 +39,9 @@
 // Groups
 - (NSArray *) getAllGroupsExceptCreatedByUser;
 - (void) isGroupNameExist:(NSString *) name;
-- (void) addGroup:(NSString*) groupName withLocation:(PFGeoPoint*) location andPrivacy:(NSString*) privacy;
+- (void) addGroup:(NSString*) groupName withLocation:(PFGeoPoint*) location;
 - (void) loadAllGroups;
-- (void) addGroup:(NSString*) groupName withArrayOfUser:(NSArray *)users withLocation:(PFGeoPoint*) location andPrivacy:(NSString*) privacy;
+- (void) addGroup:(NSString*) groupName withArrayOfUser:(NSArray *)users withLocation:(PFGeoPoint*) location;
 // get request uodates
 - (PFObject *) retrieveRequestUpdate:(NSString *) requstId;
 // valid receiver

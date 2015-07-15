@@ -33,14 +33,14 @@
         [homepointName kgn_centerVerticallyInSuperviewWithOffset:-40];
         self.homepointName = homepointName;
         
-        UILabel *friendsNearby = [UILabel new];
-        friendsNearby.translatesAutoresizingMaskIntoConstraints = NO;
-        friendsNearby.textColor = [UIColor whiteColor];
-        friendsNearby.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.frame.size.height/3.5];
-        [self.contentView addSubview:friendsNearby];
-        [friendsNearby kgn_pinToBottomEdgeOfSuperviewWithOffset:10];
-        [friendsNearby kgn_pinToLeftEdgeOfSuperviewWithOffset:10];
-        self.friendsNearby = friendsNearby;
+        UILabel *usersNearby = [UILabel new];
+        usersNearby.translatesAutoresizingMaskIntoConstraints = NO;
+        usersNearby.textColor = [UIColor whiteColor];
+        usersNearby.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.frame.size.height/3.5];
+        [self.contentView addSubview:usersNearby];
+        [usersNearby kgn_pinToBottomEdgeOfSuperviewWithOffset:10];
+        [usersNearby kgn_pinToLeftEdgeOfSuperviewWithOffset:10];
+        self.usersNearby = usersNearby;
         
         UILabel *distanceAway = [UILabel new];
         distanceAway.translatesAutoresizingMaskIntoConstraints = NO;

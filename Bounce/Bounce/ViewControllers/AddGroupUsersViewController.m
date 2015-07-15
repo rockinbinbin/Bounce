@@ -140,7 +140,7 @@
         // get selected users
         NSArray *users = [self getCheckedUsers];
         [[ParseManager getInstance] setAddGroupdelegate:self];
-        [[ParseManager getInstance] addGroup:self.groupName withArrayOfUser:users withLocation:self.groupLocation andPrivacy:self.groupPrivacy];
+        [[ParseManager getInstance] addGroup:self.groupName withArrayOfUser:users withLocation:self.groupLocation];
     }
 }
 

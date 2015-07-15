@@ -32,7 +32,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    UIView *backgroundView = [UIView new];
+    backgroundView.frame = self.view.frame;
+    backgroundView.backgroundColor = BounceLightGray;
+    [self.tableView setBackgroundView:backgroundView];
+    
     [self.navigationController setNavigationBarHidden:NO];
     [self setBarButtonItemLeft:@"common_back_button"];
     [self setBarButtonItemRight:@"common_plus_icon"];
@@ -248,14 +253,14 @@
         cell.distanceAway.text = [NSString stringWithFormat:DISTANCE_MESSAGE_IN_FEET, (int)distance];
     }
 
-    NSString *friendsNearby = [nearUsers objectAtIndex:indexPath.row];
-    int numFriends = (int)[friendsNearby integerValue];
+    NSString *usersNearby = [nearUsers objectAtIndex:indexPath.row];
+    int numFriends = (int)[usersNearby integerValue];
     
     if (numFriends == 1) {
-        cell.friendsNearby.text = [NSString stringWithFormat:@"1 friend nearby"];
+        cell.usersNearby.text = [NSString stringWithFormat:@"1 user nearby"];
     }
     else if (numFriends != 0) {
-        cell.friendsNearby.text = [NSString stringWithFormat:@"%@ friends nearby", friendsNearby];
+        cell.usersNearby.text = [NSString stringWithFormat:@"%@ users nearby", usersNearby];
     }
     return cell;
 }

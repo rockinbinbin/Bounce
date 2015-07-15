@@ -75,11 +75,10 @@ PFUser *currentUser;
 }
 #pragma mark - Groups
 #pragma mark  Add Group
-- (void) addGroup:(NSString*) groupName withLocation:(PFGeoPoint*) location andPrivacy:(NSString*) privacy {
+- (void) addGroup:(NSString*) groupName withLocation:(PFGeoPoint*) location {
     PFObject *object = [PFObject objectWithClassName:PF_GROUPS_CLASS_NAME];
     object[PF_GROUPS_NAME] = groupName;
     object[PF_GROUP_LOCATION] = location;
-    object[PF_GROUP_PRIVACY] = privacy;
     object[PF_GROUP_OWNER] = [PFUser currentUser];
     
     [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -93,11 +92,10 @@ PFUser *currentUser;
      }];
 }
 
-- (void) addGroup:(NSString*) groupName withArrayOfUser:(NSArray *)users withLocation:(PFGeoPoint*) location andPrivacy:(NSString*) privacy {
+- (void) addGroup:(NSString*) groupName withArrayOfUser:(NSArray *)users withLocation:(PFGeoPoint*) location {
     PFObject *object = [PFObject objectWithClassName:PF_GROUPS_CLASS_NAME];
     object[PF_GROUPS_NAME] = groupName;
     object[PF_GROUP_LOCATION] = location;
-    object[PF_GROUP_PRIVACY] = privacy;
     object[PF_GROUP_OWNER] = [PFUser currentUser];
 
     [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {

@@ -146,7 +146,6 @@
     AddGroupUsersViewController *contoller = [[AddGroupUsersViewController alloc]  init];
     contoller.groupUsers = users;
     contoller.groupLocation = self.groupLocation;
-    contoller.groupPrivacy = self.groupPrivacy;
     contoller.groupName = self.groupName;
     [self.navigationController pushViewController:contoller animated:YES];
 }
