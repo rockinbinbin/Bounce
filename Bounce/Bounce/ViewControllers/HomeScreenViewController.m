@@ -33,6 +33,19 @@
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.barTintColor = BounceRed;
     self.navigationController.navigationBar.translucent = NO;
+    [[self navigationController] setNavigationBarHidden:NO animated:YES];
+    
+    UILabel *navLabel = [UILabel new];
+    navLabel.textColor = [UIColor whiteColor];
+    navLabel.backgroundColor = [UIColor clearColor];
+    navLabel.textAlignment = NSTextAlignmentCenter;
+    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/23];
+    self.navigationItem.titleView = navLabel;
+    navLabel.text = @"bounce";
+    [navLabel sizeToFit];
+    
+    UIBarButtonItem *rightButton = [self initialiseBarButton:[UIImage imageNamed:@"nav_bar_profile_menu_icon"] withAction:@selector(navigateToHomepointsView)];
+    self.navigationItem.rightBarButtonItem = rightButton;
     
     [[RequestManger getInstance] loadActiveRequest];
     
@@ -144,18 +157,8 @@
     [twohr kgn_pinTopEdgeToTopEdgeOfItem:slider];
     [twohr kgn_pinRightEdgeToRightEdgeOfItem:slider withOffset:30];
     
-    UILabel *navLabel = [UILabel new];
-    navLabel.textColor = [UIColor whiteColor];
-    navLabel.backgroundColor = [UIColor clearColor];
-    navLabel.textAlignment = NSTextAlignmentCenter;
-    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:28.0f];
-    self.navigationItem.titleView = navLabel;
-    navLabel.text = @"bounce";
-    [navLabel sizeToFit];
-
-    [[self navigationController] setNavigationBarHidden:NO animated:YES];
     self.location_manager = [[CLLocationManager alloc] init];
-    if (IS_IOS8){
+    if (IS_IOS8) {
     [self.location_manager requestAlwaysAuthorization];
     }
     self.location_manager.pausesLocationUpdatesAutomatically = YES;
@@ -223,17 +226,17 @@
     [[RequestManger getInstance] setRequestManagerDelegate:nil];
 }
 
--(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action{
+-(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL)action {
     UIButton *buttonItem = [UIButton buttonWithType:UIButtonTypeCustom];
-    buttonItem.bounds = CGRectMake( 0, 0, buttonImage.size.width, buttonImage.size.height );
+    buttonItem.bounds = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height );
     [buttonItem addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
     [buttonItem setImage:buttonImage forState:UIControlStateNormal];
     UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:buttonItem];
     return barButtonItem;
 }
+
 #pragma mark - add left button
-- (void) addLeftMenuButton
-{
+- (void) addLeftMenuButton {
     AMSlideMenuMainViewController *mainVC = [AMSlideMenuMainViewController getInstanceForVC:self];
     
     UINavigationItem *navItem = self.navigationItem;
@@ -419,6 +422,13 @@
 }
 
 #pragma mark - MKOverlay Delegate
+
+#pragma - Navigation
+
+-(void)navigateToHomepointsView {
+    GroupsListViewController *homepointsView = [GroupsListViewController new];
+    [self.navigationController pushViewController:homepointsView animated:YES];
+}
 
 
 @end

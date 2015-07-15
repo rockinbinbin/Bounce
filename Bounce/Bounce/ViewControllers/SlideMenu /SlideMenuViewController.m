@@ -42,7 +42,7 @@
 #pragma mark - Overriding methods
 - (void)configureLeftMenuButton:(UIButton *)button
 {
-    UIImage* menuIcon = [UIImage imageNamed:@"nav_bar_profile_menu_icon"];
+    UIImage* menuIcon = [UIImage imageNamed:@"hamburger"];
     CGRect frame = button.frame;
     frame.origin = (CGPoint){0,0};
     frame.size = menuIcon.size;
