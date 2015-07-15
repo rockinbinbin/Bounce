@@ -8,7 +8,6 @@
 
 #import "GroupsListViewController.h"
 #import "AddHomePointViewController.h"
-#import "ChatListCell.h"
 #import "AppConstant.h"
 #import "Utility.h"
 #import "Constants.h"
@@ -44,7 +43,7 @@
     navLabel.textAlignment = NSTextAlignmentCenter;
     navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/23];
     self.navigationItem.titleView = navLabel;
-    navLabel.text = @"bounce";
+    navLabel.text = @"homepoints";
     [navLabel sizeToFit];
     
     
@@ -295,7 +294,7 @@
 {
     // get group user
     if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
-        [[Utility getInstance] showProgressHudWithMessage:@"Load Users..." withView:self.view];
+        [[Utility getInstance] showProgressHudWithMessage:@"Loading Users..." withView:self.view];
         [[ParseManager getInstance] setDelegate:self];
         [[ParseManager getInstance] getGroupUsers:group];
     }
@@ -320,14 +319,13 @@
 {
         [[Utility getInstance] hideProgressHud];
     if (!error) {
-        // navigate to group user5s screen
+        // navigate to group users screen
         [self openGroupUsersScreenForEditWithNewUsers:users];
     }
 }
 - (void)didFailWithError:(NSError *)error
 {
     [[Utility getInstance] hideProgressHud];
-
 }
 
 #pragma mark - Navigate to GroupUsers screen
