@@ -10,10 +10,10 @@
 
 @interface homepointCell : UITableViewCell
 
-@property (nonatomic, strong) UIImageView *cellBackground;
-@property (nonatomic, strong) UIImage *cellImage;
-@property (nonatomic, strong) UILabel *homepointName;
-@property (nonatomic, strong) UILabel *friendsinHomepoint;
-@property (nonatomic, strong) UILabel *distanceAway;
+@property (nonatomic, weak) UIImageView *cellBackground;
+@property (nonatomic, weak) UIImage *cellImage;
+@property (nonatomic, weak) UILabel *homepointName;
+@property (nonatomic, weak) UILabel *friendsinHomepoint;
+@property (nonatomic, weak) UILabel *distanceAway;
 
 @end

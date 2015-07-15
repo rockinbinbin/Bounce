@@ -16,37 +16,40 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
 
-        self.cellBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.size.height)];
+        UIImageView *cellBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.size.height)];
         UIView *overlay = [UIView new];
         [overlay setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5]];
-        [self.cellBackground addSubview:overlay];
-        [overlay kgn_sizeToWidthAndHeightOfItem:self.cellBackground];
-        self.backgroundView = self.cellBackground;
+        [cellBackground addSubview:overlay];
+        [overlay kgn_sizeToWidthAndHeightOfItem:cellBackground];
+        self.backgroundView = cellBackground;
+        self.cellBackground = cellBackground;
         
-        self.homepointName = [UILabel new];
-        self.homepointName.translatesAutoresizingMaskIntoConstraints = NO;
-        self.homepointName.textColor = [UIColor whiteColor];
-        self.homepointName.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.frame.size.height]; // fix this value
-        [self.contentView addSubview:self.homepointName];
-        [self.homepointName kgn_centerHorizontallyInSuperview];
-        [self.homepointName kgn_centerVerticallyInSuperviewWithOffset:-40];
+        UILabel *homepointName = [UILabel new];
+        homepointName.translatesAutoresizingMaskIntoConstraints = NO;
+        homepointName.textColor = [UIColor whiteColor];
+        homepointName.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.frame.size.height]; // fix this value
+        [self.contentView addSubview:homepointName];
+        [homepointName kgn_centerHorizontallyInSuperview];
+        [homepointName kgn_centerVerticallyInSuperviewWithOffset:-40];
+        self.homepointName = homepointName;
         
-        self.friendsinHomepoint = [UILabel new];
-        self.friendsinHomepoint.translatesAutoresizingMaskIntoConstraints = NO;
-        self.friendsinHomepoint.textColor = [UIColor whiteColor];
-        self.friendsinHomepoint.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.frame.size.height/3.5];
-        [self.contentView addSubview:self.friendsinHomepoint];
-        [self.friendsinHomepoint kgn_pinToBottomEdgeOfSuperviewWithOffset:10];
-        [self.friendsinHomepoint kgn_pinToLeftEdgeOfSuperviewWithOffset:10];
+        UILabel *friendsinHomepoint = [UILabel new];
+        friendsinHomepoint.translatesAutoresizingMaskIntoConstraints = NO;
+        friendsinHomepoint.textColor = [UIColor whiteColor];
+        friendsinHomepoint.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.frame.size.height/3.5];
+        [self.contentView addSubview:friendsinHomepoint];
+        [friendsinHomepoint kgn_pinToBottomEdgeOfSuperviewWithOffset:10];
+        [friendsinHomepoint kgn_pinToLeftEdgeOfSuperviewWithOffset:10];
+        self.friendsinHomepoint = friendsinHomepoint;
         
-        self.distanceAway = [UILabel new];
-        self.distanceAway.translatesAutoresizingMaskIntoConstraints = NO;
-        self.distanceAway.textColor = [UIColor whiteColor];
-        self.distanceAway.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.frame.size.height/2.75];
-        [self.contentView addSubview:self.distanceAway];
-        [self.distanceAway kgn_centerHorizontallyInSuperview];
-        [self.distanceAway kgn_centerVerticallyInSuperviewWithOffset:15];
-
+        UILabel *distanceAway = [UILabel new];
+        distanceAway.translatesAutoresizingMaskIntoConstraints = NO;
+        distanceAway.textColor = [UIColor whiteColor];
+        distanceAway.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.frame.size.height/2.75];
+        [self.contentView addSubview:distanceAway];
+        [distanceAway kgn_centerHorizontallyInSuperview];
+        [distanceAway kgn_centerVerticallyInSuperviewWithOffset:15];
+        self.distanceAway = distanceAway;
     }
     return self;
 }
