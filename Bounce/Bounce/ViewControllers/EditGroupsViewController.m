@@ -30,7 +30,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
     [self setBarButtonItemLeft:@"common_plus_icon_red"];
     self.navigationItem.title = @"homepoints";
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]
@@ -38,7 +38,7 @@
                                    style:UIBarButtonItemStylePlain
                                    target:self
                                    action:@selector(doneButtonClicked)];
-    doneButton.tintColor = BounceRed;
+    doneButton.tintColor = [UIColor whiteColor];
     self.navigationItem.rightBarButtonItem = doneButton;
 //    self.tableView.allowsMultipleSelectionDuringEditing = NO;
 }
@@ -68,7 +68,7 @@
 }
 
 -(void)addButtonClicked{
-    AddHomePointViewController* addHomePointViewController = [[AddHomePointViewController alloc] initWithNibName:@"AddHomePointViewController" bundle:nil];
+    AddHomePointViewController* addHomePointViewController = [AddHomePointViewController new];
     [self.navigationController pushViewController:addHomePointViewController animated:YES];
 }
 
@@ -103,13 +103,12 @@
 
     // filling the cell data
     cell.groupNameLabel.text = [[groupsCreatedBYUser objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
-    cell.groupDistanceLabel.text = [NSString stringWithFormat:DISTANCE_MESSAGE_IN_FEET, [[groupsDistance objectAtIndex:indexPath.row] doubleValue]];
+    cell.groupDistanceLabel.text = [NSString stringWithFormat:DISTANCE_MESSAGE_IN_FEET, [[groupsDistance objectAtIndex:indexPath.row] intValue]];
     cell.numOfFriendsInGroupLabel.text = [NSString stringWithFormat:@"%@",[groupsNearUsers objectAtIndex:indexPath.row]];
     return cell;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return YES if you want the specified item to be editable.
     return YES;
 }
 

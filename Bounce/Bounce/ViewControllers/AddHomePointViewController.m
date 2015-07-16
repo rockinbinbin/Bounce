@@ -10,7 +10,6 @@
 #import "AppConstant.h"
 #import "ChatListCell.h"
 #import "AddGroupUsersViewController.h"
-//#import "Definitions.h"
 #import <Parse/Parse.h>
 #import "GroupsListViewController.h"
 #import "Utility.h"
@@ -18,6 +17,8 @@
 #import "AddGroupUsersViewController.h"
 #import "AddLocationScreenViewController.h"
 #import "UIViewController+AMSlideMenu.h"
+#import "CreateHomepoint.h"
+#import "UIView+AutoLayout.h"
 
 @interface AddHomePointViewController ()
 
@@ -34,41 +35,45 @@
 
 - (void)updateViewConstraints {
     [super updateViewConstraints];
-    if (IS_IPAD) {
-        self.verticalDistanceBetweenTableAndItsBottom.constant = 250;
-    }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    [self setBarButtonItemLeft:@"common_close_icon"];
-    self.groupNameTextField.delegate = self;
     
-    self.navigationItem.title = @"add homepoint";
+    UILabel *navLabel = [UILabel new];
+    navLabel.textColor = [UIColor whiteColor];
+    navLabel.backgroundColor = [UIColor clearColor];
+    navLabel.textAlignment = NSTextAlignmentCenter;
+    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/23];
+    self.navigationItem.titleView = navLabel;
+    navLabel.text = @"add homepoint";
+    [navLabel sizeToFit];
+    
+    [self setBarButtonItemLeft:@"common_close_icon"];
+    
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]
-                                   initWithTitle:@"Create"
+                                   initWithTitle:@"Search"
                                    style:UIBarButtonItemStylePlain
                                    target:self
-                                   action:@selector(doneButtonClicked)];
-    doneButton.tintColor = BounceRed;
+                                   action:@selector(searchButtonClicked)];
+    doneButton.tintColor = [UIColor whiteColor];
     self.navigationItem.rightBarButtonItem = doneButton;
     
-    self.addLocationButton.backgroundColor = LIGHT_BLUE_COLOR;
-    [self.groupNameTextField addTarget:self
-                                action:@selector(textFieldDidChange:)
-                      forControlEvents:UIControlEventEditingDidBegin];
-    [self.groupNameTextField addTarget:self
-                                action:@selector(textFieldDidChangeEnd:)
-                      forControlEvents:UIControlEventEditingDidEnd];
+    UIButton *createHP = [UIButton new];
+    createHP.tintColor = [UIColor whiteColor];
+    createHP.backgroundColor = BounceSeaGreen;
+    [createHP setTitle:@"create homepoint" forState:UIControlStateNormal];
+    createHP.titleLabel.textAlignment = NSTextAlignmentCenter;
+    createHP.titleLabel.font = [UIFont fontWithName:@"Avenir-Next" size:11];
+    [createHP addTarget:self action:@selector(navigateToCreateHomepointView) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:createHP];
+    [createHP kgn_sizeToHeight:self.view.frame.size.height/10];
+    [createHP kgn_sizeToWidth:self.view.frame.size.width];
+    [createHP kgn_pinToBottomEdgeOfSuperview];
 }
 
--(void)textFieldDidChange :(UITextField *)theTextField{
-    self.bottomSpaceToGroupName.constant += 200;
-}
-
--(void)textFieldDidChangeEnd :(UITextField *)theTextField{
-    self.bottomSpaceToGroupName.constant -= 200;
+-(void)searchButtonClicked {
+    // push new search view
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -145,43 +150,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)doneButtonClicked{
-    // will Create group with user location and navigate to add group users screen
-    createButtonClicked = YES;
-    [self checkGroupNameValidation];
-}
-
-- (IBAction)segmentedControlClicked:(id)sender {
-}
-
-- (IBAction)addLocationButtonClicked:(id)sender {
-    @try {
-        [self checkGroupNameValidation];
-    }
-    @catch (NSException *exception) {
-        NSLog(@"Exception %@", exception);
-    }
-}
-
-- (void) checkGroupNameValidation
-{
-    @try {
-        NSString *name = [self.groupNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        if ([name length] == 0) {
-            [[Utility getInstance] showAlertMessage:@"Make sure you entered the group name!"];
-            createButtonClicked = NO;
-            return;
-        }
-        if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
-            [[Utility getInstance] showProgressHudWithMessage:@""];
-            [[ParseManager getInstance] isGroupNameExist:name];
-        }
-    }
-    @catch (NSException *exception) {
-        NSLog(@"Exception %@", exception);
-    }
-}
-
 #pragma mark - TableView Datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -203,17 +171,13 @@
     cell.numOfFriendsInGroupLabel.hidden = YES;
     cell.nearbyLabel.hidden = YES;
     cell.roundedView.hidden = YES;
-    if (IS_IPAD) {
-        cell.groupNameLabel.font=[cell.groupNameLabel.font fontWithSize:20];
-        cell.groupDistanceLabel.font=[cell.groupDistanceLabel.font fontWithSize:12];
-    }
     
     if ([[userJoinedGroups objectAtIndex:indexPath.row] boolValue] == YES) {
         cell.iconImageView.image = [UIImage imageNamed:@"common_checkmark_icon"];
-    }else{
+    } else {
         cell.iconImageView.image = [UIImage imageNamed:@"common_plus_icon"];
     }
-    for ( UIView* view in cell.contentView.subviews )
+    for (UIView* view in cell.contentView.subviews)
     {
         view.backgroundColor = [ UIColor clearColor ];
     }
@@ -223,7 +187,7 @@
     // filling the cell data
     
     cell.groupNameLabel.text = [[groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
-    cell.groupDistanceLabel.text = [NSString stringWithFormat:DISTANCE_MESSAGE_IN_FEET, [[groupsDistance objectAtIndex:indexPath.row] doubleValue]];
+    cell.groupDistanceLabel.text = [NSString stringWithFormat:DISTANCE_MESSAGE_IN_FEET, [[groupsDistance objectAtIndex:indexPath.row] intValue]];
     
     return cell;
 }
@@ -297,26 +261,6 @@
     }
 }
 
-- (void)groupNameExist:(BOOL)exist
-{
-    [[Utility getInstance] hideProgressHud];
-    if (exist) {
-        NSLog(@"NOT UNIQUE GROUP NAME"); // write alert to try a different username
-        [[Utility getInstance] showAlertMessage:@"This group name seems to be taken. Please choose another!"];
-    }
-    else{
-        if (createButtonClicked) {
-            // if called from Done Button
-            // get all users to load the next view
-            [self getAllUsers];
-        }else{
-            // if called from add location button
-            [self navigateToAddLocationScreen];
-        }
-    }
-    createButtonClicked = NO;
-}
-
 #pragma mark - update Row
 - (void) updateRowAtIndex:(NSInteger) index
 {
@@ -325,38 +269,24 @@
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
     [self.tableView endUpdates];
 }
-#pragma mark -
-- (void) hideKeyboard
-{
-    [self.groupNameTextField resignFirstResponder];
-}
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [[self view] endEditing:YES];
 }
-#pragma mark - AddLocation screen
-- (void) navigateToAddLocationScreen
+
+#pragma mark - create Homepoint View
+- (void) navigateToCreateHomepointView
 {
     @try {
-        AddLocationScreenViewController *addLocationScreenViewController = [[AddLocationScreenViewController alloc]  initWithNibName:@"AddLocationScreenViewController" bundle:nil];
-        addLocationScreenViewController.groupName = self.groupNameTextField.text;
-        [self.navigationController pushViewController:addLocationScreenViewController animated:YES];
+        CreateHomepoint *createhomepoint = [CreateHomepoint new];
+        [self.navigationController pushViewController:createhomepoint animated:YES];
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
     }
 }
 
-#pragma mark - Get all user
-- (void) getAllUsers
-{
-    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
-        [[Utility getInstance] showProgressHudWithMessage:COMMON_HUD_LOADING_MESSAGE];
-        [[ParseManager getInstance] setDelegate:self];
-        [[ParseManager getInstance] getAllUsers];
-    }
-}
 #pragma mark - Parse Manager Delegate
 - (void)didloadAllObjects:(NSArray *)objects
 {
@@ -365,26 +295,10 @@
     PFUser *currentUser = [PFUser currentUser];
     // Add the current user to the first cell
     [users insertObject:currentUser atIndex:0];
-    [self navigateToAddGroupUsersScreenWithUsers:([NSArray arrayWithArray:users])];
-    
 }
 - (void)didFailWithError:(NSError *)error
 {
     [[Utility getInstance] hideProgressHud];
 }
 
-#pragma mark - AddLocation screen
-- (void) navigateToAddGroupUsersScreenWithUsers:(NSArray *) users
-{
-    @try {
-        AddGroupUsersViewController *addGroupUsersViewController = [[AddGroupUsersViewController alloc]  initWithNibName:@"AddGroupUsersViewController" bundle:nil];
-        addGroupUsersViewController.groupName = self.groupNameTextField.text;
-        addGroupUsersViewController.groupLocation = [[PFUser currentUser] objectForKey:PF_USER_LOCATION];
-        addGroupUsersViewController.groupUsers = users;
-        [self.navigationController pushViewController:addGroupUsersViewController animated:YES];
-    }
-    @catch (NSException *exception) {
-        NSLog(@"Exception %@", exception);
-    }
-}
 @end

@@ -107,7 +107,7 @@
 
 -(void)addButtonClicked{
     if (!loadingData) {
-        AddHomePointViewController* addHomePointViewController = [[AddHomePointViewController alloc] initWithNibName:@"AddHomePointViewController" bundle:nil];
+        AddHomePointViewController* addHomePointViewController = [AddHomePointViewController new];
         [self.navigationController pushViewController:addHomePointViewController animated:YES];
     }
 }

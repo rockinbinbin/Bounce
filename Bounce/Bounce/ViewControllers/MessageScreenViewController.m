@@ -13,7 +13,7 @@
 #import "HomeScreenViewController.h"
 #import "UIViewController+AMSlideMenu.h"
 #import "UIView+AutoLayout.h"
-#import "homepointCell.h"
+#import "homepointListCell.h"
 
 @interface MessageScreenViewController ()
 @end
@@ -174,10 +174,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString* cellId = @"homepointCell";
-    homepointCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellId];
+    homepointListCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellId];
     
     if (!cell) {
-        cell = [homepointCell new];
+        cell = [homepointListCell new];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
 
@@ -216,14 +216,14 @@
        cell.distanceAway.text = [NSString stringWithFormat:DISTANCE_MESSAGE_IN_FEET, (int)distance];
     }
     
-    NSString *friendsinHP = [self.nearUsers objectAtIndex:indexPath.row];
-    int numFriends = (int)[friendsinHP integerValue];
+    NSString *usersNearby = [self.nearUsers objectAtIndex:indexPath.row];
+    int numUsers = (int)[usersNearby integerValue];
 
-    if (numFriends == 1) {
-        cell.friendsinHomepoint.text = [NSString stringWithFormat:@"1 friend in homepoint"];
+    if (numUsers == 1) {
+        cell.usersNearby.text = [NSString stringWithFormat:@"1 user nearby"];
     }
-    else if (numFriends != 0) {
-        cell.friendsinHomepoint.text = [NSString stringWithFormat:@"%@ friends in homepoint",friendsinHP];
+    else if (numUsers != 0) {
+        cell.usersNearby.text = [NSString stringWithFormat:@"%@ users nearby",usersNearby];
     }
     return cell;
 }
