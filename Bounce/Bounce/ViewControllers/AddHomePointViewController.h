@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "ParseManager.h"
 
-@interface AddHomePointViewController : UIViewController<ParseManagerUpdateGroupDelegate, ParseManagerDelegate, UITextFieldDelegate, ParseManagerLoadingGroupsDelegate>
+@interface AddHomePointViewController : UIViewController<ParseManagerUpdateGroupDelegate, ParseManagerDelegate, ParseManagerLoadingGroupsDelegate, UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) UICollectionView *collectionView;
 
 -(void)navigateToCreateHomepointView;
 

@@ -19,6 +19,7 @@
 #import "UIViewController+AMSlideMenu.h"
 #import "CreateHomepoint.h"
 #import "UIView+AutoLayout.h"
+#import "homepointListCell.h"
 
 @interface AddHomePointViewController ()
 
@@ -30,7 +31,6 @@
     NSMutableArray *groupsDistance;
     NSMutableArray *userJoinedGroups;
     NSInteger selectedIndex;
-    BOOL createButtonClicked;
 }
 
 - (void)updateViewConstraints {
@@ -39,6 +39,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     UILabel *navLabel = [UILabel new];
     navLabel.textColor = [UIColor whiteColor];
@@ -49,28 +50,83 @@
     navLabel.text = @"add homepoint";
     [navLabel sizeToFit];
     
-    [self setBarButtonItemLeft:@"common_close_icon"];
+    UILabel *nearbyLabel = [UILabel new];
+    nearbyLabel.textColor = [UIColor purpleColor];
+    nearbyLabel.backgroundColor = BounceLightGray;
+    nearbyLabel.textAlignment = NSTextAlignmentCenter;
+    nearbyLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/35];
+    nearbyLabel.text = @"ARE YOU HOME? \nCHECK OUT HOMEPOINTS NEARBY:";
+    nearbyLabel.numberOfLines = 0;
+    [self.view addSubview:nearbyLabel];
+    [nearbyLabel kgn_pinToTopEdgeOfSuperview];
+    [nearbyLabel kgn_sizeToWidth:self.view.frame.size.width];
+    [nearbyLabel kgn_sizeToHeight:self.view.frame.size.height/8];
+    [nearbyLabel kgn_pinToLeftEdgeOfSuperview];
     
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]
-                                   initWithTitle:@"Search"
-                                   style:UIBarButtonItemStylePlain
-                                   target:self
-                                   action:@selector(searchButtonClicked)];
-    doneButton.tintColor = [UIColor whiteColor];
-    self.navigationItem.rightBarButtonItem = doneButton;
+    [self setBarButtonItemLeft:@"common_back_button"];
+    
+    UIBarButtonItem *searchButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"searchIcon"] style:UIBarButtonItemStylePlain target:self action:@selector(searchButtonClicked)];
+    
+    searchButton.tintColor = [UIColor whiteColor];
+    self.navigationItem.rightBarButtonItem = searchButton;
     
     UIButton *createHP = [UIButton new];
     createHP.tintColor = [UIColor whiteColor];
     createHP.backgroundColor = BounceSeaGreen;
     [createHP setTitle:@"create homepoint" forState:UIControlStateNormal];
     createHP.titleLabel.textAlignment = NSTextAlignmentCenter;
-    createHP.titleLabel.font = [UIFont fontWithName:@"Avenir-Next" size:11];
+    createHP.titleLabel.font = [UIFont fontWithName:@"Avenir-Next" size:self.view.frame.size.height/15];
     [createHP addTarget:self action:@selector(navigateToCreateHomepointView) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:createHP];
     [createHP kgn_sizeToHeight:self.view.frame.size.height/10];
     [createHP kgn_sizeToWidth:self.view.frame.size.width];
     [createHP kgn_pinToBottomEdgeOfSuperview];
+    [createHP kgn_pinToLeftEdgeOfSuperview];
+    
+    UITableView *tableview = [UITableView new];
+    tableview.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:tableview];
+    tableview.delegate = self;
+    tableview.dataSource = self;
+    self.tableView = tableview;
+    [tableview kgn_sizeToWidth:self.view.frame.size.width];
+    [tableview kgn_pinToTopEdgeOfSuperviewWithOffset:self.view.frame.size.height/8];
+    [tableview kgn_pinToBottomEdgeOfSuperviewWithOffset:self.view.frame.size.height/10];
+    [tableview kgn_pinToLeftEdgeOfSuperview];
+    
+//    UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc] init];
+//    UICollectionView *collectionView = [UICollectionView new];
+//    collectionView.collectionViewLayout = layout;
+//    collectionView.backgroundColor = [UIColor purpleColor];
+//    [self.view addSubview:collectionView];
+//    self.collectionView = collectionView;
+//    [collectionView kgn_sizeToWidth:self.view.frame.size.width];
+//    [collectionView kgn_pinToTopEdgeOfSuperview];
+//    [collectionView kgn_pinToBottomEdgeOfSuperviewWithOffset:self.view.frame.size.height/10];
+//    [collectionView kgn_pinToLeftEdgeOfSuperview];
+//    [_collectionView setDataSource:self];
+//    [_collectionView setDelegate:self];
+//    [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
 }
+
+//- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+//{
+//    return 15;
+//}
+
+//// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+//- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    UICollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
+//    
+//    cell.backgroundColor=[UIColor greenColor];
+//    return cell;
+//}
+//
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return CGSizeMake(50, 50);
+//}
 
 -(void)searchButtonClicked {
     // push new search view
@@ -81,8 +137,7 @@
     return YES;
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    createButtonClicked = NO;
+- (void)viewWillAppear:(BOOL)animated {
     [self disableSlidePanGestureForLeftMenu];     // Disable left Slide menu
 
     [[ParseManager getInstance] setUpdateGroupDelegate:self];     // Set parse manager update group delegate
@@ -156,38 +211,46 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSLog(@"GROUPS COUNT: %lu", (unsigned long)groups.count);
     return groups.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString* cellId = @"ChatListCell";
-    ChatListCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellId];
+    NSString* cellId = @"homepointListCell";
+    homepointListCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellId];
     
     if (!cell) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
-        cell = (ChatListCell *)[nib objectAtIndex:0];
+        cell = [homepointListCell new];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    cell.numOfMessagesLabel.hidden = YES;
-    cell.numOfFriendsInGroupLabel.hidden = YES;
-    cell.nearbyLabel.hidden = YES;
-    cell.roundedView.hidden = YES;
     
     if ([[userJoinedGroups objectAtIndex:indexPath.row] boolValue] == YES) {
-        cell.iconImageView.image = [UIImage imageNamed:@"common_checkmark_icon"];
-    } else {
-        cell.iconImageView.image = [UIImage imageNamed:@"common_plus_icon"];
+        UIImageView *imgView = [UIImageView new];
+        imgView.image = [UIImage imageNamed:@"whiteCheck"];
+        [cell addSubview:imgView];
+        [imgView kgn_pinToRightEdgeOfSuperviewWithOffset:20];
+        [imgView kgn_pinToBottomEdgeOfSuperviewWithOffset:20];
     }
-    for (UIView* view in cell.contentView.subviews)
-    {
-        view.backgroundColor = [ UIColor clearColor ];
+    else {
+        // add + button here
     }
     
-    cell.contentView.backgroundColor = LIGHT_SELECT_GRAY_COLOR;
+    cell.homepointName.text = [[groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
     
-    // filling the cell data
-    
-    cell.groupNameLabel.text = [[groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
-    cell.groupDistanceLabel.text = [NSString stringWithFormat:DISTANCE_MESSAGE_IN_FEET, [[groupsDistance objectAtIndex:indexPath.row] intValue]];
+    double distance = [[groupsDistance objectAtIndex:indexPath.row] doubleValue];
+    if (distance > 2500) {
+        distance = distance*0.000189394;
+        
+        if (distance >= 500) {
+            cell.distanceAway.text = @"500+ miles away";
+        }
+        else {
+            cell.distanceAway.text = [NSString stringWithFormat:DISTANCE_MESSAGE_IN_MILES, distance];
+        }
+    }
+    else {
+        cell.distanceAway.text = [NSString stringWithFormat:DISTANCE_MESSAGE_IN_FEET, (int)distance];
+    }
     
     return cell;
 }
@@ -198,14 +261,14 @@
     if ([[userJoinedGroups objectAtIndex:indexPath.row]boolValue]) {
         // remove current user from the selected group
         [self deleteUserFromGroup:indexPath.row];
-    }else{
+    } else {
         // add current user to the selected group
         [self addUserToGroup:indexPath.row];
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 80;
+    return self.view.frame.size.height/2.5;
 }
 
 #pragma mark - Add User to selected group
@@ -214,7 +277,7 @@
     @try {
         PFObject *group = [groups objectAtIndex:index];
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
-            [[Utility getInstance] showProgressHudWithMessage:[NSString stringWithFormat:@"Add user to %@", [group objectForKey:PF_GROUPS_NAME]] withView:self.view];
+            [[Utility getInstance] showProgressHudWithMessage:[NSString stringWithFormat:@"added to %@", [group objectForKey:PF_GROUPS_NAME]] withView:self.view];
             selectedIndex = index;
             [[ParseManager getInstance] addCurrentUserToGroup:group];
         }
@@ -230,7 +293,7 @@
     @try {
         PFObject *group = [groups objectAtIndex:index];
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
-            [[Utility getInstance] showProgressHudWithMessage:[NSString stringWithFormat:@"Delete user from %@", [group objectForKey:PF_GROUPS_NAME]] withView:self.view];
+            [[Utility getInstance] showProgressHudWithMessage:[NSString stringWithFormat:@"removed from %@", [group objectForKey:PF_GROUPS_NAME]] withView:self.view];
             selectedIndex = index;
             [[ParseManager getInstance] removeUserFromGroup:group];
         }

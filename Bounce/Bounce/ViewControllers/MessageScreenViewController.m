@@ -208,13 +208,20 @@
     cell.homepointName.text = [[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
     
     double distance = [[self.distanceToUserLocation objectAtIndex:indexPath.row] doubleValue];
-    if (distance > 500) {
+    if (distance > 2500) {
         distance = distance*0.000189394;
-        cell.distanceAway.text = [NSString stringWithFormat:DISTANCE_MESSAGE_IN_MILES, distance];
+        
+        if (distance >= 500) {
+            cell.distanceAway.text = @"500+ miles away";
+        }
+        else {
+            cell.distanceAway.text = [NSString stringWithFormat:DISTANCE_MESSAGE_IN_MILES, distance];
+        }
     }
     else {
-       cell.distanceAway.text = [NSString stringWithFormat:DISTANCE_MESSAGE_IN_FEET, (int)distance];
+        cell.distanceAway.text = [NSString stringWithFormat:DISTANCE_MESSAGE_IN_FEET, (int)distance];
     }
+
     
     NSString *usersNearby = [self.nearUsers objectAtIndex:indexPath.row];
     int numUsers = (int)[usersNearby integerValue];
