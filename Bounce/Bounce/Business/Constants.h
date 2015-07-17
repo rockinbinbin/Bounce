@@ -72,12 +72,6 @@
 #define MALE_GENDER @"male"
 #define FEMALE_GENDER @"female"
 
-// Group Privacy
-#define PUBLIC_GROUP @"Public"
-#define PRIVATE_GROUP @"Private"
-
-
-//
 #define COMMON_CORNER_WIDTH 3.0
 // custom annotaion pin view
 #define CUSTOM_ANNOTAION_OVERLAY_COLOR [[UIColor alloc] initWithRed:180/255.0 green:225./255.0 blue:232/255.0 alpha:.5]
@@ -110,10 +104,5 @@
 
 // Notification
 #define NOTIFICATION_ALERT_MESSAGE @"alert"
-
-typedef enum {
-    publicGroup = 0,
-    privateGroup = 1
-} groupPrivacy;
 
 #endif

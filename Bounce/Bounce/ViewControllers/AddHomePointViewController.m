@@ -93,43 +93,10 @@
     [tableview kgn_pinToTopEdgeOfSuperviewWithOffset:self.view.frame.size.height/8];
     [tableview kgn_pinToBottomEdgeOfSuperviewWithOffset:self.view.frame.size.height/10];
     [tableview kgn_pinToLeftEdgeOfSuperview];
-    
-//    UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc] init];
-//    UICollectionView *collectionView = [UICollectionView new];
-//    collectionView.collectionViewLayout = layout;
-//    collectionView.backgroundColor = [UIColor purpleColor];
-//    [self.view addSubview:collectionView];
-//    self.collectionView = collectionView;
-//    [collectionView kgn_sizeToWidth:self.view.frame.size.width];
-//    [collectionView kgn_pinToTopEdgeOfSuperview];
-//    [collectionView kgn_pinToBottomEdgeOfSuperviewWithOffset:self.view.frame.size.height/10];
-//    [collectionView kgn_pinToLeftEdgeOfSuperview];
-//    [_collectionView setDataSource:self];
-//    [_collectionView setDelegate:self];
-//    [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
 }
 
-//- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-//{
-//    return 15;
-//}
-
-//// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
-//- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    UICollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
-//    
-//    cell.backgroundColor=[UIColor greenColor];
-//    return cell;
-//}
-//
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return CGSizeMake(50, 50);
-//}
-
 -(void)searchButtonClicked {
-    // push new search view
+    // TODO: push new search view
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -138,16 +105,13 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self disableSlidePanGestureForLeftMenu];     // Disable left Slide menu
-
-    [[ParseManager getInstance] setUpdateGroupDelegate:self];     // Set parse manager update group delegate
-
-    [self loadGroups];     // load all groups that doesn't contain current user
+    [self disableSlidePanGestureForLeftMenu];
+    [[ParseManager getInstance] setUpdateGroupDelegate:self];
+    [self loadGroups];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 #pragma mark - load groups
 - (void) loadGroups
@@ -211,7 +175,6 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"GROUPS COUNT: %lu", (unsigned long)groups.count);
     return groups.count;
 }
 
