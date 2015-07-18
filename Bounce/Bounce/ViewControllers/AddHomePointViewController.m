@@ -198,6 +198,10 @@
         // add + button here
     }
     
+    if (indexPath.row == 0) {
+        cell.cellBackground.image = [UIImage imageNamed:@"coffee"];
+    }
+    
     cell.homepointName.text = [[groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
     
     double distance = [[groupsDistance objectAtIndex:indexPath.row] doubleValue];
