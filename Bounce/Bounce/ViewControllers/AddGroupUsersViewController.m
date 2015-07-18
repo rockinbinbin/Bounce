@@ -103,7 +103,6 @@
 }
 
 - (void) viewWillAppear:(BOOL)animated {
-    // Disable left Slide menu
     [self disableSlidePanGestureForLeftMenu];
 }
 - (void)didReceiveMemoryWarning {

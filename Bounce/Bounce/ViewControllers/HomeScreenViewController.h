@@ -23,6 +23,6 @@
 #import "UIView+AutoLayout.h"
 #import "UIViewController+AMSlideMenu.h"
 
-@interface HomeScreenViewController : UIViewController <CLLocationManagerDelegate, RequestManagerDelegate>
+@interface HomeScreenViewController : UIViewController <CLLocationManagerDelegate, RequestManagerDelegate, UIGestureRecognizerDelegate>
 
 @end

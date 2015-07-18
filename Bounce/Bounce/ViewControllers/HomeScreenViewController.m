@@ -69,6 +69,9 @@
     [bottomView kgn_sizeToHeight:self.view.frame.size.height/4.9];
     [bottomView kgn_sizeToWidth:self.view.frame.size.width];
     self.bottomView = bottomView;
+    UIPanGestureRecognizer *gesture = [UIPanGestureRecognizer new];
+    gesture.delegate = self;
+    [self.bottomView addGestureRecognizer:gesture];
     
     NSArray *itemArray = [NSArray arrayWithObjects: @"All genders", @"Gender matching", nil];
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:itemArray];
@@ -208,6 +211,10 @@
         PFUser* u = [PFUser currentUser];
         self.genderMatching = u[PF_GENDER];
     }
+}
+
+- (void)handleGesture {
+    [self disableSlidePanGestureForLeftMenu];
 }
 
 -(void)sliderAction:(id)sender {
