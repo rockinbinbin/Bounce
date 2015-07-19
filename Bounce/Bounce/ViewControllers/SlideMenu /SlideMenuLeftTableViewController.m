@@ -417,7 +417,7 @@
     }
 }
 
-#pragma mark - Camera piker
+#pragma mark - Camera picker
 - (void)showPhotoPicker {
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
         UIAlertView *deviceNotFoundAlert = [[UIAlertView alloc] initWithTitle:@"Photo library is not available."
@@ -436,6 +436,7 @@
                          completion:nil];
     }
 }
+
 - (void)showCameraPicker {
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         UIAlertView *deviceNotFoundAlert = [[UIAlertView alloc] initWithTitle:@"Camera is not available."
