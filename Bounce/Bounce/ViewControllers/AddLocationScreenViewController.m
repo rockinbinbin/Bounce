@@ -105,12 +105,15 @@
 }
 
 -(void)doneButtonClicked{
-    if (self.groupLocation) {
-        [self getAllUsers];
-    }
-    else{
-        [[Utility getInstance] showAlertMessage:@"Make sure you set the group location!"];
-    }
+//    if (self.groupLocation) {
+//        [self getAllUsers];
+//    }
+//    else{
+//        [[Utility getInstance] showAlertMessage:@"Make sure you set the group location!"];
+//    }
+    
+    
+    
 }
 
 - (IBAction)dontAddLocationButtonClicked:(id)sender {

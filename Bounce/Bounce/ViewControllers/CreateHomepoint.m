@@ -62,7 +62,19 @@
     [_groupNameTextField kgn_sizeToHeight:self.view.frame.size.height/15];
     
     
-    self.addLocationButton.backgroundColor = LIGHT_BLUE_COLOR;
+    _addLocationButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    _addLocationButton.backgroundColor = BounceSeaGreen;
+    [_addLocationButton setTitle:@"Add location" forState:UIControlStateNormal];
+    _addLocationButton.tintColor = [UIColor whiteColor];
+    _addLocationButton.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/35];
+    _addLocationButton.titleLabel.textColor = [UIColor whiteColor];
+    _addLocationButton.layer.cornerRadius = 0;
+    [_addLocationButton addTarget:self action:@selector(checkGroupNameValidation) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_addLocationButton];
+    [_addLocationButton kgn_pinBottomEdgeToBottomEdgeOfItem:_groupNameTextField withOffset:80];
+    [_addLocationButton kgn_centerHorizontallyInSuperview];
+    [_addLocationButton kgn_sizeToWidth:img.size.width];
+    [_addLocationButton kgn_sizeToHeight:self.view.frame.size.height/15];
 }
 
 #pragma mark - Navigation Bar
@@ -84,44 +96,45 @@
     return barButtonItem;
 }
 
--(void)doneButtonClicked{
-    // will Create group with user location and navigate to add group users screen
-    _createButtonClicked = YES;
-    [self checkGroupNameValidation];
-}
+//-(void)doneButtonClicked{
+//    // will Create group with user location and navigate to add group users screen
+//    [self checkGroupNameValidation];
+//}
 
 -(void)addPhotoButtonClicked {
              
 }
 
 #pragma mark - AddLocation screen
-- (void) navigateToAddLocationScreen
-{
+- (void) navigateToAddLocationScreen {
     @try {
-        AddLocationScreenViewController *addLocationScreenViewController = [[AddLocationScreenViewController alloc]  initWithNibName:@"AddLocationScreenViewController" bundle:nil];
-        //addLocationScreenViewController.groupName = self.groupNameTextField.text;
+        AddLocationScreenViewController *addLocationScreenViewController = [AddLocationScreenViewController new];
+        addLocationScreenViewController.groupName = self.groupNameTextField.text;
         [self.navigationController pushViewController:addLocationScreenViewController animated:YES];
     }
     @catch (NSException *exception) {
-        NSLog(@"Exception %@", exception);
+            NSLog(@"Exception %@", exception);
     }
 }
 
 - (void)groupNameExist:(BOOL)exist
 {
     [[Utility getInstance] hideProgressHud];
-    if (exist) {
+    NSString *name = [self.groupNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if ([name length] == 0) {
+        [[Utility getInstance] showAlertMessage:@"Make sure you enter a group name!"];
+    }
+    else if (exist) {
         NSLog(@"NOT UNIQUE GROUP NAME"); // write alert to try a different username
         [[Utility getInstance] showAlertMessage:@"This group name seems to be taken. Please choose another!"];
     }
     else {
-//        if (createButtonClicked) {
-//            [self getAllUsers];
+//        [self getAllUsers];
 //        } else {
-//            [self navigateToAddLocationScreen];
+        [self navigateToAddLocationScreen];
 //        }
     }
-//    createButtonClicked = NO;
+
 }
 
 #pragma mark - Get all user
@@ -140,12 +153,14 @@
         NSString *name = [self.groupNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         if ([name length] == 0) {
             [[Utility getInstance] showAlertMessage:@"Make sure you entered the group name!"];
-            _createButtonClicked = NO;
             return;
         }
-        if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
-            [[Utility getInstance] showProgressHudWithMessage:@""];
-            [[ParseManager getInstance] isGroupNameExist:name];
+//        if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+//            [[Utility getInstance] showProgressHudWithMessage:@"checking to see if group name exists"];
+//            [[ParseManager getInstance] isGroupNameExist:name];
+//        } ///// THIS RUNS WAY TOO SLOW
+        else {
+            [self navigateToAddLocationScreen];
         }
     }
     @catch (NSException *exception) {

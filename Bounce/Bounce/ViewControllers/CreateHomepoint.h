@@ -12,7 +12,6 @@
 @interface CreateHomepoint : UIViewController<ParseManagerUpdateGroupDelegate, ParseManagerDelegate, UITextFieldDelegate>
 
 @property (nonatomic, strong) UITextField *groupNameTextField;
-@property (nonatomic) BOOL createButtonClicked;
 @property (nonatomic, strong) UIButton *addLocationButton;
 @property (nonatomic, strong) UIButton *addPhotoButton;
 
