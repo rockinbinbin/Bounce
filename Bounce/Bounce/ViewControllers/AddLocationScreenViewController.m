@@ -15,6 +15,7 @@
 #import "UIViewController+AMSlideMenu.h"
 #import "Utility.h"
 #import "UIViewController+AMSlideMenu.h"
+#import "UIView+AutoLayout.h"
 
 @interface AddLocationScreenViewController ()
 
@@ -24,7 +25,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self disableSlidePanGestureForLeftMenu];
+    
+    MKMapView *tempMap = [MKMapView new];
+    [self.view addSubview:tempMap];
+    [tempMap kgn_pinToEdgesOfSuperview];
+    self.map = tempMap;
     
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.backgroundColor = BounceRed;
@@ -39,7 +44,6 @@
     [navLabel sizeToFit];
     
     [self setBarButtonItemLeft:@"common_back_button"];
-    
     [self setBarButtonItemRight:@"whiteCheck"];
     
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapClicked:)];
@@ -54,13 +58,10 @@
     [self setUserTrackingMode];
 }
 - (void) viewWillAppear:(BOOL)animated{
-    // Disable left Slide menu
     [self disableSlidePanGestureForLeftMenu];
 }
--(IBAction)mapClicked:(UITapGestureRecognizer *)recognizer
-{
+-(IBAction)mapClicked:(UITapGestureRecognizer *)recognizer {
     CGPoint clickedPoint = [recognizer locationInView:self.map];
-    
     CLLocationCoordinate2D tapPoint = [self.map convertPoint:clickedPoint toCoordinateFromView:self.map];
     
     MKPointAnnotation *mkPointClicked = [[MKPointAnnotation alloc] init];
@@ -115,15 +116,12 @@
 }
 
 -(void)doneButtonClicked{
-//    if (self.groupLocation) {
-//        [self getAllUsers];
-//    }
-//    else{
-//        [[Utility getInstance] showAlertMessage:@"Make sure you set the group location!"];
-//    }
-    
-    
-    
+    if (self.groupLocation) {
+        [self getAllUsers];
+    }
+    else{
+        [[Utility getInstance] showAlertMessage:@"Make sure you set the group location!"];
+    }
 }
 
 - (void) getAllUsers
@@ -140,6 +138,7 @@
     [[Utility getInstance] hideProgressHud];
     NSMutableArray *users  = [[NSMutableArray alloc] initWithArray:objects];
     PFUser *currentUser = [PFUser currentUser];
+    
     // Add the current user to the first cell
     [users insertObject:currentUser atIndex:0];
     [self navigateToGroupUsersScreenAndSetData:([NSArray arrayWithArray:users])];
@@ -224,8 +223,7 @@
     {
         // Try to dequeue an existing pin view first.
         MKAnnotationView *pinView = (MKAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"CustomPinAnnotationView"];
-        if (!pinView)
-        {
+        if (!pinView) {
             // If an existing pin view was not available, create one.
             pinView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomPinAnnotationView"];
             UIView *customView = [self createCustomPinAnnotaionView];
@@ -244,12 +242,12 @@
 - (UIView*) createCustomPinAnnotaionView
 {
     @try {
-        UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0 , 0, INNER_VIEW_ICON_RADIUS, INNER_VIEW_ICON_RADIUS)];
+        UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, INNER_VIEW_ICON_RADIUS, INNER_VIEW_ICON_RADIUS)];
         // circular icon view
         UIView *innerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, INNER_VIEW_RADIUS, INNER_VIEW_RADIUS)];
         [imageview setContentMode:UIViewContentModeScaleToFill];
-        imageview.image = [UIImage imageNamed:@"common_app_logo"];
-        innerView.backgroundColor = BounceRed;
+        imageview.image = [UIImage imageNamed:@"nav_bar_profile_menu_icon"];
+        //innerView.backgroundColor = BounceRed;
         // Add icon image to the inner view
         imageview.center = innerView.center;
         [innerView addSubview:imageview];

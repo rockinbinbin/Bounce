@@ -75,8 +75,8 @@
 #define COMMON_CORNER_WIDTH 3.0
 // custom annotaion pin view
 #define CUSTOM_ANNOTAION_OVERLAY_COLOR [[UIColor alloc] initWithRed:180/255.0 green:225./255.0 blue:232/255.0 alpha:.5]
-#define INNER_VIEW_RADIUS 70
-#define OUTER_VIEW_RADIUS 140
+#define INNER_VIEW_RADIUS 50
+#define OUTER_VIEW_RADIUS 120
 #define INNER_VIEW_ICON_RADIUS 50
 
 

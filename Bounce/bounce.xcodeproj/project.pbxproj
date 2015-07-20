@@ -106,7 +106,6 @@
 		67BB92ED1ADFA8D10050164B /* AddGroupUsersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92261ADFA8D10050164B /* AddGroupUsersViewController.xib */; };
 		67BB92EF1ADFA8D10050164B /* AddLocationScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92281ADFA8D10050164B /* AddLocationScreenViewController.xib */; };
 		67BB92F01ADFA8D10050164B /* EditGroupsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92291ADFA8D10050164B /* EditGroupsViewController.xib */; };
-		67BB92F11ADFA8D10050164B /* GenderScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB922A1ADFA8D10050164B /* GenderScreenViewController.xib */; };
 		67BB92F21ADFA8D10050164B /* GroupsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB922B1ADFA8D10050164B /* GroupsListViewController.xib */; };
 		67BB92F31ADFA8D10050164B /* HomePointSuccessfulCreationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB922C1ADFA8D10050164B /* HomePointSuccessfulCreationViewController.xib */; };
 		67BB92FC1ADFA8D10050164B /* RequestsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92351ADFA8D10050164B /* RequestsViewController.xib */; };
@@ -479,7 +478,6 @@
 		67BB92261ADFA8D10050164B /* AddGroupUsersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddGroupUsersViewController.xib; sourceTree = "<group>"; };
 		67BB92281ADFA8D10050164B /* AddLocationScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddLocationScreenViewController.xib; sourceTree = "<group>"; };
 		67BB92291ADFA8D10050164B /* EditGroupsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditGroupsViewController.xib; sourceTree = "<group>"; };
-		67BB922A1ADFA8D10050164B /* GenderScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GenderScreenViewController.xib; sourceTree = "<group>"; };
 		67BB922B1ADFA8D10050164B /* GroupsListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupsListViewController.xib; sourceTree = "<group>"; };
 		67BB922C1ADFA8D10050164B /* HomePointSuccessfulCreationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomePointSuccessfulCreationViewController.xib; sourceTree = "<group>"; };
 		67BB92351ADFA8D10050164B /* RequestsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RequestsViewController.xib; sourceTree = "<group>"; };
@@ -1242,7 +1240,6 @@
 				67BB92261ADFA8D10050164B /* AddGroupUsersViewController.xib */,
 				67BB92281ADFA8D10050164B /* AddLocationScreenViewController.xib */,
 				67BB92291ADFA8D10050164B /* EditGroupsViewController.xib */,
-				67BB922A1ADFA8D10050164B /* GenderScreenViewController.xib */,
 				67BB922B1ADFA8D10050164B /* GroupsListViewController.xib */,
 				67BB922C1ADFA8D10050164B /* HomePointSuccessfulCreationViewController.xib */,
 				67BB92351ADFA8D10050164B /* RequestsViewController.xib */,
@@ -1754,7 +1751,6 @@
 				67BB92601ADFA8D10050164B /* Tutorial-2_iPhone6plus.png in Resources */,
 				67BB924F1ADFA8D10050164B /* chat_blank@2x.png in Resources */,
 				67BB92641ADFA8D10050164B /* Tutorial-3_iPhone5.png in Resources */,
-				67BB92F11ADFA8D10050164B /* GenderScreenViewController.xib in Resources */,
 				00ABD56E1B479C1B004A2FB0 /* FinishedIcon in Resources */,
 				67BB94491ADFABCD0050164B /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
 				00E2CBBE1B5506C800B316D1 /* ChatListCell.xib in Resources */,

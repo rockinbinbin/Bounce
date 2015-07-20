@@ -19,7 +19,6 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    [self disableSlidePanGestureForLeftMenu];
     
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.backgroundColor = BounceRed;
@@ -76,6 +75,10 @@
     [_addLocationButton kgn_centerHorizontallyInSuperview];
     [_addLocationButton kgn_sizeToWidth:img.size.width];
     [_addLocationButton kgn_sizeToHeight:self.view.frame.size.height/15];
+}
+
+- (void) viewWillAppear:(BOOL)animated{
+    [self disableSlidePanGestureForLeftMenu];
 }
 
 #pragma mark - Navigation Bar

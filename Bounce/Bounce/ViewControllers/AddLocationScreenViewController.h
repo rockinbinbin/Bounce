@@ -19,6 +19,6 @@
 @property (strong, nonatomic) NSString* groupName;
 @property __block NSArray *groupUsers;
 
-@property (weak, nonatomic) IBOutlet MKMapView *map;
+@property (weak, nonatomic) MKMapView *map;
 
 @end
