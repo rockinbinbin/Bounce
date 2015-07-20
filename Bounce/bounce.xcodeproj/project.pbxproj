@@ -103,7 +103,6 @@
 		67BB92EA1ADFA8D10050164B /* SlideMenuLeftTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92211ADFA8D10050164B /* SlideMenuLeftTableViewController.xib */; };
 		67BB92EB1ADFA8D10050164B /* SlideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92231ADFA8D10050164B /* SlideMenuViewController.m */; };
 		67BB92EC1ADFA8D10050164B /* SlideMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92241ADFA8D10050164B /* SlideMenuViewController.xib */; };
-		67BB92ED1ADFA8D10050164B /* AddGroupUsersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92261ADFA8D10050164B /* AddGroupUsersViewController.xib */; };
 		67BB92F01ADFA8D10050164B /* EditGroupsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92291ADFA8D10050164B /* EditGroupsViewController.xib */; };
 		67BB92F21ADFA8D10050164B /* GroupsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB922B1ADFA8D10050164B /* GroupsListViewController.xib */; };
 		67BB92F31ADFA8D10050164B /* HomePointSuccessfulCreationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB922C1ADFA8D10050164B /* HomePointSuccessfulCreationViewController.xib */; };
@@ -474,7 +473,6 @@
 		67BB92221ADFA8D10050164B /* SlideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideMenuViewController.h; sourceTree = "<group>"; };
 		67BB92231ADFA8D10050164B /* SlideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideMenuViewController.m; sourceTree = "<group>"; };
 		67BB92241ADFA8D10050164B /* SlideMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SlideMenuViewController.xib; sourceTree = "<group>"; };
-		67BB92261ADFA8D10050164B /* AddGroupUsersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddGroupUsersViewController.xib; sourceTree = "<group>"; };
 		67BB92291ADFA8D10050164B /* EditGroupsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditGroupsViewController.xib; sourceTree = "<group>"; };
 		67BB922B1ADFA8D10050164B /* GroupsListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupsListViewController.xib; sourceTree = "<group>"; };
 		67BB922C1ADFA8D10050164B /* HomePointSuccessfulCreationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomePointSuccessfulCreationViewController.xib; sourceTree = "<group>"; };
@@ -1235,7 +1233,6 @@
 		67BB92251ADFA8D10050164B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				67BB92261ADFA8D10050164B /* AddGroupUsersViewController.xib */,
 				67BB92291ADFA8D10050164B /* EditGroupsViewController.xib */,
 				67BB922B1ADFA8D10050164B /* GroupsListViewController.xib */,
 				67BB922C1ADFA8D10050164B /* HomePointSuccessfulCreationViewController.xib */,
@@ -1726,7 +1723,6 @@
 				67BB92631ADFA8D10050164B /* Tutorial-3@2x.png in Resources */,
 				00ABD5701B4846CC004A2FB0 /* LaunchScreen.storyboard in Resources */,
 				67BB925E1ADFA8D10050164B /* Tutorial-2_iPhone5.png in Resources */,
-				67BB92ED1ADFA8D10050164B /* AddGroupUsersViewController.xib in Resources */,
 				67BB92FC1ADFA8D10050164B /* RequestsViewController.xib in Resources */,
 				67BB94531ADFABCD0050164B /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
 				67BB925D1ADFA8D10050164B /* Tutorial-2@2x.png in Resources */,
