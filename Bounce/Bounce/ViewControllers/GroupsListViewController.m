@@ -343,7 +343,7 @@
 #pragma mark - Navigate to GroupUsers screen
 - (void) openGroupUsersScreenForEditWithNewUsers:(NSArray *) users
 {
-    AddGroupUsersViewController * addUser = [[AddGroupUsersViewController alloc] initWithNibName:@"AddGroupUsersViewController" bundle:nil];
+    AddGroupUsersViewController * addUser = [AddGroupUsersViewController new];
     //    addUser.groupUsers = objects;
     addUser.editGroup = YES;
     addUser.originalGroupUsers = groupUsers;

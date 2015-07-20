@@ -15,9 +15,9 @@
 #import <Parse/Parse.h>
 #import "AppConstant.h"
 #import "ParseManager.h"
-//#import "Definitions.h"
 #import "Utility.h"
 #import "UIViewController+AMSlideMenu.h"
+#import "UIView+AutoLayout.h"
 
 @interface AddGroupUsersViewController ()
 
@@ -34,11 +34,28 @@
 
     [self setBarButtonItemLeft:@"common_back_button"];
     
-    if (self.editGroup) { // IF 'EDIT' BOOL -> ADD USERS TO HOMEPOINT (?)
+    UITableView *tableView = [UITableView new];
+    tableView.dataSource = self;
+    tableView.delegate = self;
+    [self.view addSubview:tableView];
+    _tableView = tableView;
+    [_tableView kgn_pinToTopEdgeOfSuperview];
+    [_tableView kgn_pinToLeftEdgeOfSuperview];
+    [_tableView kgn_sizeToWidth:self.view.frame.size.width];
+    [_tableView kgn_sizeToHeight:self.view.frame.size.height];
+    
+    if (self.editGroup) {
         [self setEditData];
     }
     else {
-        self.navigationItem.title = @"Add to Homepoint";
+        UILabel *navLabel = [UILabel new];
+        navLabel.textColor = [UIColor whiteColor];
+        navLabel.backgroundColor = [UIColor clearColor];
+        navLabel.textAlignment = NSTextAlignmentCenter;
+        navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/25];
+        self.navigationItem.titleView = navLabel;
+        navLabel.text = @"add users";
+        [navLabel sizeToFit];
         
         UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]
                                        initWithTitle:@"Done"
@@ -46,42 +63,38 @@
                                        target:self
                                        action:@selector(doneButtonClicked)];
         
-        doneButton.tintColor = BounceRed;
-        
+        doneButton.tintColor = [UIColor whiteColor];
         self.navigationItem.rightBarButtonItem = doneButton;
         
-        // create checked array
         self.userChecked  = [[NSMutableArray alloc] init];
-        NSInteger useresCount = [self.groupUsers count];
+        NSInteger usersCount = [self.groupUsers count];
         [self.userChecked  addObject:[NSNumber numberWithBool:YES]];
-        for (int i = 0; i < useresCount-1; i++) {
+        for (int i = 0; i < usersCount-1; i++) {
             [self.userChecked  addObject:[NSNumber numberWithBool:NO]];
         }
     }
 }
 
 - (void) setEditData {
-    self.navigationItem.title = @"Add to Homepoint";
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]
-                                   initWithTitle:@"Save"
-                                   style:UIBarButtonItemStylePlain
-                                   target:self
-                                   action:@selector(saveButtonClicked)];
-    doneButton.tintColor = BounceRed;
-    self.navigationItem.rightBarButtonItem = doneButton;
+    UILabel *navLabel = [UILabel new];
+    navLabel.textColor = [UIColor whiteColor];
+    navLabel.backgroundColor = [UIColor clearColor];
+    navLabel.textAlignment = NSTextAlignmentCenter;
+    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/25];
+    self.navigationItem.titleView = navLabel;
+    navLabel.text = @"edit users";
+    [navLabel sizeToFit];
     
-    // create checked array
     self.userChecked  = [[NSMutableArray alloc] init];
     NSMutableArray *allUsers = [[NSMutableArray alloc] initWithArray:self.originalGroupUsers];
     
-    NSInteger groupUseresCount = [self.originalGroupUsers count];
+    NSInteger groupUsersCount = [self.originalGroupUsers count];
 //    [self.userChecked  addObject:[NSNumber numberWithBool:YES]];
-    for (int i = 0; i < groupUseresCount; i++) {
+    for (int i = 0; i < groupUsersCount; i++) {
         [self.userChecked  addObject:[NSNumber numberWithBool:YES]];
     }
     
     if (self.remainingUsers) {
-        
         [allUsers addObjectsFromArray:self.remainingUsers];
         NSInteger remainingUsersCount = [self.remainingUsers count];
         
@@ -131,6 +144,17 @@
 }
 
 -(void)cancelButtonClicked{
+    if (self.editGroup) {
+        if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+            [[Utility getInstance] showProgressHudWithMessage:@"Saving..." withView:self.view];
+            //get selected users
+            [self getAddedAndDeletedUsers];
+            [[ParseManager getInstance] setUpdateGroupDelegate:self];
+            //        [[ParseManager getInstance] addListOfUsers:users toGroup:self.updatedGroup];
+            [[ParseManager getInstance] addListOfUsers:addedUsers toGroup:self.updatedGroup andRemove:deletedUsers];
+            
+        }
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -143,19 +167,6 @@
         [[ParseManager getInstance] addGroup:self.groupName withArrayOfUser:users withLocation:self.groupLocation];
     }
 }
-
--(void)saveButtonClicked{
-    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
-        [[Utility getInstance] showProgressHudWithMessage:@"Saving..." withView:self.view];
-         //get selected users
-        [self getAddedAndDeletedUsers];
-        [[ParseManager getInstance] setUpdateGroupDelegate:self];
-//        [[ParseManager getInstance] addListOfUsers:users toGroup:self.updatedGroup];
-        [[ParseManager getInstance] addListOfUsers:addedUsers toGroup:self.updatedGroup andRemove:deletedUsers];
-
-    }
-}
-
 
 #pragma mark - TableView Datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

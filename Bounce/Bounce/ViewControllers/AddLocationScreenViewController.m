@@ -150,11 +150,11 @@
     NSLog(@"Error in loading users from parse.com");
 }
 -(void) navigateToGroupUsersScreenAndSetData:(NSArray *) users{
-    AddGroupUsersViewController *contoller = [[AddGroupUsersViewController alloc]  init];
-    contoller.groupUsers = users;
-    contoller.groupLocation = self.groupLocation;
-    contoller.groupName = self.groupName;
-    [self.navigationController pushViewController:contoller animated:YES];
+    AddGroupUsersViewController *controller = [[AddGroupUsersViewController alloc]  init];
+    controller.groupUsers = users;
+    controller.groupLocation = self.groupLocation;
+    controller.groupName = self.groupName;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 # pragma mark Custom Functions

@@ -188,7 +188,7 @@
 - (void) navigateToAddGroupUsersScreenWithUsers:(NSArray *) users
 {
     @try {
-        AddGroupUsersViewController *addGroupUsersViewController = [[AddGroupUsersViewController alloc]  initWithNibName:@"AddGroupUsersViewController" bundle:nil];
+        AddGroupUsersViewController *addGroupUsersViewController = [AddGroupUsersViewController new];
         addGroupUsersViewController.groupName = self.groupNameTextField.text;
         addGroupUsersViewController.groupLocation = [[PFUser currentUser] objectForKey:PF_USER_LOCATION];
         addGroupUsersViewController.groupUsers = users;

@@ -11,9 +11,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "ParseManager.h"
 
-@interface AddGroupUsersViewController : UIViewController<ParseManagerAddGroupDelegate, ParseManagerUpdateGroupDelegate>
-
-// PROPERTIES
+@interface AddGroupUsersViewController : UIViewController<ParseManagerAddGroupDelegate, ParseManagerUpdateGroupDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property NSArray *groupUsers;
 @property NSMutableArray *userChecked; // array of selected users
@@ -25,8 +23,6 @@
 @property NSArray *remainingUsers;
 @property PFObject *updatedGroup;
 
-// OUTLETS
-
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) UITableView *tableView;
 
 @end
