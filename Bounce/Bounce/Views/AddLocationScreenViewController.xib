@@ -6,7 +6,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddLocationScreenViewController">
             <connections>
-                <outlet property="dontAddLocationButton" destination="rS6-K5-y3R" id="Xth-6e-X9W"/>
                 <outlet property="map" destination="G7G-2o-jo7" id="LBu-84-AWc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -16,34 +15,15 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rS6-K5-y3R">
-                    <rect key="frame" x="0.0" y="560" width="600" height="40"/>
-                    <color key="backgroundColor" red="0.85438368060000003" green="0.2130681371" blue="0.36056679320000001" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="Qbe-va-x4K"/>
-                    </constraints>
-                    <state key="normal" title="I don't want a location">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="dontAddLocationButtonClicked:" destination="-1" eventType="touchUpInside" id="sKc-iH-plZ"/>
-                    </connections>
-                </button>
-                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="G7G-2o-jo7">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="560"/>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="G7G-2o-jo7">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                 </mapView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="rS6-K5-y3R" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="EBE-38-EVu"/>
-                <constraint firstAttribute="trailing" secondItem="rS6-K5-y3R" secondAttribute="trailing" id="KZQ-m5-T4k"/>
                 <constraint firstItem="G7G-2o-jo7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Kgg-km-tDp"/>
                 <constraint firstAttribute="trailing" secondItem="G7G-2o-jo7" secondAttribute="trailing" id="aBH-M3-gYJ"/>
-                <constraint firstAttribute="centerX" secondItem="rS6-K5-y3R" secondAttribute="centerX" constant="-0.5" id="bC0-Ik-y3H"/>
                 <constraint firstItem="G7G-2o-jo7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bSG-yU-RQ9"/>
-                <constraint firstAttribute="bottom" secondItem="rS6-K5-y3R" secondAttribute="bottom" id="u7N-3S-OEk"/>
-                <constraint firstItem="rS6-K5-y3R" firstAttribute="top" secondItem="G7G-2o-jo7" secondAttribute="bottom" id="vmQ-cV-maW"/>
             </constraints>
         </view>
     </objects>

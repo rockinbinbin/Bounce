@@ -12,12 +12,14 @@
 #import "AddGroupUsersViewController.h"
 #import "AppConstant.h"
 #import "UIView+AutoLayout.h"
+#import "UIViewController+AMSlideMenu.h"
 
 @implementation CreateHomepoint
 
 -(void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    [self disableSlidePanGestureForLeftMenu];
     
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.backgroundColor = BounceRed;
@@ -32,7 +34,6 @@
     [navLabel sizeToFit];
     
     [self setBarButtonItemLeft:@"common_back_button"];
-    
     
     _addPhotoButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *img = [UIImage imageNamed:@"addPhotoButton"];

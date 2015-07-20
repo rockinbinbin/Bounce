@@ -20,7 +20,5 @@
 @property __block NSArray *groupUsers;
 
 @property (weak, nonatomic) IBOutlet MKMapView *map;
-@property (weak, nonatomic) IBOutlet UIButton *dontAddLocationButton;
 
-- (IBAction)dontAddLocationButtonClicked:(id)sender;
 @end

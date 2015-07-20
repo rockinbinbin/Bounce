@@ -14,6 +14,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "UIViewController+AMSlideMenu.h"
 #import "Utility.h"
+#import "UIViewController+AMSlideMenu.h"
 
 @interface AddLocationScreenViewController ()
 
@@ -23,22 +24,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    self.dontAddLocationButton.backgroundColor = BounceRed;
+    [self disableSlidePanGestureForLeftMenu];
+    
+    self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.navigationBar.backgroundColor = BounceRed;
+    
+    UILabel *navLabel = [UILabel new];
+    navLabel.textColor = [UIColor whiteColor];
+    navLabel.backgroundColor = [UIColor clearColor];
+    navLabel.textAlignment = NSTextAlignmentCenter;
+    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/25];
+    self.navigationItem.titleView = navLabel;
+    navLabel.text = @"set location";
+    [navLabel sizeToFit];
+    
     [self setBarButtonItemLeft:@"common_back_button"];
-    self.navigationItem.title = @"set location";
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]
-                                   initWithTitle:@"Done"
-                                   style:UIBarButtonItemStylePlain
-                                   target:self
-                                   action:@selector(doneButtonClicked)];
-    doneButton.tintColor = BounceRed;
-    self.navigationItem.rightBarButtonItem = doneButton;
+    
+    [self setBarButtonItemRight:@"whiteCheck"];
     
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapClicked:)];
-    
     tapRecognizer.numberOfTapsRequired = 1;
-    
     tapRecognizer.numberOfTouchesRequired = 1;
     
     [self.map addGestureRecognizer:tapRecognizer];
@@ -91,6 +96,11 @@
     self.navigationItem.leftBarButtonItem = [self initialiseBarButton:menuImage withAction:@selector(cancelButtonClicked)];
 }
 
+-(void) setBarButtonItemRight:(NSString*) imageName{
+    UIImage *menuImage = [UIImage imageNamed:imageName];
+    self.navigationItem.rightBarButtonItem = [self initialiseBarButton:menuImage withAction:@selector(doneButtonClicked)];
+}
+
 -(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action {
     UIButton *buttonItem = [UIButton buttonWithType:UIButtonTypeCustom];
     buttonItem.bounds = CGRectMake( 0, 0, buttonImage.size.width, buttonImage.size.height );
@@ -116,11 +126,6 @@
     
 }
 
-- (IBAction)dontAddLocationButtonClicked:(id)sender {
-    //TODO: set the location in the new view controller!
-    self.groupLocation = [PFUser currentUser][@"CurrentLocation"];
-    [self getAllUsers];
-}
 - (void) getAllUsers
 {
     if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {

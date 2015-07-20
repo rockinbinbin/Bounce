@@ -74,8 +74,8 @@
     createHP.tintColor = [UIColor whiteColor];
     createHP.backgroundColor = BounceSeaGreen;
     [createHP setTitle:@"create homepoint" forState:UIControlStateNormal];
+    createHP.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/30];
     createHP.titleLabel.textAlignment = NSTextAlignmentCenter;
-    createHP.titleLabel.font = [UIFont fontWithName:@"Avenir-Next" size:self.view.frame.size.height/15];
     [createHP addTarget:self action:@selector(navigateToCreateHomepointView) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:createHP];
     [createHP kgn_sizeToHeight:self.view.frame.size.height/10];
