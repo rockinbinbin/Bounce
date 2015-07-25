@@ -249,11 +249,7 @@
         UIUserNotificationSettings* settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
         [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
         [application registerForRemoteNotifications];
-    } else {
-        // iOS 7 or iOS 6
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     }
-
 }
 
 - (void) appOpendFromNotification:(NSDictionary *)userInfo{
