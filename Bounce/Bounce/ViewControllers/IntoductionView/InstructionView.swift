@@ -22,7 +22,7 @@ class InstructionView: UIViewController {
         
         let image = UIImage(named: imageFile)
         let imageView = UIImageView()
-        
+        self.disableSlidePanGestureForLeftMenu()
         // The image is lopsided
         if (pageIndex == 1) {
             imageView.frame = CGRectMake(view.frame.width * 0.05, view.frame.height * 0.2, view.frame.width * 0.9, view.frame.width * 0.9 / image!.size.width * image!.size.height)
