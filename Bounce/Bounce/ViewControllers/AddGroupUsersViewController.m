@@ -116,7 +116,7 @@
 }
 
 - (void) viewWillAppear:(BOOL)animated {
-    // Disable left Slide menu
+    [super viewWillAppear:animated];
     [self disableSlidePanGestureForLeftMenu];
 }
 - (void)didReceiveMemoryWarning {
@@ -290,7 +290,7 @@
     @try {
         [[Utility getInstance] hideProgressHud];
         if (!error) {
-            HomePointSuccessfulCreationViewController* homePointSuccessfulCreationViewController = [[HomePointSuccessfulCreationViewController alloc] initWithNibName:@"HomePointSuccessfulCreationViewController" bundle:nil];
+            HomePointSuccessfulCreationViewController* homePointSuccessfulCreationViewController = [HomePointSuccessfulCreationViewController new];
             [self.navigationController pushViewController:homePointSuccessfulCreationViewController animated:YES];
         }
     }

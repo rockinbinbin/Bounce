@@ -197,10 +197,20 @@
     [endRequestButton kgn_sizeToWidth:self.view.frame.size.width];
     [endRequestButton kgn_pinToBottomEdgeOfSuperview];
     
+    [self hideReplyView];
+}
+
+-(void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self startReceivingSignificantLocationChanges];
     [self changeCenterToUserLocation];
     [self setUserTrackingMode];
-    [self hideReplyView];
+
+    
+    [[RequestManger getInstance] setRequestManagerDelegate:self];
+    if ([[RequestManger getInstance] hasActiveRequest]) {
+        [self requestCreated];
+    }
 }
 
 - (void)MySegmentControlAction:(UISegmentedControl *)segment {
@@ -221,13 +231,6 @@
     UISlider *slider = (UISlider*)sender;
     float value = slider.value;
     self.timeAllocated = value;
-}
-
--(void) viewWillAppear:(BOOL)animated{
-    [[RequestManger getInstance] setRequestManagerDelegate:self];
-    if ([[RequestManger getInstance] hasActiveRequest]) {
-        [self requestCreated];
-    }
 }
 
 - (void) viewWillDisappear:(BOOL)animated

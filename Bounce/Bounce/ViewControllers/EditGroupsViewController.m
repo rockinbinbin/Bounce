@@ -42,8 +42,8 @@
     self.navigationItem.rightBarButtonItem = doneButton;
 //    self.tableView.allowsMultipleSelectionDuringEditing = NO;
 }
-- (void) viewWillAppear:(BOOL)animated
-{
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self disableSlidePanGestureForLeftMenu];
     [self getGroupsCreatedByUser];
 }

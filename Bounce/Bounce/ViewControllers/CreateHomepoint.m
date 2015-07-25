@@ -77,7 +77,8 @@
     [_addLocationButton kgn_sizeToHeight:self.view.frame.size.height/15];
 }
 
-- (void) viewWillAppear:(BOOL)animated{
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self disableSlidePanGestureForLeftMenu];
 }
 

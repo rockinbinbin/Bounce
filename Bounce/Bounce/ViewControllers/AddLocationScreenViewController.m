@@ -57,7 +57,8 @@
     [self changeCenterToUserLocation];
     [self setUserTrackingMode];
 }
-- (void) viewWillAppear:(BOOL)animated{
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self disableSlidePanGestureForLeftMenu];
 }
 -(IBAction)mapClicked:(UITapGestureRecognizer *)recognizer {

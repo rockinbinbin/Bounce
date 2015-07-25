@@ -218,8 +218,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     [self jsq_registerForNotifications:YES];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     NSParameterAssert(self.senderId != nil);
     NSParameterAssert(self.senderDisplayName != nil);
     

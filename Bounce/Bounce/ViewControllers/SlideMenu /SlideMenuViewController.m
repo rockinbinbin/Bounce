@@ -26,10 +26,9 @@
     [super viewDidLoad];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    AMSlideMenuState oldState = [self menuState];
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    AMSlideMenuState oldState = [self menuState];
     if (oldState == AMSlideMenuLeftOpened) {
         [self openLeftMenu];
     }
