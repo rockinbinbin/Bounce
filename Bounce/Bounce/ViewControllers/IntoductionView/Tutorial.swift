@@ -36,7 +36,7 @@ class Tutorial: UIViewController, UIPageViewControllerDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.disableSlidePanGestureForLeftMenu();
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
         self.setBackgroundColor()
