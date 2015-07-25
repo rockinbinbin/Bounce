@@ -110,8 +110,7 @@ static RequestManger *sharedRequestManger = nil;
             if (![gender isEqualToString:ALL_GENDER]) {
                 [query whereKey:PF_GENDER equalTo:gender];
             }
-            //            [query whereKey:@"CurrentLocation" nearGeoPoint:location withinMiles:radius];
-            [query whereKey:PF_USER_LOCATION nearGeoPoint:location withinKilometers:radius/FEET_IN_KILOMETER];
+            [query whereKey:@"CurrentLocation" nearGeoPoint:location withinMiles:K_NEAR_DISTANCE];
             [queries addObject:query];
         }
         query = [PFQuery orQueryWithSubqueries:queries];
@@ -254,7 +253,7 @@ static RequestManger *sharedRequestManger = nil;
     @try {
         PFUser *currentUser = [PFUser currentUser];
         PFGeoPoint *userGeoPoint = currentUser[@"CurrentLocation"];
-        NSInteger radius = [[activeRequest objectForKey:PF_REQUEST_RADIUS] integerValue];        
+        NSInteger radius = K_NEAR_DISTANCE; // [[activeRequest objectForKey:PF_REQUEST_RADIUS] integerValue]
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             NSArray *selectedGroups = [self getRequestSelectedGroups];
             NSMutableArray *oldUsers = [[NSMutableArray alloc] initWithArray:[self getRequestReceivers]];

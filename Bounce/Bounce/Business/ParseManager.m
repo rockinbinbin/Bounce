@@ -284,8 +284,7 @@ PFUser *currentUser;
     }
 }
 #pragma mark - Get all Groups in the system except created by user
-- (NSArray *) getAllGroupsExceptCreatedByUser
-{
+- (NSArray *) getAllGroupsExceptCreatedByUser {
     @try {
         PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
         [query whereKey:PF_GROUP_OWNER notEqualTo:[PFUser currentUser]];
