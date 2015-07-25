@@ -163,7 +163,6 @@ class Tutorial: UIViewController, UIPageViewControllerDataSource {
     }
     
     func loginButtonPressed(sender: UIButton!) {
-        // fix dis
         let fbLogin = FacebookLogin(navigationController: self.navigationController)
         fbLogin.facebookLogin()
         

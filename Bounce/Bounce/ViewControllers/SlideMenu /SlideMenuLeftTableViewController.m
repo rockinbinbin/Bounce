@@ -513,7 +513,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
                 }
             } else {
                 // Handle error
-                
                 NSLog(@"FIX DIS BLOCK ERROR");
             }
         } progressBlock:^(int percentDone) {
