@@ -340,10 +340,22 @@ PFUser *currentUser;
 {
     // User's location
     PFGeoPoint *userGeoPoint = [[PFUser currentUser] objectForKey:PF_USER_LOCATION];
+    
+    // TODO: error check for nil current location
+    
     PFRelation *userRelation = [group relationForKey:PF_GROUP_Users_RELATION];
     PFQuery *query = [userRelation query];
     [query whereKey:PF_USER_USERNAME notEqualTo:[[PFUser currentUser] username]];
     [query whereKey:PF_USER_LOCATION nearGeoPoint:userGeoPoint withinMiles:K_NEAR_DISTANCE];
+    
+//    // debug location
+//    double distance = [userGeoPoint distanceInMilesTo:[[query getFirstObject] objectForKey:PF_USER_LOCATION]];
+//    NSLog(@"DISTANCE: %f", distance);
+//    PFGeoPoint *otherGeo = [[query getFirstObject] objectForKey:PF_USER_LOCATION];
+//    
+//    NSLog(@"MY LATITUDE: %f LONGITUDE: %f", userGeoPoint.latitude, userGeoPoint.longitude);
+//    NSLog(@"STEVE'S LATITUDE: %f LONGITUDE: %f", otherGeo.latitude, otherGeo.longitude);
+    
    return [query countObjects];
 }
 

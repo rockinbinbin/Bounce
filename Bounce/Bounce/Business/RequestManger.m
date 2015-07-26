@@ -110,7 +110,7 @@ static RequestManger *sharedRequestManger = nil;
             if (![gender isEqualToString:ALL_GENDER]) {
                 [query whereKey:PF_GENDER equalTo:gender];
             }
-            [query whereKey:@"CurrentLocation" nearGeoPoint:location withinMiles:K_NEAR_DISTANCE];
+            [query whereKey:PF_USER_LOCATION nearGeoPoint:location withinMiles:K_NEAR_DISTANCE];
             [queries addObject:query];
         }
         query = [PFQuery orQueryWithSubqueries:queries];
@@ -280,10 +280,10 @@ static RequestManger *sharedRequestManger = nil;
                 activeRequest[PF_REQUEST_RECEIVER] = resultUsernames;
                 [self appendUsers:addedUsers toRequestUserRelation:activeRequest];
                 [self removeUsers:removedUsers fromRequestUserRelation:activeRequest];
-                BOOL savedSuccedd = [activeRequest save];
-                if (savedSuccedd) {
+                BOOL saveSucceeded = [activeRequest save];
+                if (saveSucceeded) {
                     NSString *requestId = activeRequest.objectId;
-                    // update request user srelation
+                    // update request user relation
                     // send push notification for new users and create chat item
                     [self createChatItemAndSendNotificationToUsers:addedUsers withRequestId:requestId];
                     [self removeRequestDataForRemovedUser:removedUsers];
