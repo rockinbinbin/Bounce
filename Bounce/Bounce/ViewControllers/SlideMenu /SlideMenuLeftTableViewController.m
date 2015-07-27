@@ -52,7 +52,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateChatNumber:) name:@"UpdateChatNumber" object:nil];
 }
 
--(void) viewWillAppear:(BOOL)animated{
+-(void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     self.userProfileImageView.layer.cornerRadius = self.userProfileImageView.frame.size.height / 2;
     self.userProfileImageView.clipsToBounds = YES;
     self.userProfileImageView.layer.borderWidth = 3.0f;

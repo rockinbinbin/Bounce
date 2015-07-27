@@ -105,6 +105,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self disableSlidePanGestureForLeftMenu];
     [[ParseManager getInstance] setUpdateGroupDelegate:self];
     [self loadGroups];
