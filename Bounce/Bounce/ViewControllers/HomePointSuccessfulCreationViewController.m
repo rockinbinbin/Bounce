@@ -33,7 +33,6 @@
     [super viewDidLoad];
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
     self.view.backgroundColor = BounceRed;
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
     
     UILabel *titleLabel = [UILabel new];
     titleLabel.text = @"HOME, SWEET HOME";
@@ -120,7 +119,7 @@
 - (void) setupViewConstraints {
     
     [self.titleLabel kgn_centerHorizontallyInSuperview];
-    [self.titleLabel kgn_pinToTopEdgeOfSuperviewWithOffset:self.view.frame.size.height/15];
+    [self.titleLabel kgn_pinToTopEdgeOfSuperviewWithOffset:self.view.frame.size.height/12];
     
     [self.headerDescription kgn_centerHorizontallyInSuperview];
     [self.headerDescription kgn_sizeToWidth:self.view.frame.size.width - 50];
