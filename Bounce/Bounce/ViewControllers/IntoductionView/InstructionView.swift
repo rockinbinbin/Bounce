@@ -19,7 +19,7 @@ class InstructionView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.disableSlidePanGestureForLeftMenu();
         let image = UIImage(named: imageFile)
         let imageView = UIImageView()
         self.disableSlidePanGestureForLeftMenu()
