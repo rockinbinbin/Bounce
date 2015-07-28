@@ -17,9 +17,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationController.navigationBar.barTintColor = BounceRed;
+    self.navigationController.navigationBar.translucent = NO;
     [self.navigationController setNavigationBarHidden:NO];
     [self setBarButtonItemLeft:@"common_back_button"];
-    self.navigationItem.title = @"settings";
+    
+    UILabel *navLabel = [UILabel new];
+    navLabel.textColor = [UIColor whiteColor];
+    navLabel.backgroundColor = [UIColor clearColor];
+    navLabel.textAlignment = NSTextAlignmentCenter;
+    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/23];
+    self.navigationItem.titleView = navLabel;
+    navLabel.text = @"chats";
+    [navLabel sizeToFit];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -27,6 +27,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationController.navigationBar.barTintColor = BounceRed;
+    self.navigationController.navigationBar.translucent = NO;
     UIView *backgroundView = [UIView new];
     backgroundView.frame = self.view.frame;
     backgroundView.backgroundColor = BounceLightGray;

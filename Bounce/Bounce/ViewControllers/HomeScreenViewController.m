@@ -32,7 +32,6 @@
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     
-    self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.barTintColor = BounceRed;
     self.navigationController.navigationBar.translucent = NO;
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
