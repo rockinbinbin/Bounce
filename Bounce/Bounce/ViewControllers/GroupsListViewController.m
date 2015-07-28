@@ -32,6 +32,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    UITableView *tableView = [UITableView new];
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    [self.view addSubview:tableView];
+    _tableView = tableView;
+    [tableView kgn_sizeToWidth:self.view.frame.size.width];
+    [tableView kgn_sizeToHeight:self.view.frame.size.height];
+    [tableView kgn_pinToTopEdgeOfSuperview];
+    [tableView kgn_pinToLeftEdgeOfSuperview];
     
     UIView *backgroundView = [UIView new];
     backgroundView.frame = self.view.frame;

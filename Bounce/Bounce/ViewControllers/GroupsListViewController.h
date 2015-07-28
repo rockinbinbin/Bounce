@@ -12,6 +12,6 @@
 @property NSMutableArray* groups;
 @property NSMutableArray *nearUsers;
 @property NSMutableArray *distanceToUserLocation;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) UITableView *tableView;
 
 @end
