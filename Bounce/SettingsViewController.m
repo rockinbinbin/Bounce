@@ -28,7 +28,7 @@
     navLabel.textAlignment = NSTextAlignmentCenter;
     navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/23];
     self.navigationItem.titleView = navLabel;
-    navLabel.text = @"chats";
+    navLabel.text = @"settings";
     [navLabel sizeToFit];
 }
 
