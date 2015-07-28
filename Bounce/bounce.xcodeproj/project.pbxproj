@@ -104,6 +104,7 @@
 		67BB92EB1ADFA8D10050164B /* SlideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92231ADFA8D10050164B /* SlideMenuViewController.m */; };
 		67BB92EC1ADFA8D10050164B /* SlideMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92241ADFA8D10050164B /* SlideMenuViewController.xib */; };
 		67BB92F01ADFA8D10050164B /* EditGroupsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92291ADFA8D10050164B /* EditGroupsViewController.xib */; };
+		67BB92F21ADFA8D10050164B /* GroupsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB922B1ADFA8D10050164B /* GroupsListViewController.xib */; };
 		67BB92FC1ADFA8D10050164B /* RequestsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92351ADFA8D10050164B /* RequestsViewController.xib */; };
 		67BB93011ADFA8D10050164B /* hobble_1_1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 67BB923E1ADFA8D10050164B /* hobble_1_1.xcdatamodeld */; };
 		67BB93061ADFA8D10050164B /* UIViewController+infopagestempfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92481ADFA8D10050164B /* UIViewController+infopagestempfile.m */; };
@@ -472,6 +473,7 @@
 		67BB92231ADFA8D10050164B /* SlideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideMenuViewController.m; sourceTree = "<group>"; };
 		67BB92241ADFA8D10050164B /* SlideMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SlideMenuViewController.xib; sourceTree = "<group>"; };
 		67BB92291ADFA8D10050164B /* EditGroupsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditGroupsViewController.xib; sourceTree = "<group>"; };
+		67BB922B1ADFA8D10050164B /* GroupsListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupsListViewController.xib; sourceTree = "<group>"; };
 		67BB92351ADFA8D10050164B /* RequestsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RequestsViewController.xib; sourceTree = "<group>"; };
 		67BB923F1ADFA8D10050164B /* hobble_1_1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hobble_1_1.xcdatamodel; sourceTree = "<group>"; };
 		67BB92471ADFA8D10050164B /* UIViewController+infopagestempfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+infopagestempfile.h"; sourceTree = "<group>"; };
@@ -1230,6 +1232,7 @@
 			isa = PBXGroup;
 			children = (
 				67BB92291ADFA8D10050164B /* EditGroupsViewController.xib */,
+				67BB922B1ADFA8D10050164B /* GroupsListViewController.xib */,
 				67BB92351ADFA8D10050164B /* RequestsViewController.xib */,
 				001C737A1B0B0E3C008D7058 /* Terms_of_Use_ViewController.xib */,
 				001C737F1B0B0E4D008D7058 /* Privacy_Policy_ViewController.xib */,
@@ -1725,6 +1728,7 @@
 				67BB94331ADFABCD0050164B /* JSQMessagesViewController.xib in Resources */,
 				67BB92571ADFA8D10050164B /* Tutorial-1@2x.png in Resources */,
 				003F19461B0B09DC0024EE9A /* SettingsViewController.xib in Resources */,
+				67BB92F21ADFA8D10050164B /* GroupsListViewController.xib in Resources */,
 				67BB92EA1ADFA8D10050164B /* SlideMenuLeftTableViewController.xib in Resources */,
 				67BB92701ADFA8D10050164B /* Images.xcassets in Resources */,
 				67BB94471ADFABCD0050164B /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
