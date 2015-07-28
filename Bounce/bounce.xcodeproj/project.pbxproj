@@ -88,7 +88,6 @@
 		67BB92D71ADFA8D10050164B /* AddHomePointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB91FB1ADFA8D10050164B /* AddHomePointViewController.m */; };
 		67BB92D81ADFA8D10050164B /* AddLocationScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB91FD1ADFA8D10050164B /* AddLocationScreenViewController.m */; };
 		67BB92D91ADFA8D10050164B /* CustomChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB91FF1ADFA8D10050164B /* CustomChatViewController.m */; };
-		67BB92DA1ADFA8D10050164B /* EditGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92011ADFA8D10050164B /* EditGroupsViewController.m */; };
 		67BB92DB1ADFA8D10050164B /* GenderScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92031ADFA8D10050164B /* GenderScreenViewController.m */; };
 		67BB92DC1ADFA8D10050164B /* GroupsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92051ADFA8D10050164B /* GroupsListViewController.m */; };
 		67BB92DD1ADFA8D10050164B /* HomePointSuccessfulCreationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92071ADFA8D10050164B /* HomePointSuccessfulCreationViewController.m */; };
@@ -100,7 +99,6 @@
 		67BB92EA1ADFA8D10050164B /* SlideMenuLeftTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92211ADFA8D10050164B /* SlideMenuLeftTableViewController.xib */; };
 		67BB92EB1ADFA8D10050164B /* SlideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92231ADFA8D10050164B /* SlideMenuViewController.m */; };
 		67BB92EC1ADFA8D10050164B /* SlideMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92241ADFA8D10050164B /* SlideMenuViewController.xib */; };
-		67BB92F01ADFA8D10050164B /* EditGroupsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92291ADFA8D10050164B /* EditGroupsViewController.xib */; };
 		67BB92FC1ADFA8D10050164B /* RequestsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92351ADFA8D10050164B /* RequestsViewController.xib */; };
 		67BB93011ADFA8D10050164B /* hobble_1_1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 67BB923E1ADFA8D10050164B /* hobble_1_1.xcdatamodeld */; };
 		67BB93061ADFA8D10050164B /* UIViewController+infopagestempfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92481ADFA8D10050164B /* UIViewController+infopagestempfile.m */; };
@@ -444,8 +442,6 @@
 		67BB91FD1ADFA8D10050164B /* AddLocationScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddLocationScreenViewController.m; sourceTree = "<group>"; };
 		67BB91FE1ADFA8D10050164B /* CustomChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomChatViewController.h; sourceTree = "<group>"; };
 		67BB91FF1ADFA8D10050164B /* CustomChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomChatViewController.m; sourceTree = "<group>"; };
-		67BB92001ADFA8D10050164B /* EditGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditGroupsViewController.h; sourceTree = "<group>"; };
-		67BB92011ADFA8D10050164B /* EditGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditGroupsViewController.m; sourceTree = "<group>"; };
 		67BB92021ADFA8D10050164B /* GenderScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenderScreenViewController.h; sourceTree = "<group>"; };
 		67BB92031ADFA8D10050164B /* GenderScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenderScreenViewController.m; sourceTree = "<group>"; };
 		67BB92041ADFA8D10050164B /* GroupsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsListViewController.h; sourceTree = "<group>"; };
@@ -465,7 +461,6 @@
 		67BB92221ADFA8D10050164B /* SlideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideMenuViewController.h; sourceTree = "<group>"; };
 		67BB92231ADFA8D10050164B /* SlideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideMenuViewController.m; sourceTree = "<group>"; };
 		67BB92241ADFA8D10050164B /* SlideMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SlideMenuViewController.xib; sourceTree = "<group>"; };
-		67BB92291ADFA8D10050164B /* EditGroupsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditGroupsViewController.xib; sourceTree = "<group>"; };
 		67BB92351ADFA8D10050164B /* RequestsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RequestsViewController.xib; sourceTree = "<group>"; };
 		67BB923F1ADFA8D10050164B /* hobble_1_1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hobble_1_1.xcdatamodel; sourceTree = "<group>"; };
 		67BB92471ADFA8D10050164B /* UIViewController+infopagestempfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+infopagestempfile.h"; sourceTree = "<group>"; };
@@ -1167,8 +1162,6 @@
 				67BB91FD1ADFA8D10050164B /* AddLocationScreenViewController.m */,
 				67BB91FE1ADFA8D10050164B /* CustomChatViewController.h */,
 				67BB91FF1ADFA8D10050164B /* CustomChatViewController.m */,
-				67BB92001ADFA8D10050164B /* EditGroupsViewController.h */,
-				67BB92011ADFA8D10050164B /* EditGroupsViewController.m */,
 				67BB92021ADFA8D10050164B /* GenderScreenViewController.h */,
 				67BB92031ADFA8D10050164B /* GenderScreenViewController.m */,
 				67BB92041ADFA8D10050164B /* GroupsListViewController.h */,
@@ -1223,7 +1216,6 @@
 		67BB92251ADFA8D10050164B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				67BB92291ADFA8D10050164B /* EditGroupsViewController.xib */,
 				67BB92351ADFA8D10050164B /* RequestsViewController.xib */,
 			);
 			path = Views;
@@ -1728,7 +1720,6 @@
 				00ABD56E1B479C1B004A2FB0 /* FinishedIcon in Resources */,
 				67BB94491ADFABCD0050164B /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
 				00E2CBBE1B5506C800B316D1 /* ChatListCell.xib in Resources */,
-				67BB92F01ADFA8D10050164B /* EditGroupsViewController.xib in Resources */,
 				67BB92521ADFA8D10050164B /* LandingView@2x.png in Resources */,
 				67BB92551ADFA8D10050164B /* LandingView_iPhone6plus.png in Resources */,
 				67BB925F1ADFA8D10050164B /* Tutorial-2_iPhone6.png in Resources */,
@@ -1778,7 +1769,6 @@
 				007BA4091A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.m in Sources */,
 				67BB94421ADFABCD0050164B /* JSQVideoMediaItem.m in Sources */,
 				67BB94041ADFABCD0050164B /* AFURLResponseSerialization.m in Sources */,
-				67BB92DA1ADFA8D10050164B /* EditGroupsViewController.m in Sources */,
 				67BB945F1ADFABCD0050164B /* ProgressHUD.m in Sources */,
 				67BB942E1ADFABCD0050164B /* UIDevice+JSQMessages.m in Sources */,
 				67BB943F1ADFABCD0050164B /* JSQMessagesAvatarImage.m in Sources */,
