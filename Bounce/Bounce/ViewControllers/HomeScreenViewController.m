@@ -76,7 +76,7 @@
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:itemArray];
     segmentedControl.tintColor = BounceSeaGreen;
     [segmentedControl addTarget:self action:@selector(MySegmentControlAction:) forControlEvents: UIControlEventValueChanged];
-    segmentedControl.selectedSegmentIndex = 1;
+    segmentedControl.selectedSegmentIndex = 0;
     [self.bottomView addSubview:segmentedControl];
     [segmentedControl kgn_sizeToWidth:self.view.frame.size.width - 100];
     [segmentedControl kgn_sizeToHeight:self.view.frame.size.height/20];
@@ -132,6 +132,7 @@
     slider.minimumValue = 5.0;
     slider.continuous = YES;
     slider.value = 30.0;
+    self.timeAllocated = slider.value;
     [slider setMinimumTrackTintColor:BounceSeaGreen];
     [self.bottomView addSubview:slider];
     [slider kgn_sizeToWidth:self.view.frame.size.width - 100];

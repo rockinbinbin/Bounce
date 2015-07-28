@@ -302,10 +302,7 @@
 - (void)didUpdateGroupData:(BOOL)succeed {
     @try {
         [[Utility getInstance] hideProgressHud];
-        if (succeed) {
-            //[self.navigationController popViewControllerAnimated:YES];
-        }else{
-            //show error message
+        if (!succeed) {
             [[Utility getInstance] showAlertMessage:@"Updates not saved. Please try again"];
         }
     }
