@@ -17,8 +17,11 @@
 		0002349E1B488F98000B7630 /* Quicksand-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0002349D1B488F98000B7630 /* Quicksand-LightItalic.otf */; };
 		000234A01B488F9F000B7630 /* Quicksand-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0002349F1B488F9F000B7630 /* Quicksand-Regular.otf */; };
 		001C737B1B0B0E3C008D7058 /* Terms_of_Use_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001C73791B0B0E3C008D7058 /* Terms_of_Use_ViewController.m */; };
+		001C737C1B0B0E3C008D7058 /* Terms_of_Use_ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 001C737A1B0B0E3C008D7058 /* Terms_of_Use_ViewController.xib */; };
 		001C73801B0B0E4D008D7058 /* Privacy_Policy_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001C737E1B0B0E4D008D7058 /* Privacy_Policy_ViewController.m */; };
+		001C73811B0B0E4D008D7058 /* Privacy_Policy_ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 001C737F1B0B0E4D008D7058 /* Privacy_Policy_ViewController.xib */; };
 		003F19451B0B09DC0024EE9A /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 003F19431B0B09DC0024EE9A /* SettingsViewController.m */; };
+		003F19461B0B09DC0024EE9A /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 003F19441B0B09DC0024EE9A /* SettingsViewController.xib */; };
 		00414F691AAE2B3200B25CEE /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 00414F681AAE2B3200B25CEE /* libicucore.dylib */; };
 		007BA4091A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 007BA4061A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.m */; };
 		007BA40A1A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 007BA4081A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
@@ -199,12 +202,15 @@
 		0002349F1B488F9F000B7630 /* Quicksand-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Regular.otf"; path = "Bounce/ViewControllers/Fonts/Quicksand-Regular.otf"; sourceTree = "<group>"; };
 		001C73781B0B0E3C008D7058 /* Terms_of_Use_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Terms_of_Use_ViewController.h; path = "SlideMenu /Terms_of_Use_ViewController.h"; sourceTree = "<group>"; };
 		001C73791B0B0E3C008D7058 /* Terms_of_Use_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Terms_of_Use_ViewController.m; path = "SlideMenu /Terms_of_Use_ViewController.m"; sourceTree = "<group>"; };
+		001C737A1B0B0E3C008D7058 /* Terms_of_Use_ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Terms_of_Use_ViewController.xib; path = "../ViewControllers/SlideMenu /Terms_of_Use_ViewController.xib"; sourceTree = "<group>"; };
 		001C737D1B0B0E4D008D7058 /* Privacy_Policy_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Privacy_Policy_ViewController.h; path = "SlideMenu /Privacy_Policy_ViewController.h"; sourceTree = "<group>"; };
 		001C737E1B0B0E4D008D7058 /* Privacy_Policy_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Privacy_Policy_ViewController.m; path = "SlideMenu /Privacy_Policy_ViewController.m"; sourceTree = "<group>"; };
+		001C737F1B0B0E4D008D7058 /* Privacy_Policy_ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Privacy_Policy_ViewController.xib; path = "../ViewControllers/SlideMenu /Privacy_Policy_ViewController.xib"; sourceTree = "<group>"; };
 		001DFA0B1ABF4175008C9D1F /* PF_EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PF_EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		00296BD519EFA5BF003ADA30 /* APAddressBook-Bridging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "APAddressBook-Bridging.h"; sourceTree = "<group>"; };
 		003F19421B0B09DC0024EE9A /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = ../../SettingsViewController.h; sourceTree = "<group>"; };
 		003F19431B0B09DC0024EE9A /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = ../../SettingsViewController.m; sourceTree = "<group>"; };
+		003F19441B0B09DC0024EE9A /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsViewController.xib; path = ../../SettingsViewController.xib; sourceTree = "<group>"; };
 		00414E661AADEE0600B25CEE /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		00414E671AADEE0600B25CEE /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		00414E681AADEE0600B25CEE /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -1225,6 +1231,9 @@
 			children = (
 				67BB92291ADFA8D10050164B /* EditGroupsViewController.xib */,
 				67BB92351ADFA8D10050164B /* RequestsViewController.xib */,
+				001C737A1B0B0E3C008D7058 /* Terms_of_Use_ViewController.xib */,
+				001C737F1B0B0E4D008D7058 /* Privacy_Policy_ViewController.xib */,
+				003F19441B0B09DC0024EE9A /* SettingsViewController.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1712,8 +1721,10 @@
 				67BB94531ADFABCD0050164B /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
 				67BB925D1ADFA8D10050164B /* Tutorial-2@2x.png in Resources */,
 				67BB92531ADFA8D10050164B /* LandingView_iPhone5.png in Resources */,
+				001C73811B0B0E4D008D7058 /* Privacy_Policy_ViewController.xib in Resources */,
 				67BB94331ADFABCD0050164B /* JSQMessagesViewController.xib in Resources */,
 				67BB92571ADFA8D10050164B /* Tutorial-1@2x.png in Resources */,
+				003F19461B0B09DC0024EE9A /* SettingsViewController.xib in Resources */,
 				67BB92EA1ADFA8D10050164B /* SlideMenuLeftTableViewController.xib in Resources */,
 				67BB92701ADFA8D10050164B /* Images.xcassets in Resources */,
 				67BB94471ADFABCD0050164B /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
@@ -1731,6 +1742,7 @@
 				67BB92F01ADFA8D10050164B /* EditGroupsViewController.xib in Resources */,
 				67BB92521ADFA8D10050164B /* LandingView@2x.png in Resources */,
 				67BB92551ADFA8D10050164B /* LandingView_iPhone6plus.png in Resources */,
+				001C737C1B0B0E3C008D7058 /* Terms_of_Use_ViewController.xib in Resources */,
 				67BB925F1ADFA8D10050164B /* Tutorial-2_iPhone6.png in Resources */,
 				000234921B4885B6000B7630 /* Fonts in Resources */,
 				000234941B488F67000B7630 /* Quicksand_Dash.otf in Resources */,
