@@ -303,7 +303,7 @@
     @try {
         [[Utility getInstance] hideProgressHud];
         if (succeed) {
-            [self.navigationController popViewControllerAnimated:YES];
+            //[self.navigationController popViewControllerAnimated:YES];
         }else{
             //show error message
             [[Utility getInstance] showAlertMessage:@"Updates not saved. Please try again"];

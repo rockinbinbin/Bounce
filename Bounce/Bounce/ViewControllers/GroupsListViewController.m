@@ -104,7 +104,7 @@
     self.navigationItem.rightBarButtonItem = [self initialiseBarButton:add withAction:@selector(addButtonClicked)];
 }
 
--(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action{
+-(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action {
     UIButton *buttonItem = [UIButton buttonWithType:UIButtonTypeCustom];
     buttonItem.bounds = CGRectMake( 0, 0, buttonImage.size.width, buttonImage.size.height );
     [buttonItem addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
@@ -113,7 +113,7 @@
     return barButtonItem;
 }
 
--(void)backButtonClicked{
+-(void)backButtonClicked {
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -334,7 +334,7 @@
 
         [[ParseManager getInstance] setLoadNewUsers:self];
         [[ParseManager getInstance] getCandidateUsersForGroup:[self.groups objectAtIndex:selectedIndex]];
-    }else{
+    } else {
         [[Utility getInstance] hideProgressHud];
         [self openGroupUsersScreenForEditWithNewUsers:nil];
     }
