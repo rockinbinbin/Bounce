@@ -88,7 +88,6 @@
 		67BB92D71ADFA8D10050164B /* AddHomePointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB91FB1ADFA8D10050164B /* AddHomePointViewController.m */; };
 		67BB92D81ADFA8D10050164B /* AddLocationScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB91FD1ADFA8D10050164B /* AddLocationScreenViewController.m */; };
 		67BB92D91ADFA8D10050164B /* CustomChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB91FF1ADFA8D10050164B /* CustomChatViewController.m */; };
-		67BB92DB1ADFA8D10050164B /* GenderScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92031ADFA8D10050164B /* GenderScreenViewController.m */; };
 		67BB92DC1ADFA8D10050164B /* GroupsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92051ADFA8D10050164B /* GroupsListViewController.m */; };
 		67BB92DD1ADFA8D10050164B /* HomePointSuccessfulCreationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92071ADFA8D10050164B /* HomePointSuccessfulCreationViewController.m */; };
 		67BB92DE1ADFA8D10050164B /* HomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92091ADFA8D10050164B /* HomeScreenViewController.m */; };
@@ -441,8 +440,6 @@
 		67BB91FD1ADFA8D10050164B /* AddLocationScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddLocationScreenViewController.m; sourceTree = "<group>"; };
 		67BB91FE1ADFA8D10050164B /* CustomChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomChatViewController.h; sourceTree = "<group>"; };
 		67BB91FF1ADFA8D10050164B /* CustomChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomChatViewController.m; sourceTree = "<group>"; };
-		67BB92021ADFA8D10050164B /* GenderScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenderScreenViewController.h; sourceTree = "<group>"; };
-		67BB92031ADFA8D10050164B /* GenderScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenderScreenViewController.m; sourceTree = "<group>"; };
 		67BB92041ADFA8D10050164B /* GroupsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsListViewController.h; sourceTree = "<group>"; };
 		67BB92051ADFA8D10050164B /* GroupsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsListViewController.m; sourceTree = "<group>"; };
 		67BB92061ADFA8D10050164B /* HomePointSuccessfulCreationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePointSuccessfulCreationViewController.h; sourceTree = "<group>"; };
@@ -1060,7 +1057,6 @@
 				67BB91021ADFA8D00050164B /* main.m */,
 				00E2CBB51B5384B500B316D1 /* homepoint images */,
 				67BB91F71ADFA8D10050164B /* ViewControllers */,
-				67BB92251ADFA8D10050164B /* Views */,
 			);
 			path = Bounce;
 			sourceTree = "<group>";
@@ -1160,8 +1156,6 @@
 				67BB91FD1ADFA8D10050164B /* AddLocationScreenViewController.m */,
 				67BB91FE1ADFA8D10050164B /* CustomChatViewController.h */,
 				67BB91FF1ADFA8D10050164B /* CustomChatViewController.m */,
-				67BB92021ADFA8D10050164B /* GenderScreenViewController.h */,
-				67BB92031ADFA8D10050164B /* GenderScreenViewController.m */,
 				67BB92041ADFA8D10050164B /* GroupsListViewController.h */,
 				67BB92051ADFA8D10050164B /* GroupsListViewController.m */,
 				00E2CBBF1B560B3600B316D1 /* homepointListCell.h */,
@@ -1209,13 +1203,6 @@
 				67BB92231ADFA8D10050164B /* SlideMenuViewController.m */,
 			);
 			path = "SlideMenu ";
-			sourceTree = "<group>";
-		};
-		67BB92251ADFA8D10050164B /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		67BB92371ADFA8D10050164B /* hobble.1.1 */ = {
@@ -1785,7 +1772,6 @@
 				67BB94071ADFABCD0050164B /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				67BB92691ADFA8D10050164B /* ParseManager.m in Sources */,
 				67BB94431ADFABCD0050164B /* JSQMessagesCellTextView.m in Sources */,
-				67BB92DB1ADFA8D10050164B /* GenderScreenViewController.m in Sources */,
 				67BB944C1ADFABCD0050164B /* JSQMessagesLabel.m in Sources */,
 				67BB940F1ADFABCD0050164B /* AMSlideMenuLeftMenuSegue.m in Sources */,
 				67BB92E51ADFA8D10050164B /* MessageScreenViewController.m in Sources */,
