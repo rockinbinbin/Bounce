@@ -275,6 +275,8 @@
     }
     
     self.location_manager.delegate = self;
+    self.location_manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+    self.location_manager.distanceFilter = 100; // meters.. not sure if this will work well?
     [self.location_manager startMonitoringSignificantLocationChanges];
 }
 
