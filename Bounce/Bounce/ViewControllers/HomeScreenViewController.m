@@ -342,7 +342,7 @@
 
 - (IBAction)repliesButtonClicked:(id)sender {
     // navigate to the request screen
-    RequestsViewController* requestsViewController = [[RequestsViewController alloc] initWithNibName:@"RequestsViewController" bundle:nil];
+    RequestsViewController* requestsViewController = [RequestsViewController new];
     [self.navigationController pushViewController:requestsViewController animated:YES];
 }
 - (IBAction)endRequestButtonClicked:(id)sender {

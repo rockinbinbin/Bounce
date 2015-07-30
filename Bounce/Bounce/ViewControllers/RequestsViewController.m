@@ -16,8 +16,7 @@
 #import "HomeScreenViewController.h"
 #import "ChatListCell.h"
 
-@interface RequestsViewController ()
-{
+@interface RequestsViewController () {
     NSMutableArray *requests;
     NSInteger deletedIndex;
     NSMutableArray *requestValidation;
@@ -28,6 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.navigationController.navigationBar.barTintColor = BounceRed;
     self.navigationController.navigationBar.translucent = NO;
     [self.navigationController setNavigationBarHidden:NO];
@@ -41,6 +41,16 @@
     self.navigationItem.titleView = navLabel;
     navLabel.text = @"chats";
     [navLabel sizeToFit];
+    
+    UITableView *tableView = [UITableView new];
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    [self.view addSubview:tableView];
+    self.requestsTableView = tableView;
+    [tableView kgn_pinToLeftEdgeOfSuperview];
+    [tableView kgn_pinToTopEdgeOfSuperview];
+    [tableView kgn_sizeToHeight:self.view.frame.size.height];
+    [tableView kgn_sizeToWidth:self.view.frame.size.width];
 
 }
 

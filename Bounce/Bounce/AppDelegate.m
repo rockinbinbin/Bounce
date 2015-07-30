@@ -266,7 +266,7 @@
 
 -(void)openRequestViewController:(NSString *) requestId
 {
-    UIViewController *rootVC = [[RequestsViewController alloc] initWithNibName:@"RequestsViewController" bundle:nil];
+    UIViewController *rootVC = [RequestsViewController new];
     NSMutableArray *viewControllers = [[NSMutableArray alloc] init];
     [viewControllers addObject:rootVC];
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:rootVC];

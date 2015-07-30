@@ -193,7 +193,7 @@
             break;
             
         case Chats_Section: {
-            rootVC = [[RequestsViewController alloc] initWithNibName:@"RequestsViewController" bundle:nil];
+            rootVC = [RequestsViewController new];
             nvc = [[UINavigationController alloc] initWithRootViewController:rootVC];
             NSMutableArray *viewControllers = [[NSMutableArray alloc] init];
             [viewControllers addObject:rootVC];
