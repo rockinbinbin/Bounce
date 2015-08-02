@@ -182,6 +182,10 @@
     }
     
     cell.lastMessage.text = [request valueForKey:PF_REQUEST_LAST_MESSAGE];
+    
+    NSArray *homepoints = [request valueForKey:PF_REQUEST_HOMEPOINTS];
+
+    cell.requestedGroups.text = [NSString stringWithFormat:@"%@", homepoints[0]];
 
     return cell;
 }

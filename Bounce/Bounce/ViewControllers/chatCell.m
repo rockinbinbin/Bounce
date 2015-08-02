@@ -41,6 +41,13 @@
         [lastMessage kgn_centerHorizontallyInSuperviewWithOffset:-self.frame.size.width / 3];
         [lastMessage kgn_centerVerticallyInSuperview];
         
+        UILabel *requestedGroups = [UILabel new];
+        requestedGroups.textColor = BounceBlue;
+        requestedGroups.font = [UIFont fontWithName:@"Avenir-Next" size:self.frame.size.height/3];
+        requestedGroups.textAlignment = NSTextAlignmentCenter;
+        [self.contentView addSubview:requestedGroups];
+        self.requestedGroups = requestedGroups;
+        [requestedGroups kgn_centerInSuperview];
       
     }
     return self;

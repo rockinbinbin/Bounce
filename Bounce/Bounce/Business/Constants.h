@@ -42,7 +42,6 @@
 #define PF_REQUEST_CLASS_NAME @"Requests"
 #define PF_REQUEST_TIME_ALLOCATED @"TimeAllocated"
 #define PF_REQUEST_TIME @"TimeAllocated"
-#define PF_REQUEST_SELECTED_GROUPS @"RequestedGroups"
 #define PF_REQUEST_RADIUS @"Radius"
 #define PF_REQUEST_RECEIVER @"receivers"
 #define PF_REQUEST_SENDER @"Sender"
