@@ -22,7 +22,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.navigationController.navigationBar.barTintColor = BounceRed;
     self.navigationController.navigationBar.translucent = NO;
     UIButton *customButton = [[Utility getInstance] createCustomButton:[UIImage imageNamed:@"common_back_button"]];
@@ -44,6 +44,7 @@
     // validate request end
     // if request still valid
     //    self.currentRequest = [[ParseManager getInstance] retrieveRequest:self.currentRequest];
+    
     [super loadMessages];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         self.currentRequest = [[ParseManager getInstance] retrieveRequestUpdate:self.groupId];
@@ -52,7 +53,7 @@
             if (self.currentRequest&& !requestEnded && [[Utility getInstance] isRequestValid:self.currentRequest.createdAt andTimeAllocated:[[self.currentRequest objectForKey:PF_REQUEST_TIME_ALLOCATED] integerValue]]) {
                 if (![self isUserStillReceiverForTheRequest]) {
                     [self clearMessagesAndStopUpdate];
-                    [self showAlertViewWithMessage:@"You became out the request radius"];
+                    [self showAlertViewWithMessage:@"Oops! Looks like you're no longer within the request radius."];
                 }
             }
             else {
@@ -63,7 +64,7 @@
 
         });
     });
-   }
+}
 
 #pragma mark - Alert view Delegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

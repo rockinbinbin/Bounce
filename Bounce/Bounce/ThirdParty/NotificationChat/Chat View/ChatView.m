@@ -17,6 +17,7 @@
 #import "messages.h"
 #import "pushnotification.h"
 #import "ChatView.h"
+#import "ParseManager.h"
 
 @interface ChatView()
 {
@@ -49,6 +50,8 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
     
+    self.currentRequest1 = [[ParseManager getInstance] retrieveRequestUpdate:self.groupId];
+   
     UILabel *navLabel = [UILabel new];
     navLabel.textColor = [UIColor whiteColor];
     navLabel.backgroundColor = [UIColor clearColor];
@@ -96,7 +99,7 @@
 	if (isLoading == NO) {
 		isLoading = YES;
 		JSQMessage *message_last = [messages lastObject];
-
+        
 		PFQuery *query = [PFQuery queryWithClassName:PF_CHAT_CLASS_NAME];
 		[query whereKey:PF_CHAT_GROUPID equalTo:groupId];
 		if (message_last != nil) [query whereKey:PF_CHAT_CREATEDAT greaterThan:message_last.date];
@@ -121,9 +124,17 @@
 			else [ProgressHUD showError:@"Network error."];
 			isLoading = NO;
 		}];
+        [self saveLastMessage];
 	}
 }
 
+-(void) saveLastMessage {
+    JSQMessage *msg = [messages lastObject];
+    if ([messages lastObject] != nil) {
+        self.currentRequest1[PF_REQUEST_LAST_MESSAGE] = msg.text;
+        [self.currentRequest1 saveInBackground];
+    }
+}
 
 - (void)addMessage:(PFObject *)object {
 	JSQMessage *message;
@@ -230,6 +241,9 @@
 	{
 		return bubbleImageOutgoing;
 	}
+    
+    [self saveLastMessage];
+
 	return bubbleImageIncoming;
 }
 

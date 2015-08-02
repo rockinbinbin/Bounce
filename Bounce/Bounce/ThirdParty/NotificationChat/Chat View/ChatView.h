@@ -12,13 +12,14 @@
 #import <UIKit/UIKit.h>
 
 #import "JSQMessages.h"
+#import <Parse/Parse.h>
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 @interface ChatView : JSQMessagesViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate>
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 @property NSMutableArray *messages;
 @property NSString *groupId;
 @property NSTimer *timer;
+@property (nonatomic, strong) PFObject *currentRequest1;
 
 - (id)initWith:(NSString *)groupId_;
 - (void)loadMessages;

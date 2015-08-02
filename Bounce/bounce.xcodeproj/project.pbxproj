@@ -25,6 +25,7 @@
 		007CF29A1AA3E516007D7C33 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF2991AA3E516007D7C33 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		007CF29C1AA3E529007D7C33 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF29B1AA3E529007D7C33 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		007CF29E1AA3E532007D7C33 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF29D1AA3E532007D7C33 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		00AA6EDE1B6B3CDF00F91CBB /* chatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA6EDD1B6B3CDF00F91CBB /* chatCell.m */; };
 		00ABD56E1B479C1B004A2FB0 /* FinishedIcon in Resources */ = {isa = PBXBuildFile; fileRef = 00ABD56D1B479C1B004A2FB0 /* FinishedIcon */; };
 		00ABD5701B4846CC004A2FB0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00ABD56F1B4846CC004A2FB0 /* LaunchScreen.storyboard */; };
 		00CEE3D2199434E700F40C12 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE3D1199434E700F40C12 /* Foundation.framework */; };
@@ -349,6 +350,8 @@
 		007CF2991AA3E516007D7C33 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		007CF29B1AA3E529007D7C33 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		007CF29D1AA3E532007D7C33 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		00AA6EDC1B6B3CDF00F91CBB /* chatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chatCell.h; sourceTree = "<group>"; };
+		00AA6EDD1B6B3CDF00F91CBB /* chatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = chatCell.m; sourceTree = "<group>"; };
 		00ABD56D1B479C1B004A2FB0 /* FinishedIcon */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FinishedIcon; path = "Bounce Images/FinishedIcon"; sourceTree = "<group>"; };
 		00ABD56F1B4846CC004A2FB0 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Bounce/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		00CEE3CE199434E700F40C12 /* bounce.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bounce.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1168,6 +1171,8 @@
 				67BB92181ADFA8D10050164B /* MessageScreenViewController.m */,
 				67BB92191ADFA8D10050164B /* RequestsViewController.h */,
 				67BB921A1ADFA8D10050164B /* RequestsViewController.m */,
+				00AA6EDC1B6B3CDF00F91CBB /* chatCell.h */,
+				00AA6EDD1B6B3CDF00F91CBB /* chatCell.m */,
 				003F19421B0B09DC0024EE9A /* SettingsViewController.h */,
 				003F19431B0B09DC0024EE9A /* SettingsViewController.m */,
 				67BB920A1ADFA8D10050164B /* IntoductionView */,
@@ -1816,6 +1821,7 @@
 				67BB93FF1ADFABCD0050164B /* AFHTTPSessionManager.m in Sources */,
 				67BB94601ADFABCD0050164B /* Reachability.m in Sources */,
 				67BB944B1ADFABCD0050164B /* JSQMessagesInputToolbar.m in Sources */,
+				00AA6EDE1B6B3CDF00F91CBB /* chatCell.m in Sources */,
 				67BB94111ADFABCD0050164B /* AMSlideMenuMainViewController.m in Sources */,
 				67BB942B1ADFABCD0050164B /* JSQSystemSoundPlayer+JSQMessages.m in Sources */,
 				007BA40A1A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,

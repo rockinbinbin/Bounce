@@ -52,7 +52,9 @@
 #define PF_REQUEST_IS_ENDED @"isEnded"
 // save end date instead save the time allocate
 #define PF_REQUEST_END_DATE @"EndDate"
-#define PF_REQUEST_GENDER @"gender";
+#define PF_REQUEST_GENDER @"gender"
+#define PF_REQUEST_HOMEPOINTS @"homepoints"
+#define PF_REQUEST_LAST_MESSAGE @"LAST_MESSAGE"
 
 #define DISTANCE_MESSAGE_IN_MILES @"%.1f miles away"
 #define DISTANCE_MESSAGE_IN_FEET @"%d ft away"

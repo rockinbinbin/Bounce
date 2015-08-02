@@ -65,6 +65,8 @@ static RequestManger *sharedRequestManger = nil;
             request[PF_REQUEST_TIME_ALLOCATED] = [NSNumber numberWithInteger:timeAllocated];
             request[PF_REQUEST_LOCATION] = [[PFUser currentUser] objectForKey:PF_USER_LOCATION];
             request[PF_GENDER] = gender;
+            request[PF_REQUEST_HOMEPOINTS] = selectedGroups;
+            // FIX DIS NOW
 
             [request saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
                 // Set the request end date
