@@ -18,36 +18,43 @@
         
         UILabel *timeCreated = [UILabel new];
         timeCreated.textColor = BounceRed;
-        timeCreated.font = [UIFont fontWithName:@"Avenir-Next" size:self.frame.size.height/3];
+        timeCreated.font = [timeCreated.font fontWithSize:11];
         [self.contentView addSubview:timeCreated];
         self.timeCreated = timeCreated;
         [timeCreated kgn_pinToLeftEdgeOfSuperviewWithOffset:15];
-        [timeCreated kgn_pinToBottomEdgeOfSuperviewWithOffset:15];
+        [timeCreated kgn_pinToTopEdgeOfSuperviewWithOffset:15];
         
         UILabel *timeLeft = [UILabel new];
         timeLeft.textColor = BounceRed;
-        timeLeft.font = [UIFont fontWithName:@"Avenir-Next" size:self.frame.size.height/3];
+        timeLeft.font = [timeLeft.font fontWithSize:11];
         [self.contentView addSubview:timeLeft];
         self.requestTimeLeft = timeLeft;
-        [timeLeft kgn_centerHorizontallyInSuperview];
+        [timeLeft kgn_pinToRightEdgeOfSuperviewWithOffset:15];
         [timeLeft kgn_pinToTopEdgeOfSuperviewWithOffset:15];
         
         UILabel *lastMessage = [UILabel new];
-        lastMessage.textColor = [UIColor grayColor];
-        lastMessage.font = [UIFont fontWithName:@"Avenir-Next" size:self.frame.size.height/3];
-        lastMessage.textAlignment = NSTextAlignmentLeft;
+        lastMessage.textColor = BounceBlue;
+        lastMessage.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:lastMessage];
         self.lastMessage = lastMessage;
-        [lastMessage kgn_centerHorizontallyInSuperviewWithOffset:-self.frame.size.width / 3];
-        [lastMessage kgn_centerVerticallyInSuperview];
+        [lastMessage kgn_centerInSuperview];
+        [lastMessage kgn_sizeToWidth:self.frame.size.width - 30];
         
         UILabel *requestedGroups = [UILabel new];
-        requestedGroups.textColor = BounceBlue;
-        requestedGroups.font = [UIFont fontWithName:@"Avenir-Next" size:self.frame.size.height/3];
-        requestedGroups.textAlignment = NSTextAlignmentCenter;
+        requestedGroups.textColor = BounceRed;
+        requestedGroups.font = [requestedGroups.font fontWithSize:11];
+        requestedGroups.textAlignment = NSTextAlignmentLeft;
         [self.contentView addSubview:requestedGroups];
         self.requestedGroups = requestedGroups;
-        [requestedGroups kgn_centerInSuperview];
+        [requestedGroups kgn_pinToBottomEdgeOfSuperviewWithOffset:15];
+        [requestedGroups kgn_pinToLeftEdgeOfSuperviewWithOffset:15];
+        [requestedGroups kgn_sizeToWidth:self.frame.size.width - 30];
+        
+        UIImageView *chatArrow = [UIImageView new];
+        chatArrow.image = [UIImage imageNamed:@"chatArrow"];
+        [self.contentView addSubview:chatArrow];
+        [chatArrow kgn_pinToRightEdgeOfSuperviewWithOffset:15];
+        [chatArrow kgn_centerVerticallyInSuperview];
       
     }
     return self;

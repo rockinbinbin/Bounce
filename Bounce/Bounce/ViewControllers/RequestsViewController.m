@@ -137,40 +137,17 @@
         cell = [chatCell new];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    [[cell.contentView viewWithTag:4]removeFromSuperview]; // what is this for?
-
-    // Hide unneeded elements and show needed ones
-//    cell.numOfMessagesLabel.hidden = YES;
-//    cell.numOfFriendsInGroupLabel.hidden = YES;
-//    cell.nearbyLabel.hidden = YES;
-//    cell.roundedView.hidden = YES;
-//    cell.timeLabel.hidden = NO;
-//
-//    // Setting the elements data
-//    
-//    NSString *sender = [[requests objectAtIndex:indexPath.row] valueForKey:@"Sender"];
-//    if ([sender isEqualToString:[PFUser currentUser].username]) {
-//        cell.groupNameLabel.text = [NSString stringWithFormat:@"Finding buddies..."];
-//    }
-//    else {
-//        cell.groupNameLabel.text = [NSString stringWithFormat:@"%@ needs a buddy!",sender];
-//
-//    }
-//    
-//    
+    [[cell.contentView viewWithTag:4]removeFromSuperview];
+   
     PFObject *request = [requests objectAtIndex:indexPath.row];
-//    cell.groupDistanceLabel.textColor = [UIColor grayColor];
     int timeLeft = (int)[[request objectForKey:PF_REQUEST_TIME_ALLOCATED] integerValue] - ([[NSDate date] timeIntervalSinceDate:[request createdAt]]/60);
     cell.requestTimeLeft.text = [NSString stringWithFormat:@"Leaving in %d min", timeLeft];
     
     cell.timeCreated.text = [self convertDateToString:[request createdAt]]; // it should be the message content
-//    cell.timeLabel.text = cell.groupDistanceLabel.text;
-//        cell.iconImageView.image = [UIImage imageNamed:@"common_plus_icon"]; // it should be the user profile
 
-    for ( UIView* view in cell.contentView.subviews )
-    {
-        view.backgroundColor = [ UIColor clearColor ];
-    }
+    //for (int i = 0; i < requests.count; i+=2) {
+        cell.contentView.backgroundColor = [UIColor colorWithRed:0.894 green:0.945 blue:0.996 alpha:1]; /*#e4f1fe*/
+    //}
     if ([[Utility getInstance] isRequestValid:[request createdAt] andTimeAllocated:[[request objectForKey:PF_REQUEST_TIME_ALLOCATED] integerValue]]) {
         cell.contentView.backgroundColor = [UIColor whiteColor];
         self.requestsTableView.backgroundColor = [UIColor whiteColor];
@@ -181,17 +158,34 @@
         self.requestsTableView.backgroundColor = LIGHT_SELECT_GRAY_COLOR;
     }
     
-    cell.lastMessage.text = [request valueForKey:PF_REQUEST_LAST_MESSAGE];
+    NSString *lastMessage = [request valueForKey:PF_REQUEST_LAST_MESSAGE];
+    if (lastMessage == nil) {
+        lastMessage = @"Tell your buddies where to meet!";
+    }
+    cell.lastMessage.text = lastMessage;
     
     NSArray *homepoints = [request valueForKey:PF_REQUEST_HOMEPOINTS];
-
-    cell.requestedGroups.text = [NSString stringWithFormat:@"%@", homepoints[0]];
+    NSString *hpString = @"Going to ";
+    
+    if ([homepoints count] == 1) {
+        hpString = [NSString stringWithFormat:@"%@", homepoints[0]];
+    }
+    else {
+        for (int i = 0; i < [homepoints count]; i++) {
+            hpString = [hpString stringByAppendingString:[NSString stringWithFormat:@"%@", homepoints[i]]];
+            
+            if (i != ([homepoints count] - 1)) {
+                hpString = [hpString stringByAppendingString:@", "];
+            }
+        }
+    }
+    cell.requestedGroups.text = hpString;
 
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return self.view.frame.size.height/4;
+    return self.view.frame.size.height/5;
 }
 
 #pragma mark - TableView Delegate

@@ -214,6 +214,7 @@
 	SendPushNotification(groupId, text);
 	UpdateMessageCounter(groupId, text);
 	[self finishSendingMessage];
+    [self saveLastMessage];
 }
 
 #pragma mark - JSQMessagesViewController method overrides
@@ -237,13 +238,10 @@
 - (id<JSQMessageBubbleImageDataSource>)collectionView:(JSQMessagesCollectionView *)collectionView
 			 messageBubbleImageDataForItemAtIndexPath:(NSIndexPath *)indexPath {
 	JSQMessage *message = messages[indexPath.item];
-	if ([message.senderId isEqualToString:self.senderId])
-	{
+//    [self saveLastMessage];
+	if ([message.senderId isEqualToString:self.senderId]) {
 		return bubbleImageOutgoing;
 	}
-    
-    [self saveLastMessage];
-
 	return bubbleImageIncoming;
 }
 
