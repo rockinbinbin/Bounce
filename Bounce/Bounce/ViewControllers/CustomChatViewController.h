@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ChatView.h"
 #import <Parse/Parse.h>
+
 @interface CustomChatViewController : ChatView <UIAlertViewDelegate>
 @property PFObject *currentRequest;
 @end

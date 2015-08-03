@@ -17,6 +17,7 @@
 #import "messages.h"
 #import "pushnotification.h"
 #import "ChatView.h"
+#import "ParseManager.h"
 
 @interface ChatView()
 {
@@ -49,6 +50,8 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
     
+    self.currentRequest1 = [[ParseManager getInstance] retrieveRequestUpdate:self.groupId];
+   
     UILabel *navLabel = [UILabel new];
     navLabel.textColor = [UIColor whiteColor];
     navLabel.backgroundColor = [UIColor clearColor];
@@ -81,6 +84,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
+    [self saveLastMessage];
 	self.collectionView.collectionViewLayout.springinessEnabled = YES;
 	timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(loadMessages) userInfo:nil repeats:YES];
 }
@@ -96,7 +100,7 @@
 	if (isLoading == NO) {
 		isLoading = YES;
 		JSQMessage *message_last = [messages lastObject];
-
+        
 		PFQuery *query = [PFQuery queryWithClassName:PF_CHAT_CLASS_NAME];
 		[query whereKey:PF_CHAT_GROUPID equalTo:groupId];
 		if (message_last != nil) [query whereKey:PF_CHAT_CREATEDAT greaterThan:message_last.date];
@@ -121,9 +125,17 @@
 			else [ProgressHUD showError:@"Network error."];
 			isLoading = NO;
 		}];
+        [self saveLastMessage];
 	}
 }
 
+-(void) saveLastMessage {
+    JSQMessage *msg = [messages lastObject];
+    if ([messages lastObject] != nil) {
+        self.currentRequest1[PF_REQUEST_LAST_MESSAGE] = msg.text;
+        [self.currentRequest1 saveInBackground];
+    }
+}
 
 - (void)addMessage:(PFObject *)object {
 	JSQMessage *message;
@@ -203,6 +215,7 @@
 	SendPushNotification(groupId, text);
 	UpdateMessageCounter(groupId, text);
 	[self finishSendingMessage];
+    [self saveLastMessage];
 }
 
 #pragma mark - JSQMessagesViewController method overrides
@@ -226,8 +239,8 @@
 - (id<JSQMessageBubbleImageDataSource>)collectionView:(JSQMessagesCollectionView *)collectionView
 			 messageBubbleImageDataForItemAtIndexPath:(NSIndexPath *)indexPath {
 	JSQMessage *message = messages[indexPath.item];
-	if ([message.senderId isEqualToString:self.senderId])
-	{
+    [self saveLastMessage];
+	if ([message.senderId isEqualToString:self.senderId]) {
 		return bubbleImageOutgoing;
 	}
 	return bubbleImageIncoming;

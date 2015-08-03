@@ -14,7 +14,7 @@
 
 @implementation ParseManager
 static ParseManager *parseManager = nil;
-CLLocationManager *locationManger;
+CLLocationManager *location_manager;
 PFUser *currentUser;
 + (ParseManager*) getInstance{
     @try {
@@ -23,7 +23,7 @@ PFUser *currentUser;
             if (parseManager == nil)
             {
                 parseManager = [[ParseManager alloc] init];
-                locationManger = [[CLLocationManager alloc] init];
+                location_manager = [[CLLocationManager alloc] init];
                 
                 currentUser = [PFUser currentUser];
             }

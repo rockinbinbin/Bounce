@@ -207,7 +207,7 @@
                 }
             }
         }
-    }else{
+    } else {
         [self appOpendFromNotification:userInfo];
     }
 }

@@ -15,6 +15,7 @@
 #import "UIViewController+AMSlideMenu.h"
 #import "HomeScreenViewController.h"
 #import "ChatListCell.h"
+#import "chatCell.h"
 
 @interface RequestsViewController () {
     NSMutableArray *requests;
@@ -39,7 +40,7 @@
     navLabel.textAlignment = NSTextAlignmentCenter;
     navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/23];
     self.navigationItem.titleView = navLabel;
-    navLabel.text = @"chats";
+    navLabel.text = @"Leaving soon";
     [navLabel sizeToFit];
     
     UITableView *tableView = [UITableView new];
@@ -130,63 +131,65 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString* cellId = @"ChatListCell";
-    ChatListCell *cell = [self.requestsTableView dequeueReusableCellWithIdentifier:cellId];
+    chatCell *cell = [self.requestsTableView dequeueReusableCellWithIdentifier:cellId];
     
     if (!cell) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
-        cell = (ChatListCell *)[nib objectAtIndex:0];
+        cell = [chatCell new];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    [[cell.contentView viewWithTag:4]removeFromSuperview] ;
-
-    // Hide unneeded elements and show needed ones
-    cell.numOfMessagesLabel.hidden = YES;
-    cell.numOfFriendsInGroupLabel.hidden = YES;
-    cell.nearbyLabel.hidden = YES;
-    cell.roundedView.hidden = YES;
-    cell.timeLabel.hidden = NO;
-
-    // Decrease the circular view size
-    cell.circularViewWidth.constant = 40;
-    cell.circularViewHeight.constant = 40;
-    cell.circularView.layer.cornerRadius = 20;
-    cell.circularView.clipsToBounds = YES;
-
-    if (IS_IPAD) {
-        cell.groupNameLabel.font=[cell.groupNameLabel.font fontWithSize:20];
-        cell.groupDistanceLabel.font=[cell.groupDistanceLabel.font fontWithSize:12];
-    }
-
-    // Setting the elements data
+    [[cell.contentView viewWithTag:4]removeFromSuperview];
+   
     PFObject *request = [requests objectAtIndex:indexPath.row];
-    cell.groupNameLabel.text = [NSString stringWithFormat:@"%@ send request",[[requests objectAtIndex:indexPath.row] valueForKey:@"Sender"]];
-    cell.groupDistanceLabel.textColor = [UIColor grayColor];
-    cell.groupDistanceLabel.text = [self convertDateToString:[request createdAt]]; // it should be the message content
-    cell.timeLabel.text = cell.groupDistanceLabel.text;
-    //    cell.iconImageView.image = [UIImage imageNamed:@"common_plus_icon"]; // it should be the user profile
+    int timeLeft = (int)[[request objectForKey:PF_REQUEST_TIME_ALLOCATED] integerValue] - ([[NSDate date] timeIntervalSinceDate:[request createdAt]]/60);
+    cell.requestTimeLeft.text = [NSString stringWithFormat:@"Leaving in %d min", timeLeft];
+    
+    cell.timeCreated.text = [self convertDateToString:[request createdAt]]; // it should be the message content
 
-    for ( UIView* view in cell.contentView.subviews )
-    {
-        view.backgroundColor = [ UIColor clearColor ];
-    }
+    //for (int i = 0; i < requests.count; i+=2) {
+        cell.contentView.backgroundColor = [UIColor colorWithRed:0.894 green:0.945 blue:0.996 alpha:1]; /*#e4f1fe*/
+    //}
     if ([[Utility getInstance] isRequestValid:[request createdAt] andTimeAllocated:[[request objectForKey:PF_REQUEST_TIME_ALLOCATED] integerValue]]) {
         cell.contentView.backgroundColor = [UIColor whiteColor];
         self.requestsTableView.backgroundColor = [UIColor whiteColor];
-    }else{
+    } else {
         // if request time out ==> added gray background
+        cell.requestTimeLeft.text = @"Bouncin' home!";
         cell.contentView.backgroundColor = LIGHT_SELECT_GRAY_COLOR;
         self.requestsTableView.backgroundColor = LIGHT_SELECT_GRAY_COLOR;
     }
+    
+    NSString *lastMessage = [request valueForKey:PF_REQUEST_LAST_MESSAGE];
+    if (lastMessage == nil) {
+        lastMessage = @"Tell your buddies where to meet!";
+    }
+    cell.lastMessage.text = lastMessage;
+    
+    NSArray *homepoints = [request valueForKey:PF_REQUEST_HOMEPOINTS];
+    NSString *hpString = @"Going to ";
+    
+    if ([homepoints count] == 1) {
+        hpString = [NSString stringWithFormat:@"%@", homepoints[0]];
+    }
+    else {
+        for (int i = 0; i < [homepoints count]; i++) {
+            hpString = [hpString stringByAppendingString:[NSString stringWithFormat:@"%@", homepoints[i]]];
+            
+            if (i != ([homepoints count] - 1)) {
+                hpString = [hpString stringByAppendingString:@", "];
+            }
+        }
+    }
+    cell.requestedGroups.text = hpString;
 
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 80;
+    return self.view.frame.size.height/5;
 }
 
 #pragma mark - TableView Delegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // if request time out ==> no action in the cell
     [self openRequestChat:indexPath.row];
 }
@@ -201,7 +204,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSLog(@"%li index is deleted !", (long)indexPath.row);
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
-            [[Utility getInstance] showProgressHudWithMessage:@"Delete .." withView:self.view];
+            [[Utility getInstance] showProgressHudWithMessage:@"Deleting..." withView:self.view];
             [[ParseManager getInstance] setDeleteDelegate:self];
             [[ParseManager getInstance] deleteRequest:[requests objectAtIndex:indexPath.row]];
         }
@@ -241,7 +244,7 @@
         //        }else{
         //    [formatter setDateFormat:@"EEE,MMM,d"];
         //        }
-        [formatter setDateFormat:@"EEE,MMM,d"];
+        [formatter setDateFormat:@"EEE, MMM d"];
         NSString *stringFromDate = [formatter stringFromDate:date];
         return stringFromDate;
     }
