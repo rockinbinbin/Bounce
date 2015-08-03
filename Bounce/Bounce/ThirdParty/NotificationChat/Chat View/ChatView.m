@@ -84,6 +84,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
+    [self saveLastMessage];
 	self.collectionView.collectionViewLayout.springinessEnabled = YES;
 	timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(loadMessages) userInfo:nil repeats:YES];
 }
@@ -238,7 +239,7 @@
 - (id<JSQMessageBubbleImageDataSource>)collectionView:(JSQMessagesCollectionView *)collectionView
 			 messageBubbleImageDataForItemAtIndexPath:(NSIndexPath *)indexPath {
 	JSQMessage *message = messages[indexPath.item];
-//    [self saveLastMessage];
+    [self saveLastMessage];
 	if ([message.senderId isEqualToString:self.senderId]) {
 		return bubbleImageOutgoing;
 	}
