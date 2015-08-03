@@ -145,9 +145,6 @@
     
     cell.timeCreated.text = [self convertDateToString:[request createdAt]]; // it should be the message content
 
-    //for (int i = 0; i < requests.count; i+=2) {
-        cell.contentView.backgroundColor = [UIColor colorWithRed:0.894 green:0.945 blue:0.996 alpha:1]; /*#e4f1fe*/
-    //}
     if ([[Utility getInstance] isRequestValid:[request createdAt] andTimeAllocated:[[request objectForKey:PF_REQUEST_TIME_ALLOCATED] integerValue]]) {
         cell.contentView.backgroundColor = [UIColor whiteColor];
         self.requestsTableView.backgroundColor = [UIColor whiteColor];
