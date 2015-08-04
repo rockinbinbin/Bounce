@@ -66,12 +66,6 @@
     self.selectedGroups = [NSMutableArray array];
     self.location_manager = [[CLLocationManager alloc] init];
     
-    UIImage *img = [UIImage imageNamed:@"bed"];
-    UIImage *img2 = [UIImage imageNamed:@"cups"];
-    UIImage *img3 = [UIImage imageNamed:@"door"];
-    UIImage *img4 = [UIImage imageNamed:@"table"];
-    UIImage *img5 = [UIImage imageNamed:@"attic"];
-    self.images = [[NSArray alloc] initWithObjects:img, img2, img3, img4, img5, nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -183,6 +177,22 @@
         cell = [homepointListCell new];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    
+    NSMutableArray *images = [NSMutableArray new];
+    for (int i = 0; i < [self.homepointImages count]; i++) {
+        PFFile *file = self.homepointImages[i];
+        [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error) {
+                if (indexPath.row == i) {
+                    UIImage *image = [UIImage imageWithData:data];
+                    [images addObject:image];
+                    cell.cellBackground.image = image;
+                    cell.cellBackground.contentMode = UIViewContentModeScaleToFill;
+                    cell.cellBackground.backgroundColor = [UIColor blackColor]; // this should never show
+                }
+            }
+        }];
+    }
 
     if ([[self.selectedCells objectAtIndex:indexPath.row] boolValue]) {
         UIImageView *imgView = [UIImageView new];
@@ -192,22 +202,6 @@
         [imgView kgn_pinToBottomEdgeOfSuperviewWithOffset:20];
     }
     
-    if (indexPath.row == 0) {
-        cell.cellBackground.image = self.images[0];
-    }
-    if (indexPath.row == 1) {
-        cell.cellBackground.image = self.images[1];
-    }
-    if (indexPath.row == 2) {
-        cell.cellBackground.image = self.images[2];
-    }
-    if (indexPath.row == 3) {
-        cell.cellBackground.image = self.images[3];
-    }
-    if (indexPath.row == 4) {
-        cell.cellBackground.image = self.images[4];
-    }
-
     cell.homepointName.text = [[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
     
     double distance = [[self.distanceToUserLocation objectAtIndex:indexPath.row] doubleValue];
@@ -277,11 +271,16 @@
             // calcultae the distance to the group
             self.nearUsers = [[NSMutableArray alloc] init];
             self.distanceToUserLocation = [[NSMutableArray alloc] init];
+            self.homepointImages = [NSMutableArray new];
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 for (PFObject *group in groups) {
                     [self.nearUsers addObject:[NSNumber numberWithInteger:[[ParseManager getInstance] getNearUsersNumberInGroup:group]]];
                     [self.distanceToUserLocation addObject:[NSNumber numberWithDouble:[[ParseManager getInstance] getDistanceToGroup:group]]];
+                    
+                    if ([group valueForKey:PF_GROUP_IMAGE]) {
+                        [self.homepointImages addObject:[group valueForKey:PF_GROUP_IMAGE]];
+                    }
                 }
                 dispatch_async(dispatch_get_main_queue(), ^{
                     // Update the UI on the main thread.

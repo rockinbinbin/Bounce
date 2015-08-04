@@ -26,5 +26,7 @@
 @property (weak, nonatomic) NSString *genderMatching;
 @property (nonatomic) float timeAllocated;
 
+@property NSMutableArray *homepointImages;
+
 @property (strong, nonatomic) CLLocationManager *location_manager;
 @end
