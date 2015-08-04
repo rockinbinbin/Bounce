@@ -14,6 +14,8 @@
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) UICollectionView *collectionView;
 
+@property NSMutableArray *homepointImages;
+
 -(void)navigateToCreateHomepointView;
 
 @end

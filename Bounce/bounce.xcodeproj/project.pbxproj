@@ -52,7 +52,6 @@
 		00E2CBBE1B5506C800B316D1 /* ChatListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00E2CBBC1B5506C800B316D1 /* ChatListCell.xib */; };
 		00E2CBC11B560B3600B316D1 /* homepointListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2CBC01B560B3600B316D1 /* homepointListCell.m */; };
 		00E2CBC41B563BB300B316D1 /* CreateHomepoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2CBC31B563BB300B316D1 /* CreateHomepoint.m */; };
-		00E86E7F1B5A4F3500F7186A /* homepoint images in Resources */ = {isa = PBXBuildFile; fileRef = 00E86E7E1B5A4F3500F7186A /* homepoint images */; };
 		28F13A521A6C75A90069EBA4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F13A511A6C75A90069EBA4 /* MapKit.framework */; };
 		67BB90C81ADFA8B20050164B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BB90C41ADFA8B20050164B /* Bolts.framework */; };
 		67BB90C91ADFA8B20050164B /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BB90C51ADFA8B20050164B /* Parse.framework */; };
@@ -387,7 +386,6 @@
 		00E2CBC01B560B3600B316D1 /* homepointListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = homepointListCell.m; sourceTree = "<group>"; };
 		00E2CBC21B563BB300B316D1 /* CreateHomepoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateHomepoint.h; sourceTree = "<group>"; };
 		00E2CBC31B563BB300B316D1 /* CreateHomepoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateHomepoint.m; sourceTree = "<group>"; };
-		00E86E7E1B5A4F3500F7186A /* homepoint images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "homepoint images"; sourceTree = "<group>"; };
 		28F13A511A6C75A90069EBA4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6791817C1AC0057D00D0474C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		67BB90C41ADFA8B20050164B /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = FrameWorks/Bolts.framework; sourceTree = "<group>"; };
@@ -1067,7 +1065,6 @@
 		67BB90D01ADFA8D00050164B /* Bounce Images */ = {
 			isa = PBXGroup;
 			children = (
-				00E86E7E1B5A4F3500F7186A /* homepoint images */,
 				67BB90D11ADFA8D00050164B /* chat_blank@2x.png */,
 				67BB90D21ADFA8D00050164B /* First.imageset */,
 				67BB90D91ADFA8D00050164B /* Tutorial-1.imageset */,
@@ -1721,7 +1718,6 @@
 				000234A01B488F9F000B7630 /* Quicksand-Regular.otf in Resources */,
 				67BB92EC1ADFA8D10050164B /* SlideMenuViewController.xib in Resources */,
 				00E2CBB61B5384B600B316D1 /* homepoint images in Resources */,
-				00E86E7F1B5A4F3500F7186A /* homepoint images in Resources */,
 				67BB92591ADFA8D10050164B /* Tutorial-1_iPhone6.png in Resources */,
 				67BB92581ADFA8D10050164B /* Tutorial-1_iPhone5.png in Resources */,
 				67BB92501ADFA8D10050164B /* Contents.json in Resources */,

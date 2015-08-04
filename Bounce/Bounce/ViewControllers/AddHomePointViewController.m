@@ -137,9 +137,15 @@
             groups = [[NSMutableArray alloc] initWithArray:objects];
             groupsDistance = [[NSMutableArray alloc] init];
             userJoinedGroups = [[NSMutableArray alloc] init];
+            self.homepointImages = [NSMutableArray new];
+            
             for (PFObject *group in groups) {
                 [groupsDistance addObject:[NSNumber numberWithDouble:[[ParseManager getInstance] getDistanceToGroup:group]]];
                 [userJoinedGroups addObject:[NSNumber numberWithBool:NO]];
+                
+                if ([group valueForKey:PF_GROUP_IMAGE]) {
+                    [self.homepointImages addObject:[group valueForKey:PF_GROUP_IMAGE]];
+                }
             }
             [[Utility getInstance] hideProgressHud];
             [self.tableView reloadData];
@@ -199,8 +205,21 @@
         // add + button here
     }
     
-    if (indexPath.row == 0) {
-        cell.cellBackground.image = [UIImage imageNamed:@"coffee"];
+    // FIX DIS -- test this out when steven gets home!
+    NSMutableArray *images = [NSMutableArray new];
+    for (int i = 0; i < [self.homepointImages count]; i++) {
+        PFFile *file = self.homepointImages[i];
+        [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error) {
+                if (indexPath.row == i) {
+                    UIImage *image = [UIImage imageWithData:data];
+                    [images addObject:image];
+                    cell.cellBackground.image = image;
+                    cell.cellBackground.contentMode = UIViewContentModeScaleToFill;
+                    cell.cellBackground.backgroundColor = [UIColor blackColor]; // this should never show
+                }
+            }
+        }];
     }
     
     cell.homepointName.text = [[groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
