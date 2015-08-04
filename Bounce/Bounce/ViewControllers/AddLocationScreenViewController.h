@@ -18,6 +18,7 @@
 @property (nonatomic, strong) PFGeoPoint * groupLocation;
 @property (strong, nonatomic) NSString* groupName;
 @property __block NSArray *groupUsers;
+@property (strong, nonatomic) UIImage *homepointImage;
 
 @property (weak, nonatomic) MKMapView *map;
 

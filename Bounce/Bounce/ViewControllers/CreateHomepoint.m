@@ -13,12 +13,14 @@
 #import "AppConstant.h"
 #import "UIView+AutoLayout.h"
 #import "UIViewController+AMSlideMenu.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation CreateHomepoint
 
 -(void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    self.imageAdded = NO;
     
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.backgroundColor = BounceRed;
@@ -34,14 +36,9 @@
     
     [self setBarButtonItemLeft:@"common_back_button"];
     
-    _addPhotoButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *img = [UIImage imageNamed:@"addPhotoButton"];
-    [_addPhotoButton setImage:img forState:UIControlStateNormal];
-    _addPhotoButton.bounds = CGRectMake(0, 0, img.size.width, img.size.height);
-    [_addPhotoButton addTarget:self action:@selector(addPhotoButtonClicked) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_addPhotoButton];
-    [_addPhotoButton kgn_pinToTopEdgeOfSuperviewWithOffset:50];
-    [_addPhotoButton kgn_centerHorizontallyInSuperview];
+    self.buttonHeight = img.size.height;
+    self.buttonWidth = img.size.width;
     
     _groupNameTextField = [UITextField new];
     _groupNameTextField.backgroundColor = BounceLightGray;
@@ -56,10 +53,19 @@
     _groupNameTextField.textAlignment = NSTextAlignmentCenter;
     _groupNameTextField.delegate = self;
     [self.view addSubview:_groupNameTextField];
-    [_groupNameTextField kgn_pinBottomEdgeToBottomEdgeOfItem:_addPhotoButton withOffset:80];
+    [_groupNameTextField kgn_pinToTopEdgeOfSuperviewWithOffset:50];
     [_groupNameTextField kgn_centerHorizontallyInSuperview];
-    [_groupNameTextField kgn_sizeToWidth:img.size.width];
+    [_groupNameTextField kgn_sizeToWidth:self.buttonWidth];
     [_groupNameTextField kgn_sizeToHeight:self.view.frame.size.height/15];
+    
+    
+    _addPhotoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_addPhotoButton setImage:img forState:UIControlStateNormal];
+    _addPhotoButton.bounds = CGRectMake(0, 0, self.buttonWidth, self.buttonHeight);
+    [_addPhotoButton addTarget:self action:@selector(addPhotoButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_addPhotoButton];
+    [_addPhotoButton kgn_pinBottomEdgeToBottomEdgeOfItem:_groupNameTextField withOffset:img.size.height + 20];
+    [_addPhotoButton kgn_centerHorizontallyInSuperview];
     
     
     _addLocationButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -71,9 +77,9 @@
     _addLocationButton.layer.cornerRadius = 0;
     [_addLocationButton addTarget:self action:@selector(checkGroupNameValidation) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_addLocationButton];
-    [_addLocationButton kgn_pinBottomEdgeToBottomEdgeOfItem:_groupNameTextField withOffset:80];
+    [_addLocationButton kgn_pinBottomEdgeToBottomEdgeOfItem:_addPhotoButton withOffset:80];
     [_addLocationButton kgn_centerHorizontallyInSuperview];
-    [_addLocationButton kgn_sizeToWidth:img.size.width];
+    [_addLocationButton kgn_sizeToWidth:self.buttonWidth];
     [_addLocationButton kgn_sizeToHeight:self.view.frame.size.height/15];
 }
 
@@ -83,7 +89,7 @@
 }
 
 #pragma mark - Navigation Bar
--(void) setBarButtonItemLeft:(NSString*) imageName{
+-(void) setBarButtonItemLeft:(NSString*) imageName {
     UIImage *menuImage = [UIImage imageNamed:imageName];
     self.navigationItem.leftBarButtonItem = [self initialiseBarButton:menuImage withAction:@selector(cancelButtonClicked)];
 }
@@ -107,7 +113,27 @@
 //}
 
 -(void)addPhotoButtonClicked {
-             
+    if (!_imageActionSheet) {
+        self.imageActionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                         destructiveButtonTitle:nil
+                                              otherButtonTitles:@"Upload photo", @"Take photo", nil];
+    }
+    [self.imageActionSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex;  // after animation
+{
+    if (buttonIndex == 0) { // remove photo
+        [self showPhotoPicker];
+    }
+    else if (buttonIndex == 1) { //upload photo
+        [self showCameraPicker];
+    }
+    else if (buttonIndex == actionSheet.cancelButtonIndex) {
+        // WHAT to do when cancel?
+    }
 }
 
 #pragma mark - AddLocation screen
@@ -115,6 +141,7 @@
     @try {
         AddLocationScreenViewController *addLocationScreenViewController = [AddLocationScreenViewController new];
         addLocationScreenViewController.groupName = self.groupNameTextField.text;
+        addLocationScreenViewController.homepointImage = self.addPhotoButton.imageView.image;
         [self.navigationController pushViewController:addLocationScreenViewController animated:YES];
     }
     @catch (NSException *exception) {
@@ -155,18 +182,22 @@
 - (void) checkGroupNameValidation
 {
     @try {
-        NSString *name = [self.groupNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        if ([name length] == 0) {
-            [[Utility getInstance] showAlertMessage:@"Make sure you entered the group name!"];
-            return;
+        self.groupNameTextField.text = [self.groupNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        
+        if ([self.groupNameTextField.text length] == 0) {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"Please give your homepoint a name!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
         }
 //        if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
 //            [[Utility getInstance] showProgressHudWithMessage:@"checking to see if group name exists"];
 //            [[ParseManager getInstance] isGroupNameExist:name];
 //        } ///// THIS RUNS WAY TOO SLOW
-        else {
+        else if (!self.imageAdded) {
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"Please add a photo for your homepoint!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+            }
+        else
             [self navigateToAddLocationScreen];
-        }
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
@@ -188,6 +219,15 @@
 #pragma mark - AddLocation screen
 - (void) navigateToAddGroupUsersScreenWithUsers:(NSArray *) users
 {
+    if (!self.imageAdded) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"Please add a photo for your homepoint!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+    else if ([self.groupNameTextField.text isEqualToString:@""] || self.groupNameTextField.text == nil) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"Please give your homepoint a name!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+    else {
     @try {
         AddGroupUsersViewController *addGroupUsersViewController = [AddGroupUsersViewController new];
         addGroupUsersViewController.groupName = self.groupNameTextField.text;
@@ -197,6 +237,7 @@
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
+    }
     }
 }
 
@@ -223,6 +264,103 @@
     }
     NSUInteger newLength = [textField.text length] + [string length] - range.length;
     return newLength <= 20;
+}
+
+
+#pragma mark - Camera picker
+- (void)showPhotoPicker {
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+        UIAlertView *deviceNotFoundAlert = [[UIAlertView alloc] initWithTitle:@"Photo library is not available."
+                                                                      message:@""
+                                                                     delegate:nil
+                                                            cancelButtonTitle:@"Okay"
+                                                            otherButtonTitles:nil];
+        [deviceNotFoundAlert show];
+    } else {
+        UIImagePickerController *photoPicker = [[UIImagePickerController alloc] init];
+        photoPicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        photoPicker.allowsEditing = NO;
+        photoPicker.delegate = (id)self;
+        [self presentViewController:photoPicker
+                           animated:YES
+                         completion:nil];
+    }
+}
+
+- (void)showCameraPicker {
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        UIAlertView *deviceNotFoundAlert = [[UIAlertView alloc] initWithTitle:@"Camera is not available."
+                                                                      message:@""
+                                                                     delegate:nil
+                                                            cancelButtonTitle:@"Okay"
+                                                            otherButtonTitles:nil];
+        [deviceNotFoundAlert show];
+    } else {
+        UIImagePickerController *cameraPicker = [[UIImagePickerController alloc] init];
+        cameraPicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        cameraPicker.allowsEditing = NO;
+        cameraPicker.delegate = (id)self;
+        [self presentViewController:cameraPicker
+                           animated:YES
+                         completion:nil];
+    }
+}
+
+- (UIImage*)imageWithImage:(UIImage*)sourceImage scaledToHeight:(float)height
+{
+    float oldHeight = sourceImage.size.height;
+    float scaleFactor = height / oldHeight;
+    
+    float newHeight = oldHeight *scaleFactor;
+    float newWidth = sourceImage.size.width * scaleFactor;
+    
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(newWidth, newHeight), NO, 0);
+    [sourceImage drawInRect:CGRectMake(0, 0, newWidth, newHeight)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
+- (UIImage*)imageWithImage:(UIImage*)sourceImage scaledToWidth:(float)width
+{
+    float oldWidth = sourceImage.size.width;
+    float scaleFactor = width / oldWidth;
+    
+    float newHeight = sourceImage.size.height * scaleFactor;
+    float newWidth = oldWidth * scaleFactor;
+    
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(newWidth, newHeight), NO, 0);
+    [sourceImage drawInRect:CGRectMake(0, 0, newWidth, newHeight)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
+#pragma mark - ImagePicker Delegate
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES
+                               completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker
+didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    if (image) {
+        if (image.size.height > image.size.width) {
+            image = [self imageWithImage:image scaledToHeight:self.buttonHeight];
+        }
+        else {
+            image = [self imageWithImage:image scaledToWidth:self.buttonWidth];
+        }
+        [_addPhotoButton setImage:image forState:UIControlStateNormal];
+        self.addPhotoButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
+        self.imageAdded = YES;
+    } else {
+        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Error uploading image." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+    }
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

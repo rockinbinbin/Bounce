@@ -9,10 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "ParseManager.h"
 
-@interface CreateHomepoint : UIViewController<ParseManagerUpdateGroupDelegate, ParseManagerDelegate, UITextFieldDelegate>
+@interface CreateHomepoint : UIViewController<ParseManagerUpdateGroupDelegate, ParseManagerDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate>
 
 @property (nonatomic, strong) UITextField *groupNameTextField;
 @property (nonatomic, strong) UIButton *addLocationButton;
 @property (nonatomic, strong) UIButton *addPhotoButton;
+@property (nonatomic, strong) UIActionSheet *imageActionSheet;
+@property (nonatomic) CGFloat buttonHeight;
+@property (nonatomic) CGFloat buttonWidth;
+@property (nonatomic) BOOL imageAdded;
 
 @end

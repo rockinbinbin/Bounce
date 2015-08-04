@@ -137,7 +137,7 @@
         cell = [chatCell new];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    [[cell.contentView viewWithTag:4]removeFromSuperview];
+    //[[cell.contentView viewWithTag:4]removeFromSuperview];
    
     PFObject *request = [requests objectAtIndex:indexPath.row];
     int timeLeft = (int)[[request objectForKey:PF_REQUEST_TIME_ALLOCATED] integerValue] - ([[NSDate date] timeIntervalSinceDate:[request createdAt]]/60);

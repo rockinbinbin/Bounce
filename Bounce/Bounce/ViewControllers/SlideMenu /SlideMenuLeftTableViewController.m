@@ -474,7 +474,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     if (image) {
         profileImage = image;
         self.userProfileImageView.image = image;
-        self.userProfileImageView.contentMode = UIViewContentModeScaleAspectFit;
+        self.userProfileImageView.contentMode = UIViewContentModeScaleAspectFill;
         [self saveProfileImageOnCloud];
         } else {
         UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Error!!" message:@"Error in uploading image." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];

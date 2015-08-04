@@ -22,6 +22,7 @@
 @property NSArray *originalGroupUsers;
 @property NSArray *remainingUsers;
 @property PFObject *updatedGroup;
+@property (nonatomic, strong) UIImage *homepointImage;
 
 @property (weak, nonatomic) UITableView *tableView;
 

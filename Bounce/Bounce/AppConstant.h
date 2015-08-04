@@ -49,6 +49,7 @@
 #define     PF_GROUP_OWNER                      @"groupOwner"
 #define     PF_GROUP_Users_RELATION             @"groupUsers"
 #define     PF_GROUP_USER_ARRAY                 @"ArrayOfUsers"          // array of user pointer
+#define     PF_GROUP_IMAGE                      @"groupImage"
 #define		PF_MESSAGES_CLASS_NAME				@"Messages"				//	Class name
 #define		PF_MESSAGES_USER					@"user"					//	Pointer to User Class
 #define		PF_MESSAGES_GROUPID					@"groupId"				//	String

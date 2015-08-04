@@ -39,9 +39,9 @@
 // Groups
 - (NSArray *) getAllGroupsExceptCreatedByUser;
 - (void) isGroupNameExist:(NSString *) name;
-- (void) addGroup:(NSString*) groupName withLocation:(PFGeoPoint*) location;
+- (void) addGroup:(NSString*) groupName withLocation:(PFGeoPoint*) location withImage:(UIImage *)image;
 - (void) loadAllGroups;
-- (void) addGroup:(NSString*) groupName withArrayOfUser:(NSArray *)users withLocation:(PFGeoPoint*) location;
+- (void) addGroup:(NSString*) groupName withArrayOfUser:(NSArray *)users withLocation:(PFGeoPoint*) location withImage:(UIImage *)image;
 // get request uodates
 - (PFObject *) retrieveRequestUpdate:(NSString *) requstId;
 // valid receiver

@@ -75,11 +75,15 @@ PFUser *currentUser;
 }
 #pragma mark - Groups
 #pragma mark  Add Group
-- (void) addGroup:(NSString*) groupName withLocation:(PFGeoPoint*) location {
+- (void) addGroup:(NSString*) groupName withLocation:(PFGeoPoint*) location withImage:(UIImage *)image {
     PFObject *object = [PFObject objectWithClassName:PF_GROUPS_CLASS_NAME];
     object[PF_GROUPS_NAME] = groupName;
     object[PF_GROUP_LOCATION] = location;
     object[PF_GROUP_OWNER] = [PFUser currentUser];
+    
+    PFFile *imageFile = [PFFile new];
+    imageFile = [PFFile fileWithData:UIImagePNGRepresentation(image)];
+    object[PF_GROUP_IMAGE] = imageFile;
     
     [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
          PFRelation *usersRelation = [object relationForKey:PF_GROUP_Users_RELATION];
@@ -92,11 +96,15 @@ PFUser *currentUser;
      }];
 }
 
-- (void) addGroup:(NSString*) groupName withArrayOfUser:(NSArray *)users withLocation:(PFGeoPoint*) location {
+- (void) addGroup:(NSString*) groupName withArrayOfUser:(NSArray *)users withLocation:(PFGeoPoint*) location withImage:(UIImage *)image {
     PFObject *object = [PFObject objectWithClassName:PF_GROUPS_CLASS_NAME];
     object[PF_GROUPS_NAME] = groupName;
     object[PF_GROUP_LOCATION] = location;
     object[PF_GROUP_OWNER] = [PFUser currentUser];
+    
+    PFFile *imageFile = [PFFile new];
+    imageFile = [PFFile fileWithData:UIImagePNGRepresentation(image)];
+    object[PF_GROUP_IMAGE] = imageFile;
 
     [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
          PFRelation *usersRelation = [object relationForKey:PF_GROUP_Users_RELATION];

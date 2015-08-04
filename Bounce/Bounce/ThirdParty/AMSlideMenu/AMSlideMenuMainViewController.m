@@ -190,12 +190,12 @@ static NSMutableArray *allInstances;
 
 - (CGFloat) openAnimationDuration
 {
-    return 0.35f;
+    return 0.1f;
 }
 
 - (CGFloat) closeAnimationDuration
 {
-    return 0.35f;
+    return 0.1f;
 }
 
 - (UIViewAnimationOptions) openAnimationCurve

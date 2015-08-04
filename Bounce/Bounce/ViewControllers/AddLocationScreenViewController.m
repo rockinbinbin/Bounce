@@ -153,6 +153,7 @@
 -(void) navigateToGroupUsersScreenAndSetData:(NSArray *) users{
     AddGroupUsersViewController *controller = [[AddGroupUsersViewController alloc]  init];
     controller.groupUsers = users;
+    controller.homepointImage = self.homepointImage;
     controller.groupLocation = self.groupLocation;
     controller.groupName = self.groupName;
     [self.navigationController pushViewController:controller animated:YES];
