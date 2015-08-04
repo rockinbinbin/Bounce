@@ -348,14 +348,15 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     if (image) {
         if (image.size.height > image.size.width) {
-            image = [self imageWithImage:image scaledToHeight:self.buttonHeight];
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"Please upload a landscape photo!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
         }
         else {
             image = [self imageWithImage:image scaledToWidth:self.buttonWidth];
+            [_addPhotoButton setImage:image forState:UIControlStateNormal];
+            self.addPhotoButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
+            self.imageAdded = YES;
         }
-        [_addPhotoButton setImage:image forState:UIControlStateNormal];
-        self.addPhotoButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
-        self.imageAdded = YES;
     } else {
         UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Error uploading image." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];

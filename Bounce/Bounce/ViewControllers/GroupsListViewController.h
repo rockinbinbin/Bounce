@@ -14,4 +14,7 @@
 @property NSMutableArray *distanceToUserLocation;
 @property (weak, nonatomic) UITableView *tableView;
 
+@property NSMutableArray *homepointImages;
+@property NSMutableArray *imagesFromFile;
+
 @end
