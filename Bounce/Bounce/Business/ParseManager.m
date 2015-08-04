@@ -243,14 +243,34 @@ PFUser *currentUser;
     }
 }
 
+// NOT TESTED
+-(BOOL)isOnlyMemberInGroup:(PFObject *)group {
+    __block BOOL returnTrue = false;
+    PFRelation *usersRelation = [group relationForKey:PF_GROUP_Users_RELATION];
+    PFQuery *query = [usersRelation query];
+    [query whereKey:OBJECT_ID notEqualTo:[[PFUser currentUser] objectId]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            if ([objects count] > 0) {
+                returnTrue = true;
+            }
+        }
+    }];
+    if (returnTrue) return true;
+    else return false;
+    
+}
+
+// You shouldn't delete a group entirely if there are other members in it
 - (void) deleteGroup:(PFObject *) group
 {
     @try {
-        if ([[[group objectForKey:PF_GROUP_OWNER] username] isEqualToString:[[PFUser currentUser] username]]) {
-            [self removeGroup:group];
-        }else{
+//        if ([[[group objectForKey:PF_GROUP_OWNER] username] isEqualToString:[[PFUser currentUser] username]]) {
+//                [self removeGroup:group];
+//        }
+//        else {
             [self deleteCurrentUserFromGroup:group];
-        }
+//        }
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
@@ -462,7 +482,7 @@ PFUser *currentUser;
     }
 }
 
-#pragma mark - Delet request
+#pragma mark - Delete request
 /*
  Delete the request if the current user is the request sender
  Else delete the curren user from the request

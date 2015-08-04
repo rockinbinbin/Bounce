@@ -205,7 +205,6 @@
         // add + button here
     }
     
-    // FIX DIS -- test this out when steven gets home!
     NSMutableArray *images = [NSMutableArray new];
     for (int i = 0; i < [self.homepointImages count]; i++) {
         PFFile *file = self.homepointImages[i];
