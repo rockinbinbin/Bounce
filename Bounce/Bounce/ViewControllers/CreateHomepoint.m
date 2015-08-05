@@ -24,63 +24,106 @@
     
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.backgroundColor = BounceRed;
-    
+    self.view.backgroundColor = BounceRed;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+
     UILabel *navLabel = [UILabel new];
     navLabel.textColor = [UIColor whiteColor];
     navLabel.backgroundColor = [UIColor clearColor];
     navLabel.textAlignment = NSTextAlignmentCenter;
-    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/25];
+    navLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size:21.0];
     self.navigationItem.titleView = navLabel;
-    navLabel.text = @"create homepoint";
+    navLabel.text = @"Options";
     [navLabel sizeToFit];
     
-    [self setBarButtonItemLeft:@"common_back_button"];
+    UIBarButtonItem *_cancel = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonClicked)];
+    [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
+
+    NSDictionary* barButtonItemAttributes =
+    @{NSFontAttributeName:
+        [UIFont fontWithName:@"AvenirNext-Regular" size:18.0f],
+    NSForegroundColorAttributeName:
+        [UIColor whiteColor]
+    };
+    
+    [_cancel setTitleTextAttributes:barButtonItemAttributes forState:UIControlStateNormal];
+
+    self.navigationItem.leftBarButtonItem = _cancel;
     
     UIImage *img = [UIImage imageNamed:@"addPhotoButton"];
     self.buttonHeight = img.size.height;
     self.buttonWidth = img.size.width;
     
+    // PHOTO BUTTON
+    
+    _addPhotoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_addPhotoButton setBackgroundColor:[UIColor colorWithWhite:0.85 alpha:1.0]];
+    [_addPhotoButton addTarget:self action:@selector(addPhotoButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    self.overlay = [[UIView alloc] init];
+    self.overlay.userInteractionEnabled = false;
+    [_addPhotoButton addSubview:self.overlay];
+    [self.overlay kgn_sizeToWidthAndHeightOfItem:_addPhotoButton];
+    [self.overlay kgn_pinToTopEdgeOfSuperview];
+    [self.overlay kgn_pinToLeftEdgeOfSuperview];
+
+    self.editImageIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Homepoint-Camera"]];
+    [_addPhotoButton addSubview:self.editImageIcon];
+    [self.editImageIcon kgn_centerInSuperview];
+    [self.editImageIcon kgn_sizeToWidthAndHeight:100.0];
+    [self.view addSubview:_addPhotoButton];
+
+    [_addPhotoButton kgn_pinToTopEdgeOfSuperview];
+    [_addPhotoButton kgn_centerHorizontallyInSuperview];
+    [_addPhotoButton kgn_pinToSideEdgesOfSuperview];
+    [_addPhotoButton kgn_sizeToHeight:self.view.frame.size.height * 272/665.0];
+    
+    // TEXT FIELD
+    
     _groupNameTextField = [UITextField new];
-    _groupNameTextField.backgroundColor = BounceLightGray;
-    _groupNameTextField.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/35];
-    _groupNameTextField.placeholder = @"group name";
+    _groupNameTextField.backgroundColor = [UIColor colorWithWhite:243/256.0 alpha:1.0];
+    _groupNameTextField.font = [UIFont fontWithName:@"AvenirNext-Regular" size:16.0];
+    _groupNameTextField.placeholder = @"Name your homepoint";
     _groupNameTextField.autocorrectionType = UITextAutocorrectionTypeNo;
     _groupNameTextField.keyboardType = UIKeyboardTypeDefault;
     _groupNameTextField.returnKeyType = UIReturnKeyDone;
     _groupNameTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     _groupNameTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    _groupNameTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    _groupNameTextField.textAlignment = NSTextAlignmentCenter;
+    _groupNameTextField.textAlignment = NSTextAlignmentLeft;
     _groupNameTextField.delegate = self;
+    const CGFloat textfieldHeight = 53.0;
+    _groupNameTextField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 15.0, textfieldHeight)];
+    _groupNameTextField.leftViewMode = UITextFieldViewModeAlways;
     [self.view addSubview:_groupNameTextField];
-    [_groupNameTextField kgn_pinToTopEdgeOfSuperviewWithOffset:50];
+    [_groupNameTextField kgn_positionBelowItem:_addPhotoButton withOffset:50.0];
     [_groupNameTextField kgn_centerHorizontallyInSuperview];
-    [_groupNameTextField kgn_sizeToWidth:self.buttonWidth];
-    [_groupNameTextField kgn_sizeToHeight:self.view.frame.size.height/15];
+    [_groupNameTextField kgn_pinToSideEdgesOfSuperviewWithOffset:35.0];
+    [_groupNameTextField kgn_sizeToHeight:textfieldHeight];
     
-    
-    _addPhotoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_addPhotoButton setImage:img forState:UIControlStateNormal];
-    _addPhotoButton.bounds = CGRectMake(0, 0, self.buttonWidth, self.buttonHeight);
-    [_addPhotoButton addTarget:self action:@selector(addPhotoButtonClicked) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_addPhotoButton];
-    [_addPhotoButton kgn_pinBottomEdgeToBottomEdgeOfItem:_groupNameTextField withOffset:img.size.height + 20];
-    [_addPhotoButton kgn_centerHorizontallyInSuperview];
-    
+    UILabel *homepointHint = [[UILabel alloc] init];
+    homepointHint.text = @"The best names are easily recognizable.";
+    homepointHint.textColor = [UIColor colorWithWhite:0.0 alpha:0.36];
+    homepointHint.font = [UIFont fontWithName:@"AvenirNext-Regular" size:16.0];
+    [self.view addSubview:homepointHint];
+    [homepointHint kgn_pinToLeftEdgeOfSuperviewWithOffset:35.0];
+    [homepointHint kgn_positionBelowItem:_groupNameTextField withOffset:10.0];
     
     _addLocationButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    _addLocationButton.backgroundColor = BounceSeaGreen;
-    [_addLocationButton setTitle:@"Add location" forState:UIControlStateNormal];
+    _addLocationButton.layer.cornerRadius = 10.0;
+    _addLocationButton.layer.borderWidth = 1.5;
+    _addLocationButton.layer.borderColor = [[UIColor whiteColor] CGColor];
+    
+    [_addLocationButton setTitle:@"Continue" forState:UIControlStateNormal];
     _addLocationButton.tintColor = [UIColor whiteColor];
-    _addLocationButton.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/35];
+    _addLocationButton.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:18.0];
     _addLocationButton.titleLabel.textColor = [UIColor whiteColor];
-    _addLocationButton.layer.cornerRadius = 0;
+
     [_addLocationButton addTarget:self action:@selector(checkGroupNameValidation) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_addLocationButton];
-    [_addLocationButton kgn_pinBottomEdgeToBottomEdgeOfItem:_addPhotoButton withOffset:80];
+    [_addLocationButton kgn_pinToBottomEdgeOfSuperviewWithOffset:40.0];
     [_addLocationButton kgn_centerHorizontallyInSuperview];
-    [_addLocationButton kgn_sizeToWidth:self.buttonWidth];
-    [_addLocationButton kgn_sizeToHeight:self.view.frame.size.height/15];
+    [_addLocationButton kgn_pinToSideEdgesOfSuperviewWithOffset:35.0];
+    [_addLocationButton kgn_sizeToHeight:textfieldHeight];
+
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -266,8 +309,13 @@
     return newLength <= 20;
 }
 
+- (void)cancelPressed {
+    [self dismissViewControllerAnimated:false completion:nil];
+}
+
 
 #pragma mark - Camera picker
+
 - (void)showPhotoPicker {
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
         UIAlertView *deviceNotFoundAlert = [[UIAlertView alloc] initWithTitle:@"Photo library is not available."
@@ -352,10 +400,11 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
             [alert show];
         }
         else {
-            image = [self imageWithImage:image scaledToWidth:self.buttonWidth];
+            self.editImageIcon.image = [UIImage imageNamed:@"Homepoint-Pencil"];
             [_addPhotoButton setImage:image forState:UIControlStateNormal];
             self.addPhotoButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
             self.imageAdded = YES;
+            self.overlay.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.4];
         }
     } else {
         UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Error uploading image." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];

@@ -31,9 +31,12 @@
     [super viewDidLoad];
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [self setNeedsStatusBarAppearanceUpdate];
     
     self.navigationController.navigationBar.barTintColor = BounceRed;
     self.navigationController.navigationBar.translucent = NO;
+    
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
     
     UILabel *navLabel = [UILabel new];
