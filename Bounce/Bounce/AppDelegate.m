@@ -55,14 +55,14 @@
             if (requestId) {
                 [self openRequestViewController:requestId];
             } else {
-                self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[StudentStatusViewController alloc] init]];
+                self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[HomeScreenViewController alloc] init]];
             }
 
         // If logged in user did not complete setup
         } else {
             self.window.rootViewController = [[StudentStatusViewController alloc] init];
         }
-    
+
     // If setup needs to be started
     } else {
         self.window.rootViewController = [[IntroViewController alloc] init];
@@ -320,6 +320,12 @@
 #pragma mark - Request Chat View
 - (BOOL) isRequestChatViewOpened
 {
-    return true;
+    if (!self.window.rootViewController) {
+        return false;
+    }
+    
+    BOOL activeControllerIsChatView = [self.window.rootViewController isKindOfClass:[CustomChatViewController class]];
+    
+    return (!activeControllerIsChatView || (activeControllerIsChatView && ![[(CustomChatViewController*)self.window.rootViewController groupId] isEqualToString:notificationRequestId]));
 }
 @end
