@@ -43,8 +43,6 @@
 		00CEE4231994492700F40C12 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4221994492700F40C12 /* QuartzCore.framework */; };
 		00CEE4251994493500F40C12 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4241994493500F40C12 /* StoreKit.framework */; };
 		00CEE4271994493A00F40C12 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4261994493A00F40C12 /* CoreLocation.framework */; };
-		00DF1FDD1B439FAE004F056A /* Tutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DF1FDC1B439FAE004F056A /* Tutorial.swift */; };
-		00DF1FDF1B43A1C7004F056A /* InstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DF1FDE1B43A1C7004F056A /* InstructionView.swift */; };
 		00DF1FE31B43CDA6004F056A /* FacebookLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DF1FE21B43CDA6004F056A /* FacebookLogin.m */; };
 		00E2CBB41B53073700B316D1 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2CBB31B53073700B316D1 /* UIView+AutoLayout.m */; };
 		00E2CBB61B5384B600B316D1 /* homepoint images in Resources */ = {isa = PBXBuildFile; fileRef = 00E2CBB51B5384B500B316D1 /* homepoint images */; };
@@ -52,6 +50,14 @@
 		00E2CBBE1B5506C800B316D1 /* ChatListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00E2CBBC1B5506C800B316D1 /* ChatListCell.xib */; };
 		00E2CBC11B560B3600B316D1 /* homepointListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2CBC01B560B3600B316D1 /* homepointListCell.m */; };
 		00E2CBC41B563BB300B316D1 /* CreateHomepoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2CBC31B563BB300B316D1 /* CreateHomepoint.m */; };
+		2818DB911B72EFC80021B9C6 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2818DB901B72EFC80021B9C6 /* IntroViewController.swift */; };
+		282FAC171B71D4C700899FAB /* InstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282FAC111B71D4C700899FAB /* InstructionView.swift */; };
+		282FAC181B71D4C700899FAB /* StudentStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282FAC121B71D4C700899FAB /* StudentStatusViewController.swift */; };
+		282FAC191B71D4C700899FAB /* RoundedRectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282FAC131B71D4C700899FAB /* RoundedRectButton.swift */; };
+		282FAC1A1B71D4C700899FAB /* StudentVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282FAC141B71D4C700899FAB /* StudentVerificationViewController.swift */; };
+		282FAC1B1B71D4C700899FAB /* EmailSentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282FAC151B71D4C700899FAB /* EmailSentViewController.swift */; };
+		282FAC1D1B71D54C00899FAB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282FAC1C1B71D54C00899FAB /* Constants.swift */; };
+		282FAC1F1B71D56D00899FAB /* KGN Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282FAC1E1B71D56D00899FAB /* KGN Autolayout.swift */; };
 		28F13A521A6C75A90069EBA4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F13A511A6C75A90069EBA4 /* MapKit.framework */; };
 		67BB90C81ADFA8B20050164B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BB90C41ADFA8B20050164B /* Bolts.framework */; };
 		67BB90C91ADFA8B20050164B /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BB90C51ADFA8B20050164B /* Parse.framework */; };
@@ -93,11 +99,6 @@
 		67BB92DE1ADFA8D10050164B /* HomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92091ADFA8D10050164B /* HomeScreenViewController.m */; };
 		67BB92E51ADFA8D10050164B /* MessageScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92181ADFA8D10050164B /* MessageScreenViewController.m */; };
 		67BB92E61ADFA8D10050164B /* RequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB921A1ADFA8D10050164B /* RequestsViewController.m */; };
-		67BB92E81ADFA8D10050164B /* SlideLeftMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB921E1ADFA8D10050164B /* SlideLeftMenu.xib */; };
-		67BB92E91ADFA8D10050164B /* SlideMenuLeftTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92201ADFA8D10050164B /* SlideMenuLeftTableViewController.m */; };
-		67BB92EA1ADFA8D10050164B /* SlideMenuLeftTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92211ADFA8D10050164B /* SlideMenuLeftTableViewController.xib */; };
-		67BB92EB1ADFA8D10050164B /* SlideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92231ADFA8D10050164B /* SlideMenuViewController.m */; };
-		67BB92EC1ADFA8D10050164B /* SlideMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BB92241ADFA8D10050164B /* SlideMenuViewController.xib */; };
 		67BB93011ADFA8D10050164B /* hobble_1_1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 67BB923E1ADFA8D10050164B /* hobble_1_1.xcdatamodeld */; };
 		67BB93061ADFA8D10050164B /* UIViewController+infopagestempfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92481ADFA8D10050164B /* UIViewController+infopagestempfile.m */; };
 		67BB93FD1ADFABCD0050164B /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB930D1ADFABCD0050164B /* AFHTTPRequestOperation.m */; };
@@ -371,8 +372,6 @@
 		00CEE4221994492700F40C12 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		00CEE4241994493500F40C12 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		00CEE4261994493A00F40C12 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		00DF1FDC1B439FAE004F056A /* Tutorial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tutorial.swift; sourceTree = "<group>"; };
-		00DF1FDE1B43A1C7004F056A /* InstructionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionView.swift; sourceTree = "<group>"; };
 		00DF1FE01B43A8CF004F056A /* bounce-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "bounce-Bridging-Header.h"; sourceTree = "<group>"; };
 		00DF1FE11B43CDA6004F056A /* FacebookLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookLogin.h; sourceTree = "<group>"; };
 		00DF1FE21B43CDA6004F056A /* FacebookLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookLogin.m; sourceTree = "<group>"; };
@@ -386,6 +385,14 @@
 		00E2CBC01B560B3600B316D1 /* homepointListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = homepointListCell.m; sourceTree = "<group>"; };
 		00E2CBC21B563BB300B316D1 /* CreateHomepoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateHomepoint.h; sourceTree = "<group>"; };
 		00E2CBC31B563BB300B316D1 /* CreateHomepoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateHomepoint.m; sourceTree = "<group>"; };
+		2818DB901B72EFC80021B9C6 /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntroViewController.swift; path = ../../IntroViewController.swift; sourceTree = "<group>"; };
+		282FAC111B71D4C700899FAB /* InstructionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionView.swift; sourceTree = "<group>"; };
+		282FAC121B71D4C700899FAB /* StudentStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentStatusViewController.swift; sourceTree = "<group>"; };
+		282FAC131B71D4C700899FAB /* RoundedRectButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedRectButton.swift; sourceTree = "<group>"; };
+		282FAC141B71D4C700899FAB /* StudentVerificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentVerificationViewController.swift; sourceTree = "<group>"; };
+		282FAC151B71D4C700899FAB /* EmailSentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailSentViewController.swift; sourceTree = "<group>"; };
+		282FAC1C1B71D54C00899FAB /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		282FAC1E1B71D56D00899FAB /* KGN Autolayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KGN Autolayout.swift"; sourceTree = "<group>"; };
 		28F13A511A6C75A90069EBA4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6791817C1AC0057D00D0474C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		67BB90C41ADFA8B20050164B /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = FrameWorks/Bolts.framework; sourceTree = "<group>"; };
@@ -451,13 +458,6 @@
 		67BB92181ADFA8D10050164B /* MessageScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageScreenViewController.m; sourceTree = "<group>"; };
 		67BB92191ADFA8D10050164B /* RequestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestsViewController.h; sourceTree = "<group>"; };
 		67BB921A1ADFA8D10050164B /* RequestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestsViewController.m; sourceTree = "<group>"; };
-		67BB921E1ADFA8D10050164B /* SlideLeftMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SlideLeftMenu.xib; sourceTree = "<group>"; };
-		67BB921F1ADFA8D10050164B /* SlideMenuLeftTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideMenuLeftTableViewController.h; sourceTree = "<group>"; };
-		67BB92201ADFA8D10050164B /* SlideMenuLeftTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideMenuLeftTableViewController.m; sourceTree = "<group>"; };
-		67BB92211ADFA8D10050164B /* SlideMenuLeftTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SlideMenuLeftTableViewController.xib; sourceTree = "<group>"; };
-		67BB92221ADFA8D10050164B /* SlideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideMenuViewController.h; sourceTree = "<group>"; };
-		67BB92231ADFA8D10050164B /* SlideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideMenuViewController.m; sourceTree = "<group>"; };
-		67BB92241ADFA8D10050164B /* SlideMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SlideMenuViewController.xib; sourceTree = "<group>"; };
 		67BB923F1ADFA8D10050164B /* hobble_1_1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hobble_1_1.xcdatamodel; sourceTree = "<group>"; };
 		67BB92471ADFA8D10050164B /* UIViewController+infopagestempfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+infopagestempfile.h"; sourceTree = "<group>"; };
 		67BB92481ADFA8D10050164B /* UIViewController+infopagestempfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+infopagestempfile.m"; sourceTree = "<group>"; };
@@ -1128,6 +1128,14 @@
 		67BB90EF1ADFA8D00050164B /* Business */ = {
 			isa = PBXGroup;
 			children = (
+				2818DB901B72EFC80021B9C6 /* IntroViewController.swift */,
+				282FAC1C1B71D54C00899FAB /* Constants.swift */,
+				282FAC1E1B71D56D00899FAB /* KGN Autolayout.swift */,
+				282FAC111B71D4C700899FAB /* InstructionView.swift */,
+				282FAC121B71D4C700899FAB /* StudentStatusViewController.swift */,
+				282FAC131B71D4C700899FAB /* RoundedRectButton.swift */,
+				282FAC141B71D4C700899FAB /* StudentVerificationViewController.swift */,
+				282FAC151B71D4C700899FAB /* EmailSentViewController.swift */,
 				67BB90F01ADFA8D00050164B /* Constants.h */,
 				67BB90F31ADFA8D00050164B /* ParseManager.h */,
 				67BB90F41ADFA8D00050164B /* ParseManager.m */,
@@ -1177,7 +1185,6 @@
 				001C73791B0B0E3C008D7058 /* Terms_of_Use_ViewController.m */,
 				001C737D1B0B0E4D008D7058 /* Privacy_Policy_ViewController.h */,
 				001C737E1B0B0E4D008D7058 /* Privacy_Policy_ViewController.m */,
-				67BB921D1ADFA8D10050164B /* SlideMenu  */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1185,26 +1192,10 @@
 		67BB920A1ADFA8D10050164B /* IntoductionView */ = {
 			isa = PBXGroup;
 			children = (
-				00DF1FDC1B439FAE004F056A /* Tutorial.swift */,
 				00DF1FE11B43CDA6004F056A /* FacebookLogin.h */,
 				00DF1FE21B43CDA6004F056A /* FacebookLogin.m */,
-				00DF1FDE1B43A1C7004F056A /* InstructionView.swift */,
 			);
 			path = IntoductionView;
-			sourceTree = "<group>";
-		};
-		67BB921D1ADFA8D10050164B /* SlideMenu  */ = {
-			isa = PBXGroup;
-			children = (
-				67BB921E1ADFA8D10050164B /* SlideLeftMenu.xib */,
-				67BB921F1ADFA8D10050164B /* SlideMenuLeftTableViewController.h */,
-				67BB92201ADFA8D10050164B /* SlideMenuLeftTableViewController.m */,
-				67BB92211ADFA8D10050164B /* SlideMenuLeftTableViewController.xib */,
-				67BB92241ADFA8D10050164B /* SlideMenuViewController.xib */,
-				67BB92221ADFA8D10050164B /* SlideMenuViewController.h */,
-				67BB92231ADFA8D10050164B /* SlideMenuViewController.m */,
-			);
-			path = "SlideMenu ";
 			sourceTree = "<group>";
 		};
 		67BB92371ADFA8D10050164B /* hobble.1.1 */ = {
@@ -1632,7 +1623,7 @@
 				ORGANIZATIONNAME = hobble;
 				TargetAttributes = {
 					00CEE3CD199434E700F40C12 = {
-						DevelopmentTeam = KM659CVM6Q;
+						DevelopmentTeam = S57X9JL8K7;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1677,7 +1668,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67BB92E81ADFA8D10050164B /* SlideLeftMenu.xib in Resources */,
 				67BB92561ADFA8D10050164B /* Tutorial-1.png in Resources */,
 				67BB92661ADFA8D10050164B /* Tutorial-3_iPhone6plus.png in Resources */,
 				67BB944E1ADFABCD0050164B /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
@@ -1691,7 +1681,6 @@
 				67BB92531ADFA8D10050164B /* LandingView_iPhone5.png in Resources */,
 				67BB94331ADFABCD0050164B /* JSQMessagesViewController.xib in Resources */,
 				67BB92571ADFA8D10050164B /* Tutorial-1@2x.png in Resources */,
-				67BB92EA1ADFA8D10050164B /* SlideMenuLeftTableViewController.xib in Resources */,
 				67BB92701ADFA8D10050164B /* Images.xcassets in Resources */,
 				67BB94471ADFABCD0050164B /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
 				67BB94511ADFABCD0050164B /* JSQMessagesToolbarContentView.xib in Resources */,
@@ -1716,7 +1705,6 @@
 				0002349C1B488F93000B7630 /* Quicksand-Light.otf in Resources */,
 				0002349E1B488F98000B7630 /* Quicksand-LightItalic.otf in Resources */,
 				000234A01B488F9F000B7630 /* Quicksand-Regular.otf in Resources */,
-				67BB92EC1ADFA8D10050164B /* SlideMenuViewController.xib in Resources */,
 				00E2CBB61B5384B600B316D1 /* homepoint images in Resources */,
 				67BB92591ADFA8D10050164B /* Tutorial-1_iPhone6.png in Resources */,
 				67BB92581ADFA8D10050164B /* Tutorial-1_iPhone5.png in Resources */,
@@ -1741,6 +1729,7 @@
 				67BB926C1ADFA8D10050164B /* Utility.m in Sources */,
 				67BB94061ADFABCD0050164B /* AFNetworkActivityIndicatorManager.m in Sources */,
 				67BB94461ADFABCD0050164B /* JSQMessagesCollectionViewCellIncoming.m in Sources */,
+				282FAC191B71D4C700899FAB /* RoundedRectButton.swift in Sources */,
 				67BB942F1ADFABCD0050164B /* UIImage+JSQMessages.m in Sources */,
 				67BB94031ADFABCD0050164B /* AFURLRequestSerialization.m in Sources */,
 				67BB94131ADFABCD0050164B /* AMSlideMenuRightTableViewController.m in Sources */,
@@ -1768,6 +1757,7 @@
 				67BB945A1ADFABCD0050164B /* pushnotification.m in Sources */,
 				00E2CBC11B560B3600B316D1 /* homepointListCell.m in Sources */,
 				67BB945D1ADFABCD0050164B /* utilities.m in Sources */,
+				282FAC1F1B71D56D00899FAB /* KGN Autolayout.swift in Sources */,
 				67BB945B1ADFABCD0050164B /* camera.m in Sources */,
 				67BB92DE1ADFA8D10050164B /* HomeScreenViewController.m in Sources */,
 				67BB94071ADFABCD0050164B /* UIActivityIndicatorView+AFNetworking.m in Sources */,
@@ -1785,7 +1775,6 @@
 				67BB94591ADFABCD0050164B /* messages.m in Sources */,
 				67BB94091ADFABCD0050164B /* UIButton+AFNetworking.m in Sources */,
 				67BB943A1ADFABCD0050164B /* JSQMessagesCollectionViewFlowLayoutInvalidationContext.m in Sources */,
-				00DF1FDD1B439FAE004F056A /* Tutorial.swift in Sources */,
 				67BB940D1ADFABCD0050164B /* UIWebView+AFNetworking.m in Sources */,
 				67BB93FD1ADFABCD0050164B /* AFHTTPRequestOperation.m in Sources */,
 				67BB94051ADFABCD0050164B /* AFURLSessionManager.m in Sources */,
@@ -1793,6 +1782,7 @@
 				67BB94371ADFABCD0050164B /* JSQMessagesTimestampFormatter.m in Sources */,
 				67BB94541ADFABCD0050164B /* JSQSystemSoundPlayer.m in Sources */,
 				001C737B1B0B0E3C008D7058 /* Terms_of_Use_ViewController.m in Sources */,
+				282FAC181B71D4C700899FAB /* StudentStatusViewController.swift in Sources */,
 				67BB940C1ADFABCD0050164B /* UIRefreshControl+AFNetworking.m in Sources */,
 				67BB94301ADFABCD0050164B /* UIView+JSQMessages.m in Sources */,
 				67BB926B1ADFA8D10050164B /* RequestManger.m in Sources */,
@@ -1806,20 +1796,20 @@
 				67BB940A1ADFABCD0050164B /* UIImageView+AFNetworking.m in Sources */,
 				67BB94561ADFABCD0050164B /* NIDropDown.m in Sources */,
 				67BB94381ADFABCD0050164B /* JSQMessagesToolbarButtonFactory.m in Sources */,
-				67BB92E91ADFA8D10050164B /* SlideMenuLeftTableViewController.m in Sources */,
+				282FAC171B71D4C700899FAB /* InstructionView.swift in Sources */,
 				00DF1FE31B43CDA6004F056A /* FacebookLogin.m in Sources */,
-				67BB92EB1ADFA8D10050164B /* SlideMenuViewController.m in Sources */,
 				67BB92D81ADFA8D10050164B /* AddLocationScreenViewController.m in Sources */,
-				00DF1FDF1B43A1C7004F056A /* InstructionView.swift in Sources */,
 				67BB943E1ADFABCD0050164B /* JSQMessage.m in Sources */,
 				67BB92D91ADFA8D10050164B /* CustomChatViewController.m in Sources */,
 				67BB92E61ADFA8D10050164B /* RequestsViewController.m in Sources */,
 				67BB93FF1ADFABCD0050164B /* AFHTTPSessionManager.m in Sources */,
+				2818DB911B72EFC80021B9C6 /* IntroViewController.swift in Sources */,
 				67BB94601ADFABCD0050164B /* Reachability.m in Sources */,
 				67BB944B1ADFABCD0050164B /* JSQMessagesInputToolbar.m in Sources */,
 				00AA6EDE1B6B3CDF00F91CBB /* chatCell.m in Sources */,
 				67BB94111ADFABCD0050164B /* AMSlideMenuMainViewController.m in Sources */,
 				67BB942B1ADFABCD0050164B /* JSQSystemSoundPlayer+JSQMessages.m in Sources */,
+				282FAC1A1B71D4C700899FAB /* StudentVerificationViewController.swift in Sources */,
 				007BA40A1A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				67BB94481ADFABCD0050164B /* JSQMessagesCollectionViewCellOutgoing.m in Sources */,
 				67BB92D71ADFA8D10050164B /* AddHomePointViewController.m in Sources */,
@@ -1832,10 +1822,12 @@
 				67BB94551ADFABCD0050164B /* MBProgressHUD.m in Sources */,
 				67BB924E1ADFA8D10050164B /* AppDelegate.m in Sources */,
 				67BB944A1ADFABCD0050164B /* JSQMessagesComposerTextView.m in Sources */,
+				282FAC1B1B71D4C700899FAB /* EmailSentViewController.swift in Sources */,
 				003F19451B0B09DC0024EE9A /* SettingsViewController.m in Sources */,
 				67BB93061ADFA8D10050164B /* UIViewController+infopagestempfile.m in Sources */,
 				67BB943B1ADFABCD0050164B /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */,
 				67BB94411ADFABCD0050164B /* JSQPhotoMediaItem.m in Sources */,
+				282FAC1D1B71D54C00899FAB /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1990,6 +1982,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2004,6 +1997,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_MODULE_NAME = bounce;
 				PRODUCT_NAME = bounce;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "bounce-Bridging-Header.h";
@@ -2022,6 +2016,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2036,6 +2031,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_MODULE_NAME = bounce;
 				PRODUCT_NAME = bounce;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "bounce-Bridging-Header.h";

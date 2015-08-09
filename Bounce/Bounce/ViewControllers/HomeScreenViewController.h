@@ -19,7 +19,6 @@
 #import "GroupsListViewController.h"
 #import "UIViewController+AMSlideMenu.h"
 #import "RequestManger.h"
-#import "bounce-Swift.h"
 #import "UIView+AutoLayout.h"
 #import "UIViewController+AMSlideMenu.h"
 

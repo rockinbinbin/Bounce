@@ -11,7 +11,6 @@
 #import <Parse/Parse.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 #import "Utility.h"
-#import "SlideMenuViewController.h"
 #import "UIViewController+AMSlideMenu.h"
 
 #import <UIKit/UIKit.h>
@@ -27,7 +26,7 @@
 
 - (id)init
 {
-    Tutorial *temp = [[Tutorial alloc] init];
+    IntroViewController *temp = [[IntroViewController alloc] init];
     UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:temp];
     return [self initWithNavigationController:navController];
 }
@@ -142,17 +141,6 @@
 
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
     [self navigateToMainScreen];
-}
-
-#pragma mark - Navigate to Home screen
-- (void) navigateToMainScreen {
-    @try {
-        SlideMenuViewController* mainViewController = [[SlideMenuViewController alloc] init];
-        [self.navigationController pushViewController:mainViewController animated:YES];
-    }
-    @catch (NSException *exception) {
-        NSLog(@"Exception %@", exception);
-    }
 }
 
 @end

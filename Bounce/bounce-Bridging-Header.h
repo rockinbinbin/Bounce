@@ -13,11 +13,12 @@
 #import <Parse/Parse.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 #import "Utility.h"
-#import "SlideMenuViewController.h"
 #import "UIViewController+AMSlideMenu.h"
 
 #import <UIKit/UIKit.h>
 
+#import "AppDelegate.h"
+#import "HomeScreenViewController.h"
 #import "AFNetworking.h"
 #import "pushnotification.h"
 #import "utilities.h"

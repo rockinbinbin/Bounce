@@ -16,7 +16,7 @@
 void LoginUser(id target) { // TODO: TEST THIS METHOD
     NSLog(@"LoginUser(id target) called");
     
-    Tutorial *tutorial = [[Tutorial alloc] init];
+    IntroViewController *tutorial = [[IntroViewController alloc] init];
     NavigationController *navigationController = [[NavigationController alloc] initWithRootViewController:tutorial];
     [target presentViewController:navigationController animated:YES completion:nil];
 }

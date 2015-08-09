@@ -10,50 +10,64 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
-#import "SlideMenuViewController.h"
 #import "ParseManager.h"
 #import "RequestsViewController.h"
 #import "CustomChatViewController.h"
+#import "HomeScreenViewController.h"
 #import "bounce-Swift.h"
 
-@implementation AppDelegate
-{
-    SlideMenuViewController* mainViewController;
+@implementation AppDelegate {
     NSString *notificationRequestId;
 }
+
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{    
+{
+    // Initialize Parse
     [Parse setApplicationId:PARSE_APP_ID clientKey:PARSE_CLIENT_KEY];
-    [PFFacebookUtils initializeFacebook];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    [self registerRemoteNotification:application];
+    [PFAnalytics trackAppOpenedWithLaunchOptionsInBackground:launchOptions block:nil];
 
+    // Initialize PFFacebookUtils
+    [PFFacebookUtils initializeFacebook];
+
+    // Configure status bar
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+
+    [self registerRemoteNotification:application];
     [self setSegmentControlAppearance];
     [self setTableViewAppearance];
-    UINavigationController *navigationController;
-    
-    if ([[ParseManager getInstance] isThereLoggedUser]) {
-        NSString *requestId = [launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey] objectForKey:OBJECT_ID];
-        if (requestId) {
-            [self openRequestViewController:requestId];
-        }
-        else {
-            mainViewController = [[SlideMenuViewController alloc] init];
-        }
-        navigationController  = [[UINavigationController alloc] initWithRootViewController:mainViewController];
-    }
-    else {
-        //IntroPagesViewController* introPagesViewController = [[IntroPagesViewController alloc] initWithNibName:@"IntroPagesViewController" bundle:nil];
-        Tutorial* tutorial = [[Tutorial alloc]init];
-        
-        navigationController  = [[UINavigationController alloc] initWithRootViewController:tutorial];
-    }
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = navigationController;
+    
+    // If user is logged in already
+    if ([PFUser currentUser] != nil && [[PFUser currentUser] valueForKey:@"setupComplete"]) {
+        [[PFUser currentUser] fetchInBackgroundWithBlock:nil];
+
+        // If logged in user completed setup
+        if ([[PFUser currentUser] valueForKey:@"setupComplete"]) {
+
+            NSString *requestId = [launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey] objectForKey:OBJECT_ID];
+
+            // If logged in setup complete user has a request, open it
+            if (requestId) {
+                [self openRequestViewController:requestId];
+            } else {
+                self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[StudentStatusViewController alloc] init]];
+            }
+
+        // If logged in user did not complete setup
+        } else {
+            self.window.rootViewController = [[StudentStatusViewController alloc] init];
+        }
+    
+    // If setup needs to be started
+    } else {
+        self.window.rootViewController = [[IntroViewController alloc] init];
+    }
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -196,15 +210,13 @@
         if ([[userInfo objectForKey:@"aps"] objectForKey:NOTIFICATION_ALERT_MESSAGE]) {
             NSString *message = [[userInfo objectForKey:@"aps"] objectForKey:NOTIFICATION_ALERT_MESSAGE];
             notificationRequestId = [userInfo objectForKey:OBJECT_ID];
-            if (mainViewController) {
-                if ([self isRequestChatViewOpened]) {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: nil
-                                                                    message: message
-                                                                   delegate: self
-                                                          cancelButtonTitle: @"OK"
-                                                          otherButtonTitles: nil];
-                    [alert show];
-                }
+            if ([self isRequestChatViewOpened]) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle: nil
+                                                                message: message
+                                                               delegate: self
+                                                      cancelButtonTitle: @"OK"
+                                                      otherButtonTitles: nil];
+                [alert show];
             }
         }
     } else {
@@ -261,6 +273,7 @@
         }
     }
     @catch (NSException *exception) {
+        
     }
 }
 
@@ -272,25 +285,12 @@
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:rootVC];
     BOOL requestValid = [self isValidRequest:requestId];
     
-    if (mainViewController) {
-        // if the app in back ground
-        if (requestValid) {
-            // open chat view
-            CustomChatViewController *chatView = [[Utility getInstance] createChatViewWithRequestId:requestId];
-            [viewControllers addObject:chatView];
-            [nvc setViewControllers:[NSArray arrayWithArray:viewControllers]];
-        }
-        [mainViewController.leftMenu openContentNavigationController:nvc];
-    }else{
-        // if the app launched
-        // make app open in chat view not home
-        mainViewController = [[SlideMenuViewController alloc] init];
-        mainViewController.initialIndex = 1;
-        if (requestValid) {
-            mainViewController.requestId = requestId;
-        }else{
-            mainViewController.requestId = nil;
-        }
+    // if the app in back ground
+    if (requestValid) {
+        // open chat view
+        CustomChatViewController *chatView = [[Utility getInstance] createChatViewWithRequestId:requestId];
+        [viewControllers addObject:chatView];
+        [nvc setViewControllers:[NSArray arrayWithArray:viewControllers]];
     }
 }
 
@@ -320,12 +320,6 @@
 #pragma mark - Request Chat View
 - (BOOL) isRequestChatViewOpened
 {
-    UIViewController *activeViewController = [[mainViewController currentActiveNVC] topViewController];
-    BOOL activeViewControllerIsChatView = [activeViewController isKindOfClass:[CustomChatViewController class]];
-    if (!activeViewControllerIsChatView || (activeViewControllerIsChatView && ![[(CustomChatViewController*)activeViewController groupId] isEqualToString:notificationRequestId])) {
-        return YES;
-    }else{
-        return NO;
-    }
+    return true;
 }
 @end

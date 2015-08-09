@@ -7,7 +7,6 @@
 //
 
 #import "Utility.h"
-#import "SlideMenuViewController.h"
 #import "ParseManager.h"
 
 @implementation Utility
@@ -103,19 +102,6 @@ static Utility *sharedUtility = nil;
         return NO;
     }else{
         return YES;
-    }
-}
-
-#pragma mark - Go Home screen
-#pragma mark - Navigate to Home screem
-- (void) navigateToMainScreenFromNAvigationContorller:(UINavigationController *) navigationController
-{
-    @try {
-        SlideMenuViewController* mainViewController = [[SlideMenuViewController alloc] init];
-        [navigationController pushViewController:mainViewController animated:YES];
-    }
-    @catch (NSException *exception) {
-        NSLog(@"Exception %@", exception);
     }
 }
 
