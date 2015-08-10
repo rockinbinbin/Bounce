@@ -14,10 +14,13 @@
 #import "UIViewController+AMSlideMenu.h"
 #import "HomeScreenViewController.h"
 #import "AddGroupUsersViewController.h"
+#import "bounce-Swift.h"
 #import "homepointListCell.h"
 
 @interface GroupsListViewController ()
+
 @property NSArray *images;
+
 @end
 
 @implementation GroupsListViewController
@@ -33,6 +36,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    self.navigationController.navigationBar.barTintColor = BounceRed;
+    self.navigationController.navigationBar.translucent = NO;
+    
+    [[self navigationController] setNavigationBarHidden:NO animated:YES];
     
     UITableView *tableView = [UITableView new];
     tableView.delegate = self;
@@ -50,7 +58,6 @@
     [self.tableView setBackgroundView:backgroundView];
     
     [self.navigationController setNavigationBarHidden:NO];
-    [self setBarButtonItemLeft:@"common_back_button"];
     [self setBarButtonItemRight:@"common_plus_icon"];
 
     UILabel *navLabel = [UILabel new];
@@ -111,6 +118,7 @@
 
 -(void)addButtonClicked{
     if (!loadingData) {
+        [self.delegate setScrolling:false];
         AddHomePointViewController* addHomePointViewController = [AddHomePointViewController new];
         [self.navigationController pushViewController:addHomePointViewController animated:YES];
     }

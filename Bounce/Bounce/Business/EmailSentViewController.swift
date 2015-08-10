@@ -77,6 +77,6 @@ class EmailSentViewController: UIViewController {
     }
     
     func presentMainViewController() {
-        self.presentViewController(UINavigationController(rootViewController: HomeScreenViewController()), animated: true, completion: nil)
+        self.presentViewController(MainScrollContainer(), animated: true, completion: nil)
     }
 }

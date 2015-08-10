@@ -24,4 +24,6 @@
 
 @interface HomeScreenViewController : UIViewController <CLLocationManagerDelegate, RequestManagerDelegate, UIGestureRecognizerDelegate>
 
+@property (strong, nonatomic) id delegate;
+
 @end

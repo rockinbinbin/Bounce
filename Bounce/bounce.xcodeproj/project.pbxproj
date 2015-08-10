@@ -58,6 +58,9 @@
 		282FAC1B1B71D4C700899FAB /* EmailSentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282FAC151B71D4C700899FAB /* EmailSentViewController.swift */; };
 		282FAC1D1B71D54C00899FAB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282FAC1C1B71D54C00899FAB /* Constants.swift */; };
 		282FAC1F1B71D56D00899FAB /* KGN Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282FAC1E1B71D56D00899FAB /* KGN Autolayout.swift */; };
+		28802DAC1B7708CF008E8B33 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28802DAB1B7708CF008E8B33 /* AccountViewController.swift */; };
+		28802DAE1B770C12008E8B33 /* MainScrollContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28802DAD1B770C12008E8B33 /* MainScrollContainer.swift */; };
+		28802DB01B770C8D008E8B33 /* UniversityEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28802DAF1B770C8D008E8B33 /* UniversityEmail.swift */; };
 		28F13A521A6C75A90069EBA4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F13A511A6C75A90069EBA4 /* MapKit.framework */; };
 		67BB90C81ADFA8B20050164B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BB90C41ADFA8B20050164B /* Bolts.framework */; };
 		67BB90C91ADFA8B20050164B /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BB90C51ADFA8B20050164B /* Parse.framework */; };
@@ -393,6 +396,9 @@
 		282FAC151B71D4C700899FAB /* EmailSentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailSentViewController.swift; sourceTree = "<group>"; };
 		282FAC1C1B71D54C00899FAB /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		282FAC1E1B71D56D00899FAB /* KGN Autolayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KGN Autolayout.swift"; sourceTree = "<group>"; };
+		28802DAB1B7708CF008E8B33 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		28802DAD1B770C12008E8B33 /* MainScrollContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainScrollContainer.swift; path = ../ViewControllers/MainScrollContainer.swift; sourceTree = "<group>"; };
+		28802DAF1B770C8D008E8B33 /* UniversityEmail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversityEmail.swift; sourceTree = "<group>"; };
 		28F13A511A6C75A90069EBA4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6791817C1AC0057D00D0474C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		67BB90C41ADFA8B20050164B /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = FrameWorks/Bolts.framework; sourceTree = "<group>"; };
@@ -959,6 +965,7 @@
 		00CEE3C5199434E700F40C12 = {
 			isa = PBXGroup;
 			children = (
+				28802DAF1B770C8D008E8B33 /* UniversityEmail.swift */,
 				0002349F1B488F9F000B7630 /* Quicksand-Regular.otf */,
 				0002349D1B488F98000B7630 /* Quicksand-LightItalic.otf */,
 				0002349B1B488F93000B7630 /* Quicksand-Light.otf */,
@@ -1128,6 +1135,7 @@
 		67BB90EF1ADFA8D00050164B /* Business */ = {
 			isa = PBXGroup;
 			children = (
+				28802DAB1B7708CF008E8B33 /* AccountViewController.swift */,
 				2818DB901B72EFC80021B9C6 /* IntroViewController.swift */,
 				282FAC1C1B71D54C00899FAB /* Constants.swift */,
 				282FAC1E1B71D56D00899FAB /* KGN Autolayout.swift */,
@@ -1136,6 +1144,7 @@
 				282FAC131B71D4C700899FAB /* RoundedRectButton.swift */,
 				282FAC141B71D4C700899FAB /* StudentVerificationViewController.swift */,
 				282FAC151B71D4C700899FAB /* EmailSentViewController.swift */,
+				28802DAD1B770C12008E8B33 /* MainScrollContainer.swift */,
 				67BB90F01ADFA8D00050164B /* Constants.h */,
 				67BB90F31ADFA8D00050164B /* ParseManager.h */,
 				67BB90F41ADFA8D00050164B /* ParseManager.m */,
@@ -1745,6 +1754,7 @@
 				67BB945F1ADFABCD0050164B /* ProgressHUD.m in Sources */,
 				67BB942E1ADFABCD0050164B /* UIDevice+JSQMessages.m in Sources */,
 				67BB943F1ADFABCD0050164B /* JSQMessagesAvatarImage.m in Sources */,
+				28802DB01B770C8D008E8B33 /* UniversityEmail.swift in Sources */,
 				67BB94361ADFABCD0050164B /* JSQMessagesMediaViewBubbleImageMasker.m in Sources */,
 				67BB943C1ADFABCD0050164B /* JSQLocationMediaItem.m in Sources */,
 				00E2CBB41B53073700B316D1 /* UIView+AutoLayout.m in Sources */,
@@ -1787,6 +1797,7 @@
 				67BB94301ADFABCD0050164B /* UIView+JSQMessages.m in Sources */,
 				67BB926B1ADFA8D10050164B /* RequestManger.m in Sources */,
 				001C73801B0B0E4D008D7058 /* Privacy_Policy_ViewController.m in Sources */,
+				28802DAE1B770C12008E8B33 /* MainScrollContainer.swift in Sources */,
 				67BB92D61ADFA8D10050164B /* AddGroupUsersViewController.m in Sources */,
 				67BB943D1ADFABCD0050164B /* JSQMediaItem.m in Sources */,
 				67BB93FE1ADFABCD0050164B /* AFHTTPRequestOperationManager.m in Sources */,
@@ -1799,6 +1810,7 @@
 				282FAC171B71D4C700899FAB /* InstructionView.swift in Sources */,
 				00DF1FE31B43CDA6004F056A /* FacebookLogin.m in Sources */,
 				67BB92D81ADFA8D10050164B /* AddLocationScreenViewController.m in Sources */,
+				28802DAC1B7708CF008E8B33 /* AccountViewController.swift in Sources */,
 				67BB943E1ADFABCD0050164B /* JSQMessage.m in Sources */,
 				67BB92D91ADFA8D10050164B /* CustomChatViewController.m in Sources */,
 				67BB92E61ADFA8D10050164B /* RequestsViewController.m in Sources */,

@@ -230,7 +230,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
         if setupComplete {
             user!.setValue(true, forKey: "setupComplete")
             user!.saveInBackgroundWithBlock(nil)
-            self.presentViewController(HomeScreenViewController(), animated: true, completion: nil)
+            self.presentViewController(MainScrollContainer(), animated: true, completion: nil)
             
             // User has entered the app and not completed setup
         } else {

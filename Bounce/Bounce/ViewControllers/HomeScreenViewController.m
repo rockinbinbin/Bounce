@@ -49,9 +49,6 @@
     navLabel.text = @"bounce";
     [navLabel sizeToFit];
     
-    UIBarButtonItem *rightButton = [self initialiseBarButton:[UIImage imageNamed:@"nav_bar_profile_menu_icon"] withAction:@selector(navigateToHomepointsView)];
-    self.navigationItem.rightBarButtonItem = rightButton;
-    
     [[RequestManger getInstance] loadActiveRequest];
     
     self.genderMatching = ALL_GENDER;
@@ -440,13 +437,6 @@
 }
 
 #pragma mark - MKOverlay Delegate
-
-#pragma - Navigation
-
--(void)navigateToHomepointsView {
-    GroupsListViewController *homepointsView = [GroupsListViewController new];
-    [self.navigationController pushViewController:homepointsView animated:YES];
-}
 
 
 @end

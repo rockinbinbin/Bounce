@@ -13,7 +13,6 @@
 #import "ParseManager.h"
 #import "RequestsViewController.h"
 #import "CustomChatViewController.h"
-#import "HomeScreenViewController.h"
 #import "bounce-Swift.h"
 
 @implementation AppDelegate {
@@ -55,7 +54,7 @@
             if (requestId) {
                 [self openRequestViewController:requestId];
             } else {
-                self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[HomeScreenViewController alloc] init]];
+                self.window.rootViewController = [[MainScrollContainer alloc] init];
             }
 
         // If logged in user did not complete setup

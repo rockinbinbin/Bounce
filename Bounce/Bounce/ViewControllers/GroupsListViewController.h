@@ -8,12 +8,24 @@
 
 #import <UIKit/UIKit.h>
 #import "ParseManager.h"
-@interface GroupsListViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, ParseManagerLoadingGroupsDelegate, ParseManagerGetUserGroups, ParseManagerDeleteDelegate, ParseManagerDelegate, ParseManagerLoadNewUsers>
+
+@interface GroupsListViewController : UIViewController<
+    UITableViewDelegate,
+    UITableViewDataSource,
+    ParseManagerLoadingGroupsDelegate,
+    ParseManagerGetUserGroups,
+    ParseManagerDeleteDelegate,
+    ParseManagerDelegate,
+    ParseManagerLoadNewUsers
+>
+
 @property NSMutableArray* groups;
 @property NSMutableArray *nearUsers;
 @property NSMutableArray *distanceToUserLocation;
 @property (weak, nonatomic) UITableView *tableView;
-
 @property NSMutableArray *homepointImages;
+
+// A MainScrollContainer delegate
+@property (strong, nonatomic) id delegate;
 
 @end
