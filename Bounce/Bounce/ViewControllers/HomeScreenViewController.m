@@ -206,6 +206,7 @@
     [self startReceivingSignificantLocationChanges];
     [self changeCenterToUserLocation];
     [self setUserTrackingMode];
+    [self.delegate setScrolling:true];
 
     
     [[RequestManger getInstance] setRequestManagerDelegate:self];
@@ -236,6 +237,7 @@
 
 - (void) viewWillDisappear:(BOOL)animated
 {
+    [self.delegate setScrolling:false];
     [[RequestManger getInstance] setRequestManagerDelegate:nil];
 }
 

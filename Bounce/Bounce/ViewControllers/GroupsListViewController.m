@@ -72,6 +72,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.delegate setScrolling:true];
     @try {
         [self disableSlidePanGestureForLeftMenu];
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
@@ -85,6 +86,12 @@
         NSLog(@"exception %@", exception);
     }
 }
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.delegate setScrolling:false];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -118,7 +125,6 @@
 
 -(void)addButtonClicked{
     if (!loadingData) {
-        [self.delegate setScrolling:false];
         AddHomePointViewController* addHomePointViewController = [AddHomePointViewController new];
         [self.navigationController pushViewController:addHomePointViewController animated:YES];
     }

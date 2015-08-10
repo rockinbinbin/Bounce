@@ -41,6 +41,16 @@ class AccountViewController: UIViewController {
         self.renderStatusBarCover()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.delegate?.setScrolling(true)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.delegate?.setScrolling(false)
+    }
+    
     // MARK: - UI Rendering Helpers
     
     func renderAccountLabel() {
