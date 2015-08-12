@@ -7,6 +7,8 @@
 //
 
 #import "HomeScreenViewController.h"
+#import "RequestsViewController.h"
+#import "SharedVariables.h"
 #import "bounce-Swift.h"
 
 @interface HomeScreenViewController ()
@@ -44,9 +46,9 @@
     navLabel.textColor = [UIColor whiteColor];
     navLabel.backgroundColor = [UIColor clearColor];
     navLabel.textAlignment = NSTextAlignmentCenter;
-    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/23];
+    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
     self.navigationItem.titleView = navLabel;
-    navLabel.text = @"bounce";
+    navLabel.text = @"BOUNCE";
     [navLabel sizeToFit];
     
     [[RequestManger getInstance] loadActiveRequest];
@@ -94,7 +96,7 @@
     
     UIButton *repliesButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [repliesButton setTitle:@"Coordinate trip home" forState:UIControlStateNormal];
-    repliesButton.titleLabel.font = [UIFont fontWithName:@"Quicksand-Bold" size:18.0f];
+    repliesButton.titleLabel.font = [UIFont fontWithName:@"Avenir-Light" size:18.0f];
     repliesButton.backgroundColor = BounceRed;
     repliesButton.tintColor = [UIColor whiteColor];
     repliesButton.layer.cornerRadius = 10;
@@ -108,7 +110,7 @@
     
     UILabel *timeLeftLabel = [UILabel new];
     timeLeftLabel.textColor = [UIColor whiteColor];
-    timeLeftLabel.font = [UIFont fontWithName:@"Avenir-Next" size:11];
+    timeLeftLabel.font = [UIFont fontWithName:@"Avenir-Light" size:14];
     [self.repliesView addSubview:timeLeftLabel];
     [timeLeftLabel sizeToFit];
     [timeLeftLabel kgn_pinTopEdgeToTopEdgeOfItem:repliesButton withOffset:-80];
@@ -191,7 +193,7 @@
     endRequestButton.tintColor = [UIColor whiteColor];
     endRequestButton.backgroundColor = BounceSeaGreen;
     [endRequestButton setTitle:@"cancel request" forState:UIControlStateNormal];
-    endRequestButton.titleLabel.font = [UIFont fontWithName:@"Avenir-Next" size:11];
+    endRequestButton.titleLabel.font = [UIFont fontWithName:@"Avenir-Light" size:14];
     [endRequestButton addTarget:self action:@selector(endRequestButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.map addSubview:endRequestButton];
     [endRequestButton kgn_sizeToHeight:self.view.frame.size.height/14];
@@ -203,10 +205,16 @@
 
 -(void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.delegate setScrolling:true];
+    
+    if (![SharedVariables shouldNotOpenRequestsView]) {
+        [[ParseManager getInstance] returnNumberOfValidRequestsWithNavigationController:self.navigationController];
+    }
+    
     [self startReceivingSignificantLocationChanges];
     [self changeCenterToUserLocation];
     [self setUserTrackingMode];
-    [self.delegate setScrolling:true];
+
 
     
     [[RequestManger getInstance] setRequestManagerDelegate:self];
@@ -233,6 +241,14 @@
     UISlider *slider = (UISlider*)sender;
     float value = slider.value;
     self.timeAllocated = value;
+}
+
+- (void) requestsViewControllerDidRequestDismissal:(RequestsViewController *)controller withCompletion:(void (^)())completion {
+    [controller.presentingViewController dismissViewControllerAnimated:true completion:^{
+        if (completion) {
+            completion();
+        }
+    }];
 }
 
 - (void) viewWillDisappear:(BOOL)animated

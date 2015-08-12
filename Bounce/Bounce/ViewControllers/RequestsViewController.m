@@ -16,6 +16,8 @@
 #import "HomeScreenViewController.h"
 #import "ChatListCell.h"
 #import "chatCell.h"
+#import "GroupsListViewController.h"
+#import "SharedVariables.h"
 
 @interface RequestsViewController () {
     NSMutableArray *requests;
@@ -28,31 +30,70 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.images = [NSMutableArray new];
+    
     self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.navigationController.navigationBar.barTintColor = BounceRed;
     self.navigationController.navigationBar.translucent = NO;
     [self.navigationController setNavigationBarHidden:NO];
-    [self setBarButtonItemLeft:@"common_back_button"];
     
     UILabel *navLabel = [UILabel new];
     navLabel.textColor = [UIColor whiteColor];
     navLabel.backgroundColor = [UIColor clearColor];
     navLabel.textAlignment = NSTextAlignmentCenter;
-    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/23];
+    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
     self.navigationItem.titleView = navLabel;
-    navLabel.text = @"Leaving soon";
+    navLabel.text = @"LEAVING SOON";
     [navLabel sizeToFit];
     
     UITableView *tableView = [UITableView new];
     tableView.delegate = self;
     tableView.dataSource = self;
+    tableView.separatorColor = BounceRed;
+    tableView.backgroundColor = BounceRed;
     [self.view addSubview:tableView];
     self.requestsTableView = tableView;
     [tableView kgn_pinToLeftEdgeOfSuperview];
     [tableView kgn_pinToTopEdgeOfSuperview];
     [tableView kgn_sizeToHeight:self.view.frame.size.height];
     [tableView kgn_sizeToWidth:self.view.frame.size.width];
+    
+    UIView *bottomView = [UIView new];
+    bottomView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:bottomView];
+    [bottomView kgn_sizeToHeight:self.view.frame.size.height / 4.9];
+    [bottomView kgn_sizeToWidth:self.view.frame.size.width];
+    [bottomView kgn_pinToBottomEdgeOfSuperview];
+    self.bottomView = bottomView;
+    
+    UILabel *leavingGroup = [UILabel new];
+    leavingGroup.textColor = [UIColor darkGrayColor];
+    leavingGroup.backgroundColor = [UIColor clearColor];
+    leavingGroup.textAlignment = NSTextAlignmentCenter;
+    leavingGroup.font = [UIFont fontWithName:@"Avenir-Light" size:14];
+    leavingGroup.text = @"Didn't find what you're looking for?";
+    [bottomView addSubview:leavingGroup];
+    [leavingGroup sizeToFit];
+    [leavingGroup kgn_centerHorizontallyInSuperview];
+    [leavingGroup kgn_pinToTopEdgeOfSuperviewWithOffset:30];
 
+    UIButton *makeRequest = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    makeRequest.tintColor = [UIColor whiteColor];
+    [makeRequest setBackgroundColor:BounceSeaGreen];
+    [makeRequest setTitle:@"Create a new leaving group" forState:UIControlStateNormal];
+    makeRequest.titleLabel.font = [UIFont fontWithName:@"Avenir-Light" size:14];
+    [makeRequest addTarget:self action:@selector(makeRequestButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [bottomView addSubview:makeRequest];
+    [makeRequest kgn_sizeToHeight:self.view.frame.size.height/13];
+    [makeRequest kgn_sizeToWidth:self.view.frame.size.width - 50];
+    [makeRequest kgn_centerHorizontallyInSuperview];
+    [makeRequest kgn_pinToBottomEdgeOfSuperviewWithOffset:20];
+}
+
+- (void) makeRequestButtonClicked {
+    [SharedVariables setShouldNotOpenRequestsView:true];
+    [self.navigationController popViewControllerAnimated:true];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -71,6 +112,12 @@
     UIImage *back = [UIImage imageNamed:imageName];
     self.navigationItem.leftBarButtonItem = [self initialiseBarButton:back withAction:@selector(backButtonClicked)];
 }
+
+- (void) setBarButtonItemRight:(NSString *) imageName {
+    UIImage *back = [UIImage imageNamed:imageName];
+    self.navigationItem.rightBarButtonItem = [self initialiseBarButton:back withAction:@selector(navigateToHomepoints)];
+}
+
 -(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action{
     UIButton *buttonItem = [UIButton buttonWithType:UIButtonTypeCustom];
     buttonItem.bounds = CGRectMake( 0, 0, buttonImage.size.width, buttonImage.size.height );
@@ -81,10 +128,10 @@
 }
 -(void)backButtonClicked{
     
-    AMSlideMenuMainViewController *mainVC = [self mainSlideMenu];
-    UIViewController *rootVC = [[HomeScreenViewController alloc] init];
-    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:rootVC];
-    [mainVC.leftMenu openContentNavigationController:nvc];
+//    AMSlideMenuMainViewController *mainVC = [self mainSlideMenu];
+//    UIViewController *rootVC = [[HomeScreenViewController alloc] init];
+//    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:rootVC];
+//    [mainVC.leftMenu openContentNavigationController:nvc];
 }
 #pragma mark - Load Requests
 - (void) loadRequests{
@@ -107,7 +154,7 @@
         for (PFObject *request in requests) {
             if (!noMoreValid && [[Utility getInstance] isRequestValid:[request createdAt] andTimeAllocated:[[request objectForKey:PF_REQUEST_TIME_ALLOCATED] integerValue]] && ![[request objectForKey:PF_REQUEST_IS_ENDED] boolValue] ) {
                 [requestValidation addObject:[NSNumber numberWithBool:YES]];
-            }else{
+            } else {
                 noMoreValid = YES;
                 [requestValidation addObject:[NSNumber numberWithBool:NO]];
             }
@@ -142,30 +189,41 @@
     PFObject *request = [requests objectAtIndex:indexPath.row];
     int timeLeft = (int)[[request objectForKey:PF_REQUEST_TIME_ALLOCATED] integerValue] - ([[NSDate date] timeIntervalSinceDate:[request createdAt]]/60);
     cell.requestTimeLeft.text = [NSString stringWithFormat:@"Leaving in %d min", timeLeft];
-    
-    cell.timeCreated.text = [self convertDateToString:[request createdAt]]; // it should be the message content
 
     if ([[Utility getInstance] isRequestValid:[request createdAt] andTimeAllocated:[[request objectForKey:PF_REQUEST_TIME_ALLOCATED] integerValue]]) {
-        cell.contentView.backgroundColor = [UIColor whiteColor];
-        self.requestsTableView.backgroundColor = [UIColor whiteColor];
+        
     } else {
         // if request time out ==> added gray background
         cell.requestTimeLeft.text = @"Bouncin' home!";
-        cell.contentView.backgroundColor = LIGHT_SELECT_GRAY_COLOR;
-        self.requestsTableView.backgroundColor = LIGHT_SELECT_GRAY_COLOR;
     }
-    
-    NSString *lastMessage = [request valueForKey:PF_REQUEST_LAST_MESSAGE];
-    if (lastMessage == nil) {
-        lastMessage = @"Tell your buddies where to meet!";
-    }
-    cell.lastMessage.text = lastMessage;
     
     NSArray *homepoints = [request valueForKey:PF_REQUEST_HOMEPOINTS];
-    NSString *hpString = @"Going to ";
+    
+    __block UIImage *image = [UIImage new];
+
+    PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
+    [query whereKey:PF_GROUPS_NAME equalTo:homepoints[0]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSLog(@"object: %@", objects[0]);
+        
+        PFFile *file = [objects[0] valueForKey:PF_GROUP_IMAGE];
+        [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error) {
+                image = [UIImage imageWithData:data];
+                [self.images addObject:image];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    cell.hpImage.image = image;
+                    cell.hpImage.contentMode = UIViewContentModeScaleToFill;
+                });
+            }
+        }];
+    }];
+    
+    NSString *hpString = @"To ";
     
     if ([homepoints count] == 1) {
-        hpString = [NSString stringWithFormat:@"%@", homepoints[0]];
+        hpString = [hpString stringByAppendingString:[NSString stringWithFormat:@"%@", homepoints[0]]];
     }
     else {
         for (int i = 0; i < [homepoints count]; i++) {
@@ -223,7 +281,7 @@
         
         chatView.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:chatView animated:YES];
-    }else{
+    } else {
         // sho alert request time over
         [[Utility getInstance] showAlertMessage:@"Request time over"];
     }
@@ -258,4 +316,5 @@
     [self.requestsTableView reloadData];
 
 }
+
 @end

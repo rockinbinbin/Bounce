@@ -82,6 +82,10 @@
 - (void) removeUserFromGroup:(PFObject *) group;
 - (void) addListOfUsers:(NSArray *) users toGroup:(PFObject *) group;
 
+- (void) addTentativeUserToGroup:(PFObject *) group;
+
+- (NSUInteger) returnNumberOfValidRequestsWithNavigationController:(UINavigationController *)navigationController;
+
 @end
 
 @protocol ParseManagerLoginDelegate <NSObject>

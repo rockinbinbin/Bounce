@@ -27,7 +27,7 @@
         UILabel *homepointName = [UILabel new];
         homepointName.translatesAutoresizingMaskIntoConstraints = NO;
         homepointName.textColor = [UIColor whiteColor];
-        homepointName.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.frame.size.height]; // fix this value
+        homepointName.font = [UIFont fontWithName:@"Avenir-Light" size:28]; // fix this value
         [self.contentView addSubview:homepointName];
         [homepointName kgn_centerHorizontallyInSuperview];
         [homepointName kgn_centerVerticallyInSuperviewWithOffset:-40];
@@ -36,7 +36,7 @@
         UILabel *usersNearby = [UILabel new];
         usersNearby.translatesAutoresizingMaskIntoConstraints = NO;
         usersNearby.textColor = [UIColor whiteColor];
-        usersNearby.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.frame.size.height/3.5];
+        usersNearby.font = [UIFont fontWithName:@"Avenir-Light" size:14];
         [self.contentView addSubview:usersNearby];
         [usersNearby kgn_pinToBottomEdgeOfSuperviewWithOffset:10];
         [usersNearby kgn_pinToLeftEdgeOfSuperviewWithOffset:10];
@@ -45,7 +45,7 @@
         UILabel *distanceAway = [UILabel new];
         distanceAway.translatesAutoresizingMaskIntoConstraints = NO;
         distanceAway.textColor = [UIColor whiteColor];
-        distanceAway.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.frame.size.height/2.75];
+        distanceAway.font = [UIFont fontWithName:@"Avenir-Light" size:14];
         [self.contentView addSubview:distanceAway];
         [distanceAway kgn_centerHorizontallyInSuperview];
         [distanceAway kgn_centerVerticallyInSuperviewWithOffset:15];

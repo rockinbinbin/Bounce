@@ -16,5 +16,6 @@
 @property (nonatomic, weak) UILabel *requestTimeLeft;
 @property (nonatomic, weak) UILabel *lastMessage;
 @property (nonatomic, weak) UILabel *requestedGroups;
+@property (nonatomic, weak) UIImageView *hpImage;
 
 @end

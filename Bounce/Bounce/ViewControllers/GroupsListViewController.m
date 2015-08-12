@@ -64,9 +64,9 @@
     navLabel.textColor = [UIColor whiteColor];
     navLabel.backgroundColor = [UIColor clearColor];
     navLabel.textAlignment = NSTextAlignmentCenter;
-    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/23];
+    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
     self.navigationItem.titleView = navLabel;
-    navLabel.text = @"homepoints";
+    navLabel.text = @"HOMEPOINTS";
     [navLabel sizeToFit];
 }
 

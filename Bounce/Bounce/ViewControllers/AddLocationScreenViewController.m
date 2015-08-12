@@ -38,9 +38,9 @@
     navLabel.textColor = [UIColor whiteColor];
     navLabel.backgroundColor = [UIColor clearColor];
     navLabel.textAlignment = NSTextAlignmentCenter;
-    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/25];
+    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
     self.navigationItem.titleView = navLabel;
-    navLabel.text = @"set location";
+    navLabel.text = @"SET LOCATION";
     [navLabel sizeToFit];
     
     [self setBarButtonItemLeft:@"common_back_button"];

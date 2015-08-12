@@ -52,9 +52,9 @@
         navLabel.textColor = [UIColor whiteColor];
         navLabel.backgroundColor = [UIColor clearColor];
         navLabel.textAlignment = NSTextAlignmentCenter;
-        navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/25];
+        navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
         self.navigationItem.titleView = navLabel;
-        navLabel.text = @"add users";
+        navLabel.text = @"ADD USERS";
         [navLabel sizeToFit];
         
         UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]
@@ -80,9 +80,9 @@
     navLabel.textColor = [UIColor whiteColor];
     navLabel.backgroundColor = [UIColor clearColor];
     navLabel.textAlignment = NSTextAlignmentCenter;
-    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/25];
+    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
     self.navigationItem.titleView = navLabel;
-    navLabel.text = @"edit users";
+    navLabel.text = @"EDIT USERS";
     [navLabel sizeToFit];
     
     self.userChecked  = [[NSMutableArray alloc] init];

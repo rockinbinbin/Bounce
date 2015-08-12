@@ -37,7 +37,7 @@
     UILabel *titleLabel = [UILabel new];
     titleLabel.text = @"HOME, SWEET HOME";
     titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/23];
+    titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.backgroundColor = [UIColor clearColor];
     [titleLabel sizeToFit];

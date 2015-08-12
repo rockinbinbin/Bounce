@@ -45,9 +45,9 @@
     navLabel.textColor = [UIColor whiteColor];
     navLabel.backgroundColor = [UIColor clearColor];
     navLabel.textAlignment = NSTextAlignmentCenter;
-    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/23];
+    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
     self.navigationItem.titleView = navLabel;
-    navLabel.text = @"add homepoint";
+    navLabel.text = @"ADD HOMEPOINT";
     [navLabel sizeToFit];
     
     UILabel *nearbyLabel = [UILabel new];
@@ -242,7 +242,7 @@
 }
 
 #pragma mark - TableView Delegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if ([[userJoinedGroups objectAtIndex:indexPath.row]boolValue]) {
         // remove current user from the selected group
@@ -265,7 +265,7 @@
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
             [[Utility getInstance] showProgressHudWithMessage:[NSString stringWithFormat:@"added to %@", [group objectForKey:PF_GROUPS_NAME]] withView:self.view];
             selectedIndex = index;
-            [[ParseManager getInstance] addCurrentUserToGroup:group];
+            [[ParseManager getInstance] addTentativeUserToGroup:group];
         }
     }
     @catch (NSException *exception) {

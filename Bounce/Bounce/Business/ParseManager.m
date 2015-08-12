@@ -11,6 +11,7 @@
 #import "AppConstant.h"
 #import <MapKit/MapKit.h>
 #import "Constants.h"
+#import "RequestsViewController.h"
 
 @implementation ParseManager
 static ParseManager *parseManager = nil;
@@ -324,6 +325,36 @@ PFUser *currentUser;
         NSLog(@"Exception %@", exception);
     }
 }
+
+#pragma mark – Add user to group tentatively
+- (void) addTentativeUserToGroup:(PFObject *)group {
+    @try {
+        PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
+        NSString *groupName = [group objectForKey:PF_GROUPS_NAME];
+        [query whereKey:PF_GROUPS_NAME equalTo:groupName];
+        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+            if (!error) {
+                [object addObject:[PFUser currentUser] forKey:PF_TENTATIVE_GROUP_USERS];
+                [object saveInBackground];
+            }
+        }];
+        [[Utility getInstance] hideProgressHud];
+        
+        PFQuery *query2 = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
+        [query2 whereKey:PF_TENTATIVE_GROUP_USERS equalTo:PF_TENTATIVE_GROUP_USERS];
+        [query2 findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (!error) {
+                for (PFObject *object in objects) {
+                    NSLog(@"%@", object);
+                }
+            }
+        }];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
+}
+
 #pragma mark - Add User to group
 - (void) addCurrentUserToGroup:(PFObject *) group
 {
@@ -375,14 +406,6 @@ PFUser *currentUser;
     PFQuery *query = [userRelation query];
     [query whereKey:PF_USER_USERNAME notEqualTo:[[PFUser currentUser] username]];
     [query whereKey:PF_USER_LOCATION nearGeoPoint:userGeoPoint withinMiles:K_NEAR_DISTANCE];
-    
-//    // debug location
-//    double distance = [userGeoPoint distanceInMilesTo:[[query getFirstObject] objectForKey:PF_USER_LOCATION]];
-//    NSLog(@"DISTANCE: %f", distance);
-//    PFGeoPoint *otherGeo = [[query getFirstObject] objectForKey:PF_USER_LOCATION];
-//    
-//    NSLog(@"MY LATITUDE: %f LONGITUDE: %f", userGeoPoint.latitude, userGeoPoint.longitude);
-//    NSLog(@"STEVE'S LATITUDE: %f LONGITUDE: %f", otherGeo.latitude, otherGeo.longitude);
     
    return [query countObjects];
 }
@@ -451,6 +474,32 @@ PFUser *currentUser;
          [[NSNotificationCenter defaultCenter] postNotificationName:REQUEST_NUMBER_POST_NOTIFICATION object:nil userInfo:dict];
 
      }];
+}
+
+#pragma mark - Number of valid Requests
+- (NSUInteger) returnNumberOfValidRequestsWithNavigationController:(UINavigationController *)navigationController {
+    __block NSUInteger number = 0;
+    PFQuery *query1 = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
+    [query1 whereKey:PF_REQUEST_SENDER equalTo:[[PFUser currentUser] username]];
+    PFQuery *query2 = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
+    [query1 whereKey:@"receivers" equalTo:[[PFUser currentUser] username]];
+    
+    PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:query1, query2, nil]];
+    [query whereKey:PF_REQUEST_END_DATE greaterThan:[NSDate date]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        number = [objects count];
+        if (error) {
+            if ([self.delegate respondsToSelector:@selector(didFailWithError:)]) {
+                [self.delegate didFailWithError:error];
+            }
+        } else {
+            if (number > 0) {
+                RequestsViewController *requestsViewController = [RequestsViewController new];
+                [navigationController pushViewController:requestsViewController animated:true];
+            }
+        }
+    }];
+    return number;
 }
 
 #pragma mark - Load all User requests

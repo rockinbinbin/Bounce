@@ -31,9 +31,9 @@
     navLabel.textColor = [UIColor whiteColor];
     navLabel.backgroundColor = [UIColor clearColor];
     navLabel.textAlignment = NSTextAlignmentCenter;
-    navLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size:21.0];
+    navLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size:20.0];
     self.navigationItem.titleView = navLabel;
-    navLabel.text = @"Options";
+    navLabel.text = @"CREATE HOMEPOINT";
     [navLabel sizeToFit];
     
     UIBarButtonItem *_cancel = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonClicked)];

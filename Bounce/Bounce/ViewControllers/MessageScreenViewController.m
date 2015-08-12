@@ -40,9 +40,9 @@
     navLabel.textColor = [UIColor whiteColor];
     navLabel.backgroundColor = [UIColor clearColor];
     navLabel.textAlignment = NSTextAlignmentCenter;
-    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/23];
+    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
     self.navigationItem.titleView = navLabel;
-    navLabel.text = @"Where's home?";
+    navLabel.text = @"WHERE'S HOME?";
     [navLabel sizeToFit];
     
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
@@ -145,7 +145,7 @@
 - (void) creatMessageRequestToSelectedGroup:(NSArray *) selectedGroups {
     @try {
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
-            int radius = 500; // hardcoded radius
+            int radius = 700; // hardcoded radius
             [[Utility getInstance] showProgressHudWithMessage:COMMON_HUD_SEND_MESSAGE];
             [[RequestManger getInstance] setCreateRequestDelegate:self];
             [[RequestManger getInstance] createrequestToGroups:self.selectedGroups andGender:self.genderMatching withinTime:self.timeAllocated andInRadius:radius];
@@ -233,7 +233,7 @@
 }
 
 #pragma mark - TableView Delegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (self.selectedCells.count > 0) {
         if ([[self.selectedCells objectAtIndex:indexPath.row] boolValue]) {

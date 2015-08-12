@@ -105,7 +105,7 @@ static RequestManger *sharedRequestManger = nil;
     }
 }
 
-#pragma mark - Get Useres in selected groups within radius
+#pragma mark - Get Users in selected groups within radius
 - (NSArray*) getUsersInSelectedGroups:(NSArray *)selectedGroups withGender:(NSString*) gender WithinRequestRadius:(NSInteger)radius withSenderName:(NSString *)username andSenderLocation:(PFGeoPoint*) location
 {
     @try {
