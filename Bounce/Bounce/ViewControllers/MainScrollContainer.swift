@@ -82,6 +82,5 @@ class MainScrollContainer: UIViewController, MainScrollContainerDelegate {
     
     func setScrolling(canScroll: Bool) {
         self.scrollView.scrollEnabled = canScroll
-        println("METHOD CALLED")
     }
 }

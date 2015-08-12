@@ -20,7 +20,7 @@
         
         UIImageView *chatArrow = [UIImageView new];
         chatArrow.image = [UIImage imageNamed:@"chatArrow"];
-        [self.contentView addSubview:@"chatArrow"];
+        [self.contentView addSubview:chatArrow];
         [chatArrow kgn_pinToRightEdgeOfSuperviewWithOffset:15];
         [chatArrow kgn_centerVerticallyInSuperview];
         

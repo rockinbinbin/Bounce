@@ -104,7 +104,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self disableSlidePanGestureForLeftMenu];
+    printf("HELLO");
     [self loadRequests];
+    printf("HELLO AGAIN");
 }
 #pragma mark - Navigation Bar
 -(void) setBarButtonItemLeft:(NSString*) imageName{
@@ -114,8 +116,6 @@
 }
 
 - (void) setBarButtonItemRight:(NSString *) imageName {
-    UIImage *back = [UIImage imageNamed:imageName];
-    self.navigationItem.rightBarButtonItem = [self initialiseBarButton:back withAction:@selector(navigateToHomepoints)];
 }
 
 -(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action{
