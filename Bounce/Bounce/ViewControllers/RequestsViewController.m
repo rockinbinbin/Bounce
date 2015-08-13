@@ -6,17 +6,16 @@
 //  Copyright (c) 2015 Shimaa Essam. All rights reserved.
 //
 
-#import "RequestsViewController.h"
-
-#import "CustomChatViewController.h"
+#import "bounce-Swift.h"
 #import "AppConstant.h"
-#import "Utility.h"
 #import "Constants.h"
+#import "Utility.h"
+#import "RequestsViewController.h"
+#import "CustomChatViewController.h"
 #import "HomeScreenViewController.h"
 #import "ChatListCell.h"
 #import "chatCell.h"
 #import "GroupsListViewController.h"
-#import "SharedVariables.h"
 
 @interface RequestsViewController () {
     NSMutableArray *requests;
@@ -91,7 +90,7 @@
 }
 
 - (void) makeRequestButtonClicked {
-    [SharedVariables setShouldNotOpenRequestsView:true];
+    [GlobalVariables setShouldNotOpenRequestView:true];
     [self.navigationController popViewControllerAnimated:true];
 }
 

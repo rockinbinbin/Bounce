@@ -8,7 +8,6 @@
 
 #import "HomeScreenViewController.h"
 #import "RequestsViewController.h"
-#import "SharedVariables.h"
 #import "CustomChatViewController.h"
 #import "bounce-Swift.h"
 
@@ -149,10 +148,10 @@
     [super viewWillAppear:animated];
     [self.delegate setScrolling:true];
     
-    if (![SharedVariables shouldNotOpenRequestsView]) {
+    if (![GlobalVariables shouldNotOpenRequestView]) {
         [[ParseManager getInstance] returnNumberOfValidRequestsWithNavigationController:self.navigationController];
     }
-    
+
     [self startReceivingSignificantLocationChanges];
     [self changeCenterToUserLocation];
     [self setUserTrackingMode];

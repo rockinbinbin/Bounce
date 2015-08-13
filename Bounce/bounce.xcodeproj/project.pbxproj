@@ -58,7 +58,6 @@
 		28802DAC1B7708CF008E8B33 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28802DAB1B7708CF008E8B33 /* AccountViewController.swift */; };
 		28802DAE1B770C12008E8B33 /* MainScrollContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28802DAD1B770C12008E8B33 /* MainScrollContainer.swift */; };
 		28802DB01B770C8D008E8B33 /* UniversityEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28802DAF1B770C8D008E8B33 /* UniversityEmail.swift */; };
-		28B5E7421B7B04EC007F79C0 /* SharedVariables.m in Sources */ = {isa = PBXBuildFile; fileRef = 28B5E7411B7B04EC007F79C0 /* SharedVariables.m */; };
 		28B5E7441B7C406D007F79C0 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B5E7431B7C406D007F79C0 /* GlobalVariables.swift */; };
 		28F13A521A6C75A90069EBA4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F13A511A6C75A90069EBA4 /* MapKit.framework */; };
 		67BB90C81ADFA8B20050164B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BB90C41ADFA8B20050164B /* Bolts.framework */; };
@@ -385,8 +384,6 @@
 		28802DAB1B7708CF008E8B33 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		28802DAD1B770C12008E8B33 /* MainScrollContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainScrollContainer.swift; path = ../ViewControllers/MainScrollContainer.swift; sourceTree = "<group>"; };
 		28802DAF1B770C8D008E8B33 /* UniversityEmail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversityEmail.swift; sourceTree = "<group>"; };
-		28B5E7401B7B04EC007F79C0 /* SharedVariables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedVariables.h; sourceTree = "<group>"; };
-		28B5E7411B7B04EC007F79C0 /* SharedVariables.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedVariables.m; sourceTree = "<group>"; };
 		28B5E7431B7C406D007F79C0 /* GlobalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		28F13A511A6C75A90069EBA4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6791817C1AC0057D00D0474C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
@@ -1122,8 +1119,6 @@
 				67BB90F01ADFA8D00050164B /* Constants.h */,
 				67BB90F31ADFA8D00050164B /* ParseManager.h */,
 				67BB90F41ADFA8D00050164B /* ParseManager.m */,
-				28B5E7401B7B04EC007F79C0 /* SharedVariables.h */,
-				28B5E7411B7B04EC007F79C0 /* SharedVariables.m */,
 				67BB90F51ADFA8D00050164B /* PFObject+PFObject_isEqual.h */,
 				67BB90F61ADFA8D00050164B /* PFObject+PFObject_isEqual.m */,
 				67BB90F71ADFA8D00050164B /* RequestManger.h */,
@@ -1762,7 +1757,6 @@
 				67BB944B1ADFABCD0050164B /* JSQMessagesInputToolbar.m in Sources */,
 				00AA6EDE1B6B3CDF00F91CBB /* chatCell.m in Sources */,
 				67BB942B1ADFABCD0050164B /* JSQSystemSoundPlayer+JSQMessages.m in Sources */,
-				28B5E7421B7B04EC007F79C0 /* SharedVariables.m in Sources */,
 				282FAC1A1B71D4C700899FAB /* StudentVerificationViewController.swift in Sources */,
 				007BA40A1A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				67BB94481ADFABCD0050164B /* JSQMessagesCollectionViewCellOutgoing.m in Sources */,
