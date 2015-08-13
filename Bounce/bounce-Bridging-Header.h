@@ -13,7 +13,6 @@
 #import <Parse/Parse.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 #import "Utility.h"
-#import "UIViewController+AMSlideMenu.h"
 
 #import <UIKit/UIKit.h>
 

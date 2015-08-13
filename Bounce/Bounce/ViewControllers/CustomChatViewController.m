@@ -10,7 +10,6 @@
 #import "Utility.h"
 #import "ParseManager.h"
 #import "Constants.h"
-#import "UIViewController+AMSlideMenu.h"
 
 @interface CustomChatViewController ()
 
@@ -31,7 +30,6 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self disableSlidePanGestureForLeftMenu];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

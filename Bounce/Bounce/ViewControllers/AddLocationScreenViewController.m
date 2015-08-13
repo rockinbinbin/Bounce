@@ -12,9 +12,7 @@
 #import <Parse/Parse.h>
 #import "ParseManager.h"
 #import <CoreLocation/CoreLocation.h>
-#import "UIViewController+AMSlideMenu.h"
 #import "Utility.h"
-#import "UIViewController+AMSlideMenu.h"
 #import "UIView+AutoLayout.h"
 
 @interface AddLocationScreenViewController ()
@@ -59,7 +57,6 @@
 }
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self disableSlidePanGestureForLeftMenu];
 }
 -(IBAction)mapClicked:(UITapGestureRecognizer *)recognizer {
     CGPoint clickedPoint = [recognizer locationInView:self.map];
@@ -213,7 +210,6 @@
     PFUser *currentUser = [PFUser currentUser];
     currentUser[@"CurrentLocation"] = geoPoint;
     [currentUser saveInBackground];
-    NSLog(@"location called");
 }
 #pragma mark - MapView delegate
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation

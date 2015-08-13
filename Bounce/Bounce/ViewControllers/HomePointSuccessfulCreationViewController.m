@@ -9,7 +9,6 @@
 #import "HomePointSuccessfulCreationViewController.h"
 #import "AppConstant.h"
 #import "GroupsListViewController.h"
-#import "UIViewController+AMSlideMenu.h"
 #import "UIView+AutoLayout.h"
 
 // TODO: test with different device sizes.
@@ -109,7 +108,6 @@
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self disableSlidePanGestureForLeftMenu];
 }
 
 - (void)didReceiveMemoryWarning {

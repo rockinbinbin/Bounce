@@ -11,7 +11,6 @@
 #import "AppConstant.h"
 #import "Utility.h"
 #import "Constants.h"
-#import "UIViewController+AMSlideMenu.h"
 #import "HomeScreenViewController.h"
 #import "AddGroupUsersViewController.h"
 #import "bounce-Swift.h"
@@ -74,7 +73,6 @@
     [super viewWillAppear:animated];
     [self.delegate setScrolling:true];
     @try {
-        [self disableSlidePanGestureForLeftMenu];
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
             [[Utility getInstance] showProgressHudWithMessage:@"Loading..." withView:self.view];
             [[ParseManager getInstance] setGetUserGroupsdelegate:self];

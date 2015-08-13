@@ -11,7 +11,6 @@
 #import "AppConstant.h"
 #import "RequestManger.h"
 #import "HomeScreenViewController.h"
-#import "UIViewController+AMSlideMenu.h"
 #import "UIView+AutoLayout.h"
 #import "homepointListCell.h"
 
@@ -52,7 +51,7 @@
     
     
     [self.navigationController setNavigationBarHidden:NO];
-    [self disableSlidePanGestureForLeftMenu];
+
     // background
     self.title = @"New Message";
     self.view.backgroundColor = [UIColor whiteColor];

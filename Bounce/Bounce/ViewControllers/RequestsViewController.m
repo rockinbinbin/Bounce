@@ -12,7 +12,6 @@
 #import "AppConstant.h"
 #import "Utility.h"
 #import "Constants.h"
-#import "UIViewController+AMSlideMenu.h"
 #import "HomeScreenViewController.h"
 #import "ChatListCell.h"
 #import "chatCell.h"
@@ -103,10 +102,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self disableSlidePanGestureForLeftMenu];
-    printf("HELLO");
     [self loadRequests];
-    printf("HELLO AGAIN");
 }
 #pragma mark - Navigation Bar
 -(void) setBarButtonItemLeft:(NSString*) imageName{

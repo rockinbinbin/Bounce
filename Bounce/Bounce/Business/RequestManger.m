@@ -223,7 +223,6 @@ static RequestManger *sharedRequestManger = nil;
     @try {
         NSDate *endDate = [[activeRequest createdAt] dateByAddingTimeInterval:[[activeRequest objectForKey:PF_REQUEST_TIME_ALLOCATED] integerValue] * 60];
         if (![self isEndDateIsSmallerThanCurrent:endDate]) {
-            NSLog(@"Requist still valid");
             // Update Request view in home screen
             [self calculateRequestTimeOver];
             [self getNumberOfUnReadMessages];
@@ -298,7 +297,6 @@ static RequestManger *sharedRequestManger = nil;
                     [self removeRequestDataForRemovedUser:removedUsers];
                 }
             } else {
-                NSLog(@"No update in request users");
             }
             isUpdating = NO;
         });
@@ -427,7 +425,7 @@ static RequestManger *sharedRequestManger = nil;
         NSLog(@"Exception %@", exception);
     }
 }
-#pragma mark - Get requestTime left
+
 - (void) calculateRequestTimeOver
 {
     @try {
@@ -440,7 +438,7 @@ static RequestManger *sharedRequestManger = nil;
         
     }
 }
-#pragma mark Has Actinve request
+
 - (BOOL) hasActiveRequest
 {
     if (activeRequest) {
@@ -448,7 +446,10 @@ static RequestManger *sharedRequestManger = nil;
     }
     return NO;
 }
-#pragma mark - Save active Request Id
+
+/**
+ * Saves the active request ID.
+ */
 - (void) loadActiveRequest
 {
     // retreive request data from server
@@ -458,11 +459,13 @@ static RequestManger *sharedRequestManger = nil;
 
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         // set the default data
-        if ([objects count] >0) {
+        if ([objects count] > 0) {
             activeRequest = [objects objectAtIndex:0];
+
             if (![self isEndDateIsSmallerThanCurrent:[activeRequest objectForKey:PF_REQUEST_END_DATE]]) {
                 // remaining time
                 [self calculateRequestTimeOver];
+
                 // unreaded message
                 [self getNumberOfUnReadMessages];
                 [self startRequestUpdating];
@@ -470,6 +473,7 @@ static RequestManger *sharedRequestManger = nil;
                 activeRequest = nil;
                 self.unReadReplies = 0;
                 self.requestLeftTimeInMinute = 0;
+
                 //remove this request with it's chat data
                 [[ParseManager getInstance] deleteAllRequestData:[objects objectAtIndex:0]];
             }

@@ -16,7 +16,6 @@
 #import "Constants.h"
 #import "AddGroupUsersViewController.h"
 #import "AddLocationScreenViewController.h"
-#import "UIViewController+AMSlideMenu.h"
 #import "CreateHomepoint.h"
 #import "UIView+AutoLayout.h"
 #import "homepointListCell.h"
@@ -106,7 +105,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self disableSlidePanGestureForLeftMenu];
     [[ParseManager getInstance] setUpdateGroupDelegate:self];
     [self loadGroups];
 }

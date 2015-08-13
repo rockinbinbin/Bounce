@@ -12,7 +12,6 @@
 #import "AddGroupUsersViewController.h"
 #import "AppConstant.h"
 #import "UIView+AutoLayout.h"
-#import "UIViewController+AMSlideMenu.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation CreateHomepoint
@@ -128,7 +127,6 @@
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self disableSlidePanGestureForLeftMenu];
 }
 
 #pragma mark - Navigation Bar

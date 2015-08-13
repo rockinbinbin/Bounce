@@ -16,7 +16,6 @@
 #import "AppConstant.h"
 #import "ParseManager.h"
 #import "Utility.h"
-#import "UIViewController+AMSlideMenu.h"
 #import "UIView+AutoLayout.h"
 
 @interface AddGroupUsersViewController ()
@@ -117,7 +116,6 @@
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self disableSlidePanGestureForLeftMenu];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

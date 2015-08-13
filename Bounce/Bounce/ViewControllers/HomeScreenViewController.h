@@ -17,12 +17,10 @@
 #import "RequestsViewController.h"
 #import "AppConstant.h"
 #import "GroupsListViewController.h"
-#import "UIViewController+AMSlideMenu.h"
 #import "RequestManger.h"
 #import "UIView+AutoLayout.h"
-#import "UIViewController+AMSlideMenu.h"
 
-@interface HomeScreenViewController : UIViewController <CLLocationManagerDelegate, RequestManagerDelegate, UIGestureRecognizerDelegate>
+@interface HomeScreenViewController : UIViewController <CLLocationManagerDelegate, UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) id delegate;
 

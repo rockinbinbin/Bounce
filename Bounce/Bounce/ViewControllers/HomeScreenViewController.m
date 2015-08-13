@@ -9,20 +9,18 @@
 #import "HomeScreenViewController.h"
 #import "RequestsViewController.h"
 #import "SharedVariables.h"
+#import "CustomChatViewController.h"
 #import "bounce-Swift.h"
 
 @interface HomeScreenViewController ()
 
 @property (strong, nonatomic) CLLocationManager *location_manager;
-@property (weak, nonatomic) UILabel *timeRemainingLabel;
 @property (weak, nonatomic) MKMapView *map;
-@property (weak, nonatomic) UIView *repliesView;
 @property (weak, nonatomic) UIView *bottomView;
 @property (weak, nonatomic) UIButton *getHomeButton;
 @property (weak, nonatomic) UIButton *leftMenuButton;
 @property (weak, nonatomic) NSString *genderMatching;
 @property (nonatomic) float timeAllocated;
-@property (weak, nonatomic) UILabel *numOfMessagesLabel;
 
 @end
 
@@ -85,49 +83,6 @@
     [segmentedControl kgn_sizeToHeight:self.view.frame.size.height/20];
     [segmentedControl kgn_centerHorizontallyInSuperview];
     [segmentedControl kgn_pinToTopEdgeOfSuperviewWithOffset:self.view.frame.size.height/40];
-
-    UIView *replies = [UIView new];
-    replies.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
-    [self.map addSubview:replies];
-    [replies kgn_sizeToHeight:self.view.frame.size.height/3];
-    [replies kgn_sizeToWidth:self.view.frame.size.width];
-    [replies kgn_pinToTopEdgeOfSuperview];
-    self.repliesView = replies;
-    
-    UIButton *repliesButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [repliesButton setTitle:@"Coordinate trip home" forState:UIControlStateNormal];
-    repliesButton.titleLabel.font = [UIFont fontWithName:@"Avenir-Light" size:18.0f];
-    repliesButton.backgroundColor = BounceRed;
-    repliesButton.tintColor = [UIColor whiteColor];
-    repliesButton.layer.cornerRadius = 10;
-    repliesButton.clipsToBounds = YES;
-    [repliesButton addTarget:self action:@selector(repliesButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.repliesView addSubview:repliesButton];
-    [repliesButton kgn_sizeToWidth:self.view.frame.size.width/1.5];
-    [repliesButton kgn_sizeToHeight:self.view.frame.size.height/12];
-    [repliesButton kgn_centerHorizontallyInSuperview];
-    [repliesButton kgn_pinToTopEdgeOfSuperviewWithOffset:self.view.frame.size.height/14];
-    
-    UILabel *timeLeftLabel = [UILabel new];
-    timeLeftLabel.textColor = [UIColor whiteColor];
-    timeLeftLabel.font = [UIFont fontWithName:@"Avenir-Light" size:14];
-    [self.repliesView addSubview:timeLeftLabel];
-    [timeLeftLabel sizeToFit];
-    [timeLeftLabel kgn_pinTopEdgeToTopEdgeOfItem:repliesButton withOffset:-80];
-    [timeLeftLabel kgn_centerHorizontallyInSuperview];
-    self.timeRemainingLabel = timeLeftLabel;
-    
-    // TODO: TEST NOTIFICATION VIEW
-    UILabel *numOfMessagesLabel = [UILabel new];
-    [numOfMessagesLabel setFont:[UIFont fontWithName: @"Avenir-Next" size: 16.0f]];
-    numOfMessagesLabel.layer.cornerRadius = self.numOfMessagesLabel.frame.size.height/2;
-    numOfMessagesLabel.layer.masksToBounds = YES;
-    numOfMessagesLabel.textColor = [UIColor redColor];
-    [self.repliesView addSubview:numOfMessagesLabel];
-    [numOfMessagesLabel kgn_pinLeftEdgeToLeftEdgeOfItem:repliesButton withOffset:-(self.view.frame.size.width/1.5)];
-    [numOfMessagesLabel kgn_pinTopEdgeToTopEdgeOfItem:repliesButton];
-    self.numOfMessagesLabel = numOfMessagesLabel;
-    /////////////////////////////////////////////////
     
     UISlider *slider = [UISlider new];
     [slider addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventValueChanged];
@@ -188,19 +143,6 @@
     [getHomeButton kgn_centerHorizontallyInSuperview];
     [getHomeButton kgn_centerVerticallyInSuperviewWithOffset:-45];
     self.getHomeButton = getHomeButton;
-    
-    UIButton *endRequestButton = [UIButton new];
-    endRequestButton.tintColor = [UIColor whiteColor];
-    endRequestButton.backgroundColor = BounceSeaGreen;
-    [endRequestButton setTitle:@"cancel request" forState:UIControlStateNormal];
-    endRequestButton.titleLabel.font = [UIFont fontWithName:@"Avenir-Light" size:14];
-    [endRequestButton addTarget:self action:@selector(endRequestButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.map addSubview:endRequestButton];
-    [endRequestButton kgn_sizeToHeight:self.view.frame.size.height/14];
-    [endRequestButton kgn_sizeToWidth:self.view.frame.size.width];
-    [endRequestButton kgn_pinToBottomEdgeOfSuperview];
-    
-    [self hideReplyView];
 }
 
 -(void) viewWillAppear:(BOOL)animated {
@@ -216,12 +158,23 @@
     [self setUserTrackingMode];
 
 
-    
-    [[RequestManger getInstance] setRequestManagerDelegate:self];
     if ([[RequestManger getInstance] hasActiveRequest]) {
-        [self requestCreated];
+        NSLog(@"SHOULD PRESENT NOW");
     }
 }
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [self.delegate setScrolling:false];
+    [[RequestManger getInstance] setRequestManagerDelegate:nil];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+# pragma mark Custom Methods
 
 - (void)MySegmentControlAction:(UISegmentedControl *)segment {
     if(segment.selectedSegmentIndex == 0) {
@@ -231,10 +184,6 @@
         PFUser* u = [PFUser currentUser];
         self.genderMatching = u[PF_GENDER];
     }
-}
-
-- (void)handleGesture {
-    [self disableSlidePanGestureForLeftMenu];
 }
 
 -(void)sliderAction:(id)sender {
@@ -249,41 +198,6 @@
             completion();
         }
     }];
-}
-
-- (void) viewWillDisappear:(BOOL)animated
-{
-    [self.delegate setScrolling:false];
-    [[RequestManger getInstance] setRequestManagerDelegate:nil];
-}
-
--(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL)action {
-    UIButton *buttonItem = [UIButton buttonWithType:UIButtonTypeCustom];
-    buttonItem.bounds = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height );
-    [buttonItem addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
-    [buttonItem setImage:buttonImage forState:UIControlStateNormal];
-    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:buttonItem];
-    return barButtonItem;
-}
-
-#pragma mark - add left button
-- (void) addLeftMenuButton {
-    AMSlideMenuMainViewController *mainVC = [AMSlideMenuMainViewController getInstanceForVC:self];
-    
-    UINavigationItem *navItem = self.navigationItem;
-    
-    UIButton *leftBtn = self.leftMenuButton;
-    [mainVC configureLeftMenuButton:leftBtn];
-    [leftBtn addTarget:mainVC action:@selector(openLeftMenu) forControlEvents:UIControlEventTouchUpInside];
-    
-    mainVC.leftMenuButton = leftBtn;
-    
-    navItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.leftMenuButton];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 # pragma mark Custom Functions
@@ -333,7 +247,6 @@
     PFUser *currentUser = [PFUser currentUser];
     currentUser[@"CurrentLocation"] = geoPoint;
     [currentUser saveInBackground];
-    NSLog(@"location called");
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
@@ -361,34 +274,13 @@
     [self.navigationController pushViewController:messageScreenViewController animated:YES];
 }
 
-- (IBAction)repliesButtonClicked:(id)sender {
-    // navigate to the request screen
-    RequestsViewController* requestsViewController = [RequestsViewController new];
-    [self.navigationController pushViewController:requestsViewController animated:YES];
-}
-- (IBAction)endRequestButtonClicked:(id)sender {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Are you sure you want to cancel the request?"
-                                                    message:@"All of the recepients will be notified."
-                                                   delegate:self
-                                          cancelButtonTitle:@"End Request"
-                                          otherButtonTitles:@"Don't End", nil];
-    [alert show];
-}
-
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
             [[Utility getInstance] showProgressHudWithMessage:@"End Request..." withView:self.view];
-            [[RequestManger getInstance] setRequestManagerDelegate:self];
             [[RequestManger getInstance] endRequest];
         }
     }
-}
-- (IBAction)privateChatButtonClicked:(id)sender {
-    // FIRST CALL THE PARSE MANAGER METHOD TO CALC THE CHAT NUMBER
-    [[ParseManager getInstance] getNumberOfValidRequests];
-    AMSlideMenuMainViewController *mainVC = [self mainSlideMenu];
-    [mainVC openLeftMenu];
 }
 
 - (IBAction)groupsChatButtonClicked:(id)sender {
@@ -396,65 +288,10 @@
     [self.navigationController pushViewController:groupsListViewController animated:YES];
 }
 
-#pragma mark - RequestManger Delegate
-- (void)updateRequestRemainingTime:(NSInteger)remainingTime
-{
-    @try {
-        [self showTheReplyView];
-        self.timeRemainingLabel.text  = [NSString stringWithFormat:REQUEST_TIME_REMAINING_STRING, (long)remainingTime];
-    }
-    @catch (NSException *exception) {
-        NSLog(@"Exception %@", exception);
-    }
-}
-
-- (void)updateRequestUnreadMessage:(NSInteger)numberOfUnreadMessages
-{
-    @try {
-        if (numberOfUnreadMessages > 0) {
-            [self.numOfMessagesLabel setHidden:NO];
-            [self.numOfMessagesLabel setText:[NSString stringWithFormat:@"%li", (long)numberOfUnreadMessages]];
-        }
-        else {
-            [self.numOfMessagesLabel setHidden:YES];
-        }
-    }
-    @catch (NSException *exception) {
-        NSLog(@"Exception %@", exception);
-    }
-}
 - (void)didEndRequestWithError:(NSError *)error
 {
     [[Utility getInstance] hideProgressHud];
-    if (!error) {
-        [self hideReplyView];
-    }
 }
-- (void)requestTimeOver
-{
-    [self hideReplyView];
-}
-- (void)requestCreated
-{
-    self.timeRemainingLabel.text  = [NSString stringWithFormat:REQUEST_TIME_REMAINING_STRING, (long)[[RequestManger getInstance] requestLeftTimeInMinute]];
-    [self showTheReplyView];
-}
-#pragma mark - show Reply view
-- (void) showTheReplyView
-{
-    [self.repliesView setHidden:NO];
-    [self.getHomeButton setHidden:YES];
-    [self.bottomView setHidden:YES];
-}
-- (void) hideReplyView
-{
-    [self.repliesView setHidden:YES];
-    [self.numOfMessagesLabel setHidden:YES];
-    [self.getHomeButton setHidden:NO];
-    [self.bottomView setHidden:NO];
-}
-
-#pragma mark - MKOverlay Delegate
 
 
 @end
