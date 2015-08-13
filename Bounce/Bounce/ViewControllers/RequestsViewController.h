@@ -10,19 +10,22 @@
 #import "Utility.h"
 #import "ParseManager.h"
 
+#pragma mark RequestsViewControllerDelegate
+
 @class RequestsViewController;
 @protocol RequestsViewControllerDelegate <NSObject>
-
 @required
 
 - (void) requestsViewControllerDidRequestDismissal:(RequestsViewController *)controller withCompletion:(void (^) ())completion;
 
 @end
 
+#pragma mark RequestsViewController
+
 @interface RequestsViewController : UIViewController<ParseManagerDelegate, ParseManagerDeleteDelegate, UITableViewDataSource, UITableViewDelegate>
 
+@property (strong, nonatomic) id delegate;
 @property (weak, nonatomic) UITableView *requestsTableView;
-
 @property (strong, nonatomic) NSMutableArray *images;
 @property (weak, nonatomic) UIView *bottomView;
 

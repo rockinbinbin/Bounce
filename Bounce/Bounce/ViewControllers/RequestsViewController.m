@@ -24,6 +24,8 @@
 }
 @end
 
+#pragma mark Builtin Methods
+
 @implementation RequestsViewController
 
 - (void)viewDidLoad {
@@ -87,11 +89,8 @@
     [makeRequest kgn_sizeToWidth:self.view.frame.size.width - 50];
     [makeRequest kgn_centerHorizontallyInSuperview];
     [makeRequest kgn_pinToBottomEdgeOfSuperviewWithOffset:20];
-}
-
-- (void) makeRequestButtonClicked {
-    [GlobalVariables setShouldNotOpenRequestView:true];
-    [self.navigationController popViewControllerAnimated:true];
+    
+    [self.navigationItem setHidesBackButton:true animated:false];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -101,16 +100,17 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.delegate setScrolling:true];
+    [self.navigationItem setHidesBackButton:true animated:false];
+
     [self loadRequests];
 }
-#pragma mark - Navigation Bar
--(void) setBarButtonItemLeft:(NSString*) imageName{
-    
-    UIImage *back = [UIImage imageNamed:imageName];
-    self.navigationItem.leftBarButtonItem = [self initialiseBarButton:back withAction:@selector(backButtonClicked)];
-}
 
-- (void) setBarButtonItemRight:(NSString *) imageName {
+#pragma mark Custom Methods
+
+- (void) makeRequestButtonClicked {
+    [GlobalVariables setShouldNotOpenRequestView:true];
+    [self.navigationController popViewControllerAnimated:true];
 }
 
 -(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action{
@@ -122,7 +122,7 @@
     return barButtonItem;
 }
 -(void)backButtonClicked{
-    
+    printf("HELLO");
 //    AMSlideMenuMainViewController *mainVC = [self mainSlideMenu];
 //    UIViewController *rootVC = [[HomeScreenViewController alloc] init];
 //    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:rootVC];
@@ -147,7 +147,9 @@
     if ([requests count] > 0) {
         BOOL noMoreValid = NO;
         for (PFObject *request in requests) {
-            if (!noMoreValid && [[Utility getInstance] isRequestValid:[request createdAt] andTimeAllocated:[[request objectForKey:PF_REQUEST_TIME_ALLOCATED] integerValue]] && ![[request objectForKey:PF_REQUEST_IS_ENDED] boolValue] ) {
+            if (!noMoreValid &&
+                [[Utility getInstance] isRequestValid:[request createdAt] andTimeAllocated:[[request objectForKey:PF_REQUEST_TIME_ALLOCATED] integerValue]] &&
+                ![[request objectForKey:PF_REQUEST_IS_ENDED] boolValue]) {
                 [requestValidation addObject:[NSNumber numberWithBool:YES]];
             } else {
                 noMoreValid = YES;
@@ -199,8 +201,6 @@
     PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
     [query whereKey:PF_GROUPS_NAME equalTo:homepoints[0]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        NSLog(@"object: %@", objects[0]);
-        
         PFFile *file = [objects[0] valueForKey:PF_GROUP_IMAGE];
         [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             if (!error) {

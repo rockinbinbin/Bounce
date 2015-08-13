@@ -12,6 +12,7 @@
 #import <MapKit/MapKit.h>
 #import "Constants.h"
 #import "RequestsViewController.h"
+#import "RequestManger.h"
 
 @implementation ParseManager
 static ParseManager *parseManager = nil;
@@ -455,30 +456,7 @@ PFUser *currentUser;
 }
 
 #pragma mark - Number of valid Requests
-- (void) getNumberOfValidRequests
-{
-    // load requests if the user is sender or receiver
-    PFQuery *query1 = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
-    [query1 whereKey:PF_REQUEST_SENDER equalTo:[[PFUser currentUser] username]];
-    PFQuery *query2 = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
-    [query2 whereKey:@"receivers" equalTo:[[PFUser currentUser] username]];
-    
-    PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:query1, query2, nil]];
-    [query whereKey:PF_REQUEST_END_DATE greaterThan:[NSDate date]];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-     {
-         // fire notification to update the request numbers
-         NSDictionary* dict = [NSDictionary dictionaryWithObject:
-                               [NSNumber numberWithInteger:[objects count]]
-                                                          forKey:CHAT];
-         [[NSNotificationCenter defaultCenter] postNotificationName:REQUEST_NUMBER_POST_NOTIFICATION object:nil userInfo:dict];
-
-     }];
-}
-
-#pragma mark - Number of valid Requests
-- (NSUInteger) returnNumberOfValidRequestsWithNavigationController:(UINavigationController *)navigationController {
-    __block NSUInteger number = 0;
+- (NSUInteger) getNumberOfValidRequests {
     PFQuery *query1 = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
     [query1 whereKey:PF_REQUEST_SENDER equalTo:[[PFUser currentUser] username]];
     PFQuery *query2 = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
@@ -486,20 +464,17 @@ PFUser *currentUser;
     
     PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:query1, query2, nil]];
     [query whereKey:PF_REQUEST_END_DATE greaterThan:[NSDate date]];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        number = [objects count];
-        if (error) {
-            if ([self.delegate respondsToSelector:@selector(didFailWithError:)]) {
-                [self.delegate didFailWithError:error];
-            }
-        } else {
-            if (number > 0) {
-                RequestsViewController *requestsViewController = [RequestsViewController new];
-                [navigationController pushViewController:requestsViewController animated:true];
-            }
+    
+    NSError *error;
+    NSArray *objects = [query findObjects:&error];
+    
+    if (error) {
+        if ([self.delegate respondsToSelector:@selector(didFailWithError:)]) {
+            [self.delegate didFailWithError:error];
         }
-    }];
-    return number;
+    }
+    
+    return [objects count];
 }
 
 #pragma mark - Load all User requests

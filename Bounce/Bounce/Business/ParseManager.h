@@ -65,7 +65,7 @@
 // check if there is a user logged in
 - (BOOL) isThereLoggedUser;
 // GET VALID REQUEST NUMBER
-- (void) getNumberOfValidRequests;
+- (NSUInteger) getNumberOfValidRequests;
 // Get user requests
 - (void) getUserRequests;
 // Delete Request

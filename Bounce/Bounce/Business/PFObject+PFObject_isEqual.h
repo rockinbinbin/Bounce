@@ -11,5 +11,4 @@
 
 @interface PFObject (PFObject_isEqual)
 
-
 @end

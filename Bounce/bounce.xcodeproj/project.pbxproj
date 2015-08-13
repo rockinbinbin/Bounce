@@ -384,7 +384,7 @@
 		28802DAB1B7708CF008E8B33 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		28802DAD1B770C12008E8B33 /* MainScrollContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainScrollContainer.swift; path = ../ViewControllers/MainScrollContainer.swift; sourceTree = "<group>"; };
 		28802DAF1B770C8D008E8B33 /* UniversityEmail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversityEmail.swift; sourceTree = "<group>"; };
-		28B5E7431B7C406D007F79C0 /* GlobalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
+		28B5E7431B7C406D007F79C0 /* GlobalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GlobalVariables.swift; path = ../ViewControllers/GlobalVariables.swift; sourceTree = "<group>"; };
 		28F13A511A6C75A90069EBA4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6791817C1AC0057D00D0474C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		67BB90C41ADFA8B20050164B /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = FrameWorks/Bolts.framework; sourceTree = "<group>"; };
@@ -1125,6 +1125,7 @@
 				67BB90F81ADFA8D00050164B /* RequestManger.m */,
 				67BB90F91ADFA8D00050164B /* Utility.h */,
 				67BB90FA1ADFA8D00050164B /* Utility.m */,
+				28B5E7431B7C406D007F79C0 /* GlobalVariables.swift */,
 			);
 			path = Business;
 			sourceTree = "<group>";
@@ -1156,7 +1157,6 @@
 				67BB92181ADFA8D10050164B /* MessageScreenViewController.m */,
 				67BB92191ADFA8D10050164B /* RequestsViewController.h */,
 				67BB921A1ADFA8D10050164B /* RequestsViewController.m */,
-				28B5E7431B7C406D007F79C0 /* GlobalVariables.swift */,
 				00AA6EDC1B6B3CDF00F91CBB /* chatCell.h */,
 				00AA6EDD1B6B3CDF00F91CBB /* chatCell.m */,
 				67BB920A1ADFA8D10050164B /* IntoductionView */,

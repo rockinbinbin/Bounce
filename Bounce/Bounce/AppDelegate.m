@@ -220,7 +220,7 @@
             }
         }
     } else {
-        [self appOpendFromNotification:userInfo];
+        [self appOpenedFromNotification:userInfo];
     }
 }
 
@@ -264,9 +264,8 @@
     }
 }
 
-- (void) appOpendFromNotification:(NSDictionary *)userInfo{
+- (void) appOpenedFromNotification:(NSDictionary *)userInfo{
     @try {
-        
         NSString *requestId = [userInfo objectForKey:OBJECT_ID];
         if (requestId && [[ParseManager getInstance] isThereLoggedUser]) {
             [self openRequestViewController:requestId];

@@ -149,7 +149,15 @@
     [self.delegate setScrolling:true];
     
     if (![GlobalVariables shouldNotOpenRequestView]) {
-        [[ParseManager getInstance] returnNumberOfValidRequestsWithNavigationController:self.navigationController];
+        NSUInteger numValidRequests = [[ParseManager getInstance] getNumberOfValidRequests];
+        NSLog(@"%lu", (unsigned long)numValidRequests);
+        
+        if (numValidRequests > 0) {
+            RequestsViewController *requestsViewController = [RequestsViewController new];
+            requestsViewController.delegate = self.delegate;
+            
+            [self.navigationController pushViewController:requestsViewController animated:true];
+        }
     }
 
     [self startReceivingSignificantLocationChanges];
