@@ -58,7 +58,7 @@
     [self.tableView setBackgroundView:backgroundView];
     
     [self.navigationController setNavigationBarHidden:NO];
-    [self setBarButtonItemRight:@"common_plus_icon"];
+    [self setBarButtonItemRight:@"Plus"];
 
     UILabel *navLabel = [UILabel new];
     navLabel.textColor = [UIColor whiteColor];

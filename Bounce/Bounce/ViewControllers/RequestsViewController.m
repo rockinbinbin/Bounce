@@ -45,7 +45,7 @@
     navLabel.textAlignment = NSTextAlignmentCenter;
     navLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size:21];
     self.navigationItem.titleView = navLabel;
-    navLabel.text = @"Leaving Soon";
+    navLabel.text = @"Leaving Soon Nearby";
     [navLabel sizeToFit];
     
     UITableView *tableView = [UITableView new];
@@ -57,39 +57,40 @@
     self.requestsTableView = tableView;
     [tableView kgn_pinToLeftEdgeOfSuperview];
     [tableView kgn_pinToTopEdgeOfSuperview];
-    [tableView kgn_sizeToHeight:self.view.frame.size.height];
+    [tableView kgn_pinToBottomEdgeOfSuperviewWithOffset:0];
     [tableView kgn_sizeToWidth:self.view.frame.size.width];
     
     UIView *bottomView = [UIView new];
     bottomView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:bottomView];
-    [bottomView kgn_sizeToHeight:self.view.frame.size.height / 4.9];
+    [bottomView kgn_sizeToHeight:130];
     [bottomView kgn_sizeToWidth:self.view.frame.size.width];
     [bottomView kgn_pinToBottomEdgeOfSuperview];
     self.bottomView = bottomView;
     
-    UILabel *leavingGroup = [UILabel new];
-    leavingGroup.textColor = [UIColor darkGrayColor];
-    leavingGroup.backgroundColor = [UIColor clearColor];
-    leavingGroup.textAlignment = NSTextAlignmentCenter;
-    leavingGroup.font = [UIFont fontWithName:@"Avenir-Light" size:14];
-    leavingGroup.text = @"Didn't find what you're looking for?";
-    [bottomView addSubview:leavingGroup];
-    [leavingGroup sizeToFit];
-    [leavingGroup kgn_centerHorizontallyInSuperview];
-    [leavingGroup kgn_pinToTopEdgeOfSuperviewWithOffset:30];
-
     UIButton *makeRequest = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     makeRequest.tintColor = [UIColor whiteColor];
     [makeRequest setBackgroundColor:BounceSeaGreen];
     [makeRequest setTitle:@"Create a new leaving group" forState:UIControlStateNormal];
-    makeRequest.titleLabel.font = [UIFont fontWithName:@"Avenir-Light" size:14];
+    makeRequest.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:18];
+    makeRequest.layer.cornerRadius = 10;
     [makeRequest addTarget:self action:@selector(makeRequestButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:makeRequest];
-    [makeRequest kgn_sizeToHeight:self.view.frame.size.height/13];
+    [makeRequest kgn_sizeToHeight:53];
     [makeRequest kgn_sizeToWidth:self.view.frame.size.width - 50];
     [makeRequest kgn_centerHorizontallyInSuperview];
-    [makeRequest kgn_pinToBottomEdgeOfSuperviewWithOffset:20];
+    [makeRequest kgn_pinToBottomEdgeOfSuperviewWithOffset:25];
+    
+    UILabel *leavingGroup = [UILabel new];
+    leavingGroup.textColor = [UIColor colorWithWhite:0.0 alpha:0.56];
+    leavingGroup.backgroundColor = [UIColor clearColor];
+    leavingGroup.textAlignment = NSTextAlignmentCenter;
+    leavingGroup.font = [UIFont fontWithName:@"AvenirNext-Regular" size:16];
+    leavingGroup.text = @"Didn't find what you're looking for?";
+    [bottomView addSubview:leavingGroup];
+    [leavingGroup sizeToFit];
+    [leavingGroup kgn_centerHorizontallyInSuperview];
+    [leavingGroup kgn_positionAboveItem:makeRequest withOffset:10];
 }
 
 - (void)didReceiveMemoryWarning {
