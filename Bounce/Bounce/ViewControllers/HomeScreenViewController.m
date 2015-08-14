@@ -43,9 +43,9 @@
     navLabel.textColor = [UIColor whiteColor];
     navLabel.backgroundColor = [UIColor clearColor];
     navLabel.textAlignment = NSTextAlignmentCenter;
-    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
+    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:30];
     self.navigationItem.titleView = navLabel;
-    navLabel.text = @"BOUNCE";
+    navLabel.text = @"bounce";
     [navLabel sizeToFit];
     
     [[RequestManger getInstance] loadActiveRequest];

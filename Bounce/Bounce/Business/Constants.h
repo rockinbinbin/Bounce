@@ -49,6 +49,7 @@
 #define PF_REQUEST_RECEIVERS_RELATION @"RequestReceivers"
 #define PF_REQUEST_LOCATION @"Location"
 #define PF_REQUEST_IS_ENDED @"isEnded"
+
 // save end date instead save the time allocate
 #define PF_REQUEST_END_DATE @"EndDate"
 #define PF_REQUEST_GENDER @"gender"
@@ -63,10 +64,10 @@
 #define OBJECT_ID @"objectId"
 #define PF_GENDER @"Gender"
 #define PF_CREATED_AT @"createdAt"
+
 // Home screen
 #define REQUEST_TIME_LEFT_STRING @"%i min left"
 #define REQUEST_TIME_REMAINING_STRING @"%li min remaining"
-
 
 // Gender cases
 #define ALL_GENDER @"All"

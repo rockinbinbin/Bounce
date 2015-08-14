@@ -59,6 +59,7 @@
 		28802DAE1B770C12008E8B33 /* MainScrollContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28802DAD1B770C12008E8B33 /* MainScrollContainer.swift */; };
 		28802DB01B770C8D008E8B33 /* UniversityEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28802DAF1B770C8D008E8B33 /* UniversityEmail.swift */; };
 		28B5E7441B7C406D007F79C0 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B5E7431B7C406D007F79C0 /* GlobalVariables.swift */; };
+		28B5E7461B7DA883007F79C0 /* NavigationBarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B5E7451B7DA883007F79C0 /* NavigationBarExtensions.swift */; };
 		28F13A521A6C75A90069EBA4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F13A511A6C75A90069EBA4 /* MapKit.framework */; };
 		67BB90C81ADFA8B20050164B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BB90C41ADFA8B20050164B /* Bolts.framework */; };
 		67BB90C91ADFA8B20050164B /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BB90C51ADFA8B20050164B /* Parse.framework */; };
@@ -385,6 +386,7 @@
 		28802DAD1B770C12008E8B33 /* MainScrollContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainScrollContainer.swift; path = ../ViewControllers/MainScrollContainer.swift; sourceTree = "<group>"; };
 		28802DAF1B770C8D008E8B33 /* UniversityEmail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversityEmail.swift; sourceTree = "<group>"; };
 		28B5E7431B7C406D007F79C0 /* GlobalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GlobalVariables.swift; path = ../ViewControllers/GlobalVariables.swift; sourceTree = "<group>"; };
+		28B5E7451B7DA883007F79C0 /* NavigationBarExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarExtensions.swift; sourceTree = "<group>"; };
 		28F13A511A6C75A90069EBA4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6791817C1AC0057D00D0474C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		67BB90C41ADFA8B20050164B /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = FrameWorks/Bolts.framework; sourceTree = "<group>"; };
@@ -1147,6 +1149,7 @@
 				67BB91FF1ADFA8D10050164B /* CustomChatViewController.m */,
 				67BB92041ADFA8D10050164B /* GroupsListViewController.h */,
 				67BB92051ADFA8D10050164B /* GroupsListViewController.m */,
+				28B5E7451B7DA883007F79C0 /* NavigationBarExtensions.swift */,
 				00E2CBBF1B560B3600B316D1 /* homepointListCell.h */,
 				00E2CBC01B560B3600B316D1 /* homepointListCell.m */,
 				67BB92061ADFA8D10050164B /* HomePointSuccessfulCreationViewController.h */,
@@ -1768,6 +1771,7 @@
 				67BB944F1ADFABCD0050164B /* JSQMessagesMediaPlaceholderView.m in Sources */,
 				67BB94551ADFABCD0050164B /* MBProgressHUD.m in Sources */,
 				67BB924E1ADFA8D10050164B /* AppDelegate.m in Sources */,
+				28B5E7461B7DA883007F79C0 /* NavigationBarExtensions.swift in Sources */,
 				67BB944A1ADFABCD0050164B /* JSQMessagesComposerTextView.m in Sources */,
 				282FAC1B1B71D4C700899FAB /* EmailSentViewController.swift in Sources */,
 				67BB93061ADFA8D10050164B /* UIViewController+infopagestempfile.m in Sources */,

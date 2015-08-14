@@ -38,6 +38,7 @@
     
     self.navigationController.navigationBar.barTintColor = BounceRed;
     self.navigationController.navigationBar.translucent = NO;
+    [self.navigationController.navigationBar hideBottomHairline];
     
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
     
@@ -47,13 +48,13 @@
     [self.view addSubview:tableView];
     _tableView = tableView;
     [tableView kgn_sizeToWidth:self.view.frame.size.width];
-    [tableView kgn_sizeToHeight:self.view.frame.size.height];
     [tableView kgn_pinToTopEdgeOfSuperview];
+    [tableView kgn_pinToBottomEdgeOfSuperview];
     [tableView kgn_pinToLeftEdgeOfSuperview];
     
     UIView *backgroundView = [UIView new];
     backgroundView.frame = self.view.frame;
-    backgroundView.backgroundColor = BounceLightGray;
+    backgroundView.backgroundColor = BounceRed;
     [self.tableView setBackgroundView:backgroundView];
     
     [self.navigationController setNavigationBarHidden:NO];
@@ -63,9 +64,9 @@
     navLabel.textColor = [UIColor whiteColor];
     navLabel.backgroundColor = [UIColor clearColor];
     navLabel.textAlignment = NSTextAlignmentCenter;
-    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
+    navLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size:21];
     self.navigationItem.titleView = navLabel;
-    navLabel.text = @"HOMEPOINTS";
+    navLabel.text = @"Homepoints";
     [navLabel sizeToFit];
 }
 
