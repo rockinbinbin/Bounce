@@ -16,39 +16,54 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
-        self.contentView.backgroundColor = [UIColor whiteColor];
+        self.contentView.backgroundColor = BounceRed;
         
         UIImageView *chatArrow = [UIImageView new];
         chatArrow.image = [UIImage imageNamed:@"chatArrow"];
         [self.contentView addSubview:chatArrow];
         [chatArrow kgn_pinToRightEdgeOfSuperviewWithOffset:15];
         [chatArrow kgn_centerVerticallyInSuperview];
-        
+
         UIImageView *hpImage = [UIImageView new];
         [self.contentView addSubview:hpImage];
         self.hpImage = hpImage;
-        [hpImage kgn_sizeToHeight:70];
-        [hpImage kgn_sizeToWidth:70];
-        [hpImage kgn_pinToLeftEdgeOfSuperviewWithOffset:30];
+        [hpImage kgn_sizeToHeight:85];
+        [hpImage kgn_sizeToWidth:85];
+        [hpImage kgn_pinToLeftEdgeOfSuperviewWithOffset:40];
         [hpImage kgn_centerVerticallyInSuperview];
-        
+
+        self.hpImage.layer.borderWidth = 4.0f;
+        self.hpImage.layer.borderColor = [[UIColor whiteColor] CGColor];
+        self.hpImage.layer.cornerRadius = 42.5f;
+        self.hpImage.clipsToBounds = true;
+
         UILabel *requestedGroups = [UILabel new];
-        requestedGroups.textColor = BounceRed;
-        requestedGroups.font = [UIFont fontWithName:@"Avenir-Light" size:20];
+        requestedGroups.textColor = [UIColor whiteColor];
+        requestedGroups.font = [UIFont fontWithName:@"AvenirNext-Regular" size:22];
         requestedGroups.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:requestedGroups];
         self.requestedGroups = requestedGroups;
-        [requestedGroups kgn_pinTopEdgeToTopEdgeOfItem:self.hpImage];
-        [requestedGroups kgn_centerHorizontallyInSuperview];
+        [requestedGroups kgn_pinTopEdgeToTopEdgeOfItem:self.hpImage withOffset:-5];
+        [requestedGroups kgn_positionToTheRightOfItem:hpImage withOffset:25];
         
         UILabel *timeLeft = [UILabel new];
-        timeLeft.textColor = BounceRed;
-        timeLeft.font = [UIFont fontWithName:@"Avenir-Light" size:15];
+        timeLeft.textColor = [UIColor colorWithWhite:1.0 alpha:0.69];
+        timeLeft.font = [UIFont fontWithName:@"Avenir-Roman" size:16];
         [self.contentView addSubview:timeLeft];
         self.requestTimeLeft = timeLeft;
-        [timeLeft kgn_pinLeftEdgeToLeftEdgeOfItem:requestedGroups];
-        [timeLeft kgn_pinBottomEdgeToBottomEdgeOfItem:requestedGroups withOffset:30];
-      
+        [timeLeft kgn_positionToTheRightOfItem:hpImage withOffset:25];
+        [timeLeft kgn_positionBelowItem:requestedGroups withOffset:0];
+        
+        UILabel *peopleDescription = [UILabel new];
+        peopleDescription.text = @"5 friends, 10 total people";
+        peopleDescription.textColor = [UIColor colorWithWhite:1.0 alpha:0.69];
+        peopleDescription.font = [UIFont fontWithName:@"Avenir-Roman" size:16];
+        [self.contentView addSubview:peopleDescription];
+        [peopleDescription kgn_positionToTheRightOfItem:hpImage withOffset:25];
+        [peopleDescription kgn_positionBelowItem:timeLeft withOffset:0];
+        
+        self.layer.borderColor = [BounceRed CGColor];
+        self.layer.borderWidth = 0.5f;
     }
     return self;
 }

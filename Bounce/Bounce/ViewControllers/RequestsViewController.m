@@ -37,6 +37,7 @@
     self.navigationController.navigationBar.barTintColor = BounceRed;
     self.navigationController.navigationBar.translucent = NO;
     [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController.navigationBar hideBottomHairline];
     
     UILabel *navLabel = [UILabel new];
     navLabel.textColor = [UIColor whiteColor];
@@ -89,8 +90,6 @@
     [makeRequest kgn_sizeToWidth:self.view.frame.size.width - 50];
     [makeRequest kgn_centerHorizontallyInSuperview];
     [makeRequest kgn_pinToBottomEdgeOfSuperviewWithOffset:20];
-    
-    [self.navigationItem setHidesBackButton:true animated:false];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -101,7 +100,10 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.delegate setScrolling:true];
-    [self.navigationItem setHidesBackButton:true animated:false];
+
+    // For some reason the back button doesn't hide properly.
+    // This moves it out of the way.
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
 
     [self loadRequests];
 }
@@ -235,7 +237,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return self.view.frame.size.height/5;
+    return 113;
 }
 
 #pragma mark - TableView Delegate
@@ -267,7 +269,7 @@
     PFObject *request = [requests objectAtIndex:groupIndex];
     NSString *requestId = request.objectId;
     
-//    if ([[Utility getInstance] isRequestValidWithEndDate:[request objectForKey:PF_REQUEST_END_DATE]]) {
+//  if ([[Utility getInstance] isRequestValidWithEndDate:[request objectForKey:PF_REQUEST_END_DATE]]) {
     if ([[Utility getInstance] isRequestValid:[request createdAt] andTimeAllocated:[[request objectForKey:PF_REQUEST_TIME_ALLOCATED] integerValue]] && ![[request objectForKey:PF_REQUEST_IS_ENDED] boolValue] ) {
         [[ParseManager getInstance] createMessageItemForUser:[PFUser currentUser] WithGroupId:requestId andDescription:[request objectForKey:@"name"]];
         
@@ -280,7 +282,6 @@
         // sho alert request time over
         [[Utility getInstance] showAlertMessage:@"Request time over"];
     }
-    
 }
 
 #pragma mark - String from Date
