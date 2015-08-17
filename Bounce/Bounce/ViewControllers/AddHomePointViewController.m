@@ -22,6 +22,8 @@
 
 @interface AddHomePointViewController ()
 
+@property (nonatomic) NSInteger cellIndex;
+
 @end
 
 @implementation AddHomePointViewController
@@ -256,18 +258,30 @@
 }
 
 #pragma mark - Add User to selected group
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex;
+{
+    if (buttonIndex == 0) {
+        [self requestToJoin];
+    }
+}
+
 - (void) addUserToGroup:(NSInteger) index
 {
-    @try {
-        PFObject *group = [groups objectAtIndex:index];
-        if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
-            [[Utility getInstance] showProgressHudWithMessage:[NSString stringWithFormat:@"added to %@", [group objectForKey:PF_GROUPS_NAME]] withView:self.view];
-            selectedIndex = index;
-            [[ParseManager getInstance] addTentativeUserToGroup:group];
+    self.cellIndex = index;
+    if (!_imageActionSheet) {
+        self.imageActionSheet = [[UIActionSheet alloc] initWithTitle:@"A member of this homepoint will have to approve your request."  delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Request to join", nil];
         }
-    }
-    @catch (NSException *exception) {
-        NSLog(@"Exception %@", exception);
+    [self.imageActionSheet showInView:self.view];
+   
+}
+
+-(void)requestToJoin {
+    PFObject *group = [groups objectAtIndex:self.cellIndex];
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+        [[Utility getInstance] showProgressHudWithMessage:[NSString stringWithFormat:@"added to %@", [group objectForKey:PF_GROUPS_NAME]] withView:self.view];
+        selectedIndex = self.cellIndex;
+        [[ParseManager getInstance] addTentativeUserToGroup:group];
     }
 }
 
