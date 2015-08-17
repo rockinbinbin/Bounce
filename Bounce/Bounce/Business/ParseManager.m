@@ -13,6 +13,7 @@
 #import "Constants.h"
 #import "RequestsViewController.h"
 #import "RequestManger.h"
+#import "RequestsViewController.h"
 
 @implementation ParseManager
 static ParseManager *parseManager = nil;
@@ -456,6 +457,33 @@ PFUser *currentUser;
 }
 
 #pragma mark - Number of valid Requests
+
+-(NSUInteger) returnNumberOfValidRequestsWithNavigationController:(UINavigationController *)navigationController {
+    __block NSUInteger number = 0;
+    // load requests if the user is sender or receiver
+    PFQuery *query1 = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
+    [query1 whereKey:PF_REQUEST_SENDER equalTo:[[PFUser currentUser] username]];
+    PFQuery *query2 = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
+    [query2 whereKey:@"receivers" equalTo:[[PFUser currentUser] username]];
+    
+    PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:query1, query2, nil]];
+    [query whereKey:PF_REQUEST_END_DATE greaterThan:[NSDate date]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        number = [objects count];
+        if (error) {
+            if ([self.delegate respondsToSelector:@selector(didFailWithError:)]) {
+                [self.delegate didloadAllObjects:objects];
+            }
+        }
+        else {
+            if ([self.delegate respondsToSelector:@selector(didloadAllObjects:)]) {
+                [self.delegate didloadAllObjects:objects];
+            }
+        }
+    }];
+    return number;
+}
+
 - (NSUInteger) getNumberOfValidRequests {
     PFQuery *query1 = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
     [query1 whereKey:PF_REQUEST_SENDER equalTo:[[PFUser currentUser] username]];

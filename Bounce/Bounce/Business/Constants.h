@@ -27,7 +27,7 @@
 #define IS_IPHONE6PLUS ([[UIScreen mainScreen] bounds].size.height == 736)
 #define IS_IPAD ([[UIScreen mainScreen] bounds].size.height > 736)
 // Colors
-#define BounceRed       [UIColor colorWithRed:255/255.0 green:127/255.0 blue:127/255.0 alpha:1.0] // #FF7F7F
+#define BounceRed       [UIColor colorWithRed:255/255.0 green:127/255.0 blue:124/255.0 alpha:1.0] // #FF7F7F
 #define BounceGreen     [UIColor colorWithRed:202/255.0 green: 231/255.0 blue:185/255.0 alpha:1.0] // #CAE789
 #define BounceYellow    [UIColor colorWithRed:234/255.0 green: 222/255.0 blue:138/255.0 alpha:1.0] //#F3DE8A
 #define BounceBlue      [UIColor colorWithRed:115/255.0 green:127/255.0 blue:154/255.0 alpha:1.0] //#7E7F9A

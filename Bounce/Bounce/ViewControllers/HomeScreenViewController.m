@@ -146,6 +146,9 @@
 
 -(void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    [[ParseManager getInstance] returnNumberOfValidRequestsWithNavigationController:self.navigationController];
+    
     [self.delegate setScrolling:true];
     
     if (![GlobalVariables shouldNotOpenRequestView]) {
@@ -168,6 +171,14 @@
     if ([[RequestManger getInstance] hasActiveRequest]) {
         NSLog(@"SHOULD PRESENT NOW");
     }
+}
+
+- (void) requestsViewControllerDidRequestDismissal:(RequestsViewController *)controller withCompletion:(void (^)())completion {
+    [controller.presentingViewController dismissViewControllerAnimated:YES completion:^{
+        if (completion) {
+            completion();
+        }
+    }];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -197,14 +208,6 @@
     UISlider *slider = (UISlider*)sender;
     float value = slider.value;
     self.timeAllocated = value;
-}
-
-- (void) requestsViewControllerDidRequestDismissal:(RequestsViewController *)controller withCompletion:(void (^)())completion {
-    [controller.presentingViewController dismissViewControllerAnimated:true completion:^{
-        if (completion) {
-            completion();
-        }
-    }];
 }
 
 # pragma mark Custom Functions

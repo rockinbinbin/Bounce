@@ -314,4 +314,9 @@
 
 }
 
+- (void)navigateToHomepoints {
+    GroupsListViewController *groupsListViewController = [GroupsListViewController new];
+    [self.navigationController pushViewController:groupsListViewController animated:YES];
+}
+
 @end

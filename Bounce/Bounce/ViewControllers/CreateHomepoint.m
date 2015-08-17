@@ -49,10 +49,6 @@
 
     self.navigationItem.leftBarButtonItem = _cancel;
     
-    UIImage *img = [UIImage imageNamed:@"addPhotoButton"];
-    self.buttonHeight = img.size.height;
-    self.buttonWidth = img.size.width;
-    
     // PHOTO BUTTON
     
     _addPhotoButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -398,9 +394,10 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
             [alert show];
         }
         else {
+             image = [self imageWithImage:image scaledToHeight:self.view.frame.size.width];
             self.editImageIcon.image = [UIImage imageNamed:@"Homepoint-Pencil"];
             [_addPhotoButton setImage:image forState:UIControlStateNormal];
-            self.addPhotoButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
+            self.addPhotoButton.imageView.contentMode = UIViewContentModeScaleToFill;
             self.imageAdded = YES;
             self.overlay.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.4];
         }
