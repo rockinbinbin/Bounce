@@ -19,6 +19,7 @@
 @protocol ParseManagerDelegate;
 @protocol ParseManagerDeleteDelegate;
 @protocol ParseManagerLoadNewUsers;
+@protocol ParseManagerGetTentativeUsers;
 
 @interface ParseManager : NSObject
 
@@ -32,6 +33,7 @@
 @property id<ParseManagerDelegate> delegate;
 @property id<ParseManagerDeleteDelegate> deleteDelegate;
 @property id<ParseManagerLoadNewUsers> loadNewUsers;
+@property id<ParseManagerGetTentativeUsers> getTentativeUsers;
 
 + (ParseManager*) getInstance;
 // Chat message
@@ -81,6 +83,7 @@
 - (void) addCurrentUserToGroup:(PFObject *) group;
 - (void) removeUserFromGroup:(PFObject *) group;
 - (void) addListOfUsers:(NSArray *) users toGroup:(PFObject *) group;
+- (void) getTentativeUsersFromGroup:(PFObject *)group;
 
 - (void) addTentativeUserToGroup:(PFObject *) group;
 
@@ -136,4 +139,8 @@
 
 @protocol ParseManagerLoadNewUsers <NSObject>
 - (void) didloadNewUsers:(NSArray *)users WithError:(NSError *) error;
+@end
+
+@protocol ParseManagerGetTentativeUsers <NSObject>
+- (void) didLoadTentativeUsers:(NSArray *)tentativeUsers;
 @end

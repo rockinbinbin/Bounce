@@ -348,6 +348,26 @@ PFUser *currentUser;
     }
 }
 
+// Function: Query should return all tentative users for a group
+- (void) getTentativeUsersFromGroup:(PFObject *)group {
+    PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
+    NSString *groupName = [group objectForKey:PF_GROUPS_NAME];
+    [query whereKey:PF_GROUPS_NAME equalTo:groupName];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (!error) {
+            NSArray *tentativeUsers = [NSArray new];
+           NSLog(@"OBJECT: %@", object);
+            if ([object valueForKey:PF_TENTATIVE_GROUP_USERS])
+                tentativeUsers = [object valueForKey:PF_TENTATIVE_GROUP_USERS];
+            NSLog(@"TENTATIVE USERS %@", tentativeUsers);
+            // DO SOMETHING WITH TENTATIVE USERS
+            if ([self.getTentativeUsers respondsToSelector:@selector(didLoadTentativeUsers)]) {
+               [self.getTentativeUsers didLoadTentativeUsers:tentativeUsers];
+                 }
+            }
+         }];
+}
+
 #pragma mark - Add User to group
 - (void) addCurrentUserToGroup:(PFObject *) group
 {

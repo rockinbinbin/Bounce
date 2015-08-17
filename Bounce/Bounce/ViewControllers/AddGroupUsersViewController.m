@@ -20,6 +20,8 @@
 
 @interface AddGroupUsersViewController ()
 
+@property (nonatomic, strong) NSMutableArray *tentativeUsers;
+
 @end
 
 @implementation AddGroupUsersViewController {
@@ -72,6 +74,7 @@
             [self.userChecked  addObject:[NSNumber numberWithBool:NO]];
         }
     }
+     [[ParseManager getInstance] getTentativeUsersFromGroup:self.updatedGroup];
 }
 
 - (void) setEditData {
@@ -281,6 +284,11 @@
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
     }
+}
+
+#pragma mark - get Tentative Users
+- (void) didLoadTentativeUsers:(NSArray *)tentativeUsers {
+     // FIX DIS
 }
 
 #pragma mark - Parse Manger Add Group delegate
