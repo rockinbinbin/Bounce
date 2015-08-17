@@ -144,7 +144,7 @@
             // calculate the near users in each group
             // calcultae the distance to the group
             nearUsers = [[NSMutableArray alloc] init];
-            distanceToUserLocation = [[NSMutableArray alloc] init];
+            //distanceToUserLocation = [[NSMutableArray alloc] init];
             self.homepointImages = [NSMutableArray new];
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
