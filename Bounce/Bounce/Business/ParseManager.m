@@ -337,18 +337,9 @@ PFUser *currentUser;
         [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
             if (!error) {
                 [object addObject:[PFUser currentUser] forKey:PF_TENTATIVE_GROUP_USERS];
-                [object saveInBackground];
-            }
-        }];
-        [[Utility getInstance] hideProgressHud];
-        
-        PFQuery *query2 = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
-        [query2 whereKey:PF_TENTATIVE_GROUP_USERS equalTo:PF_TENTATIVE_GROUP_USERS];
-        [query2 findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if (!error) {
-                for (PFObject *object in objects) {
-                    NSLog(@"%@", object);
-                }
+                [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    [[Utility getInstance] hideProgressHud];
+                }];
             }
         }];
     }
