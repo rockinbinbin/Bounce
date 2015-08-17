@@ -279,9 +279,9 @@
 -(void)requestToJoin {
     PFObject *group = [groups objectAtIndex:self.cellIndex];
     if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
-        [[Utility getInstance] showProgressHudWithMessage:[NSString stringWithFormat:@"added to %@", [group objectForKey:PF_GROUPS_NAME]] withView:self.view];
+        [[Utility getInstance] showProgressHudWithMessage:[NSString stringWithFormat:@"Request sent to %@", [group objectForKey:PF_GROUPS_NAME]] withView:self.view];
         selectedIndex = self.cellIndex;
-        [[ParseManager getInstance] addTentativeUserToGroup:group];
+        [[ParseManager getInstance] getTentativeUsersFromGroup:group]; // this adds user to tentative list
     }
 }
 

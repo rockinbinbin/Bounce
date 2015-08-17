@@ -85,7 +85,7 @@
 - (void) addListOfUsers:(NSArray *) users toGroup:(PFObject *) group;
 - (void) getTentativeUsersFromGroup:(PFObject *)group;
 
-- (void) addTentativeUserToGroup:(PFObject *) group;
+- (void) addTentativeUserToGroup:(PFObject *)group withExistingTentativeUsers:(NSArray *)tentativeUsers;
 
 - (NSUInteger) returnNumberOfValidRequestsWithNavigationController:(UINavigationController *)navigationController;
 
