@@ -45,7 +45,7 @@
     navLabel.textAlignment = NSTextAlignmentCenter;
     navLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size:21];
     self.navigationItem.titleView = navLabel;
-    navLabel.text = @"Leaving Soon Nearby";
+    navLabel.text = @"LEAVING SOON";
     [navLabel sizeToFit];
     
     UITableView *tableView = [UITableView new];
@@ -112,8 +112,8 @@
 #pragma mark Custom Methods
 
 - (void) makeRequestButtonClicked {
-    [GlobalVariables setShouldNotOpenRequestView:true];
-    [self.navigationController popViewControllerAnimated:true];
+    [GlobalVariables setShouldNotOpenRequestView:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action{

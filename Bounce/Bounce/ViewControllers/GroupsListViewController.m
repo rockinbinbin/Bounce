@@ -66,7 +66,7 @@
     navLabel.textAlignment = NSTextAlignmentCenter;
     navLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size:21];
     self.navigationItem.titleView = navLabel;
-    navLabel.text = @"Homepoints";
+    navLabel.text = @"HOMEPOINTS";
     [navLabel sizeToFit];
 }
 

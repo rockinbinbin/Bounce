@@ -476,8 +476,9 @@ PFUser *currentUser;
             }
         }
         else {
-            if ([self.delegate respondsToSelector:@selector(didloadAllObjects:)]) {
-                [self.delegate didloadAllObjects:objects];
+            if (number > 0) {
+                RequestsViewController *requestsViewController = [RequestsViewController new];
+                [navigationController pushViewController:requestsViewController animated:YES];
             }
         }
     }];
