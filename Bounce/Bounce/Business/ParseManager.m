@@ -328,16 +328,39 @@ PFUser *currentUser;
     }
 }
 
+// THIS SHOULD BE CALLED
+// Function: Query should return all tentative users for a group. GETS CALLED 1ST
+- (void) getTentativeUsersFromGroup:(PFObject *)group {
+     PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
+      NSString *groupName = [group objectForKey:PF_GROUPS_NAME];
+      [query whereKey:PF_GROUPS_NAME equalTo:groupName];
+      [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+          if (!error) {
+                      NSArray *tentativeUsers = [NSArray new];
+            
+                      if ([object valueForKey:PF_TENTATIVE_GROUP_USERS])
+                         tentativeUsers = [object valueForKey:PF_TENTATIVE_GROUP_USERS];
+           
+                   if ([self.getTentativeUsers respondsToSelector:@selector(didLoadTentativeUsers:)]) {
+                           [self.getTentativeUsers didLoadTentativeUsers:tentativeUsers];
+                        }
+                      [self addTentativeUserToGroup:group withExistingTentativeUsers:tentativeUsers]; // CALLS ADD TENTATIVE USER
+                 }
+         }];
+    }
+
+
+// called second. don't call this manually
 #pragma mark – Add user to group tentatively
 - (void) addTentativeUserToGroup:(PFObject *)group withExistingTentativeUsers:(NSArray *)tentativeUsers { // FIX DIS: Problem for same-name groups
     @try {
         BOOL inGroup = NO;
-         // IF a user is a tentative user, skip adding them
+        // IF a user is a tentative user, skip adding them
         for (int i = 0; i < [tentativeUsers count]; i++) {
-           if ([[PFUser currentUser] isEqual: tentativeUsers[i]]) {
-               inGroup = YES;
-            break;
-           }
+            if ([[PFUser currentUser] isEqual: tentativeUsers[i]]) {
+                inGroup = YES;
+                break;
+            }
         }
         if (!inGroup) {
             // perform add
@@ -356,29 +379,10 @@ PFUser *currentUser;
         else {
             [[Utility getInstance] hideProgressHud];
         }
-        [self addUser:[PFUser currentUser] toGroup:group];
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
     }
-}
-
-// Function: Query should return all tentative users for a group
-- (void) getTentativeUsersFromGroup:(PFObject *)group {
-    PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
-    NSString *groupName = [group objectForKey:PF_GROUPS_NAME];
-    [query whereKey:PF_GROUPS_NAME equalTo:groupName];
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        if (!error) {
-            NSArray *tentativeUsers = [NSArray new];
-            if ([object valueForKey:PF_TENTATIVE_GROUP_USERS])
-                tentativeUsers = [object valueForKey:PF_TENTATIVE_GROUP_USERS];
-                if ([self.getTentativeUsers respondsToSelector:@selector(didLoadTentativeUsers:)]) {
-               [self.getTentativeUsers didLoadTentativeUsers:tentativeUsers];
-                 }
-            [self addTentativeUserToGroup:group withExistingTentativeUsers:tentativeUsers];
-            }
-         }];
 }
 
 // Function: Query should add a user by pfobject to a group and remove it from tentative users array. works
@@ -404,7 +408,7 @@ PFUser *currentUser;
          }
 }
 
-// Function: Query should remove a tentative user for a 'tentative user' array -- not tested. ah!! fix dis
+// Function: Query should remove a tentative user for a 'tentative user' array. Called from addUser method
 - (void)removeUser:(PFUser *)user fromTentativeGroup:(PFObject *)group {
       PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
        NSString *groupName = [group objectForKey:PF_GROUPS_NAME]; // PF_GROUPS_NAME
