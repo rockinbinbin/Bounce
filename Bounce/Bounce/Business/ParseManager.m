@@ -411,7 +411,6 @@ PFUser *currentUser;
      [query whereKey:PF_GROUPS_NAME equalTo:groupName];
      [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
              if (!error) {
-                    NSLog(@"%@ blay", object);
                      NSArray *tentativeUsers = [NSArray new];
            
                        if ([object valueForKey:PF_TENTATIVE_GROUP_USERS])
