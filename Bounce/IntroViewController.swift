@@ -168,6 +168,8 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
             } else if user != nil {
                 let facebookId = PFUser.currentUser()?.objectForKey("facebook_id") as? String
                 
+                println("The facebook ID is \(facebookId)")
+                
                 if let id = facebookId as String! {
                     self.loadProfilePictureOnMainThread(id)
                 }

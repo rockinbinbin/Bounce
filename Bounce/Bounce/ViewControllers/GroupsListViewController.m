@@ -66,8 +66,34 @@
     navLabel.textAlignment = NSTextAlignmentCenter;
     navLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size:21];
     self.navigationItem.titleView = navLabel;
-    navLabel.text = @"HOMEPOINTS";
+    navLabel.text = @"Homepoints";
     [navLabel sizeToFit];
+
+    UIImageView *placeholderImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Homepoints-Placeholder"]];
+    [self.tableView.backgroundView addSubview:placeholderImageView];
+    [placeholderImageView kgn_pinToTopEdgeOfSuperviewWithOffset:50];
+    [placeholderImageView kgn_centerHorizontallyInSuperview];
+    [placeholderImageView kgn_sizeToWidthAndHeight:self.view.frame.size.width * 0.64];
+    
+    UILabel *placeholderTitle = [UILabel new];
+    placeholderTitle.text = @"Add your first homepoint.";
+    placeholderTitle.textColor = [UIColor whiteColor];
+    placeholderTitle.textAlignment = NSTextAlignmentCenter;
+    placeholderTitle.font = [UIFont fontWithName:@"AvenirNext-Medium" size:23];
+    [self.tableView.backgroundView addSubview:placeholderTitle];
+    [placeholderTitle kgn_positionBelowItem:placeholderImageView withOffset:50];
+    [placeholderTitle kgn_centerHorizontallyInSuperview];
+    
+    UILabel *placeholderBodyText = [UILabel new];
+    placeholderBodyText.text = @"Search for communities nearby – join or create homepoints for your house, apartment, dorm, or neighborhood.";
+    placeholderBodyText.textColor = [UIColor whiteColor];
+    placeholderBodyText.textAlignment = NSTextAlignmentCenter;
+    placeholderBodyText.font = [UIFont fontWithName:@"AvenirNext-Regular" size:19];
+    placeholderBodyText.numberOfLines = 0;
+    placeholderBodyText.lineBreakMode = NSLineBreakByWordWrapping;
+    [self.tableView.backgroundView addSubview:placeholderBodyText];
+    [placeholderBodyText kgn_positionBelowItem:placeholderTitle withOffset:30];
+    [placeholderBodyText kgn_pinToSideEdgesOfSuperviewWithOffset:46.5];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
