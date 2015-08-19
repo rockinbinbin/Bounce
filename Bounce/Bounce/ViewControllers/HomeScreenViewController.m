@@ -147,9 +147,11 @@
 -(void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [[ParseManager getInstance] returnNumberOfValidRequestsWithNavigationController:self.navigationController];
-    
     [self.delegate setScrolling:true];
+    
+    if ([GlobalVariables shouldNotOpenRequestView]) {
+        [self setBarButtonItemLeft:@"common_back_button"];
+    }
     
     if (![GlobalVariables shouldNotOpenRequestView]) {
         NSUInteger numValidRequests = [[ParseManager getInstance] getNumberOfValidRequests];
@@ -158,7 +160,6 @@
         if (numValidRequests > 0) {
             RequestsViewController *requestsViewController = [RequestsViewController new];
             requestsViewController.delegate = self.delegate;
-            
             [self.navigationController pushViewController:requestsViewController animated:true];
         }
     }
@@ -171,6 +172,29 @@
     if ([[RequestManger getInstance] hasActiveRequest]) {
         NSLog(@"SHOULD PRESENT NOW");
     }
+}
+
+// Sets left nav bar button
+-(void) setBarButtonItemLeft:(NSString*) imageName {
+    UIImage *menuImage = [UIImage imageNamed:imageName];
+    self.navigationItem.leftBarButtonItem = [self initialiseBarButton:menuImage withAction:@selector(cancelButtonClicked)];
+}
+
+// Sets nav bar button item with image
+-(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action {
+    
+    UIButton *buttonItem = [UIButton buttonWithType:UIButtonTypeCustom];
+    buttonItem.bounds = CGRectMake( 0, 0, buttonImage.size.width, buttonImage.size.height );
+    [buttonItem addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
+    [buttonItem setImage:buttonImage forState:UIControlStateNormal];
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:buttonItem];
+    return barButtonItem;
+}
+
+-(void)cancelButtonClicked {
+    RequestsViewController *requestsViewController = [RequestsViewController new];
+    requestsViewController.delegate = self.delegate;
+    [self.navigationController pushViewController:requestsViewController animated:true];
 }
 
 - (void) requestsViewControllerDidRequestDismissal:(RequestsViewController *)controller withCompletion:(void (^)())completion {

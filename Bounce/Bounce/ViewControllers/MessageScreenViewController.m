@@ -13,6 +13,7 @@
 #import "HomeScreenViewController.h"
 #import "UIView+AutoLayout.h"
 #import "homepointListCell.h"
+#import "bounce-Swift.h"
 
 @interface MessageScreenViewController ()
 @end
@@ -340,8 +341,9 @@
         if (error) {
             //
             [[Utility getInstance] showAlertMessage:FAILURE_SEND_MESSAGE];
-        }else{
+        } else {
             // MOVE TO HOME
+            [GlobalVariables setShouldNotOpenRequestView:NO];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
     }
