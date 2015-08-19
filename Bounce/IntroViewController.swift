@@ -209,16 +209,35 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
+    /**
+     * Stores user ID and full name in Parse.
+     *
+     * :param: user The new PFUser signing up.
+     */
     func handleNewUser(user: PFUser?) {
         FBRequestConnection.startForMeWithCompletionHandler({ (connection: FBRequestConnection!, result: AnyObject?, error: NSError!) -> Void in
-            if error == nil {
-                if let id = result?.objectForKey("id") as? String {
-                    PFUser.currentUser()?.setObject(id, forKey: "facebook_id")
-                    user!.saveInBackgroundWithBlock(nil)
-                    self.loadProfilePictureOnMainThread(id)
-                }
-            } else {
+
+            // Maps from the /me response value names to stored Parse value names.
+            let keyMap = [
+                "id":   ["facebook_id"],
+                "name": ["fullname", "username"],
+            ]
+
+            if error != nil {
                 println(error)
+            } else {
+                for (graphAPIResponseKey, parseKeys) in keyMap {
+                    for parseKey in parseKeys {
+                        if let graphAPIResponseValue = result?.objectForKey(graphAPIResponseKey) as? String {
+                            PFUser.currentUser()?.setObject(graphAPIResponseValue, forKey: parseKey)
+                            user!.saveInBackgroundWithBlock(nil)
+                            
+                            if graphAPIResponseKey == "facebook_id" {
+                                self.loadProfilePictureOnMainThread(graphAPIResponseValue)
+                            }
+                        }
+                    }
+                }
             }
         })
         
