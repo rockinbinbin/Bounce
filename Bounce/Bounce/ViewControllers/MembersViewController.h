@@ -19,7 +19,7 @@
 
 // This is the view for editing users (should show pending users + users in group).
 
-@interface MembersViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface MembersViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ParseManagerLoadNewUsers>
 
 @property (nonatomic, strong) PFObject *group;
 @property (nonatomic, strong) UITableView *tableView;

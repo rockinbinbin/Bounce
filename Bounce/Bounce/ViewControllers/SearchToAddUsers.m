@@ -14,7 +14,6 @@
         [super viewDidLoad];
     
         [self setBarButtonItemLeft:@"common_back_button"];
-        [self setBarButtonItemRight:@"whiteCheck"];
     
        UILabel *navLabel = [UILabel new];
         navLabel.textColor = [UIColor whiteColor];
@@ -22,7 +21,7 @@
         navLabel.textAlignment = NSTextAlignmentCenter;
         navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
        self.navigationItem.titleView = navLabel;
-        navLabel.text = @"MEMBERS";
+        navLabel.text = @"SEARCH FOR USERS";
         [navLabel sizeToFit];
     
     }
@@ -31,11 +30,6 @@
 -(void) setBarButtonItemLeft:(NSString*) imageName {
         UIImage *menuImage = [UIImage imageNamed:imageName];
         self.navigationItem.leftBarButtonItem = [self initialiseBarButton:menuImage withAction:@selector(cancelButtonClicked)];
-    }
-
-- (void) setBarButtonItemRight:(NSString *)imageName {
-        UIImage *menuImage = [UIImage imageNamed:imageName];
-       self.navigationItem.rightBarButtonItem = [self initialiseBarButton:menuImage withAction:@selector(doneClicked)];
     }
 
 // Sets nav bar button item with image
@@ -51,10 +45,6 @@
 
 - (void)cancelButtonClicked {
         [self.navigationController popViewControllerAnimated:YES];
-    }
-
-- (void)doneClicked {
-        // save & pop
-    }
+}
 
 @end

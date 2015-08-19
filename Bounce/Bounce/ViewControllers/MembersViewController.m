@@ -63,13 +63,14 @@
     }
 
 - (void)addMembersClicked {
-        // Save & navigate to AddGroupUsersViewController
-        SearchToAddUsers *searchVC = [SearchToAddUsers new];
-        [self.navigationController pushViewController:searchVC animated:YES];
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+        [[Utility getInstance] showProgressHudWithMessage:@"Loading..." withView:self.view];
+        [[ParseManager getInstance] setLoadNewUsers:self];
+        [[ParseManager getInstance] getCandidateUsersForGroup:self.group];
     }
+}
 
 - (void) cancelButtonClicked {
-        // pop
         [self.navigationController popViewControllerAnimated:YES];
     }
 
@@ -147,9 +148,6 @@
         if (indexPath != nil) {
                [[ParseManager getInstance] addUser:[self.tentativeUsers objectAtIndex:indexPath.row] toGroup:_group];
         
-                //membersCell *cell = (membersCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-        //        UIImage *img = [UIImage imageNamed:@"sendButton"];
-        //        [cell.iconView setImage:img forState:UIControlStateNormal];
                 self.selected = YES;
                [self.tableView reloadData];
             }
@@ -164,6 +162,11 @@
         return 100;
     }
 
-
+- (void) didloadNewUsers:(NSArray *)users WithError:(NSError *)error {
+    [[Utility getInstance] hideProgressHud];
+    SearchToAddUsers *searchVC = [SearchToAddUsers new];
+    searchVC.candidateUsers = users;
+    [self.navigationController pushViewController:searchVC animated:YES];
+}
 
 @end

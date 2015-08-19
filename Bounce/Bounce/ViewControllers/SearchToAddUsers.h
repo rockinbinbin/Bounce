@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ParseManager.h"
 
-@interface SearchToAddUsers : UIViewController
+@interface SearchToAddUsers : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, strong) NSArray *candidateUsers;
 
 @end
