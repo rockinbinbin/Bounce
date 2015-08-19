@@ -16,7 +16,6 @@
     ParseManagerGetUserGroups,
     ParseManagerDeleteDelegate,
     ParseManagerDelegate,
-    ParseManagerLoadNewUsers,
     ParseManagerGetTentativeUsers
 >
 
