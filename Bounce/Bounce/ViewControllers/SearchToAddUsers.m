@@ -17,8 +17,6 @@
 @interface SearchToAddUsers ()
 
 @property (nonatomic, strong) NSArray *searchResults;
-//@property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSArray *usernames;
 
 @property (nonatomic, strong) UISearchController *searchController;
 @property (strong, nonatomic) UITableViewController *searchResultsTableViewController;
@@ -44,67 +42,35 @@
         navLabel.text = @"SEARCH FOR USERS";
         [navLabel sizeToFit];
     
-        // A table view for results.
         UITableView *searchResultsTableView = [[UITableView alloc] initWithFrame:self.tableView.frame];
         searchResultsTableView.dataSource = self;
        searchResultsTableView.delegate = self;
     
-    
-    //    // Registration of reuse identifiers.
-    //    [searchResultsTableView registerClass:UITableViewCell.class forCellReuseIdentifier:Identifier];
-    //    [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:Identifier];
-    
-        // Init a search results table view controller and setting its table view.
         self.searchResultsTableViewController = [[UITableViewController alloc] init];
         self.searchResultsTableViewController.tableView = searchResultsTableView;
     
-        // Init a search controller with its table view controller for results.
         self.searchController = [[UISearchController alloc] initWithSearchResultsController:self.searchResultsTableViewController];
         self.searchController.searchResultsUpdater = self;
         self.searchController.delegate = self;
     
-        // Make an appropriate size for search bar and add it as a header view for initial table view.
         [self.searchController.searchBar sizeToFit];
+        self.searchController.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
         self.tableView.tableHeaderView = self.searchController.searchBar;
     
-        // Enable presentation context.
         self.definesPresentationContext = YES;
-    
-        NSMutableArray *usernames = [NSMutableArray new];
-        for (PFUser *user in self.candidateUsers) {
-                [usernames addObject:user.username];
-            }
-        self.usernames = usernames;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
         [super viewDidAppear:animated];
-    
-        // Hide search bar.
-        [self dismissSearchBarAnimated:NO];
 }
 
 #pragma mark - Util methods
 
-- (void)dismissSearchBarAnimated: (BOOL)animated {
-        CGFloat offset = (self.searchController.searchBar.bounds.size.height) - (self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height);
-    
-        if (animated) {
-                [UIView animateWithDuration:0.5 animations:^{
-                        self.tableView.contentOffset = CGPointMake(0, offset);
-                    }];
-            } else {
-                    self.tableView.contentOffset = CGPointMake(0, offset);
-                }
-}
-
-// Sets left nav bar button
 -(void) setBarButtonItemLeft:(NSString*) imageName {
         UIImage *menuImage = [UIImage imageNamed:imageName];
         self.navigationItem.leftBarButtonItem = [self initialiseBarButton:menuImage withAction:@selector(cancelButtonClicked)];
 }
 
-// Sets nav bar button item with image
 -(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action {
     
         UIButton *buttonItem = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -207,19 +173,11 @@
                        return range.location != NSNotFound;
                    }];
             
-                // Set up results.
                 NSArray *searchResults = [self.candidateUsers filteredArrayUsingPredicate:predicate];
                 self.searchResults = searchResults;
             
-                // Reload search table view.
                 [self.searchResultsTableViewController.tableView reloadData];
             }
-    }
-
-#pragma mark - Search Controller Delegate
-
-- (void)didDismissSearchController:(UISearchController *)searchController {
-    [self dismissSearchBarAnimated:YES];
 }
 
 @end
