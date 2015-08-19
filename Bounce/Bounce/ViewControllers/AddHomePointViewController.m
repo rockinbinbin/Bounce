@@ -19,6 +19,7 @@
 #import "CreateHomepoint.h"
 #import "UIView+AutoLayout.h"
 #import "homepointListCell.h"
+#import "SearchToAddGroups.h"
 
 @interface AddHomePointViewController ()
 
@@ -97,7 +98,8 @@
 }
 
 -(void)searchButtonClicked {
-    // TODO: push new search view
+    [[ParseManager getInstance] setGetAllOtherGroupsDelegate:self];
+    [[ParseManager getInstance] getAllOtherGroupsForCurrentUser];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -170,6 +172,12 @@
     [buttonItem setImage:buttonImage forState:UIControlStateNormal];
     UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:buttonItem];
     return barButtonItem;
+}
+
+- (void)didLoadAllOtherGroups:(NSArray *)groups {
+        SearchToAddGroups *searchVC = [SearchToAddGroups new];
+        searchVC.allGroups = groups;
+    [self.navigationController pushViewController:searchVC animated:YES];
 }
 
 -(void)cancelButtonClicked{

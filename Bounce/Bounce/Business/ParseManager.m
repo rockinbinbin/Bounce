@@ -211,13 +211,28 @@ PFUser *currentUser;
     }
 }
 
+- (void) getAllOtherGroupsForCurrentUser {
+       @try {
+                PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
+                [query whereKey:PF_GROUP_Users_RELATION notEqualTo:[PFUser currentUser]];
+                [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                        if ([self.getAllOtherGroupsDelegate respondsToSelector:@selector(didLoadAllOtherGroups:)]) {
+                                [self.getAllOtherGroupsDelegate didLoadAllOtherGroups:objects];
+                            }
+                    }];
+            }
+        @catch (NSException *exception) {
+               NSLog(@"Exception: %@", exception);
+           }
+}
+
 - (void) getCandidateGroupsForCurrentUser
 {
     @try {
         PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
         [query whereKey:PF_GROUP_Users_RELATION notEqualTo:[PFUser currentUser]];
         [query whereKey:PF_GROUP_LOCATION nearGeoPoint:[[PFUser currentUser] objectForKey:PF_USER_LOCATION] withinMiles:0.5];
-        [query setLimit:10];
+        [query setLimit:20];
 
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if ([self.loadGroupsdelegate respondsToSelector:@selector(didLoadGroups:withError:)]) {

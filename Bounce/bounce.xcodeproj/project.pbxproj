@@ -19,6 +19,7 @@
 		002805BF1B8452CB004E1DE1 /* MembersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 002805BE1B8452CB004E1DE1 /* MembersViewController.m */; };
 		002805C21B84559A004E1DE1 /* SearchToAddUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = 002805C11B84559A004E1DE1 /* SearchToAddUsers.m */; };
 		002805C51B845631004E1DE1 /* membersCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 002805C41B845631004E1DE1 /* membersCell.m */; };
+		002805C81B84701D004E1DE1 /* SearchToAddGroups.m in Sources */ = {isa = PBXBuildFile; fileRef = 002805C71B84701D004E1DE1 /* SearchToAddGroups.m */; };
 		00414F691AAE2B3200B25CEE /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 00414F681AAE2B3200B25CEE /* libicucore.dylib */; };
 		007BA4091A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 007BA4061A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.m */; };
 		007BA40A1A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 007BA4081A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
@@ -199,6 +200,8 @@
 		002805C11B84559A004E1DE1 /* SearchToAddUsers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchToAddUsers.m; sourceTree = "<group>"; };
 		002805C31B845631004E1DE1 /* membersCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = membersCell.h; sourceTree = "<group>"; };
 		002805C41B845631004E1DE1 /* membersCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = membersCell.m; sourceTree = "<group>"; };
+		002805C61B84701D004E1DE1 /* SearchToAddGroups.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchToAddGroups.h; path = ../../SearchToAddGroups.h; sourceTree = "<group>"; };
+		002805C71B84701D004E1DE1 /* SearchToAddGroups.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchToAddGroups.m; path = ../../SearchToAddGroups.m; sourceTree = "<group>"; };
 		00296BD519EFA5BF003ADA30 /* APAddressBook-Bridging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "APAddressBook-Bridging.h"; sourceTree = "<group>"; };
 		00414E661AADEE0600B25CEE /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		00414E671AADEE0600B25CEE /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
@@ -1146,6 +1149,8 @@
 			children = (
 				00E2CBB21B53073700B316D1 /* UIView+AutoLayout.h */,
 				00E2CBB31B53073700B316D1 /* UIView+AutoLayout.m */,
+				002805C61B84701D004E1DE1 /* SearchToAddGroups.h */,
+				002805C71B84701D004E1DE1 /* SearchToAddGroups.m */,
 				002805BD1B8452CB004E1DE1 /* MembersViewController.h */,
 				002805BE1B8452CB004E1DE1 /* MembersViewController.m */,
 				002805C01B84559A004E1DE1 /* SearchToAddUsers.h */,
@@ -1781,6 +1786,7 @@
 				282FAC1A1B71D4C700899FAB /* StudentVerificationViewController.swift in Sources */,
 				007BA40A1A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				67BB94481ADFABCD0050164B /* JSQMessagesCollectionViewCellOutgoing.m in Sources */,
+				002805C81B84701D004E1DE1 /* SearchToAddGroups.m in Sources */,
 				67BB92D71ADFA8D10050164B /* AddHomePointViewController.m in Sources */,
 				67BB92DD1ADFA8D10050164B /* HomePointSuccessfulCreationViewController.m in Sources */,
 				67BB926A1ADFA8D10050164B /* PFObject+PFObject_isEqual.m in Sources */,
