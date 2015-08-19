@@ -166,6 +166,7 @@
     [[Utility getInstance] hideProgressHud];
     SearchToAddUsers *searchVC = [SearchToAddUsers new];
     searchVC.candidateUsers = users;
+    searchVC.group = self.group;
     [self.navigationController pushViewController:searchVC animated:YES];
 }
 

@@ -7,6 +7,24 @@
 //
 
 #import "SearchToAddUsers.h"
+#import "UIView+AutoLayout.h"
+#import "membersCell.h"
+
+#define ResultsTableView self.searchResultsTableViewController.tableView
+
+#define Identifier @"Cell"
+
+@interface SearchToAddUsers ()
+
+@property (nonatomic, strong) NSArray *searchResults;
+//@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSArray *usernames;
+
+@property (nonatomic, strong) UISearchController *searchController;
+@property (strong, nonatomic) UITableViewController *searchResultsTableViewController;
+@property (nonatomic) NSInteger index;
+
+@end
 
 @implementation SearchToAddUsers
 
@@ -14,6 +32,8 @@
         [super viewDidLoad];
     
         [self setBarButtonItemLeft:@"common_back_button"];
+        self.searchResults = [NSMutableArray new];
+        self.index = -1;
     
        UILabel *navLabel = [UILabel new];
         navLabel.textColor = [UIColor whiteColor];
@@ -24,13 +44,65 @@
         navLabel.text = @"SEARCH FOR USERS";
         [navLabel sizeToFit];
     
-    }
+        // A table view for results.
+        UITableView *searchResultsTableView = [[UITableView alloc] initWithFrame:self.tableView.frame];
+        searchResultsTableView.dataSource = self;
+       searchResultsTableView.delegate = self;
+    
+    
+    //    // Registration of reuse identifiers.
+    //    [searchResultsTableView registerClass:UITableViewCell.class forCellReuseIdentifier:Identifier];
+    //    [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:Identifier];
+    
+        // Init a search results table view controller and setting its table view.
+        self.searchResultsTableViewController = [[UITableViewController alloc] init];
+        self.searchResultsTableViewController.tableView = searchResultsTableView;
+    
+        // Init a search controller with its table view controller for results.
+        self.searchController = [[UISearchController alloc] initWithSearchResultsController:self.searchResultsTableViewController];
+        self.searchController.searchResultsUpdater = self;
+        self.searchController.delegate = self;
+    
+        // Make an appropriate size for search bar and add it as a header view for initial table view.
+        [self.searchController.searchBar sizeToFit];
+        self.tableView.tableHeaderView = self.searchController.searchBar;
+    
+        // Enable presentation context.
+        self.definesPresentationContext = YES;
+    
+        NSMutableArray *usernames = [NSMutableArray new];
+        for (PFUser *user in self.candidateUsers) {
+                [usernames addObject:user.username];
+            }
+        self.usernames = usernames;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+        [super viewDidAppear:animated];
+    
+        // Hide search bar.
+        [self dismissSearchBarAnimated:NO];
+}
+
+#pragma mark - Util methods
+
+- (void)dismissSearchBarAnimated: (BOOL)animated {
+        CGFloat offset = (self.searchController.searchBar.bounds.size.height) - (self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height);
+    
+        if (animated) {
+                [UIView animateWithDuration:0.5 animations:^{
+                        self.tableView.contentOffset = CGPointMake(0, offset);
+                    }];
+            } else {
+                    self.tableView.contentOffset = CGPointMake(0, offset);
+                }
+}
 
 // Sets left nav bar button
 -(void) setBarButtonItemLeft:(NSString*) imageName {
         UIImage *menuImage = [UIImage imageNamed:imageName];
         self.navigationItem.leftBarButtonItem = [self initialiseBarButton:menuImage withAction:@selector(cancelButtonClicked)];
-    }
+}
 
 // Sets nav bar button item with image
 -(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action {
@@ -45,6 +117,109 @@
 
 - (void)cancelButtonClicked {
         [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - Table View Data Source
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+        return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+       if ([tableView isEqual:ResultsTableView]) {
+               if (self.searchResults) {
+                        return self.searchResults.count;
+                    } else {
+                            return 0;
+                       }
+            } else {
+                   return 0;
+                }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+       NSString* cellId = Identifier;
+        membersCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellId];
+    
+        if (!cell) {
+                cell = [membersCell new];
+            }
+    
+        NSString *text;
+        if ([tableView isEqual:ResultsTableView]) {
+                text = [self.searchResults[indexPath.row] objectForKey:@"username"];
+            }
+    
+        UIImage *img = [UIImage imageNamed:@"confirmRequest"];
+        [cell.iconView setImage:img forState:UIControlStateNormal];
+
+        if (indexPath.row == self.index) {
+                UIImage *img = [UIImage imageNamed:@"sendButton"];
+                [cell.iconView setImage:img forState:UIControlStateNormal];
+           }
+    
+        [cell.iconView addTarget:self action:@selector(addMember:) forControlEvents:UIControlEventTouchUpInside];
+    
+        cell.name.text = text;
+       return cell;
+}
+
+- (void) addMember:(id)sender {
+    
+        CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
+        NSIndexPath *indexPath = [ResultsTableView indexPathForRowAtPoint:buttonPosition];
+        if (indexPath != nil) {
+                PFUser *user = [self.searchResults objectAtIndex:indexPath.row];
+               if (self.index != indexPath.row) {
+                        self.index = indexPath.row;
+                        [[ParseManager getInstance] addUser:user toGroup:self.group];
+                    }
+                else {
+                        self.index = -1;
+                        NSArray *userArray = [[NSArray alloc] initWithObjects:user, nil];
+                        [[ParseManager getInstance] addListOfUsers:nil toGroup:self.group andRemove:userArray];
+                    }
+                [ResultsTableView reloadData];
+            }
+}
+
+#pragma mark - Table View Delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+        //[tableView deselectRowAtIndexPath:indexPath animated:true];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+        return 100;
+}
+
+#pragma mark - Search Results Updating
+
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+        self.index = -1;
+        UISearchBar *searchBar = searchController.searchBar;
+        if (searchBar.text.length > 0) {
+            NSString *text = searchBar.text;
+        
+                NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(PFUser *user, NSDictionary *bindings) {
+                        NSRange range = [user.username rangeOfString:text options:NSCaseInsensitiveSearch];
+            
+                       return range.location != NSNotFound;
+                   }];
+            
+                // Set up results.
+                NSArray *searchResults = [self.candidateUsers filteredArrayUsingPredicate:predicate];
+                self.searchResults = searchResults;
+            
+                // Reload search table view.
+                [self.searchResultsTableViewController.tableView reloadData];
+            }
+    }
+
+#pragma mark - Search Controller Delegate
+
+- (void)didDismissSearchController:(UISearchController *)searchController {
+    [self dismissSearchBarAnimated:YES];
 }
 
 @end

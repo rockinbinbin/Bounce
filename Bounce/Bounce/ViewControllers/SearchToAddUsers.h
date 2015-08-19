@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "ParseManager.h"
 
-@interface SearchToAddUsers : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface SearchToAddUsers : UITableViewController <UISearchResultsUpdating, UISearchControllerDelegate>
 
 @property (nonatomic, strong) NSArray *candidateUsers;
+@property (nonatomic, strong) PFObject *group;
 
 @end
