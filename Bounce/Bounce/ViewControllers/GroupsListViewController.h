@@ -16,7 +16,8 @@
     ParseManagerGetUserGroups,
     ParseManagerDeleteDelegate,
     ParseManagerDelegate,
-    ParseManagerLoadNewUsers
+    ParseManagerLoadNewUsers,
+    ParseManagerGetTentativeUsers
 >
 
 @property NSMutableArray* groups;

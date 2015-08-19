@@ -285,6 +285,10 @@
     }
 }
 
+- (void)didLoadTentativeUsers:(NSArray *)tentativeUsers {
+    [[ParseManager getInstance] addTentativeUserToGroup:[groups objectAtIndex:self.cellIndex] withExistingTentativeUsers:tentativeUsers];
+}
+
 #pragma mark - Delete user from selected group
 - (void) deleteUserFromGroup:(NSInteger) index
 {
@@ -293,7 +297,8 @@
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
             [[Utility getInstance] showProgressHudWithMessage:[NSString stringWithFormat:@"removed from %@", [group objectForKey:PF_GROUPS_NAME]] withView:self.view];
             selectedIndex = index;
-            [[ParseManager getInstance] removeUserFromGroup:group];
+            [[ParseManager getInstance] setGetTentativeUsersDelegate:self];
+            [[ParseManager getInstance] getTentativeUsersFromGroup:group];
         }
     }
     @catch (NSException *exception) {

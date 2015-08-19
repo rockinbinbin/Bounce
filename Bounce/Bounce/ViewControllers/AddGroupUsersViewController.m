@@ -74,9 +74,9 @@
             [self.userChecked  addObject:[NSNumber numberWithBool:NO]];
         }
     }
-    if (self.updatedGroup) { // needed because this view controller is used to edit users and add users, add users crashes when creating a homepoint because you haven't created the group yet.
-              [[ParseManager getInstance] getTentativeUsersFromGroup:self.updatedGroup];
-    }
+//    if (self.updatedGroup) { // needed because this view controller is used to edit users and add users, add users crashes when creating a homepoint because you haven't created the group yet.
+//              [[ParseManager getInstance] getTentativeUsersFromGroup:self.updatedGroup];
+//    }
 }
 
 - (void) setEditData {

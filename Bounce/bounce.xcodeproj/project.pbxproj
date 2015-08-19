@@ -16,6 +16,9 @@
 		0002349C1B488F93000B7630 /* Quicksand-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0002349B1B488F93000B7630 /* Quicksand-Light.otf */; };
 		0002349E1B488F98000B7630 /* Quicksand-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0002349D1B488F98000B7630 /* Quicksand-LightItalic.otf */; };
 		000234A01B488F9F000B7630 /* Quicksand-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0002349F1B488F9F000B7630 /* Quicksand-Regular.otf */; };
+		002805BF1B8452CB004E1DE1 /* MembersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 002805BE1B8452CB004E1DE1 /* MembersViewController.m */; };
+		002805C21B84559A004E1DE1 /* SearchToAddUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = 002805C11B84559A004E1DE1 /* SearchToAddUsers.m */; };
+		002805C51B845631004E1DE1 /* membersCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 002805C41B845631004E1DE1 /* membersCell.m */; };
 		00414F691AAE2B3200B25CEE /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 00414F681AAE2B3200B25CEE /* libicucore.dylib */; };
 		007BA4091A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 007BA4061A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.m */; };
 		007BA40A1A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 007BA4081A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
@@ -190,6 +193,12 @@
 		0002349D1B488F98000B7630 /* Quicksand-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-LightItalic.otf"; path = "Bounce/ViewControllers/Fonts/Quicksand-LightItalic.otf"; sourceTree = "<group>"; };
 		0002349F1B488F9F000B7630 /* Quicksand-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Regular.otf"; path = "Bounce/ViewControllers/Fonts/Quicksand-Regular.otf"; sourceTree = "<group>"; };
 		001DFA0B1ABF4175008C9D1F /* PF_EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PF_EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		002805BD1B8452CB004E1DE1 /* MembersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MembersViewController.h; sourceTree = "<group>"; };
+		002805BE1B8452CB004E1DE1 /* MembersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MembersViewController.m; sourceTree = "<group>"; };
+		002805C01B84559A004E1DE1 /* SearchToAddUsers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchToAddUsers.h; sourceTree = "<group>"; };
+		002805C11B84559A004E1DE1 /* SearchToAddUsers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchToAddUsers.m; sourceTree = "<group>"; };
+		002805C31B845631004E1DE1 /* membersCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = membersCell.h; sourceTree = "<group>"; };
+		002805C41B845631004E1DE1 /* membersCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = membersCell.m; sourceTree = "<group>"; };
 		00296BD519EFA5BF003ADA30 /* APAddressBook-Bridging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "APAddressBook-Bridging.h"; sourceTree = "<group>"; };
 		00414E661AADEE0600B25CEE /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		00414E671AADEE0600B25CEE /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
@@ -1137,6 +1146,12 @@
 			children = (
 				00E2CBB21B53073700B316D1 /* UIView+AutoLayout.h */,
 				00E2CBB31B53073700B316D1 /* UIView+AutoLayout.m */,
+				002805BD1B8452CB004E1DE1 /* MembersViewController.h */,
+				002805BE1B8452CB004E1DE1 /* MembersViewController.m */,
+				002805C01B84559A004E1DE1 /* SearchToAddUsers.h */,
+				002805C11B84559A004E1DE1 /* SearchToAddUsers.m */,
+				002805C31B845631004E1DE1 /* membersCell.h */,
+				002805C41B845631004E1DE1 /* membersCell.m */,
 				67BB91F81ADFA8D10050164B /* AddGroupUsersViewController.h */,
 				67BB91F91ADFA8D10050164B /* AddGroupUsersViewController.m */,
 				00E2CBC21B563BB300B316D1 /* CreateHomepoint.h */,
@@ -1676,6 +1691,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				002805BF1B8452CB004E1DE1 /* MembersViewController.m in Sources */,
 				67BB94021ADFABCD0050164B /* AFURLConnectionOperation.m in Sources */,
 				67BB945C1ADFABCD0050164B /* images.m in Sources */,
 				67BB92DC1ADFA8D10050164B /* GroupsListViewController.m in Sources */,
@@ -1715,6 +1731,7 @@
 				67BB94071ADFABCD0050164B /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				67BB92691ADFA8D10050164B /* ParseManager.m in Sources */,
 				67BB94431ADFABCD0050164B /* JSQMessagesCellTextView.m in Sources */,
+				002805C51B845631004E1DE1 /* membersCell.m in Sources */,
 				67BB944C1ADFABCD0050164B /* JSQMessagesLabel.m in Sources */,
 				67BB92E51ADFA8D10050164B /* MessageScreenViewController.m in Sources */,
 				67BB944D1ADFABCD0050164B /* JSQMessagesLoadEarlierHeaderView.m in Sources */,
@@ -1748,6 +1765,7 @@
 				67BB94561ADFABCD0050164B /* NIDropDown.m in Sources */,
 				67BB94381ADFABCD0050164B /* JSQMessagesToolbarButtonFactory.m in Sources */,
 				282FAC171B71D4C700899FAB /* InstructionView.swift in Sources */,
+				002805C21B84559A004E1DE1 /* SearchToAddUsers.m in Sources */,
 				00DF1FE31B43CDA6004F056A /* FacebookLogin.m in Sources */,
 				67BB92D81ADFA8D10050164B /* AddLocationScreenViewController.m in Sources */,
 				28802DAC1B7708CF008E8B33 /* AccountViewController.swift in Sources */,

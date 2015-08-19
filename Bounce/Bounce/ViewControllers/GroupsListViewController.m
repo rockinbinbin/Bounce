@@ -15,11 +15,12 @@
 #import "AddGroupUsersViewController.h"
 #import "bounce-Swift.h"
 #import "homepointListCell.h"
+#import "MembersViewController.h"
 
 @interface GroupsListViewController ()
 
 @property NSArray *images;
-
+@property BOOL firstDone;
 @end
 
 @implementation GroupsListViewController
@@ -27,6 +28,7 @@
     BOOL loadingData;
     NSInteger selectedIndex;
     NSMutableArray *groupUsers;
+    NSArray *tentative_users;
 }
 
 @synthesize nearUsers = nearUsers;
@@ -36,6 +38,7 @@
     [super viewDidLoad];
     self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    self.firstDone = NO;
     self.navigationController.navigationBar.barTintColor = BounceRed;
     self.navigationController.navigationBar.translucent = NO;
     [self.navigationController.navigationBar hideBottomHairline];
@@ -321,35 +324,46 @@
 #pragma mark - Edit User group
 - (void) editGroupUsers:(PFObject *) group
 {
-    // get group user
+    // get group users
+    self.firstDone = NO;
     if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
         [[Utility getInstance] showProgressHudWithMessage:@"Loading Users..." withView:self.view];
         [[ParseManager getInstance] setDelegate:self];
         [[ParseManager getInstance] getGroupUsers:group];
+        [[ParseManager getInstance] getTentativeUsersFromGroup:group];
+        [[ParseManager getInstance] setGetTentativeUsersDelegate:self];
     }
 }
 #pragma mark - Parse amnger delegate
 - (void)didloadAllObjects:(NSArray *)objects
 {
-    // get remaining users
     groupUsers =  [[NSMutableArray alloc] initWithArray:objects];
     [groupUsers insertObject:[PFUser currentUser] atIndex:0];
-    // if the user is group creator
-    if ([[[PFUser currentUser] username] isEqualToString:[[[self.groups objectAtIndex:selectedIndex] objectForKey:PF_GROUP_OWNER] username]] ) {
-
-        [[ParseManager getInstance] setLoadNewUsers:self];
-        [[ParseManager getInstance] getCandidateUsersForGroup:[self.groups objectAtIndex:selectedIndex]];
-    } else {
+    if (!self.firstDone) {
+         self.firstDone = YES;
+      }
+    else {
         [[Utility getInstance] hideProgressHud];
-        [self openGroupUsersScreenForEditWithNewUsers:nil];
+        MembersViewController *members = [MembersViewController new];
+        members.tentativeUsers = tentative_users;
+        members.actualUsers = groupUsers;
+        members.group = [self.groups objectAtIndex:selectedIndex];
+        [self.navigationController pushViewController:members animated:YES];
     }
 }
-- (void)didloadNewUsers:(NSArray *)users WithError:(NSError *)error
+- (void)didLoadTentativeUsers:(NSArray *)tentativeUsers
 {
+    tentative_users = tentativeUsers;
+    if (!self.firstDone) {
+        self.firstDone = YES;
+    }
+    else {
         [[Utility getInstance] hideProgressHud];
-    if (!error) {
-        // navigate to group users screen
-        [self openGroupUsersScreenForEditWithNewUsers:users];
+        MembersViewController *members = [MembersViewController new];
+        members.tentativeUsers = tentative_users;
+        members.actualUsers = groupUsers;
+        members.group = [self.groups objectAtIndex:selectedIndex];
+        [self.navigationController pushViewController:members animated:YES];
     }
 }
 - (void)didFailWithError:(NSError *)error
@@ -358,15 +372,5 @@
 }
 
 #pragma mark - Navigate to GroupUsers screen
-- (void) openGroupUsersScreenForEditWithNewUsers:(NSArray *) users
-{
-    AddGroupUsersViewController * addUser = [AddGroupUsersViewController new];
-    //    addUser.groupUsers = objects;
-    addUser.editGroup = YES;
-    addUser.originalGroupUsers = groupUsers;
-    addUser.remainingUsers = users;
-    addUser.updatedGroup = [self.groups objectAtIndex:selectedIndex];
-    [self.navigationController pushViewController:addUser animated:YES];
 
-}
 @end

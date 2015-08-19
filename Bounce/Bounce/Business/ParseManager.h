@@ -33,7 +33,7 @@
 @property id<ParseManagerDelegate> delegate;
 @property id<ParseManagerDeleteDelegate> deleteDelegate;
 @property id<ParseManagerLoadNewUsers> loadNewUsers;
-@property id<ParseManagerGetTentativeUsers> getTentativeUsers;
+@property id<ParseManagerGetTentativeUsers> getTentativeUsersDelegate;
 
 + (ParseManager*) getInstance;
 // Chat message
@@ -84,6 +84,7 @@
 - (void) removeUserFromGroup:(PFObject *) group;
 - (void) addListOfUsers:(NSArray *) users toGroup:(PFObject *) group;
 - (void) getTentativeUsersFromGroup:(PFObject *)group;
+-(void)addUser:(PFUser *)user toGroup:(PFObject *)group;
 
 - (void) addTentativeUserToGroup:(PFObject *)group withExistingTentativeUsers:(NSArray *)tentativeUsers;
 
