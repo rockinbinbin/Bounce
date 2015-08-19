@@ -98,6 +98,8 @@
 }
 
 -(void)searchButtonClicked {
+        // TODO check internet connection?
+        [[Utility getInstance] showProgressHudWithMessage:@"Loading"];
     [[ParseManager getInstance] setGetAllOtherGroupsDelegate:self];
     [[ParseManager getInstance] getAllOtherGroupsForCurrentUser];
 }
@@ -174,9 +176,10 @@
     return barButtonItem;
 }
 
-- (void)didLoadAllOtherGroups:(NSArray *)groups {
+- (void)didLoadAllOtherGroups:(NSArray *)allGroups {
+    [[Utility getInstance] hideProgressHud];
         SearchToAddGroups *searchVC = [SearchToAddGroups new];
-        searchVC.allGroups = groups;
+        searchVC.allGroups = allGroups;
     [self.navigationController pushViewController:searchVC animated:YES];
 }
 

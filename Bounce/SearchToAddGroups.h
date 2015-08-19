@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ParseManager.h"
 
-@interface SearchToAddGroups : UITableViewController <UISearchResultsUpdating, UISearchControllerDelegate>
+@interface SearchToAddGroups : UITableViewController <UISearchResultsUpdating, UISearchControllerDelegate, ParseManagerGetTentativeUsers>
 
 @property (nonatomic, strong) NSArray *allGroups;
 

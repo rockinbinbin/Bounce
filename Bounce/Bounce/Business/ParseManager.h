@@ -88,6 +88,7 @@
 - (void) getTentativeUsersFromGroup:(PFObject *)group;
 -(void)addUser:(PFUser *)user toGroup:(PFObject *)group;
 - (void) getAllOtherGroupsForCurrentUser;
+- (void)removeUser:(PFUser *)user fromTentativeGroup:(PFObject *)group;
 
 - (void) addTentativeUserToGroup:(PFObject *)group withExistingTentativeUsers:(NSArray *)tentativeUsers;
 
@@ -150,5 +151,5 @@
 @end
 
 @protocol ParseManagerGetAllOtherGroups <NSObject>
-- (void) didLoadAllOtherGroups:(NSArray *)groups;
+- (void) didLoadAllOtherGroups:(NSArray *)allGroups;
 @end

@@ -19,6 +19,8 @@
 @property (nonatomic, strong) UISearchController *searchController;
 @property (strong, nonatomic) UITableViewController *searchResultsTableViewController;
 @property (nonatomic) NSInteger index;
+@property (nonatomic, strong) PFObject *currentGroup;
+@property (nonatomic) BOOL shouldAdd;
 
 @end
 
@@ -30,6 +32,7 @@
         [self setBarButtonItemLeft:@"common_back_button"];
         self.searchResults = [NSMutableArray new];
     self.index = -1;
+    self.shouldAdd = NO;
     
         UILabel *navLabel = [UILabel new];
         navLabel.textColor = [UIColor whiteColor];
@@ -132,17 +135,30 @@
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
     NSIndexPath *indexPath = [ResultsTableView indexPathForRowAtPoint:buttonPosition];
         if (indexPath != nil) {
-                PFObject *group = [self.searchResults objectAtIndex:indexPath.row];
+                    self.currentGroup = [self.searchResults objectAtIndex:indexPath.row];
+                    [[ParseManager getInstance] setGetTentativeUsersDelegate:self];
+                    [[ParseManager getInstance] getTentativeUsersFromGroup:self.currentGroup];
                if (self.index != indexPath.row) {
                         self.index = indexPath.row;
-                        [[ParseManager getInstance] addUser:[PFUser currentUser] toGroup:group];
+                   self.shouldAdd = YES;
                     }
                 else {
                         self.index = -1;
-                        [[ParseManager getInstance] removeUserFromGroup:group];
+                    self.shouldAdd = NO;
                     }
                 [ResultsTableView reloadData];
            }
+}
+
+- (void)didLoadTentativeUsers:(NSArray *)tentativeUsers {
+        [[ParseManager getInstance] addTentativeUserToGroup:self.currentGroup withExistingTentativeUsers:tentativeUsers];
+        if (self.shouldAdd) {
+               [[ParseManager getInstance] addTentativeUserToGroup:self.currentGroup withExistingTentativeUsers:tentativeUsers];
+            }
+        else {
+                [[ParseManager getInstance] removeUser:[PFUser currentUser] fromTentativeGroup:self.currentGroup];
+            }
+    
 }
 
 #pragma mark - Table View Delegate
