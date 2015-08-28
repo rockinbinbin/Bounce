@@ -116,11 +116,11 @@
                 text = [self.searchResults[indexPath.row] objectForKey:@"username"];
             }
     
-        UIImage *img = [UIImage imageNamed:@"confirmRequest"];
+        UIImage *img = [UIImage imageNamed:@"addUser"];
         [cell.iconView setImage:img forState:UIControlStateNormal];
 
         if (indexPath.row == self.index) {
-                UIImage *img = [UIImage imageNamed:@"sendButton"];
+                UIImage *img = [UIImage imageNamed:@"confirmRequest"];
                 [cell.iconView setImage:img forState:UIControlStateNormal];
            }
     
