@@ -45,31 +45,7 @@
 }
 
 - (void)loadMessages{
-    // is Request still valid
-    // retreive requet
-    // validate request end
-    // if request still valid
-    //    self.currentRequest = [[ParseManager getInstance] retrieveRequest:self.currentRequest];
-    
     [super loadMessages];
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//        self.currentRequest = [[ParseManager getInstance] retrieveRequestUpdate:self.groupId];
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            BOOL requestEnded = [[self.currentRequest objectForKey:PF_REQUEST_IS_ENDED] boolValue];
-//            if (self.currentRequest&& !requestEnded && [[Utility getInstance] isRequestValid:self.currentRequest.createdAt andTimeAllocated:[[self.currentRequest objectForKey:PF_REQUEST_TIME_ALLOCATED] integerValue]]) {
-//                if (![self isUserStillReceiverForTheRequest]) {
-//                    [self clearMessagesAndStopUpdate];
-//                    [self showAlertViewWithMessage:@"Oops! Looks like you're no longer within the request radius."];
-//                }
-//            }
-//            else {
-//                // delete all messages
-//                [self clearMessagesAndStopUpdate];
-//                [self showAlertViewWithMessage:@"Request time over"];
-//            }
-//            
-//        });
-//    });
 }
 
 - (void)didFailWithError:(NSError *)error {
