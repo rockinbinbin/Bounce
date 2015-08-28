@@ -120,9 +120,11 @@
     [twohr kgn_pinRightEdgeToRightEdgeOfItem:slider withOffset:30];
     
     self.location_manager = [[CLLocationManager alloc] init];
+
     if (IS_IOS8) {
-    [self.location_manager requestAlwaysAuthorization];
+        [self.location_manager requestAlwaysAuthorization];
     }
+
     self.location_manager.pausesLocationUpdatesAutomatically = YES;
     self.location_manager.activityType = CLActivityTypeFitness;
     
@@ -305,7 +307,7 @@
     MessageScreenViewController* messageScreenViewController = [[MessageScreenViewController alloc] init];
     messageScreenViewController.genderMatching = self.genderMatching;
     messageScreenViewController.timeAllocated = self.timeAllocated;
-    [self.navigationController pushViewController:messageScreenViewController animated:YES];
+    [self.navigationController pushViewController:messageScreenViewController animated:NO];
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {

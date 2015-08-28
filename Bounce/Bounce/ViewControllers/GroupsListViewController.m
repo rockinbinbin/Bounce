@@ -29,6 +29,11 @@
     NSInteger selectedIndex;
     NSMutableArray *groupUsers;
     NSArray *tentative_users;
+    
+    // Placeholder content
+    UIImageView *placeholderImageView;
+    UILabel *placeholderTitle;
+    UILabel *placeholderBodyText;
 }
 
 @synthesize nearUsers = nearUsers;
@@ -71,32 +76,76 @@
     self.navigationItem.titleView = navLabel;
     navLabel.text = @"Homepoints";
     [navLabel sizeToFit];
+    
+    PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
+    [query whereKey:PF_GROUP_Users_RELATION equalTo:[PFUser currentUser]];
+    [query includeKey:PF_GROUP_OWNER];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (objects != nil) {
+            if (objects.count == 0) {
+                [self.delegate scrollToViewAtIndex:2 animated:false];
 
-    UIImageView *placeholderImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Homepoints-Placeholder"]];
-    [self.tableView.backgroundView addSubview:placeholderImageView];
-    [placeholderImageView kgn_pinToTopEdgeOfSuperviewWithOffset:50];
-    [placeholderImageView kgn_centerHorizontallyInSuperview];
-    [placeholderImageView kgn_sizeToWidthAndHeight:self.view.frame.size.width * 0.64];
+                [self showPlaceholder];
+            } else {
+                [self hidePlaceholder];
+            }
+        }
+    }];
+}
+
+#pragma mark Placeholder Methods
+
+/**
+ * Renders the placeholder image and text when the user has no homepoints.
+ */
+- (void)showPlaceholder {
+    if (placeholderImageView == nil) {
+        placeholderImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Homepoints-Placeholder"]];
+        [self.tableView.backgroundView addSubview:placeholderImageView];
+        [placeholderImageView kgn_pinToTopEdgeOfSuperviewWithOffset:50];
+        [placeholderImageView kgn_centerHorizontallyInSuperview];
+        [placeholderImageView kgn_sizeToWidthAndHeight:self.view.frame.size.width * 0.64];
+    } else {
+        placeholderImageView.hidden = false;
+    }
     
-    UILabel *placeholderTitle = [UILabel new];
-    placeholderTitle.text = @"Add your first homepoint.";
-    placeholderTitle.textColor = [UIColor whiteColor];
-    placeholderTitle.textAlignment = NSTextAlignmentCenter;
-    placeholderTitle.font = [UIFont fontWithName:@"AvenirNext-Medium" size:23];
-    [self.tableView.backgroundView addSubview:placeholderTitle];
-    [placeholderTitle kgn_positionBelowItem:placeholderImageView withOffset:50];
-    [placeholderTitle kgn_centerHorizontallyInSuperview];
+    if (placeholderTitle == nil) {
+        placeholderTitle = [UILabel new];
+        placeholderTitle.text = @"Add your first homepoint.";
+        placeholderTitle.textColor = [UIColor whiteColor];
+        placeholderTitle.textAlignment = NSTextAlignmentCenter;
+        placeholderTitle.font = [UIFont fontWithName:@"AvenirNext-Medium" size:23];
+        [self.tableView.backgroundView addSubview:placeholderTitle];
+        [placeholderTitle kgn_positionBelowItem:placeholderImageView withOffset:50];
+        [placeholderTitle kgn_centerHorizontallyInSuperview];
+    } else {
+        placeholderTitle.hidden = false;
+    }
     
-    UILabel *placeholderBodyText = [UILabel new];
-    placeholderBodyText.text = @"Search for communities nearby – join or create homepoints for your house, apartment, dorm, or neighborhood.";
-    placeholderBodyText.textColor = [UIColor whiteColor];
-    placeholderBodyText.textAlignment = NSTextAlignmentCenter;
-    placeholderBodyText.font = [UIFont fontWithName:@"AvenirNext-Regular" size:19];
-    placeholderBodyText.numberOfLines = 0;
-    placeholderBodyText.lineBreakMode = NSLineBreakByWordWrapping;
-    [self.tableView.backgroundView addSubview:placeholderBodyText];
-    [placeholderBodyText kgn_positionBelowItem:placeholderTitle withOffset:30];
-    [placeholderBodyText kgn_pinToSideEdgesOfSuperviewWithOffset:46.5];
+    if (placeholderBodyText == nil) {
+        placeholderBodyText = [UILabel new];
+        placeholderBodyText.text = @"Search for communities nearby – join or create homepoints for your house, apartment, dorm, or neighborhood.";
+        placeholderBodyText.textColor = [UIColor whiteColor];
+        placeholderBodyText.textAlignment = NSTextAlignmentCenter;
+        placeholderBodyText.font = [UIFont fontWithName:@"AvenirNext-Regular" size:19];
+        placeholderBodyText.numberOfLines = 0;
+        placeholderBodyText.lineBreakMode = NSLineBreakByWordWrapping;
+        [self.tableView.backgroundView addSubview:placeholderBodyText];
+        [placeholderBodyText kgn_positionBelowItem:placeholderTitle withOffset:30];
+        [placeholderBodyText kgn_pinToSideEdgesOfSuperviewWithOffset:46.5];
+    } else {
+        placeholderBodyText.hidden = false;
+    }
+}
+
+/**
+ * Hides the placeholder image and text when the user has one or more homepoints.
+ */
+- (void)hidePlaceholder {
+    placeholderImageView.hidden = true;
+    placeholderTitle.hidden = true;
+    placeholderBodyText.hidden = true;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -266,55 +315,28 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString* cellId = @"homepointListCell";
-    homepointListCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellId];
+    HomepointListCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellId];
     
     if (!cell) {
-        cell = [homepointListCell new];
+        cell = [HomepointListCell new];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    
-    NSMutableArray *images = [NSMutableArray new];
+
     for (int i = 0; i < [self.homepointImages count]; i++) {
         PFFile *file = self.homepointImages[i];
         [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             if (!error) {
                 if (indexPath.row == i) {
                     UIImage *image = [UIImage imageWithData:data];
-                    [images addObject:image];
-                    cell.cellBackground.image = image;
-                    cell.cellBackground.contentMode = UIViewContentModeScaleToFill;
-                    cell.cellBackground.backgroundColor = [UIColor blackColor]; // this should never show
+                    [cell setBackground:image];
                 }
             }
         }];
     }
-    cell.homepointName.text = [[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
     
-    double distance = [[self.distanceToUserLocation objectAtIndex:indexPath.row] doubleValue];
-    if (distance > 2500) {
-        distance = distance*0.000189394;
-        
-        if (distance >= 500) {
-            cell.distanceAway.text = @"500+ miles away";
-        }
-        else {
-            cell.distanceAway.text = [NSString stringWithFormat:DISTANCE_MESSAGE_IN_MILES, distance];
-        }
-    }
-    else {
-        cell.distanceAway.text = [NSString stringWithFormat:DISTANCE_MESSAGE_IN_FEET, (int)distance];
-    }
+    NSString *homepointName = [[[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME] uppercaseString];
+    [cell setName:homepointName homepointType: HomepointTypeHouse];
 
-
-    NSString *usersNearby = [nearUsers objectAtIndex:indexPath.row];
-    int numFriends = (int)[usersNearby integerValue];
-    
-    if (numFriends == 1) {
-        cell.usersNearby.text = [NSString stringWithFormat:@"1 user nearby"];
-    }
-    else if (numFriends != 0) {
-        cell.usersNearby.text = [NSString stringWithFormat:@"%@ users nearby", usersNearby];
-    }
     return cell;
 }
 

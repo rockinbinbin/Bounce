@@ -64,6 +64,7 @@
 		28802DB01B770C8D008E8B33 /* UniversityEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28802DAF1B770C8D008E8B33 /* UniversityEmail.swift */; };
 		28B5E7441B7C406D007F79C0 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B5E7431B7C406D007F79C0 /* GlobalVariables.swift */; };
 		28B5E7461B7DA883007F79C0 /* NavigationBarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B5E7451B7DA883007F79C0 /* NavigationBarExtensions.swift */; };
+		28DF63821B85A08D00F16095 /* HomepointListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DF63811B85A08D00F16095 /* HomepointListCell.swift */; };
 		28F13A521A6C75A90069EBA4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F13A511A6C75A90069EBA4 /* MapKit.framework */; };
 		67BB90C81ADFA8B20050164B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BB90C41ADFA8B20050164B /* Bolts.framework */; };
 		67BB90C91ADFA8B20050164B /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BB90C51ADFA8B20050164B /* Parse.framework */; };
@@ -399,6 +400,7 @@
 		28802DAF1B770C8D008E8B33 /* UniversityEmail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversityEmail.swift; sourceTree = "<group>"; };
 		28B5E7431B7C406D007F79C0 /* GlobalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GlobalVariables.swift; path = ../ViewControllers/GlobalVariables.swift; sourceTree = "<group>"; };
 		28B5E7451B7DA883007F79C0 /* NavigationBarExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarExtensions.swift; sourceTree = "<group>"; };
+		28DF63811B85A08D00F16095 /* HomepointListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomepointListCell.swift; sourceTree = "<group>"; };
 		28F13A511A6C75A90069EBA4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6791817C1AC0057D00D0474C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		67BB90C41ADFA8B20050164B /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = FrameWorks/Bolts.framework; sourceTree = "<group>"; };
@@ -1180,6 +1182,7 @@
 				67BB92181ADFA8D10050164B /* MessageScreenViewController.m */,
 				67BB92191ADFA8D10050164B /* RequestsViewController.h */,
 				67BB921A1ADFA8D10050164B /* RequestsViewController.m */,
+				28DF63811B85A08D00F16095 /* HomepointListCell.swift */,
 				00AA6EDC1B6B3CDF00F91CBB /* chatCell.h */,
 				00AA6EDD1B6B3CDF00F91CBB /* chatCell.m */,
 				67BB920A1ADFA8D10050164B /* IntoductionView */,
@@ -1598,7 +1601,7 @@
 				ORGANIZATIONNAME = hobble;
 				TargetAttributes = {
 					00CEE3CD199434E700F40C12 = {
-						DevelopmentTeam = KM659CVM6Q;
+						DevelopmentTeam = S57X9JL8K7;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1778,6 +1781,7 @@
 				67BB92D91ADFA8D10050164B /* CustomChatViewController.m in Sources */,
 				67BB92E61ADFA8D10050164B /* RequestsViewController.m in Sources */,
 				67BB93FF1ADFABCD0050164B /* AFHTTPSessionManager.m in Sources */,
+				28DF63821B85A08D00F16095 /* HomepointListCell.swift in Sources */,
 				2818DB911B72EFC80021B9C6 /* IntroViewController.swift in Sources */,
 				67BB94601ADFABCD0050164B /* Reachability.m in Sources */,
 				67BB944B1ADFABCD0050164B /* JSQMessagesInputToolbar.m in Sources */,

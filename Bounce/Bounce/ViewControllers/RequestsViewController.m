@@ -124,13 +124,7 @@
     UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:buttonItem];
     return barButtonItem;
 }
--(void)backButtonClicked{
-    printf("HELLO");
-//    AMSlideMenuMainViewController *mainVC = [self mainSlideMenu];
-//    UIViewController *rootVC = [[HomeScreenViewController alloc] init];
-//    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:rootVC];
-//    [mainVC.leftMenu openContentNavigationController:nvc];
-}
+
 #pragma mark - Load Requests
 - (void) loadRequests{
     @try {

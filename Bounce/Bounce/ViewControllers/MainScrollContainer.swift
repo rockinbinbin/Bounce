@@ -9,78 +9,147 @@
 import UIKit
 
 @objc protocol MainScrollContainerDelegate {
+    
+    /**
+     * Enables or disables scrolling on the main scroll container.
+     *
+     * :param: canScroll True if scrolling is enabled.
+     */
     func setScrolling(canScroll: Bool)
+
+    /**
+     * Scrolls to the contained view at the index given, starting from 0.
+     * Should throw an exception if the scroll index is out of range.
+     *
+     * :param: index Must be in [0, 1, 2].
+     * :param: animated True if the transition should be animated.
+     */
+    func scrollToViewAtIndex(index: Int, animated: Bool)
 }
 
-class MainScrollContainer: UIViewController, MainScrollContainerDelegate {
+@objc public class MainScrollContainer: UITabBarController, UITabBarDelegate, MainScrollContainerDelegate {
+    private let accountViewController    = AccountViewController()
+    private let homeScreenViewController = HomeScreenViewController()
+    private let groupsListViewController = GroupsListViewController()
     
-    // Outlet used in storyboard
-    let scrollView = UIScrollView()
-
-    let AVc = AccountViewController()
-    let BVc = UINavigationController(rootViewController: HomeScreenViewController())
-    let CVc = UINavigationController(rootViewController: GroupsListViewController())
+    // MARK: - Tabs
     
-    override func viewDidLoad() {
-        super.viewDidLoad();
+    private struct Tab {
+        let viewController: UIViewController
+        let barButtonItem: UIBarButtonItem
+        let image: UIImage?
+        let selectedImage: UIImage?
         
-        scrollView.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
-        scrollView.pagingEnabled = true
-        scrollView.bounces = false
-        self.view.addSubview(scrollView)
+        init(viewController: UIViewController, imageNamed imageName: String) {
+            self.viewController = viewController
+            image = UIImage(named: "Tabs-\(imageName)")
+            selectedImage = UIImage(named: "Tabs-\(imageName)-Selected")
+            barButtonItem = UIBarButtonItem(image: image, style: .Plain, target: nil, action: nil)
+        }
+    }
+    
+    private lazy var homepointsTab: Tab = {
+        let navigationController = UINavigationController(rootViewController: self.groupsListViewController)
+        let tab = Tab(viewController: navigationController, imageNamed: "Homepoints")
+        tab.barButtonItem.target = self
+        tab.barButtonItem.action = "selectTabWithBarButtonItem:"
+        return tab
+    }()
+    
+    private lazy var tripsTab: Tab = {
+        let navigationController = UINavigationController(rootViewController: self.homeScreenViewController)
+        let tab = Tab(viewController: navigationController, imageNamed: "Trips")
+        tab.barButtonItem.target = self
+        tab.barButtonItem.action = "selectTabWithBarButtonItem:"
+        return tab
+    }()
+    
+    private lazy var tabs: [Tab] = [self.homepointsTab, self.tripsTab]
+    
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+        UIApplication.sharedApplication().statusBarHidden = false
+        self.navigationController?.navigationBar.translucent = false
+        
+        let accountViewController = AccountViewController()
+        let homeScreenViewController = UINavigationController(rootViewController: HomeScreenViewController())
+        let groupsListViewController = UINavigationController(rootViewController: GroupsListViewController())
         
         // Set the delegates
-        AVc.delegate = self
-
+        accountViewController.delegate = self
+        
         // These are delegates of UINavigationController instances – get the root VC
-        if let homeScreen = BVc.viewControllers.first as? HomeScreenViewController {
+        if let homeScreen = homeScreenViewController.viewControllers.first as? HomeScreenViewController {
             homeScreen.delegate = self
         }
         
-        if let homepointsScreen = CVc.viewControllers.first as? GroupsListViewController {
+        if let homepointsScreen = groupsListViewController.viewControllers.first as? GroupsListViewController {
             homepointsScreen.delegate = self
         }
         
-        // 2) Add in each view to the container view hierarchy
-        //    Add them in opposite order since the view hierarchy is a stack
-        self.addChildViewController(CVc)
-        self.scrollView.addSubview(CVc.view)
-        CVc.didMoveToParentViewController(self)
+        let viewControllers = [groupsListViewController, homeScreenViewController, accountViewController]
         
-        self.addChildViewController(BVc)
-        self.scrollView.addSubview(BVc.view)
-        
-        BVc.didMoveToParentViewController(self)
-        
-        self.addChildViewController(AVc)
-        self.scrollView.addSubview(AVc.view)
-        AVc.didMoveToParentViewController(self)
-        
-        
-        // 3) Set up the frames of the view controllers to align
-        //    with eachother inside the container view
-        var adminFrame :CGRect = AVc.view.frame
-        adminFrame.origin.x = adminFrame.width
-        BVc.view.frame = adminFrame
-        
-        var BFrame :CGRect = BVc.view.frame
-        BFrame.origin.x = 2*BFrame.width
-        CVc.view.frame = BFrame
-        
-        // 4) Finally set the size of the scroll view that contains the frames
-        var scrollWidth: CGFloat  = 3 * self.view.frame.width
-        var scrollHeight: CGFloat  = self.view.frame.size.height
-        self.scrollView.contentSize = CGSizeMake(scrollWidth, scrollHeight)
+        self.setViewControllers(viewControllers, animated: true)
 
-        self.scrollView.scrollRectToVisible(CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height), animated: false)
+        let tabItems = self.tabBar.items as! [UITabBarItem]
+
+        UITabBarItem.appearance().setTitleTextAttributes([
+            NSForegroundColorAttributeName : Constants.Colors.BounceRed
+            ], forState: UIControlState.Selected)
+        
+        self.tabBar.tintColor = Constants.Colors.BounceRed
+        
+        tabItems[0].image = UIImage(named: "Tabs-Homepoints")
+        tabItems[0].selectedImage = UIImage(named: "Tabs-Homepoints-Selected")
+        tabItems[0].tag = 0
+        
+        tabItems[1].image = UIImage(named: "Tabs-Trips")
+        tabItems[1].selectedImage = UIImage(named: "Tabs-Trips-Selected")
+        tabItems[1].tag = 1
+        
+        tabItems[2].image = UIImage(named: "Tabs-Account")
+        tabItems[2].selectedImage = UIImage(named: "Tabs-Account-Selected")
+        tabItems[2].tag = 2
+        
+        tabItems.map { (tabItem : UITabBarItem) -> Void in
+            tabItem.imageInsets = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
+        }
     }
     
-    override func didReceiveMemoryWarning() {
+    public override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - UITabBarDelegate methods
+    
+    public override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!) {
+        if item.tag == 2 {
+            self.presentViewController(AccountViewController(), animated: true, completion: nil)
+        }
+    }
+    
+    // MARK: - MainScrollContainerDelegate methods
+    
     func setScrolling(canScroll: Bool) {
-        self.scrollView.scrollEnabled = canScroll
+        println("setScrolling called")
+    }
+    
+    func scrollToViewAtIndex(index: Int, animated: Bool) {
+        println("scrollToViewAtIndex")
+//        if index >= 0 && index <= 2 {
+//            let destinationFrame = CGRectMake(
+//                self.view.frame.size.width * CGFloat(index),
+//                0,
+//                self.view.frame.size.width,
+//                self.view.frame.size.height
+//            )
+//            
+//            self.scrollView.scrollRectToVisible(destinationFrame, animated: animated)
+//        } else {
+//            println("scrollToViewAtIndex failed: Index out of range")
+//        }
     }
 }

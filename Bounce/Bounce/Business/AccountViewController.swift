@@ -61,6 +61,15 @@ class AccountViewController: UIViewController {
         
         accountLabel.centerHorizontallyInSuperview()
         accountLabel.pinToTopEdgeOfSuperview(offset: 30)
+
+        let doneButton = UIButton()
+        doneButton.titleLabel?.text = "Done"
+        doneButton.titleLabel?.font = Constants.Fonts.Avenir.Medium
+        doneButton.titleLabel?.textColor = UIColor.whiteColor()
+        doneButton.addTarget(self, action: "dismissViewController", forControlEvents: .TouchUpInside)
+        scrollView.addSubview(doneButton)
+        doneButton.pinToTopEdgeOfSuperview(offset: 30)
+        doneButton.pinToRightEdgeOfSuperview(offset: 20)
     }
     
     func renderProfilePicture() {
@@ -346,8 +355,8 @@ class AccountViewController: UIViewController {
         
         // Log out
         
-        let logOutButton = OptionsButton(text: "Log out 😥")
-        logOutButton.addTarget(self, action: "logOutPressed:", forControlEvents: .TouchUpInside)
+        let logOutButton = OptionsButton(text: "Log out 😢")
+        logOutButton.addTarget(self, action: "dismissViewController", forControlEvents: .TouchUpInside)
         optionsView.addSubview(logOutButton)
         logOutButton.positionBelowItem(termsOfUse, offset: 44)
         logOutButton.pinToSideEdgesOfSuperview()
@@ -356,9 +365,8 @@ class AccountViewController: UIViewController {
     
     func setupViewController() {
         self.view.backgroundColor = UIColor.whiteColor()
-        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+
         self.navigationController?.navigationBar.translucent = false
-        
         self.navigationController?.navigationBarHidden = true
     }
     
@@ -432,6 +440,10 @@ class AccountViewController: UIViewController {
      */
     func sendEmail() {
         UIApplication.sharedApplication().openURL(NSURL(string: "mailto:team@bounceho.me")!)
+    }
+    
+    func dismissViewController() {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
 
