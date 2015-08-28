@@ -47,6 +47,16 @@
                 self.iconView = iconView;
                 [iconView kgn_pinToRightEdgeOfSuperviewWithOffset:20];
                 [iconView kgn_centerVerticallyInSuperview];
+            
+                UILabel *requestSent = [UILabel new];
+                requestSent.translatesAutoresizingMaskIntoConstraints = NO;
+                requestSent.textColor = [UIColor blackColor];
+                requestSent.font = [UIFont fontWithName:@"Avenir-Light" size:12];
+                requestSent.text = nil;
+                [self.contentView addSubview:requestSent];
+                [requestSent kgn_centerVerticallyInSuperview];
+                [requestSent kgn_pinToRightEdgeOfSuperviewWithOffset:20];
+                self.requestAdded = requestSent;
             }
         return self;
     }
