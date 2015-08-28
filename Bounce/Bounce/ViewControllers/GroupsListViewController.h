@@ -14,9 +14,7 @@
     UITableViewDataSource,
     ParseManagerLoadingGroupsDelegate,
     ParseManagerGetUserGroups,
-    ParseManagerDeleteDelegate,
-    ParseManagerDelegate,
-    ParseManagerGetTentativeUsers
+    ParseManagerDeleteDelegate
 >
 
 @property NSMutableArray* groups;

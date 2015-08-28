@@ -436,10 +436,10 @@ PFUser *currentUser;
 }
 
 #pragma mark - Get request
-- (PFObject *) retrieveRequestUpdate:(NSString *) requstId
+- (PFObject *) retrieveRequestUpdate:(NSString *) requestId
 {
     PFQuery *query = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
-    [query whereKey:@"objectId" equalTo:requstId];
+    [query whereKey:@"objectId" equalTo:requestId];
     PFObject *result = [query getFirstObject];
     return result;
 }
