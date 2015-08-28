@@ -27,8 +27,7 @@ import UIKit
     func scrollToViewAtIndex(index: Int, animated: Bool)
 }
 
-@objc public class MainScrollContainer: UITabBarController, UITabBarDelegate, MainScrollContainerDelegate {
-    private let accountViewController    = AccountViewController()
+@objc public class MainScrollContainer: UIViewController, MainScrollContainerDelegate {
     private let homeScreenViewController = HomeScreenViewController()
     private let groupsListViewController = GroupsListViewController()
     
@@ -42,13 +41,14 @@ import UIKit
         
         init(viewController: UIViewController, imageNamed imageName: String) {
             self.viewController = viewController
-            image = UIImage(named: "Tabs-\(imageName)")
-            selectedImage = UIImage(named: "Tabs-\(imageName)-Selected")
+            image = UIImage(named: "Tabs-\(imageName)")?.imageWithRenderingMode(.AlwaysOriginal)
+            selectedImage = UIImage(named: "Tabs-\(imageName)-Selected")?.imageWithRenderingMode(.AlwaysOriginal)
             barButtonItem = UIBarButtonItem(image: image, style: .Plain, target: nil, action: nil)
         }
     }
     
     private lazy var homepointsTab: Tab = {
+        self.groupsListViewController.delegate = self
         let navigationController = UINavigationController(rootViewController: self.groupsListViewController)
         let tab = Tab(viewController: navigationController, imageNamed: "Homepoints")
         tab.barButtonItem.target = self
@@ -57,6 +57,7 @@ import UIKit
     }()
     
     private lazy var tripsTab: Tab = {
+        self.homeScreenViewController.delegate = self
         let navigationController = UINavigationController(rootViewController: self.homeScreenViewController)
         let tab = Tab(viewController: navigationController, imageNamed: "Trips")
         tab.barButtonItem.target = self
@@ -66,6 +67,75 @@ import UIKit
     
     private lazy var tabs: [Tab] = [self.homepointsTab, self.tripsTab]
     
+    private lazy var accountBarButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Tabs-Account")?.imageWithRenderingMode(.AlwaysOriginal), style: .Plain, target: self, action: "presentSettings:")
+    
+    private var selectedTab: Tab? {
+        didSet {
+            if selectedTab?.viewController == oldValue?.viewController {
+                return
+            }
+            if let viewController = oldValue?.viewController {
+                viewController.beginAppearanceTransition(false, animated: false)
+                oldValue!.barButtonItem.image = oldValue!.image
+                viewController.view.removeFromSuperview()
+                viewController.endAppearanceTransition()
+            }
+            if let viewController = selectedTab?.viewController {
+                viewController.beginAppearanceTransition(true, animated: false)
+                selectedTab!.barButtonItem.image = selectedTab!.selectedImage
+                viewController.view.frame = self.view.bounds
+                view.addSubview(viewController.view)
+                viewController.endAppearanceTransition()
+            }
+            setNeedsStatusBarAppearanceUpdate()
+        }
+    }
+    
+    private var selectedViewController: UIViewController? {
+        return selectedTab?.viewController
+    }
+    
+    public class func rootTabBarControllerWithNavigationController() -> UIViewController {
+        let navigationController = UINavigationController(rootViewController: MainScrollContainer())
+        navigationController.navigationBarHidden = true
+        navigationController.toolbarHidden = false
+        return navigationController
+    }
+    
+    @objc private func selectTabWithBarButtonItem(barButtonItem: UIBarButtonItem) {
+        selectedTab = first(tabs) { $0.barButtonItem == barButtonItem }
+    }
+    
+    @objc private func presentSettings(sender: UIBarButtonItem) {
+        let accountViewController = AccountViewController()
+        let navigationController = UINavigationController(rootViewController: accountViewController)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "dismissSettings")
+        doneButton.tintColor = UIColor.whiteColor()
+        
+        let attributes = [NSFontAttributeName: UIFont(name: "AvenirNext-Regular", size: 19)!]
+
+        doneButton.setTitleTextAttributes(attributes, forState: UIControlState.Normal)
+        accountViewController.navigationItem.rightBarButtonItem = doneButton
+
+        self.presentViewController(navigationController, animated: true, completion: nil)
+    }
+    
+    @objc private func dismissSettings() {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    public override func loadView() {
+        super.loadView()
+
+        each(tabs.map { $0.viewController }) {
+            $0.willMoveToParentViewController(self)
+            self.addChildViewController($0)
+            $0.didMoveToParentViewController(self)
+        }
+        
+        selectTabWithBarButtonItem(homepointsTab.barButtonItem)
+    }
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -73,62 +143,26 @@ import UIKit
         UIApplication.sharedApplication().statusBarHidden = false
         self.navigationController?.navigationBar.translucent = false
         
-        let accountViewController = AccountViewController()
-        let homeScreenViewController = UINavigationController(rootViewController: HomeScreenViewController())
-        let groupsListViewController = UINavigationController(rootViewController: GroupsListViewController())
-        
-        // Set the delegates
-        accountViewController.delegate = self
-        
-        // These are delegates of UINavigationController instances – get the root VC
-        if let homeScreen = homeScreenViewController.viewControllers.first as? HomeScreenViewController {
-            homeScreen.delegate = self
-        }
-        
-        if let homepointsScreen = groupsListViewController.viewControllers.first as? GroupsListViewController {
-            homepointsScreen.delegate = self
-        }
-        
-        let viewControllers = [groupsListViewController, homeScreenViewController, accountViewController]
-        
-        self.setViewControllers(viewControllers, animated: true)
+        let flexibleSpacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
+        let sideSpacer = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
+        sideSpacer.width = 30
 
-        let tabItems = self.tabBar.items as! [UITabBarItem]
-
-        UITabBarItem.appearance().setTitleTextAttributes([
-            NSForegroundColorAttributeName : Constants.Colors.BounceRed
-            ], forState: UIControlState.Selected)
-        
-        self.tabBar.tintColor = Constants.Colors.BounceRed
-        
-        tabItems[0].image = UIImage(named: "Tabs-Homepoints")
-        tabItems[0].selectedImage = UIImage(named: "Tabs-Homepoints-Selected")
-        tabItems[0].tag = 0
-        
-        tabItems[1].image = UIImage(named: "Tabs-Trips")
-        tabItems[1].selectedImage = UIImage(named: "Tabs-Trips-Selected")
-        tabItems[1].tag = 1
-        
-        tabItems[2].image = UIImage(named: "Tabs-Account")
-        tabItems[2].selectedImage = UIImage(named: "Tabs-Account-Selected")
-        tabItems[2].tag = 2
-        
-        tabItems.map { (tabItem : UITabBarItem) -> Void in
-            tabItem.imageInsets = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
-        }
+        self.setToolbarItems({
+                return [sideSpacer] + flatMap(self.tabs) { [$0.barButtonItem, flexibleSpacer] } + [self.accountBarButtonItem, sideSpacer]
+            }(), animated: false)
+    }
+    
+    public override func childViewControllerForStatusBarHidden() -> UIViewController? {
+        return selectedViewController
+    }
+    
+    public override func childViewControllerForStatusBarStyle() -> UIViewController? {
+        return selectedViewController
     }
     
     public override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    // MARK: - UITabBarDelegate methods
-    
-    public override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!) {
-        if item.tag == 2 {
-            self.presentViewController(AccountViewController(), animated: true, completion: nil)
-        }
     }
     
     // MARK: - MainScrollContainerDelegate methods
@@ -139,17 +173,5 @@ import UIKit
     
     func scrollToViewAtIndex(index: Int, animated: Bool) {
         println("scrollToViewAtIndex")
-//        if index >= 0 && index <= 2 {
-//            let destinationFrame = CGRectMake(
-//                self.view.frame.size.width * CGFloat(index),
-//                0,
-//                self.view.frame.size.width,
-//                self.view.frame.size.height
-//            )
-//            
-//            self.scrollView.scrollRectToVisible(destinationFrame, animated: animated)
-//        } else {
-//            println("scrollToViewAtIndex failed: Index out of range")
-//        }
     }
 }

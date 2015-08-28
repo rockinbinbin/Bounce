@@ -52,6 +52,7 @@
 		00E2CBC11B560B3600B316D1 /* homepointListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2CBC01B560B3600B316D1 /* homepointListCell.m */; };
 		00E2CBC41B563BB300B316D1 /* CreateHomepoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2CBC31B563BB300B316D1 /* CreateHomepoint.m */; };
 		2818DB911B72EFC80021B9C6 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2818DB901B72EFC80021B9C6 /* IntroViewController.swift */; };
+		28205C441B8FFA4B001C3630 /* BounceSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28205C431B8FFA4B001C3630 /* BounceSwift.swift */; };
 		282FAC171B71D4C700899FAB /* InstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282FAC111B71D4C700899FAB /* InstructionView.swift */; };
 		282FAC181B71D4C700899FAB /* StudentStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282FAC121B71D4C700899FAB /* StudentStatusViewController.swift */; };
 		282FAC191B71D4C700899FAB /* RoundedRectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282FAC131B71D4C700899FAB /* RoundedRectButton.swift */; };
@@ -388,6 +389,7 @@
 		00E2CBC21B563BB300B316D1 /* CreateHomepoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateHomepoint.h; sourceTree = "<group>"; };
 		00E2CBC31B563BB300B316D1 /* CreateHomepoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateHomepoint.m; sourceTree = "<group>"; };
 		2818DB901B72EFC80021B9C6 /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntroViewController.swift; path = ../../IntroViewController.swift; sourceTree = "<group>"; };
+		28205C431B8FFA4B001C3630 /* BounceSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BounceSwift.swift; sourceTree = "<group>"; };
 		282FAC111B71D4C700899FAB /* InstructionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionView.swift; sourceTree = "<group>"; };
 		282FAC121B71D4C700899FAB /* StudentStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentStatusViewController.swift; sourceTree = "<group>"; };
 		282FAC131B71D4C700899FAB /* RoundedRectButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedRectButton.swift; sourceTree = "<group>"; };
@@ -952,6 +954,7 @@
 		00CEE3C5199434E700F40C12 = {
 			isa = PBXGroup;
 			children = (
+				28205C431B8FFA4B001C3630 /* BounceSwift.swift */,
 				28802DAF1B770C8D008E8B33 /* UniversityEmail.swift */,
 				0002349F1B488F9F000B7630 /* Quicksand-Regular.otf */,
 				0002349D1B488F98000B7630 /* Quicksand-LightItalic.otf */,
@@ -1716,6 +1719,7 @@
 				00E2CBBD1B5506C800B316D1 /* ChatListCell.m in Sources */,
 				67BB94501ADFABCD0050164B /* JSQMessagesToolbarContentView.m in Sources */,
 				007BA4091A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.m in Sources */,
+				28205C441B8FFA4B001C3630 /* BounceSwift.swift in Sources */,
 				67BB94421ADFABCD0050164B /* JSQVideoMediaItem.m in Sources */,
 				67BB94041ADFABCD0050164B /* AFURLResponseSerialization.m in Sources */,
 				67BB945F1ADFABCD0050164B /* ProgressHUD.m in Sources */,

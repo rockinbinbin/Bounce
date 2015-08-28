@@ -54,7 +54,7 @@
             if (requestId) {
                 [self openRequestViewController:requestId];
             } else {
-                self.window.rootViewController = [[MainScrollContainer alloc] init];
+                self.window.rootViewController = [MainScrollContainer rootTabBarControllerWithNavigationController];
             }
 
         // If logged in user did not complete setup
