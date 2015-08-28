@@ -14,6 +14,7 @@
 @property (nonatomic, weak) UILabel *addedBy;
 @property (nonatomic, weak) UIImageView *profileImage;
 @property (nonatomic, weak) UIButton *iconView;
+@property (nonatomic, weak) UILabel *requestAdded;
 
 
 @end

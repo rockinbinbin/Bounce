@@ -116,12 +116,12 @@
                 text = [self.searchResults[indexPath.row] objectForKey:@"groupName"];
             }
     
-        UIImage *img = [UIImage imageNamed:@"confirmRequest"];
+        UIImage *img = [UIImage imageNamed:@"redPlusWithBorder"];
         [cell.iconView setImage:img forState:UIControlStateNormal];
     
         if (indexPath.row == self.index) {
-                UIImage *img = [UIImage imageNamed:@"sendButton"];
-                [cell.iconView setImage:img forState:UIControlStateNormal];
+                [cell.iconView setImage:nil forState:UIControlStateNormal];
+                cell.requestAdded.text = @"Request sent!";
            }
     
         [cell.iconView addTarget:self action:@selector(addGroup:) forControlEvents:UIControlEventTouchUpInside];
