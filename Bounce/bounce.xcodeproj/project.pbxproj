@@ -20,6 +20,7 @@
 		002805C21B84559A004E1DE1 /* SearchToAddUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = 002805C11B84559A004E1DE1 /* SearchToAddUsers.m */; };
 		002805C51B845631004E1DE1 /* membersCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 002805C41B845631004E1DE1 /* membersCell.m */; };
 		002805C81B84701D004E1DE1 /* SearchToAddGroups.m in Sources */ = {isa = PBXBuildFile; fileRef = 002805C71B84701D004E1DE1 /* SearchToAddGroups.m */; };
+		002805CB1B8FF375004E1DE1 /* HomepointChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 002805CA1B8FF375004E1DE1 /* HomepointChat.m */; };
 		00414F691AAE2B3200B25CEE /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 00414F681AAE2B3200B25CEE /* libicucore.dylib */; };
 		007BA4091A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 007BA4061A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.m */; };
 		007BA40A1A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 007BA4081A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
@@ -203,6 +204,8 @@
 		002805C41B845631004E1DE1 /* membersCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = membersCell.m; sourceTree = "<group>"; };
 		002805C61B84701D004E1DE1 /* SearchToAddGroups.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchToAddGroups.h; path = ../../SearchToAddGroups.h; sourceTree = "<group>"; };
 		002805C71B84701D004E1DE1 /* SearchToAddGroups.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchToAddGroups.m; path = ../../SearchToAddGroups.m; sourceTree = "<group>"; };
+		002805C91B8FF375004E1DE1 /* HomepointChat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomepointChat.h; sourceTree = "<group>"; };
+		002805CA1B8FF375004E1DE1 /* HomepointChat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomepointChat.m; sourceTree = "<group>"; };
 		00296BD519EFA5BF003ADA30 /* APAddressBook-Bridging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "APAddressBook-Bridging.h"; sourceTree = "<group>"; };
 		00414E661AADEE0600B25CEE /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		00414E671AADEE0600B25CEE /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
@@ -1169,6 +1172,8 @@
 				67BB91FD1ADFA8D10050164B /* AddLocationScreenViewController.m */,
 				67BB91FE1ADFA8D10050164B /* CustomChatViewController.h */,
 				67BB91FF1ADFA8D10050164B /* CustomChatViewController.m */,
+				002805C91B8FF375004E1DE1 /* HomepointChat.h */,
+				002805CA1B8FF375004E1DE1 /* HomepointChat.m */,
 				67BB92041ADFA8D10050164B /* GroupsListViewController.h */,
 				67BB92051ADFA8D10050164B /* GroupsListViewController.m */,
 				28B5E7451B7DA883007F79C0 /* NavigationBarExtensions.swift */,
@@ -1700,6 +1705,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				002805BF1B8452CB004E1DE1 /* MembersViewController.m in Sources */,
+				002805CB1B8FF375004E1DE1 /* HomepointChat.m in Sources */,
 				67BB94021ADFABCD0050164B /* AFURLConnectionOperation.m in Sources */,
 				67BB945C1ADFABCD0050164B /* images.m in Sources */,
 				67BB92DC1ADFA8D10050164B /* GroupsListViewController.m in Sources */,

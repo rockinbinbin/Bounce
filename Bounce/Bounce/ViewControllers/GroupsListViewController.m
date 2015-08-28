@@ -16,6 +16,7 @@
 #import "bounce-Swift.h"
 #import "homepointListCell.h"
 #import "MembersViewController.h"
+#import "HomepointChat.h"
 
 @interface GroupsListViewController ()
 
@@ -343,7 +344,6 @@
 #pragma mark - TableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    // Open Group Users
     selectedIndex = indexPath.row;
     [self editGroupUsers:[self.groups objectAtIndex:indexPath.row]];
 }
@@ -372,53 +372,16 @@
 #pragma mark - Edit User group
 - (void) editGroupUsers:(PFObject *) group
 {
-    // get group users
-    self.firstDone = NO;
     if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
-        [[Utility getInstance] showProgressHudWithMessage:@"Loading Users..." withView:self.view];
-        [[ParseManager getInstance] setDelegate:self];
-        [[ParseManager getInstance] getGroupUsers:group];
-        [[ParseManager getInstance] getTentativeUsersFromGroup:group];
-        [[ParseManager getInstance] setGetTentativeUsersDelegate:self];
+        NSString *requestId = group.objectId;
+        
+        [[ParseManager getInstance] createMessageItemForUser:[PFUser currentUser] WithGroupId:requestId andDescription:[group objectForKey:@"groupName"]];
+        
+        HomepointChat *chat = [[HomepointChat alloc] initWith:requestId];
+        chat.homepoint = group;
+        chat.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:chat animated:YES];
     }
 }
-#pragma mark - Parse amnger delegate
-- (void)didloadAllObjects:(NSArray *)objects
-{
-    groupUsers =  [[NSMutableArray alloc] initWithArray:objects];
-    [groupUsers insertObject:[PFUser currentUser] atIndex:0];
-    if (!self.firstDone) {
-         self.firstDone = YES;
-      }
-    else {
-        [[Utility getInstance] hideProgressHud];
-        MembersViewController *members = [MembersViewController new];
-        members.tentativeUsers = tentative_users;
-        members.actualUsers = groupUsers;
-        members.group = [self.groups objectAtIndex:selectedIndex];
-        [self.navigationController pushViewController:members animated:YES];
-    }
-}
-- (void)didLoadTentativeUsers:(NSArray *)tentativeUsers
-{
-    tentative_users = tentativeUsers;
-    if (!self.firstDone) {
-        self.firstDone = YES;
-    }
-    else {
-        [[Utility getInstance] hideProgressHud];
-        MembersViewController *members = [MembersViewController new];
-        members.tentativeUsers = tentative_users;
-        members.actualUsers = groupUsers;
-        members.group = [self.groups objectAtIndex:selectedIndex];
-        [self.navigationController pushViewController:members animated:YES];
-    }
-}
-- (void)didFailWithError:(NSError *)error
-{
-    [[Utility getInstance] hideProgressHud];
-}
-
-#pragma mark - Navigate to GroupUsers screen
 
 @end
