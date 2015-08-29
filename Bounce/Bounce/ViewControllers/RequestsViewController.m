@@ -100,7 +100,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.delegate setScrolling:true];
 
     // For some reason the back button doesn't hide properly.
     // This moves it out of the way.

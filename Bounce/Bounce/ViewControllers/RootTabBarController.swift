@@ -9,22 +9,6 @@
 import UIKit
 
 @objc protocol RootTabBarControllerDelegate {
-    
-    /**
-     * Enables or disables scrolling on the main scroll container.
-     *
-     * :param: canScroll True if scrolling is enabled.
-     */
-    func setScrolling(canScroll: Bool)
-
-    /**
-     * Scrolls to the contained view at the index given, starting from 0.
-     * Should throw an exception if the scroll index is out of range.
-     *
-     * :param: index Must be in [0, 1, 2].
-     * :param: animated True if the transition should be animated.
-     */
-    func scrollToViewAtIndex(index: Int, animated: Bool)
 }
 
 @objc public class RootTabBarController: UIViewController, RootTabBarControllerDelegate {
@@ -163,15 +147,5 @@ import UIKit
     public override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    // MARK: - RootTabBarControllerDelegate methods
-    
-    func setScrolling(canScroll: Bool) {
-        println("setScrolling called")
-    }
-    
-    func scrollToViewAtIndex(index: Int, animated: Bool) {
-        println("scrollToViewAtIndex")
     }
 }

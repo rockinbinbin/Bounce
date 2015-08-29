@@ -61,7 +61,7 @@
 		282FAC1D1B71D54C00899FAB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282FAC1C1B71D54C00899FAB /* Constants.swift */; };
 		282FAC1F1B71D56D00899FAB /* KGN Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282FAC1E1B71D56D00899FAB /* KGN Autolayout.swift */; };
 		28802DAC1B7708CF008E8B33 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28802DAB1B7708CF008E8B33 /* AccountViewController.swift */; };
-		28802DAE1B770C12008E8B33 /* MainScrollContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28802DAD1B770C12008E8B33 /* MainScrollContainer.swift */; };
+		28802DAE1B770C12008E8B33 /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28802DAD1B770C12008E8B33 /* RootTabBarController.swift */; };
 		28802DB01B770C8D008E8B33 /* UniversityEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28802DAF1B770C8D008E8B33 /* UniversityEmail.swift */; };
 		28B5E7441B7C406D007F79C0 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B5E7431B7C406D007F79C0 /* GlobalVariables.swift */; };
 		28B5E7461B7DA883007F79C0 /* NavigationBarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B5E7451B7DA883007F79C0 /* NavigationBarExtensions.swift */; };
@@ -398,7 +398,7 @@
 		282FAC1C1B71D54C00899FAB /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		282FAC1E1B71D56D00899FAB /* KGN Autolayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KGN Autolayout.swift"; sourceTree = "<group>"; };
 		28802DAB1B7708CF008E8B33 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
-		28802DAD1B770C12008E8B33 /* MainScrollContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainScrollContainer.swift; path = ../ViewControllers/MainScrollContainer.swift; sourceTree = "<group>"; };
+		28802DAD1B770C12008E8B33 /* RootTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootTabBarController.swift; path = ../ViewControllers/RootTabBarController.swift; sourceTree = "<group>"; };
 		28802DAF1B770C8D008E8B33 /* UniversityEmail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversityEmail.swift; sourceTree = "<group>"; };
 		28B5E7431B7C406D007F79C0 /* GlobalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GlobalVariables.swift; path = ../ViewControllers/GlobalVariables.swift; sourceTree = "<group>"; };
 		28B5E7451B7DA883007F79C0 /* NavigationBarExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarExtensions.swift; sourceTree = "<group>"; };
@@ -1134,7 +1134,7 @@
 				282FAC131B71D4C700899FAB /* RoundedRectButton.swift */,
 				282FAC141B71D4C700899FAB /* StudentVerificationViewController.swift */,
 				282FAC151B71D4C700899FAB /* EmailSentViewController.swift */,
-				28802DAD1B770C12008E8B33 /* MainScrollContainer.swift */,
+				28802DAD1B770C12008E8B33 /* RootTabBarController.swift */,
 				67BB90F01ADFA8D00050164B /* Constants.h */,
 				67BB90F31ADFA8D00050164B /* ParseManager.h */,
 				67BB90F41ADFA8D00050164B /* ParseManager.m */,
@@ -1765,7 +1765,7 @@
 				67BB940C1ADFABCD0050164B /* UIRefreshControl+AFNetworking.m in Sources */,
 				67BB94301ADFABCD0050164B /* UIView+JSQMessages.m in Sources */,
 				67BB926B1ADFA8D10050164B /* RequestManger.m in Sources */,
-				28802DAE1B770C12008E8B33 /* MainScrollContainer.swift in Sources */,
+				28802DAE1B770C12008E8B33 /* RootTabBarController.swift in Sources */,
 				67BB92D61ADFA8D10050164B /* AddGroupUsersViewController.m in Sources */,
 				67BB943D1ADFABCD0050164B /* JSQMediaItem.m in Sources */,
 				67BB93FE1ADFABCD0050164B /* AFHTTPRequestOperationManager.m in Sources */,
