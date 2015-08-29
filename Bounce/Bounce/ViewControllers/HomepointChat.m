@@ -25,6 +25,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.homepointChat = YES;
+    
     UILabel *navLabel = [UILabel new];
     navLabel.textColor = [UIColor whiteColor];
     navLabel.backgroundColor = [UIColor clearColor];

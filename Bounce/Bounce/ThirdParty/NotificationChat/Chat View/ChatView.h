@@ -20,6 +20,9 @@
 @property NSString *groupId;
 @property NSTimer *timer;
 @property (nonatomic, strong) PFObject *currentRequest1;
+@property (nonatomic, strong) UILabel *chatPrompt;
+
+@property (nonatomic) BOOL homepointChat;
 
 - (id)initWith:(NSString *)groupId_;
 - (void)loadMessages;
