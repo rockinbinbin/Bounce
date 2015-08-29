@@ -1,5 +1,5 @@
 //
-//  MainScrollContainer.swift
+//  RootTabBarController.swift
 //  Scroll View
 //
 //  Created by Steven on 8/5/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-@objc protocol MainScrollContainerDelegate {
+@objc protocol RootTabBarControllerDelegate {
     
     /**
      * Enables or disables scrolling on the main scroll container.
@@ -27,7 +27,7 @@ import UIKit
     func scrollToViewAtIndex(index: Int, animated: Bool)
 }
 
-@objc public class MainScrollContainer: UIViewController, MainScrollContainerDelegate {
+@objc public class RootTabBarController: UIViewController, RootTabBarControllerDelegate {
     private let homeScreenViewController = HomeScreenViewController()
     private let groupsListViewController = GroupsListViewController()
     
@@ -96,7 +96,7 @@ import UIKit
     }
     
     public class func rootTabBarControllerWithNavigationController() -> UIViewController {
-        let navigationController = UINavigationController(rootViewController: MainScrollContainer())
+        let navigationController = UINavigationController(rootViewController: RootTabBarController())
         navigationController.navigationBarHidden = true
         navigationController.toolbarHidden = false
         return navigationController
@@ -133,7 +133,7 @@ import UIKit
             $0.didMoveToParentViewController(self)
         }
         
-        selectTabWithBarButtonItem(homepointsTab.barButtonItem)
+        selectTabWithBarButtonItem(tripsTab.barButtonItem)
     }
     
     public override func viewDidLoad() {
@@ -165,7 +165,7 @@ import UIKit
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - MainScrollContainerDelegate methods
+    // MARK: - RootTabBarControllerDelegate methods
     
     func setScrolling(canScroll: Bool) {
         println("setScrolling called")

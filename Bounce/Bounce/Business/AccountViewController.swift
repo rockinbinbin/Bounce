@@ -11,7 +11,7 @@ import CoreData
 
 class AccountViewController: UIViewController {
     
-    var delegate: MainScrollContainerDelegate?
+    var delegate: RootTabBarControllerDelegate?
     
     // MARK: - UI Elements
     
