@@ -149,8 +149,6 @@
 -(void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self.delegate setScrolling:true];
-    
     if ([GlobalVariables shouldNotOpenRequestView]) {
         [self setBarButtonItemLeft:@"common_back_button"];
     }
@@ -209,7 +207,6 @@
 
 - (void) viewWillDisappear:(BOOL)animated
 {
-    [self.delegate setScrolling:false];
     [[RequestManger getInstance] setRequestManagerDelegate:nil];
 }
 

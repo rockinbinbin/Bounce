@@ -11,13 +11,16 @@ import CoreData
 
 class AccountViewController: UIViewController {
     
-    var delegate: MainScrollContainerDelegate?
+    var delegate: RootTabBarControllerDelegate?
     
     // MARK: - UI Elements
     
     let scrollView = UIScrollView()
     let optionsView = UIView()
     let accountLabel = UILabel()
+
+    let doneButton = UIButton()
+
     let profilePictureView = UIImageView()
     let profileName = UILabel()
     let studentStatusLabel = UILabel()
@@ -26,10 +29,26 @@ class AccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.title = "Title"
+        
+        self.navigationController?.navigationBar.barTintColor = Constants.Colors.BounceRed;
+        self.navigationController?.navigationBar.translucent = false;
+        self.navigationController?.navigationBar.hidden = false
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.navigationController?.navigationBar.hideBottomHairline()
+        
+        let navLabel = UILabel()
+        navLabel.textColor = UIColor.whiteColor()
+        navLabel.backgroundColor = UIColor.clearColor()
+        navLabel.textAlignment = .Center
+        navLabel.font = UIFont(name: "AvenirNext-Medium", size: 21)
+        self.navigationItem.titleView = navLabel
+        navLabel.text = "Account"
+        navLabel.sizeToFit()
+        
         self.setupViewController()
         self.setupScrollView()
 
-        self.renderAccountLabel()
         self.renderProfilePicture()
         self.renderProfileName()
         self.renderStudentStatusLabel()
@@ -37,18 +56,14 @@ class AccountViewController: UIViewController {
         self.renderOptions()
 
         self.view.addSubview(scrollView)
-        
-        self.renderStatusBarCover()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.delegate?.setScrolling(true)
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        self.delegate?.setScrolling(false)
     }
     
     // MARK: - UI Rendering Helpers
@@ -58,18 +73,9 @@ class AccountViewController: UIViewController {
         accountLabel.font = UIFont(name: "AvenirNext-Medium", size: 21)
         accountLabel.textColor = UIColor.whiteColor()
         scrollView.addSubview(accountLabel)
-        
+
         accountLabel.centerHorizontallyInSuperview()
         accountLabel.pinToTopEdgeOfSuperview(offset: 30)
-
-        let doneButton = UIButton()
-        doneButton.titleLabel?.text = "Done"
-        doneButton.titleLabel?.font = Constants.Fonts.Avenir.Medium
-        doneButton.titleLabel?.textColor = UIColor.whiteColor()
-        doneButton.addTarget(self, action: "dismissViewController", forControlEvents: .TouchUpInside)
-        scrollView.addSubview(doneButton)
-        doneButton.pinToTopEdgeOfSuperview(offset: 30)
-        doneButton.pinToRightEdgeOfSuperview(offset: 20)
     }
     
     func renderProfilePicture() {
@@ -86,8 +92,8 @@ class AccountViewController: UIViewController {
         
         profilePictureView.centerHorizontallyInSuperview()
         profilePictureView.sizeToWidthAndHeight(100)
-        profilePictureView.positionBelowItem(accountLabel, offset: 15)
-        
+        profilePictureView.pinToTopEdgeOfSuperview(offset: 15)
+
         if let verified : Bool = PFUser.currentUser()?.objectForKey("emailVerified") as? Bool {
             if verified {
                 self.renderStudentVerifiedCheckmark()
@@ -109,7 +115,7 @@ class AccountViewController: UIViewController {
                 }
             })
         }
-        
+
         // Check for saved photo, and display that if found
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
         let imagePath = paths.stringByAppendingPathComponent("cachedProfilePicture.png")
@@ -365,9 +371,6 @@ class AccountViewController: UIViewController {
     
     func setupViewController() {
         self.view.backgroundColor = UIColor.whiteColor()
-
-        self.navigationController?.navigationBar.translucent = false
-        self.navigationController?.navigationBarHidden = true
     }
     
     func setupScrollView() {
@@ -380,11 +383,11 @@ class AccountViewController: UIViewController {
         scrollView.addSubview(redView)
         
         optionsView.backgroundColor = UIColor.whiteColor()
-        optionsView.frame = CGRectMake(0, 278, self.view.frame.width, scrollView.contentSize.height - 278)
+        optionsView.frame = CGRectMake(0, 225, self.view.frame.width, scrollView.contentSize.height - 225)
         scrollView.addSubview(optionsView)
         
         let curve = QuadraticCurve()
-        curve.frame = CGRectMake(0, 263, self.view.frame.width, 15)
+        curve.frame = CGRectMake(0, 210 , self.view.frame.width, 15)
         scrollView.addSubview(curve)
     }
     

@@ -85,8 +85,6 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (objects != nil) {
             if (objects.count == 0) {
-                [self.delegate scrollToViewAtIndex:2 animated:false];
-
                 [self showPlaceholder];
             } else {
                 [self hidePlaceholder];
@@ -151,7 +149,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.delegate setScrolling:true];
     @try {
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
             [[Utility getInstance] showProgressHudWithMessage:@"Loading..." withView:self.view];
@@ -167,7 +164,6 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.delegate setScrolling:false];
 }
 
 - (void)didReceiveMemoryWarning {

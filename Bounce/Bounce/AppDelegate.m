@@ -13,6 +13,7 @@
 #import "ParseManager.h"
 #import "RequestsViewController.h"
 #import "CustomChatViewController.h"
+#import "Utility.h"
 #import "bounce-Swift.h"
 
 @implementation AppDelegate {
@@ -54,7 +55,7 @@
             if (requestId) {
                 [self openRequestViewController:requestId];
             } else {
-                self.window.rootViewController = [[MainScrollContainer alloc] init];
+                self.window.rootViewController = [RootTabBarController rootTabBarControllerWithNavigationController];
             }
 
         // If logged in user did not complete setup

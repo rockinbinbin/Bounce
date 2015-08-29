@@ -23,7 +23,7 @@
 @property (weak, nonatomic) UITableView *tableView;
 @property NSMutableArray *homepointImages;
 
-// A MainScrollContainer delegate
+// A RootTabBarController delegate
 @property (strong, nonatomic) id delegate;
 
 @end
