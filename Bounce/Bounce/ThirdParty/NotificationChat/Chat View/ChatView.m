@@ -18,6 +18,7 @@
 #import "pushnotification.h"
 #import "ChatView.h"
 #import "ParseManager.h"
+#import "UIView+AutoLayout.h"
 
 @interface ChatView()
 {
@@ -109,7 +110,25 @@
 				{
 					[self finishReceivingMessage];
 					[self scrollToBottomAnimated:NO];
+                    self.chatPrompt.text = @"";
 				}
+                else {
+                    UILabel *chatPrompt = [UILabel new];
+                    chatPrompt.translatesAutoresizingMaskIntoConstraints = NO;
+                    chatPrompt.textColor = [UIColor grayColor];
+                    chatPrompt.font = [UIFont fontWithName:@"AvenirNext-Regular" size:20];
+                    [self.view addSubview:chatPrompt];
+                    [chatPrompt kgn_pinToTopEdgeOfSuperviewWithOffset:40];
+                    [chatPrompt kgn_centerHorizontallyInSuperview];
+                    self.chatPrompt = chatPrompt;
+                    
+                    if (self.homepointChat) {
+                        chatPrompt.text = @"Chat with housemates";
+                    }
+                    else {
+                        chatPrompt.text = @"Find a place to meet";
+                    }
+                }
 				self.automaticallyScrollsToMostRecentMessage = YES;
 			}
 			else [ProgressHUD showError:@"Network error."];
@@ -212,6 +231,7 @@
 
 - (void)didPressSendButton:(UIButton *)button withMessageText:(NSString *)text senderId:(NSString *)senderId senderDisplayName:(NSString *)senderDisplayName date:(NSDate *)date {
 	[self sendMessage:text Video:nil Picture:nil];
+    self.chatPrompt.text = @"";
 }
 
 - (void)didPressAccessoryButton:(UIButton *)sender {
@@ -223,6 +243,9 @@
 #pragma mark - JSQMessages CollectionView DataSource
 
 - (id<JSQMessageData>)collectionView:(JSQMessagesCollectionView *)collectionView messageDataForItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (messages) {
+        self.chatPrompt.text = @"";
+    }
 	return messages[indexPath.item];
 }
 

@@ -10,6 +10,7 @@
 #import "Utility.h"
 #import "ParseManager.h"
 #import "Constants.h"
+#import "UIView+AutoLayout.h"
 
 @interface CustomChatViewController ()
 
@@ -21,6 +22,8 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.homepointChat = NO;
     
     UILabel *navLabel = [UILabel new];
     navLabel.textColor = [UIColor whiteColor];
