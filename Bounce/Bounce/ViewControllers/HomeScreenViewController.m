@@ -89,24 +89,24 @@
     [tempMap kgn_sizeToWidth:self.view.frame.size.width];
     [tempMap kgn_sizeToHeight:self.view.frame.size.height/3];
     self.map = tempMap;
-
-    
-    UILabel *leavingIn = [UILabel new];
-    leavingIn.textColor = [UIColor whiteColor];
-    leavingIn.backgroundColor = [UIColor clearColor];
-    leavingIn.textAlignment = NSTextAlignmentCenter;
-    leavingIn.font = [UIFont fontWithName:@"AvenirNext-Regular" size:18];
-    leavingIn.text = @"I'm going to";
-    [self.view addSubview:leavingIn];
-    [leavingIn sizeToFit];
-    [leavingIn kgn_pinToLeftEdgeOfSuperviewWithOffset:40];
-    [leavingIn kgn_positionBelowItem:tempMap withOffset:30];
     
     UIImageView *whiteLogo = [UIImageView new];
     [whiteLogo setImage:[UIImage imageNamed:@"whiteLogo"]];
     [self.view addSubview:whiteLogo];
-    [whiteLogo kgn_positionToTheLeftOfItem:leavingIn withOffset:10];
-    [whiteLogo kgn_pinTopEdgeToTopEdgeOfItem:leavingIn];
+    [whiteLogo kgn_pinToLeftEdgeOfSuperviewWithOffset:15];
+    [whiteLogo kgn_positionBelowItem:tempMap withOffset:30];
+    
+    UILabel *goingTo = [UILabel new];
+    goingTo.textColor = [UIColor whiteColor];
+    goingTo.backgroundColor = [UIColor clearColor];
+    goingTo.textAlignment = NSTextAlignmentCenter;
+    goingTo.font = [UIFont fontWithName:@"AvenirNext-Regular" size:18];
+    goingTo.text = @"I'm going to";
+    [self.view addSubview:goingTo];
+    [goingTo sizeToFit];
+    [goingTo kgn_positionToTheRightOfItem:whiteLogo withOffset:15];
+    [goingTo kgn_positionBelowItem:tempMap withOffset:30];
+    
     
     UIButton *selectHP = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [selectHP setBackgroundColor:[UIColor clearColor]];
@@ -117,8 +117,14 @@
     [self.view addSubview:selectHP];
     self.selectHP = selectHP;
     [selectHP kgn_sizeToHeight:25];
-    [selectHP kgn_positionToTheRightOfItem:leavingIn withOffset:10];
+    [selectHP kgn_positionToTheRightOfItem:goingTo withOffset:10];
     [selectHP kgn_positionBelowItem:tempMap withOffset:30];
+    
+    UIImageView *clockIcon = [UIImageView new];
+    [clockIcon setImage:[UIImage imageNamed:@"whiteClock"]];
+    [self.view addSubview:clockIcon];
+    [clockIcon kgn_pinToLeftEdgeOfSuperviewWithOffset:15];
+    [clockIcon kgn_positionBelowItem:whiteLogo withOffset:30];
     
     UILabel *atAround = [UILabel new];
     atAround.textColor = [UIColor whiteColor];
@@ -128,14 +134,9 @@
     atAround.text = @"in around";
     [self.view addSubview:atAround];
     [atAround sizeToFit];
-    [atAround kgn_pinToLeftEdgeOfSuperviewWithOffset:40];
-    [atAround kgn_positionBelowItem:leavingIn withOffset:30];
+    [atAround kgn_positionToTheRightOfItem:clockIcon withOffset:15];
+    [atAround kgn_positionBelowItem:whiteLogo withOffset:30];
     
-    UIImageView *clockIcon = [UIImageView new];
-    [clockIcon setImage:[UIImage imageNamed:@"whiteClock"]];
-    [self.view addSubview:clockIcon];
-    [clockIcon kgn_positionToTheLeftOfItem:atAround withOffset:10];
-    [clockIcon kgn_pinTopEdgeToTopEdgeOfItem:atAround];
     
     UIButton *time = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [time setBackgroundColor:[UIColor clearColor]];
@@ -147,7 +148,13 @@
     self.time = time;
     [time kgn_sizeToHeight:25];
     [time kgn_positionToTheRightOfItem:atAround withOffset:10];
-    [time kgn_positionBelowItem:leavingIn withOffset:30];
+    [time kgn_positionBelowItem:whiteLogo withOffset:30];
+    
+    UIImageView *genderIcon = [UIImageView new];
+    [genderIcon setImage:[UIImage imageNamed:@"genderIcon"]];
+    [self.view addSubview:genderIcon];
+    [genderIcon kgn_pinToLeftEdgeOfSuperviewWithOffset:15];
+    [genderIcon kgn_positionBelowItem:clockIcon withOffset:30];
     
     UILabel *with = [UILabel new];
     with.textColor = [UIColor whiteColor];
@@ -157,14 +164,8 @@
     with.text = @"with";
     [self.view addSubview:with];
     [with sizeToFit];
-    [with kgn_pinToLeftEdgeOfSuperviewWithOffset:40];
-    [with kgn_positionBelowItem:atAround withOffset:30];
-    
-    UIImageView *genderIcon = [UIImageView new];
-    [genderIcon setImage:[UIImage imageNamed:@"genderIcon"]];
-    [self.view addSubview:genderIcon];
-    [genderIcon kgn_positionToTheLeftOfItem:with withOffset:10];
-    [genderIcon kgn_pinTopEdgeToTopEdgeOfItem:with];
+    [with kgn_positionToTheRightOfItem:genderIcon withOffset:15];
+    [with kgn_positionBelowItem:clockIcon withOffset:30];
     
     UIButton *genders = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [genders setBackgroundColor:[UIColor clearColor]];
@@ -176,7 +177,7 @@
     self.genders = genders;
     [genders kgn_sizeToHeight:25];
     [genders kgn_positionToTheRightOfItem:with withOffset:10];
-    [genders kgn_positionBelowItem:atAround withOffset:30];
+    [genders kgn_positionBelowItem:clockIcon withOffset:30];
     
     self.location_manager = [[CLLocationManager alloc] init];
 
