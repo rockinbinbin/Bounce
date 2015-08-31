@@ -99,8 +99,14 @@
     leavingIn.text = @"I'm going to";
     [self.view addSubview:leavingIn];
     [leavingIn sizeToFit];
-    [leavingIn kgn_pinToLeftEdgeOfSuperviewWithOffset:30];
+    [leavingIn kgn_pinToLeftEdgeOfSuperviewWithOffset:40];
     [leavingIn kgn_positionBelowItem:tempMap withOffset:30];
+    
+    UIImageView *whiteLogo = [UIImageView new];
+    [whiteLogo setImage:[UIImage imageNamed:@"whiteLogo"]];
+    [self.view addSubview:whiteLogo];
+    [whiteLogo kgn_positionToTheLeftOfItem:leavingIn withOffset:10];
+    [whiteLogo kgn_pinTopEdgeToTopEdgeOfItem:leavingIn];
     
     UIButton *selectHP = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [selectHP setBackgroundColor:[UIColor clearColor]];
@@ -122,8 +128,14 @@
     atAround.text = @"in around";
     [self.view addSubview:atAround];
     [atAround sizeToFit];
-    [atAround kgn_pinToLeftEdgeOfSuperviewWithOffset:30];
+    [atAround kgn_pinToLeftEdgeOfSuperviewWithOffset:40];
     [atAround kgn_positionBelowItem:leavingIn withOffset:30];
+    
+    UIImageView *clockIcon = [UIImageView new];
+    [clockIcon setImage:[UIImage imageNamed:@"whiteClock"]];
+    [self.view addSubview:clockIcon];
+    [clockIcon kgn_positionToTheLeftOfItem:atAround withOffset:10];
+    [clockIcon kgn_pinTopEdgeToTopEdgeOfItem:atAround];
     
     UIButton *time = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [time setBackgroundColor:[UIColor clearColor]];
@@ -145,8 +157,14 @@
     with.text = @"with";
     [self.view addSubview:with];
     [with sizeToFit];
-    [with kgn_pinToLeftEdgeOfSuperviewWithOffset:30];
+    [with kgn_pinToLeftEdgeOfSuperviewWithOffset:40];
     [with kgn_positionBelowItem:atAround withOffset:30];
+    
+    UIImageView *genderIcon = [UIImageView new];
+    [genderIcon setImage:[UIImage imageNamed:@"genderIcon"]];
+    [self.view addSubview:genderIcon];
+    [genderIcon kgn_positionToTheLeftOfItem:with withOffset:10];
+    [genderIcon kgn_pinTopEdgeToTopEdgeOfItem:with];
     
     UIButton *genders = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [genders setBackgroundColor:[UIColor clearColor]];
