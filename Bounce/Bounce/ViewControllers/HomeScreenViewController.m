@@ -22,6 +22,7 @@
 @property (weak, nonatomic) NSString *genderMatching;
 @property (nonatomic) float timeAllocated;
 @property (nonatomic, strong) UIActionSheet *imageActionSheet;
+@property (nonatomic, strong) UIDatePicker *datePicker;
 
 
 @property NSMutableArray *groups;
@@ -173,6 +174,12 @@
     }
     
     [self.view setCenter:CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2)];
+    
+    // single tap gesture recognizer
+    UITapGestureRecognizer *tapGestureRecognize = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissDate:)];
+    tapGestureRecognize.numberOfTapsRequired = 1;
+    [tapGestureRecognize setCancelsTouchesInView:NO];
+    [self.view addGestureRecognizer:tapGestureRecognize];
     
     UITableView *tableView = [UITableView new];
     tableView.delegate = self;
@@ -476,6 +483,7 @@
 #pragma mark - TableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     if (self.selectedCells.count > 0) {
         if ([[self.selectedCells objectAtIndex:indexPath.row] boolValue]) {
             [self.selectedCells replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithBool:NO]];
@@ -540,6 +548,37 @@
     }
     else {
         // cancel
+    }
+}
+
+-(void)pickTime {
+    if (self.datePicker.hidden == YES) {
+        self.datePicker.hidden = NO;
+    }
+    else {
+    UIDatePicker *pickerView = [[UIDatePicker alloc] init];
+    pickerView.datePickerMode = UIDatePickerModeCountDownTimer;
+    pickerView.minuteInterval = 5;
+    pickerView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:pickerView];
+    self.datePicker = pickerView;
+    [pickerView kgn_sizeToWidth:self.view.frame.size.width];
+    //[pickerView kgn_sizeToHeight:200];
+    [pickerView kgn_pinToLeftEdgeOfSuperview];
+    [pickerView kgn_positionBelowItem:self.time withOffset:20];
+    [pickerView kgn_pinToBottomEdgeOfSuperviewWithOffset:45];
+    }
+}
+
+- (void)dismissDate:(UIGestureRecognizer *)gestureRecognizer {
+    if (!self.datePicker.hidden) {
+        self.datePicker.hidden = YES;
+        NSTimeInterval duration = self.datePicker.countDownDuration;
+        int hours = (int)(duration/3600.0f);
+        int minutes = ((int)duration - (hours * 3600))/60;
+        self.timeAllocated = hours * minutes;
+        self.time.tintColor = [UIColor whiteColor];
+        [self.time setTitle:[NSString stringWithFormat:@"%d hours and %d min", hours, minutes] forState:UIControlStateNormal];
     }
 }
 
