@@ -111,17 +111,6 @@
     [selectHP kgn_positionToTheRightOfItem:leavingIn withOffset:30];
     [selectHP kgn_positionBelowItem:tempMap withOffset:30];
     
-    UITableView *tableView = [UITableView new];
-    tableView.delegate = self;
-    tableView.dataSource = self;
-    tableView.hidden = YES;
-    [self.view addSubview:tableView];
-    [tableView kgn_sizeToHeight:250];                             // TODO: ADJUST THIS
-    [tableView kgn_sizeToWidth:self.view.frame.size.width - 40];
-    [tableView kgn_positionBelowItem:selectHP withOffset:5];
-    [tableView kgn_centerHorizontallyInSuperview];
-    self.tableView = tableView;
-    
     UILabel *atAround = [UILabel new];
     atAround.textColor = [UIColor whiteColor];
     atAround.backgroundColor = [UIColor clearColor];
@@ -158,6 +147,17 @@
     }
     
     [self.view setCenter:CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2)];
+    
+    UITableView *tableView = [UITableView new];
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    tableView.hidden = YES;
+    [self.view addSubview:tableView];
+    [tableView kgn_sizeToHeight:250];                             // TODO: ADJUST THIS
+    [tableView kgn_sizeToWidth:self.view.frame.size.width - 40];
+    [tableView kgn_positionBelowItem:selectHP withOffset:5];
+    [tableView kgn_centerHorizontallyInSuperview];
+    self.tableView = tableView;
     
 }
 
@@ -484,7 +484,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 100;
+    return 80;
 }
 
 

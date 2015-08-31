@@ -19,13 +19,13 @@
         UIImageView *hpImage = [UIImageView new];
         [self.contentView addSubview:hpImage];
         self.hpImage = hpImage;
-        [hpImage kgn_sizeToHeight:85];
-        [hpImage kgn_sizeToWidth:85];
+        [hpImage kgn_sizeToHeight:65];
+        [hpImage kgn_sizeToWidth:65];
         [hpImage kgn_pinToLeftEdgeOfSuperviewWithOffset:40];
         [hpImage kgn_centerVerticallyInSuperview];
         self.hpImage.layer.borderWidth = 4.0f;
         self.hpImage.layer.borderColor = [[UIColor whiteColor] CGColor];
-        self.hpImage.layer.cornerRadius = 42.5f;
+        self.hpImage.layer.cornerRadius = 32.5f;
         self.hpImage.clipsToBounds = true;
         
         UILabel *requestedGroups = [UILabel new];
