@@ -21,6 +21,7 @@
 @property (weak, nonatomic) UIButton *leftMenuButton;
 @property (weak, nonatomic) NSString *genderMatching;
 @property (nonatomic) float timeAllocated;
+@property (nonatomic, strong) UIActionSheet *imageActionSheet;
 
 
 @property NSMutableArray *groups;
@@ -149,9 +150,9 @@
     UIButton *genders = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [genders setBackgroundColor:[UIColor clearColor]];
     genders.tintColor = [UIColor grayColor];
-    [genders setTitle:@"select a homepoint" forState:UIControlStateNormal];
+    [genders setTitle:@"all genders" forState:UIControlStateNormal];
     genders.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:18];
-    [genders addTarget:self action:@selector(showActionSheet) forControlEvents:UIControlEventTouchUpInside];
+    [genders addTarget:self action:@selector(pickGender) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:genders];
     self.genders = genders;
     [genders kgn_sizeToHeight:25];
@@ -255,26 +256,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-# pragma mark Custom Methods
-
-- (void)MySegmentControlAction:(UISegmentedControl *)segment {
-    if(segment.selectedSegmentIndex == 0) {
-        self.genderMatching = ALL_GENDER;
-    }
-    else if (segment.selectedSegmentIndex == 1) {
-        PFUser* u = [PFUser currentUser];
-        self.genderMatching = u[PF_GENDER];
-    }
-}
-
--(void)sliderAction:(id)sender {
-    UISlider *slider = (UISlider*)sender;
-    float value = slider.value;
-    self.timeAllocated = value;
-}
-
 # pragma mark Custom Functions
-
 - (void)startReceivingSignificantLocationChanges {
     if (nil == self.location_manager) {
         self.location_manager = [[CLLocationManager alloc] init];
@@ -534,6 +516,31 @@
     }
     
     //[self.view addSubview:TableActivityLevel];
+}
+
+- (void) pickGender {
+    if (!_imageActionSheet) {
+        self.imageActionSheet = [[UIActionSheet alloc] initWithTitle:@"We'll pair you with those you feel most comfortable with, from your homepoint."  delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"All genders", @"Others of your gender", nil];
+    }
+    [self.imageActionSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex;
+{
+    if (buttonIndex == 0) {
+        self.genderMatching = ALL_GENDER;
+        self.genders.tintColor = [UIColor whiteColor];
+        [self.genders setTitle:@"all genders" forState:UIControlStateNormal];
+    }
+    else if (buttonIndex == 1) {
+        PFUser* u = [PFUser currentUser];
+        self.genderMatching = u[PF_GENDER];
+        self.genders.tintColor = [UIColor whiteColor];
+        [self.genders setTitle:@"others of my gender" forState:UIControlStateNormal];
+    }
+    else {
+        // cancel
+    }
 }
 
 @end

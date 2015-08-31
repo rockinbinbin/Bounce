@@ -20,7 +20,7 @@
 #import "RequestManger.h"
 #import "UIView+AutoLayout.h"
 
-@interface HomeScreenViewController : UIViewController <CLLocationManagerDelegate, UIGestureRecognizerDelegate, ParseManagerGetUserGroups, RequestManagerCreateRequestDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface HomeScreenViewController : UIViewController <CLLocationManagerDelegate, UIGestureRecognizerDelegate, ParseManagerGetUserGroups, RequestManagerCreateRequestDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
 
 @property (strong, nonatomic) id delegate;
 
