@@ -90,7 +90,7 @@
     leavingIn.textColor = [UIColor whiteColor];
     leavingIn.backgroundColor = [UIColor clearColor];
     leavingIn.textAlignment = NSTextAlignmentCenter;
-    leavingIn.font = [leavingIn.font fontWithSize:16];
+    leavingIn.font = [UIFont fontWithName:@"AvenirNext-Regular" size:18];
     leavingIn.text = @"I'm going to";
     [self.view addSubview:leavingIn];
     [leavingIn sizeToFit];
@@ -119,14 +119,14 @@
     [tableView kgn_sizeToHeight:250];                             // TODO: ADJUST THIS
     [tableView kgn_sizeToWidth:self.view.frame.size.width - 40];
     [tableView kgn_positionBelowItem:selectHP withOffset:5];
-    [tableView kgn_pinLeftEdgeToLeftEdgeOfItem:leavingIn];
+    [tableView kgn_centerHorizontallyInSuperview];
     self.tableView = tableView;
     
     UILabel *atAround = [UILabel new];
     atAround.textColor = [UIColor whiteColor];
     atAround.backgroundColor = [UIColor clearColor];
     atAround.textAlignment = NSTextAlignmentCenter;
-    atAround.font = [leavingIn.font fontWithSize:16];
+    atAround.font = [UIFont fontWithName:@"AvenirNext-Regular" size:18];
     atAround.text = @"at around";
     [self.view addSubview:atAround];
     [atAround sizeToFit];
@@ -137,7 +137,7 @@
     with.textColor = [UIColor whiteColor];
     with.backgroundColor = [UIColor clearColor];
     with.textAlignment = NSTextAlignmentCenter;
-    with.font = [leavingIn.font fontWithSize:16];
+    with.font = [UIFont fontWithName:@"AvenirNext-Regular" size:18];
     with.text = @"with";
     [self.view addSubview:with];
     [with sizeToFit];
