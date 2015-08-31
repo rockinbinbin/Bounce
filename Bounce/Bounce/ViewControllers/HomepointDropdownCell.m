@@ -21,7 +21,7 @@
         self.hpImage = hpImage;
         [hpImage kgn_sizeToHeight:65];
         [hpImage kgn_sizeToWidth:65];
-        [hpImage kgn_pinToLeftEdgeOfSuperviewWithOffset:40];
+        [hpImage kgn_pinToLeftEdgeOfSuperviewWithOffset:20];
         [hpImage kgn_centerVerticallyInSuperview];
         self.hpImage.layer.borderWidth = 4.0f;
         self.hpImage.layer.borderColor = [[UIColor whiteColor] CGColor];
@@ -34,7 +34,7 @@
         requestedGroups.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:requestedGroups];
         self.homepointName = requestedGroups;
-        [requestedGroups kgn_pinTopEdgeToTopEdgeOfItem:self.hpImage withOffset:-5];
+        [requestedGroups kgn_pinTopEdgeToTopEdgeOfItem:self.hpImage withOffset:0];
         [requestedGroups kgn_positionToTheRightOfItem:hpImage withOffset:25];
         
         UILabel *nearbyUsers = [UILabel new];

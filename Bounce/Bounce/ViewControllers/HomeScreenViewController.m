@@ -31,6 +31,9 @@
 @property (nonatomic, strong) NSMutableArray *selectedGroups;
 @property (nonatomic) BOOL isDataLoaded;
 
+@property (nonatomic, weak) UIButton *time;
+@property (nonatomic, weak) UIButton *genders;
+
 @property NSMutableArray *homepointImages;
 
 @property (nonatomic, weak) UITableView *tableView;
@@ -100,15 +103,13 @@
     UIButton *selectHP = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [selectHP setBackgroundColor:[UIColor clearColor]];
     selectHP.tintColor = [UIColor grayColor];
-    [selectHP setTitle:@"homepoint" forState:UIControlStateNormal];
+    [selectHP setTitle:@"select a homepoint" forState:UIControlStateNormal];
     selectHP.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:18];
-    selectHP.layer.cornerRadius = 10;
     [selectHP addTarget:self action:@selector(showDropDown) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:selectHP];
     self.selectHP = selectHP;
     [selectHP kgn_sizeToHeight:25];
-    [selectHP kgn_sizeToWidth:self.view.frame.size.width - 200];
-    [selectHP kgn_positionToTheRightOfItem:leavingIn withOffset:30];
+    [selectHP kgn_positionToTheRightOfItem:leavingIn withOffset:10];
     [selectHP kgn_positionBelowItem:tempMap withOffset:30];
     
     UILabel *atAround = [UILabel new];
@@ -116,11 +117,23 @@
     atAround.backgroundColor = [UIColor clearColor];
     atAround.textAlignment = NSTextAlignmentCenter;
     atAround.font = [UIFont fontWithName:@"AvenirNext-Regular" size:18];
-    atAround.text = @"at around";
+    atAround.text = @"in around";
     [self.view addSubview:atAround];
     [atAround sizeToFit];
     [atAround kgn_pinToLeftEdgeOfSuperviewWithOffset:30];
     [atAround kgn_positionBelowItem:leavingIn withOffset:30];
+    
+    UIButton *time = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [time setBackgroundColor:[UIColor clearColor]];
+    time.tintColor = [UIColor grayColor];
+    [time setTitle:@"time" forState:UIControlStateNormal];
+    time.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:18];
+    [time addTarget:self action:@selector(pickTime) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:time];
+    self.time = time;
+    [time kgn_sizeToHeight:25];
+    [time kgn_positionToTheRightOfItem:atAround withOffset:10];
+    [time kgn_positionBelowItem:leavingIn withOffset:30];
     
     UILabel *with = [UILabel new];
     with.textColor = [UIColor whiteColor];
@@ -132,6 +145,18 @@
     [with sizeToFit];
     [with kgn_pinToLeftEdgeOfSuperviewWithOffset:30];
     [with kgn_positionBelowItem:atAround withOffset:30];
+    
+    UIButton *genders = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [genders setBackgroundColor:[UIColor clearColor]];
+    genders.tintColor = [UIColor grayColor];
+    [genders setTitle:@"select a homepoint" forState:UIControlStateNormal];
+    genders.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:18];
+    [genders addTarget:self action:@selector(showActionSheet) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:genders];
+    self.genders = genders;
+    [genders kgn_sizeToHeight:25];
+    [genders kgn_positionToTheRightOfItem:with withOffset:10];
+    [genders kgn_positionBelowItem:atAround withOffset:30];
     
     self.location_manager = [[CLLocationManager alloc] init];
 
