@@ -10,6 +10,7 @@
 #import "RequestsViewController.h"
 #import "CustomChatViewController.h"
 #import "bounce-Swift.h"
+#import "HomepointDropdownCell.h"
 
 @interface HomeScreenViewController ()
 
@@ -32,6 +33,10 @@
 
 @property NSMutableArray *homepointImages;
 
+@property (nonatomic, weak) UITableView *tableView;
+
+@property (nonatomic, weak) UIButton *selectHP;
+
 
 @end
 
@@ -41,6 +46,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[ParseManager getInstance] setGetUserGroupsdelegate:self];
+    [[ParseManager getInstance] getUserGroups];
+    self.isDataLoaded = NO;
+    
     self.view.backgroundColor = BounceRed;
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
@@ -74,8 +84,6 @@
     [tempMap kgn_sizeToWidth:self.view.frame.size.width];
     [tempMap kgn_sizeToHeight:self.view.frame.size.height/3];
     self.map = tempMap;
-    
-    
 
     
     UILabel *leavingIn = [UILabel new];
@@ -88,6 +96,31 @@
     [leavingIn sizeToFit];
     [leavingIn kgn_pinToLeftEdgeOfSuperviewWithOffset:30];
     [leavingIn kgn_positionBelowItem:tempMap withOffset:30];
+    
+    UIButton *selectHP = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [selectHP setBackgroundColor:[UIColor clearColor]];
+    selectHP.tintColor = [UIColor grayColor];
+    [selectHP setTitle:@"homepoint" forState:UIControlStateNormal];
+    selectHP.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:18];
+    selectHP.layer.cornerRadius = 10;
+    [selectHP addTarget:self action:@selector(showDropDown) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:selectHP];
+    self.selectHP = selectHP;
+    [selectHP kgn_sizeToHeight:25];
+    [selectHP kgn_sizeToWidth:self.view.frame.size.width - 200];
+    [selectHP kgn_positionToTheRightOfItem:leavingIn withOffset:30];
+    [selectHP kgn_positionBelowItem:tempMap withOffset:30];
+    
+    UITableView *tableView = [UITableView new];
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    tableView.hidden = YES;
+    [self.view addSubview:tableView];
+    [tableView kgn_sizeToHeight:250];                             // TODO: ADJUST THIS
+    [tableView kgn_sizeToWidth:self.view.frame.size.width - 40];
+    [tableView kgn_positionBelowItem:selectHP withOffset:5];
+    [tableView kgn_pinLeftEdgeToLeftEdgeOfItem:leavingIn];
+    self.tableView = tableView;
     
     UILabel *atAround = [UILabel new];
     atAround.textColor = [UIColor whiteColor];
@@ -346,7 +379,7 @@
                     // Update the UI on the main thread.
                     [[Utility getInstance] hideProgressHud];
                     self.isDataLoaded = YES;
-                    //[self.tableView reloadData];
+                    [self.tableView reloadData];
                 });
             });
         }
@@ -375,5 +408,107 @@
     }
 }
 
+
+#pragma mark - TableView Datasource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.groups count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString* cellId = @"homepointCell";
+    HomepointDropdownCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellId];
+    
+    if (!cell) {
+        cell = [HomepointDropdownCell new];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    NSMutableArray *images = [NSMutableArray new];
+    for (int i = 0; i < [self.homepointImages count]; i++) {
+        PFFile *file = self.homepointImages[i];
+        [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error) {
+                if (indexPath.row == i) {
+                    UIImage *image = [UIImage imageWithData:data];
+                    [images addObject:image];
+                    cell.hpImage.image = image;
+                    cell.hpImage.contentMode = UIViewContentModeScaleToFill;
+                    cell.hpImage.backgroundColor = [UIColor blackColor]; // this should never show
+                }
+            }
+        }];
+    }
+    
+    if ([[self.selectedCells objectAtIndex:indexPath.row] boolValue]) {
+        UIImageView *imgView = [UIImageView new];
+        imgView.image = [UIImage imageNamed:@"whiteCheck"];
+        [cell addSubview:imgView];
+        [imgView kgn_pinToRightEdgeOfSuperviewWithOffset:20];
+        [imgView kgn_pinToBottomEdgeOfSuperviewWithOffset:20];
+    }
+    
+    cell.homepointName.text = [[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
+    
+    
+    NSString *usersNearby = [self.nearUsers objectAtIndex:indexPath.row];
+    int numUsers = (int)[usersNearby integerValue];
+    
+    if (numUsers == 1) {
+        cell.nearbyUsers.text = [NSString stringWithFormat:@"1 user nearby"];
+    }
+    else if (numUsers != 0) {
+        cell.nearbyUsers.text = [NSString stringWithFormat:@"%@ users nearby",usersNearby];
+    }
+    return cell;
+}
+
+#pragma mark - TableView Delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (self.selectedCells.count > 0) {
+        if ([[self.selectedCells objectAtIndex:indexPath.row] boolValue]) {
+            [self.selectedCells replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithBool:NO]];
+        }
+        else{
+            [self.selectedCells replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithBool:YES]];
+            self.selectHP.tintColor = [UIColor whiteColor];
+            [self.selectHP setTitle:[[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME] forState:UIControlStateNormal];
+            self.tableView.hidden = YES;
+        }
+        //[self.tableView reloadData];
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 100;
+}
+
+
+
+
+-(void)showDropDown {
+    self.tableView.hidden = !self.tableView.hidden;
+    
+    if(self.tableView.frame.origin.y ==203)
+    {
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.5f];
+        [self.tableView setFrame:CGRectMake(224, 204, 27, 160)];
+        [UIView commitAnimations];
+        [self.view addSubview:self.tableView];
+    }
+    
+    else if (self.tableView.frame.origin.y == 204)
+    {
+        [self.tableView setFrame:CGRectMake(224, 203, 27, 0)];
+        self.tableView.hidden = YES;
+    }
+    
+    //[self.view addSubview:TableActivityLevel];
+}
 
 @end
