@@ -179,6 +179,17 @@
     [genders kgn_positionToTheRightOfItem:with withOffset:10];
     [genders kgn_positionBelowItem:clockIcon withOffset:30];
     
+    UIButton *confirmButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [confirmButton setBackgroundColor:[UIColor whiteColor]];
+    confirmButton.tintColor = BounceRed;
+    [confirmButton setTitle:@"Confirm" forState:UIControlStateNormal];
+    confirmButton.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:18];
+    [confirmButton addTarget:self action:@selector(confirmButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:confirmButton];
+    [confirmButton kgn_sizeToHeight:25];
+    [confirmButton kgn_centerHorizontallyInSuperview];
+    [confirmButton kgn_positionBelowItem:genderIcon withOffset:30];
+    
     self.location_manager = [[CLLocationManager alloc] init];
 
     if (IS_IOS8) {
@@ -422,6 +433,29 @@
     }
 }
 
+- (void) confirmButtonClicked {
+    // add checks for all values
+    // create request
+    
+    self.selectedGroups = [NSMutableArray new];
+    
+    for (int i = 0; i < self.selectedCells.count; i++) {
+        if ([[self.selectedCells objectAtIndex:i] boolValue]) { // if selected
+            [self.selectedGroups addObject:[self.groups objectAtIndex:i]];
+        }
+    }
+    
+    if ([self.selectedGroups count]) {
+        [self creatMessageRequestToSelectedGroup:self.selectedGroups];
+    }
+    else {
+        UIAlertView *zerolength = [[UIAlertView alloc] initWithTitle:@"Oops!"
+                                                             message:@"Please select some homepoints!"
+                                                            delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [zerolength show];
+    }
+}
+
 #pragma mark - Request Manager Create Request delegate
 - (void)didCreateRequestWithError:(NSError *)error
 {
@@ -433,11 +467,28 @@
         } else {
             // MOVE TO HOME
             [GlobalVariables setShouldNotOpenRequestView:NO];
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            RequestsViewController *requestsViewController = [RequestsViewController new];
+            requestsViewController.delegate = self.delegate;
+            [self.navigationController pushViewController:requestsViewController animated:true];
         }
     }
     @catch (NSException *exception) {
         NSLog(@"exception %@", exception);
+    }
+}
+
+#pragma mark -
+- (void) creatMessageRequestToSelectedGroup:(NSArray *) selectedGroups {
+    @try {
+        if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+            int radius = 700; // hardcoded radius
+            [[Utility getInstance] showProgressHudWithMessage:COMMON_HUD_SEND_MESSAGE];
+            [[RequestManger getInstance] setCreateRequestDelegate:self];
+            [[RequestManger getInstance] createrequestToGroups:self.selectedGroups andGender:self.genderMatching withinTime:self.timeAllocated andInRadius:radius];
+        }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
     }
 }
 
@@ -595,7 +646,12 @@
         NSTimeInterval duration = self.datePicker.countDownDuration;
         int hours = (int)(duration/3600.0f);
         int minutes = ((int)duration - (hours * 3600))/60;
-        self.timeAllocated = hours * minutes;
+        if (hours > 0) {
+            self.timeAllocated = hours * minutes;
+        }
+        else {
+            self.timeAllocated = minutes;
+        }
         self.time.tintColor = [UIColor whiteColor];
         [self.time setTitle:[NSString stringWithFormat:@"%d hours and %d min", hours, minutes] forState:UIControlStateNormal];
     }
