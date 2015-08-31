@@ -21,6 +21,18 @@
 @property (weak, nonatomic) NSString *genderMatching;
 @property (nonatomic) float timeAllocated;
 
+
+@property NSMutableArray *groups;
+@property NSMutableArray *nearUsers;
+@property NSMutableArray *selectedCells;
+@property NSArray *images;
+@property (nonatomic, strong) PFObject *Request;
+@property (nonatomic, strong) NSMutableArray *selectedGroups;
+@property (nonatomic) BOOL isDataLoaded;
+
+@property NSMutableArray *homepointImages;
+
+
 @end
 
 @implementation HomeScreenViewController
@@ -29,6 +41,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = BounceRed;
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
@@ -56,68 +69,47 @@
     MKMapView *tempMap = [MKMapView new];
     tempMap.scrollEnabled = NO;
     [self.view addSubview:tempMap];
-    [tempMap kgn_pinToEdgesOfSuperview];
+    [tempMap kgn_pinToLeftEdgeOfSuperview];
+    [tempMap kgn_pinToRightEdgeOfSuperview];
+    [tempMap kgn_sizeToWidth:self.view.frame.size.width];
+    [tempMap kgn_sizeToHeight:self.view.frame.size.height/3];
     self.map = tempMap;
     
-    UIView *bottomView = [UIView new];
-    bottomView.backgroundColor = [UIColor whiteColor];
-    bottomView.layer.borderColor = BounceSeaGreen.CGColor;
-    bottomView.layer.borderWidth = 3.0f;
-    [self.view addSubview:bottomView];
-    [bottomView kgn_pinToBottomEdgeOfSuperview];
-    [bottomView kgn_sizeToHeight:self.view.frame.size.height/4.9];
-    [bottomView kgn_sizeToWidth:self.view.frame.size.width];
-    self.bottomView = bottomView;
-    UIPanGestureRecognizer *gesture = [UIPanGestureRecognizer new];
-    gesture.delegate = self;
-    [self.bottomView addGestureRecognizer:gesture];
     
-    NSArray *itemArray = [NSArray arrayWithObjects: @"All genders", @"Gender matching", nil];
-    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:itemArray];
-    segmentedControl.tintColor = BounceSeaGreen;
-    [segmentedControl addTarget:self action:@selector(MySegmentControlAction:) forControlEvents: UIControlEventValueChanged];
-    segmentedControl.selectedSegmentIndex = 0;
-    [self.bottomView addSubview:segmentedControl];
-    [segmentedControl kgn_sizeToWidth:self.view.frame.size.width - 100];
-    [segmentedControl kgn_sizeToHeight:self.view.frame.size.height/20];
-    [segmentedControl kgn_centerHorizontallyInSuperview];
-    [segmentedControl kgn_pinToTopEdgeOfSuperviewWithOffset:self.view.frame.size.height/40];
-    
-    UISlider *slider = [UISlider new];
-    [slider addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventValueChanged];
-    slider.maximumValue = 120;
-    slider.minimumValue = 5.0;
-    slider.continuous = YES;
-    slider.value = 30.0;
-    self.timeAllocated = slider.value;
-    [slider setMinimumTrackTintColor:BounceSeaGreen];
-    [self.bottomView addSubview:slider];
-    [slider kgn_sizeToWidth:self.view.frame.size.width - 100];
-    [slider kgn_sizeToHeight:10];
-    [slider kgn_centerHorizontallyInSuperview];
-    [slider kgn_pinToBottomEdgeOfSuperviewWithOffset:20];
+
     
     UILabel *leavingIn = [UILabel new];
-    leavingIn.textColor = [UIColor blackColor];
+    leavingIn.textColor = [UIColor whiteColor];
     leavingIn.backgroundColor = [UIColor clearColor];
     leavingIn.textAlignment = NSTextAlignmentCenter;
-    leavingIn.font = [leavingIn.font fontWithSize:self.view.frame.size.height/50];
-    leavingIn.text = @"Leaving in...";
-    [bottomView addSubview:leavingIn];
+    leavingIn.font = [leavingIn.font fontWithSize:16];
+    leavingIn.text = @"I'm going to";
+    [self.view addSubview:leavingIn];
     [leavingIn sizeToFit];
-    [leavingIn kgn_pinTopEdgeToTopEdgeOfItem:slider withOffset:self.view.frame.size.height/18];
-    [leavingIn kgn_pinLeftEdgeToLeftEdgeOfItem:slider];
+    [leavingIn kgn_pinToLeftEdgeOfSuperviewWithOffset:30];
+    [leavingIn kgn_positionBelowItem:tempMap withOffset:30];
     
-    UILabel *twohr = [UILabel new];
-    twohr.textColor = [UIColor blackColor];
-    twohr.backgroundColor = [UIColor clearColor];
-    twohr.textAlignment = NSTextAlignmentCenter;
-    twohr.font = [twohr.font fontWithSize:11.0f];
-    twohr.text = @"2 hrs";
-    [bottomView addSubview:twohr];
-    [twohr sizeToFit];
-    [twohr kgn_pinTopEdgeToTopEdgeOfItem:slider];
-    [twohr kgn_pinRightEdgeToRightEdgeOfItem:slider withOffset:30];
+    UILabel *atAround = [UILabel new];
+    atAround.textColor = [UIColor whiteColor];
+    atAround.backgroundColor = [UIColor clearColor];
+    atAround.textAlignment = NSTextAlignmentCenter;
+    atAround.font = [leavingIn.font fontWithSize:16];
+    atAround.text = @"at around";
+    [self.view addSubview:atAround];
+    [atAround sizeToFit];
+    [atAround kgn_pinToLeftEdgeOfSuperviewWithOffset:30];
+    [atAround kgn_positionBelowItem:leavingIn withOffset:30];
+    
+    UILabel *with = [UILabel new];
+    with.textColor = [UIColor whiteColor];
+    with.backgroundColor = [UIColor clearColor];
+    with.textAlignment = NSTextAlignmentCenter;
+    with.font = [leavingIn.font fontWithSize:16];
+    with.text = @"with";
+    [self.view addSubview:with];
+    [with sizeToFit];
+    [with kgn_pinToLeftEdgeOfSuperviewWithOffset:30];
+    [with kgn_positionBelowItem:atAround withOffset:30];
     
     self.location_manager = [[CLLocationManager alloc] init];
 
@@ -134,16 +126,6 @@
     
     [self.view setCenter:CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2)];
     
-    UIButton *getHomeButton = [UIButton new];
-    UIImage *img = [UIImage imageNamed:@"getHome"];
-    [getHomeButton setImage:img forState:UIControlStateNormal];
-    [getHomeButton addTarget:self action:@selector(messageButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.map addSubview:getHomeButton];
-    [getHomeButton kgn_sizeToWidth:200];
-    [getHomeButton kgn_sizeToHeight:100];
-    [getHomeButton kgn_centerHorizontallyInSuperview];
-    [getHomeButton kgn_centerVerticallyInSuperviewWithOffset:-45];
-    self.getHomeButton = getHomeButton;
 }
 
 -(void) viewWillAppear:(BOOL)animated {
@@ -324,6 +306,73 @@
 - (void)didEndRequestWithError:(NSError *)error
 {
     [[Utility getInstance] hideProgressHud];
+}
+
+
+
+
+
+#pragma mark - Parse LoadGroups delegate
+- (void)didLoadUserGroups:(NSArray *)groups WithError:(NSError *)error
+{
+    @try {
+        if (error) {
+            [[Utility getInstance] hideProgressHud];
+            self.isDataLoaded = YES;
+        }else{
+            if(!self.groups)
+            {
+                self.groups = [[NSMutableArray alloc] init];
+            }
+            self.groups = [NSMutableArray arrayWithArray:groups];
+            self.selectedCells = [[NSMutableArray alloc] init];
+            for (int i = 0; i < self.groups.count; i++) {
+                [self.selectedCells addObject:[NSNumber numberWithBool:NO]];
+            }
+            // calculate the near users in each group
+            // calcultae the distance to the group
+            self.nearUsers = [[NSMutableArray alloc] init];
+            self.homepointImages = [NSMutableArray new];
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                for (PFObject *group in groups) {
+                    [self.nearUsers addObject:[NSNumber numberWithInteger:[[ParseManager getInstance] getNearUsersNumberInGroup:group]]];
+                    
+                    if ([group valueForKey:PF_GROUP_IMAGE]) {
+                        [self.homepointImages addObject:[group valueForKey:PF_GROUP_IMAGE]];
+                    }
+                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // Update the UI on the main thread.
+                    [[Utility getInstance] hideProgressHud];
+                    self.isDataLoaded = YES;
+                    //[self.tableView reloadData];
+                });
+            });
+        }
+    }
+    @catch (NSException *exception) {
+        
+    }
+}
+
+#pragma mark - Request Manager Create Request delegate
+- (void)didCreateRequestWithError:(NSError *)error
+{
+    @try {
+        [[Utility getInstance] hideProgressHud];
+        if (error) {
+            //
+            [[Utility getInstance] showAlertMessage:FAILURE_SEND_MESSAGE];
+        } else {
+            // MOVE TO HOME
+            [GlobalVariables setShouldNotOpenRequestView:NO];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"exception %@", exception);
+    }
 }
 
 
