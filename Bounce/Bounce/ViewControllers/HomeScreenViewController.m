@@ -11,6 +11,7 @@
 #import "CustomChatViewController.h"
 #import "bounce-Swift.h"
 #import "HomepointDropdownCell.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface HomeScreenViewController ()
 
@@ -231,13 +232,18 @@
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.hidden = YES;
+    [tableView.layer setShadowColor:[UIColor blackColor].CGColor];
+    [tableView.layer setShadowOffset:CGSizeMake(0, 5)];
+    [tableView.layer setShadowRadius:10.0];
+    [tableView.layer setShadowOpacity:0.16];
+    tableView.clipsToBounds = NO;
+    tableView.layer.masksToBounds = NO;
     [self.view addSubview:tableView];
     [tableView kgn_sizeToHeight:250];                             // TODO: ADJUST THIS
     [tableView kgn_sizeToWidth:self.view.frame.size.width - 40];
     [tableView kgn_positionBelowItem:selectHP withOffset:5];
     [tableView kgn_centerHorizontallyInSuperview];
     self.tableView = tableView;
-    
 }
 
 -(void) viewWillAppear:(BOOL)animated {
@@ -612,6 +618,7 @@
     {
         [self.tableView setFrame:CGRectMake(224, 203, 27, 0)];
         self.tableView.hidden = YES;
+        
     }
     
     //[self.view addSubview:TableActivityLevel];
