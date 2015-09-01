@@ -182,13 +182,15 @@
     UIButton *confirmButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [confirmButton setBackgroundColor:[UIColor whiteColor]];
     confirmButton.tintColor = BounceRed;
-    [confirmButton setTitle:@"Confirm" forState:UIControlStateNormal];
+    [confirmButton.layer setCornerRadius:10];
+    [confirmButton setTitle:@"Find homies nearby!" forState:UIControlStateNormal];
     confirmButton.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:18];
     [confirmButton addTarget:self action:@selector(confirmButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:confirmButton];
-    [confirmButton kgn_sizeToHeight:25];
+    [confirmButton kgn_sizeToHeight:50];
+    [confirmButton kgn_sizeToWidth:self.view.frame.size.width - 100];
     [confirmButton kgn_centerHorizontallyInSuperview];
-    [confirmButton kgn_positionBelowItem:genderIcon withOffset:30];
+    [confirmButton kgn_pinToBottomEdgeOfSuperviewWithOffset:60];
     
     self.location_manager = [[CLLocationManager alloc] init];
 
@@ -540,8 +542,10 @@
     
     NSString *usersNearby = [self.nearUsers objectAtIndex:indexPath.row];
     int numUsers = (int)[usersNearby integerValue];
-    
-    if (numUsers == 1) {
+    if (numUsers == 0) {
+        cell.nearbyUsers.text = @"no users nearby :(";
+    }
+    else if (numUsers == 1) {
         cell.nearbyUsers.text = [NSString stringWithFormat:@"1 user nearby"];
     }
     else if (numUsers != 0) {
@@ -626,17 +630,17 @@
         self.datePicker.hidden = NO;
     }
     else {
-    UIDatePicker *pickerView = [[UIDatePicker alloc] init];
-    pickerView.datePickerMode = UIDatePickerModeCountDownTimer;
-    pickerView.minuteInterval = 5;
-    pickerView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:pickerView];
-    self.datePicker = pickerView;
-    [pickerView kgn_sizeToWidth:self.view.frame.size.width];
-    //[pickerView kgn_sizeToHeight:200];
-    [pickerView kgn_pinToLeftEdgeOfSuperview];
-    [pickerView kgn_positionBelowItem:self.time withOffset:20];
-    [pickerView kgn_pinToBottomEdgeOfSuperviewWithOffset:45];
+        UIDatePicker *pickerView = [[UIDatePicker alloc] init];
+        pickerView.datePickerMode = UIDatePickerModeCountDownTimer;
+        pickerView.minuteInterval = 5;
+        pickerView.backgroundColor = [UIColor whiteColor];
+        [self.view addSubview:pickerView];
+        self.datePicker = pickerView;
+        [pickerView kgn_sizeToWidth:self.view.frame.size.width];
+        //[pickerView kgn_sizeToHeight:200];
+        [pickerView kgn_pinToLeftEdgeOfSuperview];
+        [pickerView kgn_positionBelowItem:self.time withOffset:20];
+        [pickerView kgn_pinToBottomEdgeOfSuperviewWithOffset:45];
     }
 }
 

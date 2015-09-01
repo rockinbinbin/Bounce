@@ -39,10 +39,12 @@
         
         UILabel *nearbyUsers = [UILabel new];
         nearbyUsers.textColor = [UIColor grayColor];
-        nearbyUsers.font = [UIFont fontWithName:@"AvenirNext-Regular" size:16];
+        nearbyUsers.font = [UIFont fontWithName:@"AvenirNext-Regular" size:12];
         nearbyUsers.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:nearbyUsers];
-        [nearbyUsers kgn_positionToTheRightOfItem:requestedGroups withOffset:10];
+        self.nearbyUsers = nearbyUsers;
+        [nearbyUsers kgn_positionBelowItem:requestedGroups withOffset:15];
+        [nearbyUsers kgn_pinLeftEdgeToLeftEdgeOfItem:requestedGroups];
     }
     return self;
 }
