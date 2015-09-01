@@ -40,6 +40,7 @@
 @property NSMutableArray *homepointImages;
 
 @property (nonatomic, weak) UITableView *tableView;
+@property (nonatomic, weak) UIView *shadowView;
 
 @property (nonatomic, weak) UIButton *selectHP;
 
@@ -228,22 +229,33 @@
     [tapGestureRecognize setCancelsTouchesInView:NO];
     [self.view addGestureRecognizer:tapGestureRecognize];
     
+    UIView *shadowView = [UIView new];
+    [shadowView.layer setShadowColor:[UIColor blackColor].CGColor];
+    [shadowView.layer setShadowOffset:CGSizeMake(0, 5)];
+    [shadowView.layer setShadowRadius:10.0];
+    [shadowView.layer setShadowOpacity:0.16];
+    shadowView.clipsToBounds = NO;
+    shadowView.layer.masksToBounds = NO;
+    [self.view addSubview:shadowView];
+    [shadowView kgn_sizeToHeight:250];                             // TODO: ADJUST THIS
+    [shadowView kgn_sizeToWidth:self.view.frame.size.width - 40];
+    [shadowView kgn_positionBelowItem:selectHP withOffset:5];
+    [shadowView kgn_centerHorizontallyInSuperview];
+    shadowView.backgroundColor = [UIColor whiteColor];
+    self.shadowView = shadowView;
+    self.shadowView.hidden = true;
+    
     UITableView *tableView = [UITableView new];
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.hidden = YES;
-    [tableView.layer setShadowColor:[UIColor blackColor].CGColor];
-    [tableView.layer setShadowOffset:CGSizeMake(0, 5)];
-    [tableView.layer setShadowRadius:10.0];
-    [tableView.layer setShadowOpacity:0.16];
-    tableView.clipsToBounds = NO;
-    tableView.layer.masksToBounds = NO;
     [self.view addSubview:tableView];
     [tableView kgn_sizeToHeight:250];                             // TODO: ADJUST THIS
     [tableView kgn_sizeToWidth:self.view.frame.size.width - 40];
     [tableView kgn_positionBelowItem:selectHP withOffset:5];
     [tableView kgn_centerHorizontallyInSuperview];
     self.tableView = tableView;
+    
 }
 
 -(void) viewWillAppear:(BOOL)animated {
@@ -604,21 +616,26 @@
 
 -(void)showDropDown {
     self.tableView.hidden = !self.tableView.hidden;
+    self.shadowView.hidden = !self.shadowView.hidden;
     
     if(self.tableView.frame.origin.y ==203)
     {
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:0.5f];
         [self.tableView setFrame:CGRectMake(224, 204, 27, 160)];
+        [self.shadowView setFrame:CGRectMake(224, 204, 27, 160)];
         [UIView commitAnimations];
+        [self.view addSubview:self.shadowView];
         [self.view addSubview:self.tableView];
     }
     
     else if (self.tableView.frame.origin.y == 204)
     {
+        [self.shadowView setFrame:CGRectMake(224, 203, 27, 0)];
+        self.shadowView.hidden = YES;
+        
         [self.tableView setFrame:CGRectMake(224, 203, 27, 0)];
         self.tableView.hidden = YES;
-        
     }
     
     //[self.view addSubview:TableActivityLevel];
