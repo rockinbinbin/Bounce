@@ -12,6 +12,7 @@
 
 @property (nonatomic, weak) UILabel *homepointName;
 @property (nonatomic, weak) UILabel *nearbyUsers;
+@property (nonatomic, weak) UILabel *distanceLabel;
 @property (nonatomic, weak) UIImageView *hpImage;
 
 @end

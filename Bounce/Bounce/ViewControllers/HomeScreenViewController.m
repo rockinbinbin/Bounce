@@ -29,6 +29,7 @@
 @property NSMutableArray *groups;
 @property NSMutableArray *nearUsers;
 @property NSMutableArray *selectedCells;
+@property NSMutableArray *homepointDistances;
 @property NSArray *images;
 @property (nonatomic, strong) PFObject *Request;
 @property (nonatomic, strong) NSMutableArray *selectedGroups;
@@ -249,6 +250,7 @@
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.hidden = YES;
+    tableView.separatorColor = [UIColor clearColor];
     [self.view addSubview:tableView];
     [tableView kgn_sizeToHeight:250];                             // TODO: ADJUST THIS
     [tableView kgn_sizeToWidth:self.view.frame.size.width - 40];
@@ -444,10 +446,31 @@
             // calcultae the distance to the group
             self.nearUsers = [[NSMutableArray alloc] init];
             self.homepointImages = [NSMutableArray new];
+            self.homepointDistances = [NSMutableArray new];
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 for (PFObject *group in groups) {
                     [self.nearUsers addObject:[NSNumber numberWithInteger:[[ParseManager getInstance] getNearUsersNumberInGroup:group]]];
+                    
+                    // Get distance label
+                    double distance = [[ParseManager getInstance] getDistanceToGroup:group];
+                    NSString *distanceLabel = @"";
+
+                    if (distance > 2500) {
+                        distance = distance*0.000189394;
+                        
+                        if (distance >= 500) {
+                            distanceLabel = @"500+ miles away";
+                        }
+                        else {
+                            distanceLabel = [NSString stringWithFormat:DISTANCE_MESSAGE_IN_MILES, distance];
+                        }
+                    }
+                    else {
+                        distanceLabel = [NSString stringWithFormat:DISTANCE_MESSAGE_IN_FEET, (int)distance];
+                    }
+                    
+                    [self.homepointDistances addObject:distanceLabel];
                     
                     if ([group valueForKey:PF_GROUP_IMAGE]) {
                         [self.homepointImages addObject:[group valueForKey:PF_GROUP_IMAGE]];
@@ -589,6 +612,10 @@
     else if (numUsers != 0) {
         cell.nearbyUsers.text = [NSString stringWithFormat:@"%@ users nearby",usersNearby];
     }
+    
+    NSString *distanceText = [self.homepointDistances objectAtIndex:indexPath.row];
+    cell.distanceLabel.text = distanceText;
+    
     return cell;
 }
 
@@ -604,14 +631,15 @@
             [self.selectedCells replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithBool:YES]];
             self.selectHP.tintColor = [UIColor whiteColor];
             [self.selectHP setTitle:[[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME] forState:UIControlStateNormal];
-            self.tableView.hidden = YES;
+            self.tableView.hidden = true;
+            self.shadowView.hidden = true;
         }
         //[self.tableView reloadData];
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 70;
+    return 80;
 }
 
 -(void)showDropDown {

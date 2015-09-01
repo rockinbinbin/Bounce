@@ -19,13 +19,12 @@
         UIImageView *hpImage = [UIImageView new];
         [self.contentView addSubview:hpImage];
         self.hpImage = hpImage;
-        [hpImage kgn_sizeToHeight:65];
-        [hpImage kgn_sizeToWidth:65];
+        [hpImage kgn_sizeToHeight:56];
+        [hpImage kgn_sizeToWidth:56];
         [hpImage kgn_pinToLeftEdgeOfSuperviewWithOffset:20];
         [hpImage kgn_centerVerticallyInSuperview];
-        self.hpImage.layer.borderWidth = 4.0f;
-        self.hpImage.layer.borderColor = [[UIColor whiteColor] CGColor];
-        self.hpImage.layer.cornerRadius = 32.5f;
+
+        self.hpImage.layer.cornerRadius = 28;
         self.hpImage.clipsToBounds = true;
         
         UILabel *requestedGroups = [UILabel new];
@@ -34,8 +33,17 @@
         requestedGroups.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:requestedGroups];
         self.homepointName = requestedGroups;
-        [requestedGroups kgn_pinTopEdgeToTopEdgeOfItem:self.hpImage withOffset:0];
-        [requestedGroups kgn_positionToTheRightOfItem:hpImage withOffset:25];
+        [requestedGroups kgn_pinToTopEdgeOfSuperviewWithOffset:16];
+        [requestedGroups kgn_positionToTheRightOfItem:hpImage withOffset:22];
+        
+        UILabel *distanceLabel = [UILabel new];
+        distanceLabel.textColor = [UIColor grayColor];
+        distanceLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:12];
+        distanceLabel.textAlignment = NSTextAlignmentCenter;
+        [self.contentView addSubview:distanceLabel];
+        self.distanceLabel = distanceLabel;
+        [distanceLabel kgn_positionBelowItem:requestedGroups];
+        [distanceLabel kgn_pinLeftEdgeToLeftEdgeOfItem:requestedGroups];
         
         UILabel *nearbyUsers = [UILabel new];
         nearbyUsers.textColor = [UIColor grayColor];
@@ -43,8 +51,8 @@
         nearbyUsers.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:nearbyUsers];
         self.nearbyUsers = nearbyUsers;
-        [nearbyUsers kgn_positionBelowItem:requestedGroups withOffset:15];
-        [nearbyUsers kgn_pinLeftEdgeToLeftEdgeOfItem:requestedGroups];
+        [nearbyUsers kgn_centerVerticallyInSuperview];
+        [nearbyUsers kgn_pinToRightEdgeOfSuperviewWithOffset:10];
     }
     return self;
 }
