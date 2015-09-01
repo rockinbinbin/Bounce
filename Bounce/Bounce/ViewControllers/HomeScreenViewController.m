@@ -110,7 +110,7 @@
     
     UIButton *selectHP = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [selectHP setBackgroundColor:[UIColor clearColor]];
-    selectHP.tintColor = [UIColor grayColor];
+    selectHP.tintColor = BounceAliceBlue;
     [selectHP setTitle:@"select a homepoint" forState:UIControlStateNormal];
     selectHP.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Bold" size:18];
     [selectHP addTarget:self action:@selector(showDropDown) forControlEvents:UIControlEventTouchUpInside];
@@ -140,7 +140,7 @@
     
     UIButton *time = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [time setBackgroundColor:[UIColor clearColor]];
-    time.tintColor = [UIColor grayColor];
+    time.tintColor = BounceAliceBlue;
     [time setTitle:@"0 hrs & 0 min" forState:UIControlStateNormal];
     time.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Bold" size:18];
     [time addTarget:self action:@selector(pickTime) forControlEvents:UIControlEventTouchUpInside];
@@ -169,7 +169,7 @@
     
     UIButton *genders = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [genders setBackgroundColor:[UIColor clearColor]];
-    genders.tintColor = [UIColor grayColor];
+    genders.tintColor = BounceAliceBlue;
     [genders setTitle:@"all genders" forState:UIControlStateNormal];
     genders.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Bold" size:18];
     [genders addTarget:self action:@selector(pickGender) forControlEvents:UIControlEventTouchUpInside];
