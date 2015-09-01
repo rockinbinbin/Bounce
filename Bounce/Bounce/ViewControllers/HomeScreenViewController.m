@@ -131,7 +131,7 @@
     atAround.backgroundColor = [UIColor clearColor];
     atAround.textAlignment = NSTextAlignmentCenter;
     atAround.font = [UIFont fontWithName:@"AvenirNext-Regular" size:18];
-    atAround.text = @"in around";
+    atAround.text = @"in approx";
     [self.view addSubview:atAround];
     [atAround sizeToFit];
     [atAround kgn_positionToTheRightOfItem:clockIcon withOffset:15];
