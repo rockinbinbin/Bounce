@@ -107,7 +107,6 @@
     [goingTo kgn_positionToTheRightOfItem:whiteLogo withOffset:15];
     [goingTo kgn_positionBelowItem:tempMap withOffset:30];
     
-    
     UIButton *selectHP = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [selectHP setBackgroundColor:[UIColor clearColor]];
     selectHP.tintColor = BounceAliceBlue;
@@ -137,7 +136,6 @@
     [atAround kgn_positionToTheRightOfItem:clockIcon withOffset:15];
     [atAround kgn_positionBelowItem:whiteLogo withOffset:30];
     
-    
     UIButton *time = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [time setBackgroundColor:[UIColor clearColor]];
     time.tintColor = BounceAliceBlue;
@@ -155,6 +153,22 @@
     [self.view addSubview:genderIcon];
     [genderIcon kgn_pinToLeftEdgeOfSuperviewWithOffset:15];
     [genderIcon kgn_positionBelowItem:clockIcon withOffset:30];
+    
+    UIView *lineView = [UIView new];
+    lineView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.1];
+    [self.view addSubview:lineView];
+    [lineView kgn_sizeToWidth:1];
+    [lineView kgn_positionToTheLeftOfItem:whiteLogo withOffset:-17];
+    [lineView kgn_positionBelowItem:whiteLogo];
+    [lineView kgn_positionAboveItem:clockIcon];
+    
+    UIView *lineView2 = [UIView new];
+    lineView2.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.1];
+    [self.view addSubview:lineView2];
+    [lineView2 kgn_sizeToWidth:1];
+    [lineView2 kgn_positionToTheLeftOfItem:clockIcon withOffset:-17];
+    [lineView2 kgn_positionBelowItem:clockIcon];
+    [lineView2 kgn_positionAboveItem:genderIcon];
     
     UILabel *with = [UILabel new];
     with.textColor = [UIColor whiteColor];
