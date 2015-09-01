@@ -112,7 +112,7 @@
     [selectHP setBackgroundColor:[UIColor clearColor]];
     selectHP.tintColor = [UIColor grayColor];
     [selectHP setTitle:@"select a homepoint" forState:UIControlStateNormal];
-    selectHP.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:18];
+    selectHP.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Bold" size:18];
     [selectHP addTarget:self action:@selector(showDropDown) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:selectHP];
     self.selectHP = selectHP;
@@ -141,8 +141,8 @@
     UIButton *time = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [time setBackgroundColor:[UIColor clearColor]];
     time.tintColor = [UIColor grayColor];
-    [time setTitle:@"time" forState:UIControlStateNormal];
-    time.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:18];
+    [time setTitle:@"0 hrs & 0 min" forState:UIControlStateNormal];
+    time.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Bold" size:18];
     [time addTarget:self action:@selector(pickTime) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:time];
     self.time = time;
@@ -171,7 +171,7 @@
     [genders setBackgroundColor:[UIColor clearColor]];
     genders.tintColor = [UIColor grayColor];
     [genders setTitle:@"all genders" forState:UIControlStateNormal];
-    genders.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:18];
+    genders.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Bold" size:18];
     [genders addTarget:self action:@selector(pickGender) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:genders];
     self.genders = genders;
@@ -184,7 +184,7 @@
     confirmButton.tintColor = BounceRed;
     [confirmButton.layer setCornerRadius:10];
     [confirmButton setTitle:@"Find homies nearby!" forState:UIControlStateNormal];
-    confirmButton.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:18];
+    confirmButton.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Bold" size:18];
     [confirmButton addTarget:self action:@selector(confirmButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:confirmButton];
     [confirmButton kgn_sizeToHeight:50];
@@ -447,14 +447,20 @@
         }
     }
     
-    if ([self.selectedGroups count]) {
-        [self creatMessageRequestToSelectedGroup:self.selectedGroups];
+    if (![self.selectedGroups count]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Please select a homepoint!"
+                                                             message:@"A homepoint is a group of your neighbors within an area. Only people who are a part of the homepoint you select will receive your message."
+                                                            delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+    else if (self.timeAllocated == 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Please select the time you intend on heading out!"
+                                                             message:@"We'll keep adding your homies nearby to the leaving group, until it's time for you to leave."
+                                                            delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
     }
     else {
-        UIAlertView *zerolength = [[UIAlertView alloc] initWithTitle:@"Oops!"
-                                                             message:@"Please select some homepoints!"
-                                                            delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [zerolength show];
+        [self creatMessageRequestToSelectedGroup:self.selectedGroups];
     }
 }
 
@@ -573,11 +579,8 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 80;
+    return 70;
 }
-
-
-
 
 -(void)showDropDown {
     self.tableView.hidden = !self.tableView.hidden;
@@ -657,7 +660,7 @@
             self.timeAllocated = minutes;
         }
         self.time.tintColor = [UIColor whiteColor];
-        [self.time setTitle:[NSString stringWithFormat:@"%d hours and %d min", hours, minutes] forState:UIControlStateNormal];
+        [self.time setTitle:[NSString stringWithFormat:@"%d hrs & %d min", hours, minutes] forState:UIControlStateNormal];
     }
 }
 
