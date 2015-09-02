@@ -55,6 +55,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.navigationController.navigationBar hideBottomHairline];
+    
     [[ParseManager getInstance] setGetUserGroupsdelegate:self];
     [[ParseManager getInstance] getUserGroups];
     self.isDataLoaded = NO;
@@ -240,7 +242,7 @@
     [self.view addSubview:shadowView];
     [shadowView kgn_sizeToHeight:250];                             // TODO: ADJUST THIS
     [shadowView kgn_sizeToWidth:self.view.frame.size.width - 40];
-    [shadowView kgn_positionBelowItem:selectHP withOffset:5];
+    [shadowView kgn_positionBelowItem:selectHP withOffset:10];
     [shadowView kgn_centerHorizontallyInSuperview];
     shadowView.backgroundColor = [UIColor whiteColor];
     self.shadowView = shadowView;
@@ -254,7 +256,7 @@
     [self.view addSubview:tableView];
     [tableView kgn_sizeToHeight:250];                             // TODO: ADJUST THIS
     [tableView kgn_sizeToWidth:self.view.frame.size.width - 40];
-    [tableView kgn_positionBelowItem:selectHP withOffset:5];
+    [tableView kgn_positionBelowItem:selectHP withOffset:10];
     [tableView kgn_centerHorizontallyInSuperview];
     self.tableView = tableView;
     
@@ -443,7 +445,7 @@
                 [self.selectedCells addObject:[NSNumber numberWithBool:NO]];
             }
             // calculate the near users in each group
-            // calcultae the distance to the group
+            // calculate the distance to the group
             self.nearUsers = [[NSMutableArray alloc] init];
             self.homepointImages = [NSMutableArray new];
             self.homepointDistances = [NSMutableArray new];
@@ -643,37 +645,27 @@
 }
 
 -(void)showDropDown {
-    self.tableView.hidden = !self.tableView.hidden;
-    self.shadowView.hidden = !self.shadowView.hidden;
+    BOOL shouldHide = !self.tableView.hidden;
     
-    self.tableView.layer.opacity = 0.0;
-    self.shadowView.layer.opacity = 0.0;
-    [UIView animateWithDuration:0.1f animations: ^void() {
-        self.shadowView.layer.opacity = 1.0;
-        self.tableView.layer.opacity = 1.0;
+    if (self.tableView.hidden) {
+        self.tableView.hidden = shouldHide;
+        self.shadowView.hidden = shouldHide;
+    }
+
+    double originalOpacity = shouldHide ? 1.0 : 0.0;
+    double newOpacity = shouldHide ? 0.0 : 1.0;
+
+    self.tableView.layer.opacity = originalOpacity;
+    self.shadowView.layer.opacity = originalOpacity;
+    [UIView animateWithDuration:0.15f animations: ^void() {
+        self.shadowView.layer.opacity = newOpacity;
+        self.tableView.layer.opacity = newOpacity;
+    } completion:^(BOOL finishedCompletion) {
+        if (shouldHide) {
+            self.shadowView.hidden = shouldHide;
+            self.tableView.hidden = shouldHide;
+        }
     }];
-    
-    if(self.tableView.frame.origin.y ==203)
-    {
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:0.5f];
-        [self.tableView setFrame:CGRectMake(224, 204, 27, 160)];
-        [self.shadowView setFrame:CGRectMake(224, 204, 27, 160)];
-        [UIView commitAnimations];
-        [self.view addSubview:self.shadowView];
-        [self.view addSubview:self.tableView];
-    }
-    
-    else if (self.tableView.frame.origin.y == 204)
-    {
-        [self.shadowView setFrame:CGRectMake(224, 203, 27, 0)];
-        self.shadowView.hidden = YES;
-        
-        [self.tableView setFrame:CGRectMake(224, 203, 27, 0)];
-        self.tableView.hidden = YES;
-    }
-    
-    //[self.view addSubview:TableActivityLevel];
 }
 
 - (void) pickGender {
@@ -704,8 +696,7 @@
 -(void)pickTime {
     if (self.datePicker.hidden == YES) {
         self.datePicker.hidden = NO;
-    }
-    else {
+    } else {
         UIDatePicker *pickerView = [[UIDatePicker alloc] init];
         pickerView.datePickerMode = UIDatePickerModeCountDownTimer;
         pickerView.minuteInterval = 5;
@@ -713,10 +704,8 @@
         [self.view addSubview:pickerView];
         self.datePicker = pickerView;
         [pickerView kgn_sizeToWidth:self.view.frame.size.width];
-        //[pickerView kgn_sizeToHeight:200];
         [pickerView kgn_pinToLeftEdgeOfSuperview];
-        [pickerView kgn_positionBelowItem:self.time withOffset:20];
-        [pickerView kgn_pinToBottomEdgeOfSuperviewWithOffset:45];
+        [pickerView kgn_pinToBottomEdgeOfSuperviewWithOffset:TAB_BAR_HEIGHT];
     }
 }
 
