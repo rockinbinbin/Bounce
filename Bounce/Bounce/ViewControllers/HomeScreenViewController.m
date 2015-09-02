@@ -108,11 +108,11 @@
     [self.view addSubview:goingTo];
     [goingTo sizeToFit];
     [goingTo kgn_positionToTheRightOfItem:whiteLogo withOffset:15];
-    [goingTo kgn_positionBelowItem:tempMap withOffset:30];
+    [goingTo kgn_positionBelowItem:tempMap withOffset:34];
     
     UIButton *selectHP = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [selectHP setBackgroundColor:[UIColor clearColor]];
-    selectHP.tintColor = BounceAliceBlue;
+    selectHP.tintColor = [UIColor whiteColor];
     [selectHP setTitle:@"select a homepoint" forState:UIControlStateNormal];
     selectHP.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Bold" size:18];
     [selectHP addTarget:self action:@selector(showDropDown) forControlEvents:UIControlEventTouchUpInside];
@@ -120,7 +120,7 @@
     self.selectHP = selectHP;
     [selectHP kgn_sizeToHeight:25];
     [selectHP kgn_positionToTheRightOfItem:goingTo withOffset:10];
-    [selectHP kgn_positionBelowItem:tempMap withOffset:30];
+    [selectHP kgn_positionBelowItem:tempMap withOffset:34];
     
     UIImageView *clockIcon = [UIImageView new];
     [clockIcon setImage:[UIImage imageNamed:@"whiteClock"]];
@@ -137,11 +137,11 @@
     [self.view addSubview:atAround];
     [atAround sizeToFit];
     [atAround kgn_positionToTheRightOfItem:clockIcon withOffset:15];
-    [atAround kgn_positionBelowItem:whiteLogo withOffset:30];
+    [atAround kgn_positionBelowItem:whiteLogo withOffset:34];
     
     UIButton *time = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [time setBackgroundColor:[UIColor clearColor]];
-    time.tintColor = BounceAliceBlue;
+    time.tintColor = [UIColor whiteColor];
     [time setTitle:@"0 hrs & 0 min" forState:UIControlStateNormal];
     time.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Bold" size:18];
     [time addTarget:self action:@selector(pickTime) forControlEvents:UIControlEventTouchUpInside];
@@ -149,7 +149,7 @@
     self.time = time;
     [time kgn_sizeToHeight:25];
     [time kgn_positionToTheRightOfItem:atAround withOffset:10];
-    [time kgn_positionBelowItem:whiteLogo withOffset:30];
+    [time kgn_positionBelowItem:whiteLogo withOffset:34];
     
     UIImageView *genderIcon = [UIImageView new];
     [genderIcon setImage:[UIImage imageNamed:@"genderIcon"]];
@@ -182,11 +182,11 @@
     [self.view addSubview:with];
     [with sizeToFit];
     [with kgn_positionToTheRightOfItem:genderIcon withOffset:15];
-    [with kgn_positionBelowItem:clockIcon withOffset:30];
+    [with kgn_positionBelowItem:clockIcon withOffset:34];
     
     UIButton *genders = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [genders setBackgroundColor:[UIColor clearColor]];
-    genders.tintColor = BounceAliceBlue;
+    genders.tintColor = [UIColor whiteColor];
     [genders setTitle:@"all genders" forState:UIControlStateNormal];
     genders.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Bold" size:18];
     [genders addTarget:self action:@selector(pickGender) forControlEvents:UIControlEventTouchUpInside];
@@ -194,7 +194,7 @@
     self.genders = genders;
     [genders kgn_sizeToHeight:25];
     [genders kgn_positionToTheRightOfItem:with withOffset:10];
-    [genders kgn_positionBelowItem:clockIcon withOffset:30];
+    [genders kgn_positionBelowItem:clockIcon withOffset:34];
     
     UIButton *confirmButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [confirmButton setBackgroundColor:[UIColor whiteColor]];
@@ -645,6 +645,13 @@
 -(void)showDropDown {
     self.tableView.hidden = !self.tableView.hidden;
     self.shadowView.hidden = !self.shadowView.hidden;
+    
+    self.tableView.layer.opacity = 0.0;
+    self.shadowView.layer.opacity = 0.0;
+    [UIView animateWithDuration:0.1f animations: ^void() {
+        self.shadowView.layer.opacity = 1.0;
+        self.tableView.layer.opacity = 1.0;
+    }];
     
     if(self.tableView.frame.origin.y ==203)
     {
