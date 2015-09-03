@@ -209,7 +209,7 @@
     [confirmButton kgn_sizeToHeight:50];
     [confirmButton kgn_sizeToWidth:self.view.frame.size.width - 100];
     [confirmButton kgn_centerHorizontallyInSuperview];
-    [confirmButton kgn_pinToBottomEdgeOfSuperviewWithOffset:60];
+    [confirmButton kgn_pinToBottomEdgeOfSuperviewWithOffset:15 + TAB_BAR_HEIGHT];
     
     self.location_manager = [[CLLocationManager alloc] init];
 

@@ -57,7 +57,7 @@
     self.requestsTableView = tableView;
     [tableView kgn_pinToLeftEdgeOfSuperview];
     [tableView kgn_pinToTopEdgeOfSuperview];
-    [tableView kgn_pinToBottomEdgeOfSuperviewWithOffset:0];
+    [tableView kgn_pinToBottomEdgeOfSuperviewWithOffset:TAB_BAR_HEIGHT + 130];
     [tableView kgn_sizeToWidth:self.view.frame.size.width];
     
     UIView *bottomView = [UIView new];
@@ -66,6 +66,7 @@
     [bottomView kgn_sizeToHeight:130];
     [bottomView kgn_sizeToWidth:self.view.frame.size.width];
     [bottomView kgn_pinToBottomEdgeOfSuperviewWithOffset:TAB_BAR_HEIGHT];
+    [bottomView kgn_pinToLeftEdgeOfSuperview];
     self.bottomView = bottomView;
     
     UIButton *makeRequest = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -79,7 +80,7 @@
     [makeRequest kgn_sizeToHeight:53];
     [makeRequest kgn_sizeToWidth:self.view.frame.size.width - 50];
     [makeRequest kgn_centerHorizontallyInSuperview];
-    [makeRequest kgn_pinToBottomEdgeOfSuperviewWithOffset:25];
+    [makeRequest kgn_pinToBottomEdgeOfSuperviewWithOffset:15];
     
     UILabel *leavingGroup = [UILabel new];
     leavingGroup.textColor = [UIColor colorWithWhite:0.0 alpha:0.56];

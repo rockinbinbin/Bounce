@@ -114,7 +114,7 @@
 
     [_addLocationButton addTarget:self action:@selector(checkGroupNameValidation) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_addLocationButton];
-    [_addLocationButton kgn_pinToBottomEdgeOfSuperviewWithOffset:40.0];
+    [_addLocationButton kgn_pinToBottomEdgeOfSuperviewWithOffset:40.0 + TAB_BAR_HEIGHT];
     [_addLocationButton kgn_centerHorizontallyInSuperview];
     [_addLocationButton kgn_pinToSideEdgesOfSuperviewWithOffset:35.0];
     [_addLocationButton kgn_sizeToHeight:textfieldHeight];

@@ -29,7 +29,7 @@
         self.hpImage = hpImage;
         [hpImage kgn_sizeToHeight:85];
         [hpImage kgn_sizeToWidth:85];
-        [hpImage kgn_pinToLeftEdgeOfSuperviewWithOffset:40];
+        [hpImage kgn_pinToLeftEdgeOfSuperviewWithOffset:20];
         [hpImage kgn_centerVerticallyInSuperview];
 
         self.hpImage.layer.borderWidth = 4.0f;
