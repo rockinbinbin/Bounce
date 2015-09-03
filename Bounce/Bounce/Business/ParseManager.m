@@ -40,6 +40,7 @@ PFUser *currentUser;
 #pragma mark - Create Chat message channel
 - (void) createMessageItemForUser:(PFUser *)user WithGroupId:(NSString *) groupId andDescription:(NSString *)description
 {
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
     PFQuery *query = [PFQuery queryWithClassName:PF_MESSAGES_CLASS_NAME];
     [query whereKey:PF_MESSAGES_USER equalTo:user];
     [query whereKey:PF_MESSAGES_GROUPID equalTo:groupId];
@@ -65,20 +66,24 @@ PFUser *currentUser;
          }
          else NSLog(@"CreateMessageItem query error.");
      }];
+    }
 }
 
 #pragma mark - Load Chat Groups
 - (void) loadAllGroups{
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
     PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
          if ([self.loadGroupsdelegate respondsToSelector:@selector(didLoadGroups:withError:)]) {
              [self.loadGroupsdelegate didLoadGroups:objects withError:error];
          }
      }];
+    }
 }
 #pragma mark - Groups
 #pragma mark  Add Group
 - (void) addGroup:(NSString*) groupName withLocation:(PFGeoPoint*) location withImage:(UIImage *)image {
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
     PFObject *object = [PFObject objectWithClassName:PF_GROUPS_CLASS_NAME];
     object[PF_GROUPS_NAME] = groupName;
     object[PF_GROUP_LOCATION] = location;
@@ -97,9 +102,11 @@ PFUser *currentUser;
              [self.addGroupdelegate didAddGroupWithError:error];
          }
      }];
+    }
 }
 
 - (void) addGroup:(NSString*) groupName withArrayOfUser:(NSArray *)users withLocation:(PFGeoPoint*) location withImage:(UIImage *)image {
+    if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
     PFObject *object = [PFObject objectWithClassName:PF_GROUPS_CLASS_NAME];
     object[PF_GROUPS_NAME] = groupName;
     object[PF_GROUP_LOCATION] = location;
@@ -119,11 +126,13 @@ PFUser *currentUser;
              [self.addGroupdelegate didAddGroupWithError:error];
          }
      }];
+    }
 }
 
 #pragma mark - Group name
 - (void) isGroupNameExist:(NSString *) name
 {
+    if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
     PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
     [query whereKey:PF_GROUPS_NAME equalTo:name];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -137,12 +146,14 @@ PFUser *currentUser;
             }
         }
     }];
+    }
 }
 
 #pragma mark  Add Users to group
 - (void) addListOfUsers:(NSArray *) users toGroup:(PFObject *) group{
     // get the userRelation of the group
     // then append users to this relation
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
     PFRelation *relation = [group relationForKey:@"groupUsers"];
     for (PFUser *user in  users) {
         [relation addObject:user];
@@ -152,12 +163,14 @@ PFUser *currentUser;
             [self.updateGroupDelegate didUpdateGroupData:succeeded];
         }
     }];
+    }
 }
 
 - (void) addListOfUsers:(NSArray *) users toGroup:(PFObject *) group andRemove:(NSArray *) removedUsers
 {
     // get the userRelation of the group
     // then append users to this relation
+    if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
     PFRelation *relation = [group relationForKey:PF_GROUP_Users_RELATION];
     for (PFUser *user in  users) {
         [relation addObject:user];
@@ -171,11 +184,13 @@ PFUser *currentUser;
             [self.updateGroupDelegate didUpdateGroupData:succeeded];
         }
     }];
+    }
 }
 
 #pragma mark Group Users
 - (void) getGroupUsers:(PFObject *) group
 {
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
     PFRelation *usersRelation = [group relationForKey:PF_GROUP_Users_RELATION];
     PFQuery *query = [usersRelation query];
     [query whereKey:OBJECT_ID notEqualTo:[[PFUser currentUser] objectId]];
@@ -190,11 +205,13 @@ PFUser *currentUser;
             }
         }
     }];
+    }
 }
 
 #pragma mark  Get Groups of user
 - (void) getUserGroups
 {
+    if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
     @try {
         PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
         [query whereKey:PF_GROUP_Users_RELATION equalTo:[PFUser currentUser]];
@@ -209,9 +226,11 @@ PFUser *currentUser;
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
     }
+    }
 }
 
 - (void) getAllOtherGroupsForCurrentUser {
+    if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
        @try {
                 PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
                 [query whereKey:PF_GROUP_Users_RELATION notEqualTo:[PFUser currentUser]];
@@ -224,10 +243,12 @@ PFUser *currentUser;
         @catch (NSException *exception) {
                NSLog(@"Exception: %@", exception);
            }
+    }
 }
 
 - (void) getCandidateGroupsForCurrentUser
 {
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
     @try {
         PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
         [query whereKey:PF_GROUP_Users_RELATION notEqualTo:[PFUser currentUser]];
@@ -243,13 +264,14 @@ PFUser *currentUser;
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
     }
+    }
 }
 
 #pragma mark  Remove Group
 - (void) removeGroup:(PFObject *) group
 {
+    if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
     @try {
-
         [group deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if ([self.deleteDelegate respondsToSelector:@selector(didDeleteObject:)]) {
                 [self.deleteDelegate didDeleteObject:succeeded];
@@ -259,11 +281,13 @@ PFUser *currentUser;
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
     }
+    }
 }
 
 // NOT TESTED
 -(BOOL)isOnlyMemberInGroup:(PFObject *)group {
     __block BOOL returnTrue = false;
+    if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
     PFRelation *usersRelation = [group relationForKey:PF_GROUP_Users_RELATION];
     PFQuery *query = [usersRelation query];
     [query whereKey:OBJECT_ID notEqualTo:[[PFUser currentUser] objectId]];
@@ -274,6 +298,7 @@ PFUser *currentUser;
             }
         }
     }];
+    }
     if (returnTrue) return true;
     else return false;
     
@@ -282,6 +307,7 @@ PFUser *currentUser;
 // You shouldn't delete a group entirely if there are other members in it
 - (void) deleteGroup:(PFObject *) group
 {
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
     @try {
 //        if ([[[group objectForKey:PF_GROUP_OWNER] username] isEqualToString:[[PFUser currentUser] username]]) {
 //                [self removeGroup:group];
@@ -293,10 +319,12 @@ PFUser *currentUser;
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
     }
+    }
 }
 #pragma mark  Out user from group
 - (void) removeUserFromGroup:(PFObject *) group
 {
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
     @try {
         PFUser *currentUser = [PFUser currentUser];
         PFRelation *relation = [group relationForKey:PF_GROUP_Users_RELATION];
@@ -311,10 +339,12 @@ PFUser *currentUser;
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
     }
+    }
 }
 
 - (void) deleteCurrentUserFromGroup:(PFObject *) group
 {
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
     @try {
         PFUser *currentUser = [PFUser currentUser];
         PFRelation *relation = [group relationForKey:PF_GROUP_Users_RELATION];
@@ -328,9 +358,11 @@ PFUser *currentUser;
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
     }
+    }
 }
 #pragma mark - Get all Groups in the system except created by user
 - (NSArray *) getAllGroupsExceptCreatedByUser {
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
     @try {
         PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
         [query whereKey:PF_GROUP_OWNER notEqualTo:[PFUser currentUser]];
@@ -341,10 +373,12 @@ PFUser *currentUser;
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
     }
+    }
 }
 
 // CALL THIS to return array of tentative users
 - (void) getTentativeUsersFromGroup:(PFObject *)group {
+    if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
         PFRelation *usersRelation = [group relationForKey:PF_TENTATIVE_GROUP_USERS];
         PFQuery *query = [usersRelation query];
         //[query whereKey:OBJECT_ID notEqualTo:[[PFUser currentUser] objectId]];
@@ -358,12 +392,14 @@ PFUser *currentUser;
                 }
             }
          }];
+    }
 }
 
 
 #pragma mark – Add user to group tentatively
 // CALL THIS to add current user to a tentative users relation
 - (void) addTentativeUserToGroup:(PFObject *)group withExistingTentativeUsers:(NSArray *)tentativeUsers {
+    if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
     @try {
         // Check does relation exist
         PFRelation *relationExist = [group relationForKey:PF_TENTATIVE_GROUP_USERS];
@@ -382,11 +418,13 @@ PFUser *currentUser;
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
     }
+    }
 }
 
 // CALL THIS to add a specific user to a group and remove them from tentative users list.
 // Function: Query should add a user by pfobject to a group and remove it from tentative users array. works
 -(void)addUser:(PFUser *)user toGroup:(PFObject *)group {
+    if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
     @try {
           // Check does relation exist
           PFRelation *relationExist = [group relationForKey:PF_GROUP_Users_RELATION];
@@ -406,18 +444,22 @@ PFUser *currentUser;
        @catch (NSException *exception) {
             NSLog(@"Exception %@", exception);
          }
+    }
 }
 
 // Function: Query should remove a tentative user for a 'tentative user' array. Called from addUser method
 - (void)removeUser:(PFUser *)user fromTentativeGroup:(PFObject *)group {
+    if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
     PFRelation *tentativeRelation = [group relationForKey:PF_TENTATIVE_GROUP_USERS];
     [tentativeRelation removeObject:user];
     [group saveInBackground];
+    }
 }
 
 #pragma mark - Add User to group
 - (void) addCurrentUserToGroup:(PFObject *) group
 {
+    if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
     @try {
         // Add relation
         PFUser *currentUser = [PFUser currentUser];
@@ -433,23 +475,29 @@ PFUser *currentUser;
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
     }
+    }
 }
 
 #pragma mark - Get request
 - (PFObject *) retrieveRequestUpdate:(NSString *) requestId
 {
-    PFQuery *query = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
-    [query whereKey:@"objectId" equalTo:requestId];
-    PFObject *result = [query getFirstObject];
+    PFObject *result = nil;
+    if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
+        PFQuery *query = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
+        [query whereKey:@"objectId" equalTo:requestId];
+        result = [query getFirstObject];
+    }
     return result;
 }
 - (BOOL) isValidRequestReceiver:(PFObject*) request
 {
-    NSArray *requestReceiver = [request objectForKey:PF_REQUEST_RECEIVER];
-    if ([requestReceiver containsObject:[[PFUser currentUser] username]]) {
-        return YES;
-    }else if ([[request objectForKey:PF_REQUEST_SENDER] isEqualToString:[[PFUser currentUser] username]]){
-        return YES;
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+        NSArray *requestReceiver = [request objectForKey:PF_REQUEST_RECEIVER];
+        if ([requestReceiver containsObject:[[PFUser currentUser] username]]) {
+            return YES;
+        } else if ([[request objectForKey:PF_REQUEST_SENDER] isEqualToString:[[PFUser currentUser] username]]){
+            return YES;
+        }
     }
     return NO;
 }
@@ -457,6 +505,7 @@ PFUser *currentUser;
 #pragma mark - Get Group Users near current User
 - (NSInteger) getNearUsersNumberInGroup:(PFObject *) group
 {
+    if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
     // User's location
     PFGeoPoint *userGeoPoint = [[PFUser currentUser] objectForKey:PF_USER_LOCATION];
     
@@ -466,12 +515,15 @@ PFUser *currentUser;
     PFQuery *query = [userRelation query];
     [query whereKey:PF_USER_USERNAME notEqualTo:[[PFUser currentUser] username]];
     [query whereKey:PF_USER_LOCATION nearGeoPoint:userGeoPoint withinMiles:K_NEAR_DISTANCE];
-    
-   return [query countObjects];
+
+    return [query countObjects];
+    }
+    else return 0;
 }
 
 #pragma mark - Get Users
-- (void) getAllUsers{
+- (void) getAllUsers {
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
     PFQuery *query = [PFUser query];
     [query whereKey:PF_USER_USERNAME notEqualTo:[[PFUser currentUser] username]];
 
@@ -486,10 +538,12 @@ PFUser *currentUser;
             }
         }
     }];
+    }
 }
 #pragma mark - Distance to HomePoint (Group)
 - (double) getDistanceToGroup:(PFObject *) group
 {
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
     PFGeoPoint *userGeoPoint = [[PFUser currentUser] objectForKey:PF_USER_LOCATION];
     PFGeoPoint *groupGeoPoint = [group objectForKey:PF_GROUP_LOCATION];
     if (!groupGeoPoint) {
@@ -497,6 +551,8 @@ PFUser *currentUser;
     }
 //    return [userGeoPoint distanceInMilesTo:groupGeoPoint];
     return ([userGeoPoint distanceInKilometersTo:groupGeoPoint] * FEET_IN_KILOMETER);
+    }
+    else return 0;
 }
 
 #pragma mark - Set the current user
@@ -517,6 +573,7 @@ PFUser *currentUser;
 #pragma mark - Number of valid Requests
 
 -(NSUInteger) returnNumberOfValidRequestsWithNavigationController:(UINavigationController *)navigationController {
+    if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
     __block NSUInteger number = 0;
     // load requests if the user is sender or receiver
     PFQuery *query1 = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
@@ -541,9 +598,12 @@ PFUser *currentUser;
         }
     }];
     return number;
+    }
+    else return 0;
 }
 
 - (NSUInteger) getNumberOfValidRequests {
+    if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
     PFQuery *query1 = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
     [query1 whereKey:PF_REQUEST_SENDER equalTo:[[PFUser currentUser] username]];
     PFQuery *query2 = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
@@ -562,11 +622,14 @@ PFUser *currentUser;
     }
     
     return [objects count];
+    }
+    else return 0;
 }
 
 #pragma mark - Load all User requests
 - (void) getUserRequests
 {
+    if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
     @try {
         PFQuery *query1 = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
         [query1 whereKey:PF_REQUEST_SENDER equalTo:[[PFUser currentUser] username]];
@@ -591,6 +654,7 @@ PFUser *currentUser;
     @catch (NSException *exception) {
         NSLog(@"exception %@", exception);
     }
+    }
 }
 
 #pragma mark - Delete request
@@ -601,6 +665,7 @@ PFUser *currentUser;
  */
 -(void) deleteRequest:(PFObject *) request
 {
+    if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
     @try {
         NSString *requestId = [request objectId];
         if ([[request objectForKey:PF_REQUEST_SENDER] isEqualToString:[[PFUser currentUser] username]]) {
@@ -619,9 +684,11 @@ PFUser *currentUser;
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
     }
+    }
 }
 - (void) deleteAllRequestData:(PFObject *) request
 {
+    if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
     @try {
         NSString *requestId = [request objectId];
         [request deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -631,11 +698,13 @@ PFUser *currentUser;
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
     }
+    }
 }
 #pragma mark - Detete User from request
 // called from request screens
 - (void) deleteUser:(PFUser *) user FromRequest:(PFObject *) request
 {
+    if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
     @try {
         NSString *requestId = [request objectId];
        // delete user from the receiver relation
@@ -659,9 +728,11 @@ PFUser *currentUser;
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
     }
+    }
 }
 - (void) deleteChatDataRelatedToRequestId:(NSString *) requestId ForExactUser:(PFUser *) user
 {
+    if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
     @try {
         // delete chat object
         PFQuery *query = [PFQuery queryWithClassName:PF_MESSAGES_CLASS_NAME];
@@ -698,10 +769,12 @@ PFUser *currentUser;
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
     }
+    }
 }
 #pragma mark - Get all useres that don't join group
 - (void) getCandidateUsersForGroup:(PFObject *) group
 {
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
     @try {
         PFRelation *usersRelation = [group relationForKey:PF_GROUP_Users_RELATION];
         PFQuery *groupUsersQuery = [usersRelation query];
@@ -716,6 +789,7 @@ PFUser *currentUser;
     }
     @catch (NSException *exception) {
         NSLog(@"exception %@", exception);
+    }
     }
 }
 @end
