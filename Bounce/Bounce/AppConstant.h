@@ -14,6 +14,7 @@
 #define		FIREBASE							@"https://relatedchat.firebaseio.com"
 
 #define		DEFAULT_TAB							1
+#define     TAB_BAR_HEIGHT                      44 // points
 
 #define		MESSAGE_INVITE						@"Check out RealtimeChat. You can download here: https://github.com/relatedcode/RealtimeChat"
 
