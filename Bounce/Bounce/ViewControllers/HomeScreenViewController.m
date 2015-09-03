@@ -11,6 +11,7 @@
 #import "CustomChatViewController.h"
 #import "bounce-Swift.h"
 #import "HomepointDropdownCell.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface HomeScreenViewController ()
 
@@ -28,6 +29,7 @@
 @property NSMutableArray *groups;
 @property NSMutableArray *nearUsers;
 @property NSMutableArray *selectedCells;
+@property NSMutableArray *homepointDistances;
 @property NSArray *images;
 @property (nonatomic, strong) PFObject *Request;
 @property (nonatomic, strong) NSMutableArray *selectedGroups;
@@ -39,6 +41,7 @@
 @property NSMutableArray *homepointImages;
 
 @property (nonatomic, weak) UITableView *tableView;
+@property (nonatomic, weak) UIView *shadowView;
 
 @property (nonatomic, weak) UIButton *selectHP;
 
@@ -51,6 +54,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.navigationController.navigationBar hideBottomHairline];
     
     [[ParseManager getInstance] setGetUserGroupsdelegate:self];
     [[ParseManager getInstance] getUserGroups];
@@ -105,12 +110,11 @@
     [self.view addSubview:goingTo];
     [goingTo sizeToFit];
     [goingTo kgn_positionToTheRightOfItem:whiteLogo withOffset:15];
-    [goingTo kgn_positionBelowItem:tempMap withOffset:30];
-    
+    [goingTo kgn_positionBelowItem:tempMap withOffset:34];
     
     UIButton *selectHP = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [selectHP setBackgroundColor:[UIColor clearColor]];
-    selectHP.tintColor = BounceAliceBlue;
+    selectHP.tintColor = [UIColor whiteColor];
     [selectHP setTitle:@"select a homepoint" forState:UIControlStateNormal];
     selectHP.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Bold" size:18];
     [selectHP addTarget:self action:@selector(showDropDown) forControlEvents:UIControlEventTouchUpInside];
@@ -118,7 +122,7 @@
     self.selectHP = selectHP;
     [selectHP kgn_sizeToHeight:25];
     [selectHP kgn_positionToTheRightOfItem:goingTo withOffset:10];
-    [selectHP kgn_positionBelowItem:tempMap withOffset:30];
+    [selectHP kgn_positionBelowItem:tempMap withOffset:34];
     
     UIImageView *clockIcon = [UIImageView new];
     [clockIcon setImage:[UIImage imageNamed:@"whiteClock"]];
@@ -135,12 +139,11 @@
     [self.view addSubview:atAround];
     [atAround sizeToFit];
     [atAround kgn_positionToTheRightOfItem:clockIcon withOffset:15];
-    [atAround kgn_positionBelowItem:whiteLogo withOffset:30];
-    
+    [atAround kgn_positionBelowItem:whiteLogo withOffset:34];
     
     UIButton *time = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [time setBackgroundColor:[UIColor clearColor]];
-    time.tintColor = BounceAliceBlue;
+    time.tintColor = [UIColor whiteColor];
     [time setTitle:@"0 hrs & 0 min" forState:UIControlStateNormal];
     time.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Bold" size:18];
     [time addTarget:self action:@selector(pickTime) forControlEvents:UIControlEventTouchUpInside];
@@ -148,13 +151,29 @@
     self.time = time;
     [time kgn_sizeToHeight:25];
     [time kgn_positionToTheRightOfItem:atAround withOffset:10];
-    [time kgn_positionBelowItem:whiteLogo withOffset:30];
+    [time kgn_positionBelowItem:whiteLogo withOffset:34];
     
     UIImageView *genderIcon = [UIImageView new];
     [genderIcon setImage:[UIImage imageNamed:@"genderIcon"]];
     [self.view addSubview:genderIcon];
     [genderIcon kgn_pinToLeftEdgeOfSuperviewWithOffset:15];
     [genderIcon kgn_positionBelowItem:clockIcon withOffset:30];
+    
+    UIView *lineView = [UIView new];
+    lineView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.1];
+    [self.view addSubview:lineView];
+    [lineView kgn_sizeToWidth:1];
+    [lineView kgn_positionToTheLeftOfItem:whiteLogo withOffset:-17];
+    [lineView kgn_positionBelowItem:whiteLogo];
+    [lineView kgn_positionAboveItem:clockIcon];
+    
+    UIView *lineView2 = [UIView new];
+    lineView2.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.1];
+    [self.view addSubview:lineView2];
+    [lineView2 kgn_sizeToWidth:1];
+    [lineView2 kgn_positionToTheLeftOfItem:clockIcon withOffset:-17];
+    [lineView2 kgn_positionBelowItem:clockIcon];
+    [lineView2 kgn_positionAboveItem:genderIcon];
     
     UILabel *with = [UILabel new];
     with.textColor = [UIColor whiteColor];
@@ -165,11 +184,11 @@
     [self.view addSubview:with];
     [with sizeToFit];
     [with kgn_positionToTheRightOfItem:genderIcon withOffset:15];
-    [with kgn_positionBelowItem:clockIcon withOffset:30];
+    [with kgn_positionBelowItem:clockIcon withOffset:34];
     
     UIButton *genders = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [genders setBackgroundColor:[UIColor clearColor]];
-    genders.tintColor = BounceAliceBlue;
+    genders.tintColor = [UIColor whiteColor];
     [genders setTitle:@"all genders" forState:UIControlStateNormal];
     genders.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Bold" size:18];
     [genders addTarget:self action:@selector(pickGender) forControlEvents:UIControlEventTouchUpInside];
@@ -177,7 +196,7 @@
     self.genders = genders;
     [genders kgn_sizeToHeight:25];
     [genders kgn_positionToTheRightOfItem:with withOffset:10];
-    [genders kgn_positionBelowItem:clockIcon withOffset:30];
+    [genders kgn_positionBelowItem:clockIcon withOffset:34];
     
     UIButton *confirmButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [confirmButton setBackgroundColor:[UIColor whiteColor]];
@@ -213,14 +232,31 @@
     [tapGestureRecognize setCancelsTouchesInView:NO];
     [self.view addGestureRecognizer:tapGestureRecognize];
     
+    UIView *shadowView = [UIView new];
+    [shadowView.layer setShadowColor:[UIColor blackColor].CGColor];
+    [shadowView.layer setShadowOffset:CGSizeMake(0, 5)];
+    [shadowView.layer setShadowRadius:10.0];
+    [shadowView.layer setShadowOpacity:0.16];
+    shadowView.clipsToBounds = NO;
+    shadowView.layer.masksToBounds = NO;
+    [self.view addSubview:shadowView];
+    [shadowView kgn_sizeToHeight:250];                             // TODO: ADJUST THIS
+    [shadowView kgn_sizeToWidth:self.view.frame.size.width - 40];
+    [shadowView kgn_positionBelowItem:selectHP withOffset:10];
+    [shadowView kgn_centerHorizontallyInSuperview];
+    shadowView.backgroundColor = [UIColor whiteColor];
+    self.shadowView = shadowView;
+    self.shadowView.hidden = true;
+    
     UITableView *tableView = [UITableView new];
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.hidden = YES;
+    tableView.separatorColor = [UIColor clearColor];
     [self.view addSubview:tableView];
     [tableView kgn_sizeToHeight:250];                             // TODO: ADJUST THIS
     [tableView kgn_sizeToWidth:self.view.frame.size.width - 40];
-    [tableView kgn_positionBelowItem:selectHP withOffset:5];
+    [tableView kgn_positionBelowItem:selectHP withOffset:10];
     [tableView kgn_centerHorizontallyInSuperview];
     self.tableView = tableView;
     
@@ -409,13 +445,34 @@
                 [self.selectedCells addObject:[NSNumber numberWithBool:NO]];
             }
             // calculate the near users in each group
-            // calcultae the distance to the group
+            // calculate the distance to the group
             self.nearUsers = [[NSMutableArray alloc] init];
             self.homepointImages = [NSMutableArray new];
+            self.homepointDistances = [NSMutableArray new];
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 for (PFObject *group in groups) {
                     [self.nearUsers addObject:[NSNumber numberWithInteger:[[ParseManager getInstance] getNearUsersNumberInGroup:group]]];
+                    
+                    // Get distance label
+                    double distance = [[ParseManager getInstance] getDistanceToGroup:group];
+                    NSString *distanceLabel = @"";
+
+                    if (distance > 2500) {
+                        distance = distance*0.000189394;
+                        
+                        if (distance >= 500) {
+                            distanceLabel = @"500+ miles away";
+                        }
+                        else {
+                            distanceLabel = [NSString stringWithFormat:DISTANCE_MESSAGE_IN_MILES, distance];
+                        }
+                    }
+                    else {
+                        distanceLabel = [NSString stringWithFormat:DISTANCE_MESSAGE_IN_FEET, (int)distance];
+                    }
+                    
+                    [self.homepointDistances addObject:distanceLabel];
                     
                     if ([group valueForKey:PF_GROUP_IMAGE]) {
                         [self.homepointImages addObject:[group valueForKey:PF_GROUP_IMAGE]];
@@ -557,6 +614,10 @@
     else if (numUsers != 0) {
         cell.nearbyUsers.text = [NSString stringWithFormat:@"%@ users nearby",usersNearby];
     }
+    
+    NSString *distanceText = [self.homepointDistances objectAtIndex:indexPath.row];
+    cell.distanceLabel.text = distanceText;
+    
     return cell;
 }
 
@@ -572,35 +633,39 @@
             [self.selectedCells replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithBool:YES]];
             self.selectHP.tintColor = [UIColor whiteColor];
             [self.selectHP setTitle:[[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME] forState:UIControlStateNormal];
-            self.tableView.hidden = YES;
+            self.tableView.hidden = true;
+            self.shadowView.hidden = true;
         }
         //[self.tableView reloadData];
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 70;
+    return 80;
 }
 
 -(void)showDropDown {
-    self.tableView.hidden = !self.tableView.hidden;
+    BOOL shouldHide = !self.tableView.hidden;
     
-    if(self.tableView.frame.origin.y ==203)
-    {
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:0.5f];
-        [self.tableView setFrame:CGRectMake(224, 204, 27, 160)];
-        [UIView commitAnimations];
-        [self.view addSubview:self.tableView];
+    if (self.tableView.hidden) {
+        self.tableView.hidden = shouldHide;
+        self.shadowView.hidden = shouldHide;
     }
-    
-    else if (self.tableView.frame.origin.y == 204)
-    {
-        [self.tableView setFrame:CGRectMake(224, 203, 27, 0)];
-        self.tableView.hidden = YES;
-    }
-    
-    //[self.view addSubview:TableActivityLevel];
+
+    double originalOpacity = shouldHide ? 1.0 : 0.0;
+    double newOpacity = shouldHide ? 0.0 : 1.0;
+
+    self.tableView.layer.opacity = originalOpacity;
+    self.shadowView.layer.opacity = originalOpacity;
+    [UIView animateWithDuration:0.15f animations: ^void() {
+        self.shadowView.layer.opacity = newOpacity;
+        self.tableView.layer.opacity = newOpacity;
+    } completion:^(BOOL finishedCompletion) {
+        if (shouldHide) {
+            self.shadowView.hidden = shouldHide;
+            self.tableView.hidden = shouldHide;
+        }
+    }];
 }
 
 - (void) pickGender {
@@ -631,8 +696,7 @@
 -(void)pickTime {
     if (self.datePicker.hidden == YES) {
         self.datePicker.hidden = NO;
-    }
-    else {
+    } else {
         UIDatePicker *pickerView = [[UIDatePicker alloc] init];
         pickerView.datePickerMode = UIDatePickerModeCountDownTimer;
         pickerView.minuteInterval = 5;
@@ -640,10 +704,8 @@
         [self.view addSubview:pickerView];
         self.datePicker = pickerView;
         [pickerView kgn_sizeToWidth:self.view.frame.size.width];
-        //[pickerView kgn_sizeToHeight:200];
         [pickerView kgn_pinToLeftEdgeOfSuperview];
-        [pickerView kgn_positionBelowItem:self.time withOffset:20];
-        [pickerView kgn_pinToBottomEdgeOfSuperviewWithOffset:45];
+        [pickerView kgn_pinToBottomEdgeOfSuperviewWithOffset:TAB_BAR_HEIGHT];
     }
 }
 

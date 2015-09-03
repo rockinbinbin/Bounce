@@ -65,7 +65,7 @@
     [self.view addSubview:bottomView];
     [bottomView kgn_sizeToHeight:130];
     [bottomView kgn_sizeToWidth:self.view.frame.size.width];
-    [bottomView kgn_pinToBottomEdgeOfSuperview];
+    [bottomView kgn_pinToBottomEdgeOfSuperviewWithOffset:TAB_BAR_HEIGHT];
     self.bottomView = bottomView;
     
     UIButton *makeRequest = [UIButton buttonWithType:UIButtonTypeRoundedRect];

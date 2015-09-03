@@ -34,6 +34,8 @@
     navLabel.text = @"Leaving soon";
     [navLabel sizeToFit];
     
+    [self.inputToolbar kgn_pinToBottomEdgeOfSuperviewWithOffset:44];
+    
     self.navigationController.navigationBar.barTintColor = BounceRed;
     self.navigationController.navigationBar.translucent = NO;
     UIButton *customButton = [[Utility getInstance] createCustomButton:[UIImage imageNamed:@"common_back_button"]];
