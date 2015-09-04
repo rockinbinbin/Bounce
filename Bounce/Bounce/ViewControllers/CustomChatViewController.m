@@ -12,6 +12,7 @@
 #import "Constants.h"
 #import "UIView+AutoLayout.h"
 #import "AppConstant.h"
+#import "bounce-Swift.h"
 
 @interface CustomChatViewController ()
 
@@ -43,9 +44,16 @@
     [customButton addTarget:self action:@selector(backButtonClicked) forControlEvents:UIControlEventTouchUpInside];
      self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:customButton];
 }
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.delegate setTabBarHidden:true];
 }
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.delegate setTabBarHidden:false];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

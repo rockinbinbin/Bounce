@@ -15,4 +15,7 @@
 
 @property PFObject *homepoint;
 
+// A RootTabBarController delegate
+@property (strong, nonatomic) id rootTabBarDelegate;
+
 @end
