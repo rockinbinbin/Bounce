@@ -30,9 +30,9 @@
     navLabel.textColor = [UIColor whiteColor];
     navLabel.backgroundColor = [UIColor clearColor];
     navLabel.textAlignment = NSTextAlignmentCenter;
-    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20.0];
+    navLabel.font = [UIFont fontWithName:@"Avenir-Next" size:20.0];
     self.navigationItem.titleView = navLabel;
-    navLabel.text = @"CREATE HOMEPOINT";
+    navLabel.text = @"Create a Homepoint";
     [navLabel sizeToFit];
     
     UIBarButtonItem *_cancel = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonClicked)];
@@ -72,6 +72,14 @@
     [_addPhotoButton kgn_pinToSideEdgesOfSuperview];
     [_addPhotoButton kgn_sizeToHeight:self.view.frame.size.height * 272/665.0];
     
+    UILabel *LandscapeOnly = [[UILabel alloc] init];
+    LandscapeOnly.text = @"Please use a landscape photo.";
+    LandscapeOnly.textColor = [UIColor colorWithWhite:0.0 alpha:0.36];
+    LandscapeOnly.font = [UIFont fontWithName:@"AvenirNext-Regular" size:14.0];
+    [self.view addSubview:LandscapeOnly];
+    [LandscapeOnly kgn_pinToLeftEdgeOfSuperviewWithOffset:10.0];
+    [LandscapeOnly kgn_positionBelowItem:_addPhotoButton withOffset:10.0];
+    
     // TEXT FIELD
     
     _groupNameTextField = [UITextField new];
@@ -97,7 +105,7 @@
     UILabel *homepointHint = [[UILabel alloc] init];
     homepointHint.text = @"The best names are easily recognizable.";
     homepointHint.textColor = [UIColor colorWithWhite:0.0 alpha:0.36];
-    homepointHint.font = [UIFont fontWithName:@"AvenirNext-Regular" size:16.0];
+    homepointHint.font = [UIFont fontWithName:@"AvenirNext-Regular" size:14.0];
     [self.view addSubview:homepointHint];
     [homepointHint kgn_pinToLeftEdgeOfSuperviewWithOffset:35.0];
     [homepointHint kgn_positionBelowItem:_groupNameTextField withOffset:10.0];
