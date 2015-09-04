@@ -33,9 +33,9 @@
         navLabel.textColor = [UIColor whiteColor];
         navLabel.backgroundColor = [UIColor clearColor];
         navLabel.textAlignment = NSTextAlignmentCenter;
-        navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
+        navLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:20];
         self.navigationItem.titleView = navLabel;
-        navLabel.text = @"MEMBERS";
+        navLabel.text = @"Members";
         [navLabel sizeToFit];
     
     }
@@ -77,10 +77,14 @@
 
 #pragma mark - TableView Datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if ([self.tentativeUsers count] > 0) {
         return 2;
     }
+    else return 1;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if ([self.tentativeUsers count] > 0) {
         if (section == 0) {
                 return [self.tentativeUsers count];
             }
@@ -88,6 +92,10 @@
                return  [self.actualUsers count];
            }
     }
+    else {
+        return [self.actualUsers count];
+    }
+}
 
 - (BOOL)tableView:(UITableView *)tv shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -103,6 +111,7 @@
             }
     
         PFUser *user = [PFUser new];
+    if ([self.tentativeUsers count] > 0) {
        if (indexPath.section == 0) {
                 user = [self.tentativeUsers objectAtIndex:indexPath.row];
         
@@ -116,11 +125,11 @@
                     }
         
                 [cell.iconView addTarget:self action:@selector(approveMember:) forControlEvents:UIControlEventTouchUpInside];
-           }
-        else {
+        }
+       else {
                 user = [self.actualUsers objectAtIndex:indexPath.row];
                 cell.iconView = nil;
-            }
+        }
        cell.name.text = [user objectForKey:@"username"];
     
         PFFile *file = [user objectForKey:@"picture"];
@@ -130,16 +139,35 @@
                         cell.profileImage.image = image;
                     }
             }];
+    }
+    else {
+        user = [self.actualUsers objectAtIndex:indexPath.row];
+        cell.iconView = nil;
+        cell.name.text = [user objectForKey:@"username"];
     
-        return cell;
+        PFFile *file = [user objectForKey:@"picture"];
+        [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error) {
+                UIImage *image = [UIImage imageWithData:data];
+                cell.profileImage.image = image;
+            }
+        }];
     }
 
+    return cell;
+}
+
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-        if(section == 0)
-                return @"Pending Users";
-        else
-                return @"Group Users";
+    if ([self.tentativeUsers count] > 0) {
+        if(section == 0) {
+            return @"Pending Users";
+        }
+        else return @"Group Users";
     }
+    else {
+        return @"Group Users";
+    }
+}
 
 - (void) approveMember:(id)sender {
     
