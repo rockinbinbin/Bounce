@@ -54,14 +54,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = BounceRed;
     
     [self.navigationController.navigationBar hideBottomHairline];
     
     [[ParseManager getInstance] setGetUserGroupsdelegate:self];
     [[ParseManager getInstance] getUserGroups];
     self.isDataLoaded = NO;
-    
-    self.view.backgroundColor = BounceRed;
+
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
@@ -209,7 +209,7 @@
     [confirmButton kgn_sizeToHeight:50];
     [confirmButton kgn_sizeToWidth:self.view.frame.size.width - 100];
     [confirmButton kgn_centerHorizontallyInSuperview];
-    [confirmButton kgn_pinToBottomEdgeOfSuperviewWithOffset:60];
+    [confirmButton kgn_pinToBottomEdgeOfSuperviewWithOffset:15 + TAB_BAR_HEIGHT];
     
     self.location_manager = [[CLLocationManager alloc] init];
 
@@ -270,6 +270,7 @@
     }
     
     if (![GlobalVariables shouldNotOpenRequestView]) {
+
         NSUInteger numValidRequests = [[ParseManager getInstance] getNumberOfValidRequests];
         NSLog(@"%lu", (unsigned long)numValidRequests);
         
@@ -280,10 +281,11 @@
         }
     }
 
-    [self startReceivingSignificantLocationChanges];
-    [self changeCenterToUserLocation];
-    [self setUserTrackingMode];
-
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+        [self startReceivingSignificantLocationChanges];
+        [self changeCenterToUserLocation];
+        [self setUserTrackingMode];
+    }
 
     if ([[RequestManger getInstance] hasActiveRequest]) {
         NSLog(@"SHOULD PRESENT NOW");
@@ -402,15 +404,6 @@
     messageScreenViewController.genderMatching = self.genderMatching;
     messageScreenViewController.timeAllocated = self.timeAllocated;
     [self.navigationController pushViewController:messageScreenViewController animated:NO];
-}
-
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 0) {
-        if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
-            [[Utility getInstance] showProgressHudWithMessage:@"End Request..." withView:self.view];
-            [[RequestManger getInstance] endRequest];
-        }
-    }
 }
 
 - (IBAction)groupsChatButtonClicked:(id)sender {

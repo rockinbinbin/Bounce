@@ -82,7 +82,7 @@
     [self.view addSubview:createHP];
     [createHP kgn_sizeToHeight:self.view.frame.size.height/10];
     [createHP kgn_sizeToWidth:self.view.frame.size.width];
-    [createHP kgn_pinToBottomEdgeOfSuperview];
+    [createHP kgn_pinToBottomEdgeOfSuperviewWithOffset:TAB_BAR_HEIGHT];
     [createHP kgn_pinToLeftEdgeOfSuperview];
     
     UITableView *tableview = [UITableView new];
@@ -93,7 +93,7 @@
     self.tableView = tableview;
     [tableview kgn_sizeToWidth:self.view.frame.size.width];
     [tableview kgn_pinToTopEdgeOfSuperviewWithOffset:self.view.frame.size.height/8];
-    [tableview kgn_pinToBottomEdgeOfSuperviewWithOffset:self.view.frame.size.height/10];
+    [tableview kgn_pinToBottomEdgeOfSuperviewWithOffset:self.view.frame.size.height/10 + TAB_BAR_HEIGHT];
     [tableview kgn_pinToLeftEdgeOfSuperview];
 }
 
