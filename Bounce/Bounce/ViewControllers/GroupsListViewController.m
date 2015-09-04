@@ -56,7 +56,7 @@
     _tableView = tableView;
     [tableView kgn_sizeToWidth:self.view.frame.size.width];
     [tableView kgn_pinToTopEdgeOfSuperview];
-    [tableView kgn_pinToBottomEdgeOfSuperview];
+    [tableView kgn_pinToBottomEdgeOfSuperviewWithOffset:TAB_BAR_HEIGHT];
     [tableView kgn_pinToLeftEdgeOfSuperview];
 
     UIView *backgroundView = [UIView new];

@@ -284,42 +284,31 @@ PFUser *currentUser;
     }
 }
 
-// NOT TESTED
--(BOOL)isOnlyMemberInGroup:(PFObject *)group {
-    __block BOOL returnTrue = false;
-    if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
-    PFRelation *usersRelation = [group relationForKey:PF_GROUP_Users_RELATION];
-    PFQuery *query = [usersRelation query];
-    [query whereKey:OBJECT_ID notEqualTo:[[PFUser currentUser] objectId]];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            if ([objects count] > 0) {
-                returnTrue = true;
-            }
-        }
-    }];
-    }
-    if (returnTrue) return true;
-    else return false;
-    
-}
-
 // You shouldn't delete a group entirely if there are other members in it
 - (void) deleteGroup:(PFObject *) group
 {
-    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+  if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
     @try {
-//        if ([[[group objectForKey:PF_GROUP_OWNER] username] isEqualToString:[[PFUser currentUser] username]]) {
-//                [self removeGroup:group];
-//        }
-//        else {
-            [self deleteCurrentUserFromGroup:group];
-//        }
-    }
+        __block BOOL returnTrue = false;
+            PFRelation *usersRelation = [group relationForKey:PF_GROUP_Users_RELATION];
+            PFQuery *query = [usersRelation query];
+            [query whereKey:OBJECT_ID notEqualTo:[[PFUser currentUser] objectId]];
+            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                if (!error) {
+                    if ([objects count] > 0) {
+                        returnTrue = false;
+                        [self deleteCurrentUserFromGroup:group];
+                    }
+                    else {
+                        [self removeGroup:group];
+                    }
+                }
+            }];
+        }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
     }
-    }
+  }
 }
 #pragma mark  Out user from group
 - (void) removeUserFromGroup:(PFObject *) group
