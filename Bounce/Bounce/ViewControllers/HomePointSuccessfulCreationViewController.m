@@ -142,7 +142,6 @@
 }
 
 - (void)sweetButtonClicked {
-    GroupsListViewController* groupsListViewController = [GroupsListViewController new];
-    [self.navigationController pushViewController:groupsListViewController animated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 @end
