@@ -185,8 +185,8 @@
                                                self.location_manager.location.coordinate.longitude);
     
     MKCoordinateSpan span;
-    span.latitudeDelta = 0.1;
-    span.longitudeDelta = 0.1;
+    span.latitudeDelta = 0.03;
+    span.longitudeDelta = 0.03;
     
     region.span = span;
     [self.map setRegion:region];
