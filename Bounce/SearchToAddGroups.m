@@ -9,6 +9,8 @@
 #import "SearchToAddGroups.h"
 #import "UIView+AutoLayout.h"
 #import "membersCell.h"
+#import "Constants.h"
+#import "AppConstant.h"
 
 #define ResultsTableView self.searchResultsTableViewController.tableView
 #define Identifier @"Cell"
@@ -38,9 +40,9 @@
         navLabel.textColor = [UIColor whiteColor];
         navLabel.backgroundColor = [UIColor clearColor];
         navLabel.textAlignment = NSTextAlignmentCenter;
-        navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
+        navLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:20];
         self.navigationItem.titleView = navLabel;
-        navLabel.text = @"SEARCH FOR HOMEPOINTS";
+        navLabel.text = @"Search for Homepoints";
         [navLabel sizeToFit];
     
         UITableView *searchResultsTableView = [[UITableView alloc] initWithFrame:self.tableView.frame];
@@ -127,6 +129,14 @@
         [cell.iconView addTarget:self action:@selector(addGroup:) forControlEvents:UIControlEventTouchUpInside];
     
         cell.name.text = text;
+        PFObject *hp = [self.searchResults objectAtIndex:indexPath.row];
+        PFFile *file = [hp objectForKey:PF_GROUP_IMAGE];
+        [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error) {
+                UIImage *image = [UIImage imageWithData:data];
+                cell.profileImage.image = image;
+            }
+        }];
         return cell;
     }
 
