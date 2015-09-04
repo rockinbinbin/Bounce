@@ -8,7 +8,6 @@
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 #import "Constants.h"
 
-#import "FacebookLogin.h"
 #import "ProgressHUD.h"
 #import <Parse/Parse.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
@@ -23,5 +22,4 @@
 #import "utilities.h"
 #import "AppConstant.h"
 #import "images.h"
-#import "FacebookLogin.h"
 

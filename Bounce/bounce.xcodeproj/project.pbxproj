@@ -46,7 +46,6 @@
 		00CEE4251994493500F40C12 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4241994493500F40C12 /* StoreKit.framework */; };
 		00CEE4271994493A00F40C12 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4261994493A00F40C12 /* CoreLocation.framework */; };
 		00DC8E551B943F0200DD84EA /* HomepointDropdownCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DC8E541B943F0200DD84EA /* HomepointDropdownCell.m */; };
-		00DF1FE31B43CDA6004F056A /* FacebookLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DF1FE21B43CDA6004F056A /* FacebookLogin.m */; };
 		00E2CBB41B53073700B316D1 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2CBB31B53073700B316D1 /* UIView+AutoLayout.m */; };
 		00E2CBB61B5384B600B316D1 /* homepoint images in Resources */ = {isa = PBXBuildFile; fileRef = 00E2CBB51B5384B500B316D1 /* homepoint images */; };
 		00E2CBBD1B5506C800B316D1 /* ChatListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2CBBB1B5506C800B316D1 /* ChatListCell.m */; };
@@ -382,8 +381,6 @@
 		00DC8E531B943F0200DD84EA /* HomepointDropdownCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomepointDropdownCell.h; sourceTree = "<group>"; };
 		00DC8E541B943F0200DD84EA /* HomepointDropdownCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomepointDropdownCell.m; sourceTree = "<group>"; };
 		00DF1FE01B43A8CF004F056A /* bounce-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "bounce-Bridging-Header.h"; sourceTree = "<group>"; };
-		00DF1FE11B43CDA6004F056A /* FacebookLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookLogin.h; sourceTree = "<group>"; };
-		00DF1FE21B43CDA6004F056A /* FacebookLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookLogin.m; sourceTree = "<group>"; };
 		00E2CBB21B53073700B316D1 /* UIView+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
 		00E2CBB31B53073700B316D1 /* UIView+AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
 		00E2CBB51B5384B500B316D1 /* homepoint images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "homepoint images"; path = "ViewControllers/homepoint images"; sourceTree = "<group>"; };
@@ -1198,18 +1195,8 @@
 				28DF63811B85A08D00F16095 /* HomepointListCell.swift */,
 				00AA6EDC1B6B3CDF00F91CBB /* chatCell.h */,
 				00AA6EDD1B6B3CDF00F91CBB /* chatCell.m */,
-				67BB920A1ADFA8D10050164B /* IntoductionView */,
 			);
 			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		67BB920A1ADFA8D10050164B /* IntoductionView */ = {
-			isa = PBXGroup;
-			children = (
-				00DF1FE11B43CDA6004F056A /* FacebookLogin.h */,
-				00DF1FE21B43CDA6004F056A /* FacebookLogin.m */,
-			);
-			path = IntoductionView;
 			sourceTree = "<group>";
 		};
 		67BB92371ADFA8D10050164B /* hobble.1.1 */ = {
@@ -1789,7 +1776,6 @@
 				67BB94381ADFABCD0050164B /* JSQMessagesToolbarButtonFactory.m in Sources */,
 				282FAC171B71D4C700899FAB /* InstructionView.swift in Sources */,
 				002805C21B84559A004E1DE1 /* SearchToAddUsers.m in Sources */,
-				00DF1FE31B43CDA6004F056A /* FacebookLogin.m in Sources */,
 				67BB92D81ADFA8D10050164B /* AddLocationScreenViewController.m in Sources */,
 				28802DAC1B7708CF008E8B33 /* AccountViewController.swift in Sources */,
 				67BB943E1ADFABCD0050164B /* JSQMessage.m in Sources */,
