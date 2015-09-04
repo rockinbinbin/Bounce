@@ -144,7 +144,7 @@
     UIButton *time = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [time setBackgroundColor:[UIColor clearColor]];
     time.tintColor = [UIColor whiteColor];
-    [time setTitle:@"0 hrs & 0 min" forState:UIControlStateNormal];
+    [time setTitle:@"2 hours & 0 min" forState:UIControlStateNormal];
     time.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Bold" size:18];
     [time addTarget:self action:@selector(pickTime) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:time];
@@ -694,6 +694,11 @@
         pickerView.datePickerMode = UIDatePickerModeCountDownTimer;
         pickerView.minuteInterval = 5;
         pickerView.backgroundColor = [UIColor whiteColor];
+
+        // Default of 2 hours
+        NSInteger seconds = 7200;
+        
+        [pickerView setCountDownDuration:seconds];
         [self.view addSubview:pickerView];
         self.datePicker = pickerView;
         [pickerView kgn_sizeToWidth:self.view.frame.size.width];
@@ -715,7 +720,13 @@
             self.timeAllocated = minutes;
         }
         self.time.tintColor = [UIColor whiteColor];
-        [self.time setTitle:[NSString stringWithFormat:@"%d hrs & %d min", hours, minutes] forState:UIControlStateNormal];
+        
+        // Initial case
+        if (hours == 0 && minutes == 0) {
+            [self.time setTitle:[NSString stringWithFormat:@"2 hours & 0 min"] forState:UIControlStateNormal];
+        } else {
+            [self.time setTitle:[NSString stringWithFormat:@"%d hours & %d min", hours, minutes] forState:UIControlStateNormal];
+        }
     }
 }
 
