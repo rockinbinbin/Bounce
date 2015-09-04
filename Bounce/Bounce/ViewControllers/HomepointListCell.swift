@@ -20,6 +20,7 @@ import UIKit
     let homepointName = UILabel()
     let cellBackground = UIImageView()
     let icon = UIImageView()
+    let distanceLabel = UILabel()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -48,7 +49,7 @@ import UIKit
         
         self.selectionStyle = UITableViewCellSelectionStyle.None
     }
-    
+
     func setBackground(image: UIImage) {
         let imageView = UIImageView(image: image)
         imageView.contentMode = UIViewContentMode.ScaleAspectFill
@@ -65,17 +66,23 @@ import UIKit
         self.icon.removeFromSuperview()
         self.homepointName.removeFromSuperview()
         
+        icon.image = UIImage(named: "Homepoints-Neighborhood-Icon-Small")
+        self.contentView.addSubview(icon)
+        icon.centerHorizontallyInSuperview()
+        icon.centerVerticallyInSuperview(offset: -30)
+        
         homepointName.setTranslatesAutoresizingMaskIntoConstraints(false)
         homepointName.textColor = UIColor.whiteColor()
         homepointName.font = UIFont(name: "AvenirNext-Medium", size: 18)
         self.contentView.addSubview(homepointName)
         homepointName.centerHorizontallyInSuperview()
-        homepointName.centerVerticallyInSuperview(offset: 27)
+        homepointName.positionBelowItem(icon, offset: 10)
         
-        icon.image = UIImage(named: "Homepoints-Neighborhood-Icon-Small")
-        self.contentView.addSubview(icon)
-        icon.centerHorizontallyInSuperview()
-        icon.positionAboveItem(homepointName, offset: 15)
+        distanceLabel.textColor = UIColor.whiteColor()
+        distanceLabel.font = UIFont(name: "AvenirNext-Regular", size: 14)
+        self.contentView.addSubview(distanceLabel)
+        distanceLabel.centerHorizontallyInSuperview()
+        distanceLabel.positionBelowItem(homepointName, offset: 4)
         
         let borderView = UIView()
         borderView.backgroundColor = UIColor(white: 0.6, alpha: 1.0)
@@ -84,7 +91,7 @@ import UIKit
         borderView.pinToSideEdgesOfSuperview()
         borderView.sizeToHeight(1.0)
     }
-    
+
     func setName(name: String, homepointType: HomepointType) {
         let attributedString = NSMutableAttributedString(string: name)
         attributedString.addAttribute(NSKernAttributeName, value: CGFloat(2.0), range: NSRange(location: 0, length: attributedString.length))
@@ -95,6 +102,10 @@ import UIKit
         } else if homepointType == HomepointType.Dorm {
             icon.image = UIImage(named: "Homepoints-Dorm-Icon-Small")
         }
+    }
+
+    func setDistance(distance: String) {
+        distanceLabel.text = distance
     }
     
     required public init(coder aDecoder: NSCoder) {
