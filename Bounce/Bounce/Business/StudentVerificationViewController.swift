@@ -47,7 +47,7 @@ class StudentVerificationViewController: UIViewController, UITextFieldDelegate {
         titleLabel.positionBelowItem(imageView, offset: self.view.frame.size.height * 0.025)
 
         contentLabel.textColor = UIColor.whiteColor()
-        contentLabel.text = "We only pair students with students, to help build trusted communities and groups for getting home."
+        contentLabel.text = "In the future, you'll be able to match with other students when bouncin' home."
         contentLabel.textAlignment = .Center
         contentLabel.lineBreakMode = .ByWordWrapping
         contentLabel.numberOfLines = 0
