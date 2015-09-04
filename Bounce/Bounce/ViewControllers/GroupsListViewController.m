@@ -48,7 +48,7 @@
     self.navigationController.navigationBar.barTintColor = BounceRed;
     self.navigationController.navigationBar.translucent = NO;
     [self.navigationController.navigationBar hideBottomHairline];
-    
+
     UITableView *tableView = [UITableView new];
     tableView.delegate = self;
     tableView.dataSource = self;
@@ -58,14 +58,14 @@
     [tableView kgn_pinToTopEdgeOfSuperview];
     [tableView kgn_pinToBottomEdgeOfSuperview];
     [tableView kgn_pinToLeftEdgeOfSuperview];
-    
+
     UIView *backgroundView = [UIView new];
     backgroundView.frame = self.view.frame;
     backgroundView.backgroundColor = BounceRed;
     [self.tableView setBackgroundView:backgroundView];
     
     [self setBarButtonItemRight:@"Plus"];
-
+    
     UILabel *navLabel = [UILabel new];
     navLabel.textColor = [UIColor whiteColor];
     navLabel.backgroundColor = [UIColor clearColor];
@@ -217,13 +217,32 @@
             // calculate the near users in each group
             // calcultae the distance to the group
             nearUsers = [[NSMutableArray alloc] init];
-            //distanceToUserLocation = [[NSMutableArray alloc] init];
+            distanceToUserLocation = [[NSMutableArray alloc] init];
             self.homepointImages = [NSMutableArray new];
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 for (PFObject *group in groups) {
                     [nearUsers addObject:[NSNumber numberWithInteger:[[ParseManager getInstance] getNearUsersNumberInGroup:group]]];
-                    //[distanceToUserLocation addObject:[NSNumber numberWithDouble:[[ParseManager getInstance] getDistanceToGroup:group]]];
+
+                    // Get distance label
+                    double distance = [[ParseManager getInstance] getDistanceToGroup:group];
+                    NSString *distanceLabel = @"";
+                    
+                    if (distance > 2500) {
+                        distance = distance*0.000189394;
+                        
+                        if (distance >= 500) {
+                            distanceLabel = @"500+ miles away";
+                        }
+                        else {
+                            distanceLabel = [NSString stringWithFormat:DISTANCE_MESSAGE_IN_MILES, distance];
+                        }
+                    }
+                    else {
+                        distanceLabel = [NSString stringWithFormat:DISTANCE_MESSAGE_IN_FEET, (int)distance];
+                    }
+                    
+                    [self.distanceToUserLocation addObject:distanceLabel];
                     
                     if ([group valueForKey:PF_GROUP_IMAGE]) {
                         [self.homepointImages addObject:[group valueForKey:PF_GROUP_IMAGE]];
@@ -259,12 +278,11 @@
             // calculate the near users in each group
             // calcultae the distance to the group
             nearUsers = [[NSMutableArray alloc] init];
-            distanceToUserLocation = [[NSMutableArray alloc] init];
+//            self.distanceToUserLocation = [[NSMutableArray alloc] init];
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 for (PFObject *group in groups) {
                     [nearUsers addObject:[NSNumber numberWithInteger:[[ParseManager getInstance] getNearUsersNumberInGroup:group]]];
-                    [distanceToUserLocation addObject:[NSNumber numberWithDouble:[[ParseManager getInstance] getDistanceToGroup:group]]];
                 }
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -331,7 +349,10 @@
     
     NSString *homepointName = [[[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME] uppercaseString];
     [cell setName:homepointName homepointType: HomepointTypeHouse];
-
+    
+    NSString *distanceText = [self.distanceToUserLocation objectAtIndex:indexPath.row];
+    [cell setDistance:distanceText];
+    
     return cell;
 }
 
