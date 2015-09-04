@@ -11,7 +11,7 @@
 #import "Reachability.h"
 #import "CustomChatViewController.h"
 
-@interface Utility : NSObject
+@interface Utility : NSObject <UIAlertViewDelegate>
 
 + (Utility*) getInstance;
 
