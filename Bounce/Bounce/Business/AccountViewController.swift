@@ -362,7 +362,7 @@ class AccountViewController: UIViewController {
         // Log out
         
         let logOutButton = OptionsButton(text: "Log out 😢")
-        logOutButton.addTarget(self, action: "dismissViewController", forControlEvents: .TouchUpInside)
+        logOutButton.addTarget(self, action: "logOutPressed:", forControlEvents: .TouchUpInside)
         optionsView.addSubview(logOutButton)
         logOutButton.positionBelowItem(termsOfUse, offset: 44)
         logOutButton.pinToSideEdgesOfSuperview()

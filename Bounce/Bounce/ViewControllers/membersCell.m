@@ -16,15 +16,6 @@
         self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
         if (self) {
         
-                UILabel *name = [UILabel new];
-                name.translatesAutoresizingMaskIntoConstraints = NO;
-                name.textColor = [UIColor blackColor];
-                name.font = [UIFont fontWithName:@"Avenir-Light" size:12];
-                [self.contentView addSubview:name];
-                [name kgn_centerHorizontallyInSuperview];
-                [name kgn_centerVerticallyInSuperview];
-                self.name = name;
-        
                 UILabel *addedBy = [UILabel new];
                 addedBy.translatesAutoresizingMaskIntoConstraints = NO;
                 addedBy.textColor = [UIColor blackColor];
@@ -37,10 +28,24 @@
                 UIImageView *profileImage = [UIImageView new];
                 [self.contentView addSubview:profileImage];
                 self.profileImage = profileImage;
-                [profileImage kgn_sizeToHeight:70];
-                [profileImage kgn_sizeToWidth:70];
-                [profileImage kgn_pinToLeftEdgeOfSuperviewWithOffset:30];
+                [profileImage kgn_sizeToHeight:80];
+                [profileImage kgn_sizeToWidth:80];
+                [profileImage kgn_pinToLeftEdgeOfSuperviewWithOffset:20];
                 [profileImage kgn_centerVerticallyInSuperview];
+            
+            self.profileImage.layer.borderWidth = 6.0f;
+            self.profileImage.layer.borderColor = [BounceSeaGreen CGColor];
+            self.profileImage.layer.cornerRadius = 40.0f;
+            self.profileImage.clipsToBounds = true;
+            
+            UILabel *name = [UILabel new];
+            name.translatesAutoresizingMaskIntoConstraints = NO;
+            name.textColor = [UIColor blackColor];
+            name.font = [UIFont fontWithName:@"AvenirNext-Regular" size:22];
+            [self.contentView addSubview:name];
+            [name kgn_centerVerticallyInSuperview];
+            [name kgn_positionToTheRightOfItem:profileImage withOffset:20];
+            self.name = name;
         
                 UIButton *iconView = [UIButton new];
                 [self.contentView addSubview:iconView];

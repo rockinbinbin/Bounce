@@ -136,13 +136,12 @@
     [self.whoWouldYouAllowInside2 kgn_pinTopEdgeToTopEdgeOfItem:self.whoWouldYouAllowInside1 withOffset:-25];
     
     [self.done kgn_centerHorizontallyInSuperview];
-    [self.done kgn_pinToBottomEdgeOfSuperviewWithOffset:self.view.frame.size.height/7];
+    [self.done kgn_pinToBottomEdgeOfSuperviewWithOffset:15 + TAB_BAR_HEIGHT];
     [self.done kgn_sizeToHeight:self.view.frame.size.height/13];
     [self.done kgn_sizeToWidth:self.view.frame.size.width/1.8];
 }
 
 - (void)sweetButtonClicked {
-    GroupsListViewController* groupsListViewController = [GroupsListViewController new];
-    [self.navigationController pushViewController:groupsListViewController animated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 @end

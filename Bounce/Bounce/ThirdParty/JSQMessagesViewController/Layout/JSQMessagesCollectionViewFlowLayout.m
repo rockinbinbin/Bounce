@@ -70,6 +70,7 @@ const CGFloat kJSQMessagesCollectionViewAvatarSizeDefault = 30.0f;
 
 
 @implementation JSQMessagesCollectionViewFlowLayout
+@dynamic collectionView;
 
 #pragma mark - Initialization
 

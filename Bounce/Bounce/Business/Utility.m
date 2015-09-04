@@ -49,10 +49,29 @@ static Utility *sharedUtility = nil;
     BOOL ableToConnect = YES;
     
     if(status == NotReachable) {
-        [self showAlertMessage:@"No Internet Connection"];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Are you even connected?"
+                                                        message: @"Check your internet and try again!"
+                                                       delegate: self
+                                              cancelButtonTitle: @"OK"
+                                              otherButtonTitles: nil];
+        [alert show];
         ableToConnect = NO;
     }
     return ableToConnect;
+}
+
+#pragma mark - alertview delegate
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        if (![[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Are you even connected?"
+                                                            message: @"Check your internet and try again!"
+                                                           delegate: self
+                                                  cancelButtonTitle: @"OK"
+                                                  otherButtonTitles: nil];
+            [alert show];
+        }
+    }
 }
 
 #pragma mark - Show alert view
@@ -133,4 +152,5 @@ static Utility *sharedUtility = nil;
     CustomChatViewController *chatView = [[CustomChatViewController alloc] initWith:requestId];
     return chatView;
 }
+
 @end

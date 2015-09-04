@@ -11,7 +11,7 @@
 #import "Reachability.h"
 #import "CustomChatViewController.h"
 
-@interface Utility : NSObject
+@interface Utility : NSObject <UIAlertViewDelegate>
 
 + (Utility*) getInstance;
 
@@ -29,7 +29,7 @@
 - (BOOL)isRequestValidWithEndDate:(NSDate *)endDate;
 
 // navigate to home screen
-- (void) navigateToMainScreenFromNAvigationContorller:(UINavigationController *) navigationController;
+//- (void) navigateToMainScreenFromNAvigationContorller:(UINavigationController *) navigationController;
 
 // Create custom button
 -(UIButton *)createCustomButton:(UIImage*) buttonImage;

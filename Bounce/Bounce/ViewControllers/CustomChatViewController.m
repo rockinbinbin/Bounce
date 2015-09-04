@@ -11,6 +11,7 @@
 #import "ParseManager.h"
 #import "Constants.h"
 #import "UIView+AutoLayout.h"
+#import "AppConstant.h"
 
 @interface CustomChatViewController ()
 
@@ -33,6 +34,8 @@
     self.navigationItem.titleView = navLabel;
     navLabel.text = @"Leaving soon";
     [navLabel sizeToFit];
+    
+    [self.inputToolbar kgn_pinToBottomEdgeOfSuperviewWithOffset:44 + TAB_BAR_HEIGHT];
     
     self.navigationController.navigationBar.barTintColor = BounceRed;
     self.navigationController.navigationBar.translucent = NO;

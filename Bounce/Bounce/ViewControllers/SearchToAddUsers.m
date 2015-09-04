@@ -37,9 +37,9 @@
         navLabel.textColor = [UIColor whiteColor];
         navLabel.backgroundColor = [UIColor clearColor];
         navLabel.textAlignment = NSTextAlignmentCenter;
-        navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
+        navLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size:20];
        self.navigationItem.titleView = navLabel;
-        navLabel.text = @"SEARCH FOR USERS";
+        navLabel.text = @"Search for Users";
         [navLabel sizeToFit];
     
         UITableView *searchResultsTableView = [[UITableView alloc] initWithFrame:self.tableView.frame];
@@ -74,7 +74,7 @@
 -(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action {
     
         UIButton *buttonItem = [UIButton buttonWithType:UIButtonTypeCustom];
-        buttonItem.bounds = CGRectMake( 0, 0, buttonImage.size.width, buttonImage.size.height );
+        buttonItem.bounds = CGRectMake( 0, 0, buttonImage.size.width, buttonImage.size.height);
        [buttonItem addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
         [buttonItem setImage:buttonImage forState:UIControlStateNormal];
         UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:buttonItem];
@@ -127,6 +127,15 @@
         [cell.iconView addTarget:self action:@selector(addMember:) forControlEvents:UIControlEventTouchUpInside];
     
         cell.name.text = text;
+    
+    PFUser *user = [self.searchResults objectAtIndex:indexPath.row];
+    PFFile *file = [user objectForKey:@"picture"];
+    [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if (!error) {
+            UIImage *image = [UIImage imageWithData:data];
+            cell.profileImage.image = image;
+        }
+    }];
        return cell;
 }
 

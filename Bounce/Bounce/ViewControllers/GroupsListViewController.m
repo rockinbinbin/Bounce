@@ -49,8 +49,6 @@
     self.navigationController.navigationBar.translucent = NO;
     [self.navigationController.navigationBar hideBottomHairline];
     
-    [[self navigationController] setNavigationBarHidden:NO animated:YES];
-    
     UITableView *tableView = [UITableView new];
     tableView.delegate = self;
     tableView.dataSource = self;
@@ -66,7 +64,6 @@
     backgroundView.backgroundColor = BounceRed;
     [self.tableView setBackgroundView:backgroundView];
     
-    [self.navigationController setNavigationBarHidden:NO];
     [self setBarButtonItemRight:@"Plus"];
 
     UILabel *navLabel = [UILabel new];
@@ -149,6 +146,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [[self navigationController] setNavigationBarHidden:NO animated:YES];
     @try {
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
             [[Utility getInstance] showProgressHudWithMessage:@"Loading..." withView:self.view];
