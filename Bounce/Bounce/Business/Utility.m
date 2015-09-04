@@ -152,4 +152,5 @@ static Utility *sharedUtility = nil;
     CustomChatViewController *chatView = [[CustomChatViewController alloc] initWith:requestId];
     return chatView;
 }
+
 @end

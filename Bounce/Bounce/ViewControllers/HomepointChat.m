@@ -11,6 +11,7 @@
 #import "ParseManager.h"
 #import "Constants.h"
 #import "MembersViewController.h"
+#import "UIView+AutoLayout.h"
 
 @interface HomepointChat ()
 @property BOOL firstDone;
@@ -45,6 +46,7 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:customButton];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:usersButton];
 }
+
 
 - (void)loadMessages{
     [super loadMessages];

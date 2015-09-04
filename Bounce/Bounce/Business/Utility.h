@@ -29,7 +29,7 @@
 - (BOOL)isRequestValidWithEndDate:(NSDate *)endDate;
 
 // navigate to home screen
-- (void) navigateToMainScreenFromNAvigationContorller:(UINavigationController *) navigationController;
+//- (void) navigateToMainScreenFromNAvigationContorller:(UINavigationController *) navigationController;
 
 // Create custom button
 -(UIButton *)createCustomButton:(UIImage*) buttonImage;
