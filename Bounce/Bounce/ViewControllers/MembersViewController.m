@@ -27,7 +27,7 @@
         [_tableView kgn_sizeToHeight:self.view.frame.size.height];
     
         [self setBarButtonItemLeft:@"common_back_button"];
-        [self setBarButtonItemRight:@"common_plus_icon"];
+        [self setBarButtonItemRight:@"Plus"];
     
         UILabel *navLabel = [UILabel new];
         navLabel.textColor = [UIColor whiteColor];
