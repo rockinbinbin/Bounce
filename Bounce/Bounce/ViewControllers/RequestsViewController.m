@@ -267,6 +267,10 @@
                                 [weakSelf openRequestChat:selectedCell];
                             });
                         }
+                        else {
+                            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Someone has removed you from this chat." message:@"This happens when a user notices that you have not participated in some time. If you're still looking for buddies, create a new leaving group!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                [alert show];
+                        }
                     }
                 }];
         }
