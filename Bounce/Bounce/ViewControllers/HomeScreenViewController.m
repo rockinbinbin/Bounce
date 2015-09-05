@@ -414,10 +414,6 @@
     [[Utility getInstance] hideProgressHud];
 }
 
-
-
-
-
 #pragma mark - Parse LoadGroups delegate
 - (void)didLoadUserGroups:(NSArray *)groups WithError:(NSError *)error
 {

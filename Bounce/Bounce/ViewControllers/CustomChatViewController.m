@@ -13,9 +13,12 @@
 #import "UIView+AutoLayout.h"
 #import "AppConstant.h"
 #import "bounce-Swift.h"
+#import "HomepointDropdownCell.h"
 
 @interface CustomChatViewController ()
-
+@property (nonatomic, strong) NSArray *receivers;
+@property (nonatomic) NSInteger selectedIndex;
+@property (nonatomic, weak) UIView *shadowView;
 @end
 
 @implementation CustomChatViewController
@@ -24,6 +27,8 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.receivers = [NSArray new];
     
     self.homepointChat = NO;
     
@@ -36,6 +41,18 @@
     navLabel.text = @"Leaving soon";
     [navLabel sizeToFit];
     
+    UITableView *tableView = [UITableView new];
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    tableView.hidden = YES;
+    tableView.separatorColor = [UIColor clearColor];
+    [self.view addSubview:tableView];
+    [tableView kgn_sizeToHeight:250];                             // TODO: ADJUST THIS
+    [tableView kgn_sizeToWidth:self.view.frame.size.width - 40];
+    [tableView kgn_pinToTopEdgeOfSuperviewWithOffset:5];
+    [tableView kgn_pinToRightEdgeOfSuperviewWithOffset:20];
+    self.tableView = tableView;
+    
     [self.inputToolbar kgn_pinToBottomEdgeOfSuperviewWithOffset:44 + TAB_BAR_HEIGHT];
     
     self.navigationController.navigationBar.barTintColor = BounceRed;
@@ -43,11 +60,32 @@
     UIButton *customButton = [[Utility getInstance] createCustomButton:[UIImage imageNamed:@"common_back_button"]];
     [customButton addTarget:self action:@selector(backButtonClicked) forControlEvents:UIControlEventTouchUpInside];
      self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:customButton];
+    
+    UIButton *rightButton = [[Utility getInstance] createCustomButton:[UIImage imageNamed:@"sendButton"]];
+    [rightButton addTarget:self action:@selector(showDropDown) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+}
+
+- (void) loadReceivers {
+    if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
+        MAKE_A_WEAKSELF;
+        PFRelation *usersRelation = [self.currentRequest1 relationForKey:PF_REQUEST_JOINCONVERSATION_RELATION];
+        PFQuery *query = [usersRelation query];
+        //[query whereKey:OBJECT_ID notEqualTo:[[PFUser currentUser] objectId]];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            NSLog(@"HERE");
+                weakSelf.receivers = objects;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [weakSelf.tableView reloadData];
+                });
+        }];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.delegate setTabBarHidden:true];
+    [self loadReceivers];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -125,5 +163,87 @@
 -(void)backButtonClicked{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+
+
+
+
+
+
+#pragma mark - TableView Datasource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.receivers count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString* cellId = @"homepointCell";
+    HomepointDropdownCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellId];
+    
+    if (!cell) {
+        cell = [HomepointDropdownCell new];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    cell.contentView.backgroundColor = BounceLightGray;
+    NSMutableArray *images = [NSMutableArray new];
+    for (int i = 0; i < [self.receivers count]; i++) {
+        PFFile *file = [self.receivers[i] valueForKey:@"picture"];
+        [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error) {
+                if (indexPath.row == i) {
+                    UIImage *image = [UIImage imageWithData:data];
+                    [images addObject:image];
+                    cell.hpImage.image = image;
+                    cell.hpImage.contentMode = UIViewContentModeScaleToFill;
+                    cell.hpImage.backgroundColor = [UIColor blackColor]; // this should never show
+                }
+            }
+        }];
+    }
+    
+    cell.homepointName.font = [UIFont fontWithName:@"AvenirNext-Regular" size:16];
+    [cell.homepointName kgn_centerVerticallyInSuperview];
+    cell.homepointName.text = [[self.receivers objectAtIndex:indexPath.row] valueForKey:PF_USER_FULLNAME];
+    return cell;
+}
+
+#pragma mark - TableView Delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    self.selectedIndex = indexPath.row;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 80;
+}
+
+-(void)showDropDown {
+    BOOL shouldHide = !self.tableView.hidden;
+    
+    if (self.tableView.hidden) {
+        self.tableView.hidden = shouldHide;
+        self.shadowView.hidden = shouldHide;
+    }
+    
+    double originalOpacity = shouldHide ? 1.0 : 0.0;
+    double newOpacity = shouldHide ? 0.0 : 1.0;
+    
+    self.tableView.layer.opacity = originalOpacity;
+    self.shadowView.layer.opacity = originalOpacity;
+    [UIView animateWithDuration:0.15f animations: ^void() {
+        self.shadowView.layer.opacity = newOpacity;
+        self.tableView.layer.opacity = newOpacity;
+    } completion:^(BOOL finishedCompletion) {
+        if (shouldHide) {
+            self.shadowView.hidden = shouldHide;
+            self.tableView.hidden = shouldHide;
+        }
+    }];
+}
+
 
 @end
