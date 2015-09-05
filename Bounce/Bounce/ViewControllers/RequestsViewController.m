@@ -21,6 +21,7 @@
     NSMutableArray *requests;
     NSInteger deletedIndex;
     NSMutableArray *requestValidation;
+    NSInteger selectedCell;
 }
 @end
 
@@ -238,7 +239,27 @@
 #pragma mark - TableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // if request time out ==> no action in the cell
-    [self openRequestChat:indexPath.row];
+    selectedCell = indexPath.row;
+    if (!_imageActionSheet) {
+        self.imageActionSheet = [[UIActionSheet alloc] initWithTitle:@"Chats are private unless & until you join a conversation. This keeps our leaving groups authentic, and uncompromising of safety. Users will be alerted to remove you, if you do not intend on leaving with them."
+                                                            delegate:self
+                                                   cancelButtonTitle:@"Cancel"
+                                              destructiveButtonTitle:nil
+                                                   otherButtonTitles:@"Join Conversation", nil];
+    }
+    [self.imageActionSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex;
+{
+    if (buttonIndex == 0) { // join chat
+        [self openRequestChat:selectedCell];
+    }
+    else if (buttonIndex == actionSheet.cancelButtonIndex) {}
+}
+
+-(void)createRequestRelation {
+    //
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

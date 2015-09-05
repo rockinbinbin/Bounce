@@ -22,11 +22,13 @@
 
 #pragma mark RequestsViewController
 
-@interface RequestsViewController : UIViewController<ParseManagerDelegate, ParseManagerDeleteDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface RequestsViewController : UIViewController<ParseManagerDelegate, ParseManagerDeleteDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
 
 @property (strong, nonatomic) id delegate;
 @property (weak, nonatomic) UITableView *requestsTableView;
 @property (strong, nonatomic) NSMutableArray *images;
 @property (weak, nonatomic) UIView *bottomView;
+
+@property (nonatomic, strong) UIActionSheet *imageActionSheet;
 
 @end
