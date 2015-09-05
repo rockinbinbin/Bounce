@@ -135,6 +135,7 @@
 			else [ProgressHUD showError:@"Network error."];
 			isLoading = NO;
             if ([self.messages count] == 0) {
+                if (!_chatPrompt) {
                 UILabel *chatPrompt = [UILabel new];
                 chatPrompt.translatesAutoresizingMaskIntoConstraints = NO;
                 chatPrompt.textColor = [UIColor grayColor];
@@ -146,12 +147,12 @@
                 [chatPrompt sizeToFit];
                 [chatPrompt kgn_sizeToWidth:self.view.frame.size.width - 50];
                 self.chatPrompt = chatPrompt;
-                
+                }
                 if (self.homepointChat) {
-                    chatPrompt.text = @"Use this space to talk to your roommates about fun things, like tonight’s plans!\n\nWhat’s your next door neighbor up to? Ask, and find out! If they’re not already a part of this homepoint, go ahead and add them!";
+                    self.chatPrompt.text = @"Use this space to talk to your roommates about fun things, like tonight’s plans!\n\nWhat’s your next door neighbor up to? Ask, and find out! If they’re not already a part of this homepoint, go ahead and add them!";
                 }
                 else {
-                    chatPrompt.text = @"Use this space to coordinate your trip home.\n\nWe’ve added other nearby users from this homepoint, so now it’s up to you to pick a place to meet!";
+                    self.chatPrompt.text = @"Use this space to coordinate your trip home.\n\nWe’ve added other nearby users from this homepoint, so now it’s up to you to pick a place to meet!";
                 }
             }
             

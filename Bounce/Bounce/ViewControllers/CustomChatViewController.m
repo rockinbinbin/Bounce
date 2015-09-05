@@ -42,19 +42,6 @@
     navLabel.text = @"Leaving soon";
     [navLabel sizeToFit];
     
-    UITableView *tableView = [UITableView new];
-    tableView.backgroundColor = BounceLightGray;
-    tableView.delegate = self;
-    tableView.dataSource = self;
-    tableView.hidden = YES;
-    tableView.separatorColor = BounceRed;
-    [self.view addSubview:tableView];
-    [tableView kgn_sizeToHeight:250];                             // TODO: ADJUST THIS
-    [tableView kgn_sizeToWidth:self.view.frame.size.width - 40];
-    [tableView kgn_pinToTopEdgeOfSuperviewWithOffset:5];
-    [tableView kgn_pinToRightEdgeOfSuperviewWithOffset:5];
-    self.tableView = tableView;
-    
     [self.inputToolbar kgn_pinToBottomEdgeOfSuperviewWithOffset:44 + TAB_BAR_HEIGHT];
     
     self.navigationController.navigationBar.barTintColor = BounceRed;
@@ -248,19 +235,6 @@
                     PFRelation *relation = [self.currentRequest1 relationForKey:@"removedUsers"];
                     [relation addObject:user];
                     [self.currentRequest1 saveInBackground];
-                    
-                    
-//                    PFRelation *usersRelation = [self.currentRequest1 relationForKey:PF_REQUEST_JOINCONVERSATION_RELATION];
-//                    PFQuery *query = [usersRelation query];
-//                    [query whereKey:OBJECT_ID equalTo:[user objectId]];
-//                    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-//                        
-//                        if (!error) {
-//                            [object setObject:[NSNumber numberWithBool:NO] forKey:@"hasBeenRemoved"];
-//                            [object saveInBackground];
-//                        }
-//                    }];
-
                 }
             }
     }
@@ -277,6 +251,22 @@
 }
 
 -(void)showDropDown {
+    
+    if (!_tableView) {
+        UITableView *tableView = [UITableView new];
+        tableView.backgroundColor = BounceLightGray;
+        tableView.delegate = self;
+        tableView.dataSource = self;
+        tableView.hidden = YES;
+        tableView.separatorColor = BounceRed;
+        [self.view addSubview:tableView];
+        [tableView kgn_sizeToHeight:250];                             // TODO: ADJUST THIS
+        [tableView kgn_sizeToWidth:self.view.frame.size.width - 40];
+        [tableView kgn_pinToTopEdgeOfSuperviewWithOffset:5];
+        [tableView kgn_pinToRightEdgeOfSuperviewWithOffset:5];
+        self.tableView = tableView;
+    }
+    
     BOOL shouldHide = !self.tableView.hidden;
     
     if (self.tableView.hidden) {
