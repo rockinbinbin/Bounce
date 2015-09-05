@@ -272,6 +272,7 @@
         CustomChatViewController *chatView = [[CustomChatViewController alloc] initWith:requestId];
         
         chatView.hidesBottomBarWhenPushed = YES;
+        chatView.delegate = self.delegate;
         [self.navigationController pushViewController:chatView animated:YES];
     } else {
         // sho alert request time over

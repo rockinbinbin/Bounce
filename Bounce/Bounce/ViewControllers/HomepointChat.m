@@ -12,6 +12,7 @@
 #import "Constants.h"
 #import "MembersViewController.h"
 #import "UIView+AutoLayout.h"
+#import "bounce-Swift.h"
 
 @interface HomepointChat ()
 @property BOOL firstDone;
@@ -21,6 +22,14 @@
 {
     NSMutableArray *groupUsers;
     NSArray *tentative_users;
+}
+
+- (id)initWithDelegate:(id<RootTabBarControllerDelegate>)delegate {
+    self = [super init];
+    if (self) {
+        self.rootTabBarDelegate = delegate;
+    }
+    return self;
 }
 
 - (void)viewDidLoad {
@@ -70,7 +79,13 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.rootTabBarDelegate setTabBarHidden:true];
 }
+
+- (void) viewWillDisappear:(BOOL)animated {
+    [self.rootTabBarDelegate setTabBarHidden:false];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -12,4 +12,5 @@
 
 @interface CustomChatViewController : ChatView <UIAlertViewDelegate>
 @property PFObject *currentRequest;
+@property (strong, nonatomic) id delegate;
 @end

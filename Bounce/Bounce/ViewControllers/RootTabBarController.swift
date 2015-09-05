@@ -9,6 +9,7 @@
 import UIKit
 
 @objc protocol RootTabBarControllerDelegate {
+    func setTabBarHidden(hidden: Bool)
 }
 
 @objc public class RootTabBarController: UIViewController, RootTabBarControllerDelegate {
@@ -147,5 +148,9 @@ import UIKit
     public override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @objc public func setTabBarHidden(hidden: Bool) {
+        self.navigationController?.toolbarHidden = hidden
     }
 }

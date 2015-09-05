@@ -40,6 +40,14 @@
 @synthesize nearUsers = nearUsers;
 @synthesize distanceToUserLocation = distanceToUserLocation;
 
+- (id)initWithDelegate:(id<RootTabBarControllerDelegate>)delegate {
+    self = [super init];
+    if (self) {
+        self.delegate = delegate;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -393,6 +401,7 @@
         [[ParseManager getInstance] createMessageItemForUser:[PFUser currentUser] WithGroupId:requestId andDescription:[group objectForKey:@"groupName"]];
         
         HomepointChat *chat = [[HomepointChat alloc] initWith:requestId];
+        chat.rootTabBarDelegate = self.delegate;
         chat.homepoint = group;
         chat.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:chat animated:YES];
