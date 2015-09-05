@@ -482,6 +482,7 @@
 - (void) confirmButtonClicked {
     
     self.selectedGroups = [NSMutableArray new];
+    if (self.timeAllocated == 0) self.timeAllocated = 120;
     
     for (int i = 0; i < self.selectedCells.count; i++) {
         if ([[self.selectedCells objectAtIndex:i] boolValue]) { // if selected
@@ -492,12 +493,6 @@
     if (![self.selectedGroups count]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Please select a homepoint!"
                                                              message:@"A homepoint is a group of your neighbors within an area. Only people who are a part of the homepoint you select will receive your message."
-                                                            delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-    }
-    else if (self.timeAllocated == 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Please select the time you intend on heading out!"
-                                                             message:@"We'll keep adding your homies nearby to the leaving group, until it's time for you to leave."
                                                             delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }
@@ -704,22 +699,7 @@
         NSTimeInterval duration = self.datePicker.countDownDuration;
         int hours = (int)(duration/3600.0f);
         int minutes = ((int)duration - (hours * 3600))/60;
-        if (hours != 0 && minutes != 0) {
-            if (hours > 0) {
-                self.timeAllocated = hours*60 + minutes;
-            }
-            else {
-                self.timeAllocated = minutes;
-            }
-        }
-        else {
-            if (hours == 0) {
-                self.timeAllocated = minutes;
-            }
-            else {
-                self.timeAllocated = hours*60;
-            }
-        }
+        self.timeAllocated = hours*60 + minutes;
         self.time.tintColor = [UIColor whiteColor];
         
         // Initial case
