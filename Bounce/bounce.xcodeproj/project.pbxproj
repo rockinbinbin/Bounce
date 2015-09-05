@@ -9,13 +9,6 @@
 /* Begin PBXBuildFile section */
 		000234901B48823B000B7630 /* launchLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0002348F1B48823B000B7630 /* launchLogo.png */; };
 		000234921B4885B6000B7630 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 000234911B4885B6000B7630 /* Fonts */; };
-		000234941B488F67000B7630 /* Quicksand_Dash.otf in Resources */ = {isa = PBXBuildFile; fileRef = 000234931B488F67000B7630 /* Quicksand_Dash.otf */; };
-		000234961B488F7E000B7630 /* Quicksand-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 000234951B488F7E000B7630 /* Quicksand-Bold.otf */; };
-		000234981B488F89000B7630 /* Quicksand-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 000234971B488F89000B7630 /* Quicksand-BoldItalic.otf */; };
-		0002349A1B488F8E000B7630 /* Quicksand-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 000234991B488F8E000B7630 /* Quicksand-Italic.otf */; };
-		0002349C1B488F93000B7630 /* Quicksand-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0002349B1B488F93000B7630 /* Quicksand-Light.otf */; };
-		0002349E1B488F98000B7630 /* Quicksand-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0002349D1B488F98000B7630 /* Quicksand-LightItalic.otf */; };
-		000234A01B488F9F000B7630 /* Quicksand-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0002349F1B488F9F000B7630 /* Quicksand-Regular.otf */; };
 		002805BF1B8452CB004E1DE1 /* MembersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 002805BE1B8452CB004E1DE1 /* MembersViewController.m */; };
 		002805C21B84559A004E1DE1 /* SearchToAddUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = 002805C11B84559A004E1DE1 /* SearchToAddUsers.m */; };
 		002805C51B845631004E1DE1 /* membersCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 002805C41B845631004E1DE1 /* membersCell.m */; };
@@ -187,13 +180,6 @@
 /* Begin PBXFileReference section */
 		0002348F1B48823B000B7630 /* launchLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchLogo.png; sourceTree = "<group>"; };
 		000234911B4885B6000B7630 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = Bounce/ViewControllers/Fonts; sourceTree = "<group>"; };
-		000234931B488F67000B7630 /* Quicksand_Dash.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Quicksand_Dash.otf; path = Bounce/ViewControllers/Fonts/Quicksand_Dash.otf; sourceTree = "<group>"; };
-		000234951B488F7E000B7630 /* Quicksand-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Bold.otf"; path = "Bounce/ViewControllers/Fonts/Quicksand-Bold.otf"; sourceTree = "<group>"; };
-		000234971B488F89000B7630 /* Quicksand-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-BoldItalic.otf"; path = "Bounce/ViewControllers/Fonts/Quicksand-BoldItalic.otf"; sourceTree = "<group>"; };
-		000234991B488F8E000B7630 /* Quicksand-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Italic.otf"; path = "Bounce/ViewControllers/Fonts/Quicksand-Italic.otf"; sourceTree = "<group>"; };
-		0002349B1B488F93000B7630 /* Quicksand-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Light.otf"; path = "Bounce/ViewControllers/Fonts/Quicksand-Light.otf"; sourceTree = "<group>"; };
-		0002349D1B488F98000B7630 /* Quicksand-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-LightItalic.otf"; path = "Bounce/ViewControllers/Fonts/Quicksand-LightItalic.otf"; sourceTree = "<group>"; };
-		0002349F1B488F9F000B7630 /* Quicksand-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Regular.otf"; path = "Bounce/ViewControllers/Fonts/Quicksand-Regular.otf"; sourceTree = "<group>"; };
 		001DFA0B1ABF4175008C9D1F /* PF_EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PF_EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		002805BD1B8452CB004E1DE1 /* MembersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MembersViewController.h; sourceTree = "<group>"; };
 		002805BE1B8452CB004E1DE1 /* MembersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MembersViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -954,13 +940,6 @@
 			children = (
 				28205C431B8FFA4B001C3630 /* BounceSwift.swift */,
 				28802DAF1B770C8D008E8B33 /* UniversityEmail.swift */,
-				0002349F1B488F9F000B7630 /* Quicksand-Regular.otf */,
-				0002349D1B488F98000B7630 /* Quicksand-LightItalic.otf */,
-				0002349B1B488F93000B7630 /* Quicksand-Light.otf */,
-				000234991B488F8E000B7630 /* Quicksand-Italic.otf */,
-				000234971B488F89000B7630 /* Quicksand-BoldItalic.otf */,
-				000234951B488F7E000B7630 /* Quicksand-Bold.otf */,
-				000234931B488F67000B7630 /* Quicksand_Dash.otf */,
 				000234911B4885B6000B7630 /* Fonts */,
 				00ABD56F1B4846CC004A2FB0 /* LaunchScreen.storyboard */,
 				00E2CBBA1B5506C800B316D1 /* ChatListCell.h */,
@@ -1652,13 +1631,6 @@
 				67BB92551ADFA8D10050164B /* LandingView_iPhone6plus.png in Resources */,
 				67BB925F1ADFA8D10050164B /* Tutorial-2_iPhone6.png in Resources */,
 				000234921B4885B6000B7630 /* Fonts in Resources */,
-				000234941B488F67000B7630 /* Quicksand_Dash.otf in Resources */,
-				000234961B488F7E000B7630 /* Quicksand-Bold.otf in Resources */,
-				000234981B488F89000B7630 /* Quicksand-BoldItalic.otf in Resources */,
-				0002349A1B488F8E000B7630 /* Quicksand-Italic.otf in Resources */,
-				0002349C1B488F93000B7630 /* Quicksand-Light.otf in Resources */,
-				0002349E1B488F98000B7630 /* Quicksand-LightItalic.otf in Resources */,
-				000234A01B488F9F000B7630 /* Quicksand-Regular.otf in Resources */,
 				00E2CBB61B5384B600B316D1 /* homepoint images in Resources */,
 				67BB92591ADFA8D10050164B /* Tutorial-1_iPhone6.png in Resources */,
 				67BB92581ADFA8D10050164B /* Tutorial-1_iPhone5.png in Resources */,

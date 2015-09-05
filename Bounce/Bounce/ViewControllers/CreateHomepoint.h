@@ -14,6 +14,7 @@
 @property (nonatomic, strong) UITextField *groupNameTextField;
 @property (nonatomic, strong) UIButton *addLocationButton;
 @property (nonatomic, strong) UIButton *addPhotoButton;
+@property (nonatomic, strong) UIImageView *addImageIcon;
 @property (nonatomic, strong) UIImageView *editImageIcon;
 @property (nonatomic, strong) UIView *overlay;
 @property (nonatomic, strong) UIActionSheet *imageActionSheet;

@@ -38,11 +38,9 @@
     UIBarButtonItem *_cancel = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonClicked)];
     [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
 
-    NSDictionary* barButtonItemAttributes =
-    @{NSFontAttributeName:
-        [UIFont fontWithName:@"AvenirNext-Regular" size:18.0f],
-    NSForegroundColorAttributeName:
-        [UIColor whiteColor]
+    NSDictionary* barButtonItemAttributes = @{
+      NSFontAttributeName:            [UIFont fontWithName:@"AvenirNext-Regular" size:18.0f],
+      NSForegroundColorAttributeName: [UIColor whiteColor]
     };
     
     [_cancel setTitleTextAttributes:barButtonItemAttributes forState:UIControlStateNormal];
@@ -61,10 +59,21 @@
     [self.overlay kgn_pinToTopEdgeOfSuperview];
     [self.overlay kgn_pinToLeftEdgeOfSuperview];
 
-    self.editImageIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Homepoint-Camera"]];
+    self.addImageIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Homepoint-Camera"]];
+    self.editImageIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Homepoint-Pencil"]];
+    
+    [_addPhotoButton addSubview:self.addImageIcon];
     [_addPhotoButton addSubview:self.editImageIcon];
-    [self.editImageIcon kgn_centerInSuperview];
-    [self.editImageIcon kgn_sizeToWidthAndHeight:100.0];
+    
+    [self.addImageIcon kgn_centerInSuperview];
+    [self.addImageIcon kgn_sizeToWidthAndHeight:100.0];
+    
+    [self.editImageIcon kgn_pinToRightEdgeOfSuperviewWithOffset:10];
+    [self.editImageIcon kgn_pinToBottomEdgeOfSuperviewWithOffset:10];
+    [self.editImageIcon kgn_sizeToWidthAndHeight:50];
+    
+    self.editImageIcon.hidden = true;
+    
     [self.view addSubview:_addPhotoButton];
 
     [_addPhotoButton kgn_pinToTopEdgeOfSuperview];
@@ -126,11 +135,11 @@
     [_addLocationButton kgn_centerHorizontallyInSuperview];
     [_addLocationButton kgn_pinToSideEdgesOfSuperviewWithOffset:35.0];
     [_addLocationButton kgn_sizeToHeight:textfieldHeight];
-
 }
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 #pragma mark - Navigation Bar
@@ -296,6 +305,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
+    NSLog(@"%@", textField.text);
     return YES;
 }
 
@@ -403,8 +413,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
         }
         else {
              image = [self imageWithImage:image scaledToHeight:self.view.frame.size.width];
-            self.editImageIcon.image = [UIImage imageNamed:@"Homepoint-Pencil"];
             [_addPhotoButton setImage:image forState:UIControlStateNormal];
+            self.editImageIcon.hidden = false;
+            self.addImageIcon.hidden = true;
             self.addPhotoButton.imageView.contentMode = UIViewContentModeScaleToFill;
             self.imageAdded = YES;
             self.overlay.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.4];
