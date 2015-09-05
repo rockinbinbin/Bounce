@@ -21,6 +21,7 @@
     NSMutableArray *requests;
     NSInteger deletedIndex;
     NSMutableArray *requestValidation;
+    NSInteger selectedCell;
 }
 @end
 
@@ -237,8 +238,68 @@
 
 #pragma mark - TableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // if request time out ==> no action in the cell
-    [self openRequestChat:indexPath.row];
+    selectedCell = indexPath.row;
+        if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
+                PFObject *request = [requests objectAtIndex:indexPath.row];
+            
+                PFRelation *relationExist = [request relationForKey:PF_REQUEST_JOINCONVERSATION_RELATION];
+                PFQuery *query = [relationExist query];
+                [query whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
+                [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+                    
+                    if (object == nil) {
+                        MAKE_A_WEAKSELF;
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            if (!_imageActionSheet) {
+                                weakSelf.imageActionSheet = [[UIActionSheet alloc] initWithTitle:@"Chats are private unless & until you join a conversation. This keeps our leaving groups authentic, and uncompromising of safety. Users will be alerted to remove you, if you do not intend on leaving with them."
+                                                                                    delegate:self
+                                                                           cancelButtonTitle:@"Cancel"
+                                                                      destructiveButtonTitle:nil
+                                                                           otherButtonTitles:@"Join Conversation", nil];
+                            }
+                            [weakSelf.imageActionSheet showInView:weakSelf.view];
+                        });
+                    }
+                    else {
+                        MAKE_A_WEAKSELF;
+                        PFRelation *relationExist = [request relationForKey:@"removedUsers"];
+                        PFQuery *query = [relationExist query];
+                        [query whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
+                        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+                            if (object == nil) {
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    [weakSelf openRequestChat:selectedCell];
+                                });
+                            }
+                            else {
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Someone has removed you from this chat." message:@"This happens when a user notices that you have not participated in some time. If you're still looking for buddies, create a new leaving group!" delegate:weakSelf cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                    [alert show];
+                                });
+                            }
+                        }];
+                    }
+                }];
+        }
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex;
+{
+    if (buttonIndex == 0) { // join chat
+        [self createRequestRelation];
+        [self openRequestChat:selectedCell];
+        
+    }
+    else if (buttonIndex == actionSheet.cancelButtonIndex) {}
+}
+
+-(void)createRequestRelation {
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+        PFObject *request = [requests objectAtIndex:selectedCell];
+        PFRelation *relation = [request relationForKey:PF_REQUEST_JOINCONVERSATION_RELATION];
+        [relation addObject:[PFUser currentUser]];
+        [request saveInBackground];
+    }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

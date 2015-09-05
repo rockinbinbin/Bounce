@@ -21,7 +21,7 @@
 @property (weak, nonatomic) UIButton *getHomeButton;
 @property (weak, nonatomic) UIButton *leftMenuButton;
 @property (weak, nonatomic) NSString *genderMatching;
-@property (nonatomic) float timeAllocated;
+@property (nonatomic) float timeAllocated; // in minutes
 @property (nonatomic, strong) UIActionSheet *imageActionSheet;
 @property (nonatomic, strong) UIDatePicker *datePicker;
 
@@ -84,7 +84,6 @@
     [[RequestManger getInstance] loadActiveRequest];
     
     self.genderMatching = ALL_GENDER;
-    self.timeAllocated = 5.0;
     
     MKMapView *tempMap = [MKMapView new];
     tempMap.scrollEnabled = NO;
@@ -259,12 +258,11 @@
     [tableView kgn_positionBelowItem:selectHP withOffset:10];
     [tableView kgn_centerHorizontallyInSuperview];
     self.tableView = tableView;
-    
 }
 
 -(void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    self.timeAllocated = 120;
     if ([GlobalVariables shouldNotOpenRequestView]) {
         [self setBarButtonItemLeft:@"common_back_button"];
     }
@@ -416,10 +414,6 @@
     [[Utility getInstance] hideProgressHud];
 }
 
-
-
-
-
 #pragma mark - Parse LoadGroups delegate
 - (void)didLoadUserGroups:(NSArray *)groups WithError:(NSError *)error
 {
@@ -486,8 +480,6 @@
 }
 
 - (void) confirmButtonClicked {
-    // add checks for all values
-    // create request
     
     self.selectedGroups = [NSMutableArray new];
     
@@ -619,18 +611,17 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (self.selectedCells.count > 0) {
-        if ([[self.selectedCells objectAtIndex:indexPath.row] boolValue]) {
-            [self.selectedCells replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithBool:NO]];
+        for (int i = 0; i < [self.selectedCells count]; i++) {
+            [self.selectedCells replaceObjectAtIndex:i withObject:[NSNumber numberWithBool:NO]];
         }
-        else{
             [self.selectedCells replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithBool:YES]];
+        
             self.selectHP.tintColor = [UIColor whiteColor];
             [self.selectHP setTitle:[[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME] forState:UIControlStateNormal];
             self.tableView.hidden = true;
             self.shadowView.hidden = true;
         }
         //[self.tableView reloadData];
-    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -713,11 +704,21 @@
         NSTimeInterval duration = self.datePicker.countDownDuration;
         int hours = (int)(duration/3600.0f);
         int minutes = ((int)duration - (hours * 3600))/60;
-        if (hours > 0) {
-            self.timeAllocated = hours * minutes;
+        if (hours != 0 && minutes != 0) {
+            if (hours > 0) {
+                self.timeAllocated = hours*60 + minutes;
+            }
+            else {
+                self.timeAllocated = minutes;
+            }
         }
         else {
-            self.timeAllocated = minutes;
+            if (hours == 0) {
+                self.timeAllocated = minutes;
+            }
+            else {
+                self.timeAllocated = hours*60;
+            }
         }
         self.time.tintColor = [UIColor whiteColor];
         

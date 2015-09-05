@@ -10,7 +10,8 @@
 #import "ChatView.h"
 #import <Parse/Parse.h>
 
-@interface CustomChatViewController : ChatView <UIAlertViewDelegate>
+@interface CustomChatViewController : ChatView <UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate>
 @property PFObject *currentRequest;
 @property (strong, nonatomic) id delegate;
+@property (weak, nonatomic) UITableView *tableView;
 @end

@@ -36,6 +36,7 @@
 #define		PF_USER_ARRAYOFGROUPS				@"ArrayOfGroups"		//	array
 #define     PF_USER_LOCATION                    @"CurrentLocation"
 #define     PF_TENTATIVE_GROUP_USERS            @"tentativeUsers"       // array of tentative users
+#define     PF_REQUEST_JOINCONVERSATION_RELATION  @"joinedUsers"        // relation: array of users who have joined 
 #define		PF_CHAT_CLASS_NAME					@"Chat"					//	Class name
 #define		PF_CHAT_USER						@"user"					//	Pointer to User Class
 #define		PF_CHAT_GROUPID						@"groupId"				//	String

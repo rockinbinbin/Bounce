@@ -13,9 +13,13 @@
 #import "UIView+AutoLayout.h"
 #import "AppConstant.h"
 #import "bounce-Swift.h"
+#import "HomepointDropdownCell.h"
 
 @interface CustomChatViewController ()
-
+@property (nonatomic, strong) NSArray *receivers;
+@property (nonatomic) NSInteger selectedIndex;
+@property (nonatomic, weak) UIView *shadowView;
+@property (nonatomic) CGPoint buttonPosition;
 @end
 
 @implementation CustomChatViewController
@@ -24,6 +28,8 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.receivers = [NSArray new];
     
     self.homepointChat = NO;
     
@@ -43,11 +49,32 @@
     UIButton *customButton = [[Utility getInstance] createCustomButton:[UIImage imageNamed:@"common_back_button"]];
     [customButton addTarget:self action:@selector(backButtonClicked) forControlEvents:UIControlEventTouchUpInside];
      self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:customButton];
+    
+    UIButton *rightButton = [[Utility getInstance] createCustomButton:[UIImage imageNamed:@"whiteUser"]];
+    [rightButton addTarget:self action:@selector(showDropDown) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+}
+
+- (void) loadReceivers {
+    if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
+        MAKE_A_WEAKSELF;
+        PFRelation *usersRelation = [self.currentRequest1 relationForKey:PF_REQUEST_JOINCONVERSATION_RELATION];
+        PFQuery *query = [usersRelation query];
+        //[query whereKey:OBJECT_ID notEqualTo:[[PFUser currentUser] objectId]];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            NSLog(@"HERE");
+                weakSelf.receivers = objects;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [weakSelf.tableView reloadData];
+                });
+        }];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.delegate setTabBarHidden:true];
+    [self loadReceivers];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -105,7 +132,7 @@
 - (void) showAlertViewWithMessage:(NSString *) message
 {
     if (!requestTimeOverAlert) {
-        requestTimeOverAlert = [[UIAlertView alloc] initWithTitle:@"" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        requestTimeOverAlert = [[UIAlertView alloc] initWithTitle:@"Time to leave!" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [requestTimeOverAlert show];
     }
    }
@@ -125,5 +152,143 @@
 -(void)backButtonClicked{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+
+#pragma mark - TableView Datasource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.receivers count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString* cellId = @"homepointCell";
+    HomepointDropdownCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellId];
+    
+    if (!cell) {
+        cell = [HomepointDropdownCell new];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    cell.contentView.backgroundColor = BounceLightGray;
+    NSMutableArray *images = [NSMutableArray new];
+    for (int i = 0; i < [self.receivers count]; i++) {
+        PFFile *file = [self.receivers[i] valueForKey:@"picture"];
+        [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error) {
+                if (indexPath.row == i) {
+                    UIImage *image = [UIImage imageWithData:data];
+                    [images addObject:image];
+                    cell.hpImage.image = image;
+                    cell.hpImage.contentMode = UIViewContentModeScaleToFill;
+                    cell.hpImage.backgroundColor = [UIColor blackColor]; // this should never show
+                }
+            }
+        }];
+    }
+    
+    cell.homepointName.font = [UIFont fontWithName:@"AvenirNext-Regular" size:16];
+    [cell.homepointName kgn_centerVerticallyInSuperview];
+    cell.homepointName.text = [[self.receivers objectAtIndex:indexPath.row] valueForKey:PF_USER_FULLNAME];
+    
+    UIImage *img = [UIImage imageNamed:@"redX"];
+    UIButton *iconView = [UIButton new];
+    [cell.contentView addSubview:iconView];
+    [iconView kgn_pinToRightEdgeOfSuperviewWithOffset:20];
+    [iconView kgn_centerVerticallyInSuperview];
+    [iconView setImage:img forState:UIControlStateNormal];
+    
+//    if (indexPath.row == self.index) {
+//        UIImage *img = [UIImage imageNamed:@"confirmRequest"];
+//        [cell.iconView setImage:img forState:UIControlStateNormal];
+//    }
+    
+    [iconView addTarget:self action:@selector(removeUser:) forControlEvents:UIControlEventTouchUpInside];
+    
+    return cell;
+}
+
+- (void) removeUser:(id)sender {
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Remove user from chat?"
+                                                    message: @"Removing a user will disallow them from re-entering this chat. If this user isn't participating, it's a good idea to remove them, before sharing where you are."
+                                                   delegate: self
+                                          cancelButtonTitle: @"Cancel"
+                                          otherButtonTitles: @"Continue", nil];
+    [alert show];
+    
+    self.buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
+}
+
+#pragma mark - alertview delegate
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:self.buttonPosition];
+        if (indexPath != nil) {
+            PFUser *user = [self.receivers objectAtIndex:indexPath.row];
+                self.selectedIndex = indexPath.row;
+                
+                if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
+                    
+                    PFRelation *relation = [self.currentRequest1 relationForKey:@"removedUsers"];
+                    [relation addObject:user];
+                    [self.currentRequest1 saveInBackground];
+                }
+            }
+    }
+}
+
+#pragma mark - TableView Delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    self.selectedIndex = indexPath.row;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 80;
+}
+
+-(void)showDropDown {
+    
+    if (!_tableView) {
+        UITableView *tableView = [UITableView new];
+        tableView.backgroundColor = BounceLightGray;
+        tableView.delegate = self;
+        tableView.dataSource = self;
+        tableView.hidden = YES;
+        tableView.separatorColor = BounceRed;
+        [self.view addSubview:tableView];
+        [tableView kgn_sizeToHeight:300];                             // TODO: ADJUST THIS
+        [tableView kgn_sizeToWidth:self.view.frame.size.width - 80];
+        [tableView kgn_pinToTopEdgeOfSuperviewWithOffset:3];
+        [tableView kgn_pinToRightEdgeOfSuperviewWithOffset:5];
+        self.tableView = tableView;
+    }
+    
+    BOOL shouldHide = !self.tableView.hidden;
+    
+    if (self.tableView.hidden) {
+        self.tableView.hidden = shouldHide;
+        self.shadowView.hidden = shouldHide;
+    }
+    
+    double originalOpacity = shouldHide ? 1.0 : 0.0;
+    double newOpacity = shouldHide ? 0.0 : 1.0;
+    
+    self.tableView.layer.opacity = originalOpacity;
+    self.shadowView.layer.opacity = originalOpacity;
+    [UIView animateWithDuration:0.15f animations: ^void() {
+        self.shadowView.layer.opacity = newOpacity;
+        self.tableView.layer.opacity = newOpacity;
+    } completion:^(BOOL finishedCompletion) {
+        if (shouldHide) {
+            self.shadowView.hidden = shouldHide;
+            self.tableView.hidden = shouldHide;
+        }
+    }];
+}
+
 
 @end
