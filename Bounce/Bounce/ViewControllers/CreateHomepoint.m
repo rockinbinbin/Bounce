@@ -112,7 +112,7 @@
     [_groupNameTextField kgn_sizeToHeight:textfieldHeight];
     
     UILabel *homepointHint = [[UILabel alloc] init];
-    homepointHint.text = @"The best names are easily recognizable.";
+    homepointHint.text = @"Ex: North State St, Kerrytown, Ann Arbor";
     homepointHint.textColor = [UIColor colorWithWhite:0.0 alpha:0.36];
     homepointHint.font = [UIFont fontWithName:@"AvenirNext-Regular" size:14.0];
     [self.view addSubview:homepointHint];
