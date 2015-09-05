@@ -50,7 +50,7 @@
     [customButton addTarget:self action:@selector(backButtonClicked) forControlEvents:UIControlEventTouchUpInside];
      self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:customButton];
     
-    UIButton *rightButton = [[Utility getInstance] createCustomButton:[UIImage imageNamed:@"sendButton"]];
+    UIButton *rightButton = [[Utility getInstance] createCustomButton:[UIImage imageNamed:@"whiteUser"]];
     [rightButton addTarget:self action:@selector(showDropDown) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
 }
@@ -260,9 +260,9 @@
         tableView.hidden = YES;
         tableView.separatorColor = BounceRed;
         [self.view addSubview:tableView];
-        [tableView kgn_sizeToHeight:250];                             // TODO: ADJUST THIS
-        [tableView kgn_sizeToWidth:self.view.frame.size.width - 40];
-        [tableView kgn_pinToTopEdgeOfSuperviewWithOffset:5];
+        [tableView kgn_sizeToHeight:300];                             // TODO: ADJUST THIS
+        [tableView kgn_sizeToWidth:self.view.frame.size.width - 80];
+        [tableView kgn_pinToTopEdgeOfSuperviewWithOffset:3];
         [tableView kgn_pinToRightEdgeOfSuperviewWithOffset:5];
         self.tableView = tableView;
     }
