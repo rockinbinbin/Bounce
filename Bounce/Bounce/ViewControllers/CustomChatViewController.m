@@ -250,7 +250,7 @@
                     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
                         
                         if (!error) {
-                            [object setObject:[NSNumber numberWithBool:YES] forKey:@"hasBeenRemoved"];
+                            [object setObject:[NSNumber numberWithBool:NO] forKey:@"hasBeenRemoved"];
                             [object saveInBackground];
                         }
                     }];

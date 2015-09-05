@@ -262,7 +262,7 @@
                     }
                     else {
                         MAKE_A_WEAKSELF;
-                        if ([[object valueForKey:@"hasBeenRemoved"] boolValue] != YES) {
+                        if ([[object valueForKey:@"hasBeenRemoved"] boolValue] != NO) {
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 [weakSelf openRequestChat:selectedCell];
                             });

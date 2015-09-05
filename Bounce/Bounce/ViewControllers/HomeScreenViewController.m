@@ -611,18 +611,17 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (self.selectedCells.count > 0) {
-        if ([[self.selectedCells objectAtIndex:indexPath.row] boolValue]) {
-            [self.selectedCells replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithBool:NO]];
+        for (int i = 0; i < [self.selectedCells count]; i++) {
+            [self.selectedCells replaceObjectAtIndex:i withObject:[NSNumber numberWithBool:NO]];
         }
-        else{
             [self.selectedCells replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithBool:YES]];
+        
             self.selectHP.tintColor = [UIColor whiteColor];
             [self.selectHP setTitle:[[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME] forState:UIControlStateNormal];
             self.tableView.hidden = true;
             self.shadowView.hidden = true;
         }
         //[self.tableView reloadData];
-    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
