@@ -1577,7 +1577,7 @@
 				ORGANIZATIONNAME = hobble;
 				TargetAttributes = {
 					00CEE3CD199434E700F40C12 = {
-						DevelopmentTeam = S57X9JL8K7;
+						DevelopmentTeam = KM659CVM6Q;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
