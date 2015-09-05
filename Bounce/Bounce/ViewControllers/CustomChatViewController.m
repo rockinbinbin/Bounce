@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSArray *receivers;
 @property (nonatomic) NSInteger selectedIndex;
 @property (nonatomic, weak) UIView *shadowView;
+@property (nonatomic) CGPoint buttonPosition;
 @end
 
 @implementation CustomChatViewController
@@ -42,15 +43,16 @@
     [navLabel sizeToFit];
     
     UITableView *tableView = [UITableView new];
+    tableView.backgroundColor = BounceLightGray;
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.hidden = YES;
-    tableView.separatorColor = [UIColor clearColor];
+    tableView.separatorColor = BounceRed;
     [self.view addSubview:tableView];
     [tableView kgn_sizeToHeight:250];                             // TODO: ADJUST THIS
     [tableView kgn_sizeToWidth:self.view.frame.size.width - 40];
     [tableView kgn_pinToTopEdgeOfSuperviewWithOffset:5];
-    [tableView kgn_pinToRightEdgeOfSuperviewWithOffset:20];
+    [tableView kgn_pinToRightEdgeOfSuperviewWithOffset:5];
     self.tableView = tableView;
     
     [self.inputToolbar kgn_pinToBottomEdgeOfSuperviewWithOffset:44 + TAB_BAR_HEIGHT];
@@ -143,7 +145,7 @@
 - (void) showAlertViewWithMessage:(NSString *) message
 {
     if (!requestTimeOverAlert) {
-        requestTimeOverAlert = [[UIAlertView alloc] initWithTitle:@"" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        requestTimeOverAlert = [[UIAlertView alloc] initWithTitle:@"Time to leave!" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [requestTimeOverAlert show];
     }
    }
@@ -163,11 +165,6 @@
 -(void)backButtonClicked{
     [self.navigationController popViewControllerAnimated:YES];
 }
-
-
-
-
-
 
 
 #pragma mark - TableView Datasource
@@ -208,7 +205,59 @@
     cell.homepointName.font = [UIFont fontWithName:@"AvenirNext-Regular" size:16];
     [cell.homepointName kgn_centerVerticallyInSuperview];
     cell.homepointName.text = [[self.receivers objectAtIndex:indexPath.row] valueForKey:PF_USER_FULLNAME];
+    
+    UIImage *img = [UIImage imageNamed:@"redX"];
+    UIButton *iconView = [UIButton new];
+    [cell.contentView addSubview:iconView];
+    [iconView kgn_pinToRightEdgeOfSuperviewWithOffset:20];
+    [iconView kgn_centerVerticallyInSuperview];
+    [iconView setImage:img forState:UIControlStateNormal];
+    
+//    if (indexPath.row == self.index) {
+//        UIImage *img = [UIImage imageNamed:@"confirmRequest"];
+//        [cell.iconView setImage:img forState:UIControlStateNormal];
+//    }
+    
+    [iconView addTarget:self action:@selector(removeUser:) forControlEvents:UIControlEventTouchUpInside];
+    
     return cell;
+}
+
+- (void) removeUser:(id)sender {
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Remove user from chat?"
+                                                    message: @"Removing a user will disallow them from re-entering this chat. If this user isn't participating, it's a good idea to remove them, before sharing where you are."
+                                                   delegate: self
+                                          cancelButtonTitle: @"Cancel"
+                                          otherButtonTitles: @"Continue", nil];
+    [alert show];
+    
+    self.buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
+}
+
+#pragma mark - alertview delegate
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:self.buttonPosition];
+        if (indexPath != nil) {
+            PFUser *user = [self.receivers objectAtIndex:indexPath.row];
+                self.selectedIndex = indexPath.row;
+                
+                if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
+                    PFRelation *usersRelation = [self.currentRequest1 relationForKey:PF_REQUEST_JOINCONVERSATION_RELATION];
+                    PFQuery *query = [usersRelation query];
+                    [query whereKey:OBJECT_ID equalTo:[user objectId]];
+                    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+                        
+                        if (!error) {
+                            [object setObject:[NSNumber numberWithBool:YES] forKey:@"hasBeenRemoved"];
+                            [object saveInBackground];
+                        }
+                    }];
+
+                }
+            }
+    }
 }
 
 #pragma mark - TableView Delegate
