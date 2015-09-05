@@ -238,28 +238,57 @@
 
 #pragma mark - TableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // if request time out ==> no action in the cell
     selectedCell = indexPath.row;
-    if (!_imageActionSheet) {
-        self.imageActionSheet = [[UIActionSheet alloc] initWithTitle:@"Chats are private unless & until you join a conversation. This keeps our leaving groups authentic, and uncompromising of safety. Users will be alerted to remove you, if you do not intend on leaving with them."
-                                                            delegate:self
-                                                   cancelButtonTitle:@"Cancel"
-                                              destructiveButtonTitle:nil
-                                                   otherButtonTitles:@"Join Conversation", nil];
-    }
-    [self.imageActionSheet showInView:self.view];
+        if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
+                PFObject *request = [requests objectAtIndex:indexPath.row];
+            
+                PFRelation *relationExist = [request relationForKey:PF_REQUEST_JOINCONVERSATION_RELATION];
+                PFQuery *query = [relationExist query];
+                [query whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
+                [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+                    
+                    if (object == nil) {
+                        MAKE_A_WEAKSELF;
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            if (!_imageActionSheet) {
+                                weakSelf.imageActionSheet = [[UIActionSheet alloc] initWithTitle:@"Chats are private unless & until you join a conversation. This keeps our leaving groups authentic, and uncompromising of safety. Users will be alerted to remove you, if you do not intend on leaving with them."
+                                                                                    delegate:self
+                                                                           cancelButtonTitle:@"Cancel"
+                                                                      destructiveButtonTitle:nil
+                                                                           otherButtonTitles:@"Join Conversation", nil];
+                            }
+                            [weakSelf.imageActionSheet showInView:weakSelf.view];
+                        });
+                    }
+                    else {
+                        MAKE_A_WEAKSELF;
+                        if ([[object valueForKey:@"hasBeenRemoved"] boolValue] != YES) {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                [weakSelf openRequestChat:selectedCell];
+                            });
+                        }
+                    }
+                }];
+        }
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex;
 {
     if (buttonIndex == 0) { // join chat
+        [self createRequestRelation];
         [self openRequestChat:selectedCell];
+        
     }
     else if (buttonIndex == actionSheet.cancelButtonIndex) {}
 }
 
 -(void)createRequestRelation {
-    //
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+        PFObject *request = [requests objectAtIndex:selectedCell];
+        PFRelation *relation = [request relationForKey:PF_REQUEST_JOINCONVERSATION_RELATION];
+        [relation addObject:[PFUser currentUser]];
+        [request saveInBackground];
+    }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
