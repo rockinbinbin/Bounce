@@ -275,55 +275,33 @@ class AccountViewController: UIViewController {
         
         // Inviting Friends
         
-        let inviteFriendsLabel = OptionsTitleLabel(text: "INVITE FRIENDS")
+        let inviteFriendsLabel = OptionsTitleLabel(text: "SOCIAL MEDIA")
         optionsView.addSubview(inviteFriendsLabel)
         inviteFriendsLabel.pinToTopEdgeOfSuperview(offset: 30)
         inviteFriendsLabel.pinToLeftEdgeOfSuperview(offset: 15)
         
+        let socialMediaDescription = UILabel()
+        socialMediaDescription.text = "We like you. Like us back?"
+        socialMediaDescription.font = UIFont(name: "AvenirNext-Medium", size: 14)
+        socialMediaDescription.textColor = UIColor(white: 0.0, alpha: 0.3)
+        optionsView.addSubview(socialMediaDescription)
+        socialMediaDescription.positionBelowItem(inviteFriendsLabel, offset: 10)
+        socialMediaDescription.pinToLeftEdgeOfSuperview(offset: 15)
+        
+        
         let facebookImage = UIImage(named: "Facebook-Rounded-Square-Dark")
-        let inviteFriendsButton = OptionsButton(text: "Facebook friends", image: facebookImage, buttonHeight: buttonHeight)
-        optionsView.addSubview(inviteFriendsButton)
-        inviteFriendsButton.positionBelowItem(inviteFriendsLabel, offset: 15)
-        inviteFriendsButton.pinToSideEdgesOfSuperview()
-        inviteFriendsButton.sizeToHeight(buttonHeight)
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appDelegate.managedObjectContext!
-        let fetchRequest = NSFetchRequest(entityName:"AccountInfo")
-        var error: NSError?
-        let fetchedResults =
-        managedContext.executeFetchRequest(fetchRequest,
-            error: &error) as? [NSManagedObject]
-        
-        if let results : [NSManagedObject] = fetchedResults {
-            if results.count > 0 {
-                let friendCount = results[0].valueForKey("friendCount") as! Int
-                inviteFriendsButton.setTitle("\(friendCount) Facebook friends", forState: .Normal)
-            }
-        }
-        
-        let request = FBRequest.requestForMyFriends()
-        request.startWithCompletionHandler({ (connection: FBRequestConnection!, result: AnyObject?, error: NSError!) -> Void in
-            if error != nil {
-                println(error)
-            } else {
-                let resultDict = result as? NSDictionary
-                
-                if resultDict != nil {
-                    let resultDict = result as? NSDictionary
-                    if let summaryDict = resultDict?["summary"] as? NSDictionary {
-                        let friendCount = (summaryDict["total_count"] as! Int)
-                        inviteFriendsButton.setTitle("\(friendCount) Facebook friends", forState: .Normal)
-                    }
-                }
-            }
-        })
+        let facebookButton = OptionsButton(text: "Bounce's Facebook page", image: facebookImage, buttonHeight: buttonHeight)
+        facebookButton.addTarget(self, action: "facebookButtonPressed", forControlEvents: .TouchUpInside)
+        optionsView.addSubview(facebookButton)
+        facebookButton.positionBelowItem(socialMediaDescription, offset: 5)
+        facebookButton.pinToSideEdgesOfSuperview()
+        facebookButton.sizeToHeight(buttonHeight)
         
         // Support
         
         let supportLabel = OptionsTitleLabel(text: "SUPPORT")
         optionsView.addSubview(supportLabel)
-        supportLabel.positionBelowItem(inviteFriendsButton, offset: 30)
+        supportLabel.positionBelowItem(facebookButton, offset: 30)
         supportLabel.pinToLeftEdgeOfSuperview(offset: 15)
         
         let sendAppFeedback = OptionsButton(text: "Send feedback about Bounce")
@@ -403,6 +381,10 @@ class AccountViewController: UIViewController {
 
     // MARK: - Button Actions
 
+    func facebookButtonPressed() {
+        UIApplication.sharedApplication().openURL(NSURL(string: "https://www.facebook.com/letsbouncehome")!)
+    }
+    
     /**
      * Presents the user with an alert asking for confirmation, then logs out.
      */
