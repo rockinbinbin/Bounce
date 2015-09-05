@@ -213,7 +213,7 @@
         cell.iconImageView.image = [UIImage imageNamed:@"common_checkmark_icon"];
     }
     else {
-        cell.iconImageView.image = [UIImage imageNamed:@"common_plus_icon"];
+        cell.iconImageView.image = [UIImage imageNamed:@"Plus"];
     }
     
     cell.groupNameLabel.text = [[self.groupUsers objectAtIndex:indexPath.row] objectForKey:PF_USER_USERNAME];

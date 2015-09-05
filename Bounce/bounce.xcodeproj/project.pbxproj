@@ -196,7 +196,7 @@
 		0002349F1B488F9F000B7630 /* Quicksand-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Regular.otf"; path = "Bounce/ViewControllers/Fonts/Quicksand-Regular.otf"; sourceTree = "<group>"; };
 		001DFA0B1ABF4175008C9D1F /* PF_EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PF_EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		002805BD1B8452CB004E1DE1 /* MembersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MembersViewController.h; sourceTree = "<group>"; };
-		002805BE1B8452CB004E1DE1 /* MembersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MembersViewController.m; sourceTree = "<group>"; };
+		002805BE1B8452CB004E1DE1 /* MembersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MembersViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		002805C01B84559A004E1DE1 /* SearchToAddUsers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchToAddUsers.h; sourceTree = "<group>"; };
 		002805C11B84559A004E1DE1 /* SearchToAddUsers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchToAddUsers.m; sourceTree = "<group>"; };
 		002805C31B845631004E1DE1 /* membersCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = membersCell.h; sourceTree = "<group>"; };
@@ -452,7 +452,7 @@
 		67BB91011ADFA8D00050164B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		67BB91021ADFA8D00050164B /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		67BB91F81ADFA8D10050164B /* AddGroupUsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddGroupUsersViewController.h; sourceTree = "<group>"; };
-		67BB91F91ADFA8D10050164B /* AddGroupUsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddGroupUsersViewController.m; sourceTree = "<group>"; };
+		67BB91F91ADFA8D10050164B /* AddGroupUsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AddGroupUsersViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		67BB91FA1ADFA8D10050164B /* AddHomePointViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddHomePointViewController.h; sourceTree = "<group>"; };
 		67BB91FB1ADFA8D10050164B /* AddHomePointViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddHomePointViewController.m; sourceTree = "<group>"; };
 		67BB91FC1ADFA8D10050164B /* AddLocationScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddLocationScreenViewController.h; sourceTree = "<group>"; };

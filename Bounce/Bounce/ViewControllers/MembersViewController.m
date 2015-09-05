@@ -27,13 +27,13 @@
         [_tableView kgn_sizeToHeight:self.view.frame.size.height];
     
         [self setBarButtonItemLeft:@"common_back_button"];
-        [self setBarButtonItemRight:@"common_plus_icon"];
+        [self setBarButtonItemRight:@"Plus"];
     
         UILabel *navLabel = [UILabel new];
         navLabel.textColor = [UIColor whiteColor];
         navLabel.backgroundColor = [UIColor clearColor];
         navLabel.textAlignment = NSTextAlignmentCenter;
-        navLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:20];
+        navLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size:20];
         self.navigationItem.titleView = navLabel;
         navLabel.text = @"Members";
         [navLabel sizeToFit];
