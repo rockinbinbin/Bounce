@@ -262,15 +262,22 @@
                     }
                     else {
                         MAKE_A_WEAKSELF;
-                        if ([[object valueForKey:@"hasBeenRemoved"] boolValue] != NO) {
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                [weakSelf openRequestChat:selectedCell];
-                            });
-                        }
-                        else {
-                            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Someone has removed you from this chat." message:@"This happens when a user notices that you have not participated in some time. If you're still looking for buddies, create a new leaving group!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                                [alert show];
-                        }
+                        PFRelation *relationExist = [request relationForKey:@"removedUsers"];
+                        PFQuery *query = [relationExist query];
+                        [query whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
+                        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+                            if (object == nil) {
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    [weakSelf openRequestChat:selectedCell];
+                                });
+                            }
+                            else {
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Someone has removed you from this chat." message:@"This happens when a user notices that you have not participated in some time. If you're still looking for buddies, create a new leaving group!" delegate:weakSelf cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                    [alert show];
+                                });
+                            }
+                        }];
                     }
                 }];
         }

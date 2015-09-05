@@ -244,16 +244,22 @@
                 self.selectedIndex = indexPath.row;
                 
                 if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
-                    PFRelation *usersRelation = [self.currentRequest1 relationForKey:PF_REQUEST_JOINCONVERSATION_RELATION];
-                    PFQuery *query = [usersRelation query];
-                    [query whereKey:OBJECT_ID equalTo:[user objectId]];
-                    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-                        
-                        if (!error) {
-                            [object setObject:[NSNumber numberWithBool:NO] forKey:@"hasBeenRemoved"];
-                            [object saveInBackground];
-                        }
-                    }];
+                    
+                    PFRelation *relation = [self.currentRequest1 relationForKey:@"removedUsers"];
+                    [relation addObject:user];
+                    [self.currentRequest1 saveInBackground];
+                    
+                    
+//                    PFRelation *usersRelation = [self.currentRequest1 relationForKey:PF_REQUEST_JOINCONVERSATION_RELATION];
+//                    PFQuery *query = [usersRelation query];
+//                    [query whereKey:OBJECT_ID equalTo:[user objectId]];
+//                    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+//                        
+//                        if (!error) {
+//                            [object setObject:[NSNumber numberWithBool:NO] forKey:@"hasBeenRemoved"];
+//                            [object saveInBackground];
+//                        }
+//                    }];
 
                 }
             }
