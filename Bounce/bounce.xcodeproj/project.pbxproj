@@ -57,6 +57,9 @@
 		28802DAC1B7708CF008E8B33 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28802DAB1B7708CF008E8B33 /* AccountViewController.swift */; };
 		28802DAE1B770C12008E8B33 /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28802DAD1B770C12008E8B33 /* RootTabBarController.swift */; };
 		28802DB01B770C8D008E8B33 /* UniversityEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28802DAF1B770C8D008E8B33 /* UniversityEmail.swift */; };
+		28A0FFDA1B9B8D25002CF156 /* RichTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A0FFD91B9B8D25002CF156 /* RichTextViewController.swift */; };
+		28A0FFDD1B9B923B002CF156 /* PrivacyPolicy.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 28A0FFDB1B9B923B002CF156 /* PrivacyPolicy.rtf */; };
+		28A0FFDE1B9B923B002CF156 /* TermsOfService.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 28A0FFDC1B9B923B002CF156 /* TermsOfService.rtf */; };
 		28B5E7441B7C406D007F79C0 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B5E7431B7C406D007F79C0 /* GlobalVariables.swift */; };
 		28B5E7461B7DA883007F79C0 /* NavigationBarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B5E7451B7DA883007F79C0 /* NavigationBarExtensions.swift */; };
 		28DF63821B85A08D00F16095 /* HomepointListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DF63811B85A08D00F16095 /* HomepointListCell.swift */; };
@@ -387,6 +390,9 @@
 		28802DAB1B7708CF008E8B33 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		28802DAD1B770C12008E8B33 /* RootTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootTabBarController.swift; path = ../ViewControllers/RootTabBarController.swift; sourceTree = "<group>"; };
 		28802DAF1B770C8D008E8B33 /* UniversityEmail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversityEmail.swift; sourceTree = "<group>"; };
+		28A0FFD91B9B8D25002CF156 /* RichTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichTextViewController.swift; sourceTree = "<group>"; };
+		28A0FFDB1B9B923B002CF156 /* PrivacyPolicy.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = PrivacyPolicy.rtf; sourceTree = "<group>"; };
+		28A0FFDC1B9B923B002CF156 /* TermsOfService.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = TermsOfService.rtf; sourceTree = "<group>"; };
 		28B5E7431B7C406D007F79C0 /* GlobalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GlobalVariables.swift; path = ../ViewControllers/GlobalVariables.swift; sourceTree = "<group>"; };
 		28B5E7451B7DA883007F79C0 /* NavigationBarExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarExtensions.swift; sourceTree = "<group>"; };
 		28DF63811B85A08D00F16095 /* HomepointListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomepointListCell.swift; sourceTree = "<group>"; };
@@ -938,6 +944,7 @@
 		00CEE3C5199434E700F40C12 = {
 			isa = PBXGroup;
 			children = (
+				28A0FFD91B9B8D25002CF156 /* RichTextViewController.swift */,
 				28205C431B8FFA4B001C3630 /* BounceSwift.swift */,
 				28802DAF1B770C8D008E8B33 /* UniversityEmail.swift */,
 				000234911B4885B6000B7630 /* Fonts */,
@@ -952,6 +959,7 @@
 				67BB90CE1ADFA8D00050164B /* AppDelegate.h */,
 				67BB90CF1ADFA8D00050164B /* AppDelegate.m */,
 				67BB90EE1ADFA8D00050164B /* bounce-Prefix.pch */,
+				28A0FFDF1B9B9249002CF156 /* Documents */,
 				67BB90CC1ADFA8D00050164B /* Bounce */,
 				007BA4041A6CDF7500BF08DE /* keyboard */,
 				001DFA0B1ABF4175008C9D1F /* PF_EGORefreshTableHeaderView.h */,
@@ -1017,6 +1025,15 @@
 				00CEE3F9199434E700F40C12 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		28A0FFDF1B9B9249002CF156 /* Documents */ = {
+			isa = PBXGroup;
+			children = (
+				28A0FFDB1B9B923B002CF156 /* PrivacyPolicy.rtf */,
+				28A0FFDC1B9B923B002CF156 /* TermsOfService.rtf */,
+			);
+			name = Documents;
 			sourceTree = "<group>";
 		};
 		67BB90CC1ADFA8D00050164B /* Bounce */ = {
@@ -1630,7 +1647,16 @@
 				67BB92521ADFA8D10050164B /* LandingView@2x.png in Resources */,
 				67BB92551ADFA8D10050164B /* LandingView_iPhone6plus.png in Resources */,
 				67BB925F1ADFA8D10050164B /* Tutorial-2_iPhone6.png in Resources */,
+				28A0FFDD1B9B923B002CF156 /* PrivacyPolicy.rtf in Resources */,
 				000234921B4885B6000B7630 /* Fonts in Resources */,
+				000234941B488F67000B7630 /* Quicksand_Dash.otf in Resources */,
+				000234961B488F7E000B7630 /* Quicksand-Bold.otf in Resources */,
+				000234981B488F89000B7630 /* Quicksand-BoldItalic.otf in Resources */,
+				0002349A1B488F8E000B7630 /* Quicksand-Italic.otf in Resources */,
+				0002349C1B488F93000B7630 /* Quicksand-Light.otf in Resources */,
+				0002349E1B488F98000B7630 /* Quicksand-LightItalic.otf in Resources */,
+				000234A01B488F9F000B7630 /* Quicksand-Regular.otf in Resources */,
+				28A0FFDE1B9B923B002CF156 /* TermsOfService.rtf in Resources */,
 				00E2CBB61B5384B600B316D1 /* homepoint images in Resources */,
 				67BB92591ADFA8D10050164B /* Tutorial-1_iPhone6.png in Resources */,
 				67BB92581ADFA8D10050164B /* Tutorial-1_iPhone5.png in Resources */,
@@ -1704,6 +1730,7 @@
 				67BB93FD1ADFABCD0050164B /* AFHTTPRequestOperation.m in Sources */,
 				67BB94051ADFABCD0050164B /* AFURLSessionManager.m in Sources */,
 				67BB94391ADFABCD0050164B /* JSQMessagesCollectionViewFlowLayout.m in Sources */,
+				28A0FFDA1B9B8D25002CF156 /* RichTextViewController.swift in Sources */,
 				67BB94371ADFABCD0050164B /* JSQMessagesTimestampFormatter.m in Sources */,
 				67BB94541ADFABCD0050164B /* JSQSystemSoundPlayer.m in Sources */,
 				282FAC181B71D4C700899FAB /* StudentStatusViewController.swift in Sources */,
