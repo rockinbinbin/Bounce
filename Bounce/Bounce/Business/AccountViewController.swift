@@ -29,7 +29,7 @@ class AccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Title"
+        self.title = "Account"
         
         self.navigationController?.navigationBar.barTintColor = Constants.Colors.BounceRed;
         self.navigationController?.navigationBar.translucent = false;
@@ -326,12 +326,14 @@ class AccountViewController: UIViewController {
         aboutLabel.pinToLeftEdgeOfSuperview(offset: 15)
         
         let privacyPolicy = OptionsButton(text: "Privacy Policy")
+        privacyPolicy.addTarget(self, action: "privacyPolicyPressed", forControlEvents: .TouchUpInside)
         optionsView.addSubview(privacyPolicy)
         privacyPolicy.positionBelowItem(aboutLabel, offset: 15)
         privacyPolicy.pinToSideEdgesOfSuperview()
         privacyPolicy.sizeToHeight(buttonHeight)
         
-        let termsOfUse = OptionsButton(text: "Terms of Use")
+        let termsOfUse = OptionsButton(text: "Terms of Service")
+        termsOfUse.addTarget(self, action: "termsOfServicePressed", forControlEvents: .TouchUpInside)
         optionsView.addSubview(termsOfUse)
         termsOfUse.positionBelowItem(privacyPolicy, offset: -1)
         termsOfUse.pinToSideEdgesOfSuperview()
@@ -429,6 +431,20 @@ class AccountViewController: UIViewController {
     
     func dismissViewController() {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func termsOfServicePressed() {
+        let rtfViewController = RichTextViewController(title: "Terms of Service", fileName: "TermsOfService")
+        rtfViewController.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        
+        self.navigationController!.pushViewController(rtfViewController, animated: true)
+    }
+    
+    func privacyPolicyPressed() {
+        let rtfViewController = RichTextViewController(title: "Privacy Policy", fileName: "PrivacyPolicy")
+        rtfViewController.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+
+        self.navigationController!.pushViewController(rtfViewController, animated: true)
     }
 }
 
