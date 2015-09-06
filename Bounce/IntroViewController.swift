@@ -163,12 +163,11 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
             (user: PFUser?, error: NSError?) -> Void in
             
             if error != nil {
+                println("loginButtonPressed error")
                 self.handleLoginFailed(error!)
                 
             } else if user != nil {
                 let facebookId = PFUser.currentUser()?.objectForKey("facebook_id") as? String
-                
-                println("The facebook ID is \(facebookId)")
                 
                 if let id = facebookId as String! {
                     self.loadProfilePictureOnMainThread(id)
@@ -282,11 +281,11 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
         let entity =  NSEntityDescription.entityForName("AccountInfo", inManagedObjectContext: managedContext)
         let accountInfo = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
         
+        
         FBRequestConnection.startForMeWithCompletionHandler({ (connection: FBRequestConnection!, result: AnyObject?, error: NSError!) -> Void in
             if error != nil {
                 println(error)
             } else {
-                
                 // Get user location
                 if let locationDict = result?["location"] as? NSDictionary {
                     let locationName = (locationDict["name"] as? String)

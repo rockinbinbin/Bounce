@@ -57,6 +57,8 @@
 		28802DAC1B7708CF008E8B33 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28802DAB1B7708CF008E8B33 /* AccountViewController.swift */; };
 		28802DAE1B770C12008E8B33 /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28802DAD1B770C12008E8B33 /* RootTabBarController.swift */; };
 		28802DB01B770C8D008E8B33 /* UniversityEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28802DAF1B770C8D008E8B33 /* UniversityEmail.swift */; };
+		28A0001A1B9C9A6C002CF156 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28A000181B9C9A6C002CF156 /* Model.xcdatamodeld */; };
+		28A0001D1B9C9CFA002CF156 /* Model.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 28A000181B9C9A6C002CF156 /* Model.xcdatamodeld */; };
 		28A0FFDA1B9B8D25002CF156 /* RichTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A0FFD91B9B8D25002CF156 /* RichTextViewController.swift */; };
 		28A0FFDD1B9B923B002CF156 /* PrivacyPolicy.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 28A0FFDB1B9B923B002CF156 /* PrivacyPolicy.rtf */; };
 		28A0FFDE1B9B923B002CF156 /* TermsOfService.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 28A0FFDC1B9B923B002CF156 /* TermsOfService.rtf */; };
@@ -390,6 +392,7 @@
 		28802DAB1B7708CF008E8B33 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		28802DAD1B770C12008E8B33 /* RootTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootTabBarController.swift; path = ../ViewControllers/RootTabBarController.swift; sourceTree = "<group>"; };
 		28802DAF1B770C8D008E8B33 /* UniversityEmail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversityEmail.swift; sourceTree = "<group>"; };
+		28A000191B9C9A6C002CF156 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		28A0FFD91B9B8D25002CF156 /* RichTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichTextViewController.swift; sourceTree = "<group>"; };
 		28A0FFDB1B9B923B002CF156 /* PrivacyPolicy.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = PrivacyPolicy.rtf; sourceTree = "<group>"; };
 		28A0FFDC1B9B923B002CF156 /* TermsOfService.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = TermsOfService.rtf; sourceTree = "<group>"; };
@@ -958,6 +961,7 @@
 				67BB90CD1ADFA8D00050164B /* AppConstant.h */,
 				67BB90CE1ADFA8D00050164B /* AppDelegate.h */,
 				67BB90CF1ADFA8D00050164B /* AppDelegate.m */,
+				28A000181B9C9A6C002CF156 /* Model.xcdatamodeld */,
 				67BB90EE1ADFA8D00050164B /* bounce-Prefix.pch */,
 				28A0FFDF1B9B9249002CF156 /* Documents */,
 				67BB90CC1ADFA8D00050164B /* Bounce */,
@@ -1573,7 +1577,7 @@
 				ORGANIZATIONNAME = hobble;
 				TargetAttributes = {
 					00CEE3CD199434E700F40C12 = {
-						DevelopmentTeam = KM659CVM6Q;
+						DevelopmentTeam = S57X9JL8K7;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1618,6 +1622,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28A0001D1B9C9CFA002CF156 /* Model.xcdatamodeld in Resources */,
 				67BB92561ADFA8D10050164B /* Tutorial-1.png in Resources */,
 				67BB92661ADFA8D10050164B /* Tutorial-3_iPhone6plus.png in Resources */,
 				67BB944E1ADFABCD0050164B /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
@@ -1649,13 +1654,6 @@
 				67BB925F1ADFA8D10050164B /* Tutorial-2_iPhone6.png in Resources */,
 				28A0FFDD1B9B923B002CF156 /* PrivacyPolicy.rtf in Resources */,
 				000234921B4885B6000B7630 /* Fonts in Resources */,
-				000234941B488F67000B7630 /* Quicksand_Dash.otf in Resources */,
-				000234961B488F7E000B7630 /* Quicksand-Bold.otf in Resources */,
-				000234981B488F89000B7630 /* Quicksand-BoldItalic.otf in Resources */,
-				0002349A1B488F8E000B7630 /* Quicksand-Italic.otf in Resources */,
-				0002349C1B488F93000B7630 /* Quicksand-Light.otf in Resources */,
-				0002349E1B488F98000B7630 /* Quicksand-LightItalic.otf in Resources */,
-				000234A01B488F9F000B7630 /* Quicksand-Regular.otf in Resources */,
 				28A0FFDE1B9B923B002CF156 /* TermsOfService.rtf in Resources */,
 				00E2CBB61B5384B600B316D1 /* homepoint images in Resources */,
 				67BB92591ADFA8D10050164B /* Tutorial-1_iPhone6.png in Resources */,
@@ -1710,6 +1708,7 @@
 				00E2CBC11B560B3600B316D1 /* homepointListCell.m in Sources */,
 				67BB945D1ADFABCD0050164B /* utilities.m in Sources */,
 				282FAC1F1B71D56D00899FAB /* KGN Autolayout.swift in Sources */,
+				28A0001A1B9C9A6C002CF156 /* Model.xcdatamodeld in Sources */,
 				67BB945B1ADFABCD0050164B /* camera.m in Sources */,
 				67BB92DE1ADFA8D10050164B /* HomeScreenViewController.m in Sources */,
 				67BB94071ADFABCD0050164B /* UIActivityIndicatorView+AFNetworking.m in Sources */,
@@ -2016,6 +2015,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		28A000181B9C9A6C002CF156 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				28A000191B9C9A6C002CF156 /* Model.xcdatamodel */,
+			);
+			currentVersion = 28A000191B9C9A6C002CF156 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 00CEE3C6199434E700F40C12 /* Project object */;
 }
