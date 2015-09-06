@@ -163,11 +163,11 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
             (user: PFUser?, error: NSError?) -> Void in
             
             if error != nil {
-                println("loginButtonPressed error")
+                println("loginButtonPressed error: \(error?.description)")
                 self.handleLoginFailed(error!)
                 
             } else if user != nil {
-                let facebookId = PFUser.currentUser()?.objectForKey("facebook_id") as? String
+                let facebookId = PFUser.currentUser()?.objectForKey("facebookId") as? String
                 
                 if let id = facebookId as String! {
                     self.loadProfilePictureOnMainThread(id)
@@ -185,7 +185,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
                     
                     // Returning user who has not completed setup
                 } else {
-                    self.presentViewController(StudentStatusViewController(), animated: true, completion: nil)
+                    self.presentViewController(RequestLocationViewController(), animated: true, completion: nil)
                 }
             }
         })
@@ -218,7 +218,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
 
             // Maps from the /me response value names to stored Parse value names.
             let keyMap = [
-                "id":   ["facebook_id"],
+                "id":   ["facebookId"],
                 "name": ["fullname", "username"],
             ]
 
@@ -231,7 +231,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
                             PFUser.currentUser()?.setObject(graphAPIResponseValue, forKey: parseKey)
                             user!.saveInBackgroundWithBlock(nil)
                             
-                            if graphAPIResponseKey == "facebook_id" {
+                            if graphAPIResponseKey == "facebookId" {
                                 self.loadProfilePictureOnMainThread(graphAPIResponseValue)
                             }
                         }
@@ -242,7 +242,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
         
         user!.setValue(false, forKey: "setupComplete")
         user!.saveInBackgroundWithBlock(nil)
-        self.presentViewController(StudentStatusViewController(), animated: true, completion: nil)
+        self.presentViewController(RequestLocationViewController(), animated: true, completion: nil)
     }
     
     func handleReturningUser(user: PFUser?, setupComplete: Bool) {
@@ -256,7 +256,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
         } else {
             user!.setValue(false, forKey: "setupComplete")
             user!.saveInBackgroundWithBlock(nil)
-            self.presentViewController(StudentStatusViewController(), animated: true, completion: nil)
+            self.presentViewController(RequestLocationViewController(), animated: true, completion: nil)
         }
     }
     
@@ -286,7 +286,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
             if error != nil {
                 println(error)
             } else {
-                // Get user location
+                println(result)
                 if let locationDict = result?["location"] as? NSDictionary {
                     let locationName = (locationDict["name"] as? String)
                     
@@ -297,7 +297,11 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
                         if !managedContext.save(&error) {
                             println("Could not save \(error), \(error?.userInfo)")
                         }
+                    } else {
+                        println("Could not unwrap location name.")
                     }
+                } else {
+                    println("Could not unwrap location dict.")
                 }
                 
                 // Get user full name
