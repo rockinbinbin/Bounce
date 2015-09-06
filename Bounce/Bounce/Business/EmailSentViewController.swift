@@ -77,6 +77,6 @@ class EmailSentViewController: UIViewController {
     }
     
     func presentMainViewController() {
-        self.presentViewController(RootTabBarController(), animated: true, completion: nil)
+        self.presentViewController(RootTabBarController.rootTabBarControllerWithNavigationController(InitialTab.Homepoints), animated: true, completion: nil)
     }
 }

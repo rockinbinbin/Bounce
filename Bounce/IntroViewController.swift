@@ -250,7 +250,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
         if setupComplete {
             user!.setValue(true, forKey: "setupComplete")
             user!.saveInBackgroundWithBlock(nil)
-            self.presentViewController(RootTabBarController.rootTabBarControllerWithNavigationController(), animated: true, completion: nil)
+            self.presentViewController(RootTabBarController.rootTabBarControllerWithNavigationController(InitialTab.Trips), animated: true, completion: nil)
             
             // User has entered the app and not completed setup
         } else {

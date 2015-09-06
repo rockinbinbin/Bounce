@@ -12,9 +12,26 @@ import UIKit
     func setTabBarHidden(hidden: Bool)
 }
 
+@objc public enum InitialTab: Int {
+    case Homepoints
+    case Trips
+}
+
 @objc public class RootTabBarController: UIViewController, RootTabBarControllerDelegate {
     private let homeScreenViewController = HomeScreenViewController()
     private let groupsListViewController = GroupsListViewController()
+    
+    private let initialTab: InitialTab
+    
+    init(initialTab: InitialTab) {
+        self.initialTab = initialTab
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required public init(coder aDecoder: NSCoder) {
+        self.initialTab = InitialTab.Trips
+        super.init(coder: aDecoder)
+    }
     
     // MARK: - Tabs
     
@@ -80,8 +97,8 @@ import UIKit
         return selectedTab?.viewController
     }
     
-    public class func rootTabBarControllerWithNavigationController() -> UIViewController {
-        let navigationController = UINavigationController(rootViewController: RootTabBarController())
+    @objc public class func rootTabBarControllerWithNavigationController(initialTab: InitialTab) -> UIViewController {
+        let navigationController = UINavigationController(rootViewController: RootTabBarController(initialTab: initialTab))
         navigationController.navigationBarHidden = true
         navigationController.toolbarHidden = false
         return navigationController
@@ -118,7 +135,12 @@ import UIKit
             $0.didMoveToParentViewController(self)
         }
         
-        selectTabWithBarButtonItem(tripsTab.barButtonItem)
+        switch initialTab {
+        case InitialTab.Homepoints:
+            selectTabWithBarButtonItem(homepointsTab.barButtonItem)
+        case InitialTab.Trips:
+            selectTabWithBarButtonItem(tripsTab.barButtonItem)
+        }
     }
     
     public override func viewDidLoad() {

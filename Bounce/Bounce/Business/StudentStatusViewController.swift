@@ -92,6 +92,6 @@ class StudentStatusViewController : UIViewController {
     func nonStudentButtonPressed(sender: UIButton!) {
         PFUser.currentUser()!.setValue(true, forKey: "setupComplete")
         PFUser.currentUser()?.saveInBackgroundWithBlock(nil)
-        self.presentViewController(RootTabBarController(), animated: false, completion: nil)
+        self.presentViewController(RootTabBarController.rootTabBarControllerWithNavigationController(InitialTab.Homepoints), animated: false, completion: nil)
     }
 }

@@ -51,7 +51,7 @@
             if (requestId) {
                 [self openRequestViewController:requestId];
             } else {
-                self.window.rootViewController = [RootTabBarController rootTabBarControllerWithNavigationController];
+                self.window.rootViewController = [RootTabBarController rootTabBarControllerWithNavigationController:InitialTabHomepoints];
             }
 
         // If logged in user did not complete setup
