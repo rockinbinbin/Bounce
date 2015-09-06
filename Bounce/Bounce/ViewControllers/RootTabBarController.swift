@@ -16,6 +16,8 @@ import UIKit
     private let homeScreenViewController = HomeScreenViewController()
     private let groupsListViewController = GroupsListViewController()
     
+    
+    
     // MARK: - Tabs
     
     private struct Tab {
