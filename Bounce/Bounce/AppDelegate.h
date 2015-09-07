@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 
 static NSString * const ParseUsername = @"username";
 static NSString * const ParseFriendRelation = @"friendsRelation";
 static NSString * const ParseGroupRelation = @"groupsRelation";
 static NSString * const ParseGroupName = @"groupName";
-
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UIAlertViewDelegate>
 

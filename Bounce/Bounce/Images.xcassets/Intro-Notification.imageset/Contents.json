@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "Bounce-Phone-House@1x.png"
+      "filename" : "Notification.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "Bounce-Phone-House@2x.png"
+      "filename" : "Notification@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "Bounce-Phone-House@3x.png"
+      "filename" : "Notification@3x.png"
     }
   ],
   "info" : {
