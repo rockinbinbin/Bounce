@@ -245,7 +245,7 @@ import UIKit
         self.setToolbarItems({
                 return [sideSpacer] + flatMap(self.tabs) { [$0.barButtonItem, flexibleSpacer] } + [self.accountBarButtonItem, sideSpacer]
             }(), animated: false)
-    }i
+    }
     
     public override func childViewControllerForStatusBarHidden() -> UIViewController? {
         return selectedViewController
