@@ -8,13 +8,25 @@
 
 import UIKit
 
-class StudentStatusViewController : UIViewController {
+@objc public class StudentStatusViewController : UIViewController {
     var titleLabel = UILabel()
     var contentLabel = UILabel()
     var yesButton = RoundedRectButton(text: "Yes, I currently go to college")
     let noButton = RoundedRectButton(text: "No, let's get started!")
+    let imageView = UIImageView()
+    let animated: Bool
+    
+    @objc public init(animated: Bool) {
+        self.animated = animated
+        super.init(nibName: nil, bundle: nil)
+    }
 
-    override func viewDidLoad() {
+    required public init(coder aDecoder: NSCoder) {
+        self.animated = false
+        super.init(coder: aDecoder)
+    }
+
+    override public func viewDidLoad() {
         self.view.backgroundColor = Constants.Colors.BounceRed
         UIApplication.sharedApplication().statusBarHidden = true
         self.navigationController?.navigationBar.hidden = true
@@ -35,7 +47,6 @@ class StudentStatusViewController : UIViewController {
         
         // Image
         
-        let imageView = UIImageView()
         let image = UIImage(named: "Intro-Hat")
         imageView.image = image
         self.view.addSubview(imageView)
@@ -78,6 +89,26 @@ class StudentStatusViewController : UIViewController {
         }
     }
     
+    override public func viewWillAppear(animated: Bool) {
+        if !self.animated {
+            return
+        }
+        
+        self.contentLabel.alpha = 0.0
+        self.titleLabel.alpha = 0.0
+        self.yesButton.alpha = 0.0
+        self.noButton.titleLabel?.alpha = 0.0
+        self.imageView.alpha = 0.0
+        
+        UIView.animateWithDuration(0.25, animations: {
+            self.contentLabel.alpha = 1.0
+            self.titleLabel.alpha = 1.0
+            self.yesButton.alpha = 1.0
+            self.noButton.titleLabel?.alpha = 1.0
+            self.imageView.alpha = 1.0
+        })
+    }
+    
     func studentButtonPressed(sender: UIButton!) {
         UIView.animateWithDuration(0.25, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
                 self.contentLabel.alpha = 0.0
@@ -92,6 +123,6 @@ class StudentStatusViewController : UIViewController {
     func nonStudentButtonPressed(sender: UIButton!) {
         PFUser.currentUser()!.setValue(true, forKey: "setupComplete")
         PFUser.currentUser()?.saveInBackgroundWithBlock(nil)
-        self.presentViewController(RootTabBarController(), animated: false, completion: nil)
+        self.presentViewController(RootTabBarController.rootTabBarControllerWithNavigationController(InitialTab.Homepoints), animated: false, completion: nil)
     }
 }

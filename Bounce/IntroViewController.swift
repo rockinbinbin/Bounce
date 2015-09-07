@@ -163,12 +163,11 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
             (user: PFUser?, error: NSError?) -> Void in
             
             if error != nil {
+                println("loginButtonPressed error: \(error?.description)")
                 self.handleLoginFailed(error!)
                 
             } else if user != nil {
-                let facebookId = PFUser.currentUser()?.objectForKey("facebook_id") as? String
-                
-                println("The facebook ID is \(facebookId)")
+                let facebookId = PFUser.currentUser()?.objectForKey("facebookId") as? String
                 
                 if let id = facebookId as String! {
                     self.loadProfilePictureOnMainThread(id)
@@ -180,13 +179,28 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
                 if user!.isNew {
                     self.handleNewUser(user)
                     
-                    // Returning user
-                } else if let setupComplete: Bool = user!.valueForKey("setupComplete") as? Bool {
-                    self.handleReturningUser(user, setupComplete: setupComplete)
-                    
-                    // Returning user who has not completed setup
+                // Returning user
                 } else {
-                    self.presentViewController(StudentStatusViewController(), animated: true, completion: nil)
+                    // Not set location permissions yet
+                    if CLLocationManager.authorizationStatus() == .NotDetermined {
+                        self.presentViewController(RequestLocationViewController(), animated: true, completion: nil)
+                        
+                        // Not set push notifications yet
+                    } else if (UIApplication.sharedApplication().currentUserNotificationSettings().types == .None) {
+                        self.presentViewController(RequestPushNotificationsViewController(), animated: true, completion: nil)
+                    }
+                    
+                    if let setupComplete: Bool = user!.valueForKey("setupComplete") as? Bool {
+                        if setupComplete {
+                            user!.setValue(true, forKey: "setupComplete")
+                            user!.saveInBackgroundWithBlock(nil)
+                            self.presentViewController(RootTabBarController.rootTabBarControllerWithNavigationController(InitialTab.Trips), animated: true, completion: nil)
+                            return
+                        } else {
+                            // Not set student status yet
+                            self.presentViewController(StudentStatusViewController(animated: false), animated: true, completion: nil)
+                        }
+                    }
                 }
             }
         })
@@ -219,7 +233,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
 
             // Maps from the /me response value names to stored Parse value names.
             let keyMap = [
-                "id":   ["facebook_id"],
+                "id":   ["facebookId"],
                 "name": ["fullname", "username"],
             ]
 
@@ -232,7 +246,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
                             PFUser.currentUser()?.setObject(graphAPIResponseValue, forKey: parseKey)
                             user!.saveInBackgroundWithBlock(nil)
                             
-                            if graphAPIResponseKey == "facebook_id" {
+                            if graphAPIResponseKey == "id" {
                                 self.loadProfilePictureOnMainThread(graphAPIResponseValue)
                             }
                         }
@@ -243,7 +257,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
         
         user!.setValue(false, forKey: "setupComplete")
         user!.saveInBackgroundWithBlock(nil)
-        self.presentViewController(StudentStatusViewController(), animated: true, completion: nil)
+        self.presentViewController(RequestLocationViewController(), animated: true, completion: nil)
     }
     
     func handleReturningUser(user: PFUser?, setupComplete: Bool) {
@@ -251,13 +265,13 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
         if setupComplete {
             user!.setValue(true, forKey: "setupComplete")
             user!.saveInBackgroundWithBlock(nil)
-            self.presentViewController(RootTabBarController.rootTabBarControllerWithNavigationController(), animated: true, completion: nil)
+            self.presentViewController(RootTabBarController.rootTabBarControllerWithNavigationController(InitialTab.Trips), animated: true, completion: nil)
             
             // User has entered the app and not completed setup
         } else {
             user!.setValue(false, forKey: "setupComplete")
             user!.saveInBackgroundWithBlock(nil)
-            self.presentViewController(StudentStatusViewController(), animated: true, completion: nil)
+            self.presentViewController(RequestLocationViewController(), animated: true, completion: nil)
         }
     }
     
@@ -280,26 +294,53 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext!
         let entity =  NSEntityDescription.entityForName("AccountInfo", inManagedObjectContext: managedContext)
-        let accountInfo = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
+        
+        let fetchRequest = NSFetchRequest(entityName:"AccountInfo")
+        var error: NSError?
+        let fetchedResults =
+        managedContext.executeFetchRequest(fetchRequest,
+            error: &error) as? [NSManagedObject]
+        
+        var accountInfo: NSManagedObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
+        
+        if let results : [NSManagedObject] = fetchedResults {
+            if results.count > 0 {
+                accountInfo = results[0]
+            }
+        }
+        
+        let locationManager = CLLocationManager()
+        locationManager.distanceFilter = kCLDistanceFilterNone
+        locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+        
+        let geoCoder = CLGeocoder()
+        let location = CLLocation(latitude: locationManager.location.coordinate.latitude, longitude: locationManager.location.coordinate.longitude)
+        
+        geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
+            let placeArray = placemarks as? [CLPlacemark]
+            
+            // Place details
+            var placeMark: CLPlacemark!
+            placeMark = placeArray?[0]
+            
+            // City
+            if let city = placeMark.addressDictionary["City"] as? NSString {
+                // Set user location
+                accountInfo.setValue(city, forKey: "location")
+                
+                var error: NSError?
+                if !managedContext.save(&error) {
+                    println("Could not save \(error), \(error?.userInfo)")
+                }
+            } else {
+                println("ERROR: Could not unwrap city name")
+            }
+        })
         
         FBRequestConnection.startForMeWithCompletionHandler({ (connection: FBRequestConnection!, result: AnyObject?, error: NSError!) -> Void in
             if error != nil {
                 println(error)
             } else {
-                
-                // Get user location
-                if let locationDict = result?["location"] as? NSDictionary {
-                    let locationName = (locationDict["name"] as? String)
-                    
-                    if let location = locationName as String! {
-                        accountInfo.setValue(location, forKey: "location")
-                        
-                        var error: NSError?
-                        if !managedContext.save(&error) {
-                            println("Could not save \(error), \(error?.userInfo)")
-                        }
-                    }
-                }
                 
                 // Get user full name
                 if let name = result?["name"] as? String {
@@ -314,7 +355,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
                 }
             }
         })
-        
+
         // Get number of Facebook friends
         let request = FBRequest.requestForMyFriends()
         request.startWithCompletionHandler({ (connection: FBRequestConnection!, result: AnyObject?, error: NSError!) -> Void in

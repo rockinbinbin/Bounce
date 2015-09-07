@@ -29,7 +29,7 @@ class AccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Title"
+        self.title = "Account"
         
         self.navigationController?.navigationBar.barTintColor = Constants.Colors.BounceRed;
         self.navigationController?.navigationBar.translucent = false;
@@ -163,20 +163,19 @@ class AccountViewController: UIViewController {
         profileName.centerHorizontallyInSuperview()
         profileName.positionBelowItem(profilePictureView, offset: 15)
         
-        // Save the user name
-        
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext!
         let fetchRequest = NSFetchRequest(entityName:"AccountInfo")
-        var error: NSError?
-        let fetchedResults =
-        managedContext.executeFetchRequest(fetchRequest,
-            error: &error) as? [NSManagedObject]
+        
+        var error: NSError? = nil
+        let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as? [NSManagedObject]
+        
+        let entity =  NSEntityDescription.entityForName("AccountInfo", inManagedObjectContext: managedContext)
+        var accountInfo: NSManagedObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
         
         if let results : [NSManagedObject] = fetchedResults {
             if results.count > 0 {
-                let userFullName = results[0].valueForKey("name") as! String
-                self.profileName.text = userFullName
+                accountInfo = results[0]
             }
         }
         
@@ -193,18 +192,11 @@ class AccountViewController: UIViewController {
                         if self.profileName.text != name {
                             self.profileName.text = name
                             
-                            let entity =  NSEntityDescription.entityForName("AccountInfo",
-                                inManagedObjectContext:
-                                managedContext)
-                            
-                            let accountInfo = NSManagedObject(entity: entity!,
-                                insertIntoManagedObjectContext:managedContext)
-                            
                             accountInfo.setValue(name, forKey: "name")
                             
-                            var error: NSError?
-                            if !managedContext.save(&error) {
-                                println("Could not save \(error), \(error?.userInfo)")
+                            var saveError: NSError?
+                            if !managedContext.save(&saveError) {
+                                println("Could not save \(saveError), \(saveError?.userInfo)")
                             }
                         }
                     }
@@ -246,15 +238,44 @@ class AccountViewController: UIViewController {
             managedContext.executeFetchRequest(fetchRequest,
                 error: &error) as? [NSManagedObject]
             
+            let entity =  NSEntityDescription.entityForName("AccountInfo", inManagedObjectContext: managedContext)
+            var accountInfo: NSManagedObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
+            
             if let results : [NSManagedObject] = fetchedResults {
                 if results.count > 0 {
-                    if let location = results[0].valueForKey("location") as? String {
+                    accountInfo = results[0]
+                    if let location = accountInfo.valueForKey("location") as? String {
                         studentStatusLabel.text = location
-                    } else {
-                        studentStatusLabel.text = "Bounce User"
                     }
                 }
             }
+
+            let locationManager = CLLocationManager()
+            locationManager.distanceFilter = kCLDistanceFilterNone
+            locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+            
+            let geoCoder = CLGeocoder()
+            let location = CLLocation(latitude: locationManager.location.coordinate.latitude, longitude: locationManager.location.coordinate.longitude)
+            
+            geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
+                let placeArray = placemarks as? [CLPlacemark]
+                
+                // Place details
+                var placeMark: CLPlacemark!
+                placeMark = placeArray?[0]
+                
+                // City
+                if let city = placeMark.addressDictionary["City"] as? NSString {
+                    self.studentStatusLabel.text = city as String
+
+                    accountInfo.setValue(city, forKey: "location")
+                    
+                    var error: NSError?
+                    if !managedContext.save(&error) {
+                        println("Could not save \(error), \(error?.userInfo)")
+                    }
+                }
+            })
 
         }
 
@@ -297,11 +318,19 @@ class AccountViewController: UIViewController {
         facebookButton.pinToSideEdgesOfSuperview()
         facebookButton.sizeToHeight(buttonHeight)
         
+        let twitterImage = UIImage(named: "Twitter-Rounded-Square-Dark")
+        let twitterButton = OptionsButton(text: "Bounce's Twitter page", image: twitterImage, buttonHeight: buttonHeight)
+        twitterButton.addTarget(self, action: "twitterButtonPressed", forControlEvents: .TouchUpInside)
+        optionsView.addSubview(twitterButton)
+        twitterButton.positionBelowItem(facebookButton, offset: -1)
+        twitterButton.pinToSideEdgesOfSuperview()
+        twitterButton.sizeToHeight(buttonHeight)
+        
         // Support
         
         let supportLabel = OptionsTitleLabel(text: "SUPPORT")
         optionsView.addSubview(supportLabel)
-        supportLabel.positionBelowItem(facebookButton, offset: 30)
+        supportLabel.positionBelowItem(twitterButton, offset: 30)
         supportLabel.pinToLeftEdgeOfSuperview(offset: 15)
         
         let sendAppFeedback = OptionsButton(text: "Send feedback about Bounce")
@@ -326,12 +355,14 @@ class AccountViewController: UIViewController {
         aboutLabel.pinToLeftEdgeOfSuperview(offset: 15)
         
         let privacyPolicy = OptionsButton(text: "Privacy Policy")
+        privacyPolicy.addTarget(self, action: "privacyPolicyPressed", forControlEvents: .TouchUpInside)
         optionsView.addSubview(privacyPolicy)
         privacyPolicy.positionBelowItem(aboutLabel, offset: 15)
         privacyPolicy.pinToSideEdgesOfSuperview()
         privacyPolicy.sizeToHeight(buttonHeight)
         
-        let termsOfUse = OptionsButton(text: "Terms of Use")
+        let termsOfUse = OptionsButton(text: "Terms of Service")
+        termsOfUse.addTarget(self, action: "termsOfServicePressed", forControlEvents: .TouchUpInside)
         optionsView.addSubview(termsOfUse)
         termsOfUse.positionBelowItem(privacyPolicy, offset: -1)
         termsOfUse.pinToSideEdgesOfSuperview()
@@ -353,7 +384,7 @@ class AccountViewController: UIViewController {
     
     func setupScrollView() {
         scrollView.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
-        scrollView.contentSize = CGSizeMake(self.view.frame.width, 856)
+        scrollView.contentSize = CGSizeMake(self.view.frame.width, 900)
         
         let redView = UIView()
         redView.backgroundColor = Constants.Colors.BounceRed
@@ -383,6 +414,10 @@ class AccountViewController: UIViewController {
 
     func facebookButtonPressed() {
         UIApplication.sharedApplication().openURL(NSURL(string: "https://www.facebook.com/letsbouncehome")!)
+    }
+    
+    func twitterButtonPressed() {
+        UIApplication.sharedApplication().openURL(NSURL(string: "https://twitter.com/letsbouncehome")!)
     }
     
     /**
@@ -429,6 +464,20 @@ class AccountViewController: UIViewController {
     
     func dismissViewController() {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func termsOfServicePressed() {
+        let rtfViewController = RichTextViewController(title: "Terms of Service", fileName: "TermsOfService")
+        rtfViewController.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        
+        self.navigationController!.pushViewController(rtfViewController, animated: true)
+    }
+    
+    func privacyPolicyPressed() {
+        let rtfViewController = RichTextViewController(title: "Privacy Policy", fileName: "PrivacyPolicy")
+        rtfViewController.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+
+        self.navigationController!.pushViewController(rtfViewController, animated: true)
     }
 }
 
