@@ -331,8 +331,6 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
                 var error: NSError?
                 if !managedContext.save(&error) {
                     println("Could not save \(error), \(error?.userInfo)")
-                } else {
-                    println("Location saved successfully!")
                 }
             } else {
                 println("ERROR: Could not unwrap city name")

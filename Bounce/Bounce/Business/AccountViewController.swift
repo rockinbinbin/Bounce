@@ -318,11 +318,19 @@ class AccountViewController: UIViewController {
         facebookButton.pinToSideEdgesOfSuperview()
         facebookButton.sizeToHeight(buttonHeight)
         
+        let twitterImage = UIImage(named: "Twitter-Rounded-Square-Dark")
+        let twitterButton = OptionsButton(text: "Bounce's Twitter page", image: twitterImage, buttonHeight: buttonHeight)
+        twitterButton.addTarget(self, action: "twitterButtonPressed", forControlEvents: .TouchUpInside)
+        optionsView.addSubview(twitterButton)
+        twitterButton.positionBelowItem(facebookButton, offset: -1)
+        twitterButton.pinToSideEdgesOfSuperview()
+        twitterButton.sizeToHeight(buttonHeight)
+        
         // Support
         
         let supportLabel = OptionsTitleLabel(text: "SUPPORT")
         optionsView.addSubview(supportLabel)
-        supportLabel.positionBelowItem(facebookButton, offset: 30)
+        supportLabel.positionBelowItem(twitterButton, offset: 30)
         supportLabel.pinToLeftEdgeOfSuperview(offset: 15)
         
         let sendAppFeedback = OptionsButton(text: "Send feedback about Bounce")
@@ -376,7 +384,7 @@ class AccountViewController: UIViewController {
     
     func setupScrollView() {
         scrollView.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
-        scrollView.contentSize = CGSizeMake(self.view.frame.width, 856)
+        scrollView.contentSize = CGSizeMake(self.view.frame.width, 900)
         
         let redView = UIView()
         redView.backgroundColor = Constants.Colors.BounceRed
@@ -406,6 +414,10 @@ class AccountViewController: UIViewController {
 
     func facebookButtonPressed() {
         UIApplication.sharedApplication().openURL(NSURL(string: "https://www.facebook.com/letsbouncehome")!)
+    }
+    
+    func twitterButtonPressed() {
+        UIApplication.sharedApplication().openURL(NSURL(string: "https://twitter.com/letsbouncehome")!)
     }
     
     /**
