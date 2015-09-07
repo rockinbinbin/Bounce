@@ -61,6 +61,13 @@
 		28A0001D1B9C9CFA002CF156 /* Model.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 28A000181B9C9A6C002CF156 /* Model.xcdatamodeld */; };
 		28A0001F1B9CB9DC002CF156 /* RequestLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A0001E1B9CB9DC002CF156 /* RequestLocationViewController.swift */; };
 		28A000231B9CC360002CF156 /* RequestPushNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A000221B9CC360002CF156 /* RequestPushNotificationsViewController.swift */; };
+		28A0002B1B9D29AE002CF156 /* Quicksand_Dash.otf in Resources */ = {isa = PBXBuildFile; fileRef = 28A000241B9D29AE002CF156 /* Quicksand_Dash.otf */; };
+		28A0002C1B9D29AE002CF156 /* Quicksand-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 28A000251B9D29AE002CF156 /* Quicksand-Bold.otf */; };
+		28A0002D1B9D29AE002CF156 /* Quicksand-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 28A000261B9D29AE002CF156 /* Quicksand-BoldItalic.otf */; };
+		28A0002E1B9D29AE002CF156 /* Quicksand-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 28A000271B9D29AE002CF156 /* Quicksand-Italic.otf */; };
+		28A0002F1B9D29AE002CF156 /* Quicksand-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 28A000281B9D29AE002CF156 /* Quicksand-Light.otf */; };
+		28A000301B9D29AE002CF156 /* Quicksand-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 28A000291B9D29AE002CF156 /* Quicksand-LightItalic.otf */; };
+		28A000311B9D29AE002CF156 /* Quicksand-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 28A0002A1B9D29AE002CF156 /* Quicksand-Regular.otf */; };
 		28A0FFDA1B9B8D25002CF156 /* RichTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A0FFD91B9B8D25002CF156 /* RichTextViewController.swift */; };
 		28A0FFDD1B9B923B002CF156 /* PrivacyPolicy.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 28A0FFDB1B9B923B002CF156 /* PrivacyPolicy.rtf */; };
 		28A0FFDE1B9B923B002CF156 /* TermsOfService.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 28A0FFDC1B9B923B002CF156 /* TermsOfService.rtf */; };
@@ -397,6 +404,13 @@
 		28A000191B9C9A6C002CF156 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		28A0001E1B9CB9DC002CF156 /* RequestLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestLocationViewController.swift; sourceTree = "<group>"; };
 		28A000221B9CC360002CF156 /* RequestPushNotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestPushNotificationsViewController.swift; sourceTree = "<group>"; };
+		28A000241B9D29AE002CF156 /* Quicksand_Dash.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Quicksand_Dash.otf; path = Bounce/ViewControllers/Fonts/Quicksand_Dash.otf; sourceTree = "<group>"; };
+		28A000251B9D29AE002CF156 /* Quicksand-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Bold.otf"; path = "Bounce/ViewControllers/Fonts/Quicksand-Bold.otf"; sourceTree = "<group>"; };
+		28A000261B9D29AE002CF156 /* Quicksand-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-BoldItalic.otf"; path = "Bounce/ViewControllers/Fonts/Quicksand-BoldItalic.otf"; sourceTree = "<group>"; };
+		28A000271B9D29AE002CF156 /* Quicksand-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Italic.otf"; path = "Bounce/ViewControllers/Fonts/Quicksand-Italic.otf"; sourceTree = "<group>"; };
+		28A000281B9D29AE002CF156 /* Quicksand-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Light.otf"; path = "Bounce/ViewControllers/Fonts/Quicksand-Light.otf"; sourceTree = "<group>"; };
+		28A000291B9D29AE002CF156 /* Quicksand-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-LightItalic.otf"; path = "Bounce/ViewControllers/Fonts/Quicksand-LightItalic.otf"; sourceTree = "<group>"; };
+		28A0002A1B9D29AE002CF156 /* Quicksand-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Regular.otf"; path = "Bounce/ViewControllers/Fonts/Quicksand-Regular.otf"; sourceTree = "<group>"; };
 		28A0FFD91B9B8D25002CF156 /* RichTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichTextViewController.swift; sourceTree = "<group>"; };
 		28A0FFDB1B9B923B002CF156 /* PrivacyPolicy.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = PrivacyPolicy.rtf; sourceTree = "<group>"; };
 		28A0FFDC1B9B923B002CF156 /* TermsOfService.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = TermsOfService.rtf; sourceTree = "<group>"; };
@@ -955,6 +969,13 @@
 				28A0FFD91B9B8D25002CF156 /* RichTextViewController.swift */,
 				28205C431B8FFA4B001C3630 /* BounceSwift.swift */,
 				28802DAF1B770C8D008E8B33 /* UniversityEmail.swift */,
+				28A000241B9D29AE002CF156 /* Quicksand_Dash.otf */,
+				28A000251B9D29AE002CF156 /* Quicksand-Bold.otf */,
+				28A000261B9D29AE002CF156 /* Quicksand-BoldItalic.otf */,
+				28A000271B9D29AE002CF156 /* Quicksand-Italic.otf */,
+				28A000281B9D29AE002CF156 /* Quicksand-Light.otf */,
+				28A000291B9D29AE002CF156 /* Quicksand-LightItalic.otf */,
+				28A0002A1B9D29AE002CF156 /* Quicksand-Regular.otf */,
 				000234911B4885B6000B7630 /* Fonts */,
 				00ABD56F1B4846CC004A2FB0 /* LaunchScreen.storyboard */,
 				00E2CBBA1B5506C800B316D1 /* ChatListCell.h */,
@@ -1636,6 +1657,7 @@
 				67BB92511ADFA8D10050164B /* LandingView.png in Resources */,
 				67BB92631ADFA8D10050164B /* Tutorial-3@2x.png in Resources */,
 				00ABD5701B4846CC004A2FB0 /* LaunchScreen.storyboard in Resources */,
+				28A0002D1B9D29AE002CF156 /* Quicksand-BoldItalic.otf in Resources */,
 				67BB925E1ADFA8D10050164B /* Tutorial-2_iPhone5.png in Resources */,
 				67BB94531ADFABCD0050164B /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
 				67BB925D1ADFA8D10050164B /* Tutorial-2@2x.png in Resources */,
@@ -1651,6 +1673,7 @@
 				67BB945E1ADFABCD0050164B /* ProgressHUD.bundle in Resources */,
 				67BB92601ADFA8D10050164B /* Tutorial-2_iPhone6plus.png in Resources */,
 				67BB924F1ADFA8D10050164B /* chat_blank@2x.png in Resources */,
+				28A0002E1B9D29AE002CF156 /* Quicksand-Italic.otf in Resources */,
 				67BB92641ADFA8D10050164B /* Tutorial-3_iPhone5.png in Resources */,
 				00ABD56E1B479C1B004A2FB0 /* FinishedIcon in Resources */,
 				67BB94491ADFABCD0050164B /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
@@ -1660,9 +1683,14 @@
 				67BB925F1ADFA8D10050164B /* Tutorial-2_iPhone6.png in Resources */,
 				28A0FFDD1B9B923B002CF156 /* PrivacyPolicy.rtf in Resources */,
 				000234921B4885B6000B7630 /* Fonts in Resources */,
+				28A000311B9D29AE002CF156 /* Quicksand-Regular.otf in Resources */,
+				28A000301B9D29AE002CF156 /* Quicksand-LightItalic.otf in Resources */,
 				28A0FFDE1B9B923B002CF156 /* TermsOfService.rtf in Resources */,
 				00E2CBB61B5384B600B316D1 /* homepoint images in Resources */,
 				67BB92591ADFA8D10050164B /* Tutorial-1_iPhone6.png in Resources */,
+				28A0002C1B9D29AE002CF156 /* Quicksand-Bold.otf in Resources */,
+				28A0002F1B9D29AE002CF156 /* Quicksand-Light.otf in Resources */,
+				28A0002B1B9D29AE002CF156 /* Quicksand_Dash.otf in Resources */,
 				67BB92581ADFA8D10050164B /* Tutorial-1_iPhone5.png in Resources */,
 				67BB92501ADFA8D10050164B /* Contents.json in Resources */,
 				67BB942A1ADFABCD0050164B /* JSQMessages.strings in Resources */,

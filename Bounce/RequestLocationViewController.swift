@@ -97,7 +97,8 @@ class RequestLocationViewController: UIViewController {
         
         dispatch_async(continueQueue, {
             while (CLLocationManager.authorizationStatus() == .NotDetermined) {
-                usleep(10000)
+                // Sleep for 10 ms
+                usleep(100000)
             }
             
             let notificationsSet = (UIApplication.sharedApplication().currentUserNotificationSettings().types != .None)
@@ -109,7 +110,7 @@ class RequestLocationViewController: UIViewController {
                     self.descriptionLabel.alpha = 0.0
                     self.continueButton.titleLabel?.alpha = (notificationsSet) ? 0.0 : 1.0
                     }, completion: { (Bool) -> Void in
-                        let destinationViewController = (notificationsSet) ? StudentStatusViewController() : RequestPushNotificationsViewController()
+                        let destinationViewController = (notificationsSet) ? StudentStatusViewController(animated: true) : RequestPushNotificationsViewController()
                         self.presentViewController(destinationViewController, animated: false, completion: nil)
                 })
             }

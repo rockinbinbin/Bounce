@@ -179,13 +179,28 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
                 if user!.isNew {
                     self.handleNewUser(user)
                     
-                    // Returning user
-                } else if let setupComplete: Bool = user!.valueForKey("setupComplete") as? Bool {
-                    self.handleReturningUser(user, setupComplete: setupComplete)
-                    
-                    // Returning user who has not completed setup
+                // Returning user
                 } else {
-                    self.presentViewController(RequestLocationViewController(), animated: true, completion: nil)
+                    // Not set location permissions yet
+                    if CLLocationManager.authorizationStatus() == .NotDetermined {
+                        self.presentViewController(RequestLocationViewController(), animated: true, completion: nil)
+                        
+                        // Not set push notifications yet
+                    } else if (UIApplication.sharedApplication().currentUserNotificationSettings().types == .None) {
+                        self.presentViewController(RequestPushNotificationsViewController(), animated: true, completion: nil)
+                    }
+                    
+                    if let setupComplete: Bool = user!.valueForKey("setupComplete") as? Bool {
+                        if setupComplete {
+                            user!.setValue(true, forKey: "setupComplete")
+                            user!.saveInBackgroundWithBlock(nil)
+                            self.presentViewController(RootTabBarController.rootTabBarControllerWithNavigationController(InitialTab.Trips), animated: true, completion: nil)
+                            return
+                        } else {
+                            // Not set student status yet
+                            self.presentViewController(StudentStatusViewController(animated: false), animated: true, completion: nil)
+                        }
+                    }
                 }
             }
         })

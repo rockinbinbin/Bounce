@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
+#import <CoreLocation/CoreLocation.h>
 #import "ParseManager.h"
 #import "RequestsViewController.h"
 #import "CustomChatViewController.h"
@@ -43,7 +44,7 @@
         [[PFUser currentUser] fetchInBackgroundWithBlock:nil];
 
         // If logged in user completed setup
-        if ([[PFUser currentUser] valueForKey:@"setupComplete"]) {
+        if ([[[PFUser currentUser] valueForKey:@"setupComplete"] boolValue]) {
 
             NSString *requestId = [launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey] objectForKey:OBJECT_ID];
 
@@ -56,7 +57,13 @@
 
         // If logged in user did not complete setup
         } else {
-            self.window.rootViewController = [[StudentStatusViewController alloc] init];
+            if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
+                self.window.rootViewController = [[RequestLocationViewController alloc] init];
+            } else if ([[UIApplication sharedApplication] currentUserNotificationSettings].types == UIUserNotificationTypeNone) {
+                self.window.rootViewController = [[RequestPushNotificationsViewController alloc] init];
+            } else {
+                self.window.rootViewController = [[StudentStatusViewController alloc] initWithAnimated:false];
+            }
         }
 
     // If setup needs to be started

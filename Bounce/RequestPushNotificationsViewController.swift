@@ -111,7 +111,7 @@ class RequestPushNotificationsViewController: UIViewController {
             self.continueButton.titleLabel?.alpha = 0.0
             }, completion: { (Bool) -> Void in
                 self.registerForNotifications()
-                self.presentViewController(StudentStatusViewController(), animated: false, completion: nil)
+                self.presentViewController(StudentStatusViewController(animated: true), animated: false, completion: nil)
         })
     }
     
