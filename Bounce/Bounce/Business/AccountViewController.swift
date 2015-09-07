@@ -230,8 +230,6 @@ class AccountViewController: UIViewController {
 
         // Not a student
         } else {
-            studentStatusLabel.text = "Bounce user"
-            
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             let managedContext = appDelegate.managedObjectContext!
             let fetchRequest = NSFetchRequest(entityName:"AccountInfo")
