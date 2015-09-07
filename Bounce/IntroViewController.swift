@@ -246,7 +246,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
                             PFUser.currentUser()?.setObject(graphAPIResponseValue, forKey: parseKey)
                             user!.saveInBackgroundWithBlock(nil)
                             
-                            if graphAPIResponseKey == "facebookId" {
+                            if graphAPIResponseKey == "id" {
                                 self.loadProfilePictureOnMainThread(graphAPIResponseValue)
                             }
                         }
