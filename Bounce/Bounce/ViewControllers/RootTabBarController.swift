@@ -245,12 +245,7 @@ import UIKit
         self.setToolbarItems({
                 return [sideSpacer] + flatMap(self.tabs) { [$0.barButtonItem, flexibleSpacer] } + [self.accountBarButtonItem, sideSpacer]
             }(), animated: false)
-    }
-    
-    public override func viewWillAppear(animated: Bool) {
-        self.hasHomepointsNotifications = true
-        self.hasTripsNotifications = true
-    }
+    }i
     
     public override func childViewControllerForStatusBarHidden() -> UIViewController? {
         return selectedViewController
