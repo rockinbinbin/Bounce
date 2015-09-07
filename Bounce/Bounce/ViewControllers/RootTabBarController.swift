@@ -9,6 +9,8 @@
 import UIKit
 
 @objc protocol RootTabBarControllerDelegate {
+    func setHomepointNotification(notificationPresent: Bool)
+    func setTripsNotification(notificationPresent: Bool)
     func setTabBarHidden(hidden: Bool)
 }
 
@@ -21,6 +23,44 @@ import UIKit
     private let homeScreenViewController = HomeScreenViewController()
     private let groupsListViewController = GroupsListViewController()
     
+    private var hasHomepointsNotifications: Bool = false {
+        didSet {
+            var displayType: Tab.DisplayType
+            let homepointsTabSelected = self.selectedTab?.viewController == self.homepointsTab.viewController
+
+            if self.hasHomepointsNotifications && homepointsTabSelected {
+                displayType = .SelectedNotification
+            } else if self.hasHomepointsNotifications && !homepointsTabSelected {
+                displayType = .NormalNotification
+            } else if !self.hasHomepointsNotifications && homepointsTabSelected {
+                displayType = .Selected
+            } else {
+                displayType = .Normal
+            }
+            
+            self.homepointsTab.displayType = displayType
+        }
+    }
+    
+    private var hasTripsNotifications: Bool = false {
+        didSet {
+            var displayType: Tab.DisplayType
+            let tripsTabSelected = self.selectedTab?.viewController == self.tripsTab.viewController
+            
+            if self.hasTripsNotifications && tripsTabSelected {
+                displayType = .SelectedNotification
+            } else if self.hasTripsNotifications && !tripsTabSelected {
+                displayType = .NormalNotification
+            } else if !self.hasTripsNotifications && tripsTabSelected {
+                displayType = .Selected
+            } else {
+                displayType = .Normal
+            }
+            
+            self.tripsTab.displayType = displayType
+        }
+    }
+        
     private let initialTab: InitialTab
     
     init(initialTab: InitialTab) {
@@ -35,24 +75,54 @@ import UIKit
     
     // MARK: - Tabs
     
-    private struct Tab {
+    struct Tab {
+        enum DisplayType {
+            case Normal
+            case Selected
+            case NormalNotification
+            case SelectedNotification
+        }
+        
+        var displayType: DisplayType = .Normal {
+            didSet {
+                switch self.displayType {
+                case .Normal:
+                    self.barButtonItem.image = self.image
+                case .Selected:
+                    self.barButtonItem.image = self.selectedImage
+                case .NormalNotification:
+                    self.barButtonItem.image = self.imageWithNotifications
+                case .SelectedNotification:
+                    self.barButtonItem.image = self.selectedImageWithNotifications
+                }
+            }
+        }
+        
         let viewController: UIViewController
         let barButtonItem: UIBarButtonItem
         let image: UIImage?
         let selectedImage: UIImage?
+        let imageWithNotifications: UIImage?
+        let selectedImageWithNotifications: UIImage?
         
         init(viewController: UIViewController, imageNamed imageName: String) {
             self.viewController = viewController
             image = UIImage(named: "Tabs-\(imageName)")?.imageWithRenderingMode(.AlwaysOriginal)
             selectedImage = UIImage(named: "Tabs-\(imageName)-Selected")?.imageWithRenderingMode(.AlwaysOriginal)
+            imageWithNotifications = UIImage(named: "Tabs-\(imageName)-Notification")?.imageWithRenderingMode(.AlwaysOriginal)
+            selectedImageWithNotifications = UIImage(named: "Tabs-\(imageName)-Selected-Notification")?.imageWithRenderingMode(.AlwaysOriginal)
             barButtonItem = UIBarButtonItem(image: image, style: .Plain, target: nil, action: nil)
+        }
+        
+        mutating func setDisplayType(displayType: DisplayType) {
+            self.displayType = displayType
         }
     }
     
     private lazy var homepointsTab: Tab = {
         self.groupsListViewController.delegate = self
         let navigationController = UINavigationController(rootViewController: self.groupsListViewController)
-        let tab = Tab(viewController: navigationController, imageNamed: "Homepoints")
+        var tab = Tab(viewController: navigationController, imageNamed: "Homepoints")
         tab.barButtonItem.target = self
         tab.barButtonItem.action = "selectTabWithBarButtonItem:"
         return tab
@@ -61,7 +131,7 @@ import UIKit
     private lazy var tripsTab: Tab = {
         self.homeScreenViewController.delegate = self
         let navigationController = UINavigationController(rootViewController: self.homeScreenViewController)
-        let tab = Tab(viewController: navigationController, imageNamed: "Trips")
+        var tab = Tab(viewController: navigationController, imageNamed: "Trips")
         tab.barButtonItem.target = self
         tab.barButtonItem.action = "selectTabWithBarButtonItem:"
         return tab
@@ -73,23 +143,41 @@ import UIKit
     
     private var selectedTab: Tab? {
         didSet {
+            var homepointsTabSelected: Bool = (selectedTab?.viewController == homepointsTab.viewController)
+            
             if selectedTab?.viewController == oldValue?.viewController {
                 return
+            } else {
+                // Handle the old values
+                if let viewController = oldValue?.viewController {
+                    viewController.beginAppearanceTransition(false, animated: false)
+                    
+                    if homepointsTabSelected {
+                        self.tripsTab.displayType = self.hasTripsNotifications ? .NormalNotification : .Normal
+                    } else {
+                        self.homepointsTab.displayType = self.hasHomepointsNotifications ? .NormalNotification : .Normal
+                    }
+                    
+                    viewController.view.removeFromSuperview()
+                    viewController.endAppearanceTransition()
+                }
+                
+                // Handle the new values
+                if let viewController = selectedTab?.viewController {
+                    viewController.beginAppearanceTransition(true, animated: false)
+                    
+                    if homepointsTabSelected {
+                        self.homepointsTab.displayType = self.hasHomepointsNotifications ? .SelectedNotification : .Selected
+                    } else {
+                        self.tripsTab.displayType = self.hasTripsNotifications ? .SelectedNotification : .Selected
+                    }
+                    
+                    viewController.view.frame = self.view.bounds
+                    view.addSubview(viewController.view)
+                    viewController.endAppearanceTransition()
+                }
+                setNeedsStatusBarAppearanceUpdate()
             }
-            if let viewController = oldValue?.viewController {
-                viewController.beginAppearanceTransition(false, animated: false)
-                oldValue!.barButtonItem.image = oldValue!.image
-                viewController.view.removeFromSuperview()
-                viewController.endAppearanceTransition()
-            }
-            if let viewController = selectedTab?.viewController {
-                viewController.beginAppearanceTransition(true, animated: false)
-                selectedTab!.barButtonItem.image = selectedTab!.selectedImage
-                viewController.view.frame = self.view.bounds
-                view.addSubview(viewController.view)
-                viewController.endAppearanceTransition()
-            }
-            setNeedsStatusBarAppearanceUpdate()
         }
     }
     
@@ -159,6 +247,11 @@ import UIKit
             }(), animated: false)
     }
     
+    public override func viewWillAppear(animated: Bool) {
+        self.hasHomepointsNotifications = true
+        self.hasTripsNotifications = true
+    }
+    
     public override func childViewControllerForStatusBarHidden() -> UIViewController? {
         return selectedViewController
     }
@@ -174,5 +267,13 @@ import UIKit
     
     @objc public func setTabBarHidden(hidden: Bool) {
         self.navigationController?.toolbarHidden = hidden
+    }
+    
+    @objc public func setHomepointNotification(notificationPresent: Bool) {
+        self.hasHomepointsNotifications = notificationPresent
+    }
+
+    @objc public func setTripsNotification(notificationPresent: Bool) {
+        self.hasTripsNotifications = notificationPresent
     }
 }

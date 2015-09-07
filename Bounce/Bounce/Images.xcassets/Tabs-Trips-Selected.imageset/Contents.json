@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "TripsSelected@1x.png"
+      "filename" : "Trips-Selected@1x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "TripsSelected@2x.png"
+      "filename" : "Trips-Selected@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "TripsSelected@3x.png"
+      "filename" : "Trips-Selected@3x.png"
     }
   ],
   "info" : {
