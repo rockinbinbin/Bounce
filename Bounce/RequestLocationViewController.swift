@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import Darwin
 
 class RequestLocationViewController: UIViewController {
 
     // MARK: - UI Elements
+    
+    let locationManager = CLLocationManager()
     
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
@@ -86,16 +89,30 @@ class RequestLocationViewController: UIViewController {
     // MARK: - Button Method
     
     func continuePressed() {
-        let notificationsSet = (UIApplication.sharedApplication().currentUserNotificationSettings().types != .None)
+        if (UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0 {
+            self.locationManager.requestAlwaysAuthorization()
+        }
         
-        UIView.animateWithDuration(0.25, animations: { () -> Void in
-            self.titleLabel.alpha = 0.0
-            self.imageView.alpha = 0.0
-            self.descriptionLabel.alpha = 0.0
-            self.continueButton.titleLabel?.alpha = (notificationsSet) ? 0.0 : 1.0
-        }, completion: { (Bool) -> Void in
-            let destinationViewController = (notificationsSet) ? StudentStatusViewController() : RequestPushNotificationsViewController()
-            self.presentViewController(destinationViewController, animated: false, completion: nil)
+        let continueQueue = dispatch_queue_create("Continue Queue", nil)
+        
+        dispatch_async(continueQueue, {
+            while (CLLocationManager.authorizationStatus() == .NotDetermined) {
+                usleep(10000)
+            }
+            
+            let notificationsSet = (UIApplication.sharedApplication().currentUserNotificationSettings().types != .None)
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                UIView.animateWithDuration(0.25, animations: { () -> Void in
+                    self.titleLabel.alpha = 0.0
+                    self.imageView.alpha = 0.0
+                    self.descriptionLabel.alpha = 0.0
+                    self.continueButton.titleLabel?.alpha = (notificationsSet) ? 0.0 : 1.0
+                    }, completion: { (Bool) -> Void in
+                        let destinationViewController = (notificationsSet) ? StudentStatusViewController() : RequestPushNotificationsViewController()
+                        self.presentViewController(destinationViewController, animated: false, completion: nil)
+                })
+            }
         })
     }
     

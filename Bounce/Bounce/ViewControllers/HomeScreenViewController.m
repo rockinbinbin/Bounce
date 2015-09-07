@@ -211,11 +211,6 @@
     [confirmButton kgn_pinToBottomEdgeOfSuperviewWithOffset:15 + TAB_BAR_HEIGHT];
     
     self.location_manager = [[CLLocationManager alloc] init];
-
-    if (IS_IOS8) {
-        [self.location_manager requestAlwaysAuthorization];
-    }
-
     self.location_manager.pausesLocationUpdatesAutomatically = YES;
     self.location_manager.activityType = CLActivityTypeFitness;
     
