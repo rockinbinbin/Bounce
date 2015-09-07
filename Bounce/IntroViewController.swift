@@ -294,30 +294,55 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext!
         let entity =  NSEntityDescription.entityForName("AccountInfo", inManagedObjectContext: managedContext)
-        let accountInfo = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
         
+        let fetchRequest = NSFetchRequest(entityName:"AccountInfo")
+        var error: NSError?
+        let fetchedResults =
+        managedContext.executeFetchRequest(fetchRequest,
+            error: &error) as? [NSManagedObject]
+        
+        var accountInfo: NSManagedObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
+        
+        if let results : [NSManagedObject] = fetchedResults {
+            if results.count > 0 {
+                accountInfo = results[0]
+            }
+        }
+        
+        let locationManager = CLLocationManager()
+        locationManager.distanceFilter = kCLDistanceFilterNone
+        locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+        
+        let geoCoder = CLGeocoder()
+        let location = CLLocation(latitude: locationManager.location.coordinate.latitude, longitude: locationManager.location.coordinate.longitude)
+        
+        geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
+            let placeArray = placemarks as? [CLPlacemark]
+            
+            // Place details
+            var placeMark: CLPlacemark!
+            placeMark = placeArray?[0]
+            
+            // City
+            if let city = placeMark.addressDictionary["City"] as? NSString {
+                // Set user location
+                accountInfo.setValue(city, forKey: "location")
+                
+                var error: NSError?
+                if !managedContext.save(&error) {
+                    println("Could not save \(error), \(error?.userInfo)")
+                } else {
+                    println("Location saved successfully!")
+                }
+            } else {
+                println("ERROR: Could not unwrap city name")
+            }
+        })
         
         FBRequestConnection.startForMeWithCompletionHandler({ (connection: FBRequestConnection!, result: AnyObject?, error: NSError!) -> Void in
             if error != nil {
                 println(error)
             } else {
-                println(result)
-                if let locationDict = result?["location"] as? NSDictionary {
-                    let locationName = (locationDict["name"] as? String)
-                    
-                    if let location = locationName as String! {
-                        accountInfo.setValue(location, forKey: "location")
-                        
-                        var error: NSError?
-                        if !managedContext.save(&error) {
-                            println("Could not save \(error), \(error?.userInfo)")
-                        }
-                    } else {
-                        println("Could not unwrap location name.")
-                    }
-                } else {
-                    println("Could not unwrap location dict.")
-                }
                 
                 // Get user full name
                 if let name = result?["name"] as? String {
@@ -332,7 +357,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
                 }
             }
         })
-        
+
         // Get number of Facebook friends
         let request = FBRequest.requestForMyFriends()
         request.startWithCompletionHandler({ (connection: FBRequestConnection!, result: AnyObject?, error: NSError!) -> Void in
