@@ -280,7 +280,7 @@
         AddGroupUsersViewController *addGroupUsersViewController = [AddGroupUsersViewController new];
         addGroupUsersViewController.groupName = self.groupNameTextField.text;
         addGroupUsersViewController.groupLocation = [[PFUser currentUser] objectForKey:PF_USER_LOCATION];
-        addGroupUsersViewController.groupUsers = users;
+        addGroupUsersViewController.candidateUsers = users;
         [self.navigationController pushViewController:addGroupUsersViewController animated:YES];
     }
     @catch (NSException *exception) {

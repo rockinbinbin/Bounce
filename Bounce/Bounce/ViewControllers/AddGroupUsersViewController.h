@@ -13,7 +13,7 @@
 
 @interface AddGroupUsersViewController : UIViewController<ParseManagerAddGroupDelegate, ParseManagerUpdateGroupDelegate, UITableViewDataSource, UITableViewDelegate>
 
-@property NSArray *groupUsers;
+@property NSArray *candidateUsers;
 @property NSMutableArray *userChecked; // array of selected users
 @property (nonatomic, assign) PFGeoPoint * groupLocation;
 

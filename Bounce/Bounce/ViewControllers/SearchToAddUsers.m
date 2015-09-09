@@ -101,7 +101,7 @@
         NSString *text;
         if ([tableView isEqual:ResultsTableView]) {
                 text = [self.searchResults[indexPath.row] objectForKey:@"username"];
-            }
+        }
     
         UIImage *img = [UIImage imageNamed:@"addUser"];
         [cell.iconView setImage:img forState:UIControlStateNormal];

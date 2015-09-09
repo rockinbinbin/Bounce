@@ -134,7 +134,7 @@
 }
 -(void) navigateToGroupUsersScreenAndSetData:(NSArray *) users{
     AddGroupUsersViewController *controller = [[AddGroupUsersViewController alloc]  init];
-    controller.groupUsers = users;
+    controller.candidateUsers = users;
     controller.homepointImage = self.homepointImage;
     controller.groupLocation = self.groupLocation;
     controller.groupName = self.groupName;

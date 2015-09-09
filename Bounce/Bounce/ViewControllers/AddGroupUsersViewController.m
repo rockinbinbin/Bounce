@@ -17,6 +17,7 @@
 #import "ParseManager.h"
 #import "Utility.h"
 #import "UIView+AutoLayout.h"
+#import "membersCell.h"
 
 @interface AddGroupUsersViewController ()
 
@@ -45,7 +46,7 @@
     [_tableView kgn_pinToTopEdgeOfSuperview];
     [_tableView kgn_pinToLeftEdgeOfSuperview];
     [_tableView kgn_sizeToWidth:self.view.frame.size.width];
-    [_tableView kgn_sizeToHeight:self.view.frame.size.height];
+    [_tableView kgn_sizeToHeight:self.view.frame.size.height - TAB_BAR_HEIGHT];
     
         UILabel *navLabel = [UILabel new];
         navLabel.textColor = [UIColor whiteColor];
@@ -66,7 +67,7 @@
         self.navigationItem.rightBarButtonItem = doneButton;
         
         self.userChecked  = [[NSMutableArray alloc] init];
-        NSInteger usersCount = [self.groupUsers count];
+        NSInteger usersCount = [self.candidateUsers count];
         [self.userChecked  addObject:[NSNumber numberWithBool:YES]];
         for (int i = 0; i < usersCount-1; i++) {
             [self.userChecked  addObject:[NSNumber numberWithBool:NO]];
@@ -111,7 +112,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.groupUsers count];
+    return [self.candidateUsers count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -150,7 +151,7 @@
         cell.iconImageView.image = [UIImage imageNamed:@"Plus"];
     }
     
-    cell.groupNameLabel.text = [[self.groupUsers objectAtIndex:indexPath.row] objectForKey:PF_USER_USERNAME];
+    cell.groupNameLabel.text = [[self.candidateUsers objectAtIndex:indexPath.row] objectForKey:PF_USER_USERNAME];
     return cell;
 }
 
@@ -189,9 +190,9 @@
     @try {
         NSMutableArray *selectedUsers = [[NSMutableArray alloc] init];
         
-        for (int i = 0; i < [self.groupUsers count]; i++) {
+        for (int i = 0; i < [self.candidateUsers count]; i++) {
             if ([[self.userChecked objectAtIndex:i] boolValue]) {
-                [selectedUsers addObject:[self.groupUsers objectAtIndex:i]];
+                [selectedUsers addObject:[self.candidateUsers objectAtIndex:i]];
             }
         }
         return [NSArray arrayWithArray:selectedUsers];
@@ -208,12 +209,12 @@
 
         for (int i = 0; i<[self.originalGroupUsers count]; i++) {
             if (![[self.userChecked objectAtIndex:i] boolValue]) {
-                [deletedUsers addObject:[self.groupUsers objectAtIndex:i]];
+                [deletedUsers addObject:[self.candidateUsers objectAtIndex:i]];
             }
         }
-        for (unsigned long i = [self.originalGroupUsers count]; i < [self.groupUsers count]; i++) {
+        for (unsigned long i = [self.originalGroupUsers count]; i < [self.candidateUsers count]; i++) {
             if ([[self.userChecked objectAtIndex:i] boolValue]) {
-                [addedUsers addObject:[self.groupUsers objectAtIndex:i]];
+                [addedUsers addObject:[self.candidateUsers objectAtIndex:i]];
             }
         }
     }
