@@ -42,6 +42,7 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:customButton];
     
     self.searchResults = [NSMutableArray new];
+    self.selectedUsers = [NSMutableArray new];
     self.index = -1;
     
         UILabel *navLabel = [UILabel new];
@@ -73,12 +74,12 @@
     self.searchController.searchResultsUpdater = self;
     self.searchController.delegate = self;
     
+    
     [self.searchController.searchBar sizeToFit];
     self.searchController.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
     self.tableView.tableHeaderView = self.searchController.searchBar;
     
     self.definesPresentationContext = YES;
-
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -97,6 +98,7 @@
         [[Utility getInstance] showProgressHudWithMessage:@"Saving..." withView:self.view];
         
         [[ParseManager getInstance] setAddGroupdelegate:self];
+        [self.selectedUsers addObject:[PFUser currentUser]];
         [[ParseManager getInstance] addGroup:self.groupName withArrayOfUser:self.selectedUsers withLocation:self.groupLocation withImage:self.homepointImage];
     }
 }
@@ -108,9 +110,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if ([tableView isEqual:ResultsTableView]) {
-        return self.searchResults.count;
+        if (self.searchResults) {
+            return self.searchResults.count;
+        } else {
+            return 0;
+        }
+    } else {
+        return 0;
     }
-    else return [self.candidateUsers count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -126,18 +133,6 @@
         text = [self.searchResults[indexPath.row] objectForKey:@"username"];
         
         PFUser *user = [self.searchResults objectAtIndex:indexPath.row];
-        PFFile *file = [user objectForKey:@"picture"];
-        [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-            if (!error) {
-                UIImage *image = [UIImage imageWithData:data];
-                cell.profileImage.image = image;
-            }
-        }];
-    }
-    else {
-        text = [self.candidateUsers[indexPath.row] objectForKey:@"username"];
-        
-        PFUser *user = [self.candidateUsers objectAtIndex:indexPath.row];
         PFFile *file = [user objectForKey:@"picture"];
         [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             if (!error) {

@@ -115,23 +115,21 @@
         [[ParseManager getInstance] getAllUsers];
     }
 }
+
 #pragma mark - Parse Manager Delegate
 - (void)didloadAllObjects:(NSArray *)objects
 {
     [[Utility getInstance] hideProgressHud];
     NSMutableArray *users  = [[NSMutableArray alloc] initWithArray:objects];
-    PFUser *currentUser = [PFUser currentUser];
-    
-    // Add the current user to the first cell
-    [users insertObject:currentUser atIndex:0];
     [self navigateToGroupUsersScreenAndSetData:([NSArray arrayWithArray:users])];
-    
 }
+
 - (void)didFailWithError:(NSError *)error
 {
     [[Utility getInstance] hideProgressHud];
     NSLog(@"Error in loading users from parse.com");
 }
+
 -(void) navigateToGroupUsersScreenAndSetData:(NSArray *) users{
     AddGroupUsersViewController *controller = [[AddGroupUsersViewController alloc]  init];
     controller.candidateUsers = users;
@@ -141,7 +139,7 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-# pragma mark Custom Functions
+#pragma mark Custom Functions
 
 /// MODIFIES: The location manager
 /// EFFECTS:  Starts the Core Location manager monitoring for significant

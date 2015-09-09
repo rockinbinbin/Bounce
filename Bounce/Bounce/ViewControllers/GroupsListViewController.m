@@ -84,20 +84,6 @@
     self.navigationItem.titleView = navLabel;
     navLabel.text = @"Homepoints";
     [navLabel sizeToFit];
-    
-    PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
-    [query whereKey:PF_GROUP_Users_RELATION equalTo:[PFUser currentUser]];
-    [query includeKey:PF_GROUP_OWNER];
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (objects != nil) {
-            if (objects.count == 0) {
-                [self showPlaceholder];
-            } else {
-                [self hidePlaceholder];
-            }
-        }
-    }];
 }
 
 #pragma mark Placeholder Methods
@@ -149,9 +135,15 @@
  * Hides the placeholder image and text when the user has one or more homepoints.
  */
 - (void)hidePlaceholder {
-    placeholderImageView.hidden = true;
-    placeholderTitle.hidden = true;
-    placeholderBodyText.hidden = true;
+    if (placeholderImageView) {
+        [placeholderImageView removeFromSuperview];
+    }
+    if (placeholderTitle) {
+        [placeholderTitle removeFromSuperview];
+    }
+    if (placeholderBodyText) {
+        [placeholderBodyText removeFromSuperview];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -160,6 +152,19 @@
     @try {
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
             [[Utility getInstance] showProgressHudWithMessage:@"Loading..." withView:self.view];
+            
+            PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
+            [query whereKey:PF_GROUP_Users_RELATION equalTo:[PFUser currentUser]];
+            [query includeKey:PF_GROUP_OWNER];
+            
+            [query countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
+                    if (number == 0) {
+                        [self showPlaceholder];
+                    } else {
+                        [self hidePlaceholder];
+                    }
+            }];
+            
             [[ParseManager getInstance] setGetUserGroupsdelegate:self];
             loadingData = YES;
             [[ParseManager getInstance] getUserGroups];
@@ -322,7 +327,7 @@
         cell = [HomepointListCell new];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-
+    
     for (int i = 0; i < [self.homepointImages count]; i++) {
         PFFile *file = self.homepointImages[i];
         [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
