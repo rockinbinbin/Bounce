@@ -72,7 +72,9 @@
     backgroundView.backgroundColor = BounceRed;
     [self.tableView setBackgroundView:backgroundView];
     
-    [self setBarButtonItemRight:@"Plus"];
+    UIButton *rightButton = [[Utility getInstance] createCustomButton:[UIImage imageNamed:@"Plus"]];
+    [rightButton addTarget:self action:@selector(addButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     
     UILabel *navLabel = [UILabel new];
     navLabel.textColor = [UIColor whiteColor];
@@ -175,28 +177,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Navigation Bar
--(void) setBarButtonItemLeft:(NSString*) imageName{
-
-    UIImage *back = [UIImage imageNamed:imageName];
-    self.navigationItem.leftBarButtonItem = [self initialiseBarButton:back withAction:@selector(backButtonClicked)];
-}
-
--(void) setBarButtonItemRight:(NSString*) imageName{
-    
-    UIImage *add = [UIImage imageNamed:imageName];
-    self.navigationItem.rightBarButtonItem = [self initialiseBarButton:add withAction:@selector(addButtonClicked)];
-}
-
--(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action {
-    UIButton *buttonItem = [UIButton buttonWithType:UIButtonTypeCustom];
-    buttonItem.bounds = CGRectMake( 0, 0, buttonImage.size.width, buttonImage.size.height );
-    [buttonItem addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
-    [buttonItem setImage:buttonImage forState:UIControlStateNormal];
-    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:buttonItem];
-    return barButtonItem;
 }
 
 -(void)backButtonClicked {

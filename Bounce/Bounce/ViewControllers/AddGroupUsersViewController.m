@@ -33,7 +33,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self setBarButtonItemLeft:@"common_back_button"];
+    UIButton *customButton = [[Utility getInstance] createCustomButton:[UIImage imageNamed:@"common_back_button"]];
+    [customButton addTarget:self action:@selector(cancelButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:customButton];
     
     UITableView *tableView = [UITableView new];
     tableView.dataSource = self;
@@ -45,17 +47,13 @@
     [_tableView kgn_sizeToWidth:self.view.frame.size.width];
     [_tableView kgn_sizeToHeight:self.view.frame.size.height];
     
-    if (self.editGroup) {
-        [self setEditData];
-    }
-    else {
         UILabel *navLabel = [UILabel new];
         navLabel.textColor = [UIColor whiteColor];
         navLabel.backgroundColor = [UIColor clearColor];
         navLabel.textAlignment = NSTextAlignmentCenter;
-        navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
+        navLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size:20];
         self.navigationItem.titleView = navLabel;
-        navLabel.text = @"ADD USERS";
+        navLabel.text = @"Add roommates";
         [navLabel sizeToFit];
         
         UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]
@@ -72,50 +70,6 @@
         [self.userChecked  addObject:[NSNumber numberWithBool:YES]];
         for (int i = 0; i < usersCount-1; i++) {
             [self.userChecked  addObject:[NSNumber numberWithBool:NO]];
-        }
-    }
-//    if (self.updatedGroup) { // needed because this view controller is used to edit users and add users, add users crashes when creating a homepoint because you haven't created the group yet.
-//              [[ParseManager getInstance] getTentativeUsersFromGroup:self.updatedGroup];
-//    }
-}
-
-- (void) setEditData {
-    UILabel *navLabel = [UILabel new];
-    navLabel.textColor = [UIColor whiteColor];
-    navLabel.backgroundColor = [UIColor clearColor];
-    navLabel.textAlignment = NSTextAlignmentCenter;
-    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
-    self.navigationItem.titleView = navLabel;
-    navLabel.text = @"EDIT USERS";
-    [navLabel sizeToFit];
-    
-    self.userChecked  = [[NSMutableArray alloc] init];
-    NSMutableArray *allUsers = [[NSMutableArray alloc] initWithArray:self.originalGroupUsers];
-    
-    NSInteger groupUsersCount = [self.originalGroupUsers count];
-//    [self.userChecked  addObject:[NSNumber numberWithBool:YES]];
-    for (int i = 0; i < groupUsersCount; i++) {
-        [self.userChecked  addObject:[NSNumber numberWithBool:YES]];
-    }
-    
-    if (self.remainingUsers) {
-        [allUsers addObjectsFromArray:self.remainingUsers];
-        NSInteger remainingUsersCount = [self.remainingUsers count];
-        
-        for (int i = 0; i < remainingUsersCount; i++) {
-            [self.userChecked  addObject:[NSNumber numberWithBool:NO]];
-        }
-    }
-    
-    self.groupUsers = [NSArray arrayWithArray:allUsers];
-
-    
-    if ([[[PFUser currentUser] username] isEqualToString:[[self.updatedGroup objectForKey:PF_GROUP_OWNER] username]] ) {
-        enableSelection = YES;
-        self.navigationItem.title = @"Edit Users";
-    }
-    else {
-        self.navigationItem.title = @"Homepoint Users";
     }
 }
 
@@ -124,26 +78,6 @@
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Navigation Bar
-
-// Sets left nav bar button
--(void) setBarButtonItemLeft:(NSString*) imageName {
-    UIImage *menuImage = [UIImage imageNamed:imageName];
-    self.navigationItem.leftBarButtonItem = [self initialiseBarButton:menuImage withAction:@selector(cancelButtonClicked)];
-}
-
-// Sets nav bar button item with image
--(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action {
-    
-    UIButton *buttonItem = [UIButton buttonWithType:UIButtonTypeCustom];
-    buttonItem.bounds = CGRectMake( 0, 0, buttonImage.size.width, buttonImage.size.height );
-    [buttonItem addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
-    [buttonItem setImage:buttonImage forState:UIControlStateNormal];
-    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:buttonItem];
-    return barButtonItem;
 }
 
 -(void)cancelButtonClicked{

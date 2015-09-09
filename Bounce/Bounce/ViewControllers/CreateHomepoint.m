@@ -142,12 +142,6 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
-#pragma mark - Navigation Bar
--(void) setBarButtonItemLeft:(NSString*) imageName {
-    UIImage *menuImage = [UIImage imageNamed:imageName];
-    self.navigationItem.leftBarButtonItem = [self initialiseBarButton:menuImage withAction:@selector(cancelButtonClicked)];
-}
-
 -(void)cancelButtonClicked{
     [self.navigationController popViewControllerAnimated:YES];
 }

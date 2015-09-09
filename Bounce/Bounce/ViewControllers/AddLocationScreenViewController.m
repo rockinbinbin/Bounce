@@ -36,13 +36,18 @@
     navLabel.textColor = [UIColor whiteColor];
     navLabel.backgroundColor = [UIColor clearColor];
     navLabel.textAlignment = NSTextAlignmentCenter;
-    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
+    navLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size:20];
     self.navigationItem.titleView = navLabel;
-    navLabel.text = @"SET LOCATION";
+    navLabel.text = @"Set Location";
     [navLabel sizeToFit];
     
-    [self setBarButtonItemLeft:@"common_back_button"];
-    [self setBarButtonItemRight:@"whiteCheck"];
+    UIButton *customButton = [[Utility getInstance] createCustomButton:[UIImage imageNamed:@"common_back_button"]];
+    [customButton addTarget:self action:@selector(cancelButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:customButton];
+    
+    UIButton *rightButton = [[Utility getInstance] createCustomButton:[UIImage imageNamed:@"whiteCheck"]];
+    [rightButton addTarget:self action:@selector(doneButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapClicked:)];
     tapRecognizer.numberOfTapsRequired = 1;
@@ -87,26 +92,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Navigation Bar
--(void) setBarButtonItemLeft:(NSString*) imageName{
-    UIImage *menuImage = [UIImage imageNamed:imageName];
-    self.navigationItem.leftBarButtonItem = [self initialiseBarButton:menuImage withAction:@selector(cancelButtonClicked)];
-}
-
--(void) setBarButtonItemRight:(NSString*) imageName{
-    UIImage *menuImage = [UIImage imageNamed:imageName];
-    self.navigationItem.rightBarButtonItem = [self initialiseBarButton:menuImage withAction:@selector(doneButtonClicked)];
-}
-
--(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action {
-    UIButton *buttonItem = [UIButton buttonWithType:UIButtonTypeCustom];
-    buttonItem.bounds = CGRectMake( 0, 0, buttonImage.size.width, buttonImage.size.height );
-    [buttonItem addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
-    [buttonItem setImage:buttonImage forState:UIControlStateNormal];
-    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:buttonItem];
-    return barButtonItem;
 }
 
 -(void)cancelButtonClicked{
