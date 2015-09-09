@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 hobble. All rights reserved.
 //
 
-// COME BACK TO ANNOTATE
-
 #import "AddGroupUsersViewController.h"
 #import "AppConstant.h"
 #import "ChatListCell.h"
@@ -19,16 +17,21 @@
 #import "UIView+AutoLayout.h"
 #import "membersCell.h"
 
+#define ResultsTableView self.searchResultsTableViewController.tableView
+#define Identifier @"Cell"
+
 @interface AddGroupUsersViewController ()
 
-@property (nonatomic, strong) NSMutableArray *tentativeUsers;
+@property (nonatomic, strong) NSArray *searchResults;
+
+@property (nonatomic, strong) UISearchController *searchController;
+@property (strong, nonatomic) UITableViewController *searchResultsTableViewController;
+@property (nonatomic) NSInteger index;
 
 @end
 
 @implementation AddGroupUsersViewController {
-    BOOL enableSelection;
-    NSMutableArray *addedUsers;
-    NSMutableArray *deletedUsers;
+
 }
 
 - (void)viewDidLoad {
@@ -38,15 +41,8 @@
     [customButton addTarget:self action:@selector(cancelButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:customButton];
     
-    UITableView *tableView = [UITableView new];
-    tableView.dataSource = self;
-    tableView.delegate = self;
-    [self.view addSubview:tableView];
-    _tableView = tableView;
-    [_tableView kgn_pinToTopEdgeOfSuperview];
-    [_tableView kgn_pinToLeftEdgeOfSuperview];
-    [_tableView kgn_sizeToWidth:self.view.frame.size.width];
-    [_tableView kgn_sizeToHeight:self.view.frame.size.height - TAB_BAR_HEIGHT];
+    self.searchResults = [NSMutableArray new];
+    self.index = -1;
     
         UILabel *navLabel = [UILabel new];
         navLabel.textColor = [UIColor whiteColor];
@@ -65,13 +61,24 @@
         
         doneButton.tintColor = [UIColor whiteColor];
         self.navigationItem.rightBarButtonItem = doneButton;
-        
-        self.userChecked  = [[NSMutableArray alloc] init];
-        NSInteger usersCount = [self.candidateUsers count];
-        [self.userChecked  addObject:[NSNumber numberWithBool:YES]];
-        for (int i = 0; i < usersCount-1; i++) {
-            [self.userChecked  addObject:[NSNumber numberWithBool:NO]];
-    }
+    
+    UITableView *searchResultsTableView = [[UITableView alloc] initWithFrame:self.tableView.frame];
+    searchResultsTableView.dataSource = self;
+    searchResultsTableView.delegate = self;
+    
+    self.searchResultsTableViewController = [[UITableViewController alloc] init];
+    self.searchResultsTableViewController.tableView = searchResultsTableView;
+    
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:self.searchResultsTableViewController];
+    self.searchController.searchResultsUpdater = self;
+    self.searchController.delegate = self;
+    
+    [self.searchController.searchBar sizeToFit];
+    self.searchController.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
+    self.tableView.tableHeaderView = self.searchController.searchBar;
+    
+    self.definesPresentationContext = YES;
+
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -82,27 +89,15 @@
 }
 
 -(void)cancelButtonClicked{
-    if (self.editGroup) {
-        if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
-            [[Utility getInstance] showProgressHudWithMessage:@"Saving..." withView:self.view];
-            //get selected users
-            [self getAddedAndDeletedUsers];
-            [[ParseManager getInstance] setUpdateGroupDelegate:self];
-            //        [[ParseManager getInstance] addListOfUsers:users toGroup:self.updatedGroup];
-            [[ParseManager getInstance] addListOfUsers:addedUsers toGroup:self.updatedGroup andRemove:deletedUsers];
-            
-        }
-    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)doneButtonClicked{
     if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
         [[Utility getInstance] showProgressHudWithMessage:@"Saving..." withView:self.view];
-        // get selected users
-        NSArray *users = [self getCheckedUsers];
+        
         [[ParseManager getInstance] setAddGroupdelegate:self];
-        [[ParseManager getInstance] addGroup:self.groupName withArrayOfUser:users withLocation:self.groupLocation withImage:self.homepointImage];
+        [[ParseManager getInstance] addGroup:self.groupName withArrayOfUser:self.selectedUsers withLocation:self.groupLocation withImage:self.homepointImage];
     }
 }
 
@@ -112,120 +107,92 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.candidateUsers count];
+    if ([tableView isEqual:ResultsTableView]) {
+        return self.searchResults.count;
+    }
+    else return [self.candidateUsers count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString* cellId = @"ChatListCell";
-    ChatListCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellId];
+    NSString* cellId = Identifier;
+    membersCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellId];
     
     if (!cell) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
-        cell = (ChatListCell *)[nib objectAtIndex:0];
+        cell = [membersCell new];
     }
     
-    cell.numOfMessagesLabel.hidden = YES;
-    cell.numOfFriendsInGroupLabel.hidden = YES;
-    cell.nearbyLabel.hidden = YES;
-    cell.roundedView.hidden = YES;
-    cell.groupDistanceLabel.hidden = YES;
-    
-    cell.circularView.layer.borderWidth = 1.0f;
-    cell.circularView.layer.borderColor = BounceRed.CGColor;
-
-    cell.circularViewWidth.constant = 40;
-    cell.circularViewHeight.constant = 40;
-    cell.circularView.layer.cornerRadius = 20;
-    cell.topSpaceTitleConstraints.constant = 0;
-
-    if (IS_IPAD) {
-        cell.groupNameLabel.font=[cell.groupNameLabel.font fontWithSize:20];
-        cell.groupDistanceLabel.font=[cell.groupDistanceLabel.font fontWithSize:12];
-    }
-
-    // filling the cell data: CHECKMARKS
-    if ([[self.userChecked objectAtIndex:indexPath.row] boolValue]) {
-        cell.iconImageView.image = [UIImage imageNamed:@"common_checkmark_icon"];
+    NSString *text;
+    if ([tableView isEqual:ResultsTableView]) {
+        text = [self.searchResults[indexPath.row] objectForKey:@"username"];
+        
+        PFUser *user = [self.searchResults objectAtIndex:indexPath.row];
+        PFFile *file = [user objectForKey:@"picture"];
+        [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error) {
+                UIImage *image = [UIImage imageWithData:data];
+                cell.profileImage.image = image;
+            }
+        }];
     }
     else {
-        cell.iconImageView.image = [UIImage imageNamed:@"Plus"];
+        text = [self.candidateUsers[indexPath.row] objectForKey:@"username"];
+        
+        PFUser *user = [self.candidateUsers objectAtIndex:indexPath.row];
+        PFFile *file = [user objectForKey:@"picture"];
+        [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error) {
+                UIImage *image = [UIImage imageWithData:data];
+                cell.profileImage.image = image;
+            }
+        }];
     }
     
-    cell.groupNameLabel.text = [[self.candidateUsers objectAtIndex:indexPath.row] objectForKey:PF_USER_USERNAME];
+    UIImage *img = [UIImage imageNamed:@"addUser"];
+    [cell.iconView setImage:img forState:UIControlStateNormal];
+    
+    if (indexPath.row == self.index) {
+        UIImage *img = [UIImage imageNamed:@"confirmRequest"];
+        [cell.iconView setImage:img forState:UIControlStateNormal];
+    }
+    
+    [cell.iconView addTarget:self action:@selector(addMember:) forControlEvents:UIControlEventTouchUpInside];
+    
+    cell.name.text = text;
+    
     return cell;
 }
 
-#pragma mark - TableView Delegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    // mark this user as checked
-    if ((indexPath.row != 0 && !self.editGroup) || (indexPath.row != 0 && self.editGroup && enableSelection)) {
-        BOOL checked;
-        if ([[self.userChecked objectAtIndex:indexPath.row] boolValue]) {
-            // mark it to add to group
-            checked = NO;
+- (void) addMember:(id)sender {
+    
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *indexPath = [ResultsTableView indexPathForRowAtPoint:buttonPosition];
+    if (indexPath != nil) {
+        PFUser *user = [self.searchResults objectAtIndex:indexPath.row];
+        if (self.index != indexPath.row) {
+            self.index = indexPath.row;
+            [self.selectedUsers addObject:user];
         }
         else {
-            // mark it as not in the group
-            checked = YES;
+            self.index = -1;
+            for (int i = 0; i < [self.selectedUsers count]; i++) {
+                if ([[self.selectedUsers objectAtIndex:i] isEqual:user]) {
+                    [self.selectedUsers removeObjectAtIndex:i];
+                }
+            }
         }
-        
-        [self.userChecked replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithBool:checked]];
-        [self updateRowAtIndex:indexPath];
+        [ResultsTableView reloadData];
     }
+}
+
+
+#pragma mark - TableView Delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    //[tableView deselectRowAtIndexPath:indexPath animated:YES];
+
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 80;
-}
-
-#pragma mark - update Row
-- (void) updateRowAtIndex:(NSIndexPath*) indexPath {
-    [self.tableView beginUpdates];
-    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
-    [self.tableView endUpdates];
-}
-#pragma mark - get Selected users
-- (NSArray *) getCheckedUsers {
-    @try {
-        NSMutableArray *selectedUsers = [[NSMutableArray alloc] init];
-        
-        for (int i = 0; i < [self.candidateUsers count]; i++) {
-            if ([[self.userChecked objectAtIndex:i] boolValue]) {
-                [selectedUsers addObject:[self.candidateUsers objectAtIndex:i]];
-            }
-        }
-        return [NSArray arrayWithArray:selectedUsers];
-    }
-    @catch (NSException *exception) {
-        NSLog(@"Exception %@", exception);
-    }
-}
-- (void) getAddedAndDeletedUsers
-{
-    @try {
-        addedUsers = [[NSMutableArray alloc] init];
-        deletedUsers = [[NSMutableArray alloc] init];
-
-        for (int i = 0; i<[self.originalGroupUsers count]; i++) {
-            if (![[self.userChecked objectAtIndex:i] boolValue]) {
-                [deletedUsers addObject:[self.candidateUsers objectAtIndex:i]];
-            }
-        }
-        for (unsigned long i = [self.originalGroupUsers count]; i < [self.candidateUsers count]; i++) {
-            if ([[self.userChecked objectAtIndex:i] boolValue]) {
-                [addedUsers addObject:[self.candidateUsers objectAtIndex:i]];
-            }
-        }
-    }
-    @catch (NSException *exception) {
-        NSLog(@"Exception %@", exception);
-    }
-}
-
-#pragma mark - get Tentative Users
-- (void) didLoadTentativeUsers:(NSArray *)tentativeUsers {
-     // FIX DIS
+    return 100;
 }
 
 #pragma mark - Parse Manger Add Group delegate
@@ -241,16 +208,26 @@
         NSLog(@"Exception %@", exception);
     }
 }
-#pragma mark - Parse Manger Update group delegate
-- (void)didUpdateGroupData:(BOOL)succeed {
-    @try {
-        [[Utility getInstance] hideProgressHud];
-        if (!succeed) {
-            [[Utility getInstance] showAlertMessage:@"Updates not saved. Please try again"];
-        }
-    }
-    @catch (NSException *exception) {
-        NSLog(@"Exception %@", exception);
+
+#pragma mark - Search Results Updating
+
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    self.index = -1;
+    UISearchBar *searchBar = searchController.searchBar;
+    if (searchBar.text.length > 0) {
+        NSString *text = searchBar.text;
+        
+        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(PFUser *user, NSDictionary *bindings) {
+            NSRange range = [user.username rangeOfString:text options:NSCaseInsensitiveSearch];
+            
+            return range.location != NSNotFound;
+        }];
+        
+        NSArray *searchResults = [self.candidateUsers filteredArrayUsingPredicate:predicate];
+        self.searchResults = searchResults;
+        
+        [self.searchResultsTableViewController.tableView reloadData];
     }
 }
+
 @end
