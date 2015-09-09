@@ -63,7 +63,7 @@
         doneButton.tintColor = [UIColor whiteColor];
         self.navigationItem.rightBarButtonItem = doneButton;
     
-    UITableView *searchResultsTableView = [[UITableView alloc] initWithFrame:self.tableView.frame];
+    UITableView *searchResultsTableView = [[UITableView alloc] initWithFrame:CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height - TAB_BAR_HEIGHT)];
     searchResultsTableView.dataSource = self;
     searchResultsTableView.delegate = self;
     
@@ -73,7 +73,6 @@
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:self.searchResultsTableViewController];
     self.searchController.searchResultsUpdater = self;
     self.searchController.delegate = self;
-    
     
     [self.searchController.searchBar sizeToFit];
     self.searchController.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
