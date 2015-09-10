@@ -45,7 +45,7 @@
 - (void) isGroupNameExist:(NSString *) name;
 - (void) addGroup:(NSString*) groupName withLocation:(PFGeoPoint*) location withImage:(UIImage *)image;
 - (void) loadAllGroups;
-- (void) addGroup:(NSString*) groupName withArrayOfUser:(NSArray *)users withLocation:(PFGeoPoint*) location withImage:(UIImage *)image;
+- (void) addGroup:(NSString*) groupName withArrayOfUser:(NSArray *)users withLocation:(PFGeoPoint*) location withImage:(UIImage *)image withAddress:(NSString *)address;
 // get request uodates
 - (PFObject *) retrieveRequestUpdate:(NSString *) requstId;
 // valid receiver

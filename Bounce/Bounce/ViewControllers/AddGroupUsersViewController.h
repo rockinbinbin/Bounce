@@ -26,4 +26,6 @@
 
 @property (weak, nonatomic) UITableView *tableView;
 
+@property (strong, nonatomic) NSString *address;
+
 @end

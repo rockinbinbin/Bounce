@@ -138,7 +138,7 @@
             }
         }];
         return cell;
-    }
+}
 
 - (void) addGroup:(id)sender {
     

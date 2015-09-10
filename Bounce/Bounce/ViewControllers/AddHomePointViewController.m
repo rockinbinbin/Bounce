@@ -21,9 +21,21 @@
 #import "homepointListCell.h"
 #import "SearchToAddGroups.h"
 
+#define ResultsTableView self.searchResultsTableViewController.tableView
+#define Identifier @"Cell"
+
 @interface AddHomePointViewController ()
 
 @property (nonatomic) NSInteger cellIndex;
+
+//////////////
+@property (nonatomic, strong) NSArray *searchResults;
+@property (nonatomic, strong) UISearchController *searchController;
+@property (strong, nonatomic) UITableViewController *searchResultsTableViewController;
+@property (nonatomic) NSInteger index;
+@property (nonatomic, strong) PFObject *currentGroup;
+@property (nonatomic) BOOL shouldAdd;
+
 
 @end
 
@@ -42,6 +54,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.allGroups = [NSArray new];
+    self.searchResults = [NSMutableArray new];
+    self.index = -1;
+    self.shouldAdd = NO;
     
     UILabel *navLabel = [UILabel new];
     navLabel.textColor = [UIColor whiteColor];
@@ -52,56 +68,66 @@
     navLabel.text = @"Add Homepoint";
     [navLabel sizeToFit];
     
-    UILabel *nearbyLabel = [UILabel new];
-    nearbyLabel.textColor = [UIColor purpleColor];
-    nearbyLabel.backgroundColor = BounceLightGray;
-    nearbyLabel.textAlignment = NSTextAlignmentCenter;
-    nearbyLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/35];
-    nearbyLabel.text = @"ARE YOU HOME? \nCHECK OUT HOMEPOINTS NEARBY:";
-    nearbyLabel.numberOfLines = 0;
-    [self.view addSubview:nearbyLabel];
-    [nearbyLabel kgn_pinToTopEdgeOfSuperview];
-    [nearbyLabel kgn_sizeToWidth:self.view.frame.size.width];
-    [nearbyLabel kgn_sizeToHeight:self.view.frame.size.height/8];
-    [nearbyLabel kgn_pinToLeftEdgeOfSuperview];
-    
     [self setBarButtonItemLeft:@"common_back_button"];
     
-    UIBarButtonItem *searchButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"searchIcon"] style:UIBarButtonItemStylePlain target:self action:@selector(searchButtonClicked)];
+    UIBarButtonItem *createButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"createIcon"] style:UIBarButtonItemStylePlain target:self action:@selector(createButtonClicked)];
     
-    searchButton.tintColor = [UIColor whiteColor];
-    self.navigationItem.rightBarButtonItem = searchButton;
+    createButton.tintColor = [UIColor whiteColor];
+    self.navigationItem.rightBarButtonItem = createButton;
     
-    UIButton *createHP = [UIButton new];
-    createHP.tintColor = [UIColor whiteColor];
-    createHP.backgroundColor = BounceSeaGreen;
-    [createHP setTitle:@"create homepoint" forState:UIControlStateNormal];
-    createHP.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/30];
-    createHP.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [createHP addTarget:self action:@selector(navigateToCreateHomepointView) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:createHP];
-    [createHP kgn_sizeToHeight:self.view.frame.size.height/10];
-    [createHP kgn_sizeToWidth:self.view.frame.size.width];
-    [createHP kgn_pinToBottomEdgeOfSuperviewWithOffset:TAB_BAR_HEIGHT];
-    [createHP kgn_pinToLeftEdgeOfSuperview];
+    UITableView *searchResultsTableView = [[UITableView alloc] initWithFrame:self.tableView.frame];
+    searchResultsTableView.dataSource = self;
+    searchResultsTableView.delegate = self;
     
-    UITableView *tableview = [UITableView new];
-    tableview.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:tableview];
-    tableview.delegate = self;
-    tableview.dataSource = self;
-    self.tableView = tableview;
-    [tableview kgn_sizeToWidth:self.view.frame.size.width];
-    [tableview kgn_pinToTopEdgeOfSuperviewWithOffset:self.view.frame.size.height/8];
-    [tableview kgn_pinToBottomEdgeOfSuperviewWithOffset:self.view.frame.size.height/10 + TAB_BAR_HEIGHT];
-    [tableview kgn_pinToLeftEdgeOfSuperview];
+    self.searchResultsTableViewController = [[UITableViewController alloc] init];
+    self.searchResultsTableViewController.tableView = searchResultsTableView;
+    
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:self.searchResultsTableViewController];
+    self.searchController.searchResultsUpdater = self;
+    self.searchController.delegate = self;
+    
+    self.searchController.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
+    self.tableView.tableHeaderView = self.searchController.searchBar;
+    
+    self.definesPresentationContext = YES;
+    
+//    UIButton *createHP = [UIButton new];
+//    createHP.tintColor = [UIColor whiteColor];
+//    createHP.backgroundColor = BounceSeaGreen;
+//    [createHP setTitle:@"create homepoint" forState:UIControlStateNormal];
+//    createHP.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/30];
+//    createHP.titleLabel.textAlignment = NSTextAlignmentCenter;
+//    [createHP addTarget:self action:@selector(navigateToCreateHomepointView) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:createHP];
+//    [createHP kgn_sizeToHeight:self.view.frame.size.height/10];
+//    [createHP kgn_sizeToWidth:self.view.frame.size.width];
+//    [createHP kgn_pinToBottomEdgeOfSuperviewWithOffset:TAB_BAR_HEIGHT];
+//    [createHP kgn_pinToLeftEdgeOfSuperview];
+    
+//    UITableView *tableview = [UITableView new];
+//    tableview.backgroundColor = [UIColor whiteColor];
+//    [self.view addSubview:tableview];
+//    tableview.delegate = self;
+//    tableview.dataSource = self;
+//    self.tableView = tableview;
+//    [tableview kgn_sizeToWidth:self.view.frame.size.width];
+//    [tableview kgn_pinToTopEdgeOfSuperviewWithOffset:self.view.frame.size.height/8];
+//    [tableview kgn_pinToBottomEdgeOfSuperviewWithOffset:self.view.frame.size.height/10 + TAB_BAR_HEIGHT];
+//    [tableview kgn_pinToLeftEdgeOfSuperview];
 }
 
--(void)searchButtonClicked {
-        // TODO check internet connection?
-        [[Utility getInstance] showProgressHudWithMessage:@"Loading"];
-    [[ParseManager getInstance] setGetAllOtherGroupsDelegate:self];
-    [[ParseManager getInstance] getAllOtherGroupsForCurrentUser];
+-(void)createButtonClicked {
+//    [[Utility getInstance] showProgressHudWithMessage:@"Loading"];
+//    [[ParseManager getInstance] setGetAllOtherGroupsDelegate:self];
+//    [[ParseManager getInstance] getAllOtherGroupsForCurrentUser];
+    
+    @try {
+        CreateHomepoint *createhomepoint = [CreateHomepoint new];
+        [self.navigationController pushViewController:createhomepoint animated:YES];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -111,8 +137,12 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [[ParseManager getInstance] setUpdateGroupDelegate:self];
-    [self loadGroups];
+    [[Utility getInstance] showProgressHudWithMessage:@"Loading"];
+    [[ParseManager getInstance] setGetAllOtherGroupsDelegate:self];
+    [[ParseManager getInstance] getAllOtherGroupsForCurrentUser];
+    
+//    [[ParseManager getInstance] setUpdateGroupDelegate:self];
+//    [self loadGroups];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -158,7 +188,6 @@
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
     }
-
 }
 
 #pragma mark - Navigation Bar
@@ -178,9 +207,10 @@
 
 - (void)didLoadAllOtherGroups:(NSArray *)allGroups {
     [[Utility getInstance] hideProgressHud];
-        SearchToAddGroups *searchVC = [SearchToAddGroups new];
-        searchVC.allGroups = allGroups;
-    [self.navigationController pushViewController:searchVC animated:YES];
+    self.allGroups = allGroups;
+//        SearchToAddGroups *searchVC = [SearchToAddGroups new];
+//        searchVC.allGroups = allGroups;
+//    [self.navigationController pushViewController:searchVC animated:YES];
 }
 
 -(void)cancelButtonClicked{
@@ -193,7 +223,15 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return groups.count;
+    if ([tableView isEqual:ResultsTableView]) {
+        if (self.searchResults) {
+            return self.searchResults.count;
+        } else {
+            return 0;
+        }
+    } else {
+        return [groups count];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -352,18 +390,6 @@
     [[self view] endEditing:YES];
 }
 
-#pragma mark - create Homepoint View
-- (void) navigateToCreateHomepointView
-{
-    @try {
-        CreateHomepoint *createhomepoint = [CreateHomepoint new];
-        [self.navigationController pushViewController:createhomepoint animated:YES];
-    }
-    @catch (NSException *exception) {
-        NSLog(@"Exception %@", exception);
-    }
-}
-
 #pragma mark - Parse Manager Delegate
 - (void)didloadAllObjects:(NSArray *)objects
 {
@@ -377,5 +403,27 @@
 {
     [[Utility getInstance] hideProgressHud];
 }
+
+#pragma mark - Search Results Updating
+
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    self.index = -1;
+    UISearchBar *searchBar = searchController.searchBar;
+    if (searchBar.text.length > 0) {
+        NSString *text = searchBar.text;
+        
+        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(PFObject *group, NSDictionary *bindings) {
+            NSRange range = [[group objectForKey:@"groupName"] rangeOfString:text options:NSCaseInsensitiveSearch];
+            
+            return range.location != NSNotFound;
+        }];
+        
+        NSArray *searchResults = [self.allGroups filteredArrayUsingPredicate:predicate];
+        self.searchResults = searchResults;
+        
+        [self.searchResultsTableViewController.tableView reloadData];
+    }
+}
+
 
 @end

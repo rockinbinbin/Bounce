@@ -167,7 +167,7 @@
         // get selected users
         NSArray *users = [self getCheckedUsers];
         [[ParseManager getInstance] setAddGroupdelegate:self];
-        [[ParseManager getInstance] addGroup:self.groupName withArrayOfUser:users withLocation:self.groupLocation withImage:self.homepointImage];
+        [[ParseManager getInstance] addGroup:self.groupName withArrayOfUser:users withLocation:self.groupLocation withImage:self.homepointImage withAddress:self.address];
     }
 }
 
