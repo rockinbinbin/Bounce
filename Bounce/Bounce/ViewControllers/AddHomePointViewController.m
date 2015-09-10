@@ -232,7 +232,7 @@
             cell.requestAdded.text = @"Request sent!";
         }
         
-        cell.address = [self.searchResults[indexPath.row] objectForKey:@"Address"];
+        cell.address.text = [self.searchResults[indexPath.row] objectForKey:@"Address"];
         
         [cell.iconView addTarget:self action:@selector(addGroup:) forControlEvents:UIControlEventTouchUpInside];
         
