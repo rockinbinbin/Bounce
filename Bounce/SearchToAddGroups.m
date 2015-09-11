@@ -121,6 +121,7 @@
     
         UIImage *img = [UIImage imageNamed:@"redPlusWithBorder"];
         [cell.iconView setImage:img forState:UIControlStateNormal];
+        cell.iconView.tag = indexPath.row;
     
         if (indexPath.row == self.index) {
                 [cell.iconView setImage:nil forState:UIControlStateNormal];
@@ -143,14 +144,14 @@
 
 - (void) addGroup:(id)sender {
     
-    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
-    NSIndexPath *indexPath = [ResultsTableView indexPathForRowAtPoint:buttonPosition];
-        if (indexPath != nil) {
-                    self.currentGroup = [self.searchResults objectAtIndex:indexPath.row];
+    UIButton *senderButton = (UIButton *)sender;
+    NSIndexPath *path = [NSIndexPath indexPathForRow:senderButton.tag inSection:0];
+        if (path != nil) {
+                    self.currentGroup = [self.searchResults objectAtIndex:path.row];
                     [[ParseManager getInstance] setGetTentativeUsersDelegate:self];
                     [[ParseManager getInstance] getTentativeUsersFromGroup:self.currentGroup];
-               if (self.index != indexPath.row) {
-                        self.index = indexPath.row;
+               if (self.index != path.row) {
+                        self.index = path.row;
                    self.shouldAdd = YES;
                     }
                 else {

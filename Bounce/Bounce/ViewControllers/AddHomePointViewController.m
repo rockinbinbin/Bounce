@@ -97,7 +97,7 @@
     self.searchController.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
     self.tableView.tableHeaderView = self.searchController.searchBar;
 //    self.navigationItem.titleView = self.searchController.searchBar;
-    self.searchController.searchBar.placeholder = @"Search by street, town, or city";
+    self.searchController.searchBar.placeholder = @"Search by street, town, neighborhood, or city";
     
     [self setAutomaticallyAdjustsScrollViewInsets:YES];
     [self setExtendedLayoutIncludesOpaqueBars:YES];

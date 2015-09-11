@@ -118,7 +118,7 @@
     
         UIImage *img = [UIImage imageNamed:@"addUser"];
         [cell.iconView setImage:img forState:UIControlStateNormal];
-
+        cell.iconView.tag = indexPath.row;
         if (indexPath.row == self.index) {
                 UIImage *img = [UIImage imageNamed:@"confirmRequest"];
                 [cell.iconView setImage:img forState:UIControlStateNormal];
@@ -141,12 +141,12 @@
 
 - (void) addMember:(id)sender {
     
-        CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
-        NSIndexPath *indexPath = [ResultsTableView indexPathForRowAtPoint:buttonPosition];
-        if (indexPath != nil) {
-                PFUser *user = [self.searchResults objectAtIndex:indexPath.row];
-               if (self.index != indexPath.row) {
-                        self.index = indexPath.row;
+    UIButton *senderButton = (UIButton *)sender;
+    NSIndexPath *path = [NSIndexPath indexPathForRow:senderButton.tag inSection:0];
+        if (path != nil) {
+                PFUser *user = [self.searchResults objectAtIndex:path.row];
+               if (self.index != path.row) {
+                        self.index = path.row;
                         [[ParseManager getInstance] addUser:user toGroup:self.group];
                     }
                 else {
