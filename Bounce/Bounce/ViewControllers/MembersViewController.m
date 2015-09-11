@@ -70,10 +70,6 @@
     }
 }
 
-- (void) cancelButtonClicked {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-
 
 #pragma mark - TableView Datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

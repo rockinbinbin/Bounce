@@ -55,7 +55,7 @@
             [self.contentView addSubview:address];
             [address kgn_positionBelowItem:name withOffset:6];
             [address kgn_positionToTheRightOfItem:profileImage withOffset:20];
-            [address kgn_pinToRightEdgeOfSuperviewWithOffset:60];
+            [address kgn_sizeToWidth:self.contentView.frame.size.width - 150];
             self.address = address;
         
                 UIButton *iconView = [UIButton new];

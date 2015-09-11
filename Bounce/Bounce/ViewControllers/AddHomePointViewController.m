@@ -21,6 +21,7 @@
 #import "homepointListCell.h"
 #import "SearchToAddGroups.h"
 #import "membersCell.h"
+#import "CAPSPageMenu.h"
 
 #define ResultsTableView self.searchResultsTableViewController.tableView
 #define Identifier @"Cell"
@@ -35,7 +36,6 @@
 @property (nonatomic) NSInteger index;
 @property (nonatomic, strong) PFObject *currentGroup;
 @property (nonatomic) BOOL shouldAdd;
-
 
 @end
 
@@ -86,9 +86,30 @@
     self.searchController.searchResultsUpdater = self;
     self.searchController.delegate = self;
     
+//    UIView *searchContainerView = [UIView new];
+//    [searchContainerView addSubview:self.searchController.searchBar];
+//    UIBarButtonItem *searchBarItem = [[UIBarButtonItem alloc] initWithCustomView:searchContainerView];
+//    self.navigationItem.rightBarButtonItem = searchBarItem;
+//    CGRect bounds = self.navigationController.view.frame;
+//    bounds= CGRectMake(120, 0, bounds.size.width-120, 44);
+//    [searchContainerView setFrame:bounds];
+    
     self.searchController.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
     self.tableView.tableHeaderView = self.searchController.searchBar;
-    self.searchController.searchBar.placeholder = @"Search for a homepoint's name or address";
+//    self.navigationItem.titleView = self.searchController.searchBar;
+    self.searchController.searchBar.placeholder = @"Search homepoints near your address";
+    
+    [self setAutomaticallyAdjustsScrollViewInsets:YES];
+    [self setExtendedLayoutIncludesOpaqueBars:YES];
+    
+//    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(-5.0, 0.0, 320.0, 44.0)];
+//    searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+//    UIView *searchBarView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 310.0, 44.0)];
+//    searchBarView.autoresizingMask = 0;
+//    searchBar.delegate = self;
+//    searchBar.placeholder = @"Search for a homepoint's name or address";
+//    [searchBarView addSubview:searchBar];
+//    self.navigationItem.titleView = searchBarView;
     
     self.definesPresentationContext = YES;
 }
@@ -453,24 +474,23 @@
     if (searchBar.text.length > 0) {
         NSString *text = searchBar.text;
         
-        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(PFObject *group, NSDictionary *bindings) {
-            NSRange range = [[group objectForKey:@"groupName"] rangeOfString:text options:NSCaseInsensitiveSearch];
-            return range.location != NSNotFound;
-        }];
+//        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(PFObject *group, NSDictionary *bindings) {
+//            NSRange range = [[group objectForKey:@"groupName"] rangeOfString:text options:NSCaseInsensitiveSearch];
+//            return range.location != NSNotFound;
+//        }];
         
         NSPredicate *addressPredicate = [NSPredicate predicateWithBlock:^BOOL(PFObject *group, NSDictionary *bindings) {
             NSRange range = [[group objectForKey:@"Address"] rangeOfString:text options:NSCaseInsensitiveSearch];
             return range.location != NSNotFound;
         }];
         
-        NSPredicate *compoundPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:@[predicate, addressPredicate]];
+        //NSPredicate *compoundPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:@[predicate, addressPredicate]];
         
-        NSArray *searchResults = [self.allGroups filteredArrayUsingPredicate:predicate];
+        NSArray *searchResults = [self.allGroups filteredArrayUsingPredicate:addressPredicate];
         
         self.searchResults = searchResults;
         [self.searchResultsTableViewController.tableView reloadData];
     }
 }
-
 
 @end

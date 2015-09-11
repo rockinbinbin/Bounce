@@ -111,6 +111,7 @@
     [self.map addAnnotation:mkPointClicked];
     self.groupLocation = [PFGeoPoint geoPointWithLatitude:mkPointClicked.coordinate.latitude longitude:mkPointClicked.coordinate.longitude];
     CLLocation *location = [[CLLocation alloc] initWithLatitude:mkPointClicked.coordinate.latitude longitude:mkPointClicked.coordinate.longitude];
+    [[Utility getInstance] showProgressHudWithMessage:@"Locating..."];
     [self.geoCoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
         CLPlacemark *placemark = [placemarks objectAtIndex:0];
         self.address = [[placemark.addressDictionary valueForKey:@"FormattedAddressLines"]componentsJoinedByString:@", "];
@@ -118,6 +119,7 @@
         MAKE_A_WEAKSELF;
         dispatch_async(dispatch_get_main_queue(), ^{
             weakSelf.addressLabel.text = [NSString stringWithFormat:@"Centered at %@", self.address];
+            [[Utility getInstance] hideProgressHud];
             weakSelf.bottomView.hidden = NO;
         });
     }];
