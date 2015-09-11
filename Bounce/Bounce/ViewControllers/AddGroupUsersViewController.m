@@ -97,8 +97,9 @@
         [[Utility getInstance] showProgressHudWithMessage:@"Saving..." withView:self.view];
         
         [[ParseManager getInstance] setAddGroupdelegate:self];
+
         [self.selectedUsers addObject:[PFUser currentUser]];
-        [[ParseManager getInstance] addGroup:self.groupName withArrayOfUser:self.selectedUsers withLocation:self.groupLocation withImage:self.homepointImage];
+        [[ParseManager getInstance] addGroup:self.groupName withArrayOfUser:self.selectedUsers withLocation:self.groupLocation withImage:self.homepointImage withAddress:self.address];
     }
 }
 

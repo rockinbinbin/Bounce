@@ -105,12 +105,13 @@ PFUser *currentUser;
     }
 }
 
-- (void) addGroup:(NSString*) groupName withArrayOfUser:(NSArray *)users withLocation:(PFGeoPoint*) location withImage:(UIImage *)image {
+- (void) addGroup:(NSString*) groupName withArrayOfUser:(NSArray *)users withLocation:(PFGeoPoint*) location withImage:(UIImage *)image withAddress:(NSString *)address  {
     if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
     PFObject *object = [PFObject objectWithClassName:PF_GROUPS_CLASS_NAME];
     object[PF_GROUPS_NAME] = groupName;
     object[PF_GROUP_LOCATION] = location;
     object[PF_GROUP_OWNER] = [PFUser currentUser];
+    object[@"Address"] = address;
     
     PFFile *imageFile = [PFFile new];
     imageFile = [PFFile fileWithData:UIImagePNGRepresentation(image)];

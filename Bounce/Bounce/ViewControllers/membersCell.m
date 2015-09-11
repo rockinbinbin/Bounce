@@ -41,11 +41,22 @@
             UILabel *name = [UILabel new];
             name.translatesAutoresizingMaskIntoConstraints = NO;
             name.textColor = [UIColor blackColor];
-            name.font = [UIFont fontWithName:@"AvenirNext-Regular" size:22];
+            name.font = [UIFont fontWithName:@"AvenirNext-Medium" size:18];
             [self.contentView addSubview:name];
-            [name kgn_centerVerticallyInSuperview];
+            [name kgn_pinToTopEdgeOfSuperviewWithOffset:20];
             [name kgn_positionToTheRightOfItem:profileImage withOffset:20];
             self.name = name;
+            
+            UILabel *address = [UILabel new];
+            address.translatesAutoresizingMaskIntoConstraints = NO;
+            address.numberOfLines = 0;
+            address.textColor = [UIColor blackColor];
+            address.font = [UIFont fontWithName:@"AvenirNext-Medium" size:12];
+            [self.contentView addSubview:address];
+            [address kgn_positionBelowItem:name withOffset:6];
+            [address kgn_positionToTheRightOfItem:profileImage withOffset:20];
+            [address kgn_sizeToWidth:self.contentView.frame.size.width - 150];
+            self.address = address;
         
                 UIButton *iconView = [UIButton new];
                 [self.contentView addSubview:iconView];

@@ -20,4 +20,6 @@
 @property (nonatomic, strong) NSMutableArray *selectedUsers;
 @property (nonatomic, strong) UIImage *homepointImage;
 
+@property (strong, nonatomic) NSString *address;
+
 @end

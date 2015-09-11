@@ -17,6 +17,11 @@
 
 @interface AddLocationScreenViewController ()
 
+@property (nonatomic, strong) UILabel *addressLabel;
+@property (nonatomic, strong) UIView *bottomView;
+@property (nonatomic, strong) CLGeocoder *geoCoder;
+@property (nonatomic, strong) NSString *address;
+
 @end
 
 @implementation AddLocationScreenViewController
@@ -49,12 +54,35 @@
     [rightButton addTarget:self action:@selector(doneButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     
+    UIView *bottomView = [UIView new];
+    bottomView.hidden = YES;
+    bottomView.backgroundColor = [UIColor whiteColor];
+    [self.map addSubview:bottomView];
+    [bottomView kgn_pinToBottomEdgeOfSuperviewWithOffset:TAB_BAR_HEIGHT];
+    [bottomView kgn_pinToLeftEdgeOfSuperview];
+    [bottomView kgn_sizeToHeight:100];
+    [bottomView kgn_sizeToWidth:self.view.frame.size.width];
+    self.bottomView = bottomView;
+    
+    UILabel *address = [[UILabel alloc] init];
+    address.textColor = [UIColor blackColor];
+    address.numberOfLines = 0;
+    address.textAlignment = NSTextAlignmentCenter;
+    address.font = [UIFont fontWithName:@"AvenirNext-Regular" size:16.0];
+    [self.bottomView addSubview:address];
+    [address kgn_pinToTopEdgeOfSuperviewWithOffset:30];
+    [address kgn_centerHorizontallyInSuperview];
+    [address kgn_sizeToWidth:self.view.frame.size.width - 50];
+    self.addressLabel = address;
+    
+    
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapClicked:)];
     tapRecognizer.numberOfTapsRequired = 1;
     tapRecognizer.numberOfTouchesRequired = 1;
     
     [self.map addGestureRecognizer:tapRecognizer];
     [self.map setDelegate:self];
+    self.geoCoder = [CLGeocoder new];
     
     [self startReceivingSignificantLocationChanges];
     [self changeCenterToUserLocation];
@@ -87,6 +115,19 @@
         [self.map removeAnnotations:existingpoints];
     [self.map addAnnotation:mkPointClicked];
     self.groupLocation = [PFGeoPoint geoPointWithLatitude:mkPointClicked.coordinate.latitude longitude:mkPointClicked.coordinate.longitude];
+    CLLocation *location = [[CLLocation alloc] initWithLatitude:mkPointClicked.coordinate.latitude longitude:mkPointClicked.coordinate.longitude];
+    [[Utility getInstance] showProgressHudWithMessage:@"Locating..."];
+    [self.geoCoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+        CLPlacemark *placemark = [placemarks objectAtIndex:0];
+        self.address = [[placemark.addressDictionary valueForKey:@"FormattedAddressLines"]componentsJoinedByString:@", "];
+        
+        MAKE_A_WEAKSELF;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            weakSelf.addressLabel.text = [NSString stringWithFormat:@"Centered at %@", self.address];
+            [[Utility getInstance] hideProgressHud];
+            weakSelf.bottomView.hidden = NO;
+        });
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -136,6 +177,7 @@
     controller.homepointImage = self.homepointImage;
     controller.groupLocation = self.groupLocation;
     controller.groupName = self.groupName;
+    controller.address = self.address;
     [self.navigationController pushViewController:controller animated:YES];
 }
 

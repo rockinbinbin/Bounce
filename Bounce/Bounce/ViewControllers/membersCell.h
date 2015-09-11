@@ -16,5 +16,8 @@
 @property (nonatomic, weak) UIButton *iconView;
 @property (nonatomic, weak) UILabel *requestAdded;
 
+@property (nonatomic, weak) UILabel *distance;
+@property (nonatomic, weak) UILabel *address;
+
 
 @end

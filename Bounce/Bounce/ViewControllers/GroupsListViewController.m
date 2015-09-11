@@ -17,6 +17,7 @@
 #import "homepointListCell.h"
 #import "MembersViewController.h"
 #import "HomepointChat.h"
+#import <RootSearchTabController.h>
 
 @interface GroupsListViewController ()
 
@@ -190,7 +191,7 @@
 
 -(void)addButtonClicked{
     if (!loadingData) {
-        AddHomePointViewController* addHomePointViewController = [AddHomePointViewController new];
+        RootSearchTabController* addHomePointViewController = [RootSearchTabController new];
         [self.navigationController pushViewController:addHomePointViewController animated:YES];
     }
 }

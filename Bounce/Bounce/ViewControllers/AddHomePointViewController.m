@@ -20,10 +20,22 @@
 #import "UIView+AutoLayout.h"
 #import "homepointListCell.h"
 #import "SearchToAddGroups.h"
+#import "membersCell.h"
+#import "CAPSPageMenu.h"
+
+#define ResultsTableView self.searchResultsTableViewController.tableView
+#define Identifier @"Cell"
 
 @interface AddHomePointViewController ()
 
 @property (nonatomic) NSInteger cellIndex;
+//////////////
+@property (nonatomic, strong) NSArray *searchResults;
+@property (nonatomic, strong) UISearchController *searchController;
+@property (strong, nonatomic) UITableViewController *searchResultsTableViewController;
+@property (nonatomic) NSInteger index;
+@property (nonatomic, strong) PFObject *currentGroup;
+@property (nonatomic) BOOL shouldAdd;
 
 @end
 
@@ -41,7 +53,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+
+    self.allGroups = [NSArray new];
+    self.searchResults = [NSMutableArray new];
+    self.index = -1;
+    self.shouldAdd = NO;
     
     UILabel *navLabel = [UILabel new];
     navLabel.textColor = [UIColor whiteColor];
@@ -52,57 +68,61 @@
     navLabel.text = @"Add Homepoint";
     [navLabel sizeToFit];
     
-    UILabel *nearbyLabel = [UILabel new];
-    nearbyLabel.textColor = [UIColor purpleColor];
-    nearbyLabel.backgroundColor = BounceLightGray;
-    nearbyLabel.textAlignment = NSTextAlignmentCenter;
-    nearbyLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/35];
-    nearbyLabel.text = @"ARE YOU HOME? \nCHECK OUT HOMEPOINTS NEARBY:";
-    nearbyLabel.numberOfLines = 0;
-    [self.view addSubview:nearbyLabel];
-    [nearbyLabel kgn_pinToTopEdgeOfSuperview];
-    [nearbyLabel kgn_sizeToWidth:self.view.frame.size.width];
-    [nearbyLabel kgn_sizeToHeight:self.view.frame.size.height/8];
-    [nearbyLabel kgn_pinToLeftEdgeOfSuperview];
-    
     UIButton *customButton = [[Utility getInstance] createCustomButton:[UIImage imageNamed:@"common_back_button"]];
     [customButton addTarget:self action:@selector(cancelButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:customButton];
     
-    UIButton *rightButton = [[Utility getInstance] createCustomButton:[UIImage imageNamed:@"searchIcon"]];
-    [rightButton addTarget:self action:@selector(searchButtonClicked) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    UITableView *searchResultsTableView = [[UITableView alloc] initWithFrame:self.tableView.frame];
+    searchResultsTableView.dataSource = self;
+    searchResultsTableView.delegate = self;
     
-    UIButton *createHP = [UIButton new];
-    createHP.tintColor = [UIColor whiteColor];
-    createHP.backgroundColor = BounceSeaGreen;
-    [createHP setTitle:@"create homepoint" forState:UIControlStateNormal];
-    createHP.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/30];
-    createHP.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [createHP addTarget:self action:@selector(navigateToCreateHomepointView) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:createHP];
-    [createHP kgn_sizeToHeight:self.view.frame.size.height/10];
-    [createHP kgn_sizeToWidth:self.view.frame.size.width];
-    [createHP kgn_pinToBottomEdgeOfSuperviewWithOffset:TAB_BAR_HEIGHT];
-    [createHP kgn_pinToLeftEdgeOfSuperview];
+    self.searchResultsTableViewController = [[UITableViewController alloc] init];
+    self.searchResultsTableViewController.tableView = searchResultsTableView;
     
-    UITableView *tableview = [UITableView new];
-    tableview.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:tableview];
-    tableview.delegate = self;
-    tableview.dataSource = self;
-    self.tableView = tableview;
-    [tableview kgn_sizeToWidth:self.view.frame.size.width];
-    [tableview kgn_pinToTopEdgeOfSuperviewWithOffset:self.view.frame.size.height/8];
-    [tableview kgn_pinToBottomEdgeOfSuperviewWithOffset:self.view.frame.size.height/10 + TAB_BAR_HEIGHT];
-    [tableview kgn_pinToLeftEdgeOfSuperview];
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:self.searchResultsTableViewController];
+    self.searchController.searchResultsUpdater = self;
+    self.searchController.delegate = self;
+    
+//    UIView *searchContainerView = [UIView new];
+//    [searchContainerView addSubview:self.searchController.searchBar];
+//    UIBarButtonItem *searchBarItem = [[UIBarButtonItem alloc] initWithCustomView:searchContainerView];
+//    self.navigationItem.rightBarButtonItem = searchBarItem;
+//    CGRect bounds = self.navigationController.view.frame;
+//    bounds= CGRectMake(120, 0, bounds.size.width-120, 44);
+//    [searchContainerView setFrame:bounds];
+    
+    self.searchController.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
+    self.tableView.tableHeaderView = self.searchController.searchBar;
+//    self.navigationItem.titleView = self.searchController.searchBar;
+    self.searchController.searchBar.placeholder = @"Search by street, town, neighborhood, or city";
+    
+    [self setAutomaticallyAdjustsScrollViewInsets:YES];
+    [self setExtendedLayoutIncludesOpaqueBars:YES];
+    
+//    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(-5.0, 0.0, 320.0, 44.0)];
+//    searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+//    UIView *searchBarView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 310.0, 44.0)];
+//    searchBarView.autoresizingMask = 0;
+//    searchBar.delegate = self;
+//    searchBar.placeholder = @"Search for a homepoint's name or address";
+//    [searchBarView addSubview:searchBar];
+//    self.navigationItem.titleView = searchBarView;
+    
+    self.definesPresentationContext = YES;
 }
 
--(void)searchButtonClicked {
-        // TODO check internet connection?
-        [[Utility getInstance] showProgressHudWithMessage:@"Loading"];
-    [[ParseManager getInstance] setGetAllOtherGroupsDelegate:self];
-    [[ParseManager getInstance] getAllOtherGroupsForCurrentUser];
+-(void)createButtonClicked {
+//    [[Utility getInstance] showProgressHudWithMessage:@"Loading"];
+//    [[ParseManager getInstance] setGetAllOtherGroupsDelegate:self];
+//    [[ParseManager getInstance] getAllOtherGroupsForCurrentUser];
+    
+    @try {
+        CreateHomepoint *createhomepoint = [CreateHomepoint new];
+        [self.navigationController pushViewController:createhomepoint animated:YES];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@", exception);
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -112,6 +132,10 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [[Utility getInstance] showProgressHudWithMessage:@"Loading"];
+    [[ParseManager getInstance] setGetAllOtherGroupsDelegate:self];
+    [[ParseManager getInstance] getAllOtherGroupsForCurrentUser];
+    [[ParseManager getInstance] setGetTentativeUsersDelegate:self];
     [[ParseManager getInstance] setUpdateGroupDelegate:self];
     [self loadGroups];
 }
@@ -159,23 +183,14 @@
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
     }
-
-}
-
--(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action{
-    UIButton *buttonItem = [UIButton buttonWithType:UIButtonTypeCustom];
-    buttonItem.bounds = CGRectMake( 0, 0, buttonImage.size.width, buttonImage.size.height );
-    [buttonItem addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
-    [buttonItem setImage:buttonImage forState:UIControlStateNormal];
-    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:buttonItem];
-    return barButtonItem;
 }
 
 - (void)didLoadAllOtherGroups:(NSArray *)allGroups {
     [[Utility getInstance] hideProgressHud];
-        SearchToAddGroups *searchVC = [SearchToAddGroups new];
-        searchVC.allGroups = allGroups;
-    [self.navigationController pushViewController:searchVC animated:YES];
+    self.allGroups = allGroups;
+//        SearchToAddGroups *searchVC = [SearchToAddGroups new];
+//        searchVC.allGroups = allGroups;
+//    [self.navigationController pushViewController:searchVC animated:YES];
 }
 
 -(void)cancelButtonClicked{
@@ -188,111 +203,184 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return groups.count;
+    if ([tableView isEqual:ResultsTableView]) {
+        if (self.searchResults) {
+            return self.searchResults.count;
+        } else {
+            return 0;
+        }
+    } else {
+        return [groups count];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString* cellId = @"homepointListCell";
-    homepointListCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellId];
+    NSString* cellId = Identifier;
+    membersCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellId];
     
     if (!cell) {
-        cell = [homepointListCell new];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell = [membersCell new];
     }
     
-    if ([[userJoinedGroups objectAtIndex:indexPath.row] boolValue] == YES) {
-        UIImageView *imgView = [UIImageView new];
-        imgView.image = [UIImage imageNamed:@"whiteCheck"];
-        [cell addSubview:imgView];
-        [imgView kgn_pinToRightEdgeOfSuperviewWithOffset:20];
-        [imgView kgn_pinToBottomEdgeOfSuperviewWithOffset:20];
-    }
-    else {
-        // add + button here
-    }
-    
-    NSMutableArray *images = [NSMutableArray new];
-    for (int i = 0; i < [self.homepointImages count]; i++) {
-        PFFile *file = self.homepointImages[i];
+    NSString *text;
+    if ([tableView isEqual:ResultsTableView]) {
+        text = [self.searchResults[indexPath.row] objectForKey:@"groupName"];
+        
+        UIImage *img = [UIImage imageNamed:@"redPlusWithBorder"];
+        [cell.iconView setImage:img forState:UIControlStateNormal];
+        cell.iconView.tag = indexPath.row;
+        
+        if (indexPath.row == self.index) {
+            [cell.iconView setImage:nil forState:UIControlStateNormal];
+            cell.requestAdded.text = @"Request sent!";
+        }
+        
+        cell.address.text = [self.searchResults[indexPath.row] objectForKey:@"Address"];
+        
+        [cell.iconView addTarget:self action:@selector(addGroup:) forControlEvents:UIControlEventTouchUpInside];
+        
+        cell.name.text = text;
+        PFObject *hp = [self.searchResults objectAtIndex:indexPath.row];
+        PFFile *file = [hp objectForKey:PF_GROUP_IMAGE];
         [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             if (!error) {
-                if (indexPath.row == i) {
-                    UIImage *image = [UIImage imageWithData:data];
-                    [images addObject:image];
-                    cell.cellBackground.image = image;
-                    cell.cellBackground.contentMode = UIViewContentModeScaleToFill;
-                    cell.cellBackground.backgroundColor = [UIColor blackColor]; // this should never show
-                }
+                UIImage *image = [UIImage imageWithData:data];
+                cell.profileImage.image = image;
             }
         }];
     }
-    
-    cell.homepointName.text = [[groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
-    
-    double distance = [[groupsDistance objectAtIndex:indexPath.row] doubleValue];
-    if (distance > 2500) {
-        distance = distance*0.000189394;
-        
-        if (distance >= 500) {
-            cell.distanceAway.text = @"500+ miles away";
-        }
-        else {
-            cell.distanceAway.text = [NSString stringWithFormat:DISTANCE_MESSAGE_IN_MILES, distance];
-        }
-    }
     else {
-        cell.distanceAway.text = [NSString stringWithFormat:DISTANCE_MESSAGE_IN_FEET, (int)distance];
+        text = [groups[indexPath.row] objectForKey:@"groupName"];
+        
+        UIImage *img = [UIImage imageNamed:@"redPlusWithBorder"];
+        [cell.iconView setImage:img forState:UIControlStateNormal];
+        cell.iconView.tag = indexPath.row;
+        
+        if (indexPath.row == self.index) {
+            [cell.iconView setImage:nil forState:UIControlStateNormal];
+            cell.requestAdded.text = @"Request sent!";
+        }
+        
+        cell.address.text = [groups[indexPath.row] objectForKey:@"Address"];
+        
+        [cell.iconView addTarget:self action:@selector(addGroup:) forControlEvents:UIControlEventTouchUpInside];
+        
+        cell.name.text = text;
+        PFObject *hp = [groups objectAtIndex:indexPath.row];
+        PFFile *file = [hp objectForKey:PF_GROUP_IMAGE];
+        [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error) {
+                UIImage *image = [UIImage imageWithData:data];
+                cell.profileImage.image = image;
+            }
+        }];
     }
-    
     return cell;
 }
 
 #pragma mark - TableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if ([[userJoinedGroups objectAtIndex:indexPath.row]boolValue]) {
-        // remove current user from the selected group
-        [self deleteUserFromGroup:indexPath.row];
-    } else {
-        // add current user to the selected group
-        [self addUserToGroup:indexPath.row];
-    }
+//    if ([[userJoinedGroups objectAtIndex:indexPath.row]boolValue]) {
+//        // remove current user from the selected group
+//        [self deleteUserFromGroup:indexPath.row];
+//    } else {
+//        // add current user to the selected group
+//        [self addUserToGroup:indexPath.row];
+//    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return self.view.frame.size.height/2.5;
+    return 100;
 }
 
 #pragma mark - Add User to selected group
 
-- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex;
-{
-    if (buttonIndex == 0) {
-        [self requestToJoin];
-    }
-}
-
-- (void) addUserToGroup:(NSInteger) index
-{
-    self.cellIndex = index;
-    if (!_imageActionSheet) {
-        self.imageActionSheet = [[UIActionSheet alloc] initWithTitle:@"A member of this homepoint will have to approve your request."  delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Request to join", nil];
+- (void) addGroup:(id)sender {
+    
+    UIButton *senderButton = (UIButton *)sender;
+    NSIndexPath *path = [NSIndexPath indexPathForRow:senderButton.tag inSection:0];
+    
+    if ([self.searchResults count]) {
+    if (path != nil) {
+        self.currentGroup = [self.searchResults objectAtIndex:path.row];
+        [[ParseManager getInstance] setGetTentativeUsersDelegate:self];
+        [[ParseManager getInstance] getTentativeUsersFromGroup:self.currentGroup];
+        if (self.index != path.row) {
+            self.index = path.row;
+            self.shouldAdd = YES;
         }
-    [self.imageActionSheet showInView:self.view];
-   
-}
-
--(void)requestToJoin {
-    PFObject *group = [groups objectAtIndex:self.cellIndex];
-    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
-        [[Utility getInstance] showProgressHudWithMessage:[NSString stringWithFormat:@"Request sent to %@", [group objectForKey:PF_GROUPS_NAME]] withView:self.view];
-        selectedIndex = self.cellIndex;
-        [[ParseManager getInstance] getTentativeUsersFromGroup:group]; // this adds user to tentative list
+        else {
+            self.index = -1;
+            self.shouldAdd = NO;
+        }
+        [ResultsTableView reloadData];
+    }
+    }
+    else {
+        if (path != nil) {
+            self.currentGroup = [groups objectAtIndex:path.row];
+            [[ParseManager getInstance] setGetTentativeUsersDelegate:self];
+            [[ParseManager getInstance] getTentativeUsersFromGroup:self.currentGroup];
+            if (self.index != path.row) {
+                self.index = path.row;
+                self.shouldAdd = YES;
+            }
+            else {
+                self.index = -1;
+                self.shouldAdd = NO;
+            }
+            [self.tableView reloadData];
+        }
     }
 }
+
+//- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex;
+//{
+//    if (buttonIndex == 0) {
+//        [self requestToJoin];
+//    }
+//}
+//
+//- (void) addUserToGroup:(NSInteger) index
+//{
+//    self.cellIndex = index;
+//    if (!_imageActionSheet) {
+//        self.imageActionSheet = [[UIActionSheet alloc] initWithTitle:@"A member of this homepoint will have to approve your request."  delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Request to join", nil];
+//        }
+//    [self.imageActionSheet showInView:self.view];
+//   
+//}
+//
+//-(void)requestToJoin {
+//    if ([self.searchResults count]) {
+//        PFObject *group = [self.searchResults objectAtIndex:self.cellIndex];
+//        if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+//            [[Utility getInstance] showProgressHudWithMessage:[NSString stringWithFormat:@"Request sent to %@", [group objectForKey:PF_GROUPS_NAME]] withView:self.view];
+//            selectedIndex = self.cellIndex;
+//            [[ParseManager getInstance] setGetTentativeUsersDelegate:self];
+//            [[ParseManager getInstance] getTentativeUsersFromGroup:group]; // this adds user to tentative list
+//        }
+//    }
+//    else {
+//        PFObject *group = [groups objectAtIndex:self.cellIndex];
+//        if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+//            [[Utility getInstance] showProgressHudWithMessage:[NSString stringWithFormat:@"Request sent to %@", [group objectForKey:PF_GROUPS_NAME]] withView:self.view];
+//            selectedIndex = self.cellIndex;
+//            [[ParseManager getInstance] setGetTentativeUsersDelegate:self];
+//            [[ParseManager getInstance] getTentativeUsersFromGroup:group]; // this adds user to tentative list
+//        }
+//    }
+//}
 
 - (void)didLoadTentativeUsers:(NSArray *)tentativeUsers {
-    [[ParseManager getInstance] addTentativeUserToGroup:[groups objectAtIndex:self.cellIndex] withExistingTentativeUsers:tentativeUsers];
+    [[Utility getInstance] hideProgressHud];
+    if ([self.searchResults count]) {
+        [[ParseManager getInstance] addTentativeUserToGroup:[self.searchResults objectAtIndex:self.cellIndex] withExistingTentativeUsers:tentativeUsers];
+    }
+    else {
+        [[ParseManager getInstance] addTentativeUserToGroup:[groups objectAtIndex:self.cellIndex] withExistingTentativeUsers:tentativeUsers];
+    }
 }
 
 #pragma mark - Delete user from selected group
@@ -303,7 +391,6 @@
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
             [[Utility getInstance] showProgressHudWithMessage:[NSString stringWithFormat:@"removed from %@", [group objectForKey:PF_GROUPS_NAME]] withView:self.view];
             selectedIndex = index;
-            [[ParseManager getInstance] setGetTentativeUsersDelegate:self];
             [[ParseManager getInstance] getTentativeUsersFromGroup:group];
         }
     }
@@ -347,18 +434,6 @@
     [[self view] endEditing:YES];
 }
 
-#pragma mark - create Homepoint View
-- (void) navigateToCreateHomepointView
-{
-    @try {
-        CreateHomepoint *createhomepoint = [CreateHomepoint new];
-        [self.navigationController pushViewController:createhomepoint animated:YES];
-    }
-    @catch (NSException *exception) {
-        NSLog(@"Exception %@", exception);
-    }
-}
-
 #pragma mark - Parse Manager Delegate
 - (void)didloadAllObjects:(NSArray *)objects
 {
@@ -371,6 +446,33 @@
 - (void)didFailWithError:(NSError *)error
 {
     [[Utility getInstance] hideProgressHud];
+}
+
+#pragma mark - Search Results Updating
+
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    self.index = -1;
+    UISearchBar *searchBar = searchController.searchBar;
+    if (searchBar.text.length > 0) {
+        NSString *text = searchBar.text;
+        
+//        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(PFObject *group, NSDictionary *bindings) {
+//            NSRange range = [[group objectForKey:@"groupName"] rangeOfString:text options:NSCaseInsensitiveSearch];
+//            return range.location != NSNotFound;
+//        }];
+        
+        NSPredicate *addressPredicate = [NSPredicate predicateWithBlock:^BOOL(PFObject *group, NSDictionary *bindings) {
+            NSRange range = [[group objectForKey:@"Address"] rangeOfString:text options:NSCaseInsensitiveSearch];
+            return range.location != NSNotFound;
+        }];
+        
+        //NSPredicate *compoundPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:@[predicate, addressPredicate]];
+        
+        NSArray *searchResults = [self.allGroups filteredArrayUsingPredicate:addressPredicate];
+        
+        self.searchResults = searchResults;
+        [self.searchResultsTableViewController.tableView reloadData];
+    }
 }
 
 @end

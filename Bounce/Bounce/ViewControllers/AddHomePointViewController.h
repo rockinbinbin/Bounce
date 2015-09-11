@@ -9,14 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "ParseManager.h"
 
-@interface AddHomePointViewController : UIViewController<ParseManagerUpdateGroupDelegate, ParseManagerDelegate, ParseManagerLoadingGroupsDelegate, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, ParseManagerGetTentativeUsers, ParseManagerGetAllOtherGroups>
+@interface AddHomePointViewController : UITableViewController <ParseManagerUpdateGroupDelegate, ParseManagerDelegate, ParseManagerLoadingGroupsDelegate, UIActionSheetDelegate, ParseManagerGetTentativeUsers, ParseManagerGetAllOtherGroups, UISearchResultsUpdating, UISearchControllerDelegate>
 
-@property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) UICollectionView *collectionView;
 @property (nonatomic, strong) UIActionSheet *imageActionSheet;
 
 @property NSMutableArray *homepointImages;
 
--(void)navigateToCreateHomepointView;
+@property (nonatomic, strong) NSArray *allGroups;
 
 @end
