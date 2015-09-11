@@ -309,34 +309,6 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
             }
         }
         
-        let locationManager = CLLocationManager()
-        locationManager.distanceFilter = kCLDistanceFilterNone
-        locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
-        
-        let geoCoder = CLGeocoder()
-        let location = CLLocation(latitude: locationManager.location.coordinate.latitude, longitude: locationManager.location.coordinate.longitude)
-        
-        geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
-            let placeArray = placemarks as? [CLPlacemark]
-            
-            // Place details
-            var placeMark: CLPlacemark!
-            placeMark = placeArray?[0]
-            
-            // City
-            if let city = placeMark.addressDictionary["City"] as? NSString {
-                // Set user location
-                accountInfo.setValue(city, forKey: "location")
-                
-                var error: NSError?
-                if !managedContext.save(&error) {
-                    println("Could not save \(error), \(error?.userInfo)")
-                }
-            } else {
-                println("ERROR: Could not unwrap city name")
-            }
-        })
-        
         FBRequestConnection.startForMeWithCompletionHandler({ (connection: FBRequestConnection!, result: AnyObject?, error: NSError!) -> Void in
             if error != nil {
                 println(error)
