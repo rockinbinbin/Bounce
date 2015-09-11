@@ -26,8 +26,13 @@
         [_tableView kgn_sizeToWidth:self.view.frame.size.width];
         [_tableView kgn_sizeToHeight:self.view.frame.size.height];
     
-        [self setBarButtonItemLeft:@"common_back_button"];
-        [self setBarButtonItemRight:@"Plus"];
+        UIButton *customButton = [[Utility getInstance] createCustomButton:[UIImage imageNamed:@"common_back_button"]];
+        [customButton addTarget:self action:@selector(cancelButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:customButton];
+    
+        UIButton *rightButton = [[Utility getInstance] createCustomButton:[UIImage imageNamed:@"Plus"]];
+        [rightButton addTarget:self action:@selector(addMembersClicked) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     
         UILabel *navLabel = [UILabel new];
         navLabel.textColor = [UIColor whiteColor];
@@ -38,18 +43,7 @@
         navLabel.text = @"Members";
         [navLabel sizeToFit];
     
-    }
-
-// Sets left nav bar button
--(void) setBarButtonItemLeft:(NSString*) imageName {
-        UIImage *menuImage = [UIImage imageNamed:imageName];
-        self.navigationItem.leftBarButtonItem = [self initialiseBarButton:menuImage withAction:@selector(cancelButtonClicked)];
-    }
-
-- (void) setBarButtonItemRight:(NSString *)imageName {
-        UIImage *menuImage = [UIImage imageNamed:imageName];
-        self.navigationItem.rightBarButtonItem = [self initialiseBarButton:menuImage withAction:@selector(addMembersClicked)];
-    }
+}
 
 // Sets nav bar button item with image
 -(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action {

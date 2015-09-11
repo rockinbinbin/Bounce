@@ -36,13 +36,18 @@
     navLabel.textColor = [UIColor whiteColor];
     navLabel.backgroundColor = [UIColor clearColor];
     navLabel.textAlignment = NSTextAlignmentCenter;
-    navLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
+    navLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size:20];
     self.navigationItem.titleView = navLabel;
-    navLabel.text = @"SET LOCATION";
+    navLabel.text = @"Set Location";
     [navLabel sizeToFit];
     
-    [self setBarButtonItemLeft:@"common_back_button"];
-    [self setBarButtonItemRight:@"whiteCheck"];
+    UIButton *customButton = [[Utility getInstance] createCustomButton:[UIImage imageNamed:@"common_back_button"]];
+    [customButton addTarget:self action:@selector(cancelButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:customButton];
+    
+    UIButton *rightButton = [[Utility getInstance] createCustomButton:[UIImage imageNamed:@"whiteCheck"]];
+    [rightButton addTarget:self action:@selector(doneButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapClicked:)];
     tapRecognizer.numberOfTapsRequired = 1;
@@ -89,26 +94,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Navigation Bar
--(void) setBarButtonItemLeft:(NSString*) imageName{
-    UIImage *menuImage = [UIImage imageNamed:imageName];
-    self.navigationItem.leftBarButtonItem = [self initialiseBarButton:menuImage withAction:@selector(cancelButtonClicked)];
-}
-
--(void) setBarButtonItemRight:(NSString*) imageName{
-    UIImage *menuImage = [UIImage imageNamed:imageName];
-    self.navigationItem.rightBarButtonItem = [self initialiseBarButton:menuImage withAction:@selector(doneButtonClicked)];
-}
-
--(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action {
-    UIButton *buttonItem = [UIButton buttonWithType:UIButtonTypeCustom];
-    buttonItem.bounds = CGRectMake( 0, 0, buttonImage.size.width, buttonImage.size.height );
-    [buttonItem addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
-    [buttonItem setImage:buttonImage forState:UIControlStateNormal];
-    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:buttonItem];
-    return barButtonItem;
-}
-
 -(void)cancelButtonClicked{
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -130,33 +115,31 @@
         [[ParseManager getInstance] getAllUsers];
     }
 }
+
 #pragma mark - Parse Manager Delegate
 - (void)didloadAllObjects:(NSArray *)objects
 {
     [[Utility getInstance] hideProgressHud];
     NSMutableArray *users  = [[NSMutableArray alloc] initWithArray:objects];
-    PFUser *currentUser = [PFUser currentUser];
-    
-    // Add the current user to the first cell
-    [users insertObject:currentUser atIndex:0];
     [self navigateToGroupUsersScreenAndSetData:([NSArray arrayWithArray:users])];
-    
 }
+
 - (void)didFailWithError:(NSError *)error
 {
     [[Utility getInstance] hideProgressHud];
     NSLog(@"Error in loading users from parse.com");
 }
+
 -(void) navigateToGroupUsersScreenAndSetData:(NSArray *) users{
     AddGroupUsersViewController *controller = [[AddGroupUsersViewController alloc]  init];
-    controller.groupUsers = users;
+    controller.candidateUsers = users;
     controller.homepointImage = self.homepointImage;
     controller.groupLocation = self.groupLocation;
     controller.groupName = self.groupName;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-# pragma mark Custom Functions
+#pragma mark Custom Functions
 
 /// MODIFIES: The location manager
 /// EFFECTS:  Starts the Core Location manager monitoring for significant

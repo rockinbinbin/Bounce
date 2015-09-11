@@ -65,12 +65,13 @@
     [nearbyLabel kgn_sizeToHeight:self.view.frame.size.height/8];
     [nearbyLabel kgn_pinToLeftEdgeOfSuperview];
     
-    [self setBarButtonItemLeft:@"common_back_button"];
+    UIButton *customButton = [[Utility getInstance] createCustomButton:[UIImage imageNamed:@"common_back_button"]];
+    [customButton addTarget:self action:@selector(cancelButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:customButton];
     
-    UIBarButtonItem *searchButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"searchIcon"] style:UIBarButtonItemStylePlain target:self action:@selector(searchButtonClicked)];
-    
-    searchButton.tintColor = [UIColor whiteColor];
-    self.navigationItem.rightBarButtonItem = searchButton;
+    UIButton *rightButton = [[Utility getInstance] createCustomButton:[UIImage imageNamed:@"searchIcon"]];
+    [rightButton addTarget:self action:@selector(searchButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     
     UIButton *createHP = [UIButton new];
     createHP.tintColor = [UIColor whiteColor];
@@ -159,12 +160,6 @@
         NSLog(@"Exception %@", exception);
     }
 
-}
-
-#pragma mark - Navigation Bar
--(void) setBarButtonItemLeft:(NSString*) imageName{
-    UIImage *menuImage = [UIImage imageNamed:imageName];
-    self.navigationItem.leftBarButtonItem = [self initialiseBarButton:menuImage withAction:@selector(cancelButtonClicked)];
 }
 
 -(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action{

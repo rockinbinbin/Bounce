@@ -259,7 +259,9 @@
     [super viewWillAppear:animated];
     self.timeAllocated = 120;
     if ([GlobalVariables shouldNotOpenRequestView]) {
-        [self setBarButtonItemLeft:@"common_back_button"];
+        UIButton *customButton = [[Utility getInstance] createCustomButton:[UIImage imageNamed:@"common_back_button"]];
+        [customButton addTarget:self action:@selector(cancelButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:customButton];
     }
     
     if (![GlobalVariables shouldNotOpenRequestView]) {
@@ -283,23 +285,6 @@
     if ([[RequestManger getInstance] hasActiveRequest]) {
         NSLog(@"SHOULD PRESENT NOW");
     }
-}
-
-// Sets left nav bar button
--(void) setBarButtonItemLeft:(NSString*) imageName {
-    UIImage *menuImage = [UIImage imageNamed:imageName];
-    self.navigationItem.leftBarButtonItem = [self initialiseBarButton:menuImage withAction:@selector(cancelButtonClicked)];
-}
-
-// Sets nav bar button item with image
--(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action {
-    
-    UIButton *buttonItem = [UIButton buttonWithType:UIButtonTypeCustom];
-    buttonItem.bounds = CGRectMake( 0, 0, buttonImage.size.width, buttonImage.size.height );
-    [buttonItem addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
-    [buttonItem setImage:buttonImage forState:UIControlStateNormal];
-    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:buttonItem];
-    return barButtonItem;
 }
 
 -(void)cancelButtonClicked {
@@ -390,13 +375,6 @@
         pav.annotation = annotation;
     }
     return pav;
-}
-
-- (IBAction)messageButtonClicked:(id)sender {
-    MessageScreenViewController* messageScreenViewController = [[MessageScreenViewController alloc] init];
-    messageScreenViewController.genderMatching = self.genderMatching;
-    messageScreenViewController.timeAllocated = self.timeAllocated;
-    [self.navigationController pushViewController:messageScreenViewController animated:NO];
 }
 
 - (IBAction)groupsChatButtonClicked:(id)sender {
