@@ -11,20 +11,14 @@
 #import <CoreLocation/CoreLocation.h>
 #import "ParseManager.h"
 
-@interface AddGroupUsersViewController : UIViewController<ParseManagerAddGroupDelegate, ParseManagerUpdateGroupDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface AddGroupUsersViewController : UITableViewController <ParseManagerAddGroupDelegate, UISearchControllerDelegate, UISearchResultsUpdating>
 
-@property NSArray *groupUsers;
-@property NSMutableArray *userChecked; // array of selected users
+@property NSArray *candidateUsers;
 @property (nonatomic, assign) PFGeoPoint * groupLocation;
-
 @property (strong, nonatomic) NSString* groupName;
-@property BOOL editGroup;
-@property NSArray *originalGroupUsers;
-@property NSArray *remainingUsers;
 @property PFObject *updatedGroup;
+@property (nonatomic, strong) NSMutableArray *selectedUsers;
 @property (nonatomic, strong) UIImage *homepointImage;
-
-@property (weak, nonatomic) UITableView *tableView;
 
 @property (strong, nonatomic) NSString *address;
 

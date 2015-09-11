@@ -11,6 +11,7 @@
 #import "membersCell.h"
 #import "Constants.h"
 #import "AppConstant.h"
+#import "Utility.h"
 
 #define ResultsTableView self.searchResultsTableViewController.tableView
 #define Identifier @"Cell"
@@ -31,8 +32,13 @@
 - (void)viewDidLoad {
         [super viewDidLoad];
     
-        [self setBarButtonItemLeft:@"common_back_button"];
-        self.searchResults = [NSMutableArray new];
+        //[self setBarButtonItemLeft:@"common_back_button"];
+    
+    UIButton *customButton = [[Utility getInstance] createCustomButton:[UIImage imageNamed:@"common_back_button"]];
+    [customButton addTarget:self action:@selector(cancelButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:customButton];
+    
+    self.searchResults = [NSMutableArray new];
     self.index = -1;
     self.shouldAdd = NO;
     
@@ -68,21 +74,6 @@
 }
 
 #pragma mark - Util methods
-
--(void) setBarButtonItemLeft:(NSString*) imageName {
-        UIImage *menuImage = [UIImage imageNamed:imageName];
-        self.navigationItem.leftBarButtonItem = [self initialiseBarButton:menuImage withAction:@selector(cancelButtonClicked)];
-}
-
--(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action {
-
-    UIButton *buttonItem = [UIButton buttonWithType:UIButtonTypeCustom];
-        buttonItem.bounds = CGRectMake( 0, 0, buttonImage.size.width, buttonImage.size.height );
-    [buttonItem addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
-    [buttonItem setImage:buttonImage forState:UIControlStateNormal];
-        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:buttonItem];
-        return barButtonItem;
-}
 
 - (void)cancelButtonClicked {
    [self.navigationController popViewControllerAnimated:YES];

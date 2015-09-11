@@ -115,7 +115,6 @@
 		67BB92DC1ADFA8D10050164B /* GroupsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92051ADFA8D10050164B /* GroupsListViewController.m */; };
 		67BB92DD1ADFA8D10050164B /* HomePointSuccessfulCreationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92071ADFA8D10050164B /* HomePointSuccessfulCreationViewController.m */; };
 		67BB92DE1ADFA8D10050164B /* HomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92091ADFA8D10050164B /* HomeScreenViewController.m */; };
-		67BB92E51ADFA8D10050164B /* MessageScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB92181ADFA8D10050164B /* MessageScreenViewController.m */; };
 		67BB92E61ADFA8D10050164B /* RequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB921A1ADFA8D10050164B /* RequestsViewController.m */; };
 		67BB93FD1ADFABCD0050164B /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB930D1ADFABCD0050164B /* AFHTTPRequestOperation.m */; };
 		67BB93FE1ADFABCD0050164B /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB930F1ADFABCD0050164B /* AFHTTPRequestOperationManager.m */; };
@@ -484,8 +483,6 @@
 		67BB92071ADFA8D10050164B /* HomePointSuccessfulCreationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePointSuccessfulCreationViewController.m; sourceTree = "<group>"; };
 		67BB92081ADFA8D10050164B /* HomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeScreenViewController.h; sourceTree = "<group>"; };
 		67BB92091ADFA8D10050164B /* HomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreenViewController.m; sourceTree = "<group>"; wrapsLines = 1; };
-		67BB92171ADFA8D10050164B /* MessageScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageScreenViewController.h; sourceTree = "<group>"; };
-		67BB92181ADFA8D10050164B /* MessageScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageScreenViewController.m; sourceTree = "<group>"; };
 		67BB92191ADFA8D10050164B /* RequestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestsViewController.h; sourceTree = "<group>"; };
 		67BB921A1ADFA8D10050164B /* RequestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestsViewController.m; sourceTree = "<group>"; };
 		67BB930C1ADFABCD0050164B /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -1217,8 +1214,6 @@
 				67BB92071ADFA8D10050164B /* HomePointSuccessfulCreationViewController.m */,
 				67BB92081ADFA8D10050164B /* HomeScreenViewController.h */,
 				67BB92091ADFA8D10050164B /* HomeScreenViewController.m */,
-				67BB92171ADFA8D10050164B /* MessageScreenViewController.h */,
-				67BB92181ADFA8D10050164B /* MessageScreenViewController.m */,
 				00DC8E531B943F0200DD84EA /* HomepointDropdownCell.h */,
 				00DC8E541B943F0200DD84EA /* HomepointDropdownCell.m */,
 				67BB92191ADFA8D10050164B /* RequestsViewController.h */,
@@ -1762,7 +1757,6 @@
 				67BB94431ADFABCD0050164B /* JSQMessagesCellTextView.m in Sources */,
 				002805C51B845631004E1DE1 /* membersCell.m in Sources */,
 				67BB944C1ADFABCD0050164B /* JSQMessagesLabel.m in Sources */,
-				67BB92E51ADFA8D10050164B /* MessageScreenViewController.m in Sources */,
 				67BB944D1ADFABCD0050164B /* JSQMessagesLoadEarlierHeaderView.m in Sources */,
 				67BB94011ADFABCD0050164B /* AFSecurityPolicy.m in Sources */,
 				28A000231B9CC360002CF156 /* RequestPushNotificationsViewController.swift in Sources */,

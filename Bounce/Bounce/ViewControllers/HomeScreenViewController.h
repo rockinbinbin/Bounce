@@ -13,7 +13,6 @@
 #import "RequestManger.h"
 #import <Parse/Parse.h>
 #import "utilities.h"
-#import "MessageScreenViewController.h"
 #import "RequestsViewController.h"
 #import "AppConstant.h"
 #import "GroupsListViewController.h"

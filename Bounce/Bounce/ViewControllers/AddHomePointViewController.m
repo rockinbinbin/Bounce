@@ -68,12 +68,9 @@
     navLabel.text = @"Add Homepoint";
     [navLabel sizeToFit];
     
-    [self setBarButtonItemLeft:@"common_back_button"];
-    
-    UIBarButtonItem *createButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"createIcon"] style:UIBarButtonItemStylePlain target:self action:@selector(createButtonClicked)];
-    
-    createButton.tintColor = [UIColor whiteColor];
-    self.navigationItem.rightBarButtonItem = createButton;
+    UIButton *customButton = [[Utility getInstance] createCustomButton:[UIImage imageNamed:@"common_back_button"]];
+    [customButton addTarget:self action:@selector(cancelButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:customButton];
     
     UITableView *searchResultsTableView = [[UITableView alloc] initWithFrame:self.tableView.frame];
     searchResultsTableView.dataSource = self;
@@ -186,21 +183,6 @@
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
     }
-}
-
-#pragma mark - Navigation Bar
--(void) setBarButtonItemLeft:(NSString*) imageName{
-    UIImage *menuImage = [UIImage imageNamed:imageName];
-    self.navigationItem.leftBarButtonItem = [self initialiseBarButton:menuImage withAction:@selector(cancelButtonClicked)];
-}
-
--(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action{
-    UIButton *buttonItem = [UIButton buttonWithType:UIButtonTypeCustom];
-    buttonItem.bounds = CGRectMake( 0, 0, buttonImage.size.width, buttonImage.size.height );
-    [buttonItem addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
-    [buttonItem setImage:buttonImage forState:UIControlStateNormal];
-    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:buttonItem];
-    return barButtonItem;
 }
 
 - (void)didLoadAllOtherGroups:(NSArray *)allGroups {

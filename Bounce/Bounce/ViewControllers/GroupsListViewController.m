@@ -73,7 +73,9 @@
     backgroundView.backgroundColor = BounceRed;
     [self.tableView setBackgroundView:backgroundView];
     
-    [self setBarButtonItemRight:@"Plus"];
+    UIButton *rightButton = [[Utility getInstance] createCustomButton:[UIImage imageNamed:@"Plus"]];
+    [rightButton addTarget:self action:@selector(addButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     
     UILabel *navLabel = [UILabel new];
     navLabel.textColor = [UIColor whiteColor];
@@ -83,20 +85,6 @@
     self.navigationItem.titleView = navLabel;
     navLabel.text = @"Homepoints";
     [navLabel sizeToFit];
-    
-    PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
-    [query whereKey:PF_GROUP_Users_RELATION equalTo:[PFUser currentUser]];
-    [query includeKey:PF_GROUP_OWNER];
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (objects != nil) {
-            if (objects.count == 0) {
-                [self showPlaceholder];
-            } else {
-                [self hidePlaceholder];
-            }
-        }
-    }];
 }
 
 #pragma mark Placeholder Methods
@@ -148,9 +136,15 @@
  * Hides the placeholder image and text when the user has one or more homepoints.
  */
 - (void)hidePlaceholder {
-    placeholderImageView.hidden = true;
-    placeholderTitle.hidden = true;
-    placeholderBodyText.hidden = true;
+    if (placeholderImageView) {
+        [placeholderImageView removeFromSuperview];
+    }
+    if (placeholderTitle) {
+        [placeholderTitle removeFromSuperview];
+    }
+    if (placeholderBodyText) {
+        [placeholderBodyText removeFromSuperview];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -159,6 +153,19 @@
     @try {
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
             [[Utility getInstance] showProgressHudWithMessage:@"Loading..." withView:self.view];
+            
+            PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
+            [query whereKey:PF_GROUP_Users_RELATION equalTo:[PFUser currentUser]];
+            [query includeKey:PF_GROUP_OWNER];
+            
+            [query countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
+                    if (number == 0) {
+                        [self showPlaceholder];
+                    } else {
+                        [self hidePlaceholder];
+                    }
+            }];
+            
             [[ParseManager getInstance] setGetUserGroupsdelegate:self];
             loadingData = YES;
             [[ParseManager getInstance] getUserGroups];
@@ -176,28 +183,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Navigation Bar
--(void) setBarButtonItemLeft:(NSString*) imageName{
-
-    UIImage *back = [UIImage imageNamed:imageName];
-    self.navigationItem.leftBarButtonItem = [self initialiseBarButton:back withAction:@selector(backButtonClicked)];
-}
-
--(void) setBarButtonItemRight:(NSString*) imageName{
-    
-    UIImage *add = [UIImage imageNamed:imageName];
-    self.navigationItem.rightBarButtonItem = [self initialiseBarButton:add withAction:@selector(addButtonClicked)];
-}
-
--(UIBarButtonItem *)initialiseBarButton:(UIImage*) buttonImage withAction:(SEL) action {
-    UIButton *buttonItem = [UIButton buttonWithType:UIButtonTypeCustom];
-    buttonItem.bounds = CGRectMake( 0, 0, buttonImage.size.width, buttonImage.size.height );
-    [buttonItem addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
-    [buttonItem setImage:buttonImage forState:UIControlStateNormal];
-    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:buttonItem];
-    return barButtonItem;
 }
 
 -(void)backButtonClicked {
@@ -343,7 +328,7 @@
         cell = [HomepointListCell new];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-
+    
     for (int i = 0; i < [self.homepointImages count]; i++) {
         PFFile *file = self.homepointImages[i];
         [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
