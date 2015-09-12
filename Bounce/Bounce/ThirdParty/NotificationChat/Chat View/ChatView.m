@@ -225,6 +225,7 @@
 	{
 		text = @"[Picture message]";
 		filePicture = [PFFile fileWithName:@"picture.jpg" data:UIImageJPEGRepresentation(picture, 0.6)];
+        
 		[filePicture saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
 		{
 			if (error != nil) [ProgressHUD showError:@"Picture save error."];
