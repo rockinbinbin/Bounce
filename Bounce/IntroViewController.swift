@@ -284,7 +284,6 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
         let imageData = UIImagePNGRepresentation(profilePicture)
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
         let imagePath = paths.stringByAppendingPathComponent("cachedProfilePicture.png")
-
         
         let photoFile = PFFile(name: "picture.jpg", data: imageData)
         let thumbnailFile = PFFile(name: "thumbnail", data: imageData)
