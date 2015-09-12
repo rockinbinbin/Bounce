@@ -98,7 +98,7 @@
     self.searchController.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
     self.tableView.tableHeaderView = self.searchController.searchBar;
 //    self.navigationItem.titleView = self.searchController.searchBar;
-    self.searchController.searchBar.placeholder = @"Search by street, town, neighborhood, or city";
+    self.searchController.searchBar.placeholder = @"Search a homepoint's name or neighborhood";
     
     [self setAutomaticallyAdjustsScrollViewInsets:YES];
     [self setExtendedLayoutIncludesOpaqueBars:YES];
@@ -460,19 +460,31 @@
     if (searchBar.text.length > 0) {
         NSString *text = searchBar.text;
         
-//        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(PFObject *group, NSDictionary *bindings) {
-//            NSRange range = [[group objectForKey:@"groupName"] rangeOfString:text options:NSCaseInsensitiveSearch];
-//            return range.location != NSNotFound;
-//        }];
-        
-        NSPredicate *addressPredicate = [NSPredicate predicateWithBlock:^BOOL(PFObject *group, NSDictionary *bindings) {
-            NSRange range = [[group objectForKey:@"Address"] rangeOfString:text options:NSCaseInsensitiveSearch];
+        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(PFObject *group, NSDictionary *bindings) {
+            NSRange range = [group[@"groupName"] rangeOfString:text options:NSCaseInsensitiveSearch];
             return range.location != NSNotFound;
         }];
         
-        //NSPredicate *compoundPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:@[predicate, addressPredicate]];
+        NSPredicate *addressPredicate = [NSPredicate predicateWithBlock:^BOOL(PFObject *group, NSDictionary *bindings) {
+            NSRange range = [group[@"Address"] rangeOfString:text options:NSCaseInsensitiveSearch];
+            return range.location != NSNotFound;
+        }];
         
-        NSArray *searchResults = [self.allGroups filteredArrayUsingPredicate:addressPredicate];
+        NSPredicate *compoundPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:@[predicate, addressPredicate]];
+        
+        NSArray *searchResults = [self.allGroups filteredArrayUsingPredicate:compoundPredicate];
+        searchResults = [searchResults sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            NSUInteger location1 = MIN([obj1[@"groupName"] rangeOfString:text options:NSCaseInsensitiveSearch].location,
+                                       [obj1[@"Address"] rangeOfString:text options:NSCaseInsensitiveSearch].location);
+            NSUInteger location2 = MIN([obj2[@"groupName"] rangeOfString:text options:NSCaseInsensitiveSearch].location,
+                                       [obj2[@"Address"] rangeOfString:text options:NSCaseInsensitiveSearch].location);
+            if (location1 < location2) {
+                return NSOrderedAscending;
+            } else if (location2 < location1) {
+                return NSOrderedDescending;
+            }
+            return NSOrderedSame;
+        }];
         
         self.searchResults = searchResults;
         [self.searchResultsTableViewController.tableView reloadData];

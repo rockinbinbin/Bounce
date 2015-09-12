@@ -253,7 +253,7 @@ PFUser *currentUser;
     @try {
         PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
         [query whereKey:PF_GROUP_Users_RELATION notEqualTo:[PFUser currentUser]];
-        [query whereKey:PF_GROUP_LOCATION nearGeoPoint:[[PFUser currentUser] objectForKey:PF_USER_LOCATION] withinMiles:0.5];
+        [query whereKey:PF_GROUP_LOCATION nearGeoPoint:[[PFUser currentUser] objectForKey:PF_USER_LOCATION] withinMiles:0.2];
         [query setLimit:20];
 
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
