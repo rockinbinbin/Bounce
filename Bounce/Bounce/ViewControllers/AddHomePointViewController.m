@@ -22,6 +22,7 @@
 #import "SearchToAddGroups.h"
 #import "membersCell.h"
 #import "CAPSPageMenu.h"
+#import "UINavigationBar+Addition.h"
 
 #define ResultsTableView self.searchResultsTableViewController.tableView
 #define Identifier @"Cell"
@@ -36,6 +37,8 @@
 @property (nonatomic) NSInteger index;
 @property (nonatomic, strong) PFObject *currentGroup;
 @property (nonatomic) BOOL shouldAdd;
+
+@property (nonatomic, strong) NSArray *friendIds;
 
 @end
 
@@ -90,6 +93,9 @@
     self.searchController.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.searchController.searchBar.placeholder = @"Search a homepoint's name or neighborhood";
+    self.searchController.searchBar.barTintColor = BounceRed;
+    self.searchController.searchBar.tintColor = [UIColor whiteColor];
+    self.searchController.searchBar.layer.borderColor = [[UIColor clearColor] CGColor];
     
     [self setAutomaticallyAdjustsScrollViewInsets:YES];
     [self setExtendedLayoutIncludesOpaqueBars:YES];
@@ -125,7 +131,6 @@
     [[ParseManager getInstance] setUpdateGroupDelegate:self];
     [[ParseManager getInstance] setGetFacebookFriendsDelegate:self];
     [self loadGroups];
-    [[ParseManager getInstance] getFacebookFriends];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -152,6 +157,7 @@
         [[Utility getInstance] hideProgressHud];
         if (!error) {
             groups = [[NSMutableArray alloc] initWithArray:objects];
+            [[ParseManager getInstance] getFacebookFriends];
             groupsDistance = [[NSMutableArray alloc] init];
             userJoinedGroups = [[NSMutableArray alloc] init];
             self.homepointImages = [NSMutableArray new];
@@ -214,6 +220,31 @@
     if ([tableView isEqual:ResultsTableView]) {
         text = [self.searchResults[indexPath.row] objectForKey:@"groupName"];
         
+        cell.friendsLabel.text = @"Loading...";
+        
+        PFObject *homepoint = self.searchResults[indexPath.row];
+        PFRelation *groupUsers = homepoint[PF_GROUP_Users_RELATION];
+        PFQuery *friendsQuery = [groupUsers query];
+        PFQuery *totalQuery = [groupUsers query];
+        [friendsQuery whereKey:@"facebookId" containedIn:self.friendIds];
+        
+        [friendsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            // Gets friend count
+            dispatch_async(dispatch_get_main_queue(), ^{
+                cell.friendsLabel.text = [NSString stringWithFormat:@"%lu friends, ", (unsigned long)[objects count]];
+            });
+            
+            [totalQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                // Gets total number
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    cell.friendsLabel.text = [cell.friendsLabel.text stringByAppendingString:[NSString stringWithFormat:@"%lu total", (unsigned long)[objects count]]];
+                });
+            }];
+        }];
+    
+        
+        
+        
         UIImage *img = [UIImage imageNamed:@"redPlusWithBorder"];
         [cell.iconView setImage:img forState:UIControlStateNormal];
         cell.iconView.tag = indexPath.row;
@@ -239,6 +270,28 @@
     }
     else {
         text = [groups[indexPath.row] objectForKey:@"groupName"];
+        
+        cell.friendsLabel.text = @"Loading...";
+        
+        PFObject *homepoint = self.allGroups[indexPath.row];
+        PFRelation *groupUsers = homepoint[PF_GROUP_Users_RELATION];
+        PFQuery *friendsQuery = [groupUsers query];
+        PFQuery *totalQuery = [groupUsers query];
+        [friendsQuery whereKey:@"facebookId" containedIn:self.friendIds];
+        
+        [friendsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            // Gets friend count
+            dispatch_async(dispatch_get_main_queue(), ^{
+                cell.friendsLabel.text = [NSString stringWithFormat:@"%lu friends, ", (unsigned long)[objects count]];
+            });
+            
+            [totalQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                // Gets total number
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    cell.friendsLabel.text = [cell.friendsLabel.text stringByAppendingString:[NSString stringWithFormat:@"%lu total", (unsigned long)[objects count]]];
+                });
+            }];
+        }];
         
         UIImage *img = [UIImage imageNamed:@"redPlusWithBorder"];
         [cell.iconView setImage:img forState:UIControlStateNormal];
@@ -477,14 +530,24 @@
 }
 
 - (void) didLoadFacebookFriends:(NSArray *)friends withError:(NSError *)error {
-    for (int i = 0; i < [groups count]; i++) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-        membersCell *cell = (membersCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-        
-        [groups objectAtIndex:i];
-        
-        cell.friendsLabel.text = @"Hello, world";
+    
+    NSMutableArray *friendIds = [[NSMutableArray alloc] init];
+    for (PFObject *friend in friends) {
+        [friendIds addObject:friend[@"id"]];
     }
+    
+    self.friendIds = friendIds;
+    [self.tableView reloadData];
+    
+//    for (int i = 0; i < [self.allGroups count]; i++) {
+//        
+//        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+//        membersCell *cell = (membersCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+//        
+//        [groups objectAtIndex:i];
+//        
+//        cell.friendsLabel.text = @"Hello, world";
+//    }
 }
 
 @end

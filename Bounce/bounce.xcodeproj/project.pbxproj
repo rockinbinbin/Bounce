@@ -77,6 +77,7 @@
 		28B5E7461B7DA883007F79C0 /* NavigationBarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B5E7451B7DA883007F79C0 /* NavigationBarExtensions.swift */; };
 		28DF63821B85A08D00F16095 /* HomepointListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DF63811B85A08D00F16095 /* HomepointListCell.swift */; };
 		28F13A521A6C75A90069EBA4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F13A511A6C75A90069EBA4 /* MapKit.framework */; };
+		28FEDB861BA403F200BA2199 /* UINavigationBar+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FEDB851BA403F200BA2199 /* UINavigationBar+Addition.m */; };
 		67BB90C81ADFA8B20050164B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BB90C41ADFA8B20050164B /* Bolts.framework */; };
 		67BB90C91ADFA8B20050164B /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BB90C51ADFA8B20050164B /* Parse.framework */; };
 		67BB90CA1ADFA8B20050164B /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BB90C61ADFA8B20050164B /* ParseFacebookUtils.framework */; };
@@ -423,6 +424,8 @@
 		28B5E7451B7DA883007F79C0 /* NavigationBarExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarExtensions.swift; sourceTree = "<group>"; };
 		28DF63811B85A08D00F16095 /* HomepointListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomepointListCell.swift; sourceTree = "<group>"; };
 		28F13A511A6C75A90069EBA4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		28FEDB841BA403F200BA2199 /* UINavigationBar+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+Addition.h"; sourceTree = "<group>"; };
+		28FEDB851BA403F200BA2199 /* UINavigationBar+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+Addition.m"; sourceTree = "<group>"; };
 		6791817C1AC0057D00D0474C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		67BB90C41ADFA8B20050164B /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = FrameWorks/Bolts.framework; sourceTree = "<group>"; };
 		67BB90C51ADFA8B20050164B /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = FrameWorks/Parse.framework; sourceTree = "<group>"; };
@@ -968,6 +971,8 @@
 		00CEE3C5199434E700F40C12 = {
 			isa = PBXGroup;
 			children = (
+				28FEDB841BA403F200BA2199 /* UINavigationBar+Addition.h */,
+				28FEDB851BA403F200BA2199 /* UINavigationBar+Addition.m */,
 				28A000221B9CC360002CF156 /* RequestPushNotificationsViewController.swift */,
 				28A0FFD91B9B8D25002CF156 /* RichTextViewController.swift */,
 				28205C431B8FFA4B001C3630 /* BounceSwift.swift */,
@@ -1713,6 +1718,7 @@
 				002805BF1B8452CB004E1DE1 /* MembersViewController.m in Sources */,
 				002805CB1B8FF375004E1DE1 /* HomepointChat.m in Sources */,
 				67BB94021ADFABCD0050164B /* AFURLConnectionOperation.m in Sources */,
+				28FEDB861BA403F200BA2199 /* UINavigationBar+Addition.m in Sources */,
 				67BB945C1ADFABCD0050164B /* images.m in Sources */,
 				67BB92DC1ADFA8D10050164B /* GroupsListViewController.m in Sources */,
 				67BB94081ADFABCD0050164B /* UIAlertView+AFNetworking.m in Sources */,
