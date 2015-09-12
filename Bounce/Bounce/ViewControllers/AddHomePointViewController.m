@@ -72,6 +72,10 @@
     [customButton addTarget:self action:@selector(cancelButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:customButton];
     
+    UIBarButtonItem *createButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"createIcon"] style:UIBarButtonItemStylePlain target:self action:@selector(createButtonClicked)];
+    createButton.tintColor = [UIColor whiteColor];
+    self.navigationItem.rightBarButtonItem = createButton;
+    
     UITableView *searchResultsTableView = [[UITableView alloc] initWithFrame:self.tableView.frame];
     searchResultsTableView.dataSource = self;
     searchResultsTableView.delegate = self;
