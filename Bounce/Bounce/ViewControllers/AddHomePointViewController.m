@@ -68,6 +68,10 @@
     navLabel.text = @"Add Homepoint";
     [navLabel sizeToFit];
     
+    UIBarButtonItem *createButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"createIcon"] style:UIBarButtonItemStylePlain target:self action:@selector(createButtonClicked)];
+    createButton.tintColor = [UIColor whiteColor];
+    self.navigationItem.rightBarButtonItem = createButton;
+    
     UIButton *customButton = [[Utility getInstance] createCustomButton:[UIImage imageNamed:@"common_back_button"]];
     [customButton addTarget:self action:@selector(cancelButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:customButton];
@@ -83,30 +87,12 @@
     self.searchController.searchResultsUpdater = self;
     self.searchController.delegate = self;
     
-//    UIView *searchContainerView = [UIView new];
-//    [searchContainerView addSubview:self.searchController.searchBar];
-//    UIBarButtonItem *searchBarItem = [[UIBarButtonItem alloc] initWithCustomView:searchContainerView];
-//    self.navigationItem.rightBarButtonItem = searchBarItem;
-//    CGRect bounds = self.navigationController.view.frame;
-//    bounds= CGRectMake(120, 0, bounds.size.width-120, 44);
-//    [searchContainerView setFrame:bounds];
-    
     self.searchController.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
     self.tableView.tableHeaderView = self.searchController.searchBar;
-//    self.navigationItem.titleView = self.searchController.searchBar;
     self.searchController.searchBar.placeholder = @"Search a homepoint's name or neighborhood";
     
     [self setAutomaticallyAdjustsScrollViewInsets:YES];
     [self setExtendedLayoutIncludesOpaqueBars:YES];
-    
-//    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(-5.0, 0.0, 320.0, 44.0)];
-//    searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-//    UIView *searchBarView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 310.0, 44.0)];
-//    searchBarView.autoresizingMask = 0;
-//    searchBar.delegate = self;
-//    searchBar.placeholder = @"Search for a homepoint's name or address";
-//    [searchBarView addSubview:searchBar];
-//    self.navigationItem.titleView = searchBarView;
     
     self.definesPresentationContext = YES;
 }
