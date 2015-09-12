@@ -172,7 +172,6 @@
             [[ParseManager getInstance] setGetUserGroupsdelegate:self];
             loadingData = YES;
             [[ParseManager getInstance] getUserGroups];
-            [[ParseManager getInstance] setGetFacebookFriendsDelegate:self];
             [[ParseManager getInstance] getFacebookFriends];
         }
     }

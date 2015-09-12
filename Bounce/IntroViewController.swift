@@ -285,6 +285,11 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
         let imagePath = paths.stringByAppendingPathComponent("cachedProfilePicture.png")
         
+        let photoFile = PFFile(data: imageData)
+        let user = PFUser.currentUser()
+        user["picture"] = photoFile
+        user.saveInBackgroundWithBlock(nil)
+        
         if imageData.writeToFile(imagePath, atomically: false) {
             NSUserDefaults.standardUserDefaults().setObject(imagePath, forKey: "imagePath")
         }

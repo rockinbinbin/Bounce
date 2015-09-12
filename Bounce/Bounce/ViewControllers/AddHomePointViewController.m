@@ -53,7 +53,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.allGroups = [NSArray new];
     self.searchResults = [NSMutableArray new];
     self.index = -1;
@@ -83,38 +83,38 @@
     self.searchController.searchResultsUpdater = self;
     self.searchController.delegate = self;
     
-//    UIView *searchContainerView = [UIView new];
-//    [searchContainerView addSubview:self.searchController.searchBar];
-//    UIBarButtonItem *searchBarItem = [[UIBarButtonItem alloc] initWithCustomView:searchContainerView];
-//    self.navigationItem.rightBarButtonItem = searchBarItem;
-//    CGRect bounds = self.navigationController.view.frame;
-//    bounds= CGRectMake(120, 0, bounds.size.width-120, 44);
-//    [searchContainerView setFrame:bounds];
+    //    UIView *searchContainerView = [UIView new];
+    //    [searchContainerView addSubview:self.searchController.searchBar];
+    //    UIBarButtonItem *searchBarItem = [[UIBarButtonItem alloc] initWithCustomView:searchContainerView];
+    //    self.navigationItem.rightBarButtonItem = searchBarItem;
+    //    CGRect bounds = self.navigationController.view.frame;
+    //    bounds= CGRectMake(120, 0, bounds.size.width-120, 44);
+    //    [searchContainerView setFrame:bounds];
     
     self.searchController.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
     self.tableView.tableHeaderView = self.searchController.searchBar;
-//    self.navigationItem.titleView = self.searchController.searchBar;
+    //    self.navigationItem.titleView = self.searchController.searchBar;
     self.searchController.searchBar.placeholder = @"Search by street, town, neighborhood, or city";
     
     [self setAutomaticallyAdjustsScrollViewInsets:YES];
     [self setExtendedLayoutIncludesOpaqueBars:YES];
     
-//    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(-5.0, 0.0, 320.0, 44.0)];
-//    searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-//    UIView *searchBarView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 310.0, 44.0)];
-//    searchBarView.autoresizingMask = 0;
-//    searchBar.delegate = self;
-//    searchBar.placeholder = @"Search for a homepoint's name or address";
-//    [searchBarView addSubview:searchBar];
-//    self.navigationItem.titleView = searchBarView;
+    //    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(-5.0, 0.0, 320.0, 44.0)];
+    //    searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    //    UIView *searchBarView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 310.0, 44.0)];
+    //    searchBarView.autoresizingMask = 0;
+    //    searchBar.delegate = self;
+    //    searchBar.placeholder = @"Search for a homepoint's name or address";
+    //    [searchBarView addSubview:searchBar];
+    //    self.navigationItem.titleView = searchBarView;
     
     self.definesPresentationContext = YES;
 }
 
 -(void)createButtonClicked {
-//    [[Utility getInstance] showProgressHudWithMessage:@"Loading"];
-//    [[ParseManager getInstance] setGetAllOtherGroupsDelegate:self];
-//    [[ParseManager getInstance] getAllOtherGroupsForCurrentUser];
+    //    [[Utility getInstance] showProgressHudWithMessage:@"Loading"];
+    //    [[ParseManager getInstance] setGetAllOtherGroupsDelegate:self];
+    //    [[ParseManager getInstance] getAllOtherGroupsForCurrentUser];
     
     @try {
         CreateHomepoint *createhomepoint = [CreateHomepoint new];
@@ -137,7 +137,9 @@
     [[ParseManager getInstance] getAllOtherGroupsForCurrentUser];
     [[ParseManager getInstance] setGetTentativeUsersDelegate:self];
     [[ParseManager getInstance] setUpdateGroupDelegate:self];
+    [[ParseManager getInstance] setGetFacebookFriendsDelegate:self];
     [self loadGroups];
+    [[ParseManager getInstance] getFacebookFriends];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -188,9 +190,9 @@
 - (void)didLoadAllOtherGroups:(NSArray *)allGroups {
     [[Utility getInstance] hideProgressHud];
     self.allGroups = allGroups;
-//        SearchToAddGroups *searchVC = [SearchToAddGroups new];
-//        searchVC.allGroups = allGroups;
-//    [self.navigationController pushViewController:searchVC animated:YES];
+    //        SearchToAddGroups *searchVC = [SearchToAddGroups new];
+    //        searchVC.allGroups = allGroups;
+    //    [self.navigationController pushViewController:searchVC animated:YES];
 }
 
 -(void)cancelButtonClicked{
@@ -281,17 +283,17 @@
 #pragma mark - TableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    if ([[userJoinedGroups objectAtIndex:indexPath.row]boolValue]) {
-//        // remove current user from the selected group
-//        [self deleteUserFromGroup:indexPath.row];
-//    } else {
-//        // add current user to the selected group
-//        [self addUserToGroup:indexPath.row];
-//    }
+    //    if ([[userJoinedGroups objectAtIndex:indexPath.row]boolValue]) {
+    //        // remove current user from the selected group
+    //        [self deleteUserFromGroup:indexPath.row];
+    //    } else {
+    //        // add current user to the selected group
+    //        [self addUserToGroup:indexPath.row];
+    //    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 100;
+    return 120;
 }
 
 #pragma mark - Add User to selected group
@@ -302,20 +304,20 @@
     NSIndexPath *path = [NSIndexPath indexPathForRow:senderButton.tag inSection:0];
     
     if ([self.searchResults count]) {
-    if (path != nil) {
-        self.currentGroup = [self.searchResults objectAtIndex:path.row];
-        [[ParseManager getInstance] setGetTentativeUsersDelegate:self];
-        [[ParseManager getInstance] getTentativeUsersFromGroup:self.currentGroup];
-        if (self.index != path.row) {
-            self.index = path.row;
-            self.shouldAdd = YES;
+        if (path != nil) {
+            self.currentGroup = [self.searchResults objectAtIndex:path.row];
+            [[ParseManager getInstance] setGetTentativeUsersDelegate:self];
+            [[ParseManager getInstance] getTentativeUsersFromGroup:self.currentGroup];
+            if (self.index != path.row) {
+                self.index = path.row;
+                self.shouldAdd = YES;
+            }
+            else {
+                self.index = -1;
+                self.shouldAdd = NO;
+            }
+            [ResultsTableView reloadData];
         }
-        else {
-            self.index = -1;
-            self.shouldAdd = NO;
-        }
-        [ResultsTableView reloadData];
-    }
     }
     else {
         if (path != nil) {
@@ -349,7 +351,7 @@
 //        self.imageActionSheet = [[UIActionSheet alloc] initWithTitle:@"A member of this homepoint will have to approve your request."  delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Request to join", nil];
 //        }
 //    [self.imageActionSheet showInView:self.view];
-//   
+//
 //}
 //
 //-(void)requestToJoin {
@@ -456,10 +458,10 @@
     if (searchBar.text.length > 0) {
         NSString *text = searchBar.text;
         
-//        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(PFObject *group, NSDictionary *bindings) {
-//            NSRange range = [[group objectForKey:@"groupName"] rangeOfString:text options:NSCaseInsensitiveSearch];
-//            return range.location != NSNotFound;
-//        }];
+        //        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(PFObject *group, NSDictionary *bindings) {
+        //            NSRange range = [[group objectForKey:@"groupName"] rangeOfString:text options:NSCaseInsensitiveSearch];
+        //            return range.location != NSNotFound;
+        //        }];
         
         NSPredicate *addressPredicate = [NSPredicate predicateWithBlock:^BOOL(PFObject *group, NSDictionary *bindings) {
             NSRange range = [[group objectForKey:@"Address"] rangeOfString:text options:NSCaseInsensitiveSearch];
@@ -472,6 +474,17 @@
         
         self.searchResults = searchResults;
         [self.searchResultsTableViewController.tableView reloadData];
+    }
+}
+
+- (void) didLoadFacebookFriends:(NSArray *)friends withError:(NSError *)error {
+    for (int i = 0; i < [groups count]; i++) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+        membersCell *cell = (membersCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+        
+        [groups objectAtIndex:i];
+        
+        cell.friendsLabel.text = @"Hello, world";
     }
 }
 

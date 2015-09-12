@@ -7,11 +7,11 @@
 //
 
 /**
-    Find the first element in a sequence passing a test.
+Find the first element in a sequence passing a test.
 
-    :param: source Source sequence to iterate
-    :param: includeElement Closure to evaluate elements with
-    :return: First element in the sequence for which includeElement returns true, or nil if none found
+:param: source Source sequence to iterate
+:param: includeElement Closure to evaluate elements with
+:return: First element in the sequence for which includeElement returns true, or nil if none found
 */
 public func first<S: SequenceType>(source: S, includeElement: (S.Generator.Element) -> Bool) -> S.Generator.Element? {
     var filteredSource = lazy(source).filter(includeElement).generate()
@@ -19,10 +19,10 @@ public func first<S: SequenceType>(source: S, includeElement: (S.Generator.Eleme
 }
 
 /**
-    Applies a transform to each element in a sequence
+Applies a transform to each element in a sequence
 
-    :param: source Source sequence to iterate
-    :param: transform Closure to apply to every element
+:param: source Source sequence to iterate
+:param: transform Closure to apply to every element
 */
 public func each<S: SequenceType>(source: S, transform: (S.Generator.Element) -> Void) {
     for element in source {
@@ -31,12 +31,12 @@ public func each<S: SequenceType>(source: S, transform: (S.Generator.Element) ->
 }
 
 /**
-    Builds an array by applying a closure to all elements of a given list, and
-    using the elements of the resulting collections.
+Builds an array by applying a closure to all elements of a given list, and
+using the elements of the resulting collections.
 
-    :param: source Source sequence to iterate
-    :param: transform Closure to evaluate elements with
-    :return: An array of transformed values
+:param: source Source sequence to iterate
+:param: transform Closure to evaluate elements with
+:return: An array of transformed values
 */
 public func flatMap<S: SequenceType, T>(source: S, transform: (S.Generator.Element) -> [T]) -> [T] {
     return reduce(source, []) { (var ret, element) in
