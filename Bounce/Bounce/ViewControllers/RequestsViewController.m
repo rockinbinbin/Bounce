@@ -272,7 +272,7 @@
                         MAKE_A_WEAKSELF;
                         dispatch_async(dispatch_get_main_queue(), ^{
                             if (!_imageActionSheet) {
-                                weakSelf.imageActionSheet = [[UIActionSheet alloc] initWithTitle:@"Chats are private unless & until you join a conversation. This keeps our leaving groups authentic, and uncompromising of safety. Users will be alerted to remove you, if you do not intend on leaving with them."
+                                weakSelf.imageActionSheet = [[UIActionSheet alloc] initWithTitle:@"Chats are private until you join a conversation. Users will be alerted to remove you, if you do not intend on leaving with them."
                                                                                     delegate:self
                                                                            cancelButtonTitle:@"Cancel"
                                                                       destructiveButtonTitle:nil
