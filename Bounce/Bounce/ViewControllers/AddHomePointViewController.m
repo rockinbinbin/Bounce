@@ -22,6 +22,7 @@
 #import "SearchToAddGroups.h"
 #import "membersCell.h"
 #import "CAPSPageMenu.h"
+#import "UINavigationBar+Addition.h"
 
 #define ResultsTableView self.searchResultsTableViewController.tableView
 #define Identifier @"Cell"
@@ -36,6 +37,8 @@
 @property (nonatomic) NSInteger index;
 @property (nonatomic, strong) PFObject *currentGroup;
 @property (nonatomic) BOOL shouldAdd;
+
+@property (nonatomic, strong) NSArray *friendIds;
 
 @end
 
@@ -53,7 +56,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.allGroups = [NSArray new];
     self.searchResults = [NSMutableArray new];
     self.index = -1;
@@ -90,6 +93,9 @@
     self.searchController.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.searchController.searchBar.placeholder = @"Search a homepoint's name or neighborhood";
+    self.searchController.searchBar.barTintColor = BounceRed;
+    self.searchController.searchBar.tintColor = [UIColor whiteColor];
+    self.searchController.searchBar.layer.borderColor = [[UIColor clearColor] CGColor];
     
     [self setAutomaticallyAdjustsScrollViewInsets:YES];
     [self setExtendedLayoutIncludesOpaqueBars:YES];
@@ -98,9 +104,9 @@
 }
 
 -(void)createButtonClicked {
-//    [[Utility getInstance] showProgressHudWithMessage:@"Loading"];
-//    [[ParseManager getInstance] setGetAllOtherGroupsDelegate:self];
-//    [[ParseManager getInstance] getAllOtherGroupsForCurrentUser];
+    //    [[Utility getInstance] showProgressHudWithMessage:@"Loading"];
+    //    [[ParseManager getInstance] setGetAllOtherGroupsDelegate:self];
+    //    [[ParseManager getInstance] getAllOtherGroupsForCurrentUser];
     
     @try {
         CreateHomepoint *createhomepoint = [CreateHomepoint new];
@@ -123,7 +129,9 @@
     [[ParseManager getInstance] getAllOtherGroupsForCurrentUser];
     [[ParseManager getInstance] setGetTentativeUsersDelegate:self];
     [[ParseManager getInstance] setUpdateGroupDelegate:self];
+    [[ParseManager getInstance] setGetFacebookFriendsDelegate:self];
     [self loadGroups];
+    [[ParseManager getInstance] getFacebookFriends];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -150,6 +158,7 @@
         [[Utility getInstance] hideProgressHud];
         if (!error) {
             groups = [[NSMutableArray alloc] initWithArray:objects];
+            [[ParseManager getInstance] getFacebookFriends];
             groupsDistance = [[NSMutableArray alloc] init];
             userJoinedGroups = [[NSMutableArray alloc] init];
             self.homepointImages = [NSMutableArray new];
@@ -174,9 +183,9 @@
 - (void)didLoadAllOtherGroups:(NSArray *)allGroups {
     [[Utility getInstance] hideProgressHud];
     self.allGroups = allGroups;
-//        SearchToAddGroups *searchVC = [SearchToAddGroups new];
-//        searchVC.allGroups = allGroups;
-//    [self.navigationController pushViewController:searchVC animated:YES];
+    //        SearchToAddGroups *searchVC = [SearchToAddGroups new];
+    //        searchVC.allGroups = allGroups;
+    //    [self.navigationController pushViewController:searchVC animated:YES];
 }
 
 -(void)cancelButtonClicked{
@@ -212,6 +221,31 @@
     if ([tableView isEqual:ResultsTableView]) {
         text = [self.searchResults[indexPath.row] objectForKey:@"groupName"];
         
+        cell.friendsLabel.text = @"Loading...";
+        
+        PFObject *homepoint = self.searchResults[indexPath.row];
+        PFRelation *groupUsers = homepoint[PF_GROUP_Users_RELATION];
+        PFQuery *friendsQuery = [groupUsers query];
+        PFQuery *totalQuery = [groupUsers query];
+        [friendsQuery whereKey:@"facebookId" containedIn:self.friendIds];
+        
+        [friendsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            // Gets friend count
+            dispatch_async(dispatch_get_main_queue(), ^{
+                cell.friendsLabel.text = [NSString stringWithFormat:@"%lu friends, ", (unsigned long)[objects count]];
+            });
+            
+            [totalQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                // Gets total number
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    cell.friendsLabel.text = [cell.friendsLabel.text stringByAppendingString:[NSString stringWithFormat:@"%lu total", (unsigned long)[objects count]]];
+                });
+            }];
+        }];
+    
+        
+        
+        
         UIImage *img = [UIImage imageNamed:@"redPlusWithBorder"];
         [cell.iconView setImage:img forState:UIControlStateNormal];
         cell.iconView.tag = indexPath.row;
@@ -237,6 +271,28 @@
     }
     else {
         text = [groups[indexPath.row] objectForKey:@"groupName"];
+        
+        cell.friendsLabel.text = @"Loading...";
+        
+        PFObject *homepoint = self.allGroups[indexPath.row];
+        PFRelation *groupUsers = homepoint[PF_GROUP_Users_RELATION];
+        PFQuery *friendsQuery = [groupUsers query];
+        PFQuery *totalQuery = [groupUsers query];
+        [friendsQuery whereKey:@"facebookId" containedIn:self.friendIds];
+        
+        [friendsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            // Gets friend count
+            dispatch_async(dispatch_get_main_queue(), ^{
+                cell.friendsLabel.text = [NSString stringWithFormat:@"%lu friends, ", (unsigned long)[objects count]];
+            });
+            
+            [totalQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                // Gets total number
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    cell.friendsLabel.text = [cell.friendsLabel.text stringByAppendingString:[NSString stringWithFormat:@"%lu total", (unsigned long)[objects count]]];
+                });
+            }];
+        }];
         
         UIImage *img = [UIImage imageNamed:@"redPlusWithBorder"];
         [cell.iconView setImage:img forState:UIControlStateNormal];
@@ -267,17 +323,17 @@
 #pragma mark - TableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    if ([[userJoinedGroups objectAtIndex:indexPath.row]boolValue]) {
-//        // remove current user from the selected group
-//        [self deleteUserFromGroup:indexPath.row];
-//    } else {
-//        // add current user to the selected group
-//        [self addUserToGroup:indexPath.row];
-//    }
+    //    if ([[userJoinedGroups objectAtIndex:indexPath.row]boolValue]) {
+    //        // remove current user from the selected group
+    //        [self deleteUserFromGroup:indexPath.row];
+    //    } else {
+    //        // add current user to the selected group
+    //        [self addUserToGroup:indexPath.row];
+    //    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 100;
+    return 120;
 }
 
 #pragma mark - Add User to selected group
@@ -288,20 +344,20 @@
     NSIndexPath *path = [NSIndexPath indexPathForRow:senderButton.tag inSection:0];
     
     if ([self.searchResults count]) {
-    if (path != nil) {
-        self.currentGroup = [self.searchResults objectAtIndex:path.row];
-        [[ParseManager getInstance] setGetTentativeUsersDelegate:self];
-        [[ParseManager getInstance] getTentativeUsersFromGroup:self.currentGroup];
-        if (self.index != path.row) {
-            self.index = path.row;
-            self.shouldAdd = YES;
+        if (path != nil) {
+            self.currentGroup = [self.searchResults objectAtIndex:path.row];
+            [[ParseManager getInstance] setGetTentativeUsersDelegate:self];
+            [[ParseManager getInstance] getTentativeUsersFromGroup:self.currentGroup];
+            if (self.index != path.row) {
+                self.index = path.row;
+                self.shouldAdd = YES;
+            }
+            else {
+                self.index = -1;
+                self.shouldAdd = NO;
+            }
+            [ResultsTableView reloadData];
         }
-        else {
-            self.index = -1;
-            self.shouldAdd = NO;
-        }
-        [ResultsTableView reloadData];
-    }
     }
     else {
         if (path != nil) {
@@ -335,7 +391,7 @@
 //        self.imageActionSheet = [[UIActionSheet alloc] initWithTitle:@"A member of this homepoint will have to approve your request."  delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Request to join", nil];
 //        }
 //    [self.imageActionSheet showInView:self.view];
-//   
+//
 //}
 //
 //-(void)requestToJoin {
@@ -471,6 +527,18 @@
         self.searchResults = searchResults;
         [self.searchResultsTableViewController.tableView reloadData];
     }
+}
+
+- (void) didLoadFacebookFriends:(NSArray *)friends withError:(NSError *)error {
+    
+    NSMutableArray *friendIds = [[NSMutableArray alloc] init];
+    for (PFObject *friend in friends) {
+        [friendIds addObject:friend[@"id"]];
+    }
+    
+    self.friendIds = friendIds;
+    [self.tableView reloadData];
+    
 }
 
 @end

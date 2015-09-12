@@ -21,6 +21,7 @@
 @protocol ParseManagerLoadNewUsers;
 @protocol ParseManagerGetTentativeUsers;
 @protocol ParseManagerGetAllOtherGroups;
+@protocol ParseManagerGetFacebookFriendsDelegate;
 
 @interface ParseManager : NSObject
 
@@ -36,6 +37,7 @@
 @property id<ParseManagerLoadNewUsers> loadNewUsers;
 @property id<ParseManagerGetTentativeUsers> getTentativeUsersDelegate;
 @property id<ParseManagerGetAllOtherGroups> getAllOtherGroupsDelegate;
+@property id<ParseManagerGetFacebookFriendsDelegate> getFacebookFriendsDelegate;
 
 + (ParseManager*) getInstance;
 // Chat message
@@ -92,7 +94,9 @@
 
 - (void) addTentativeUserToGroup:(PFObject *)group withExistingTentativeUsers:(NSArray *)tentativeUsers;
 
-- (NSUInteger) returnNumberOfValidRequestsWithNavigationController:(UINavigationController *)navigationController;
+- (NSUInteger)returnNumberOfValidRequestsWithNavigationController:(UINavigationController *)navigationController;
+
+- (void) getFacebookFriends;
 
 @end
 
@@ -152,4 +156,8 @@
 
 @protocol ParseManagerGetAllOtherGroups <NSObject>
 - (void) didLoadAllOtherGroups:(NSArray *)allGroups;
+@end
+
+@protocol ParseManagerGetFacebookFriendsDelegate <NSObject>
+- (void) didLoadFacebookFriends:(NSArray *)friends withError:(NSError *)error;
 @end

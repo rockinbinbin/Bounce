@@ -11,7 +11,7 @@ import UIKit
 
 extension UINavigationBar {
     
-    func hideBottomHairline() {
+    @objc func hideBottomHairline() {
         let navigationBarImageView = hairlineImageViewInNavigationBar(self)
         navigationBarImageView!.hidden = true
     }

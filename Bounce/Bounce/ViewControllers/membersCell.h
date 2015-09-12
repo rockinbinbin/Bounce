@@ -18,6 +18,7 @@
 
 @property (nonatomic, weak) UILabel *distance;
 @property (nonatomic, weak) UILabel *address;
+@property (nonatomic, weak) UILabel *friendsLabel;
 
 
 @end
