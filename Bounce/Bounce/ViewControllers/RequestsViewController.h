@@ -22,7 +22,7 @@
 
 #pragma mark RequestsViewController
 
-@interface RequestsViewController : UIViewController<ParseManagerDelegate, ParseManagerDeleteDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
+@interface RequestsViewController : UIViewController<ParseManagerDelegate, ParseManagerDeleteDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, ParseManagerGetFacebookFriendsDelegate>
 
 @property (strong, nonatomic) id delegate;
 @property (weak, nonatomic) UITableView *requestsTableView;
@@ -30,5 +30,7 @@
 @property (weak, nonatomic) UIView *bottomView;
 
 @property (nonatomic, strong) UIActionSheet *imageActionSheet;
+
+@property (nonatomic, strong) NSArray *friendIds;
 
 @end

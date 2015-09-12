@@ -55,10 +55,11 @@
         [timeLeft kgn_positionBelowItem:requestedGroups withOffset:0];
         
         UILabel *peopleDescription = [UILabel new];
-        peopleDescription.text = @"5 friends, 10 total people";
+        peopleDescription.text = @"Loading";
         peopleDescription.textColor = [UIColor colorWithWhite:1.0 alpha:0.69];
         peopleDescription.font = [UIFont fontWithName:@"Avenir-Roman" size:16];
         [self.contentView addSubview:peopleDescription];
+        self.peopleDescription = peopleDescription;
         [peopleDescription kgn_positionToTheRightOfItem:hpImage withOffset:25];
         [peopleDescription kgn_positionBelowItem:timeLeft withOffset:0];
         

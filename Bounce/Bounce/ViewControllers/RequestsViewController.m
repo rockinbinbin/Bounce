@@ -113,6 +113,7 @@
     // For some reason the back button doesn't hide properly.
     // This moves it out of the way.
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
+    [[ParseManager getInstance] setGetFacebookFriendsDelegate:self];
 
     [self loadRequests];
 }
@@ -152,6 +153,7 @@
                 [requestValidation addObject:[NSNumber numberWithBool:NO]];
             }
         }
+        [[ParseManager getInstance] getFacebookFriends];
         [self.requestsTableView reloadData];
         
     }
@@ -208,6 +210,27 @@
                     cell.hpImage.contentMode = UIViewContentModeScaleToFill;
                 });
             }
+        }];
+    }];
+    
+    cell.peopleDescription.text = @"Loading...";
+    
+    PFRelation *groupUsers = request[@"joinedUsers"];
+    PFQuery *friendsQuery = [groupUsers query];
+    PFQuery *totalQuery = [groupUsers query];
+    [friendsQuery whereKey:@"facebookId" containedIn:self.friendIds];
+    
+    [friendsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        // Gets friend count
+        dispatch_async(dispatch_get_main_queue(), ^{
+            cell.peopleDescription.text = [NSString stringWithFormat:@"%lu friends, ", (unsigned long)[objects count]];
+        });
+        
+        [totalQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            // Gets total number
+            dispatch_async(dispatch_get_main_queue(), ^{
+                cell.peopleDescription.text = [cell.peopleDescription.text stringByAppendingString:[NSString stringWithFormat:@"%lu total", (unsigned long)[objects count]]];
+            });
         }];
     }];
     
@@ -371,6 +394,18 @@
 - (void)navigateToHomepoints {
     GroupsListViewController *groupsListViewController = [GroupsListViewController new];
     [self.navigationController pushViewController:groupsListViewController animated:YES];
+}
+
+- (void) didLoadFacebookFriends:(NSArray *)friends withError:(NSError *)error {
+    
+    NSMutableArray *friendIds = [[NSMutableArray alloc] init];
+    for (PFObject *friend in friends) {
+        [friendIds addObject:friend[@"id"]];
+    }
+    
+    self.friendIds = friendIds;
+    [self.requestsTableView reloadData];
+    
 }
 
 @end

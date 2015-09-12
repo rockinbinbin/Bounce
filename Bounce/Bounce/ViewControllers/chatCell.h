@@ -17,5 +17,6 @@
 @property (nonatomic, weak) UILabel *lastMessage;
 @property (nonatomic, weak) UILabel *requestedGroups;
 @property (nonatomic, weak) UIImageView *hpImage;
+@property (nonatomic, weak) UILabel *peopleDescription;
 
 @end
