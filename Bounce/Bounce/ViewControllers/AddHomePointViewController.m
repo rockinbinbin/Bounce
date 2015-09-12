@@ -131,7 +131,6 @@
     [[ParseManager getInstance] setUpdateGroupDelegate:self];
     [[ParseManager getInstance] setGetFacebookFriendsDelegate:self];
     [self loadGroups];
-    [[ParseManager getInstance] getFacebookFriends];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -171,6 +170,7 @@
                     [self.homepointImages addObject:[group valueForKey:PF_GROUP_IMAGE]];
                 }
             }
+            [[ParseManager getInstance] getFacebookFriends];
             [[Utility getInstance] hideProgressHud];
             [self.tableView reloadData];
         }
@@ -273,7 +273,7 @@
         text = [groups[indexPath.row] objectForKey:@"groupName"];
         
         cell.friendsLabel.text = @"Loading...";
-        
+        if ([self.allGroups count]) {
         PFObject *homepoint = self.allGroups[indexPath.row];
         PFRelation *groupUsers = homepoint[PF_GROUP_Users_RELATION];
         PFQuery *friendsQuery = [groupUsers query];
@@ -293,7 +293,7 @@
                 });
             }];
         }];
-        
+        }
         UIImage *img = [UIImage imageNamed:@"redPlusWithBorder"];
         [cell.iconView setImage:img forState:UIControlStateNormal];
         cell.iconView.tag = indexPath.row;
