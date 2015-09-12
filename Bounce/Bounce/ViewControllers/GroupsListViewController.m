@@ -191,7 +191,7 @@
 
 -(void)addButtonClicked{
     if (!loadingData) {
-        RootSearchTabController* addHomePointViewController = [RootSearchTabController new];
+        AddHomePointViewController* addHomePointViewController = [AddHomePointViewController new];
         [self.navigationController pushViewController:addHomePointViewController animated:YES];
     }
 }
