@@ -131,6 +131,7 @@
     [[ParseManager getInstance] setUpdateGroupDelegate:self];
     [[ParseManager getInstance] setGetFacebookFriendsDelegate:self];
     [self loadGroups];
+    [[ParseManager getInstance] getFacebookFriends];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -501,7 +502,6 @@
             NSRange range = [group[@"groupName"] rangeOfString:text options:NSCaseInsensitiveSearch];
             return range.location != NSNotFound;
         }];
-
         
         NSPredicate *addressPredicate = [NSPredicate predicateWithBlock:^BOOL(PFObject *group, NSDictionary *bindings) {
             NSRange range = [group[@"Address"] rangeOfString:text options:NSCaseInsensitiveSearch];
@@ -539,15 +539,6 @@
     self.friendIds = friendIds;
     [self.tableView reloadData];
     
-//    for (int i = 0; i < [self.allGroups count]; i++) {
-//        
-//        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-//        membersCell *cell = (membersCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-//        
-//        [groups objectAtIndex:i];
-//        
-//        cell.friendsLabel.text = @"Hello, world";
-//    }
 }
 
 @end
