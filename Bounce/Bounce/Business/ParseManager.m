@@ -14,6 +14,7 @@
 #import "RequestsViewController.h"
 #import "RequestManger.h"
 #import "RequestsViewController.h"
+#import <FacebookSDK/FBRequestConnection.h>
 
 @implementation ParseManager
 static ParseManager *parseManager = nil;
@@ -780,6 +781,24 @@ PFUser *currentUser;
     @catch (NSException *exception) {
         NSLog(@"exception %@", exception);
     }
+    }
+}
+
+- (void) getFacebookFriends {
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+        @try {
+            [FBRequestConnection startForMyFriendsWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                NSArray *friendObjects = [result objectForKey:@"data"];
+
+                if ([self.getFacebookFriendsDelegate respondsToSelector:@selector(didLoadFacebookFriends:withError:)]) {
+                    [self.getFacebookFriendsDelegate didLoadFacebookFriends:friendObjects withError:error];
+                }
+            }];
+
+        }
+        @catch (NSException *exception) {
+            NSLog(@"exception %@", exception);
+        }
     }
 }
 

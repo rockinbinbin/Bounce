@@ -17,7 +17,9 @@
 #import "homepointListCell.h"
 #import "MembersViewController.h"
 #import "HomepointChat.h"
-#import <RootSearchTabController.h>
+#import "RootSearchTabController.h"
+#import <FacebookSDK/FBRequestConnection.h>
+
 
 @interface GroupsListViewController ()
 
@@ -36,6 +38,7 @@
     UIImageView *placeholderImageView;
     UILabel *placeholderTitle;
     UILabel *placeholderBodyText;
+    
 }
 
 @synthesize nearUsers = nearUsers;
@@ -169,6 +172,8 @@
             [[ParseManager getInstance] setGetUserGroupsdelegate:self];
             loadingData = YES;
             [[ParseManager getInstance] getUserGroups];
+            [[ParseManager getInstance] setGetFacebookFriendsDelegate:self];
+            [[ParseManager getInstance] getFacebookFriends];
         }
     }
     @catch (NSException *exception) {
@@ -216,6 +221,7 @@
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 for (PFObject *group in groups) {
+                    
                     [nearUsers addObject:[NSNumber numberWithInteger:[[ParseManager getInstance] getNearUsersNumberInGroup:group]]];
 
                     // Get distance label
