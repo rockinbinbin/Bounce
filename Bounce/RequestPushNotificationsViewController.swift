@@ -46,7 +46,7 @@ class RequestPushNotificationsViewController: UIViewController {
     private lazy var descriptionLabel: UILabel = {
         let descriptionLabel = UILabel()
         
-        descriptionLabel.text = "We use minimal push notifications to convey information about chat messages and incoming requests."
+        descriptionLabel.text = "We'll let you know when you get a message via chat or leaving request."
         descriptionLabel.font = Constants.Fonts.Avenir.Medium
         descriptionLabel.textColor = UIColor.whiteColor()
         descriptionLabel.textAlignment = .Center
