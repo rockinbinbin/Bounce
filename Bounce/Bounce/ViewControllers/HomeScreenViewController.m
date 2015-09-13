@@ -95,65 +95,65 @@
     [whiteLogo setImage:[UIImage imageNamed:@"whiteLogo"]];
     [self.view addSubview:whiteLogo];
     [whiteLogo kgn_pinToLeftEdgeOfSuperviewWithOffset:15];
-    [whiteLogo kgn_positionBelowItem:tempMap withOffset:30];
+    [whiteLogo kgn_positionBelowItem:tempMap withOffset:self.view.frame.size.height/30];
     
     UILabel *goingTo = [UILabel new];
     goingTo.textColor = [UIColor whiteColor];
     goingTo.backgroundColor = [UIColor clearColor];
     goingTo.textAlignment = NSTextAlignmentCenter;
-    goingTo.font = [UIFont fontWithName:@"AvenirNext-Regular" size:18];
+    goingTo.font = [UIFont fontWithName:@"AvenirNext-Regular" size:16];
     goingTo.text = @"I'm going to";
     [self.view addSubview:goingTo];
     [goingTo sizeToFit];
-    [goingTo kgn_positionToTheRightOfItem:whiteLogo withOffset:15];
-    [goingTo kgn_positionBelowItem:tempMap withOffset:34];
+    [goingTo kgn_positionToTheRightOfItem:whiteLogo withOffset:10];
+    [goingTo kgn_positionBelowItem:tempMap withOffset:self.view.frame.size.height/30];
     
     UIButton *selectHP = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [selectHP setBackgroundColor:[UIColor clearColor]];
     selectHP.tintColor = [UIColor whiteColor];
     [selectHP setTitle:@"select a homepoint" forState:UIControlStateNormal];
-    selectHP.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Bold" size:18];
+    selectHP.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size:18];
     [selectHP addTarget:self action:@selector(showDropDown) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:selectHP];
     self.selectHP = selectHP;
     [selectHP kgn_sizeToHeight:25];
-    [selectHP kgn_positionToTheRightOfItem:goingTo withOffset:10];
-    [selectHP kgn_positionBelowItem:tempMap withOffset:34];
+    [selectHP kgn_positionToTheRightOfItem:goingTo withOffset:6];
+    [selectHP kgn_positionBelowItem:tempMap withOffset:self.view.frame.size.height/30];
     
     UIImageView *clockIcon = [UIImageView new];
     [clockIcon setImage:[UIImage imageNamed:@"whiteClock"]];
     [self.view addSubview:clockIcon];
     [clockIcon kgn_pinToLeftEdgeOfSuperviewWithOffset:15];
-    [clockIcon kgn_positionBelowItem:whiteLogo withOffset:30];
+    [clockIcon kgn_positionBelowItem:whiteLogo withOffset:self.view.frame.size.height/30];
     
     UILabel *atAround = [UILabel new];
     atAround.textColor = [UIColor whiteColor];
     atAround.backgroundColor = [UIColor clearColor];
     atAround.textAlignment = NSTextAlignmentCenter;
-    atAround.font = [UIFont fontWithName:@"AvenirNext-Regular" size:18];
+    atAround.font = [UIFont fontWithName:@"AvenirNext-Regular" size:16];
     atAround.text = @"in approx";
     [self.view addSubview:atAround];
     [atAround sizeToFit];
     [atAround kgn_positionToTheRightOfItem:clockIcon withOffset:15];
-    [atAround kgn_positionBelowItem:whiteLogo withOffset:34];
+    [atAround kgn_positionBelowItem:whiteLogo withOffset:self.view.frame.size.height/30];
     
     UIButton *time = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [time setBackgroundColor:[UIColor clearColor]];
     time.tintColor = [UIColor whiteColor];
     [time setTitle:@"2 hours & 0 min" forState:UIControlStateNormal];
-    time.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Bold" size:18];
+    time.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size:18];
     [time addTarget:self action:@selector(pickTime) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:time];
     self.time = time;
     [time kgn_sizeToHeight:25];
     [time kgn_positionToTheRightOfItem:atAround withOffset:10];
-    [time kgn_positionBelowItem:whiteLogo withOffset:34];
+    [time kgn_positionBelowItem:whiteLogo withOffset:self.view.frame.size.height/30];
     
     UIImageView *genderIcon = [UIImageView new];
     [genderIcon setImage:[UIImage imageNamed:@"genderIcon"]];
     [self.view addSubview:genderIcon];
     [genderIcon kgn_pinToLeftEdgeOfSuperviewWithOffset:15];
-    [genderIcon kgn_positionBelowItem:clockIcon withOffset:30];
+    [genderIcon kgn_positionBelowItem:clockIcon withOffset:self.view.frame.size.height/30];
     
     UIView *lineView = [UIView new];
     lineView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.1];
@@ -180,32 +180,32 @@
     [self.view addSubview:with];
     [with sizeToFit];
     [with kgn_positionToTheRightOfItem:genderIcon withOffset:15];
-    [with kgn_positionBelowItem:clockIcon withOffset:34];
+    [with kgn_positionBelowItem:clockIcon withOffset:self.view.frame.size.height/30];
     
     UIButton *genders = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [genders setBackgroundColor:[UIColor clearColor]];
     genders.tintColor = [UIColor whiteColor];
     [genders setTitle:@"all genders" forState:UIControlStateNormal];
-    genders.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Bold" size:18];
+    genders.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size:18];
     [genders addTarget:self action:@selector(pickGender) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:genders];
     self.genders = genders;
     [genders kgn_sizeToHeight:25];
     [genders kgn_positionToTheRightOfItem:with withOffset:10];
-    [genders kgn_positionBelowItem:clockIcon withOffset:34];
+    [genders kgn_positionBelowItem:clockIcon withOffset:self.view.frame.size.height/30];
     
     UIButton *confirmButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [confirmButton setBackgroundColor:[UIColor whiteColor]];
     confirmButton.tintColor = BounceRed;
     [confirmButton.layer setCornerRadius:10];
-    [confirmButton setTitle:@"Find homies nearby!" forState:UIControlStateNormal];
-    confirmButton.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Bold" size:18];
+    [confirmButton setTitle:@"Create Leaving Group" forState:UIControlStateNormal];
+    confirmButton.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size:18];
     [confirmButton addTarget:self action:@selector(confirmButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:confirmButton];
-    [confirmButton kgn_sizeToHeight:50];
-    [confirmButton kgn_sizeToWidth:self.view.frame.size.width - 100];
+    [confirmButton kgn_sizeToHeight:48];
+    [confirmButton kgn_sizeToWidth:self.view.frame.size.width - 50];
     [confirmButton kgn_centerHorizontallyInSuperview];
-    [confirmButton kgn_pinToBottomEdgeOfSuperviewWithOffset:15 + TAB_BAR_HEIGHT];
+    [confirmButton kgn_pinToBottomEdgeOfSuperviewWithOffset:(self.view.frame.size.height - self.view.frame.size.height/3 - (self.view.frame.size.height/30 + 25)*3 - TAB_BAR_HEIGHT)/2.7];
     
     self.location_manager = [[CLLocationManager alloc] init];
     self.location_manager.pausesLocationUpdatesAutomatically = YES;
@@ -231,7 +231,7 @@
     shadowView.clipsToBounds = NO;
     shadowView.layer.masksToBounds = NO;
     [self.view addSubview:shadowView];
-    [shadowView kgn_sizeToHeight:250];                             // TODO: ADJUST THIS
+    [shadowView kgn_sizeToHeight:(self.view.frame.size.height - self.view.frame.size.height/3 - TAB_BAR_HEIGHT - self.view.frame.size.height/30-25)/1.5];
     [shadowView kgn_sizeToWidth:self.view.frame.size.width - 40];
     [shadowView kgn_positionBelowItem:selectHP withOffset:10];
     [shadowView kgn_centerHorizontallyInSuperview];
@@ -245,7 +245,7 @@
     tableView.hidden = YES;
     tableView.separatorColor = [UIColor clearColor];
     [self.view addSubview:tableView];
-    [tableView kgn_sizeToHeight:250];                             // TODO: ADJUST THIS
+    [tableView kgn_sizeToHeight:(self.view.frame.size.height - self.view.frame.size.height/3 - TAB_BAR_HEIGHT - self.view.frame.size.height/30-25)/1.5];
     [tableView kgn_sizeToWidth:self.view.frame.size.width - 40];
     [tableView kgn_positionBelowItem:selectHP withOffset:10];
     [tableView kgn_centerHorizontallyInSuperview];
@@ -558,7 +558,7 @@
     
     cell.homepointName.text = [[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
     
-    
+    if ([self.nearUsers count] > indexPath.row) {
     NSString *usersNearby = [self.nearUsers objectAtIndex:indexPath.row];
     int numUsers = (int)[usersNearby integerValue];
     if (numUsers == 0) {
@@ -569,6 +569,7 @@
     }
     else if (numUsers != 0) {
         cell.nearbyUsers.text = [NSString stringWithFormat:@"%@ users nearby",usersNearby];
+    }
     }
     
     NSString *distanceText = [self.homepointDistances objectAtIndex:indexPath.row];
