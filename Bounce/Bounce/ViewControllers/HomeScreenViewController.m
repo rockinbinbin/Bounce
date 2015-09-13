@@ -255,8 +255,10 @@
 -(void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [[ParseManager getInstance] setGetUserGroupsdelegate:self];
-    [[ParseManager getInstance] getUserGroups];
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+        [[ParseManager getInstance] setGetUserGroupsdelegate:self];
+        [[ParseManager getInstance] getUserGroups];
+    }
     
     self.timeAllocated = 120;
     if ([GlobalVariables shouldNotOpenRequestView]) {
