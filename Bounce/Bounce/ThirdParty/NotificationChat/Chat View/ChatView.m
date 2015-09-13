@@ -138,9 +138,9 @@
                 if (!_chatPrompt) {
                 UILabel *chatPrompt = [UILabel new];
                 chatPrompt.translatesAutoresizingMaskIntoConstraints = NO;
-                chatPrompt.textColor = [UIColor grayColor];
+                chatPrompt.textColor = BounceSeaGreen;
                 chatPrompt.numberOfLines = 0;
-                chatPrompt.font = [UIFont fontWithName:@"AvenirNext-Regular" size:20];
+                chatPrompt.font = [UIFont fontWithName:@"AvenirNext-Bold" size:20];
                 [self.view addSubview:chatPrompt];
                 [chatPrompt kgn_pinToTopEdgeOfSuperviewWithOffset:40];
                 [chatPrompt kgn_centerHorizontallyInSuperview];
@@ -149,10 +149,10 @@
                 self.chatPrompt = chatPrompt;
                 }
                 if (self.homepointChat) {
-                    self.chatPrompt.text = @"Use this space to talk to your roommates about fun things, like tonight’s plans!\n\nWhat’s your next door neighbor up to? Ask, and find out! If they’re not already a part of this homepoint, go ahead and add them!";
+                    self.chatPrompt.text = @"Go out with your neighbors.\nPlan it here!";
                 }
                 else {
-                    self.chatPrompt.text = @"Use this space to coordinate your trip home.\n\nWe’ve added other nearby users from this homepoint, so now it’s up to you to pick a place to meet!";
+                    self.chatPrompt.text = @"Before you're about to leave, pick a place to meet!\n\nBe sure to remove anyone who isn't responding, before stating your location.";
                 }
             }
             
