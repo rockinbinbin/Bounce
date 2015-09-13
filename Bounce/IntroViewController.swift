@@ -233,8 +233,9 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
 
             // Maps from the /me response value names to stored Parse value names.
             let keyMap = [
-                "id":   ["facebookId"],
-                "name": ["fullname", "username"],
+                "id":     ["facebookId"],
+                "name":   ["fullname", "username"],
+                "gender": ["Gender"],
             ]
 
             if error != nil {
