@@ -57,9 +57,6 @@
     self.view.backgroundColor = BounceRed;
     
     [self.navigationController.navigationBar hideBottomHairline];
-    
-    [[ParseManager getInstance] setGetUserGroupsdelegate:self];
-    [[ParseManager getInstance] getUserGroups];
     self.isDataLoaded = NO;
 
     
@@ -257,6 +254,10 @@
 
 -(void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    [[ParseManager getInstance] setGetUserGroupsdelegate:self];
+    [[ParseManager getInstance] getUserGroups];
+    
     self.timeAllocated = 120;
     if ([GlobalVariables shouldNotOpenRequestView]) {
         UIButton *customButton = [[Utility getInstance] createCustomButton:[UIImage imageNamed:@"common_back_button"]];
