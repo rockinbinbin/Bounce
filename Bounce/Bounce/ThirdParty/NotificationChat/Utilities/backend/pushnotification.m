@@ -12,11 +12,13 @@
 #import <Parse/Parse.h>
 
 #import "AppConstant.h"
+#import "Utility.h"
 
 #import "pushnotification.h"
 
 void ParsePushUserAssign(void)
 {
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
 	PFInstallation *installation = [PFInstallation currentInstallation];
 	installation[PF_INSTALLATION_USER] = [PFUser currentUser];
 	[installation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
@@ -26,10 +28,12 @@ void ParsePushUserAssign(void)
 			NSLog(@"ParsePushUserAssign save error.");
 		}
 	}];
+    }
 }
 
 void ParsePushUserResign(void)
 {
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
 	PFInstallation *installation = [PFInstallation currentInstallation];
 	[installation removeObjectForKey:PF_INSTALLATION_USER];
 	[installation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
@@ -39,10 +43,11 @@ void ParsePushUserResign(void)
 			NSLog(@"ParsePushUserResign save error.");
 		}
 	}];
+    }
 }
 
-void SendPushNotification(NSString *groupId, NSString *text)
-{
+void SendPushNotification(NSString *groupId, NSString *text) {
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
 	PFQuery *query = [PFQuery queryWithClassName:PF_MESSAGES_CLASS_NAME];
 	[query whereKey:PF_MESSAGES_GROUPID equalTo:groupId];
 	[query whereKey:PF_MESSAGES_USER notEqualTo:[PFUser currentUser]];
@@ -64,10 +69,11 @@ void SendPushNotification(NSString *groupId, NSString *text)
 			NSLog(@"SendPushNotification send error.");
 		}
 	}];
+    }
 }
 
-void SendHomepointPush(PFObject *homepoint, NSString *text, NSString *groupId)
-{
+void SendHomepointPush(PFObject *homepoint, NSString *text, NSString *groupId) {
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
     PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
     [query whereKey:PF_GROUP_Users_RELATION notEqualTo:[PFUser currentUser]];
     [query includeKey:PF_GROUP_Users_RELATION];
@@ -88,4 +94,5 @@ void SendHomepointPush(PFObject *homepoint, NSString *text, NSString *groupId)
              NSLog(@"SendPushNotification send error.");
          }
      }];
+    }
 }
