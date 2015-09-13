@@ -65,3 +65,27 @@ void SendPushNotification(NSString *groupId, NSString *text)
 		}
 	}];
 }
+
+void SendHomepointPush(PFObject *homepoint, NSString *text, NSString *groupId)
+{
+    PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
+    [query whereKey:PF_GROUP_Users_RELATION notEqualTo:[PFUser currentUser]];
+    [query includeKey:PF_GROUP_Users_RELATION];
+    [query setLimit:1000];
+    
+    PFQuery *queryInstallation = [PFInstallation query];
+    [queryInstallation whereKey:PF_INSTALLATION_USER matchesKey:PF_MESSAGES_USER inQuery:query];
+    
+    PFPush *push = [[PFPush alloc] init];
+    [push setQuery:queryInstallation];
+    //	[push setMessage:text];
+    NSDictionary *data = [[NSDictionary alloc] initWithObjects:@[groupId, text] forKeys:@[OBJECT_ID, NOTIFICATION_ALERT_MESSAGE]];
+    [push setData:data];
+    [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+     {
+         if (error != nil)
+         {
+             NSLog(@"SendPushNotification send error.");
+         }
+     }];
+}

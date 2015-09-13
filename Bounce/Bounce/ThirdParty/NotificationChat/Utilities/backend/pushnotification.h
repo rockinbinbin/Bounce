@@ -17,3 +17,4 @@ void		ParsePushUserResign		(void);
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 void		SendPushNotification	(NSString *groupId, NSString *text);
+void        SendHomepointPush       (PFObject *homepoint, NSString *text, NSString *groupId);
