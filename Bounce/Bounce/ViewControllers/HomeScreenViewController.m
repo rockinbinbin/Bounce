@@ -558,7 +558,7 @@
     
     cell.homepointName.text = [[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
     
-    
+    if ([self.nearUsers count] > indexPath.row) {
     NSString *usersNearby = [self.nearUsers objectAtIndex:indexPath.row];
     int numUsers = (int)[usersNearby integerValue];
     if (numUsers == 0) {
@@ -569,6 +569,7 @@
     }
     else if (numUsers != 0) {
         cell.nearbyUsers.text = [NSString stringWithFormat:@"%@ users nearby",usersNearby];
+    }
     }
     
     NSString *distanceText = [self.homepointDistances objectAtIndex:indexPath.row];
