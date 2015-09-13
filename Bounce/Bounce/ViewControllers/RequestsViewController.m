@@ -46,7 +46,7 @@
     navLabel.textAlignment = NSTextAlignmentCenter;
     navLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size:20];
     self.navigationItem.titleView = navLabel;
-    navLabel.text = @"Leaving Soon";
+    navLabel.text = @"Leaving Soon Nearby";
     [navLabel sizeToFit];
     
     UITableView *tableView = [UITableView new];
