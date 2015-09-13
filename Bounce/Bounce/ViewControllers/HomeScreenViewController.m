@@ -502,7 +502,7 @@
 - (void) creatMessageRequestToSelectedGroup:(NSArray *) selectedGroups {
     @try {
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
-            int radius = 700; // hardcoded radius
+            int radius = 1056; // hardcoded radius
             [[Utility getInstance] showProgressHudWithMessage:COMMON_HUD_SEND_MESSAGE];
             [[RequestManger getInstance] setCreateRequestDelegate:self];
             [[RequestManger getInstance] createrequestToGroups:self.selectedGroups andGender:self.genderMatching withinTime:self.timeAllocated andInRadius:radius];
