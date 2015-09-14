@@ -159,6 +159,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
+    
+    [self.delegate setHomepointNotification:false];
+
     @try {
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
             [[Utility getInstance] showProgressHudWithMessage:@"Loading..." withView:self.view];

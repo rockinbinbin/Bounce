@@ -186,7 +186,9 @@ import UIKit
     }
     
     @objc public class func rootTabBarControllerWithNavigationController(initialTab: InitialTab) -> UIViewController {
-        let navigationController = UINavigationController(rootViewController: RootTabBarController(initialTab: initialTab))
+        let rootVC = RootTabBarController(initialTab: initialTab)
+        (UIApplication.sharedApplication().delegate as! AppDelegate).rootTabBarControllerDelegate = rootVC
+        let navigationController = UINavigationController(rootViewController: rootVC)
         navigationController.navigationBarHidden = true
         navigationController.toolbarHidden = false
         return navigationController

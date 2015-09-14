@@ -110,6 +110,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
+    [self.delegate setTripsNotification:false];
+    
     // For some reason the back button doesn't hide properly.
     // This moves it out of the way.
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
