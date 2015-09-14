@@ -366,6 +366,7 @@
             self.currentGroup = [groups objectAtIndex:path.row];
             [[ParseManager getInstance] setGetTentativeUsersDelegate:self];
             [[ParseManager getInstance] getTentativeUsersFromGroup:self.currentGroup];
+            SendPendingUserPush(self.currentGroup);
             if (self.index != path.row) {
                 self.index = path.row;
                 self.shouldAdd = YES;

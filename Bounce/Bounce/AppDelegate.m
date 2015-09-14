@@ -123,6 +123,7 @@
     if ( application.applicationState == UIApplicationStateActive ){
         // app was already in the foreground
 //        [PFPush handlePush:userInfo];
+
         if ([[userInfo objectForKey:@"aps"] objectForKey:NOTIFICATION_ALERT_MESSAGE]) {
             NSString *message = [[userInfo objectForKey:@"aps"] objectForKey:NOTIFICATION_ALERT_MESSAGE];
             notificationRequestId = [userInfo objectForKey:OBJECT_ID];
