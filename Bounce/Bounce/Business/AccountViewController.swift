@@ -123,6 +123,17 @@ class AccountViewController: UIViewController {
             profilePictureView.image = savedProfilePicture
         }
         
+        let fileThumbnail = PFUser.currentUser()[PF_USER_THUMBNAIL] as? PFFile
+        if let thumbnail = fileThumbnail {
+            thumbnail.getDataInBackgroundWithBlock({ (imageData: NSData!, error: NSError!) -> Void in
+                let image = UIImage(data: imageData)
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.profilePictureView.image = image
+                })
+            })
+        }
+        
         let facebookId = PFUser.currentUser()?.objectForKey("facebook_id") as? String
         
         if let id = facebookId as String! {
