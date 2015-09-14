@@ -38,7 +38,6 @@
     UIImageView *placeholderImageView;
     UILabel *placeholderTitle;
     UILabel *placeholderBodyText;
-    
 }
 
 @synthesize nearUsers = nearUsers;
@@ -88,6 +87,13 @@
     self.navigationItem.titleView = navLabel;
     navLabel.text = @"Homepoints";
     [navLabel sizeToFit];
+    
+    UIView *whiteCoverView = [UIView new];
+    whiteCoverView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:whiteCoverView];
+    [whiteCoverView kgn_pinToBottomEdgeOfSuperview];
+    [whiteCoverView kgn_pinToSideEdgesOfSuperview];
+    [whiteCoverView kgn_sizeToHeight:TAB_BAR_HEIGHT];
 }
 
 #pragma mark Placeholder Methods
@@ -153,6 +159,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
+    
+    [self.delegate setHomepointNotification:false];
+
     @try {
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
             [[Utility getInstance] showProgressHudWithMessage:@"Loading..." withView:self.view];

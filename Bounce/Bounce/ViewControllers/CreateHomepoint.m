@@ -20,6 +20,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.imageAdded = NO;
+    self.keyboardUp = false;
     
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.backgroundColor = BounceRed;
@@ -111,13 +112,13 @@
     [_groupNameTextField kgn_pinToSideEdgesOfSuperviewWithOffset:35.0];
     [_groupNameTextField kgn_sizeToHeight:textfieldHeight];
     
-    UILabel *homepointHint = [[UILabel alloc] init];
-    homepointHint.text = @"Ex: North State St, or Kerrytown";
-    homepointHint.textColor = [UIColor colorWithWhite:0.0 alpha:0.36];
-    homepointHint.font = [UIFont fontWithName:@"AvenirNext-Regular" size:14.0];
-    [self.view addSubview:homepointHint];
-    [homepointHint kgn_pinToLeftEdgeOfSuperviewWithOffset:35.0];
-    [homepointHint kgn_positionBelowItem:_groupNameTextField withOffset:10.0];
+    self.homepointHint = [[UILabel alloc] init];
+    self.homepointHint.text = @"Ex: North State St, or Kerrytown";
+    self.homepointHint.textColor = [UIColor colorWithWhite:0.0 alpha:0.36];
+    self.homepointHint.font = [UIFont fontWithName:@"AvenirNext-Regular" size:14.0];
+    [self.view addSubview:self.homepointHint];
+    [self.homepointHint kgn_pinToLeftEdgeOfSuperviewWithOffset:35.0];
+    [self.homepointHint kgn_positionBelowItem:_groupNameTextField withOffset:10.0];
     
     _addLocationButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     _addLocationButton.layer.cornerRadius = 10.0;
@@ -135,6 +136,12 @@
     [_addLocationButton kgn_centerHorizontallyInSuperview];
     [_addLocationButton kgn_pinToSideEdgesOfSuperviewWithOffset:35.0];
     [_addLocationButton kgn_sizeToHeight:textfieldHeight];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -419,6 +426,64 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
         [alertView show];
     }
     [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void) dismissKeyboard {
+    [self.view endEditing:true];
+}
+
+- (void) keyboardWillShow:(NSNotification *)userInfo {
+    if (self.keyboardUp) {
+        return;
+    }
+    
+    if (userInfo != nil) {
+    
+        NSDictionary *info = [userInfo userInfo];
+
+        CGRect keyboardFrame;
+        [[info valueForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
+        
+        // No overlap
+        if (CGRectGetMinY(keyboardFrame) >= CGRectGetMaxY(self.homepointHint.frame)) {
+            return;
+        }
+
+        CGFloat movementHeight = -([info[UIKeyboardFrameBeginUserInfoKey] CGRectValue].size.height);
+        [UIView beginAnimations:@"keyboardGoinUP" context:nil];
+        [UIView setAnimationBeginsFromCurrentState:true];
+        [UIView setAnimationDuration:0.3];
+        UIViewAnimationCurve curve = [info[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+        [UIView setAnimationCurve:curve];
+        self.view.frame = CGRectOffset(self.view.frame, 0, movementHeight + (CGRectGetMaxY(self.view.frame) - CGRectGetMaxY(self.homepointHint.frame) - 40));
+        [UIView commitAnimations];
+        
+        self.keyboardUp = true;
+    } else {
+        NSLog(@"ERROR: User info for keyboardWillShow was nil");
+    }
+}
+
+- (void) keyboardWillHide:(NSNotification *)userInfo {
+    if (!self.keyboardUp) {
+        return;
+    }
+    
+    if (userInfo != nil) {
+        NSDictionary *info = [userInfo userInfo];
+        [UIView beginAnimations:@"keyboardGoinDOWN" context:nil];
+        [UIView setAnimationBeginsFromCurrentState:true];
+        [UIView setAnimationDuration:0.3];
+        UIViewAnimationCurve curve = [info[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+        self.view.frame = CGRectMake(0, CGRectGetMaxY(self.navigationController.navigationBar.frame), self.view.bounds.size.width, self.view.bounds.size.height);
+        [UIView setAnimationCurve:curve];
+        
+        [UIView commitAnimations];
+        
+        self.keyboardUp = false;
+    } else {
+        NSLog(@"ERROR: User info for keyboardWillHide was nil");
+    }
 }
 
 @end
