@@ -141,16 +141,33 @@ void SendPendingUserPush(PFObject *homepoint) {
 void SendMemberApprovedPush(PFObject *homepoint, PFUser *approvedUser) {
     if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
         
-        NSString *strng = [NSString stringWithFormat:@"Welcome to the '%@' homepoint! %@ approved you to be a part of the crew. Get to know your new homies, and once you're ready, add others you know from homepoints nearby!", [homepoint valueForKey:@"groupName"], [approvedUser valueForKey:@"username"]];
-        
-        PFRelation *usersRelation = [homepoint relationForKey:PF_GROUP_Users_RELATION];
-        PFQuery *query = [usersRelation query];
-        [query whereKey:OBJECT_ID notEqualTo:[[PFUser currentUser] objectId]];
-        [query includeKey:PF_GROUP_Users_RELATION];
-        [query setLimit:1000];
+        NSString *strng = [NSString stringWithFormat:@"Welcome to the '%@' homepoint! %@ approved you to be a part of the crew. Get to know your new homies, and add others you know from homepoints nearby!", [homepoint valueForKey:@"groupName"], [[PFUser currentUser] valueForKey:@"username"]];
         
         PFQuery *queryInstallation = [PFInstallation query];
-        [queryInstallation whereKey:PF_INSTALLATION_USER matchesQuery:query];
+        [queryInstallation whereKey:PF_INSTALLATION_USER equalTo:approvedUser];
+        
+        PFPush *push = [[PFPush alloc] init];
+        [push setQuery:queryInstallation];
+        //	[push setMessage:text];
+        NSDictionary *data = [[NSDictionary alloc] initWithObjects:@[strng] forKeys:@[NOTIFICATION_ALERT_MESSAGE]];
+        [push setData:data];
+        [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+         {
+             if (error != nil)
+             {
+                 NSLog(@"SendPushNotification send error.");
+             }
+         }];
+    }
+}
+
+void SendAddedMemberPush(NSString *homepoint, PFUser *addedUser) {
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+        
+        NSString *strng = [NSString stringWithFormat:@"Welcome to the '%@' homepoint! %@ added you to the crew. Get to know your new homies, and add others you know from homepoints nearby!", homepoint, [[PFUser currentUser] valueForKey:@"username"]];
+        
+        PFQuery *queryInstallation = [PFInstallation query];
+        [queryInstallation whereKey:PF_INSTALLATION_USER equalTo:addedUser];
         
         PFPush *push = [[PFPush alloc] init];
         [push setQuery:queryInstallation];
