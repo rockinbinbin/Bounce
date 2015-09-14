@@ -88,6 +88,13 @@
     self.navigationItem.titleView = navLabel;
     navLabel.text = @"Homepoints";
     [navLabel sizeToFit];
+    
+    UIView *whiteCoverView = [UIView new];
+    whiteCoverView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:whiteCoverView];
+    [whiteCoverView kgn_pinToBottomEdgeOfSuperview];
+    [whiteCoverView kgn_pinToSideEdgesOfSuperview];
+    [whiteCoverView kgn_sizeToHeight:TAB_BAR_HEIGHT];
 }
 
 #pragma mark Placeholder Methods
