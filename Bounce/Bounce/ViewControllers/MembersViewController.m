@@ -110,11 +110,11 @@
                 user = [self.tentativeUsers objectAtIndex:indexPath.row];
         
                 if (!self.selected) {
-                        UIImage *img = [UIImage imageNamed:@"confirmRequest"];
+                        UIImage *img = [UIImage imageNamed:@"addUser"];
                         [cell.iconView setImage:img forState:UIControlStateNormal];
                     }
                 else {
-                        UIImage *img = [UIImage imageNamed:@"sendButton"];
+                        UIImage *img = [UIImage imageNamed:@"confirmRequest"];
                        [cell.iconView setImage:img forState:UIControlStateNormal];
                     }
         
