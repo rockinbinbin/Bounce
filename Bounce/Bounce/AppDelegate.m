@@ -143,6 +143,10 @@
                 if (self.rootTabBarControllerDelegate != nil) {
                     [self.rootTabBarControllerDelegate setHomepointNotification:true];
                 }
+            } else if ([message_prefix_type isEqualToString: APPROVED_NOTIFICATION_PREFIX]) {
+                if (self.rootTabBarControllerDelegate != nil) {
+                    [self.rootTabBarControllerDelegate setHomepointNotification:true];
+                }
             }
             
             notificationRequestId = [userInfo objectForKey:OBJECT_ID];

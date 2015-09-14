@@ -148,6 +148,8 @@ void SendMemberApprovedPush(PFObject *homepoint, PFUser *approvedUser) {
         
         NSString *strng = [NSString stringWithFormat:@"Welcome to the '%@' homepoint! %@ approved you to be a part of the crew. Get to know your new homies, and once you're ready, add others you know from homepoints nearby!", [homepoint valueForKey:@"groupName"], [approvedUser valueForKey:@"username"]];
         
+        strng = [APPROVED_NOTIFICATION_PREFIX stringByAppendingString:strng];
+        
         PFRelation *usersRelation = [homepoint relationForKey:PF_GROUP_Users_RELATION];
         PFQuery *query = [usersRelation query];
         [query whereKey:OBJECT_ID notEqualTo:[[PFUser currentUser] objectId]];
