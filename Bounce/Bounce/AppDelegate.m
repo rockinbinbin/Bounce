@@ -129,7 +129,6 @@
             NSString *message = [[userInfo objectForKey:@"aps"] objectForKey:NOTIFICATION_ALERT_MESSAGE];
             
             NSString *message_prefix_type = [message substringToIndex:1];
-            message = [message substringFromIndex:1];
             
             if ([message_prefix_type isEqualToString: LEAVING_GROUP_NOTIFICATION_PREFIX]) {
                 if (self.rootTabBarControllerDelegate != nil) {
