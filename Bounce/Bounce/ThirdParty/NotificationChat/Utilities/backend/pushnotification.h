@@ -20,3 +20,4 @@ void		SendPushNotification	(NSString *groupId, NSString *text, PFObject *current
 void        SendHomepointPush       (PFObject *homepoint, NSString *text, NSString *groupId);
 void SendPendingUserPush(PFObject *homepoint);
 void SendMemberApprovedPush(PFObject *homepoint, PFUser *approvedUser);
+void SendAddedMemberPush(NSString *homepoint, PFUser *addedUser);

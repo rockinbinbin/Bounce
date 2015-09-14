@@ -252,7 +252,7 @@
     }
     else {
         if (self.homepoint) {
-            SendHomepointPush(self.homepoint, text, groupId);
+            SendHomepointPush(self.homepoint, text, groupId); /////////// WTF???
         }
     }
 	UpdateMessageCounter(groupId, text);

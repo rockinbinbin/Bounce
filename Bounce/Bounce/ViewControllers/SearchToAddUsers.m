@@ -10,6 +10,7 @@
 #import "UIView+AutoLayout.h"
 #import "membersCell.h"
 #import "Utility.h"
+#import "pushnotification.h"
 
 #define ResultsTableView self.searchResultsTableViewController.tableView
 
@@ -137,6 +138,7 @@
                if (self.index != path.row) {
                         self.index = path.row;
                         [[ParseManager getInstance] addUser:user toGroup:self.group];
+                   SendAddedMemberPush([self.group valueForKey:@"groupName"], user);
                     }
                 else {
                         self.index = -1;

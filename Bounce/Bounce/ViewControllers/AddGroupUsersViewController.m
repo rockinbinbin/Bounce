@@ -16,6 +16,7 @@
 #import "Utility.h"
 #import "UIView+AutoLayout.h"
 #import "membersCell.h"
+#import "pushnotification.h"
 
 #define ResultsTableView self.searchResultsTableViewController.tableView
 #define Identifier @"Cell"
@@ -166,6 +167,7 @@
         if (self.index != indexPath.row) {
             self.index = indexPath.row;
             [self.selectedUsers addObject:user];
+            SendAddedMemberPush(self.groupName, user);
         }
         else {
             self.index = -1;
