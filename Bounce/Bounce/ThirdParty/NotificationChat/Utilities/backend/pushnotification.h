@@ -19,3 +19,4 @@ void		ParsePushUserResign		(void);
 void		SendPushNotification	(NSString *groupId, NSString *text, PFObject *currentRequest);
 void        SendHomepointPush       (PFObject *homepoint, NSString *text, NSString *groupId);
 void SendPendingUserPush(PFObject *homepoint);
+void SendMemberApprovedPush(PFObject *homepoint, PFUser *approvedUser);

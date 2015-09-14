@@ -50,11 +50,17 @@ void SendPushNotification(NSString *groupId, NSString *text, PFObject *currentRe
     
     
     if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
-
+        
+        NSString* a = [NSString stringWithFormat:@"%@, leaving soon: ", [[PFUser currentUser] valueForKey:@"username"]];
+        NSString* result = [a stringByAppendingString:text];
+        
+        PFRelation *removedUsers = [currentRequest relationForKey:@"removedUsers"];
+        PFQuery *removedUsersQuery = [removedUsers query];
+        
         PFRelation *usersRelation = [currentRequest relationForKey:@"joinedUsers"];
         PFQuery *query = [usersRelation query];
         [query whereKey:OBJECT_ID notEqualTo:[[PFUser currentUser] objectId]];
-        [query includeKey:@"joinedUsers"];
+        [query whereKey:OBJECT_ID doesNotMatchKey:OBJECT_ID inQuery:removedUsersQuery];
         [query setLimit:1000];
 
         PFQuery *queryInstallation = [PFInstallation query];
@@ -63,7 +69,7 @@ void SendPushNotification(NSString *groupId, NSString *text, PFObject *currentRe
         PFPush *push = [[PFPush alloc] init];
         [push setQuery:queryInstallation];
 //	[push setMessage:text];
-        NSDictionary *data = [[NSDictionary alloc] initWithObjects:@[groupId, text] forKeys:@[OBJECT_ID, NOTIFICATION_ALERT_MESSAGE]];
+        NSDictionary *data = [[NSDictionary alloc] initWithObjects:@[groupId, result] forKeys:@[OBJECT_ID, NOTIFICATION_ALERT_MESSAGE]];
         [push setData:data];
         [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
          {
@@ -76,6 +82,9 @@ void SendPushNotification(NSString *groupId, NSString *text, PFObject *currentRe
 
 void SendHomepointPush(PFObject *homepoint, NSString *text, NSString *groupId) {
     if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+        
+        NSString* a = [NSString stringWithFormat:@"%@, in %@: ", [[PFUser currentUser] valueForKey:@"username"], [homepoint valueForKey:@"groupName"]];
+        NSString* result = [a stringByAppendingString:text];
         
         PFRelation *usersRelation = [homepoint relationForKey:PF_GROUP_Users_RELATION];
         PFQuery *query = [usersRelation query];
@@ -90,7 +99,7 @@ void SendHomepointPush(PFObject *homepoint, NSString *text, NSString *groupId) {
     PFPush *push = [[PFPush alloc] init];
     [push setQuery:queryInstallation];
     //	[push setMessage:text];
-    NSDictionary *data = [[NSDictionary alloc] initWithObjects:@[groupId, text] forKeys:@[OBJECT_ID, NOTIFICATION_ALERT_MESSAGE]];
+    NSDictionary *data = [[NSDictionary alloc] initWithObjects:@[groupId, result] forKeys:@[OBJECT_ID, NOTIFICATION_ALERT_MESSAGE]];
     [push setData:data];
     [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
      {
@@ -105,7 +114,36 @@ void SendHomepointPush(PFObject *homepoint, NSString *text, NSString *groupId) {
 void SendPendingUserPush(PFObject *homepoint) {
     if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
         
-        NSString *strng = [NSString stringWithFormat:@"Neighbors, galore! %@ has requested to join the '%@' homepoint. Click the top right icon in your homepoint's chat view to approve them.", [[PFUser currentUser] valueForKey:@"username"], [homepoint valueForKey:@"groupName"]];
+        NSString *strng = [NSString stringWithFormat:@"Neighbors, galore! %@ asked to join the '%@' homepoint. Click the top right icon in your homepoint's chat view to approve them.", [[PFUser currentUser] valueForKey:@"username"], [homepoint valueForKey:@"groupName"]];
+        
+        PFRelation *usersRelation = [homepoint relationForKey:PF_GROUP_Users_RELATION];
+        PFQuery *query = [usersRelation query];
+        [query whereKey:OBJECT_ID notEqualTo:[[PFUser currentUser] objectId]];
+        [query includeKey:PF_GROUP_Users_RELATION];
+        [query setLimit:1000];
+        
+        PFQuery *queryInstallation = [PFInstallation query];
+        [queryInstallation whereKey:PF_INSTALLATION_USER matchesQuery:query];
+        
+        PFPush *push = [[PFPush alloc] init];
+        [push setQuery:queryInstallation];
+        //	[push setMessage:text];
+        NSDictionary *data = [[NSDictionary alloc] initWithObjects:@[strng] forKeys:@[NOTIFICATION_ALERT_MESSAGE]];
+        [push setData:data];
+        [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+         {
+             if (error != nil)
+             {
+                 NSLog(@"SendPushNotification send error.");
+             }
+         }];
+    }
+}
+
+void SendMemberApprovedPush(PFObject *homepoint, PFUser *approvedUser) {
+    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
+        
+        NSString *strng = [NSString stringWithFormat:@"Welcome to the '%@' homepoint! %@ approved you to be a part of the crew. Get to know your new homies, and once you're ready, add others you know from homepoints nearby!", [homepoint valueForKey:@"groupName"], [approvedUser valueForKey:@"username"]];
         
         PFRelation *usersRelation = [homepoint relationForKey:PF_GROUP_Users_RELATION];
         PFQuery *query = [usersRelation query];
