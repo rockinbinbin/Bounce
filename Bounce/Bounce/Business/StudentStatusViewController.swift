@@ -83,7 +83,7 @@ import UIKit
             contentLabel.font = Constants.Fonts.Avenir.Medium
 
             view.addSubview(contentLabel)
-            
+
             contentLabel.pinToSideEdgesOfSuperview(offset: self.view.frame.size.height * 0.05)
             contentLabel.positionBelowItem(titleLabel, offset: 20)
         }

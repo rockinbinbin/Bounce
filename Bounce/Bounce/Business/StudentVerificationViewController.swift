@@ -19,6 +19,14 @@ class StudentVerificationViewController: UIViewController, UITextFieldDelegate {
 
     var keyboardUp = false
     
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     override func viewDidLoad() {
         self.view.backgroundColor = Constants.Colors.BounceRed
         
@@ -31,7 +39,12 @@ class StudentVerificationViewController: UIViewController, UITextFieldDelegate {
         let originalSize = image?.size
         imageView.centerHorizontallyInSuperview()
         imageView.pinToTopEdgeOfSuperview(offset: self.view.frame.size.height * 0.05, priority: 1.0)
-        imageView.pinToSideEdgesOfSuperview(offset: self.view.frame.size.width * 0.20)
+        
+        if (self.view.bounds.size.height <= 480) {
+            imageView.pinToSideEdgesOfSuperview(offset: 100)
+        } else {
+            imageView.pinToSideEdgesOfSuperview(offset: self.view.frame.size.width * 0.1 + 50)
+        }
         
         let constraint = NSLayoutConstraint(item: imageView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: imageView, attribute: NSLayoutAttribute.Width, multiplier: originalSize!.height / originalSize!.width, constant: 0.0)
         
@@ -74,7 +87,7 @@ class StudentVerificationViewController: UIViewController, UITextFieldDelegate {
         
         self.view.addSubview(textField)
 
-        textField.positionBelowItem(contentLabel, offset: 50)
+        textField.positionBelowItem(contentLabel, offset: self.view.bounds.height * 0.05)
         textField.sizeToHeight(textFieldHeight)
         textField.pinToSideEdgesOfSuperview(offset: 40)
         textField.autocapitalizationType = UITextAutocapitalizationType.None
@@ -87,6 +100,10 @@ class StudentVerificationViewController: UIViewController, UITextFieldDelegate {
         
         neverShareLabel.centerHorizontallyInSuperview()
         neverShareLabel.positionBelowItem(textField, offset: 15)
+        
+        if (self.view.bounds.size.height <= 480) {
+            neverShareLabel.hidden = true;
+        }
         
         // Send Verification Button
         
@@ -197,7 +214,12 @@ class StudentVerificationViewController: UIViewController, UITextFieldDelegate {
 
         self.view.layoutIfNeeded()
         
-        imageView.pinToTopEdgeOfSuperview(offset: self.view.frame.size.height * 0.15, priority: 2.0)
+        let originalSize = imageView.image!.size
+        imageView.pinToTopEdgeOfSuperview(offset: self.view.frame.size.height * 0.25 - 100, priority: 2.0)
+        let constraint = NSLayoutConstraint(item: imageView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: imageView, attribute: NSLayoutAttribute.Width, multiplier: originalSize.height / originalSize.width, constant: 0.0)
+        imageView.pinToSideEdgesOfSuperview(offset: self.view.frame.size.width * 0.20)
+        
+        self.view.addConstraint(constraint)
         
         UIView.animateWithDuration(0.15, delay: 0.20, options: UIViewAnimationOptions.CurveEaseIn, animations: {
                 self.titleLabel.alpha = 0.0

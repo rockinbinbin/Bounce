@@ -34,7 +34,7 @@ class EmailSentViewController: UIViewController {
         
         let originalSize = image?.size
         imageView.centerHorizontallyInSuperview()
-        imageView.pinToTopEdgeOfSuperview(offset: self.view.frame.size.height * 0.15)
+        imageView.pinToTopEdgeOfSuperview(offset: self.view.frame.size.height * 0.25 - 100)
         imageView.pinToSideEdgesOfSuperview(offset: self.view.frame.size.width * 0.20)
         imageView.alpha = 0.5
         
