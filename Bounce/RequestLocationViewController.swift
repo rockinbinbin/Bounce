@@ -19,7 +19,7 @@ class RequestLocationViewController: UIViewController {
         let titleLabel = UILabel()
 
         titleLabel.text = "We need your location!"
-        titleLabel.font = Constants.Fonts.Avenir.Large
+        titleLabel.font = UIFont(name: "AvenirNext-Medium", size: 24)
         titleLabel.textColor = UIColor.whiteColor()
         titleLabel.textAlignment = .Center
         
@@ -71,19 +71,25 @@ class RequestLocationViewController: UIViewController {
     }
     
     private func layoutViews() {
-        titleLabel.centerHorizontallyInSuperview()
-        titleLabel.pinToTopEdgeOfSuperview(offset: 50)
+        let screenHeight = CGRectGetHeight(self.view.bounds)
+        let screenWidth = CGRectGetWidth(self.view.bounds)
         
-        imageView.sizeToHeight(self.view.frame.size.height * 0.28)
+        titleLabel.centerHorizontallyInSuperview()
+        titleLabel.pinToTopEdgeOfSuperview(offset: screenHeight * 0.05)
+        
+        let imageSize = imageView.image!.size
+        
+        imageView.sizeToHeight(screenHeight * 0.28)
+        imageView.sizeToWidth(screenHeight * 0.28 / imageSize.height * imageSize.width)
         imageView.centerHorizontallyInSuperview()
-        imageView.positionBelowItem(titleLabel, offset: 64)
+        imageView.positionBelowItem(titleLabel, offset: screenHeight * 0.15 - 45)
         
         continueButton.pinToBottomEdgeOfSuperview(offset: 50)
         continueButton.sizeToHeight(53)
         continueButton.pinToSideEdgesOfSuperview(offset: 30)
         
-        descriptionLabel.positionAboveItem(continueButton, offset: 60)
-        descriptionLabel.pinToSideEdgesOfSuperview(offset: 27)
+        descriptionLabel.positionAboveItem(continueButton, offset: screenHeight * 0.2 - 75)
+        descriptionLabel.pinToSideEdgesOfSuperview(offset: screenWidth * 0.05)
     }
     
     // MARK: - Button Method

@@ -16,7 +16,7 @@ class RequestPushNotificationsViewController: UIViewController {
         let titleLabel = UILabel()
         
         titleLabel.text = "We need push notifications!"
-        titleLabel.font = Constants.Fonts.Avenir.Large
+        titleLabel.font = UIFont(name: "AvenirNext-Medium", size: 24)
         titleLabel.textColor = UIColor.whiteColor()
         titleLabel.textAlignment = .Center
         
@@ -77,27 +77,31 @@ class RequestPushNotificationsViewController: UIViewController {
     }
     
     private func layoutViews() {
-        titleLabel.centerHorizontallyInSuperview()
-        titleLabel.pinToTopEdgeOfSuperview(offset: 50)
+        let screenHeight = CGRectGetHeight(self.view.bounds)
+        let screenWidth = CGRectGetWidth(self.view.bounds)
         
-        let originalImageSize = self.phoneImageView.image?.size
-        phoneImageView.sizeToHeight(self.view.frame.size.height * 0.30)
-        phoneImageView.sizeToWidth(self.view.frame.size.height * 0.30 * originalImageSize!.width / originalImageSize!.height)
+        titleLabel.centerHorizontallyInSuperview()
+        titleLabel.pinToTopEdgeOfSuperview(offset: screenHeight * 0.05)
+        
+        let imageSize = phoneImageView.image!.size
+        
+        phoneImageView.sizeToHeight(screenHeight * 0.28)
+        phoneImageView.sizeToWidth(screenHeight * 0.28 / imageSize.height * imageSize.width)
         phoneImageView.centerHorizontallyInSuperview()
-        phoneImageView.positionBelowItem(titleLabel, offset: 64)
-
-        let notificationWidth = originalImageSize!.width * 0.4
-        notificationImageView.sizeToWidth(notificationWidth)
-        notificationImageView.sizeToHeight(notificationWidth)
-        notificationImageView.positionToTheRightOfItem(phoneImageView, offset: -(notificationWidth / 2.0))
-        notificationImageView.positionAboveItem(phoneImageView, offset: -(notificationWidth * 2.0 / 3.0))
+        phoneImageView.positionBelowItem(titleLabel, offset: screenHeight * 0.2 - 45)
         
         continueButton.pinToBottomEdgeOfSuperview(offset: 50)
         continueButton.sizeToHeight(53)
         continueButton.pinToSideEdgesOfSuperview(offset: 30)
         
-        descriptionLabel.positionAboveItem(continueButton, offset: 60)
-        descriptionLabel.pinToSideEdgesOfSuperview(offset: 27)
+        descriptionLabel.positionAboveItem(continueButton, offset: screenHeight * 0.2 - 75)
+        descriptionLabel.pinToSideEdgesOfSuperview(offset: screenWidth * 0.05)
+
+        let notificationWidth = self.phoneImageView.image!.size.width * 0.4
+        notificationImageView.sizeToWidth(notificationWidth)
+        notificationImageView.sizeToHeight(notificationWidth)
+        notificationImageView.positionToTheRightOfItem(phoneImageView, offset: -(notificationWidth / 2.0))
+        notificationImageView.positionAboveItem(phoneImageView, offset: -(notificationWidth * 2.0 / 3.0))
     }
     
     // MARK: - Button Method

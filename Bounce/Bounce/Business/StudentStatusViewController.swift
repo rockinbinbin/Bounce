@@ -83,7 +83,7 @@ import UIKit
             contentLabel.font = Constants.Fonts.Avenir.Medium
 
             view.addSubview(contentLabel)
-            
+
             contentLabel.pinToSideEdgesOfSuperview(offset: self.view.frame.size.height * 0.05)
             contentLabel.positionBelowItem(titleLabel, offset: 20)
         }
@@ -107,6 +107,11 @@ import UIKit
             self.noButton.titleLabel?.alpha = 1.0
             self.imageView.alpha = 1.0
         })
+    }
+    
+    // GET RID OF THIS
+    override public func viewDidAppear(animated: Bool) {
+        self.presentViewController(StudentVerificationViewController(), animated: false, completion: nil)
     }
     
     func studentButtonPressed(sender: UIButton!) {
