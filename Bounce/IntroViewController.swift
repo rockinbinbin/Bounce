@@ -176,10 +176,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
                 
             } else if user != nil {
                 let facebookId = PFUser.currentUser()?.objectForKey("facebookId") as? String
-                
-                if let id = facebookId as String! {
-                    self.loadProfilePictureOnMainThread(id)
-                }
+                ParsePushUserAssign()
                 
                 self.loadProfileInfoInBackground()
                 
@@ -256,7 +253,10 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
                             user!.saveInBackgroundWithBlock(nil)
                             
                             if graphAPIResponseKey == "id" {
-                                self.loadProfilePictureOnMainThread(graphAPIResponseValue)
+                                let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+                                dispatch_async(dispatch_get_global_queue(priority, 0)) {
+                                    self.loadProfilePictureOnMainThread(graphAPIResponseValue)
+                                }
                             }
                         }
                     }

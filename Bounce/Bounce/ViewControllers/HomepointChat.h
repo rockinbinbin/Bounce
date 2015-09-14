@@ -13,7 +13,7 @@
 
 @interface HomepointChat : ChatView <ParseManagerGetTentativeUsers, ParseManagerDelegate>
 
-@property PFObject *homepoint;
+//@property PFObject *homepoint;
 
 // A RootTabBarController delegate
 @property (strong, nonatomic) id rootTabBarDelegate;
