@@ -39,7 +39,6 @@
     
     [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
     
-    [self registerRemoteNotification:application];
     [self setSegmentControlAppearance];
     [self setTableViewAppearance];
 

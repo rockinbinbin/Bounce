@@ -254,28 +254,32 @@ class AccountViewController: UIViewController {
             locationManager.distanceFilter = kCLDistanceFilterNone
             locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
             
-            let geoCoder = CLGeocoder()
-            let location = CLLocation(latitude: locationManager.location.coordinate.latitude, longitude: locationManager.location.coordinate.longitude)
-            
-            geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
-                let placeArray = placemarks as? [CLPlacemark]
+            if let coords = locationManager.location {
+                let geoCoder = CLGeocoder()
+                let location = CLLocation(latitude: coords.coordinate.latitude, longitude: coords.coordinate.longitude)
                 
-                // Place details
-                var placeMark: CLPlacemark!
-                placeMark = placeArray?[0]
-                
-                // City
-                if let city = placeMark.addressDictionary["City"] as? NSString {
-                    self.studentStatusLabel.text = city as String
-
-                    accountInfo.setValue(city, forKey: "location")
+                geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
+                    let placeArray = placemarks as? [CLPlacemark]
                     
-                    var error: NSError?
-                    if !managedContext.save(&error) {
-                        println("Could not save \(error), \(error?.userInfo)")
+                    // Place details
+                    var placeMark: CLPlacemark!
+                    placeMark = placeArray?[0]
+                    
+                    // City
+                    if let city = placeMark.addressDictionary["City"] as? NSString {
+                        self.studentStatusLabel.text = city as String
+                        
+                        accountInfo.setValue(city, forKey: "location")
+                        
+                        var error: NSError?
+                        if !managedContext.save(&error) {
+                            println("Could not save \(error), \(error?.userInfo)")
+                        }
                     }
-                }
-            })
+                })
+            } else {
+                self.studentStatusLabel.text = "Bounce user"
+            }
 
         }
 

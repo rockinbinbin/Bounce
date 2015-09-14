@@ -15,14 +15,26 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
     // MARK: - Page View Controller Content
     
     var pageViewController : UIPageViewController?
-    var pageTitles : Array<String> = ["Meet Bounce.", "Find your homepoints.", "Go out and have fun!", "You’re all set!"]
-    var pageImages : Array<String> = ["Intro-Meet-Bounce", "Intro-Houses", "Intro-Glasses", "Intro-People"]
-    var pageContent: Array<String> = [
-        "Find friends and neighbors to walk home with when out late.",
-        "Join trusted community groups, like neighborhoods or dorms.",
-        "You'll be matched with others from your homepoints when you're ready to leave.",
-        "Time to bounce home with your new crew."
+    
+    struct Page {
+        var title:     String
+        var imageFile: String
+        var content:   String
+        
+        init(title: String, imageTitle: String, content: String) {
+            self.title = title
+            self.imageFile = imageTitle
+            self.content = content
+        }
+    }
+    
+    let pages = [
+        Page(title: "Meet Bounce.", imageTitle: "Intro-Meet-Bounce", content: "Find friends and neighbors to walk home with when out late."),
+        Page(title: "Find your homepoints.", imageTitle: "Intro-Houses", content: "Join trusted community groups, like neighborhoods or dorms."),
+        Page(title: "Go out and have fun!", imageTitle: "Intro-Glasses", content: "You'll be matched with others from your homepoints when you're ready to leave."),
+        Page(title: "You’re all set!", imageTitle: "Intro-People", content: "Time to bounce home with your new crew.")
     ]
+    
     var currentIndex : Int = 0
     
     let loginButton = RoundedRectButton(text: "Log in with Facebook")
@@ -63,7 +75,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
         
         self.view.addSubview(loginButton)
         
-        loginButton.pinToBottomEdgeOfSuperview(offset: 50)
+        loginButton.pinToBottomEdgeOfSuperview(offset: CGRectGetHeight(self.view.bounds) * 0.08)
         loginButton.sizeToHeight(53)
         loginButton.pinToSideEdgesOfSuperview(offset: 30)
         
@@ -90,7 +102,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
     
     public func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController?
     {
-        var index = (viewController as! InstructionView).pageIndex
+        var index = (viewController as! InstructionView).index
         
         if (index == 0) || (index == NSNotFound) {
             return nil
@@ -103,7 +115,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
     
     public func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController?
     {
-        var index = (viewController as! InstructionView).pageIndex
+        var index = (viewController as! InstructionView).index
         
         if index == NSNotFound {
             return nil
@@ -111,7 +123,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
         
         index++
         
-        if (index == self.pageTitles.count) {
+        if (index == self.pages.count) {
             return nil
         }
         
@@ -120,17 +132,13 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
     
     func viewControllerAtIndex(index: Int) -> InstructionView?
     {
-        if self.pageTitles.count == 0 || index >= self.pageTitles.count
+        if self.pages.count == 0 || index >= self.pages.count
         {
             return nil
         }
         
         // Create a new view controller and pass suitable data.
-        let pageContentViewController = InstructionView()
-        pageContentViewController.imageFile = pageImages[index]
-        pageContentViewController.titleText = pageTitles[index]
-        pageContentViewController.bodyText  = pageContent[index]
-        pageContentViewController.pageIndex = index
+        let pageContentViewController = InstructionView(title: pages[index].title, bodyText: pages[index].content, imageFile: pages[index].imageFile, pageIndex: index)
         currentIndex = index
         
         return pageContentViewController
@@ -138,7 +146,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
     
     public func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int
     {
-        return self.pageTitles.count
+        return self.pages.count
     }
     
     public func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int
@@ -179,7 +187,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
                 if user!.isNew {
                     self.handleNewUser(user)
                     
-                // Returning user
+                    // Returning user
                 } else {
                     // Not set location permissions yet
                     if CLLocationManager.authorizationStatus() == .NotDetermined {
@@ -224,20 +232,20 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
     }
     
     /**
-     * Stores user ID and full name in Parse.
-     *
-     * :param: user The new PFUser signing up.
-     */
+    * Stores user ID and full name in Parse.
+    *
+    * :param: user The new PFUser signing up.
+    */
     func handleNewUser(user: PFUser?) {
         FBRequestConnection.startForMeWithCompletionHandler({ (connection: FBRequestConnection!, result: AnyObject?, error: NSError!) -> Void in
-
+            
             // Maps from the /me response value names to stored Parse value names.
             let keyMap = [
                 "id":     ["facebookId"],
                 "name":   ["fullname", "username"],
                 "gender": ["Gender"],
             ]
-
+            
             if error != nil {
                 println(error)
             } else {
@@ -292,7 +300,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
         user["picture"] = photoFile
         user["thumbnail"] = thumbnailFile
         user.saveInBackgroundWithBlock(nil)
-
+        
         if imageData.writeToFile(imagePath, atomically: false) {
             NSUserDefaults.standardUserDefaults().setObject(imagePath, forKey: "imagePath")
         }
@@ -335,7 +343,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
                 }
             }
         })
-
+        
         // Get number of Facebook friends
         let request = FBRequest.requestForMyFriends()
         request.startWithCompletionHandler({ (connection: FBRequestConnection!, result: AnyObject?, error: NSError!) -> Void in
