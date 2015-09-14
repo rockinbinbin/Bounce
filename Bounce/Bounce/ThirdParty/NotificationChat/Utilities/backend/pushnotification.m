@@ -48,7 +48,6 @@ void ParsePushUserResign(void)
 
 void SendPushNotification(NSString *groupId, NSString *text, PFObject *currentRequest) {
     
-    
     if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
         
         NSString* a = [NSString stringWithFormat:@"%@, leaving soon: ", [[PFUser currentUser] valueForKey:@"username"]];
