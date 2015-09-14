@@ -24,6 +24,7 @@
 
 @property (nonatomic) BOOL homepointChat;
 @property (nonatomic, strong) PFObject *homepoint;
+@property (nonatomic, strong) PFObject *currentRequest;
 
 - (id)initWith:(NSString *)groupId_;
 - (void)loadMessages;

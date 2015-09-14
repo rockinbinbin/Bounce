@@ -46,41 +46,46 @@ void ParsePushUserResign(void)
     }
 }
 
-void SendPushNotification(NSString *groupId, NSString *text) {
+void SendPushNotification(NSString *groupId, NSString *text, PFObject *currentRequest) {
+    
+    
     if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
-	PFQuery *query = [PFQuery queryWithClassName:PF_MESSAGES_CLASS_NAME];
-	[query whereKey:PF_MESSAGES_GROUPID equalTo:groupId];
-	[query whereKey:PF_MESSAGES_USER notEqualTo:[PFUser currentUser]];
-	[query includeKey:PF_MESSAGES_USER];
-	[query setLimit:1000];
 
-	PFQuery *queryInstallation = [PFInstallation query];
-	[queryInstallation whereKey:PF_INSTALLATION_USER matchesKey:PF_MESSAGES_USER inQuery:query];
+        PFRelation *usersRelation = [currentRequest relationForKey:@"joinedUsers"];
+        PFQuery *query = [usersRelation query];
+        [query whereKey:OBJECT_ID notEqualTo:[[PFUser currentUser] objectId]];
+        [query includeKey:@"joinedUsers"];
+        [query setLimit:1000];
 
-	PFPush *push = [[PFPush alloc] init];
-	[push setQuery:queryInstallation];
+        PFQuery *queryInstallation = [PFInstallation query];
+        [queryInstallation whereKey:PF_INSTALLATION_USER matchesQuery:query];
+        
+        PFPush *push = [[PFPush alloc] init];
+        [push setQuery:queryInstallation];
 //	[push setMessage:text];
-    NSDictionary *data = [[NSDictionary alloc] initWithObjects:@[groupId, text] forKeys:@[OBJECT_ID, NOTIFICATION_ALERT_MESSAGE]];
-    [push setData:data];
-	[push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-	{
-		if (error != nil)
-		{
-			NSLog(@"SendPushNotification send error.");
-		}
-	}];
+        NSDictionary *data = [[NSDictionary alloc] initWithObjects:@[groupId, text] forKeys:@[OBJECT_ID, NOTIFICATION_ALERT_MESSAGE]];
+        [push setData:data];
+        [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+         {
+             if (error != nil) {
+                 NSLog(@"SendPushNotification send error.");
+             }
+         }];
     }
 }
 
 void SendHomepointPush(PFObject *homepoint, NSString *text, NSString *groupId) {
     if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
-    PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
-    [query whereKey:PF_GROUP_Users_RELATION notEqualTo:[PFUser currentUser]];
-    [query includeKey:PF_GROUP_Users_RELATION];
-    [query setLimit:1000];
+        
+        PFRelation *usersRelation = [homepoint relationForKey:PF_GROUP_Users_RELATION];
+        PFQuery *query = [usersRelation query];
+        [query whereKey:OBJECT_ID notEqualTo:[[PFUser currentUser] objectId]];
+        [query includeKey:PF_GROUP_Users_RELATION];
+        [query setLimit:1000];
+
     
-    PFQuery *queryInstallation = [PFInstallation query];
-    [queryInstallation whereKey:PF_INSTALLATION_USER matchesKey:PF_MESSAGES_USER inQuery:query];
+        PFQuery *queryInstallation = [PFInstallation query];
+        [queryInstallation whereKey:PF_INSTALLATION_USER matchesQuery:query];
     
     PFPush *push = [[PFPush alloc] init];
     [push setQuery:queryInstallation];

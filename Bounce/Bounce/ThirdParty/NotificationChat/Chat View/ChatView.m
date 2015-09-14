@@ -246,7 +246,9 @@
 		else [ProgressHUD showError:@"Network error."];;
 	}];
     if (!self.homepointChat) {
-        SendPushNotification(groupId, text);
+        if (self.currentRequest) {
+            SendPushNotification(groupId, text, self.currentRequest);
+        }
     }
     else {
         if (self.homepoint) {
