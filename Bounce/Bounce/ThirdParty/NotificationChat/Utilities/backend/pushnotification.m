@@ -50,12 +50,11 @@ void SendPushNotification(NSString *groupId, NSString *text, PFObject *currentRe
     
     if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
         
-        NSString* a = [NSString stringWithFormat:@"%@, leaving soon: ", [[PFUser currentUser] valueForKey:@"username"]];
+        NSString* a = [NSString stringWithFormat:@"Message from %@, leaving soon: ", [[PFUser currentUser] valueForKey:@"username"]];
         NSString* result = [a stringByAppendingString:text];
         
         PFRelation *removedUsers = [currentRequest relationForKey:@"removedUsers"];
         PFQuery *removedUsersQuery = [removedUsers query];
-        result = [LEAVING_GROUP_NOTIFICATION_PREFIX stringByAppendingString:result];
         
         PFRelation *usersRelation = [currentRequest relationForKey:@"joinedUsers"];
         PFQuery *query = [usersRelation query];
@@ -83,9 +82,8 @@ void SendPushNotification(NSString *groupId, NSString *text, PFObject *currentRe
 void SendHomepointPush(PFObject *homepoint, NSString *text, NSString *groupId) {
     if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
         
-        NSString* a = [NSString stringWithFormat:@"%@, in %@: ", [[PFUser currentUser] valueForKey:@"username"], [homepoint valueForKey:@"groupName"]];
+        NSString* a = [NSString stringWithFormat:@"Homepoint message from %@, in %@: ", [[PFUser currentUser] valueForKey:@"username"], [homepoint valueForKey:@"groupName"]];
         NSString* result = [a stringByAppendingString:text];
-        result = [HOMEPOINT_NOTIFICATION_PREFIX stringByAppendingString:result];
         
         PFRelation *usersRelation = [homepoint relationForKey:PF_GROUP_Users_RELATION];
         PFQuery *query = [usersRelation query];
@@ -116,9 +114,6 @@ void SendPendingUserPush(PFObject *homepoint) {
         
         NSString *strng = [NSString stringWithFormat:@"Neighbors, galore! %@ asked to join the '%@' homepoint. Click the top right icon in your homepoint's chat view to approve them.", [[PFUser currentUser] valueForKey:@"username"], [homepoint valueForKey:@"groupName"]];
         
-        // NOTE: adds a 2 to tell it's a pending user push
-        strng = [PENDING_USER_NOTIFICATION_PREFIX stringByAppendingString:strng];
-        
         PFRelation *usersRelation = [homepoint relationForKey:PF_GROUP_Users_RELATION];
         PFQuery *query = [usersRelation query];
         [query whereKey:OBJECT_ID notEqualTo:[[PFUser currentUser] objectId]];
@@ -147,8 +142,6 @@ void SendMemberApprovedPush(PFObject *homepoint, PFUser *approvedUser) {
     if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
         
         NSString *strng = [NSString stringWithFormat:@"Welcome to the '%@' homepoint! %@ approved you to be a part of the crew. Get to know your new homies, and once you're ready, add others you know from homepoints nearby!", [homepoint valueForKey:@"groupName"], [approvedUser valueForKey:@"username"]];
-        
-        strng = [APPROVED_NOTIFICATION_PREFIX stringByAppendingString:strng];
         
         PFRelation *usersRelation = [homepoint relationForKey:PF_GROUP_Users_RELATION];
         PFQuery *query = [usersRelation query];
