@@ -109,11 +109,6 @@ import UIKit
         })
     }
     
-    // GET RID OF THIS
-    override public func viewDidAppear(animated: Bool) {
-        self.presentViewController(StudentVerificationViewController(), animated: false, completion: nil)
-    }
-    
     func studentButtonPressed(sender: UIButton!) {
         UIView.animateWithDuration(0.25, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
                 self.contentLabel.alpha = 0.0

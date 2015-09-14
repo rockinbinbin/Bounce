@@ -44,41 +44,37 @@
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    // REMOVE THIS
-    self.window.rootViewController = [[StudentStatusViewController alloc] initWithAnimated:false];
-    // WJEOFIPJWEF
-    
-//    // If user is logged in already
-//    if ([PFUser currentUser] != nil && [[PFUser currentUser] valueForKey:@"setupComplete"]) {
-//        [[PFUser currentUser] fetchInBackgroundWithBlock:nil];
-//
-//        // If logged in user completed setup
-//        if ([[[PFUser currentUser] valueForKey:@"setupComplete"] boolValue]) {
-//
-//            NSString *requestId = [launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey] objectForKey:OBJECT_ID];
-//
-//            // If logged in setup complete user has a request, open it
-//            if (requestId) {
-//                [self openRequestViewController:requestId];
-//            } else {
-//                self.window.rootViewController = [RootTabBarController rootTabBarControllerWithNavigationController:InitialTabHomepoints];
-//            }
-//
-//        // If logged in user did not complete setup
-//        } else {
-//            if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
-//                self.window.rootViewController = [[RequestLocationViewController alloc] init];
-//            } else if ([[UIApplication sharedApplication] currentUserNotificationSettings].types == UIUserNotificationTypeNone) {
-//                self.window.rootViewController = [[RequestPushNotificationsViewController alloc] init];
-//            } else {
-//                self.window.rootViewController = [[StudentStatusViewController alloc] initWithAnimated:false];
-//            }
-//        }
-//
-//    // If setup needs to be started
-//    } else {
-//        self.window.rootViewController = [[IntroViewController alloc] init];
-//    }
+    // If user is logged in already
+    if ([PFUser currentUser] != nil && [[PFUser currentUser] valueForKey:@"setupComplete"]) {
+        [[PFUser currentUser] fetchInBackgroundWithBlock:nil];
+
+        // If logged in user completed setup
+        if ([[[PFUser currentUser] valueForKey:@"setupComplete"] boolValue]) {
+
+            NSString *requestId = [launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey] objectForKey:OBJECT_ID];
+
+            // If logged in setup complete user has a request, open it
+            if (requestId) {
+                [self openRequestViewController:requestId];
+            } else {
+                self.window.rootViewController = [RootTabBarController rootTabBarControllerWithNavigationController:InitialTabHomepoints];
+            }
+
+        // If logged in user did not complete setup
+        } else {
+            if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
+                self.window.rootViewController = [[RequestLocationViewController alloc] init];
+            } else if ([[UIApplication sharedApplication] currentUserNotificationSettings].types == UIUserNotificationTypeNone) {
+                self.window.rootViewController = [[RequestPushNotificationsViewController alloc] init];
+            } else {
+                self.window.rootViewController = [[StudentStatusViewController alloc] initWithAnimated:false];
+            }
+        }
+
+    // If setup needs to be started
+    } else {
+        self.window.rootViewController = [[IntroViewController alloc] init];
+    }
     
     [self.window makeKeyAndVisible];
     
