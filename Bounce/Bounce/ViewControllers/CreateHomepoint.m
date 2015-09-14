@@ -438,7 +438,17 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     }
     
     if (userInfo != nil) {
+    
         NSDictionary *info = [userInfo userInfo];
+
+        CGRect keyboardFrame;
+        [[info valueForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
+        
+        // No overlap
+        if (CGRectGetMinY(keyboardFrame) >= CGRectGetMaxY(self.homepointHint.frame)) {
+            return;
+        }
+
         CGFloat movementHeight = -([info[UIKeyboardFrameBeginUserInfoKey] CGRectValue].size.height);
         [UIView beginAnimations:@"keyboardGoinUP" context:nil];
         [UIView setAnimationBeginsFromCurrentState:true];
