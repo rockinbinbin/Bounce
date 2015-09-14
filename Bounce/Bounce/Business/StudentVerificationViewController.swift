@@ -172,7 +172,6 @@ class StudentVerificationViewController: UIViewController, UITextFieldDelegate {
         }
 
         if let info = notification.userInfo {
-            let movementHeight = (info[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue().size.height
             UIView.beginAnimations("keyboardGoinDOWN", context: nil)
             UIView.setAnimationBeginsFromCurrentState(true)
             UIView.setAnimationDuration(0.3)

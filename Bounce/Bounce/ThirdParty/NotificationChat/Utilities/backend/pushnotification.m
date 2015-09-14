@@ -105,7 +105,7 @@ void SendHomepointPush(PFObject *homepoint, NSString *text, NSString *groupId) {
 void SendPendingUserPush(PFObject *homepoint) {
     if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
         
-        NSString *strng = [NSString stringWithFormat:@"Neighbors, galore! %@ has requested to join the %@ homepoint. Click the top right icon in your homepoint's chat view to approve or deny them.", [[PFUser currentUser] valueForKey:@"username"], [homepoint valueForKey:@"groupName"]];
+        NSString *strng = [NSString stringWithFormat:@"Neighbors, galore! %@ has requested to join the %@ homepoint. Click the top right icon in your homepoint's chat view to approve them.", [[PFUser currentUser] valueForKey:@"username"], [homepoint valueForKey:@"groupName"]];
         
         PFRelation *usersRelation = [homepoint relationForKey:PF_GROUP_Users_RELATION];
         PFQuery *query = [usersRelation query];
