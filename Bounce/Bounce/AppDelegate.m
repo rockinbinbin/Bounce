@@ -130,8 +130,6 @@
             NSString *message_prefix_type = [message substringToIndex:1];
             message = [message substringFromIndex:1];
             
-            NSLog(@"%@", message_prefix_type);
-            
             if ([message_prefix_type isEqualToString: LEAVING_GROUP_NOTIFICATION_PREFIX]) {
                 if (self.rootTabBarControllerDelegate != nil) {
                     [self.rootTabBarControllerDelegate setTripsNotification:true];
