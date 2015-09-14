@@ -124,6 +124,7 @@
         // app was already in the foreground
 //        [PFPush handlePush:userInfo];
 
+        NSLog(@"user info: %@", userInfo);
         if ([[userInfo objectForKey:@"aps"] objectForKey:NOTIFICATION_ALERT_MESSAGE]) {
             NSString *message = [[userInfo objectForKey:@"aps"] objectForKey:NOTIFICATION_ALERT_MESSAGE];
             

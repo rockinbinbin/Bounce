@@ -9,7 +9,7 @@
 #import "MembersViewController.h"
 #import "membersCell.h"
 #import "SearchToAddUsers.h"
-
+#import "pushnotification.h"
 
 @implementation MembersViewController
 
@@ -169,7 +169,7 @@
         NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
         if (indexPath != nil) {
                [[ParseManager getInstance] addUser:[self.tentativeUsers objectAtIndex:indexPath.row] toGroup:_group];
-        
+            SendMemberApprovedPush(_group, [self.tentativeUsers objectAtIndex:indexPath.row]);
                 self.selected = YES;
                [self.tableView reloadData];
             }

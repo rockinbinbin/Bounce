@@ -16,7 +16,7 @@
 #import "HomepointDropdownCell.h"
 
 @interface CustomChatViewController ()
-@property (nonatomic, strong) NSArray *receivers;
+@property (nonatomic, strong) NSMutableArray *receivers;
 @property (nonatomic) NSInteger selectedIndex;
 @property (nonatomic, weak) UIView *shadowView;
 @property (nonatomic) CGPoint buttonPosition;
@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.receivers = [NSArray new];
+    self.receivers = [NSMutableArray new];
     
     self.homepointChat = NO;
     
@@ -58,11 +58,18 @@
 - (void) loadReceivers {
     if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
         MAKE_A_WEAKSELF;
-        PFRelation *usersRelation = [self.currentRequest1 relationForKey:PF_REQUEST_JOINCONVERSATION_RELATION];
+        
+        
+        
+        PFRelation *removedUsers = [self.currentRequest1 relationForKey:@"removedUsers"];
+        PFQuery *removedUsersQuery = [removedUsers query];
+        
+        PFRelation *usersRelation = [self.currentRequest1 relationForKey:@"joinedUsers"];
         PFQuery *query = [usersRelation query];
-        //[query whereKey:OBJECT_ID notEqualTo:[[PFUser currentUser] objectId]];
+        [query whereKey:OBJECT_ID doesNotMatchKey:OBJECT_ID inQuery:removedUsersQuery];
+        [query setLimit:1000];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                weakSelf.receivers = objects;
+                weakSelf.receivers = [NSMutableArray arrayWithArray:objects];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [weakSelf.tableView reloadData];
                 });
@@ -235,6 +242,8 @@
                     PFRelation *relation = [self.currentRequest1 relationForKey:@"removedUsers"];
                     [relation addObject:user];
                     [self.currentRequest1 saveInBackground];
+                    [self.receivers removeObjectAtIndex:indexPath.row];
+                    [self.tableView reloadData];
                 }
             }
     }
