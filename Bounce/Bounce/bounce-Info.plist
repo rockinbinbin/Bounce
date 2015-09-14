@@ -2,16 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Quicksand_Dash.otf</string>
-		<string>Quicksand-Bold.otf</string>
-		<string>Quicksand-Italic.otf</string>
-		<string>Quicksand-Light.otf</string>
-		<string>Quicksand-Regular.otf</string>
-		<string>Quicksand-LightItalic.otf</string>
-		<string>Quicksand-BoldItalic.otf</string>
-	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -49,6 +39,16 @@
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string></string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Quicksand_Dash.otf</string>
+		<string>Quicksand-Bold.otf</string>
+		<string>Quicksand-Italic.otf</string>
+		<string>Quicksand-Light.otf</string>
+		<string>Quicksand-Regular.otf</string>
+		<string>Quicksand-LightItalic.otf</string>
+		<string>Quicksand-BoldItalic.otf</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

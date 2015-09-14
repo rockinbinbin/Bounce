@@ -23,6 +23,7 @@
 #import "membersCell.h"
 #import "CAPSPageMenu.h"
 #import "UINavigationBar+Addition.h"
+#import "pushnotification.h"
 
 #define ResultsTableView self.searchResultsTableViewController.tableView
 #define Identifier @"Cell"
@@ -348,6 +349,7 @@
             self.currentGroup = [self.searchResults objectAtIndex:path.row];
             [[ParseManager getInstance] setGetTentativeUsersDelegate:self];
             [[ParseManager getInstance] getTentativeUsersFromGroup:self.currentGroup];
+            SendPendingUserPush(self.currentGroup);
             if (self.index != path.row) {
                 self.index = path.row;
                 self.shouldAdd = YES;

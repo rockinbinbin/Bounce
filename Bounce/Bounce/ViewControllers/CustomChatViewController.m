@@ -39,7 +39,7 @@
     navLabel.textAlignment = NSTextAlignmentCenter;
     navLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size:20];
     self.navigationItem.titleView = navLabel;
-    navLabel.text = @"Leaving soon";
+    navLabel.text = @"Leaving Soon Nearby";
     [navLabel sizeToFit];
     
     [self.inputToolbar kgn_pinToBottomEdgeOfSuperviewWithOffset:44 + TAB_BAR_HEIGHT];
@@ -62,7 +62,6 @@
         PFQuery *query = [usersRelation query];
         //[query whereKey:OBJECT_ID notEqualTo:[[PFUser currentUser] objectId]];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            NSLog(@"HERE");
                 weakSelf.receivers = objects;
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [weakSelf.tableView reloadData];
