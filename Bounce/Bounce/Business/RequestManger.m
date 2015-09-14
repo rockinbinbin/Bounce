@@ -62,7 +62,7 @@ static RequestManger *sharedRequestManger = nil;
             request[PF_REQUEST_SENDER] = currentUser.username;
             request[PF_REQUEST_RECEIVER] = resultUsernames;
             request[PF_REQUEST_RADIUS] = [NSNumber numberWithInteger:radius];
-            request[PF_REQUEST_TIME_ALLOCATED] = [NSNumber numberWithInteger:timeAllocated];
+            request[PF_REQUEST_TIME_ALLOCATED] = [NSNumber numberWithInteger:timeAllocated + 15]; // Buffer of 15 minutes
             request[PF_REQUEST_LOCATION] = [[PFUser currentUser] objectForKey:PF_USER_LOCATION];
             request[PF_GENDER] = gender;
             

@@ -184,7 +184,8 @@
     //[[cell.contentView viewWithTag:4]removeFromSuperview];
    
     PFObject *request = [requests objectAtIndex:indexPath.row];
-    int timeLeft = (int)[[request objectForKey:PF_REQUEST_TIME_ALLOCATED] integerValue] - ([[NSDate date] timeIntervalSinceDate:[request createdAt]]/60);
+    // Leaving in buffer of 15 minutes
+    int timeLeft = (int)[[request objectForKey:PF_REQUEST_TIME_ALLOCATED] integerValue] - 15 - ([[NSDate date] timeIntervalSinceDate:[request createdAt]]/60);
     cell.requestTimeLeft.text = [NSString stringWithFormat:@"Leaving in %d min", timeLeft];
 
     if ([[Utility getInstance] isRequestValid:[request createdAt] andTimeAllocated:[[request objectForKey:PF_REQUEST_TIME_ALLOCATED] integerValue]]) {
