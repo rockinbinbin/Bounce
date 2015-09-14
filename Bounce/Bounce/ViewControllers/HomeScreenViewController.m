@@ -37,12 +37,10 @@
 
 @property (nonatomic, weak) UIButton *time;
 @property (nonatomic, weak) UIButton *genders;
-
 @property NSMutableArray *homepointImages;
 
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, weak) UIView *shadowView;
-
 @property (nonatomic, weak) UIButton *selectHP;
 
 
@@ -58,7 +56,7 @@
     
     [self.navigationController.navigationBar hideBottomHairline];
     self.isDataLoaded = NO;
-
+    
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
@@ -262,13 +260,20 @@
     
     self.timeAllocated = 120;
     if ([GlobalVariables shouldNotOpenRequestView]) {
-        UIButton *customButton = [[Utility getInstance] createCustomButton:[UIImage imageNamed:@"common_back_button"]];
-        [customButton addTarget:self action:@selector(cancelButtonClicked) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:customButton];
+        UIBarButtonItem *cancel = [[UIBarButtonItem alloc]
+                                   initWithTitle:@"Cancel"
+                                   style:UIBarButtonItemStylePlain
+                                   target:self
+                                   action:@selector(cancelButtonClicked)];
+        [cancel setTitleTextAttributes:@{
+                                         NSFontAttributeName: [UIFont fontWithName:@"AvenirNext-Regular" size:18]
+                                         } forState:UIControlStateNormal];
+        cancel.tintColor = [UIColor whiteColor];
+        self.navigationItem.leftBarButtonItem = cancel;
     }
     
     if (![GlobalVariables shouldNotOpenRequestView]) {
-
+        
         NSUInteger numValidRequests = [[ParseManager getInstance] getNumberOfValidRequests];
         NSLog(@"%lu", (unsigned long)numValidRequests);
         
@@ -278,13 +283,13 @@
             [self.navigationController pushViewController:requestsViewController animated:true];
         }
     }
-
+    
     if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
         [self startReceivingSignificantLocationChanges];
         [self changeCenterToUserLocation];
         [self setUserTrackingMode];
     }
-
+    
     if ([[RequestManger getInstance] hasActiveRequest]) {
         NSLog(@"SHOULD PRESENT NOW");
     }
@@ -420,7 +425,7 @@
                     // Get distance label
                     double distance = [[ParseManager getInstance] getDistanceToGroup:group];
                     NSString *distanceLabel = @"";
-
+                    
                     if (distance > 2500) {
                         distance = distance*0.000189394;
                         
@@ -451,7 +456,7 @@
         }
     }
     @catch (NSException *exception) {
-
+        
     }
 }
 
@@ -468,8 +473,8 @@
     
     if (![self.selectedGroups count]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Please select a homepoint!"
-                                                             message:@"A homepoint is a group of your neighbors within an area. Only people who are a part of the homepoint you select will receive your message."
-                                                            delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                                        message:@"A homepoint is a group of your neighbors within an area. Only people who are a part of the homepoint you select will receive your message."
+                                                       delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }
     else {
@@ -559,17 +564,17 @@
     cell.homepointName.text = [[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
     
     if ([self.nearUsers count] > indexPath.row) {
-    NSString *usersNearby = [self.nearUsers objectAtIndex:indexPath.row];
-    int numUsers = (int)[usersNearby integerValue];
-    if (numUsers == 0) {
-        cell.nearbyUsers.text = @"no users nearby :(";
-    }
-    else if (numUsers == 1) {
-        cell.nearbyUsers.text = [NSString stringWithFormat:@"1 user nearby"];
-    }
-    else if (numUsers != 0) {
-        cell.nearbyUsers.text = [NSString stringWithFormat:@"%@ users nearby",usersNearby];
-    }
+        NSString *usersNearby = [self.nearUsers objectAtIndex:indexPath.row];
+        int numUsers = (int)[usersNearby integerValue];
+        if (numUsers == 0) {
+            cell.nearbyUsers.text = @"no users nearby :(";
+        }
+        else if (numUsers == 1) {
+            cell.nearbyUsers.text = [NSString stringWithFormat:@"1 user nearby"];
+        }
+        else if (numUsers != 0) {
+            cell.nearbyUsers.text = [NSString stringWithFormat:@"%@ users nearby",usersNearby];
+        }
     }
     
     NSString *distanceText = [self.homepointDistances objectAtIndex:indexPath.row];
@@ -586,14 +591,14 @@
         for (int i = 0; i < [self.selectedCells count]; i++) {
             [self.selectedCells replaceObjectAtIndex:i withObject:[NSNumber numberWithBool:NO]];
         }
-            [self.selectedCells replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithBool:YES]];
+        [self.selectedCells replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithBool:YES]];
         
-            self.selectHP.tintColor = [UIColor whiteColor];
-            [self.selectHP setTitle:[[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME] forState:UIControlStateNormal];
-            self.tableView.hidden = true;
-            self.shadowView.hidden = true;
-        }
-        //[self.tableView reloadData];
+        self.selectHP.tintColor = [UIColor whiteColor];
+        [self.selectHP setTitle:[[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME] forState:UIControlStateNormal];
+        self.tableView.hidden = true;
+        self.shadowView.hidden = true;
+    }
+    //[self.tableView reloadData];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -607,10 +612,10 @@
         self.tableView.hidden = shouldHide;
         self.shadowView.hidden = shouldHide;
     }
-
+    
     double originalOpacity = shouldHide ? 1.0 : 0.0;
     double newOpacity = shouldHide ? 0.0 : 1.0;
-
+    
     self.tableView.layer.opacity = originalOpacity;
     self.shadowView.layer.opacity = originalOpacity;
     [UIView animateWithDuration:0.15f animations: ^void() {
@@ -657,7 +662,7 @@
         pickerView.datePickerMode = UIDatePickerModeCountDownTimer;
         pickerView.minuteInterval = 5;
         pickerView.backgroundColor = [UIColor whiteColor];
-
+        
         // Default of 2 hours
         NSInteger seconds = 7200;
         

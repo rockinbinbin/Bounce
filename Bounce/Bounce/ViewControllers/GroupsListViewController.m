@@ -38,7 +38,6 @@
     UIImageView *placeholderImageView;
     UILabel *placeholderTitle;
     UILabel *placeholderBodyText;
-    
 }
 
 @synthesize nearUsers = nearUsers;
