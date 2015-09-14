@@ -79,7 +79,7 @@
     [_addPhotoButton kgn_pinToTopEdgeOfSuperview];
     [_addPhotoButton kgn_centerHorizontallyInSuperview];
     [_addPhotoButton kgn_pinToSideEdgesOfSuperview];
-    [_addPhotoButton kgn_sizeToHeight:self.view.frame.size.height * 272/665.0];
+    [_addPhotoButton kgn_sizeToHeight:self.view.frame.size.height * 300/665.0 - 75];
     
     UILabel *LandscapeOnly = [[UILabel alloc] init];
     LandscapeOnly.text = @"Please use a landscape photo.";
@@ -112,7 +112,7 @@
     [_groupNameTextField kgn_sizeToHeight:textfieldHeight];
     
     UILabel *homepointHint = [[UILabel alloc] init];
-    homepointHint.text = @"Ex: North State St, Kerrytown, Ann Arbor";
+    homepointHint.text = @"Ex: North State St, or Kerrytown";
     homepointHint.textColor = [UIColor colorWithWhite:0.0 alpha:0.36];
     homepointHint.font = [UIFont fontWithName:@"AvenirNext-Regular" size:14.0];
     [self.view addSubview:homepointHint];
