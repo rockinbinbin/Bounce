@@ -259,6 +259,10 @@
 -(void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    if (self.noHP) {
+        [self.noHP removeFromSuperview];
+    }
+    
     if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
         [[ParseManager getInstance] setGetUserGroupsdelegate:self];
         [[ParseManager getInstance] getUserGroups];
