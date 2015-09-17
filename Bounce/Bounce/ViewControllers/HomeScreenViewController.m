@@ -42,6 +42,7 @@
 @property (nonatomic, weak) UIView *shadowView;
 @property (nonatomic, weak) UIButton *selectHP;
 
+@property (nonatomic, strong) UILabel *noHP;
 
 @end
 
@@ -427,6 +428,26 @@
                 self.groups = [[NSMutableArray alloc] init];
             }
             self.groups = [NSMutableArray arrayWithArray:groups];
+            
+            if ([self.groups count] == 0) {
+                // show text to join a homepoint
+                UILabel *noHP = [[UILabel alloc] init];
+                noHP.text = @"Oh no! Looks like you need to join a homepoint first. Select the leftmost tab to get started!";
+                noHP.textColor = [UIColor colorWithWhite:0.0 alpha:0.4];
+                noHP.numberOfLines = 0;
+                noHP.font = [UIFont fontWithName:@"AvenirNext-Regular" size:16.0];
+                [self.tableView addSubview:noHP];
+                [noHP kgn_pinToTopEdgeOfSuperviewWithOffset:20];
+                [noHP kgn_centerHorizontallyInSuperview];
+                [noHP kgn_sizeToWidth:self.tableView.frame.size.width * 0.8];
+                self.noHP = noHP;
+            }
+            else {
+                //if (self.noHP != nil) {
+                    [self.noHP removeFromSuperview];
+               // }
+            }
+            
             self.selectedCells = [[NSMutableArray alloc] init];
             for (int i = 0; i < self.groups.count; i++) {
                 [self.selectedCells addObject:[NSNumber numberWithBool:NO]];

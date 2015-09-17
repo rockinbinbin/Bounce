@@ -227,6 +227,13 @@
                 [[Utility getInstance] hideProgressHud];
                 [self showPlaceholder];
             }
+            else {
+                if (placeholderImageView != nil) {
+                    [placeholderImageView removeFromSuperview];
+                    [placeholderBodyText removeFromSuperview];
+                    [placeholderTitle removeFromSuperview];
+                }
+            }
             if(!self.groups)
             {
                 self.groups = [[NSMutableArray alloc] init];

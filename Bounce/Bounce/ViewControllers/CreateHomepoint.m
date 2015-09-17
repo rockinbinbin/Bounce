@@ -90,8 +90,6 @@
     [LandscapeOnly kgn_pinToLeftEdgeOfSuperviewWithOffset:10.0];
     [LandscapeOnly kgn_positionBelowItem:_addPhotoButton withOffset:10.0];
     
-    // TEXT FIELD
-    
     _groupNameTextField = [UITextField new];
     _groupNameTextField.backgroundColor = [UIColor colorWithWhite:243/256.0 alpha:1.0];
     _groupNameTextField.font = [UIFont fontWithName:@"AvenirNext-Regular" size:16.0];
