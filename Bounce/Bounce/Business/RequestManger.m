@@ -414,12 +414,13 @@ static RequestManger *sharedRequestManger = nil;
 
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
          {
-             NSInteger unReadMessages = [[objects objectAtIndex:0][PF_MESSAGES_COUNTER] intValue];
-             self.unReadReplies = unReadMessages;
+             if ([objects count] >= 1) {
+                 NSInteger unReadMessages = [[objects objectAtIndex:0][PF_MESSAGES_COUNTER] intValue];
+                 self.unReadReplies = unReadMessages;
              if ([self.requestManagerDelegate respondsToSelector:@selector(updateRequestUnreadMessage:)]) {
                  [self.requestManagerDelegate updateRequestUnreadMessage:unReadMessages];
              }
-             
+             }
          }];
         }
     }
