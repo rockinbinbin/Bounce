@@ -37,7 +37,6 @@
 
 @property (nonatomic, weak) UIButton *time;
 @property (nonatomic, weak) UIButton *genders;
-@property NSMutableArray *homepointImages;
 
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, weak) UIView *shadowView;
@@ -399,7 +398,7 @@
 - (void)didLoadUserGroups:(NSArray *)groups WithError:(NSError *)error
 {
     @try {
-        if (error) {
+    if (error) {
             [[Utility getInstance] hideProgressHud];
             self.isDataLoaded = YES;
         }else{
@@ -415,12 +414,13 @@
             // calculate the near users in each group
             // calculate the distance to the group
             self.nearUsers = [[NSMutableArray alloc] init];
-            self.homepointImages = [NSMutableArray new];
             self.homepointDistances = [NSMutableArray new];
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 for (PFObject *group in groups) {
-                    [self.nearUsers addObject:[NSNumber numberWithInteger:[[ParseManager getInstance] getNearUsersNumberInGroup:group]]];
+                    [[ParseManager getInstance] setGetNearUsersDelegate:self];
+                    [[ParseManager getInstance] getNearUsersNumberInGroup:group];
+                    //[self.nearUsers addObject:[NSNumber numberWithInteger:[[ParseManager getInstance] getNearUsersNumberInGroup:group]]];
                     
                     // Get distance label
                     double distance = [[ParseManager getInstance] getDistanceToGroup:group];
@@ -441,10 +441,6 @@
                     }
                     
                     [self.homepointDistances addObject:distanceLabel];
-                    
-                    if ([group valueForKey:PF_GROUP_IMAGE]) {
-                        [self.homepointImages addObject:[group valueForKey:PF_GROUP_IMAGE]];
-                    }
                 }
                 dispatch_async(dispatch_get_main_queue(), ^{
                     // Update the UI on the main thread.
@@ -457,6 +453,14 @@
     }
     @catch (NSException *exception) {
         
+    }
+}
+
+-(void)didLoadNearUsers:(int)userCount withError:(NSError *)error {
+    [self.nearUsers addObject:[NSNumber numberWithInt:userCount]];
+    
+    if ([self.nearUsers count] == [self.groups count]) {
+        [self.tableView reloadData];
     }
 }
 
@@ -537,21 +541,15 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    NSMutableArray *images = [NSMutableArray new];
-    for (int i = 0; i < [self.homepointImages count]; i++) {
-        PFFile *file = self.homepointImages[i];
+        PFFile *file = [[self.groups objectAtIndex:indexPath.row] objectForKey:@"groupImage"];
         [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             if (!error) {
-                if (indexPath.row == i) {
                     UIImage *image = [UIImage imageWithData:data];
-                    [images addObject:image];
                     cell.hpImage.image = image;
                     cell.hpImage.contentMode = UIViewContentModeScaleToFill;
                     cell.hpImage.backgroundColor = [UIColor blackColor]; // this should never show
-                }
             }
         }];
-    }
     
     if ([[self.selectedCells objectAtIndex:indexPath.row] boolValue]) {
         UIImageView *imgView = [UIImageView new];
@@ -576,9 +574,10 @@
             cell.nearbyUsers.text = [NSString stringWithFormat:@"%@ users nearby",usersNearby];
         }
     }
-    
-    NSString *distanceText = [self.homepointDistances objectAtIndex:indexPath.row];
-    cell.distanceLabel.text = distanceText;
+    if ([self.homepointDistances count] > indexPath.row) {
+        NSString *distanceText = [self.homepointDistances objectAtIndex:indexPath.row];
+        cell.distanceLabel.text = distanceText;
+    }
     
     return cell;
 }
@@ -602,7 +601,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 80;
+    return 85;
 }
 
 -(void)showDropDown {

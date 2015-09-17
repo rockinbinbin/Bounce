@@ -40,7 +40,6 @@
     UILabel *placeholderBodyText;
 }
 
-@synthesize nearUsers = nearUsers;
 @synthesize distanceToUserLocation = distanceToUserLocation;
 
 - (id)initWithDelegate:(id<RootTabBarControllerDelegate>)delegate {
@@ -172,19 +171,19 @@
 
     @try {
         if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
-            [[Utility getInstance] showProgressHudWithMessage:@"Loading..." withView:self.view];
+            //[[Utility getInstance] showProgressHudWithMessage:@"Loading..." withView:self.view];
             
-            PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
-            [query whereKey:PF_GROUP_Users_RELATION equalTo:[PFUser currentUser]];
-            [query includeKey:PF_GROUP_OWNER];
-            
-            [query countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
-                    if (number == 0) {
-                        [self showPlaceholder];
-                    } else {
-                        [self hidePlaceholder];
-                    }
-            }];
+//            PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
+//            [query whereKey:PF_GROUP_Users_RELATION equalTo:[PFUser currentUser]];
+//            [query includeKey:PF_GROUP_OWNER];
+//            
+//            [query countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
+//                    if (number == 0) {
+//                        [self showPlaceholder];
+//                    } else {
+//                        [self hidePlaceholder];
+//                    }
+//            }];
             
             [[ParseManager getInstance] setGetUserGroupsdelegate:self];
             loadingData = YES;
@@ -224,6 +223,10 @@
             [[Utility getInstance] hideProgressHud];
             loadingData = NO;
         }else{
+            if ([groups count] == 0) {
+                [[Utility getInstance] hideProgressHud];
+                [self showPlaceholder];
+            }
             if(!self.groups)
             {
                 self.groups = [[NSMutableArray alloc] init];
@@ -231,15 +234,11 @@
             self.groups = [NSMutableArray arrayWithArray:groups];
             // calculate the near users in each group
             // calcultae the distance to the group
-            nearUsers = [[NSMutableArray alloc] init];
+
             distanceToUserLocation = [[NSMutableArray alloc] init];
-            self.homepointImages = [NSMutableArray new];
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 for (PFObject *group in groups) {
-                    
-                    [nearUsers addObject:[NSNumber numberWithInteger:[[ParseManager getInstance] getNearUsersNumberInGroup:group]]];
-
                     // Get distance label
                     double distance = [[ParseManager getInstance] getDistanceToGroup:group];
                     NSString *distanceLabel = @"";
@@ -259,10 +258,6 @@
                     }
                     
                     [self.distanceToUserLocation addObject:distanceLabel];
-                    
-                    if ([group valueForKey:PF_GROUP_IMAGE]) {
-                        [self.homepointImages addObject:[group valueForKey:PF_GROUP_IMAGE]];
-                    }
                 }
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -293,14 +288,10 @@
             self.groups = [NSMutableArray arrayWithArray:groups];
             // calculate the near users in each group
             // calcultae the distance to the group
-            nearUsers = [[NSMutableArray alloc] init];
+
 //            self.distanceToUserLocation = [[NSMutableArray alloc] init];
             
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                for (PFObject *group in groups) {
-                    [nearUsers addObject:[NSNumber numberWithInteger:[[ParseManager getInstance] getNearUsersNumberInGroup:group]]];
-                }
-                
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{                
                 dispatch_async(dispatch_get_main_queue(), ^{
                     // Update the UI on the main thread.
                     [[Utility getInstance] hideProgressHud];
@@ -336,7 +327,6 @@
             selectedIndex = indexPath.row;
             [[ParseManager getInstance] setDeleteDelegate:self];
             [[ParseManager getInstance] deleteGroup:[self.groups objectAtIndex:selectedIndex]];
-            [self.homepointImages removeObjectAtIndex:indexPath.row];
             [tableView reloadData];
         }
     }
@@ -351,23 +341,33 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    for (int i = 0; i < [self.homepointImages count]; i++) {
-        PFFile *file = self.homepointImages[i];
+    if ([self.groups count] > indexPath.row) {
+        cell.backgroundColor = [UIColor grayColor];
+        PFFile *file = [[self.groups objectAtIndex:indexPath.row] objectForKey:@"groupImage"];
         [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             if (!error) {
-                if (indexPath.row == i) {
                     UIImage *image = [UIImage imageWithData:data];
                     [cell setBackground:image];
-                }
+                    cell.backgroundView.alpha = 0.0;
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [UIView animateWithDuration:0.25f animations:^{
+                            cell.backgroundView.alpha = 1.0f;
+                        }];
+                    });
             }
         }];
     }
+    //}
     
-    NSString *homepointName = [[[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME] uppercaseString];
-    [cell setName:homepointName homepointType: HomepointTypeHouse];
+    if ([self.groups count] > indexPath.row) {
+        NSString *homepointName = [[[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME] uppercaseString];
+        [cell setName:homepointName homepointType: HomepointTypeHouse];
+    }
     
-    NSString *distanceText = [self.distanceToUserLocation objectAtIndex:indexPath.row];
-    [cell setDistance:distanceText];
+    if ([self.distanceToUserLocation count] > indexPath.row) {
+        NSString *distanceText = [self.distanceToUserLocation objectAtIndex:indexPath.row];
+        [cell setDistance:distanceText];
+    }
     
     return cell;
 }
@@ -391,7 +391,6 @@
         if (succeeded) {
             [self.groups removeObjectAtIndex:selectedIndex];
             [distanceToUserLocation removeObjectAtIndex:selectedIndex];
-            [nearUsers removeObjectAtIndex:selectedIndex];
             [self.tableView reloadData];
         }
     }

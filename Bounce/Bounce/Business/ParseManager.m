@@ -494,7 +494,7 @@ PFUser *currentUser;
 }
 
 #pragma mark - Get Group Users near current User
-- (NSInteger) getNearUsersNumberInGroup:(PFObject *) group
+- (void) getNearUsersNumberInGroup:(PFObject *) group
 {
     if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
     // User's location
@@ -506,10 +506,12 @@ PFUser *currentUser;
     PFQuery *query = [userRelation query];
     [query whereKey:PF_USER_USERNAME notEqualTo:[[PFUser currentUser] username]];
     [query whereKey:PF_USER_LOCATION nearGeoPoint:userGeoPoint withinMiles:K_NEAR_DISTANCE];
-
-    return [query countObjects];
+    [query countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
+        if ([self.getNearUsersDelegate respondsToSelector:@selector(didLoadNearUsers:withError:)]) {
+            [self.getNearUsersDelegate didLoadNearUsers:number withError:error];
+        }
+    }];
     }
-    else return 0;
 }
 
 #pragma mark - Get Users

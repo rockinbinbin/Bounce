@@ -197,6 +197,7 @@
     
     NSArray *homepoints = [request valueForKey:PF_REQUEST_HOMEPOINTS];
     
+    if (homepoints != nil) {
     __block UIImage *image = [UIImage new];
 
     PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
@@ -252,7 +253,7 @@
         }
     }
     cell.requestedGroups.text = hpString;
-
+    }
     return cell;
 }
 

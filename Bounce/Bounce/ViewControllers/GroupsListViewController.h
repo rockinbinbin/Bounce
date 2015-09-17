@@ -14,14 +14,12 @@
     UITableViewDataSource,
     ParseManagerLoadingGroupsDelegate,
     ParseManagerGetUserGroups,
-    ParseManagerDeleteDelegate
->
+    ParseManagerDeleteDelegate>
 
 @property NSMutableArray* groups;
 @property NSMutableArray *nearUsers;
 @property NSMutableArray *distanceToUserLocation;
 @property (weak, nonatomic) UITableView *tableView;
-@property NSMutableArray *homepointImages;
 
 // A RootTabBarController delegate
 @property (strong, nonatomic) id delegate;

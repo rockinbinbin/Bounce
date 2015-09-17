@@ -51,8 +51,8 @@
         nearbyUsers.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:nearbyUsers];
         self.nearbyUsers = nearbyUsers;
-        [nearbyUsers kgn_centerVerticallyInSuperview];
-        [nearbyUsers kgn_pinToRightEdgeOfSuperviewWithOffset:10];
+        [nearbyUsers kgn_positionBelowItem:distanceLabel];
+        [nearbyUsers kgn_pinLeftEdgeToLeftEdgeOfItem:distanceLabel];
     }
     return self;
 }

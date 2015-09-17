@@ -36,7 +36,7 @@
     UILabel *titleLabel = [UILabel new];
     titleLabel.text = @"HOME, SWEET HOME";
     titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
+    titleLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size:24];
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.backgroundColor = [UIColor clearColor];
     [titleLabel sizeToFit];
@@ -47,7 +47,7 @@
     headerDescription.textAlignment = NSTextAlignmentCenter;
     headerDescription.text = @"Homepoints are the centerpieces of trusted communities & neighborhoods!";
     headerDescription.textColor = [UIColor whiteColor];
-    headerDescription.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/42];
+    headerDescription.font = [UIFont fontWithName:@"AvenirNext-Regular" size:16];
     headerDescription.numberOfLines = 0;
     headerDescription.backgroundColor = [UIColor clearColor];
     //[headerDescription sizeToFit];
@@ -67,7 +67,7 @@
     knowYourPeople.textAlignment = NSTextAlignmentCenter;
     knowYourPeople.text = @"Be sure that only people you know join!";
     knowYourPeople.textColor = [UIColor whiteColor];
-    knowYourPeople.font = [UIFont fontWithName:@"Quicksand-Regular" size:self.view.frame.size.height/42];
+    knowYourPeople.font = [UIFont fontWithName:@"AvenirNext-Regular" size:16];
     knowYourPeople.numberOfLines = 0;
     [knowYourPeople sizeToFit];
     _knowYourPeople = knowYourPeople;
@@ -77,7 +77,7 @@
     whoWouldYouAllowInside1.textAlignment = NSTextAlignmentCenter;
     whoWouldYouAllowInside1.text = @"Think of it like your own home -";
     whoWouldYouAllowInside1.textColor = [UIColor whiteColor];
-    whoWouldYouAllowInside1.font = [UIFont fontWithName:@"Quicksand-Italic" size:self.view.frame.size.height/42];
+    whoWouldYouAllowInside1.font = [UIFont fontWithName:@"AvenirNext-Regular" size:14];
     whoWouldYouAllowInside1.numberOfLines = 0;
     [whoWouldYouAllowInside1 sizeToFit];
     _whoWouldYouAllowInside1 = whoWouldYouAllowInside1;
@@ -87,7 +87,7 @@
     whoWouldYouAllowInside2.textAlignment = NSTextAlignmentCenter;
     whoWouldYouAllowInside2.text = @"who would you allow inside?";
     whoWouldYouAllowInside2.textColor = [UIColor whiteColor];
-    whoWouldYouAllowInside2.font = [UIFont fontWithName:@"Quicksand-BoldItalic" size:self.view.frame.size.height/42];
+    whoWouldYouAllowInside2.font = [UIFont fontWithName:@"AvenirNext-Regular" size:14];
     whoWouldYouAllowInside2.numberOfLines = 0;
     [whoWouldYouAllowInside2 sizeToFit];
     _whoWouldYouAllowInside2 = whoWouldYouAllowInside2;
@@ -98,7 +98,7 @@
     done.tintColor = [UIColor whiteColor];
     done.backgroundColor = BounceSeaGreen;
     [done setTitle:@"LET'S GO!" forState:UIControlStateNormal];
-    done.titleLabel.font = [UIFont fontWithName:@"Quicksand-Bold" size:self.view.frame.size.height/30];
+    done.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Bold" size:18];
     [done addTarget:self action:@selector(sweetButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     _done = done;
     [self.view addSubview:done];
