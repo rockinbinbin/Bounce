@@ -263,7 +263,7 @@ class AccountViewController: UIViewController {
 
             let locationManager = CLLocationManager()
             locationManager.distanceFilter = kCLDistanceFilterNone
-            locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+            locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
             
             if let coords = locationManager.location {
                 let geoCoder = CLGeocoder()

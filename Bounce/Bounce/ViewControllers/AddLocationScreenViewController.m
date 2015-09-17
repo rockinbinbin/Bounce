@@ -144,7 +144,7 @@
         [self getAllUsers];
     }
     else{
-        [[Utility getInstance] showAlertMessage:@"Make sure you set the group location!"];
+        [[Utility getInstance] showAlertMessage:@"Tap the map to set your location!"];
     }
 }
 
@@ -192,7 +192,7 @@
     }
     
     self.location_manager.delegate = self;
-    self.location_manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+    self.location_manager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
     self.location_manager.distanceFilter = 100; // meters.. not sure if this will work well?
     [self.location_manager startMonitoringSignificantLocationChanges];
 }
@@ -210,8 +210,8 @@
                                                self.location_manager.location.coordinate.longitude);
     
     MKCoordinateSpan span;
-    span.latitudeDelta = 0.03;
-    span.longitudeDelta = 0.03;
+    span.latitudeDelta = 0.01;
+    span.longitudeDelta = 0.01;
     
     region.span = span;
     [self.map setRegion:region];

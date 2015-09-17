@@ -204,9 +204,13 @@
     [confirmButton kgn_centerHorizontallyInSuperview];
     [confirmButton kgn_pinToBottomEdgeOfSuperviewWithOffset:(self.view.frame.size.height - self.view.frame.size.height/3 - (self.view.frame.size.height/30 + 25)*3 - TAB_BAR_HEIGHT)/2.7];
     
-    self.location_manager = [[CLLocationManager alloc] init];
-    self.location_manager.pausesLocationUpdatesAutomatically = YES;
-    self.location_manager.activityType = CLActivityTypeFitness;
+//    self.location_manager = [[CLLocationManager alloc] init];
+//    self.location_manager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
+//    self.location_manager.pausesLocationUpdatesAutomatically = YES;
+//    self.location_manager.activityType = CLActivityTypeFitness;
+//    MKCoordinateSpan span;
+//    span.latitudeDelta = 0.01;
+//    span.longitudeDelta = 0.01;
     
     if ([PFUser currentUser] == nil) {
         LoginUser(self);
@@ -255,6 +259,16 @@
     if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
         [[ParseManager getInstance] setGetUserGroupsdelegate:self];
         [[ParseManager getInstance] getUserGroups];
+        
+        if (self.location_manager != nil) {
+            self.location_manager = [[CLLocationManager alloc] init];
+            self.location_manager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
+            self.location_manager.pausesLocationUpdatesAutomatically = YES;
+            self.location_manager.activityType = CLActivityTypeFitness;
+            MKCoordinateSpan span;
+            span.latitudeDelta = 0.01;
+            span.longitudeDelta = 0.01;
+        }
     }
     
     self.timeAllocated = 120;
@@ -322,10 +336,16 @@
 - (void)startReceivingSignificantLocationChanges {
     if (nil == self.location_manager) {
         self.location_manager = [[CLLocationManager alloc] init];
+        self.location_manager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
+        self.location_manager.pausesLocationUpdatesAutomatically = YES;
+        self.location_manager.activityType = CLActivityTypeFitness;
+        MKCoordinateSpan span;
+        span.latitudeDelta = 0.01;
+        span.longitudeDelta = 0.01;
     }
     
     self.location_manager.delegate = self;
-    self.location_manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+    self.location_manager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
     self.location_manager.distanceFilter = 100; // meters.. not sure if this will work well?
     [self.location_manager startMonitoringSignificantLocationChanges];
 }
