@@ -407,6 +407,7 @@ static RequestManger *sharedRequestManger = nil;
 - (void) getNumberOfUnReadMessages
 {
     @try {
+        if ([PFUser currentUser]) {
         PFQuery *query = [PFQuery queryWithClassName:PF_MESSAGES_CLASS_NAME];
         [query whereKey:PF_MESSAGES_USER equalTo:[PFUser currentUser]];
         [query whereKey:PF_MESSAGES_GROUPID equalTo:[activeRequest objectId]];
@@ -420,6 +421,7 @@ static RequestManger *sharedRequestManger = nil;
              }
              
          }];
+        }
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);

@@ -68,7 +68,7 @@ void SendPushNotification(NSString *groupId, NSString *text, PFObject *currentRe
         PFPush *push = [[PFPush alloc] init];
         [push setQuery:queryInstallation];
 //	[push setMessage:text];
-        NSDictionary *data = [[NSDictionary alloc] initWithObjects:@[groupId, result] forKeys:@[OBJECT_ID, NOTIFICATION_ALERT_MESSAGE]];
+        NSDictionary *data = [[NSDictionary alloc] initWithObjects:@[groupId, result, @1] forKeys:@[OBJECT_ID, NOTIFICATION_ALERT_MESSAGE, @"badge"]];
         [push setData:data];
         [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
          {
@@ -97,7 +97,7 @@ void SendHomepointPush(PFObject *homepoint, NSString *text, NSString *groupId) {
     PFPush *push = [[PFPush alloc] init];
     [push setQuery:queryInstallation];
     //	[push setMessage:text];
-    NSDictionary *data = [[NSDictionary alloc] initWithObjects:@[groupId, result] forKeys:@[OBJECT_ID, NOTIFICATION_ALERT_MESSAGE]];
+    NSDictionary *data = [[NSDictionary alloc] initWithObjects:@[groupId, result, @1] forKeys:@[OBJECT_ID, NOTIFICATION_ALERT_MESSAGE, @"badge"]];
     [push setData:data];
     [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
      {
@@ -126,7 +126,7 @@ void SendPendingUserPush(PFObject *homepoint) {
         PFPush *push = [[PFPush alloc] init];
         [push setQuery:queryInstallation];
         //	[push setMessage:text];
-        NSDictionary *data = [[NSDictionary alloc] initWithObjects:@[strng] forKeys:@[NOTIFICATION_ALERT_MESSAGE]];
+        NSDictionary *data = [[NSDictionary alloc] initWithObjects:@[strng, @1] forKeys:@[NOTIFICATION_ALERT_MESSAGE, @"badge"]];
         [push setData:data];
         [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
          {
@@ -149,7 +149,7 @@ void SendMemberApprovedPush(PFObject *homepoint, PFUser *approvedUser) {
         PFPush *push = [[PFPush alloc] init];
         [push setQuery:queryInstallation];
         //	[push setMessage:text];
-        NSDictionary *data = [[NSDictionary alloc] initWithObjects:@[strng] forKeys:@[NOTIFICATION_ALERT_MESSAGE]];
+        NSDictionary *data = [[NSDictionary alloc] initWithObjects:@[strng, @1] forKeys:@[NOTIFICATION_ALERT_MESSAGE, @"badge"]];
         [push setData:data];
         [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
          {
@@ -172,7 +172,7 @@ void SendAddedMemberPush(NSString *homepoint, PFUser *addedUser) {
         PFPush *push = [[PFPush alloc] init];
         [push setQuery:queryInstallation];
         //	[push setMessage:text];
-        NSDictionary *data = [[NSDictionary alloc] initWithObjects:@[strng] forKeys:@[NOTIFICATION_ALERT_MESSAGE]];
+        NSDictionary *data = [[NSDictionary alloc] initWithObjects:@[strng, @1] forKeys:@[NOTIFICATION_ALERT_MESSAGE, @"badge"]];
         [push setData:data];
         [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
          {

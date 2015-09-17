@@ -84,6 +84,7 @@
     tempMap.scrollEnabled = NO;
     tempMap.userInteractionEnabled = NO;
     [self.view addSubview:tempMap];
+    [tempMap setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
     [tempMap kgn_pinToLeftEdgeOfSuperview];
     [tempMap kgn_pinToRightEdgeOfSuperview];
     [tempMap kgn_sizeToHeight:self.view.frame.size.height/3];

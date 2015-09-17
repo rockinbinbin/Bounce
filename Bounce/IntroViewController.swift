@@ -356,7 +356,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
                     let resultDict = result as? NSDictionary
                     if let summaryDict = resultDict?["summary"] as? NSDictionary {
                         let friendCount = (summaryDict["total_count"] as! Int)
-                        accountInfo.setValue(friendCount, forKey: "friendCount")
+                        //accountInfo.setValue(friendCount, forKey: "friendCount")
                         
                         var error: NSError?
                         if !managedContext.save(&error) {
