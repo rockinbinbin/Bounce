@@ -82,6 +82,7 @@
     
     MKMapView *tempMap = [MKMapView new];
     tempMap.scrollEnabled = NO;
+    tempMap.userInteractionEnabled = NO;
     [self.view addSubview:tempMap];
     [tempMap kgn_pinToLeftEdgeOfSuperview];
     [tempMap kgn_pinToRightEdgeOfSuperview];
