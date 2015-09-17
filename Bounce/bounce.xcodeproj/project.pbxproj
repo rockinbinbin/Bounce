@@ -19,8 +19,6 @@
 		007CF29A1AA3E516007D7C33 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF2991AA3E516007D7C33 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		007CF29C1AA3E529007D7C33 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF29B1AA3E529007D7C33 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		007CF29E1AA3E532007D7C33 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF29D1AA3E532007D7C33 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		008489851BA24F350095ABFE /* CAPSPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 008489841BA24F350095ABFE /* CAPSPageMenu.m */; };
-		008489881BA253640095ABFE /* RootSearchTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 008489871BA253640095ABFE /* RootSearchTabController.m */; };
 		00AA6EDE1B6B3CDF00F91CBB /* chatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA6EDD1B6B3CDF00F91CBB /* chatCell.m */; };
 		00ABD56E1B479C1B004A2FB0 /* FinishedIcon in Resources */ = {isa = PBXBuildFile; fileRef = 00ABD56D1B479C1B004A2FB0 /* FinishedIcon */; };
 		00ABD5701B4846CC004A2FB0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00ABD56F1B4846CC004A2FB0 /* LaunchScreen.storyboard */; };
@@ -353,10 +351,6 @@
 		007CF2991AA3E516007D7C33 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		007CF29B1AA3E529007D7C33 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		007CF29D1AA3E532007D7C33 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
-		008489831BA24F350095ABFE /* CAPSPageMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPSPageMenu.h; sourceTree = "<group>"; };
-		008489841BA24F350095ABFE /* CAPSPageMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPSPageMenu.m; sourceTree = "<group>"; };
-		008489861BA253640095ABFE /* RootSearchTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootSearchTabController.h; sourceTree = "<group>"; };
-		008489871BA253640095ABFE /* RootSearchTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootSearchTabController.m; sourceTree = "<group>"; };
 		00AA6EDC1B6B3CDF00F91CBB /* chatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chatCell.h; sourceTree = "<group>"; };
 		00AA6EDD1B6B3CDF00F91CBB /* chatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = chatCell.m; sourceTree = "<group>"; };
 		00ABD56D1B479C1B004A2FB0 /* FinishedIcon */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FinishedIcon; path = "Bounce Images/FinishedIcon"; sourceTree = "<group>"; };
@@ -1195,10 +1189,6 @@
 				00E2CBC31B563BB300B316D1 /* CreateHomepoint.m */,
 				67BB91FA1ADFA8D10050164B /* AddHomePointViewController.h */,
 				67BB91FB1ADFA8D10050164B /* AddHomePointViewController.m */,
-				008489861BA253640095ABFE /* RootSearchTabController.h */,
-				008489871BA253640095ABFE /* RootSearchTabController.m */,
-				008489831BA24F350095ABFE /* CAPSPageMenu.h */,
-				008489841BA24F350095ABFE /* CAPSPageMenu.m */,
 				67BB91FC1ADFA8D10050164B /* AddLocationScreenViewController.h */,
 				67BB91FD1ADFA8D10050164B /* AddLocationScreenViewController.m */,
 				67BB91FE1ADFA8D10050164B /* CustomChatViewController.h */,
@@ -1745,7 +1735,6 @@
 				67BB940B1ADFABCD0050164B /* UIProgressView+AFNetworking.m in Sources */,
 				67BB94571ADFABCD0050164B /* NavigationController.m in Sources */,
 				67BB94521ADFABCD0050164B /* JSQMessagesTypingIndicatorFooterView.m in Sources */,
-				008489851BA24F350095ABFE /* CAPSPageMenu.m in Sources */,
 				67BB945A1ADFABCD0050164B /* pushnotification.m in Sources */,
 				00E2CBC11B560B3600B316D1 /* homepointListCell.m in Sources */,
 				67BB945D1ADFABCD0050164B /* utilities.m in Sources */,
@@ -1785,7 +1774,6 @@
 				67BB942D1ADFABCD0050164B /* UIColor+JSQMessages.m in Sources */,
 				67BB94581ADFABCD0050164B /* ChatView.m in Sources */,
 				67BB94451ADFABCD0050164B /* JSQMessagesCollectionViewCell.m in Sources */,
-				008489881BA253640095ABFE /* RootSearchTabController.m in Sources */,
 				28B5E7441B7C406D007F79C0 /* GlobalVariables.swift in Sources */,
 				67BB940A1ADFABCD0050164B /* UIImageView+AFNetworking.m in Sources */,
 				67BB94561ADFABCD0050164B /* NIDropDown.m in Sources */,

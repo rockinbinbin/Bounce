@@ -85,8 +85,8 @@
     [self.view addSubview:tempMap];
     [tempMap kgn_pinToLeftEdgeOfSuperview];
     [tempMap kgn_pinToRightEdgeOfSuperview];
-    [tempMap kgn_sizeToWidth:self.view.frame.size.width];
     [tempMap kgn_sizeToHeight:self.view.frame.size.height/3];
+    [tempMap kgn_pinToTopEdgeOfSuperview];
     self.map = tempMap;
     
     UIImageView *whiteLogo = [UIImageView new];
