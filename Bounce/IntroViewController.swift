@@ -47,6 +47,16 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
         self.setBackgroundColor()
         self.renderLoginButton()
         self.renderPageViewController()
+        
+        let button = UIButton()
+        button.setTitle("By signing up, you agree to our Terms of Service.", forState: .Normal)
+        button.titleLabel?.font = Constants.Fonts.Avenir.Tiny
+        button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        button.addTarget(self, action: Selector("termsPressed:"), forControlEvents: .TouchUpInside)
+        self.view.addSubview(button)
+        
+        button.centerHorizontallyInSuperview()
+        button.positionBelowItem(self.loginButton, offset: 3)
     }
     
     override public func didReceiveMemoryWarning() {
@@ -70,7 +80,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
         
         let facebookImage = UIImage(named: "Facebook-Rounded-Square")
         let facebookImageView = UIImageView(image: facebookImage)
-        facebookImageView.frame = CGRectMake(height * 0.2, height * 0.2, height * 0.6, height * 0.6);
+        facebookImageView.frame = CGRectMake(height * 0.3, height * 0.3, height * 0.4, height * 0.4)
         loginButton.addSubview(facebookImageView)
         
         self.view.addSubview(loginButton)
@@ -78,10 +88,6 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
         loginButton.pinToBottomEdgeOfSuperview(offset: CGRectGetHeight(self.view.bounds) * 0.08)
         loginButton.sizeToHeight(53)
         loginButton.pinToSideEdgesOfSuperview(offset: 30)
-        
-        loginButton.addTarget(self, action: "loginButtonPressed:", forControlEvents: .TouchUpInside)
-        
-        self.view.addSubview(loginButton)
     }
     
     func renderPageViewController() {
@@ -155,6 +161,25 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
     }
     
     // MARK: - Button Actions
+    
+    func termsPressed(sender: RoundedRectButton!) {
+        let rtfVC = RichTextViewController(title: "Terms of Service", fileName: "TermsOfService")
+        let termsViewController = UINavigationController(rootViewController: rtfVC)
+        termsViewController.navigationBar.tintColor = Constants.Colors.BounceRed
+        termsViewController.navigationBar.backgroundColor = Constants.Colors.BounceRed
+
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "dismissSettings")
+        doneButton.tintColor = UIColor.whiteColor()
+        let attributes = [NSFontAttributeName: UIFont(name: "AvenirNext-Regular", size: 19)!]
+        doneButton.setTitleTextAttributes(attributes, forState: UIControlState.Normal)
+        rtfVC.navigationItem.rightBarButtonItem = doneButton
+
+        self.presentViewController(termsViewController, animated: true, completion: nil)
+    }
+    
+    func dismissSettings() {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     func loginButtonPressed(sender: RoundedRectButton!) {
         sender.indicator.startAnimating()
