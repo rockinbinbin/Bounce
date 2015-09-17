@@ -8,7 +8,6 @@
 
 #import "RootSearchTabController.h"
 #import "AddHomePointViewController.h"
-#import "SearchToAddGroups.h"
 #import "Utility.h"
 #import "CreateHomepoint.h"
 
@@ -47,10 +46,6 @@
     AddHomePointViewController *controller = [AddHomePointViewController new];
     controller.title = @"SEARCH BY ADDRESS";
     [controllerArray addObject:controller];
-    
-    SearchToAddGroups *controller2 = [SearchToAddGroups new];
-    controller2.title = @"SEARCH BY NAME";
-    [controllerArray addObject:controller2];
     
     // Customize page menu to your liking (optional) or use default settings by sending nil for 'options' in the init
     // Example:

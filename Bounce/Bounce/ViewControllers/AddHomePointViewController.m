@@ -19,7 +19,6 @@
 #import "CreateHomepoint.h"
 #import "UIView+AutoLayout.h"
 #import "homepointListCell.h"
-#import "SearchToAddGroups.h"
 #import "membersCell.h"
 #import "CAPSPageMenu.h"
 #import "UINavigationBar+Addition.h"
@@ -184,9 +183,6 @@
 - (void)didLoadAllOtherGroups:(NSArray *)allGroups {
     [[Utility getInstance] hideProgressHud];
     self.allGroups = allGroups;
-    //        SearchToAddGroups *searchVC = [SearchToAddGroups new];
-    //        searchVC.allGroups = allGroups;
-    //    [self.navigationController pushViewController:searchVC animated:YES];
 }
 
 -(void)cancelButtonClicked{
