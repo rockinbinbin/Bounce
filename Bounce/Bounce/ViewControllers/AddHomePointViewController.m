@@ -8,7 +8,6 @@
 
 #import "AddHomePointViewController.h"
 #import "AppConstant.h"
-#import "ChatListCell.h"
 #import "AddGroupUsersViewController.h"
 #import <Parse/Parse.h>
 #import "GroupsListViewController.h"

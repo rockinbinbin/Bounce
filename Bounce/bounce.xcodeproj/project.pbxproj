@@ -40,8 +40,6 @@
 		00DC8E551B943F0200DD84EA /* HomepointDropdownCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DC8E541B943F0200DD84EA /* HomepointDropdownCell.m */; };
 		00E2CBB41B53073700B316D1 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2CBB31B53073700B316D1 /* UIView+AutoLayout.m */; };
 		00E2CBB61B5384B600B316D1 /* homepoint images in Resources */ = {isa = PBXBuildFile; fileRef = 00E2CBB51B5384B500B316D1 /* homepoint images */; };
-		00E2CBBD1B5506C800B316D1 /* ChatListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2CBBB1B5506C800B316D1 /* ChatListCell.m */; };
-		00E2CBBE1B5506C800B316D1 /* ChatListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00E2CBBC1B5506C800B316D1 /* ChatListCell.xib */; };
 		00E2CBC11B560B3600B316D1 /* homepointListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2CBC01B560B3600B316D1 /* homepointListCell.m */; };
 		00E2CBC41B563BB300B316D1 /* CreateHomepoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2CBC31B563BB300B316D1 /* CreateHomepoint.m */; };
 		2818DB911B72EFC80021B9C6 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2818DB901B72EFC80021B9C6 /* IntroViewController.swift */; };
@@ -379,9 +377,6 @@
 		00E2CBB21B53073700B316D1 /* UIView+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
 		00E2CBB31B53073700B316D1 /* UIView+AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
 		00E2CBB51B5384B500B316D1 /* homepoint images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "homepoint images"; path = "ViewControllers/homepoint images"; sourceTree = "<group>"; };
-		00E2CBBA1B5506C800B316D1 /* ChatListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListCell.h; sourceTree = "<group>"; };
-		00E2CBBB1B5506C800B316D1 /* ChatListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListCell.m; sourceTree = "<group>"; };
-		00E2CBBC1B5506C800B316D1 /* ChatListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatListCell.xib; sourceTree = "<group>"; };
 		00E2CBBF1B560B3600B316D1 /* homepointListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = homepointListCell.h; sourceTree = "<group>"; };
 		00E2CBC01B560B3600B316D1 /* homepointListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = homepointListCell.m; sourceTree = "<group>"; };
 		00E2CBC21B563BB300B316D1 /* CreateHomepoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateHomepoint.h; sourceTree = "<group>"; };
@@ -977,9 +972,6 @@
 				28A0002A1B9D29AE002CF156 /* Quicksand-Regular.otf */,
 				000234911B4885B6000B7630 /* Fonts */,
 				00ABD56F1B4846CC004A2FB0 /* LaunchScreen.storyboard */,
-				00E2CBBA1B5506C800B316D1 /* ChatListCell.h */,
-				00E2CBBB1B5506C800B316D1 /* ChatListCell.m */,
-				00E2CBBC1B5506C800B316D1 /* ChatListCell.xib */,
 				0002348F1B48823B000B7630 /* launchLogo.png */,
 				00DF1FE01B43A8CF004F056A /* bounce-Bridging-Header.h */,
 				67BB90ED1ADFA8D00050164B /* bounce-Info.plist */,
@@ -1672,7 +1664,6 @@
 				67BB92641ADFA8D10050164B /* Tutorial-3_iPhone5.png in Resources */,
 				00ABD56E1B479C1B004A2FB0 /* FinishedIcon in Resources */,
 				67BB94491ADFABCD0050164B /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
-				00E2CBBE1B5506C800B316D1 /* ChatListCell.xib in Resources */,
 				67BB92521ADFA8D10050164B /* LandingView@2x.png in Resources */,
 				67BB92551ADFA8D10050164B /* LandingView_iPhone6plus.png in Resources */,
 				67BB925F1ADFA8D10050164B /* Tutorial-2_iPhone6.png in Resources */,
@@ -1717,7 +1708,6 @@
 				67BB94401ADFABCD0050164B /* JSQMessagesBubbleImage.m in Sources */,
 				67BB92711ADFA8D10050164B /* main.m in Sources */,
 				28A0001F1B9CB9DC002CF156 /* RequestLocationViewController.swift in Sources */,
-				00E2CBBD1B5506C800B316D1 /* ChatListCell.m in Sources */,
 				67BB94501ADFABCD0050164B /* JSQMessagesToolbarContentView.m in Sources */,
 				007BA4091A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.m in Sources */,
 				28205C441B8FFA4B001C3630 /* BounceSwift.swift in Sources */,
