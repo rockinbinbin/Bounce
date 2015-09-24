@@ -276,6 +276,10 @@
             span.latitudeDelta = 0.01;
             span.longitudeDelta = 0.01;
         }
+        
+        [self startReceivingSignificantLocationChanges];
+        [self changeCenterToUserLocation];
+        [self setUserTrackingMode];
     }
     
     self.timeAllocated = 120;
@@ -302,12 +306,6 @@
             requestsViewController.delegate = self.delegate;
             [self.navigationController pushViewController:requestsViewController animated:true];
         }
-    }
-    
-    if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
-        [self startReceivingSignificantLocationChanges];
-        [self changeCenterToUserLocation];
-        [self setUserTrackingMode];
     }
     
     if ([[RequestManger getInstance] hasActiveRequest]) {
