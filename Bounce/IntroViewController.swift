@@ -192,14 +192,10 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
             }, completion: nil)
         
         // FB login
-        PFFacebookUtils.logInWithPermissions(["public_profile, user_about_me"], block: {
+        PFFacebookUtils.logInWithPermissions(["public_profile, user_about_me", "email"], block: {
             (user: PFUser?, error: NSError?) -> Void in
             
-            if error != nil {
-                println("loginButtonPressed error: \(error?.description)")
-                self.handleLoginFailed(error!)
-                
-            } else if user != nil {
+            if user != nil {
                 let facebookId = PFUser.currentUser()?.objectForKey("facebookId") as? String
                 ParsePushUserAssign()
                 
@@ -233,6 +229,11 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
                     }
                 }
             }
+            else if error != nil {
+                println("loginButtonPressed error: \(error?.description)")
+                self.handleLoginFailed(error!)
+                
+            }
         })
     }
     
@@ -240,6 +241,8 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
     
     func handleLoginFailed(error: NSError) {
         println(error)
+        
+        // TODO: MAKE LOGIN LOADING INDICATOR GO AWAY.
         
         let alertController = UIAlertController(
             title: "Uh oh!",
@@ -266,6 +269,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
                 "id":     ["facebookId"],
                 "name":   ["fullname", "username"],
                 "gender": ["Gender"],
+                "email": ["emailCopy"]
             ]
             
             if error != nil {
