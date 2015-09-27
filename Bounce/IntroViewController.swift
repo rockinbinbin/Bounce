@@ -242,6 +242,15 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
     func handleLoginFailed(error: NSError) {
         print("Login failed with error \(error)")
         
+        UIView.animateWithDuration(0.25, animations: {
+            self.loginButton.indicator.alpha = 0.0
+        })
+        
+        UIView.animateWithDuration(0.25, delay: 0.25, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+            self.loginButton.titleLabel?.alpha = 1.0
+            }, completion: nil)
+
+        
         // TODO: MAKE LOGIN LOADING INDICATOR GO AWAY.
         
         let alertController = UIAlertController(
