@@ -116,10 +116,6 @@ class AccountViewController: UIViewController {
             })
         }
         
-        let imageURL = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent("cachedProfilePicture.png")
-        if let savedProfilePicture = UIImage(data: NSData(contentsOfURL: imageURL)!) {
-            profilePictureView.image = savedProfilePicture
-        }
         
         let fileThumbnail = PFUser.currentUser()[PF_USER_THUMBNAIL] as? PFFile
         if let thumbnail = fileThumbnail {
