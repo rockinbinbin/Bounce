@@ -11,6 +11,7 @@
 #import "membersCell.h"
 #import "Utility.h"
 #import "pushnotification.h"
+#import "AppConstant.h"
 
 #define ResultsTableView self.searchResultsTableViewController.tableView
 
@@ -47,7 +48,7 @@
         navLabel.text = @"Search for Users";
         [navLabel sizeToFit];
     
-        UITableView *searchResultsTableView = [[UITableView alloc] initWithFrame:self.tableView.frame];
+    UITableView *searchResultsTableView = [[UITableView alloc] initWithFrame:CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height - TAB_BAR_HEIGHT)];
         searchResultsTableView.dataSource = self;
        searchResultsTableView.delegate = self;
     
@@ -58,12 +59,16 @@
         self.searchController.searchResultsUpdater = self;
         self.searchController.delegate = self;
     
-        [self.searchController.searchBar sizeToFit];
-        self.searchController.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
-        self.tableView.tableHeaderView = self.searchController.searchBar;
+    self.searchController.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
+    self.tableView.tableHeaderView = self.searchController.searchBar;
+    self.searchController.searchBar.placeholder = @"Search a homepoint's name or neighborhood";
     self.searchController.searchBar.barTintColor = BounceRed;
     self.searchController.searchBar.tintColor = [UIColor whiteColor];
     self.searchController.searchBar.layer.borderColor = [[UIColor clearColor] CGColor];
+    
+    [self setAutomaticallyAdjustsScrollViewInsets:YES];
+    [self setExtendedLayoutIncludesOpaqueBars:YES];
+    
         self.definesPresentationContext = YES;
 }
 

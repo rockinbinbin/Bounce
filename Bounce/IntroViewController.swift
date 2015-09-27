@@ -320,7 +320,6 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
         let profilePicture = UIImage(data: NSData(contentsOfURL: pictureURL!)!)
         
         let imageData = UIImagePNGRepresentation(profilePicture!)
-        let imageURL = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent("cachedProfilePicture.png")
         
         let photoFile = PFFile(name: "picture.jpg", data: imageData)
         let thumbnailFile = PFFile(name: "thumbnail", data: imageData)
@@ -328,10 +327,6 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
         user["picture"] = photoFile
         user["thumbnail"] = thumbnailFile
         user.saveInBackgroundWithBlock(nil)
-        
-        if imageData!.writeToURL(imageURL, atomically: false) {
-            NSUserDefaults.standardUserDefaults().setObject(imageURL, forKey: "imagePath")
-        }
     }
     
     func loadProfileInfoInBackground() {

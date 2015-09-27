@@ -74,9 +74,15 @@
     self.searchController.searchResultsUpdater = self;
     self.searchController.delegate = self;
     
-    [self.searchController.searchBar sizeToFit];
     self.searchController.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
     self.tableView.tableHeaderView = self.searchController.searchBar;
+    self.searchController.searchBar.placeholder = @"Search a homepoint's name or neighborhood";
+    self.searchController.searchBar.barTintColor = BounceRed;
+    self.searchController.searchBar.tintColor = [UIColor whiteColor];
+    self.searchController.searchBar.layer.borderColor = [[UIColor clearColor] CGColor];
+    
+    [self setAutomaticallyAdjustsScrollViewInsets:YES];
+    [self setExtendedLayoutIncludesOpaqueBars:YES];
     
     self.definesPresentationContext = YES;
 }
