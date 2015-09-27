@@ -81,7 +81,7 @@ class RequestPushNotificationsViewController: UIViewController {
         let screenWidth = CGRectGetWidth(self.view.bounds)
         
         titleLabel.centerHorizontallyInSuperview()
-        titleLabel.pinToTopEdgeOfSuperview(offset: screenHeight * 0.05)
+        titleLabel.pinToTopEdgeOfSuperview(screenHeight * 0.05)
         
         let imageSize = phoneImageView.image!.size
         
@@ -90,12 +90,12 @@ class RequestPushNotificationsViewController: UIViewController {
         phoneImageView.centerHorizontallyInSuperview()
         phoneImageView.positionBelowItem(titleLabel, offset: screenHeight * 0.2 - 45)
         
-        continueButton.pinToBottomEdgeOfSuperview(offset: 50)
+        continueButton.pinToBottomEdgeOfSuperview(50)
         continueButton.sizeToHeight(53)
-        continueButton.pinToSideEdgesOfSuperview(offset: 30)
+        continueButton.pinToSideEdgesOfSuperview(30)
         
         descriptionLabel.positionAboveItem(continueButton, offset: screenHeight * 0.2 - 75)
-        descriptionLabel.pinToSideEdgesOfSuperview(offset: screenWidth * 0.05)
+        descriptionLabel.pinToSideEdgesOfSuperview(screenWidth * 0.05)
 
         let notificationWidth = self.phoneImageView.image!.size.width * 0.4
         notificationImageView.sizeToWidth(notificationWidth)
@@ -123,7 +123,7 @@ class RequestPushNotificationsViewController: UIViewController {
         let application = UIApplication.sharedApplication()
         
         if application.respondsToSelector(Selector("registerUserNotificationSettings:")) {
-            let settings = UIUserNotificationSettings(forTypes: .Alert | .Badge | .Sound, categories: nil)
+            let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
             application.registerUserNotificationSettings(settings)
             application.registerForRemoteNotifications()
         }

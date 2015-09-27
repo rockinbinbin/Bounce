@@ -75,7 +75,7 @@ class RequestLocationViewController: UIViewController {
         let screenWidth = CGRectGetWidth(self.view.bounds)
         
         titleLabel.centerHorizontallyInSuperview()
-        titleLabel.pinToTopEdgeOfSuperview(offset: screenHeight * 0.05)
+        titleLabel.pinToTopEdgeOfSuperview(screenHeight * 0.05)
         
         let imageSize = imageView.image!.size
         
@@ -84,12 +84,12 @@ class RequestLocationViewController: UIViewController {
         imageView.centerHorizontallyInSuperview()
         imageView.positionBelowItem(titleLabel, offset: screenHeight * 0.15 - 45)
         
-        continueButton.pinToBottomEdgeOfSuperview(offset: 50)
+        continueButton.pinToBottomEdgeOfSuperview(50)
         continueButton.sizeToHeight(53)
-        continueButton.pinToSideEdgesOfSuperview(offset: 30)
+        continueButton.pinToSideEdgesOfSuperview(30)
         
         descriptionLabel.positionAboveItem(continueButton, offset: screenHeight * 0.2 - 75)
-        descriptionLabel.pinToSideEdgesOfSuperview(offset: screenWidth * 0.05)
+        descriptionLabel.pinToSideEdgesOfSuperview(screenWidth * 0.05)
     }
     
     // MARK: - Button Method
@@ -107,7 +107,7 @@ class RequestLocationViewController: UIViewController {
                 usleep(100000)
             }
             
-            let notificationsSet = (UIApplication.sharedApplication().currentUserNotificationSettings().types != .None)
+            let notificationsSet = (UIApplication.sharedApplication().currentUserNotificationSettings()!.types != .None)
             
             dispatch_async(dispatch_get_main_queue()) {
                 UIView.animateWithDuration(0.25, animations: { () -> Void in

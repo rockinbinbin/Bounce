@@ -68,7 +68,7 @@ import UIKit
         super.init(nibName: nil, bundle: nil)
     }
 
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         self.initialTab = InitialTab.Trips
         super.init(coder: aDecoder)
     }
@@ -143,7 +143,7 @@ import UIKit
     
     private var selectedTab: Tab? {
         didSet {
-            var homepointsTabSelected: Bool = (selectedTab?.viewController == homepointsTab.viewController)
+            let homepointsTabSelected: Bool = (selectedTab?.viewController == homepointsTab.viewController)
             
             if selectedTab?.viewController == oldValue?.viewController {
                 return
@@ -245,7 +245,7 @@ import UIKit
         sideSpacer.width = 30
 
         self.setToolbarItems({
-                return [sideSpacer] + flatMap(self.tabs) { [$0.barButtonItem, flexibleSpacer] } + [self.accountBarButtonItem, sideSpacer]
+                return [sideSpacer] + self.tabs.flatMap { [$0.barButtonItem, flexibleSpacer] } + [self.accountBarButtonItem, sideSpacer]
             }(), animated: false)
     }
     

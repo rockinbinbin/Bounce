@@ -22,9 +22,9 @@ class EmailSentViewController: UIViewController {
         getStartedButton.alpha = 0.0
         self.view.addSubview(getStartedButton)
         
-        getStartedButton.pinToBottomEdgeOfSuperview(offset: 50)
+        getStartedButton.pinToBottomEdgeOfSuperview(50)
         getStartedButton.sizeToHeight(53)
-        getStartedButton.pinToSideEdgesOfSuperview(offset: 30)
+        getStartedButton.pinToSideEdgesOfSuperview(30)
         
         // Image view
         
@@ -34,8 +34,8 @@ class EmailSentViewController: UIViewController {
         
         let originalSize = image?.size
         imageView.centerHorizontallyInSuperview()
-        imageView.pinToTopEdgeOfSuperview(offset: self.view.frame.size.height * 0.25 - 100)
-        imageView.pinToSideEdgesOfSuperview(offset: self.view.frame.size.width * 0.20)
+        imageView.pinToTopEdgeOfSuperview(self.view.frame.size.height * 0.25 - 100)
+        imageView.pinToSideEdgesOfSuperview(self.view.frame.size.width * 0.20)
         imageView.alpha = 0.5
         
         let constraint = NSLayoutConstraint(item: imageView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: imageView, attribute: NSLayoutAttribute.Width, multiplier: originalSize!.height / originalSize!.width, constant: 0.0)
@@ -62,7 +62,7 @@ class EmailSentViewController: UIViewController {
         
         self.view.addSubview(contentLabel)
         
-        contentLabel.pinToSideEdgesOfSuperview(offset: self.view.frame.size.height * 0.05)
+        contentLabel.pinToSideEdgesOfSuperview(self.view.frame.size.height * 0.05)
         contentLabel.positionBelowItem(titleLabel, offset: 20)
     }
     

@@ -35,12 +35,12 @@ import UIKit
         
         // Set homepoint name
         
-        homepointName.setTranslatesAutoresizingMaskIntoConstraints(false)
+        homepointName.translatesAutoresizingMaskIntoConstraints = false
         homepointName.textColor = UIColor.whiteColor()
         homepointName.font = UIFont(name: "AvenirNext-Medium", size: 18)
         self.contentView.addSubview(homepointName)
         homepointName.centerHorizontallyInSuperview()
-        homepointName.centerVerticallyInSuperview(offset: 27)
+        homepointName.centerVerticallyInSuperview(27)
         
         icon.image = UIImage(named: "Homepoints-Neighborhood-Icon-Small")
         self.contentView.addSubview(icon)
@@ -69,9 +69,9 @@ import UIKit
         icon.image = UIImage(named: "Homepoints-Neighborhood-Icon-Small")
         self.contentView.addSubview(icon)
         icon.centerHorizontallyInSuperview()
-        icon.centerVerticallyInSuperview(offset: -30)
+        icon.centerVerticallyInSuperview(-30)
         
-        homepointName.setTranslatesAutoresizingMaskIntoConstraints(false)
+        homepointName.translatesAutoresizingMaskIntoConstraints = false
         homepointName.textColor = UIColor.whiteColor()
         homepointName.font = UIFont(name: "AvenirNext-Medium", size: 18)
         self.contentView.addSubview(homepointName)
@@ -108,7 +108,7 @@ import UIKit
         distanceLabel.text = distance
     }
     
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 }

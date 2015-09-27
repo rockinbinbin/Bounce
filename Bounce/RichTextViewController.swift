@@ -27,8 +27,8 @@ class RichTextViewController: UIViewController {
     /**
      * Opens an RTF file with the given file name, and sets the navigation bar title.
      *
-     * :param: title The title of the navigation bar
-     * :param: fileName The name of the file (without the .rtf extension).
+     * - parameter title: The title of the navigation bar
+     * - parameter fileName: The name of the file (without the .rtf extension).
      */
     init(title: String, fileName: String) {
         self.fileName = fileName
@@ -40,12 +40,12 @@ class RichTextViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        var nav = self.navigationController?.navigationBar
+        let nav = self.navigationController?.navigationBar
         nav?.tintColor = UIColor.whiteColor()
         nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         self.fileName = ""
         super.init(coder: aDecoder)
     }

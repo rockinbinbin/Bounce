@@ -23,7 +23,7 @@ class StudentVerificationViewController: UIViewController, UITextFieldDelegate {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -38,12 +38,12 @@ class StudentVerificationViewController: UIViewController, UITextFieldDelegate {
         
         let originalSize = image?.size
         imageView.centerHorizontallyInSuperview()
-        imageView.pinToTopEdgeOfSuperview(offset: self.view.frame.size.height * 0.05, priority: 1.0)
+        imageView.pinToTopEdgeOfSuperview(self.view.frame.size.height * 0.05, priority: 1.0)
         
         if (self.view.bounds.size.height <= 480) {
-            imageView.pinToSideEdgesOfSuperview(offset: 100)
+            imageView.pinToSideEdgesOfSuperview(100)
         } else {
-            imageView.pinToSideEdgesOfSuperview(offset: self.view.frame.size.width * 0.1 + 50)
+            imageView.pinToSideEdgesOfSuperview(self.view.frame.size.width * 0.1 + 50)
         }
         
         let constraint = NSLayoutConstraint(item: imageView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: imageView, attribute: NSLayoutAttribute.Width, multiplier: originalSize!.height / originalSize!.width, constant: 0.0)
@@ -68,7 +68,7 @@ class StudentVerificationViewController: UIViewController, UITextFieldDelegate {
         
         self.view.addSubview(contentLabel)
         
-        contentLabel.pinToSideEdgesOfSuperview(offset: self.view.frame.size.height * 0.05)
+        contentLabel.pinToSideEdgesOfSuperview(self.view.frame.size.height * 0.05)
         contentLabel.positionBelowItem(titleLabel, offset: 20)
         
         // Text Field
@@ -89,7 +89,7 @@ class StudentVerificationViewController: UIViewController, UITextFieldDelegate {
 
         textField.positionBelowItem(contentLabel, offset: self.view.bounds.height * 0.05)
         textField.sizeToHeight(textFieldHeight)
-        textField.pinToSideEdgesOfSuperview(offset: 40)
+        textField.pinToSideEdgesOfSuperview(40)
         textField.autocapitalizationType = UITextAutocapitalizationType.None
         
         neverShareLabel.textColor = UIColor.whiteColor()
@@ -110,9 +110,9 @@ class StudentVerificationViewController: UIViewController, UITextFieldDelegate {
         sendVerificationButton.addTarget(self, action: Selector("checkEmailField"), forControlEvents: .TouchUpInside)
         self.view.addSubview(sendVerificationButton)
         
-        sendVerificationButton.pinToBottomEdgeOfSuperview(offset: 50)
+        sendVerificationButton.pinToBottomEdgeOfSuperview(50)
         sendVerificationButton.sizeToHeight(53)
-        sendVerificationButton.pinToSideEdgesOfSuperview(offset: 30)
+        sendVerificationButton.pinToSideEdgesOfSuperview(30)
         
         // Animations
         
@@ -162,7 +162,7 @@ class StudentVerificationViewController: UIViewController, UITextFieldDelegate {
 
             keyboardUp = true
         } else {
-            println("Error: No user info for keyboardWillShow")
+            print("Error: No user info for keyboardWillShow")
         }
     }
     
@@ -181,13 +181,13 @@ class StudentVerificationViewController: UIViewController, UITextFieldDelegate {
 
             keyboardUp = false
         } else {
-            println("Error: No user info for keyboardWillShow")
+            print("Error: No user info for keyboardWillShow")
         }
     }
 
     // Called when the user wants to send a verification email
     func checkEmailField() {
-        if let match = self.textField.text.rangeOfString("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.+-]+\\.edu$", options: .RegularExpressionSearch) {
+        if let _ = self.textField.text!.rangeOfString("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.+-]+\\.edu$", options: .RegularExpressionSearch) {
             self.sendVerificationEmail()
         } else {
             let alertController = UIAlertController(
@@ -205,7 +205,7 @@ class StudentVerificationViewController: UIViewController, UITextFieldDelegate {
     
     func sendVerificationEmail() {
         self.resignFirstResponder()
-        var user = PFUser.currentUser()!
+        let user = PFUser.currentUser()!
         
         user.email = textField.text
         user.setValue(true, forKey: "setupComplete")
@@ -214,9 +214,9 @@ class StudentVerificationViewController: UIViewController, UITextFieldDelegate {
         self.view.layoutIfNeeded()
         
         let originalSize = imageView.image!.size
-        imageView.pinToTopEdgeOfSuperview(offset: self.view.frame.size.height * 0.25 - 100, priority: 2.0)
+        imageView.pinToTopEdgeOfSuperview(self.view.frame.size.height * 0.25 - 100, priority: 2.0)
         let constraint = NSLayoutConstraint(item: imageView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: imageView, attribute: NSLayoutAttribute.Width, multiplier: originalSize.height / originalSize.width, constant: 0.0)
-        imageView.pinToSideEdgesOfSuperview(offset: self.view.frame.size.width * 0.20)
+        imageView.pinToSideEdgesOfSuperview(self.view.frame.size.width * 0.20)
         
         self.view.addConstraint(constraint)
         

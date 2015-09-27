@@ -31,7 +31,7 @@ class RoundedRectButton: UIButton {
         indicator.centerInSuperview()
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         self.layer.borderColor = UIColor.whiteColor().CGColor

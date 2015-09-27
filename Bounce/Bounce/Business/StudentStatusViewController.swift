@@ -21,7 +21,7 @@ import UIKit
         super.init(nibName: nil, bundle: nil)
     }
 
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         self.animated = false
         super.init(coder: aDecoder)
     }
@@ -37,13 +37,13 @@ import UIKit
         self.view.addSubview(noButton)
         self.view.addSubview(yesButton)
         
-        noButton.pinToBottomEdgeOfSuperview(offset: 50)
+        noButton.pinToBottomEdgeOfSuperview(50)
         noButton.sizeToHeight(53)
-        noButton.pinToSideEdgesOfSuperview(offset: 30)
+        noButton.pinToSideEdgesOfSuperview(30)
         
         yesButton.sizeToWidthAndHeightOfItem(noButton)
         yesButton.positionAboveItem(noButton, offset: 10)
-        yesButton.pinToSideEdgesOfSuperview(offset: 30)
+        yesButton.pinToSideEdgesOfSuperview(30)
         
         // Image
         
@@ -53,8 +53,8 @@ import UIKit
         
         let originalSize = image?.size
         imageView.centerHorizontallyInSuperview()
-        imageView.pinToTopEdgeOfSuperview(offset: self.view.frame.size.height * 0.05)
-        imageView.pinToSideEdgesOfSuperview(offset: self.view.frame.size.width * 0.20)
+        imageView.pinToTopEdgeOfSuperview(self.view.frame.size.height * 0.05)
+        imageView.pinToSideEdgesOfSuperview(self.view.frame.size.width * 0.20)
         
         let constraint = NSLayoutConstraint(item: imageView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: imageView, attribute: NSLayoutAttribute.Width, multiplier: originalSize!.height / originalSize!.width, constant: 0.0)
   
@@ -84,7 +84,7 @@ import UIKit
 
             view.addSubview(contentLabel)
 
-            contentLabel.pinToSideEdgesOfSuperview(offset: self.view.frame.size.height * 0.05)
+            contentLabel.pinToSideEdgesOfSuperview(self.view.frame.size.height * 0.05)
             contentLabel.positionBelowItem(titleLabel, offset: 20)
         }
     }

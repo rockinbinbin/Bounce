@@ -85,9 +85,9 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
         
         self.view.addSubview(loginButton)
         
-        loginButton.pinToBottomEdgeOfSuperview(offset: CGRectGetHeight(self.view.bounds) * 0.08)
+        loginButton.pinToBottomEdgeOfSuperview(CGRectGetHeight(self.view.bounds) * 0.08)
         loginButton.sizeToHeight(53)
-        loginButton.pinToSideEdgesOfSuperview(offset: 30)
+        loginButton.pinToSideEdgesOfSuperview(30)
     }
     
     func renderPageViewController() {
@@ -95,8 +95,8 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
         pageViewController!.dataSource = self
         
         let startingViewController: InstructionView = viewControllerAtIndex(0)!
-        let viewControllers: NSArray = [startingViewController]
-        pageViewController!.setViewControllers(viewControllers as [AnyObject], direction: .Forward, animated: false, completion: nil)
+        let viewControllers: [UIViewController] = [startingViewController]
+        pageViewController!.setViewControllers(viewControllers, direction: .Forward, animated: false, completion: nil)
         pageViewController!.view.frame = CGRectMake(0, 0, view.frame.size.width, view.frame.size.height * 0.8);
         
         addChildViewController(pageViewController!)
@@ -212,7 +212,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
                         self.presentViewController(RequestLocationViewController(), animated: true, completion: nil)
                         
                         // Not set push notifications yet
-                    } else if (UIApplication.sharedApplication().currentUserNotificationSettings().types == .None) {
+                    } else if (UIApplication.sharedApplication().currentUserNotificationSettings()!.types == .None) {
                         self.presentViewController(RequestPushNotificationsViewController(), animated: true, completion: nil)
                     }
                     
@@ -230,7 +230,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
                 }
             }
             else if error != nil {
-                println("loginButtonPressed error: \(error?.description)")
+                print("loginButtonPressed error: \(error?.description)")
                 self.handleLoginFailed(error!)
                 
             }
@@ -240,7 +240,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
     // MARK: - Login Handlers
     
     func handleLoginFailed(error: NSError) {
-        println(error)
+        print("Login failed with error \(error)")
         
         // TODO: MAKE LOGIN LOADING INDICATOR GO AWAY.
         
@@ -259,7 +259,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
     /**
     * Stores user ID and full name in Parse.
     *
-    * :param: user The new PFUser signing up.
+    * - parameter user: The new PFUser signing up.
     */
     func handleNewUser(user: PFUser?) {
         FBRequestConnection.startForMeWithCompletionHandler({ (connection: FBRequestConnection!, result: AnyObject?, error: NSError!) -> Void in
@@ -273,7 +273,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
             ]
             
             if error != nil {
-                println(error)
+                print(error)
             } else {
                 for (graphAPIResponseKey, parseKeys) in keyMap {
                     for parseKey in parseKeys {
@@ -319,9 +319,8 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
         let pictureURL = NSURL(string: "https://graph.facebook.com/\(id)/picture?type=large")
         let profilePicture = UIImage(data: NSData(contentsOfURL: pictureURL!)!)
         
-        let imageData = UIImagePNGRepresentation(profilePicture)
-        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
-        let imagePath = paths.stringByAppendingPathComponent("cachedProfilePicture.png")
+        let imageData = UIImagePNGRepresentation(profilePicture!)
+        let imageURL = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent("cachedProfilePicture.png")
         
         let photoFile = PFFile(name: "picture.jpg", data: imageData)
         let thumbnailFile = PFFile(name: "thumbnail", data: imageData)
@@ -330,8 +329,8 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
         user["thumbnail"] = thumbnailFile
         user.saveInBackgroundWithBlock(nil)
         
-        if imageData.writeToFile(imagePath, atomically: false) {
-            NSUserDefaults.standardUserDefaults().setObject(imagePath, forKey: "imagePath")
+        if imageData!.writeToURL(imageURL, atomically: false) {
+            NSUserDefaults.standardUserDefaults().setObject(imageURL, forKey: "imagePath")
         }
     }
     
@@ -341,11 +340,16 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
         let entity =  NSEntityDescription.entityForName("AccountInfo", inManagedObjectContext: managedContext)
         
         let fetchRequest = NSFetchRequest(entityName:"AccountInfo")
-        var error: NSError?
-        let fetchedResults =
-        managedContext.executeFetchRequest(fetchRequest,
-            error: &error) as? [NSManagedObject]
-        
+
+        var fetchedResults: [NSManagedObject]
+        do {
+            fetchedResults = try managedContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+        } catch _ {
+            print("Error executing fetch request")
+            fetchedResults = []
+            
+        }
+
         var accountInfo: NSManagedObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
         
         if let results : [NSManagedObject] = fetchedResults {
@@ -356,7 +360,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
         
         FBRequestConnection.startForMeWithCompletionHandler({ (connection: FBRequestConnection!, result: AnyObject?, error: NSError!) -> Void in
             if error != nil {
-                println(error)
+                print(error)
             } else {
                 
                 // Get user full name
@@ -364,11 +368,16 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
                     accountInfo.setValue(name, forKey: "name")
                     
                     var error: NSError?
-                    if !managedContext.save(&error) {
-                        println("Could not save \(error), \(error?.userInfo)")
+                    do {
+                        try managedContext.save()
+                    } catch let error1 as NSError {
+                        error = error1
+                        print("Could not save \(error), \(error?.userInfo)")
+                    } catch {
+                        fatalError()
                     }
                 } else {
-                    println("ERROR: Could not get Facebook name")
+                    print("ERROR: Could not get Facebook name")
                 }
             }
         })
@@ -377,7 +386,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
         let request = FBRequest.requestForMyFriends()
         request.startWithCompletionHandler({ (connection: FBRequestConnection!, result: AnyObject?, error: NSError!) -> Void in
             if error != nil {
-                println(error)
+                print(error)
             } else {
                 let resultDict = result as? NSDictionary
                 
@@ -388,8 +397,13 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
                         //accountInfo.setValue(friendCount, forKey: "friendCount")
                         
                         var error: NSError?
-                        if !managedContext.save(&error) {
-                            println("Could not save \(error), \(error?.userInfo)")
+                        do {
+                            try managedContext.save()
+                        } catch let error1 as NSError {
+                            error = error1
+                            print("Could not save \(error), \(error?.userInfo)")
+                        } catch {
+                            fatalError()
                         }
                     }
                 }

@@ -51,6 +51,7 @@
 		282FAC1B1B71D4C700899FAB /* EmailSentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282FAC151B71D4C700899FAB /* EmailSentViewController.swift */; };
 		282FAC1D1B71D54C00899FAB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282FAC1C1B71D54C00899FAB /* Constants.swift */; };
 		282FAC1F1B71D56D00899FAB /* KGN Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282FAC1E1B71D56D00899FAB /* KGN Autolayout.swift */; };
+		287FB69A1BB7B21200301028 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287FB6991BB7B21200301028 /* GlobalVariables.swift */; settings = {ASSET_TAGS = (); }; };
 		28802DAC1B7708CF008E8B33 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28802DAB1B7708CF008E8B33 /* AccountViewController.swift */; };
 		28802DAE1B770C12008E8B33 /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28802DAD1B770C12008E8B33 /* RootTabBarController.swift */; };
 		28802DB01B770C8D008E8B33 /* UniversityEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28802DAF1B770C8D008E8B33 /* UniversityEmail.swift */; };
@@ -68,7 +69,6 @@
 		28A0FFDA1B9B8D25002CF156 /* RichTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A0FFD91B9B8D25002CF156 /* RichTextViewController.swift */; };
 		28A0FFDD1B9B923B002CF156 /* PrivacyPolicy.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 28A0FFDB1B9B923B002CF156 /* PrivacyPolicy.rtf */; };
 		28A0FFDE1B9B923B002CF156 /* TermsOfService.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 28A0FFDC1B9B923B002CF156 /* TermsOfService.rtf */; };
-		28B5E7441B7C406D007F79C0 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B5E7431B7C406D007F79C0 /* GlobalVariables.swift */; };
 		28B5E7461B7DA883007F79C0 /* NavigationBarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B5E7451B7DA883007F79C0 /* NavigationBarExtensions.swift */; };
 		28DF63821B85A08D00F16095 /* HomepointListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DF63811B85A08D00F16095 /* HomepointListCell.swift */; };
 		28F13A521A6C75A90069EBA4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F13A511A6C75A90069EBA4 /* MapKit.framework */; };
@@ -390,6 +390,7 @@
 		282FAC151B71D4C700899FAB /* EmailSentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailSentViewController.swift; sourceTree = "<group>"; };
 		282FAC1C1B71D54C00899FAB /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		282FAC1E1B71D56D00899FAB /* KGN Autolayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KGN Autolayout.swift"; sourceTree = "<group>"; };
+		287FB6991BB7B21200301028 /* GlobalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		28802DAB1B7708CF008E8B33 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		28802DAD1B770C12008E8B33 /* RootTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootTabBarController.swift; path = ../ViewControllers/RootTabBarController.swift; sourceTree = "<group>"; };
 		28802DAF1B770C8D008E8B33 /* UniversityEmail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversityEmail.swift; sourceTree = "<group>"; };
@@ -406,7 +407,6 @@
 		28A0FFD91B9B8D25002CF156 /* RichTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichTextViewController.swift; sourceTree = "<group>"; };
 		28A0FFDB1B9B923B002CF156 /* PrivacyPolicy.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = PrivacyPolicy.rtf; sourceTree = "<group>"; };
 		28A0FFDC1B9B923B002CF156 /* TermsOfService.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = TermsOfService.rtf; sourceTree = "<group>"; };
-		28B5E7431B7C406D007F79C0 /* GlobalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GlobalVariables.swift; path = ../ViewControllers/GlobalVariables.swift; sourceTree = "<group>"; };
 		28B5E7451B7DA883007F79C0 /* NavigationBarExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarExtensions.swift; sourceTree = "<group>"; };
 		28DF63811B85A08D00F16095 /* HomepointListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomepointListCell.swift; sourceTree = "<group>"; };
 		28F13A511A6C75A90069EBA4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -1159,7 +1159,7 @@
 				67BB90F81ADFA8D00050164B /* RequestManger.m */,
 				67BB90F91ADFA8D00050164B /* Utility.h */,
 				67BB90FA1ADFA8D00050164B /* Utility.m */,
-				28B5E7431B7C406D007F79C0 /* GlobalVariables.swift */,
+				287FB6991BB7B21200301028 /* GlobalVariables.swift */,
 			);
 			path = Business;
 			sourceTree = "<group>";
@@ -1587,6 +1587,8 @@
 		00CEE3C6199434E700F40C12 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = hobble;
 				TargetAttributes = {
@@ -1764,7 +1766,6 @@
 				67BB942D1ADFABCD0050164B /* UIColor+JSQMessages.m in Sources */,
 				67BB94581ADFABCD0050164B /* ChatView.m in Sources */,
 				67BB94451ADFABCD0050164B /* JSQMessagesCollectionViewCell.m in Sources */,
-				28B5E7441B7C406D007F79C0 /* GlobalVariables.swift in Sources */,
 				67BB940A1ADFABCD0050164B /* UIImageView+AFNetworking.m in Sources */,
 				67BB94561ADFABCD0050164B /* NIDropDown.m in Sources */,
 				67BB94381ADFABCD0050164B /* JSQMessagesToolbarButtonFactory.m in Sources */,
@@ -1785,6 +1786,7 @@
 				67BB942B1ADFABCD0050164B /* JSQSystemSoundPlayer+JSQMessages.m in Sources */,
 				282FAC1A1B71D4C700899FAB /* StudentVerificationViewController.swift in Sources */,
 				007BA40A1A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
+				287FB69A1BB7B21200301028 /* GlobalVariables.swift in Sources */,
 				67BB94481ADFABCD0050164B /* JSQMessagesCollectionViewCellOutgoing.m in Sources */,
 				67BB92D71ADFA8D10050164B /* AddHomePointViewController.m in Sources */,
 				67BB92DD1ADFA8D10050164B /* HomePointSuccessfulCreationViewController.m in Sources */,

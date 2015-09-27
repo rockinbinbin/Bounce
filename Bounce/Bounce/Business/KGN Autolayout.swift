@@ -14,10 +14,10 @@ extension UIView {
     
     func pinToEdgesOfSuperview(offset: CGFloat = 0, priority: UILayoutPriority? = nil) -> (top: NSLayoutConstraint, right: NSLayoutConstraint, bottom: NSLayoutConstraint, left: NSLayoutConstraint) {
         return (
-            self.pinToTopEdgeOfSuperview(offset: offset, priority: priority),
-            self.pinToRightEdgeOfSuperview(offset: offset, priority: priority),
-            self.pinToBottomEdgeOfSuperview(offset: offset, priority: priority),
-            self.pinToLeftEdgeOfSuperview(offset: offset, priority: priority)
+            self.pinToTopEdgeOfSuperview(offset, priority: priority),
+            self.pinToRightEdgeOfSuperview(offset, priority: priority),
+            self.pinToBottomEdgeOfSuperview(offset, priority: priority),
+            self.pinToLeftEdgeOfSuperview(offset, priority: priority)
         )
     }
     
@@ -39,8 +39,8 @@ extension UIView {
     
     func pinToSideEdgesOfSuperview(offset: CGFloat = 0, priority: UILayoutPriority? = nil) -> (left: NSLayoutConstraint, right: NSLayoutConstraint) {
         return (
-            self.pinToLeftEdgeOfSuperview(offset: offset, priority: priority),
-            self.pinToRightEdgeOfSuperview(offset: offset, priority: priority)
+            self.pinToLeftEdgeOfSuperview(offset, priority: priority),
+            self.pinToRightEdgeOfSuperview(offset, priority: priority)
         )
     }
     
@@ -66,8 +66,8 @@ extension UIView {
     
     func centerInSuperview(offset: CGFloat = 0, priority: UILayoutPriority? = nil) -> (horizontal: NSLayoutConstraint, vertical: NSLayoutConstraint){
         return (
-            self.centerHorizontallyInSuperview(offset: offset, priority: priority),
-            self.centerVerticallyInSuperview(offset: offset, priority: priority)
+            self.centerHorizontallyInSuperview(offset, priority: priority),
+            self.centerVerticallyInSuperview(offset, priority: priority)
         )
     }
     
@@ -217,7 +217,7 @@ extension UIView {
         assert(views.count > 0, "Can only distribute 1 or more views")
         
         var lastView: UIView = self
-        for view in reverse(views) {
+        for view in Array(views.reverse()) {
             view.positionAboveItem(lastView, offset:offset, priority: priority)
             lastView = view
         }
@@ -247,7 +247,7 @@ extension UIView {
         assert(views.count > 0, "Can only distribute 1 or more views")
         
         var lastView: UIView = self
-        for view in reverse(views) {
+        for view in Array(views.reverse()) {
             view.positionToTheLeftOfItem(lastView, offset:offset, priority: priority)
             lastView = view
         }
@@ -280,12 +280,12 @@ extension UIView {
                 lastView.sizeToWidthOfItem(view)
                 view.positionToTheRightOfItem(lastView, offset: separation, priority: priority)
             } else {
-                view.pinToLeftEdgeOfSuperview(offset: separation, priority: priority)
+                view.pinToLeftEdgeOfSuperview(separation, priority: priority)
             }
             lastView = view
         }
         
-        lastView?.pinToRightEdgeOfSuperview(offset: separation, priority: priority)
+        lastView?.pinToRightEdgeOfSuperview(separation, priority: priority)
     }
     
     func fillVertically(views: [UIView], separation: CGFloat = 0, priority: UILayoutPriority? = nil) {
@@ -297,12 +297,12 @@ extension UIView {
                 lastView.sizeToHeightOfItem(view)
                 view.positionBelowItem(lastView, offset: separation, priority: priority)
             } else {
-                view.pinToTopEdgeOfSuperview(offset: separation, priority: priority)
+                view.pinToTopEdgeOfSuperview(separation, priority: priority)
             }
             lastView = view
         }
         
-        lastView?.pinToBottomEdgeOfSuperview(offset: separation, priority: priority)
+        lastView?.pinToBottomEdgeOfSuperview(separation, priority: priority)
     }
     
     // MARK: - Bound
@@ -342,7 +342,7 @@ extension UIView {
     private func constrainSizeAttribute(sizeAttribute: NSLayoutAttribute, size: CGFloat = 0, priority: UILayoutPriority? = nil) -> NSLayoutConstraint {
         assert(self.superview != nil, "Can't create constraints without a superview")
         
-        self.setTranslatesAutoresizingMaskIntoConstraints(false)
+        self.translatesAutoresizingMaskIntoConstraints = false
         let constraint = NSLayoutConstraint(item: self, attribute: sizeAttribute, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0, constant: size)
         if let p = priority {
             constraint.priority = p
@@ -354,7 +354,7 @@ extension UIView {
     private func constrainEdgeAttribute(edgeAttribute: NSLayoutAttribute, offset: CGFloat = 0, priority: UILayoutPriority? = nil) -> NSLayoutConstraint{
         assert(self.superview != nil, "Can't create constraints without a superview")
         
-        self.setTranslatesAutoresizingMaskIntoConstraints(false)
+        self.translatesAutoresizingMaskIntoConstraints = false
         let constraint = NSLayoutConstraint(item: self, attribute: edgeAttribute, relatedBy: .Equal, toItem: self.superview, attribute: edgeAttribute, multiplier: 1, constant: offset)
         if let p = priority {
             constraint.priority = p
@@ -372,7 +372,7 @@ extension UIView {
             return {
                 var startView: UIView! = self
                 var commonSuperview: UIView?
-                do {
+                repeat {
                     if item.isDescendantOfView(startView) {
                         commonSuperview = startView
                     }
@@ -385,7 +385,7 @@ extension UIView {
         
         assert(commonSuperview != nil, "Can't create constraints without a common superview")
         
-        self.setTranslatesAutoresizingMaskIntoConstraints(false)
+        self.translatesAutoresizingMaskIntoConstraints = false
         let constraint = NSLayoutConstraint(item: self, attribute: viewAttribute, relatedBy: relatedBy, toItem: item, attribute: itemAttribute, multiplier: 1, constant: offset)
         if let p = priority {
             constraint.priority = p

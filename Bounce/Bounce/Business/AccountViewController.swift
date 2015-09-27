@@ -75,7 +75,7 @@ class AccountViewController: UIViewController {
         scrollView.addSubview(accountLabel)
 
         accountLabel.centerHorizontallyInSuperview()
-        accountLabel.pinToTopEdgeOfSuperview(offset: 30)
+        accountLabel.pinToTopEdgeOfSuperview(30)
     }
     
     func renderProfilePicture() {
@@ -92,7 +92,7 @@ class AccountViewController: UIViewController {
         
         profilePictureView.centerHorizontallyInSuperview()
         profilePictureView.sizeToWidthAndHeight(100)
-        profilePictureView.pinToTopEdgeOfSuperview(offset: 15)
+        profilePictureView.pinToTopEdgeOfSuperview(15)
 
         if let verified : Bool = PFUser.currentUser()?.objectForKey("emailVerified") as? Bool {
             if verified {
@@ -115,11 +115,9 @@ class AccountViewController: UIViewController {
                 }
             })
         }
-
-        // Check for saved photo, and display that if found
-        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
-        let imagePath = paths.stringByAppendingPathComponent("cachedProfilePicture.png")
-        if let savedProfilePicture = UIImage(contentsOfFile: imagePath) {
+        
+        let imageURL = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent("cachedProfilePicture.png")
+        if let savedProfilePicture = UIImage(data: NSData(contentsOfURL: imageURL)!) {
             profilePictureView.image = savedProfilePicture
         }
         
@@ -145,12 +143,11 @@ class AccountViewController: UIViewController {
                 let profilePicture = UIImage(data: NSData(contentsOfURL: pictureURL!)!)
                 dispatch_async(dispatch_get_main_queue(), {
                     self.profilePictureView.image = profilePicture
-                    let imageData = UIImagePNGRepresentation(profilePicture)
-                    let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
-                    let imagePath = paths.stringByAppendingPathComponent("cachedProfilePicture.png")
+                    let imageData = UIImagePNGRepresentation(profilePicture!)
+                    let imageURL = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent("cachedProfilePicture.png")
                     
-                    if imageData.writeToFile(imagePath, atomically: false) {
-                        NSUserDefaults.standardUserDefaults().setObject(imagePath, forKey: "imagePath")
+                    if imageData!.writeToURL(imageURL, atomically: false) {
+                        NSUserDefaults.standardUserDefaults().setObject(imageURL, forKey: "imagePath")
                     }
                 })
             })
@@ -178,8 +175,14 @@ class AccountViewController: UIViewController {
         let managedContext = appDelegate.managedObjectContext!
         let fetchRequest = NSFetchRequest(entityName:"AccountInfo")
         
-        var error: NSError? = nil
-        let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as? [NSManagedObject]
+        var fetchedResults: [NSManagedObject]
+        do {
+            fetchedResults = try managedContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+        } catch _ {
+            print("Error executing fetch request")
+            fetchedResults = []
+            
+        }
         
         let entity =  NSEntityDescription.entityForName("AccountInfo", inManagedObjectContext: managedContext)
         var accountInfo: NSManagedObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
@@ -193,7 +196,7 @@ class AccountViewController: UIViewController {
         let request = FBRequest.requestForMe()
         request.startWithCompletionHandler({ (connection: FBRequestConnection!, result: AnyObject?, error: NSError!) -> Void in
             if error != nil {
-                println(error)
+                print(error)
             } else {
                 let resultDict = result as? NSDictionary
                 
@@ -206,8 +209,13 @@ class AccountViewController: UIViewController {
                             accountInfo.setValue(name, forKey: "name")
                             
                             var saveError: NSError?
-                            if !managedContext.save(&saveError) {
-                                println("Could not save \(saveError), \(saveError?.userInfo)")
+                            do {
+                                try managedContext.save()
+                            } catch let error as NSError {
+                                saveError = error
+                                print("Could not save \(saveError), \(saveError?.userInfo)")
+                            } catch {
+                                fatalError()
                             }
                         }
                     }
@@ -244,10 +252,13 @@ class AccountViewController: UIViewController {
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             let managedContext = appDelegate.managedObjectContext!
             let fetchRequest = NSFetchRequest(entityName:"AccountInfo")
-            var error: NSError?
-            let fetchedResults =
-            managedContext.executeFetchRequest(fetchRequest,
-                error: &error) as? [NSManagedObject]
+            
+            var fetchedResults: [NSManagedObject]
+            do {
+                fetchedResults = try managedContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+            } catch _ {
+                fetchedResults = []
+            }
             
             let entity =  NSEntityDescription.entityForName("AccountInfo", inManagedObjectContext: managedContext)
             var accountInfo: NSManagedObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
@@ -270,21 +281,26 @@ class AccountViewController: UIViewController {
                 let location = CLLocation(latitude: coords.coordinate.latitude, longitude: coords.coordinate.longitude)
                 
                 geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
-                    let placeArray = placemarks as? [CLPlacemark]
+                    let placeArray = placemarks as [CLPlacemark]!
                     
                     // Place details
                     var placeMark: CLPlacemark!
                     placeMark = placeArray?[0]
                     
                     // City
-                    if let city = placeMark.addressDictionary["City"] as? NSString {
+                    if let city = placeMark.addressDictionary!["City"] as? NSString {
                         self.studentStatusLabel.text = city as String
                         
                         accountInfo.setValue(city, forKey: "location")
                         
                         var error: NSError?
-                        if !managedContext.save(&error) {
-                            println("Could not save \(error), \(error?.userInfo)")
+                        do {
+                            try managedContext.save()
+                        } catch let error1 as NSError {
+                            error = error1
+                            print("Could not save \(error), \(error?.userInfo)")
+                        } catch {
+                            fatalError()
                         }
                     }
                 })
@@ -313,8 +329,8 @@ class AccountViewController: UIViewController {
         
         let inviteFriendsLabel = OptionsTitleLabel(text: "SOCIAL MEDIA")
         optionsView.addSubview(inviteFriendsLabel)
-        inviteFriendsLabel.pinToTopEdgeOfSuperview(offset: 30)
-        inviteFriendsLabel.pinToLeftEdgeOfSuperview(offset: 15)
+        inviteFriendsLabel.pinToTopEdgeOfSuperview(30)
+        inviteFriendsLabel.pinToLeftEdgeOfSuperview(15)
         
         let socialMediaDescription = UILabel()
         socialMediaDescription.text = "We like you. Like us back?"
@@ -322,7 +338,7 @@ class AccountViewController: UIViewController {
         socialMediaDescription.textColor = UIColor(white: 0.0, alpha: 0.3)
         optionsView.addSubview(socialMediaDescription)
         socialMediaDescription.positionBelowItem(inviteFriendsLabel, offset: 10)
-        socialMediaDescription.pinToLeftEdgeOfSuperview(offset: 15)
+        socialMediaDescription.pinToLeftEdgeOfSuperview(15)
         
         
         let facebookImage = UIImage(named: "Facebook-Rounded-Square-Dark")
@@ -346,7 +362,7 @@ class AccountViewController: UIViewController {
         let supportLabel = OptionsTitleLabel(text: "SUPPORT")
         optionsView.addSubview(supportLabel)
         supportLabel.positionBelowItem(twitterButton, offset: 30)
-        supportLabel.pinToLeftEdgeOfSuperview(offset: 15)
+        supportLabel.pinToLeftEdgeOfSuperview(15)
         
         let sendAppFeedback = OptionsButton(text: "Send feedback about Bounce")
         sendAppFeedback.addTarget(self, action: "sendEmail", forControlEvents: .TouchUpInside)
@@ -367,7 +383,7 @@ class AccountViewController: UIViewController {
         let aboutLabel = OptionsTitleLabel(text: "ABOUT")
         optionsView.addSubview(aboutLabel)
         aboutLabel.positionBelowItem(reportButton, offset: 30)
-        aboutLabel.pinToLeftEdgeOfSuperview(offset: 15)
+        aboutLabel.pinToLeftEdgeOfSuperview(15)
         
         let privacyPolicy = OptionsButton(text: "Privacy Policy")
         privacyPolicy.addTarget(self, action: "privacyPolicyPressed", forControlEvents: .TouchUpInside)
@@ -511,7 +527,7 @@ private class OptionsTitleLabel: UILabel {
         self.textColor = Constants.Colors.BounceRed
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -532,9 +548,9 @@ private class OptionsButton: UIButton {
         self.titleLabel?.textAlignment = .Left
         
         if image == nil {
-            self.titleLabel?.pinToLeftEdgeOfSuperview(offset: 15)
+            self.titleLabel?.pinToLeftEdgeOfSuperview(15)
         } else {
-            self.titleLabel?.pinToLeftEdgeOfSuperview(offset: buttonHeight)
+            self.titleLabel?.pinToLeftEdgeOfSuperview(buttonHeight)
             
             let imageView = UIImageView(image: image)
             imageView.frame = CGRectMake(buttonHeight * 0.25, buttonHeight * 0.25, buttonHeight * 0.5, buttonHeight * 0.5);
@@ -547,7 +563,7 @@ private class OptionsButton: UIButton {
         self.backgroundColor = UIColor(white: 237.0/255.0, alpha: 1.0)
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -574,7 +590,7 @@ private class QuadraticCurve: UIView {
         self.backgroundColor = UIColor.clearColor()
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     

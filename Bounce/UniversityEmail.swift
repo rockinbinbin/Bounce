@@ -11,11 +11,11 @@ import UIKit
 extension String
 {
     subscript(i: Int) -> Character {
-        return self[advance(startIndex, i)]
+        return self[startIndex.advancedBy(i)]
     }
     
     subscript(range: Range<Int>) -> String {
-        return self[advance(startIndex, range.startIndex)..<advance(startIndex, range.endIndex)]
+        return self[startIndex.advancedBy(range.startIndex)..<startIndex.advancedBy(range.endIndex)]
     }
 }
 
@@ -946,8 +946,8 @@ class UniversityEmail: NSObject {
     
     static func getUniversity(email: String) -> String? {
         
-        for var i = 0; i < count(email); ++i {
-            let substring = email[i ..< count(email)]
+        for var i = 0; i < email.characters.count; ++i {
+            let substring = email[i ..< email.characters.count]
             
             if let domain = self.universityMap[substring] {
                 return domain

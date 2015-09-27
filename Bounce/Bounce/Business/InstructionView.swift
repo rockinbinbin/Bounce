@@ -22,7 +22,7 @@ class InstructionView: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         self.index = 0
         self.titleName = ""
         self.bodyText = ""
@@ -95,21 +95,21 @@ class InstructionView: UIViewController {
         let imageSize = imageView.image!.size
         
         if (index == 1) {
-            imageView.pinToTopEdgeOfSuperview(offset: screenHeight * 0.15)
+            imageView.pinToTopEdgeOfSuperview(screenHeight * 0.15)
             imageView.sizeToWidth(screenWidth * 0.9)
             imageView.sizeToHeight(imageSize.height * (screenWidth * 0.9 / imageSize.width))
         } else {
-            imageView.pinToTopEdgeOfSuperview(offset: screenHeight * 0.07)
+            imageView.pinToTopEdgeOfSuperview(screenHeight * 0.07)
             imageView.sizeToHeight(screenHeight * 0.35)
             imageView.sizeToWidth(imageSize.width * (screenHeight * 0.35 / imageSize.height))
         }
         
         imageView.centerHorizontallyInSuperview()
         
-        titleLabel.pinToBottomEdgeOfSuperview(offset: screenHeight * 0.15 + 10)
+        titleLabel.pinToBottomEdgeOfSuperview(screenHeight * 0.15 + 10)
         titleLabel.pinToSideEdgesOfSuperview()
         
-        contentLabel.pinToSideEdgesOfSuperview(offset: screenWidth * 0.1)
+        contentLabel.pinToSideEdgesOfSuperview(screenWidth * 0.1)
         contentLabel.positionBelowItem(titleLabel, offset: 10)
     }
     
