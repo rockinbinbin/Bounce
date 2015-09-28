@@ -72,9 +72,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
     }
     
     func renderLoginButton() {
-        let width : CGFloat = 0.85 * self.view.frame.width
         let height : CGFloat = 53
-        let distanceFromBottom : CGFloat = 50
         
         loginButton.addTarget(self, action: Selector("loginButtonPressed:"), forControlEvents: .TouchUpInside)
         
@@ -196,7 +194,6 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
             (user: PFUser?, error: NSError?) -> Void in
             
             if user != nil {
-                let facebookId = PFUser.currentUser()?.objectForKey("facebookId") as? String
                 ParsePushUserAssign()
                 
                 self.loadProfileInfoInBackground()
@@ -382,34 +379,6 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
                     }
                 } else {
                     print("ERROR: Could not get Facebook name")
-                }
-            }
-        })
-        
-        // Get number of Facebook friends
-        let request = FBRequest.requestForMyFriends()
-        request.startWithCompletionHandler({ (connection: FBRequestConnection!, result: AnyObject?, error: NSError!) -> Void in
-            if error != nil {
-                print(error)
-            } else {
-                let resultDict = result as? NSDictionary
-                
-                if resultDict != nil {
-                    let resultDict = result as? NSDictionary
-                    if let summaryDict = resultDict?["summary"] as? NSDictionary {
-                        let friendCount = (summaryDict["total_count"] as! Int)
-                        //accountInfo.setValue(friendCount, forKey: "friendCount")
-                        
-                        var error: NSError?
-                        do {
-                            try managedContext.save()
-                        } catch let error1 as NSError {
-                            error = error1
-                            print("Could not save \(error), \(error?.userInfo)")
-                        } catch {
-                            fatalError()
-                        }
-                    }
                 }
             }
         })

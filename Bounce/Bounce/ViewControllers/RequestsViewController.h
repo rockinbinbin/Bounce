@@ -29,7 +29,7 @@
 @property (strong, nonatomic) NSMutableArray *images;
 @property (weak, nonatomic) UIView *bottomView;
 
-@property (nonatomic, strong) UIActionSheet *imageActionSheet;
+@property (nonatomic, strong) UIAlertController *imageActionSheet;
 
 @property (nonatomic, strong) NSArray *friendIds;
 

@@ -266,6 +266,10 @@
         if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
                 PFObject *request = [requests objectAtIndex:indexPath.row];
             
+            if ([[request objectForKey:@"Sender"] isEqual:[PFUser currentUser]]) {
+                [self openRequestChat:selectedCell];
+            }
+            else {
                 PFRelation *relationExist = [request relationForKey:PF_REQUEST_JOINCONVERSATION_RELATION];
                 PFQuery *query = [relationExist query];
                 [query whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
@@ -274,15 +278,28 @@
                     if (object == nil) {
                         MAKE_A_WEAKSELF;
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            if (!_imageActionSheet) {
-                                weakSelf.imageActionSheet = [[UIActionSheet alloc] initWithTitle:@"Chats are private until you join a conversation. Users will be alerted to remove you, if you do not intend on leaving with them."
-                                                                                    delegate:self
-                                                                           cancelButtonTitle:@"Cancel"
-                                                                      destructiveButtonTitle:nil
-                                                                           otherButtonTitles:@"Join Conversation", nil];
+                            if (!weakSelf.imageActionSheet) {
+                                
+                                weakSelf.imageActionSheet = [UIAlertController alertControllerWithTitle:@"Chats are private until you join a conversation." message:@"You can always remove any user who may seem malicious." preferredStyle:UIAlertControllerStyleActionSheet];
+                                
+                                [weakSelf.imageActionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                                    
+                                    // Cancel button tappped do nothing.
+                                    
+                                }]];
+                                
+                                [weakSelf.imageActionSheet addAction:[UIAlertAction actionWithTitle:@"Coordinate trip home" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                                    
+                                    [weakSelf createRequestRelation];
+                                    [weakSelf openRequestChat:selectedCell];
+                                    
+                                }]];
                             }
-                            [weakSelf.imageActionSheet showInView:weakSelf.view];
                         });
+                        
+                        // Present action sheet.
+                        [weakSelf presentViewController:_imageActionSheet animated:YES completion:nil];
+                        
                     }
                     else {
                         MAKE_A_WEAKSELF;
@@ -304,17 +321,8 @@
                         }];
                     }
                 }];
+            }
         }
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex;
-{
-    if (buttonIndex == 0) { // join chat
-        [self createRequestRelation];
-        [self openRequestChat:selectedCell];
-        
-    }
-    else if (buttonIndex == actionSheet.cancelButtonIndex) {}
 }
 
 -(void)createRequestRelation {

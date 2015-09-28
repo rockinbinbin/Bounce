@@ -59,7 +59,7 @@ static RequestManger *sharedRequestManger = nil;
             // Set the request data
             PFObject *request;
             request = [PFObject objectWithClassName:PF_REQUEST_CLASS_NAME];
-            request[PF_REQUEST_SENDER] = currentUser.username;
+            request[PF_REQUEST_SENDER] = [PFUser currentUser];
             request[PF_REQUEST_RECEIVER] = resultUsernames;
             request[PF_REQUEST_RADIUS] = [NSNumber numberWithInteger:radius];
             request[PF_REQUEST_TIME_ALLOCATED] = [NSNumber numberWithInteger:timeAllocated + 15]; // Buffer of 15 minutes
@@ -457,7 +457,7 @@ static RequestManger *sharedRequestManger = nil;
 {
     // retreive request data from server
     PFQuery *query = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
-    [query whereKey:PF_REQUEST_SENDER equalTo:[[PFUser currentUser] username]];
+    [query whereKey:PF_REQUEST_SENDER equalTo:[PFUser currentUser]];
     [query orderByDescending:PF_CREATED_AT];
 
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {

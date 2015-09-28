@@ -486,7 +486,7 @@ PFUser *currentUser;
         NSArray *requestReceiver = [request objectForKey:PF_REQUEST_RECEIVER];
         if ([requestReceiver containsObject:[[PFUser currentUser] username]]) {
             return YES;
-        } else if ([[request objectForKey:PF_REQUEST_SENDER] isEqualToString:[[PFUser currentUser] username]]){
+        } else if ([[request objectForKey:PF_REQUEST_SENDER] isEqual:[PFUser currentUser]]){
             return YES;
         }
     }
@@ -570,7 +570,7 @@ PFUser *currentUser;
     __block NSUInteger number = 0;
     // load requests if the user is sender or receiver
     PFQuery *query1 = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
-    [query1 whereKey:PF_REQUEST_SENDER equalTo:[[PFUser currentUser] username]];
+    [query1 whereKey:PF_REQUEST_SENDER equalTo:[PFUser currentUser]];
     PFQuery *query2 = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
     [query2 whereKey:@"receivers" equalTo:[[PFUser currentUser] username]];
     
@@ -598,7 +598,7 @@ PFUser *currentUser;
 - (NSUInteger) getNumberOfValidRequests {
     if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
     PFQuery *query1 = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
-    [query1 whereKey:PF_REQUEST_SENDER equalTo:[[PFUser currentUser] username]];
+    [query1 whereKey:PF_REQUEST_SENDER equalTo:[PFUser currentUser]];
     PFQuery *query2 = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
     [query1 whereKey:@"receivers" equalTo:[[PFUser currentUser] username]];
     
@@ -625,7 +625,7 @@ PFUser *currentUser;
     if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
     @try {
         PFQuery *query1 = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
-        [query1 whereKey:PF_REQUEST_SENDER equalTo:[[PFUser currentUser] username]];
+        [query1 whereKey:PF_REQUEST_SENDER equalTo:[PFUser currentUser]];
         PFQuery *query2 = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
         [query2 whereKey:PF_REQUEST_RECEIVER equalTo:[[PFUser currentUser] username]];
         PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:query1, query2, nil]];
@@ -661,7 +661,7 @@ PFUser *currentUser;
     if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
     @try {
         NSString *requestId = [request objectId];
-        if ([[request objectForKey:PF_REQUEST_SENDER] isEqualToString:[[PFUser currentUser] username]]) {
+        if ([[request objectForKey:PF_REQUEST_SENDER] isEqualToString:[PFUser currentUser]]) {
 
             [request deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if ([self.deleteDelegate respondsToSelector:@selector(didDeleteObject:)]) {
