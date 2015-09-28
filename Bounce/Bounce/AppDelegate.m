@@ -219,19 +219,7 @@
 
 -(void)openRequestViewController:(NSString *) requestId
 {
-    UIViewController *rootVC = [RequestsViewController new];
-    NSMutableArray *viewControllers = [[NSMutableArray alloc] init];
-    [viewControllers addObject:rootVC];
-    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:rootVC];
-    BOOL requestValid = [self isValidRequest:requestId];
-    
-    // if the app in back ground
-    if (requestValid) {
-        // open chat view
-        CustomChatViewController *chatView = [[Utility getInstance] createChatViewWithRequestId:requestId];
-        [viewControllers addObject:chatView];
-        [nvc setViewControllers:[NSArray arrayWithArray:viewControllers]];
-    }
+    self.window.rootViewController = [RootTabBarController rootTabBarControllerWithNavigationController:InitialTabTrips];
 }
 
 #pragma mark get request
