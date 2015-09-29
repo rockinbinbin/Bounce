@@ -35,7 +35,6 @@
 		00CEE41F1994491A00F40C12 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE41E1994491A00F40C12 /* Security.framework */; };
 		00CEE4211994492100F40C12 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4201994492100F40C12 /* libz.1.1.3.dylib */; };
 		00CEE4231994492700F40C12 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4221994492700F40C12 /* QuartzCore.framework */; };
-		00CEE4251994493500F40C12 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4241994493500F40C12 /* StoreKit.framework */; };
 		00CEE4271994493A00F40C12 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEE4261994493A00F40C12 /* CoreLocation.framework */; };
 		00DC8E551B943F0200DD84EA /* HomepointDropdownCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DC8E541B943F0200DD84EA /* HomepointDropdownCell.m */; };
 		00E2CBB41B53073700B316D1 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2CBB31B53073700B316D1 /* UIView+AutoLayout.m */; };
@@ -191,6 +190,7 @@
 /* Begin PBXFileReference section */
 		0002348F1B48823B000B7630 /* launchLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchLogo.png; sourceTree = "<group>"; };
 		000234911B4885B6000B7630 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = Bounce/ViewControllers/Fonts; sourceTree = "<group>"; };
+		001826D21BBB34160078704C /* bounce.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = bounce.entitlements; path = bounce/bounce.entitlements; sourceTree = "<group>"; };
 		001DFA0B1ABF4175008C9D1F /* PF_EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PF_EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		002805BD1B8452CB004E1DE1 /* MembersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MembersViewController.h; sourceTree = "<group>"; };
 		002805BE1B8452CB004E1DE1 /* MembersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MembersViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -369,7 +369,6 @@
 		00CEE41E1994491A00F40C12 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		00CEE4201994492100F40C12 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
 		00CEE4221994492700F40C12 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		00CEE4241994493500F40C12 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		00CEE4261994493A00F40C12 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		00DC8E531B943F0200DD84EA /* HomepointDropdownCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomepointDropdownCell.h; sourceTree = "<group>"; };
 		00DC8E541B943F0200DD84EA /* HomepointDropdownCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomepointDropdownCell.m; sourceTree = "<group>"; };
@@ -653,7 +652,6 @@
 				28F13A521A6C75A90069EBA4 /* MapKit.framework in Frameworks */,
 				00CEE3D8199434E700F40C12 /* CoreData.framework in Frameworks */,
 				00CEE4271994493A00F40C12 /* CoreLocation.framework in Frameworks */,
-				00CEE4251994493500F40C12 /* StoreKit.framework in Frameworks */,
 				00CEE3D4199434E700F40C12 /* CoreGraphics.framework in Frameworks */,
 				00CEE4231994492700F40C12 /* QuartzCore.framework in Frameworks */,
 				00CEE4211994492100F40C12 /* libz.1.1.3.dylib in Frameworks */,
@@ -957,6 +955,7 @@
 		00CEE3C5199434E700F40C12 = {
 			isa = PBXGroup;
 			children = (
+				001826D21BBB34160078704C /* bounce.entitlements */,
 				28FEDB841BA403F200BA2199 /* UINavigationBar+Addition.h */,
 				28FEDB851BA403F200BA2199 /* UINavigationBar+Addition.m */,
 				28A000221B9CC360002CF156 /* RequestPushNotificationsViewController.swift */,
@@ -1014,7 +1013,6 @@
 				007CF2991AA3E516007D7C33 /* Social.framework */,
 				28F13A511A6C75A90069EBA4 /* MapKit.framework */,
 				00CEE4261994493A00F40C12 /* CoreLocation.framework */,
-				00CEE4241994493500F40C12 /* StoreKit.framework */,
 				00CEE4221994492700F40C12 /* QuartzCore.framework */,
 				00CEE4201994492100F40C12 /* libz.1.1.3.dylib */,
 				00CEE41E1994491A00F40C12 /* Security.framework */,
@@ -1598,6 +1596,15 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.WAC = {
+								enabled = 0;
+							};
 						};
 					};
 				};
@@ -1971,7 +1978,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bounce/bounce-Prefix.pch";
 				INFOPLIST_FILE = "Bounce/bounce-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bounce.$(PRODUCT_NAME:rfc1034identifier)";
@@ -2006,7 +2013,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bounce/bounce-Prefix.pch";
 				INFOPLIST_FILE = "Bounce/bounce-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bounce.$(PRODUCT_NAME:rfc1034identifier)";

@@ -328,7 +328,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 120;
+    return 140;
 }
 
 #pragma mark - Add User to selected group
