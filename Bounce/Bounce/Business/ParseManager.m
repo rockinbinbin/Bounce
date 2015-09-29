@@ -661,7 +661,7 @@ PFUser *currentUser;
     if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
     @try {
         NSString *requestId = [request objectId];
-        if ([[request objectForKey:PF_REQUEST_SENDER] isEqualToString:[PFUser currentUser]]) {
+        if ([[request objectForKey:PF_REQUEST_SENDER] isEqual:[PFUser currentUser]]) {
 
             [request deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if ([self.deleteDelegate respondsToSelector:@selector(didDeleteObject:)]) {

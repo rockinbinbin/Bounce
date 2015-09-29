@@ -271,9 +271,26 @@
 }
 
 - (void)didPressAccessoryButton:(UIButton *)sender {
-	UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil
-											   otherButtonTitles:@"Take photo", @"Choose existing photo", @"Choose existing video", nil];
-	[action showInView:self.view];
+        
+        UIAlertController *imageActionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        
+        [imageActionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            
+            // Cancel button tappped do nothing.
+            
+        }]];
+        
+        [imageActionSheet addAction:[UIAlertAction actionWithTitle:@"Upload Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            ShouldStartPhotoLibrary(self, YES);
+        }]];
+        
+        [imageActionSheet addAction:[UIAlertAction actionWithTitle:@"Take Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            ShouldStartCamera(self, YES);
+        }]];
+        
+        [imageActionSheet addAction:[UIAlertAction actionWithTitle:@"Upload Video" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            ShouldStartVideoLibrary(self, YES);
+        }]];
 }
 
 #pragma mark - JSQMessages CollectionView DataSource
@@ -435,17 +452,6 @@
 
 - (void)collectionView:(JSQMessagesCollectionView *)collectionView didTapCellAtIndexPath:(NSIndexPath *)indexPath touchLocation:(CGPoint)touchLocation {
 	NSLog(@"didTapCellAtIndexPath %@", NSStringFromCGPoint(touchLocation));
-}
-
-#pragma mark - UIActionSheetDelegate
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (buttonIndex != actionSheet.cancelButtonIndex)
-	{
-		if (buttonIndex == 0)	ShouldStartCamera(self, YES);
-		if (buttonIndex == 1)	ShouldStartPhotoLibrary(self, YES);
-		if (buttonIndex == 2)	ShouldStartVideoLibrary(self, YES);
-	}
 }
 
 #pragma mark - UIImagePickerControllerDelegate
