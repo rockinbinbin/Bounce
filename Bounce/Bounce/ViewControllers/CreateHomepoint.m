@@ -342,6 +342,20 @@
         photoPicker.allowsEditing = NO;
         photoPicker.delegate = (id)self;
         
+        UIView *statusBarCover = [[UIView alloc] initWithFrame:[UIApplication sharedApplication].statusBarFrame];
+        statusBarCover.backgroundColor = BounceRed;
+        [photoPicker.view addSubview:statusBarCover];
+        
+        [photoPicker.navigationBar setTitleTextAttributes:@{
+                                                           NSForegroundColorAttributeName: [UIColor whiteColor]
+                                                           }];
+        
+        photoPicker.navigationBar.barStyle = UIBarStyleDefault;
+        photoPicker.navigationBar.hidden = false;
+        photoPicker.navigationBar.backgroundColor = BounceRed;
+        photoPicker.navigationBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 50);
+        photoPicker.navigationBar.tintColor = [UIColor whiteColor];
+        
         [self presentViewController:photoPicker
                            animated:YES
                          completion:nil];

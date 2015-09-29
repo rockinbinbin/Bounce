@@ -291,6 +291,9 @@
         [imageActionSheet addAction:[UIAlertAction actionWithTitle:@"Upload Video" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             ShouldStartVideoLibrary(self, YES);
         }]];
+    
+    // Present action sheet.
+    [self presentViewController:imageActionSheet animated:YES completion:nil];
 }
 
 #pragma mark - JSQMessages CollectionView DataSource
