@@ -18,7 +18,7 @@
 @property (nonatomic, strong) UIImageView *editImageIcon;
 @property (nonatomic, strong) UIView *overlay;
 @property (nonatomic, strong) UILabel *homepointHint;
-@property (nonatomic, strong) UIActionSheet *imageActionSheet;
+@property (nonatomic, strong) UIAlertController *imageActionSheet;
 @property (nonatomic) CGFloat buttonHeight;
 @property (nonatomic) CGFloat buttonWidth;
 @property (nonatomic) BOOL imageAdded;

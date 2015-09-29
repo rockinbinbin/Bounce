@@ -22,7 +22,6 @@
 >
 
 @property (strong, nonatomic) UICollectionView *collectionView;
-@property (nonatomic, strong) UIActionSheet *imageActionSheet;
 
 @property NSMutableArray *homepointImages;
 

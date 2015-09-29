@@ -166,27 +166,28 @@
 //}
 
 -(void)addPhotoButtonClicked {
-    if (!_imageActionSheet) {
-        self.imageActionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                       delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                         destructiveButtonTitle:nil
-                                              otherButtonTitles:@"Upload photo", @"Take photo", nil];
+    
+    if (!self.imageActionSheet) {
+        
+        self.imageActionSheet = [UIAlertController alertControllerWithTitle:@"Your homepoint needs a landscape photo! 📷" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        
+        [self.imageActionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            
+            // Cancel button tappped do nothing.
+            
+        }]];
+        
+        [self.imageActionSheet addAction:[UIAlertAction actionWithTitle:@"Upload Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self showPhotoPicker];
+        }]];
+        
+        [self.imageActionSheet addAction:[UIAlertAction actionWithTitle:@"Take Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+           [self showCameraPicker];
+        }]];
     }
-    [self.imageActionSheet showInView:self.view];
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex;  // after animation
-{
-    if (buttonIndex == 0) { // remove photo
-        [self showPhotoPicker];
-    }
-    else if (buttonIndex == 1) { //upload photo
-        [self showCameraPicker];
-    }
-    else if (buttonIndex == actionSheet.cancelButtonIndex) {
-        // WHAT to do when cancel?
-    }
+    
+    // Present action sheet.
+    [self presentViewController:_imageActionSheet animated:YES completion:nil];
 }
 
 #pragma mark - AddLocation screen
@@ -340,6 +341,7 @@
         photoPicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         photoPicker.allowsEditing = NO;
         photoPicker.delegate = (id)self;
+        
         [self presentViewController:photoPicker
                            animated:YES
                          completion:nil];

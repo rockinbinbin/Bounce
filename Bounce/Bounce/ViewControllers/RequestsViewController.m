@@ -298,7 +298,7 @@
                         });
                         
                         // Present action sheet.
-                        [weakSelf presentViewController:_imageActionSheet animated:YES completion:nil];
+                        [self presentViewController:_imageActionSheet animated:YES completion:nil];
                         
                     }
                     else {

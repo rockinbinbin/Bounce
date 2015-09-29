@@ -22,7 +22,7 @@
 @property (weak, nonatomic) UIButton *leftMenuButton;
 @property (weak, nonatomic) NSString *genderMatching;
 @property (nonatomic) float timeAllocated; // in minutes
-@property (nonatomic, strong) UIActionSheet *imageActionSheet;
+@property (nonatomic, strong) UIAlertController *imageActionSheet;
 @property (nonatomic, strong) UIDatePicker *datePicker;
 
 
@@ -674,28 +674,33 @@
 }
 
 - (void) pickGender {
-    if (!_imageActionSheet) {
-        self.imageActionSheet = [[UIActionSheet alloc] initWithTitle:@"We'll pair you with those you feel most comfortable with, from your homepoint."  delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"All genders", @"Others of your gender", nil];
+    
+    if (!self.imageActionSheet) {
+        
+        self.imageActionSheet = [UIAlertController alertControllerWithTitle:@"We'll pair you with those you feel more comfortable with, from your homepoint." message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        
+        [self.imageActionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            
+            // Cancel button tappped do nothing.
+            
+        }]];
+        
+        [self.imageActionSheet addAction:[UIAlertAction actionWithTitle:@"All Genders" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            self.genderMatching = ALL_GENDER;
+            self.genders.tintColor = [UIColor whiteColor];
+            [self.genders setTitle:@"all genders" forState:UIControlStateNormal];
+        }]];
+        
+        [self.imageActionSheet addAction:[UIAlertAction actionWithTitle:@"My Gender Only" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            PFUser* u = [PFUser currentUser];
+            self.genderMatching = u[PF_GENDER];
+            self.genders.tintColor = [UIColor whiteColor];
+            [self.genders setTitle:@"my gender only" forState:UIControlStateNormal];
+        }]];
     }
-    [self.imageActionSheet showInView:self.view];
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex;
-{
-    if (buttonIndex == 0) {
-        self.genderMatching = ALL_GENDER;
-        self.genders.tintColor = [UIColor whiteColor];
-        [self.genders setTitle:@"all genders" forState:UIControlStateNormal];
-    }
-    else if (buttonIndex == 1) {
-        PFUser* u = [PFUser currentUser];
-        self.genderMatching = u[PF_GENDER];
-        self.genders.tintColor = [UIColor whiteColor];
-        [self.genders setTitle:@"others of my gender" forState:UIControlStateNormal];
-    }
-    else {
-        // cancel
-    }
+    
+    // Present action sheet.
+    [self presentViewController:_imageActionSheet animated:YES completion:nil];
 }
 
 -(void)pickTime {
