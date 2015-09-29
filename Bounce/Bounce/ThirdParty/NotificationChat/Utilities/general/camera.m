@@ -56,6 +56,20 @@ BOOL ShouldStartPhotoLibrary(id target, BOOL canEdit)
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	NSString *type = (NSString *)kUTTypeImage;
 	UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
+    
+    UIView *statusBarCover = [[UIView alloc] initWithFrame:[UIApplication sharedApplication].statusBarFrame];
+    statusBarCover.backgroundColor = BounceRed;
+    [cameraUI.view addSubview:statusBarCover];
+    
+    [cameraUI.navigationBar setTitleTextAttributes:@{
+                                                        NSForegroundColorAttributeName: [UIColor whiteColor]
+                                                        }];
+    
+    cameraUI.navigationBar.barStyle = UIBarStyleDefault;
+    cameraUI.navigationBar.hidden = false;
+    cameraUI.navigationBar.backgroundColor = BounceRed;
+    cameraUI.navigationBar.tintColor = [UIColor whiteColor];
+    
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]
 		&& [[UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypePhotoLibrary] containsObject:type])
@@ -87,6 +101,20 @@ BOOL ShouldStartVideoLibrary(id target, BOOL canEdit)
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	NSString *type = (NSString *)kUTTypeMovie;
 	UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
+    
+    UIView *statusBarCover = [[UIView alloc] initWithFrame:[UIApplication sharedApplication].statusBarFrame];
+    statusBarCover.backgroundColor = BounceRed;
+    [cameraUI.view addSubview:statusBarCover];
+    
+    [cameraUI.navigationBar setTitleTextAttributes:@{
+                                                     NSForegroundColorAttributeName: [UIColor whiteColor]
+                                                     }];
+    
+    cameraUI.navigationBar.barStyle = UIBarStyleDefault;
+    cameraUI.navigationBar.hidden = false;
+    cameraUI.navigationBar.backgroundColor = BounceRed;
+    cameraUI.navigationBar.tintColor = [UIColor whiteColor];
+
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]
 		&& [[UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypePhotoLibrary] containsObject:type])

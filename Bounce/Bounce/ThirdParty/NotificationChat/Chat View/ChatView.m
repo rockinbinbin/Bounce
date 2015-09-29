@@ -280,14 +280,14 @@
             
         }]];
         
-        [imageActionSheet addAction:[UIAlertAction actionWithTitle:@"Upload Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            ShouldStartPhotoLibrary(self, YES);
-        }]];
-        
         [imageActionSheet addAction:[UIAlertAction actionWithTitle:@"Take Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             ShouldStartCamera(self, YES);
         }]];
-        
+    
+    [imageActionSheet addAction:[UIAlertAction actionWithTitle:@"Upload Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        ShouldStartPhotoLibrary(self, YES);
+    }]];
+    
         [imageActionSheet addAction:[UIAlertAction actionWithTitle:@"Upload Video" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             ShouldStartVideoLibrary(self, YES);
         }]];
