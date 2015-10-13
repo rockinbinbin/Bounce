@@ -76,7 +76,7 @@
     
     self.searchController.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
     self.tableView.tableHeaderView = self.searchController.searchBar;
-    self.searchController.searchBar.placeholder = @"Search a homepoint's name or neighborhood";
+    self.searchController.searchBar.placeholder = @"Search for a Bounce user's name";
     self.searchController.searchBar.barTintColor = BounceRed;
     self.searchController.searchBar.tintColor = [UIColor whiteColor];
     self.searchController.searchBar.layer.borderColor = [[UIColor clearColor] CGColor];
@@ -100,12 +100,15 @@
 
 -(void)doneButtonClicked{
     if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
-        [[Utility getInstance] showProgressHudWithMessage:@"Saving..." withView:self.view];
+        //[[Utility getInstance] showProgressHudWithMessage:@"Saving..." withView:self.view];
         
         [[ParseManager getInstance] setAddGroupdelegate:self];
 
         [self.selectedUsers addObject:[PFUser currentUser]];
         [[ParseManager getInstance] addGroup:self.groupName withArrayOfUser:self.selectedUsers withLocation:self.groupLocation withImage:self.homepointImage withAddress:self.address];
+        
+        HomePointSuccessfulCreationViewController* homePointSuccessfulCreationViewController = [HomePointSuccessfulCreationViewController new];
+        [self.navigationController pushViewController:homePointSuccessfulCreationViewController animated:YES];
     }
 }
 
@@ -199,16 +202,16 @@
 
 #pragma mark - Parse Manger Add Group delegate
 - (void)didAddGroupWithError:(NSError *)error {
-    @try {
-        [[Utility getInstance] hideProgressHud];
-        if (!error) {
-            HomePointSuccessfulCreationViewController* homePointSuccessfulCreationViewController = [HomePointSuccessfulCreationViewController new];
-            [self.navigationController pushViewController:homePointSuccessfulCreationViewController animated:YES];
-        }
-    }
-    @catch (NSException *exception) {
-        NSLog(@"Exception %@", exception);
-    }
+//    @try {
+//        [[Utility getInstance] hideProgressHud];
+//        if (!error) {
+//            HomePointSuccessfulCreationViewController* homePointSuccessfulCreationViewController = [HomePointSuccessfulCreationViewController new];
+//            [self.navigationController pushViewController:homePointSuccessfulCreationViewController animated:YES];
+//        }
+//    }
+//    @catch (NSException *exception) {
+//        NSLog(@"Exception %@", exception);
+//    }
 }
 
 #pragma mark - Search Results Updating
