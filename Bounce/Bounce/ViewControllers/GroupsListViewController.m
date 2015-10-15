@@ -255,12 +255,18 @@
                         if (distance >= 500) {
                             distanceLabel = @"500+ miles away";
                         }
+                        
                         else {
                             distanceLabel = [NSString stringWithFormat:DISTANCE_MESSAGE_IN_MILES, distance];
                         }
                     }
                     else {
+                        if (distance <= 200) {
+                            distanceLabel = @"You are here";
+                        }
+                        else {
                         distanceLabel = [NSString stringWithFormat:DISTANCE_MESSAGE_IN_FEET, (int)distance];
+                        }
                     }
                     
                     [self.distanceToUserLocation addObject:distanceLabel];
@@ -372,6 +378,7 @@
     
     if ([self.distanceToUserLocation count] > indexPath.row) {
         NSString *distanceText = [self.distanceToUserLocation objectAtIndex:indexPath.row];
+        
         [cell setDistance:distanceText];
     }
     

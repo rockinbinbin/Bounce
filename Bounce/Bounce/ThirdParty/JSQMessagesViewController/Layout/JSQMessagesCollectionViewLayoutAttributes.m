@@ -41,43 +41,43 @@
 
 - (void)setMessageBubbleFont:(UIFont *)messageBubbleFont
 {
-    NSParameterAssert(messageBubbleFont != nil);
+    //NSParameterAssert(messageBubbleFont != nil);
     _messageBubbleFont = messageBubbleFont;
 }
 
 - (void)setMessageBubbleContainerViewWidth:(CGFloat)messageBubbleContainerViewWidth
 {
-    NSParameterAssert(messageBubbleContainerViewWidth > 0.0f);
+   // NSParameterAssert(messageBubbleContainerViewWidth > 0.0f);
     _messageBubbleContainerViewWidth = ceilf(messageBubbleContainerViewWidth);
 }
 
 - (void)setIncomingAvatarViewSize:(CGSize)incomingAvatarViewSize
 {
-    NSParameterAssert(incomingAvatarViewSize.width >= 0.0f && incomingAvatarViewSize.height >= 0.0f);
+    //NSParameterAssert(incomingAvatarViewSize.width >= 0.0f && incomingAvatarViewSize.height >= 0.0f);
     _incomingAvatarViewSize = [self jsq_correctedAvatarSizeFromSize:incomingAvatarViewSize];
 }
 
 - (void)setOutgoingAvatarViewSize:(CGSize)outgoingAvatarViewSize
 {
-    NSParameterAssert(outgoingAvatarViewSize.width >= 0.0f && outgoingAvatarViewSize.height >= 0.0f);
+   // NSParameterAssert(outgoingAvatarViewSize.width >= 0.0f && outgoingAvatarViewSize.height >= 0.0f);
     _outgoingAvatarViewSize = [self jsq_correctedAvatarSizeFromSize:outgoingAvatarViewSize];
 }
 
 - (void)setCellTopLabelHeight:(CGFloat)cellTopLabelHeight
 {
-    NSParameterAssert(cellTopLabelHeight >= 0.0f);
+    //NSParameterAssert(cellTopLabelHeight >= 0.0f);
     _cellTopLabelHeight = [self jsq_correctedLabelHeightForHeight:cellTopLabelHeight];
 }
 
 - (void)setMessageBubbleTopLabelHeight:(CGFloat)messageBubbleTopLabelHeight
 {
-    NSParameterAssert(messageBubbleTopLabelHeight >= 0.0f);
+   // NSParameterAssert(messageBubbleTopLabelHeight >= 0.0f);
     _messageBubbleTopLabelHeight = [self jsq_correctedLabelHeightForHeight:messageBubbleTopLabelHeight];
 }
 
 - (void)setCellBottomLabelHeight:(CGFloat)cellBottomLabelHeight
 {
-    NSParameterAssert(cellBottomLabelHeight >= 0.0f);
+    //NSParameterAssert(cellBottomLabelHeight >= 0.0f);
     _cellBottomLabelHeight = [self jsq_correctedLabelHeightForHeight:cellBottomLabelHeight];
 }
 

@@ -222,20 +222,70 @@
     PFQuery *friendsQuery = [groupUsers query];
     PFQuery *totalQuery = [groupUsers query];
     [friendsQuery whereKey:@"facebookId" containedIn:self.friendIds];
+        
+        PFRelation *receivedUsers = request[@"RequestReceivers"];
+        PFQuery *receiversQuery = [receivedUsers query];
+        
+       __block unsigned long friends = 0;
+       __block unsigned long total = 0;
+        __block unsigned long receivers = 0;
+        
+        __block int finishedQueries = 0;
+        
     
     [friendsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         // Gets friend count
-        dispatch_async(dispatch_get_main_queue(), ^{
-            cell.peopleDescription.text = [NSString stringWithFormat:@"%lu friends, ", (unsigned long)[objects count]];
-        });
+        
+        friends = [objects count];
+        
+        finishedQueries++;
+        
+        if (finishedQueries == 3) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                cell.peopleDescription.text = [NSString stringWithFormat:@"%lu friends, %lu joined, %lu receivers", friends, total, receivers];
+            });
+        }
         
         [totalQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             // Gets total number
-            dispatch_async(dispatch_get_main_queue(), ^{
-                cell.peopleDescription.text = [cell.peopleDescription.text stringByAppendingString:[NSString stringWithFormat:@"%lu total", (unsigned long)[objects count]]];
-            });
+            
+            total = [objects count];
+            
+            finishedQueries++;
+            
+            if (finishedQueries == 3) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    cell.peopleDescription.text = [NSString stringWithFormat:@"%lu friends, %lu joined, %lu receivers", friends, total, receivers];
+                });
+            }
         }];
+        
+        [receiversQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            
+            receivers = [objects count];
+            
+            finishedQueries++;
+            
+            if (finishedQueries == 3) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    cell.peopleDescription.text = [NSString stringWithFormat:@"%lu friends, %lu joined, %lu receivers", friends, total, receivers];
+                });
+            }
+        }];
+        
     }];
+        
+        NSString *gender = [request objectForKey:@"Gender"];
+        
+        if ([gender isEqualToString: @"All"]) {
+            cell.genderType.text = @"All Genders";
+        }
+        else {
+            NSString *firstLetter = [gender substringToIndex:1];
+            firstLetter = [firstLetter uppercaseString];
+            NSString *result = [firstLetter stringByAppendingString:[gender substringFromIndex:1]];
+            cell.genderType.text = [NSString stringWithFormat:@"%@ Only", result];
+        }
     
     NSString *hpString = @"To ";
     
@@ -257,7 +307,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 113;
+    return 150;
 }
 
 #pragma mark - TableView Delegate

@@ -24,7 +24,7 @@
         [_tableView kgn_pinToTopEdgeOfSuperview];
         [_tableView kgn_pinToLeftEdgeOfSuperview];
         [_tableView kgn_sizeToWidth:self.view.frame.size.width];
-        [_tableView kgn_sizeToHeight:self.view.frame.size.height];
+        [_tableView kgn_sizeToHeight:self.view.frame.size.height - 100];
     
         UIButton *customButton = [[Utility getInstance] createCustomButton:[UIImage imageNamed:@"common_back_button"]];
         [customButton addTarget:self action:@selector(cancelButtonClicked) forControlEvents:UIControlEventTouchUpInside];

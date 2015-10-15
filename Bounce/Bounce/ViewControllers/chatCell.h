@@ -13,6 +13,7 @@
 @property (nonatomic, weak) UILabel *numMessages;
 @property (nonatomic, weak) UILabel *timeCreated;
 @property (nonatomic, weak) UILabel *chatTitle;
+@property (nonatomic, weak) UILabel *genderType;
 @property (nonatomic, weak) UILabel *requestTimeLeft;
 @property (nonatomic, weak) UILabel *lastMessage;
 @property (nonatomic, weak) UILabel *requestedGroups;

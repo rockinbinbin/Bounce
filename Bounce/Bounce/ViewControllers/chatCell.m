@@ -29,7 +29,7 @@
         self.hpImage = hpImage;
         [hpImage kgn_sizeToHeight:85];
         [hpImage kgn_sizeToWidth:85];
-        [hpImage kgn_pinToLeftEdgeOfSuperviewWithOffset:20];
+        [hpImage kgn_pinToLeftEdgeOfSuperviewWithOffset:15];
         [hpImage kgn_centerVerticallyInSuperview];
 
         self.hpImage.layer.borderWidth = 4.0f;
@@ -43,24 +43,33 @@
         requestedGroups.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:requestedGroups];
         self.requestedGroups = requestedGroups;
-        [requestedGroups kgn_pinTopEdgeToTopEdgeOfItem:self.hpImage withOffset:-5];
-        [requestedGroups kgn_positionToTheRightOfItem:hpImage withOffset:25];
+        [requestedGroups kgn_pinTopEdgeToTopEdgeOfItem:self.hpImage withOffset:5];
+        [requestedGroups kgn_positionToTheRightOfItem:hpImage withOffset:15];
+        
+        UILabel *genderType = [UILabel new];
+        genderType.textColor = [UIColor colorWithWhite:1.0 alpha:0.69];
+        genderType.font = [UIFont fontWithName:@"Avenir-Roman" size:16];
+        [self.contentView addSubview:genderType];
+        self.genderType = genderType;
+        [genderType kgn_positionToTheRightOfItem:hpImage withOffset:15];
+        [genderType kgn_positionBelowItem:requestedGroups withOffset:0];
         
         UILabel *timeLeft = [UILabel new];
         timeLeft.textColor = [UIColor colorWithWhite:1.0 alpha:0.69];
         timeLeft.font = [UIFont fontWithName:@"Avenir-Roman" size:16];
         [self.contentView addSubview:timeLeft];
         self.requestTimeLeft = timeLeft;
-        [timeLeft kgn_positionToTheRightOfItem:hpImage withOffset:25];
-        [timeLeft kgn_positionBelowItem:requestedGroups withOffset:0];
+        [timeLeft kgn_positionToTheRightOfItem:hpImage withOffset:15];
+        [timeLeft kgn_positionBelowItem:genderType withOffset:0];
         
         UILabel *peopleDescription = [UILabel new];
         peopleDescription.text = @"Loading";
+        peopleDescription.numberOfLines = 0;
         peopleDescription.textColor = [UIColor colorWithWhite:1.0 alpha:0.69];
         peopleDescription.font = [UIFont fontWithName:@"Avenir-Roman" size:16];
         [self.contentView addSubview:peopleDescription];
         self.peopleDescription = peopleDescription;
-        [peopleDescription kgn_positionToTheRightOfItem:hpImage withOffset:25];
+        [peopleDescription kgn_positionToTheRightOfItem:hpImage withOffset:15];
         [peopleDescription kgn_positionBelowItem:timeLeft withOffset:0];
         
         self.layer.borderColor = [BounceRed CGColor];
