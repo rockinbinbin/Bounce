@@ -176,13 +176,14 @@
             // Cancel button tappped do nothing.
             
         }]];
+            
+        [self.imageActionSheet addAction:[UIAlertAction actionWithTitle:@"Take Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                [self showCameraPicker];
+        }]];
         
         [self.imageActionSheet addAction:[UIAlertAction actionWithTitle:@"Upload Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             [self showPhotoPicker];
-        }]];
-        
-        [self.imageActionSheet addAction:[UIAlertAction actionWithTitle:@"Take Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-           [self showCameraPicker];
+
         }]];
     }
     

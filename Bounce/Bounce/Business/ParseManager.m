@@ -223,6 +223,7 @@ PFUser *currentUser;
         [query whereKey:PF_GROUP_Users_RELATION equalTo:[PFUser currentUser]];
         [query includeKey:PF_GROUP_OWNER];
         [query setLimit:1000];
+        [query orderByDescending:PF_CREATED_AT];
         
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if ([self.getUserGroupsdelegate respondsToSelector:@selector(didLoadUserGroups:WithError:)]) {
