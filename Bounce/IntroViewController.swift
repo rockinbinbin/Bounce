@@ -180,6 +180,9 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
     }
     
     func loginButtonPressed(sender: RoundedRectButton!) {
+        
+        if (Utility.getInstance().checkReachabilityAndDisplayErrorMessage()) {
+        
         sender.indicator.startAnimating()
         UIView.animateWithDuration(0.25, animations: {
             sender.titleLabel?.alpha = 0.0
@@ -190,7 +193,7 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
             }, completion: nil)
         
         // FB login
-        PFFacebookUtils.logInWithPermissions(["public_profile, user_about_me", "email"], block: {
+        PFFacebookUtils.logInWithPermissions(["user_friends", "public_profile", "user_about_me", "email"], block: {
             (user: PFUser?, error: NSError?) -> Void in
             
             if user != nil {
@@ -227,11 +230,11 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
                 }
             }
             else if error != nil {
-                print("loginButtonPressed error: \(error?.description)")
                 self.handleLoginFailed(error!)
                 
             }
         })
+        }
     }
     
     // MARK: - Login Handlers
@@ -251,8 +254,8 @@ public class IntroViewController: UIViewController, UIPageViewControllerDataSour
         // TODO: MAKE LOGIN LOADING INDICATOR GO AWAY.
         
         let alertController = UIAlertController(
-            title: "Uh oh!",
-            message: "It seems like the login failed. Check your internet connection and try again.",
+            title: "Uh oh! Login failed.",
+            message: "In Facebook > Settings > Apps, make sure that “Apps, Websites, and Plugins” is enabled.",
             preferredStyle: UIAlertControllerStyle.Alert
         )
         
