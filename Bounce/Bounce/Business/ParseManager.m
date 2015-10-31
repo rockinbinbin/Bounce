@@ -44,6 +44,7 @@ PFUser *currentUser;
     if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
     PFQuery *query = [PFQuery queryWithClassName:PF_MESSAGES_CLASS_NAME];
     [query whereKey:PF_MESSAGES_USER equalTo:user];
+    [query setLimit:1000];
     [query whereKey:PF_MESSAGES_GROUPID equalTo:groupId];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
      {
@@ -74,6 +75,7 @@ PFUser *currentUser;
 - (void) loadAllGroups{
     if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
     PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
+    [query setLimit:1000];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
          if ([self.loadGroupsdelegate respondsToSelector:@selector(didLoadGroups:withError:)]) {
              [self.loadGroupsdelegate didLoadGroups:objects withError:error];
@@ -137,6 +139,7 @@ PFUser *currentUser;
     if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
     PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
     [query whereKey:PF_GROUPS_NAME equalTo:name];
+    [query setLimit:1000];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             if ([self.updateGroupDelegate respondsToSelector:@selector(groupNameExist:)]) {
@@ -195,6 +198,7 @@ PFUser *currentUser;
     if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
     PFRelation *usersRelation = [group relationForKey:PF_GROUP_Users_RELATION];
     PFQuery *query = [usersRelation query];
+    [query setLimit:1000];
     [query whereKey:OBJECT_ID notEqualTo:[[PFUser currentUser] objectId]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
@@ -218,6 +222,7 @@ PFUser *currentUser;
         PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
         [query whereKey:PF_GROUP_Users_RELATION equalTo:[PFUser currentUser]];
         [query includeKey:PF_GROUP_OWNER];
+        [query setLimit:1000];
         
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if ([self.getUserGroupsdelegate respondsToSelector:@selector(didLoadUserGroups:WithError:)]) {
@@ -235,6 +240,7 @@ PFUser *currentUser;
     if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
        @try {
                 PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
+           [query setLimit:1000];
                 [query whereKey:PF_GROUP_Users_RELATION notEqualTo:[PFUser currentUser]];
                 [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                         if ([self.getAllOtherGroupsDelegate respondsToSelector:@selector(didLoadAllOtherGroups:)]) {
@@ -255,7 +261,7 @@ PFUser *currentUser;
         PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
         [query whereKey:PF_GROUP_Users_RELATION notEqualTo:[PFUser currentUser]];
         [query whereKey:PF_GROUP_LOCATION nearGeoPoint:[[PFUser currentUser] objectForKey:PF_USER_LOCATION] withinMiles:0.2];
-        [query setLimit:20];
+        [query setLimit:1000];
 
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if ([self.loadGroupsdelegate respondsToSelector:@selector(didLoadGroups:withError:)]) {
@@ -294,6 +300,7 @@ PFUser *currentUser;
         __block BOOL returnTrue = false;
             PFRelation *usersRelation = [group relationForKey:PF_GROUP_Users_RELATION];
             PFQuery *query = [usersRelation query];
+            [query setLimit:1000];
             [query whereKey:OBJECT_ID notEqualTo:[[PFUser currentUser] objectId]];
             [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                 if (!error) {
@@ -356,6 +363,7 @@ PFUser *currentUser;
     if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
     @try {
         PFQuery *query = [PFQuery queryWithClassName:PF_GROUPS_CLASS_NAME];
+        [query setLimit:1000];
         [query whereKey:PF_GROUP_OWNER notEqualTo:[PFUser currentUser]];
         //        [query includeKey:PF_GROUP_OWNER];
         NSArray *groups = [query findObjects];
@@ -373,6 +381,7 @@ PFUser *currentUser;
         PFRelation *usersRelation = [group relationForKey:PF_TENTATIVE_GROUP_USERS];
         PFQuery *query = [usersRelation query];
         //[query whereKey:OBJECT_ID notEqualTo:[[PFUser currentUser] objectId]];
+        [query setLimit:1000];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
           if (!error) {
                 NSArray *tenativeUsers = [NSArray new];
@@ -395,6 +404,7 @@ PFUser *currentUser;
         // Check does relation exist
         PFRelation *relationExist = [group relationForKey:PF_TENTATIVE_GROUP_USERS];
         PFQuery *query = [relationExist query];
+        [query setLimit:1000];
         [query whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
         [query countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
              if (!error && count == 0) {
@@ -420,6 +430,7 @@ PFUser *currentUser;
           // Check does relation exist
           PFRelation *relationExist = [group relationForKey:PF_GROUP_Users_RELATION];
           PFQuery *query = [relationExist query];
+            [query setLimit:1000];
             [query whereKey:@"objectId" equalTo:user.objectId];
             [query countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
                  if (!error && count == 0) {
@@ -475,6 +486,7 @@ PFUser *currentUser;
     PFObject *result = nil;
     if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
         PFQuery *query = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
+        [query setLimit:1000];
         [query whereKey:@"objectId" equalTo:requestId];
         result = [query getFirstObject];
     }
@@ -504,6 +516,7 @@ PFUser *currentUser;
     
     PFRelation *userRelation = [group relationForKey:PF_GROUP_Users_RELATION];
     PFQuery *query = [userRelation query];
+    [query setLimit:1000];
     [query whereKey:PF_USER_USERNAME notEqualTo:[[PFUser currentUser] username]];
     [query whereKey:PF_USER_LOCATION nearGeoPoint:userGeoPoint withinMiles:K_NEAR_DISTANCE];
     [query countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
@@ -518,6 +531,7 @@ PFUser *currentUser;
 - (void) getAllUsers {
     if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
     PFQuery *query = [PFUser query];
+    [query setLimit:1000];
     [query whereKey:PF_USER_USERNAME notEqualTo:[[PFUser currentUser] username]];
 
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -570,11 +584,14 @@ PFUser *currentUser;
     __block NSUInteger number = 0;
     // load requests if the user is sender or receiver
     PFQuery *query1 = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
+    [query1 setLimit:1000];
     [query1 whereKey:PF_REQUEST_SENDER equalTo:[PFUser currentUser]];
     PFQuery *query2 = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
     [query2 whereKey:@"receivers" equalTo:[[PFUser currentUser] username]];
+    [query2 setLimit:1000];
     
     PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:query1, query2, nil]];
+    [query setLimit:1000];
     [query whereKey:PF_REQUEST_END_DATE greaterThan:[NSDate date]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         number = [objects count];
@@ -607,7 +624,6 @@ PFUser *currentUser;
         //        [query whereKey:OBJECT_ID  doesNotMatchKey:OBJECT_ID inQuery:groupUsersQuery];
         //
         
-        
         PFQuery *query2 = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
         [query1 whereKey:@"receivers" equalTo:[[PFUser currentUser] username]];
         
@@ -635,9 +651,12 @@ PFUser *currentUser;
     @try {
         PFQuery *query1 = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
         [query1 whereKey:PF_REQUEST_SENDER equalTo:[PFUser currentUser]];
+        [query1 setLimit:1000];
         PFQuery *query2 = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
         [query2 whereKey:PF_REQUEST_RECEIVER equalTo:[[PFUser currentUser] username]];
+        [query2 setLimit:1000];
         PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:query1, query2, nil]];
+        [query setLimit:1000];
         [query orderByDescending:PF_CREATED_AT];
 
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
@@ -738,6 +757,7 @@ PFUser *currentUser;
     @try {
         // delete chat object
         PFQuery *query = [PFQuery queryWithClassName:PF_MESSAGES_CLASS_NAME];
+        [query setLimit:1000];
         [query whereKey:PF_MESSAGES_GROUPID equalTo:requestId];
         if (user) {
             [query whereKey:PF_MESSAGES_USER equalTo:user];
@@ -755,12 +775,13 @@ PFUser *currentUser;
              else NSLog(@"CreateMessageItem query error.");
          }];
         // delete chat messages
-        PFQuery *cahtMessagesQuery = [PFQuery queryWithClassName:PF_CHAT_CLASS_NAME];
-        [cahtMessagesQuery whereKey:PF_CHAT_GROUPID equalTo:requestId];
+        PFQuery *chatMessagesQuery = [PFQuery queryWithClassName:PF_CHAT_CLASS_NAME];
+        [chatMessagesQuery whereKey:PF_CHAT_GROUPID equalTo:requestId];
+        [chatMessagesQuery setLimit:1000];
         if (user) {
-            [cahtMessagesQuery whereKey:PF_CHAT_USER equalTo:user];
+            [chatMessagesQuery whereKey:PF_CHAT_USER equalTo:user];
         }
-        [cahtMessagesQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
+        [chatMessagesQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
             if (objects > 0) {
                 for (int i = 0; i<[objects count]; i++) {
                     [[objects objectAtIndex:i] deleteInBackground];
@@ -780,7 +801,9 @@ PFUser *currentUser;
     @try {
         PFRelation *usersRelation = [group relationForKey:PF_GROUP_Users_RELATION];
         PFQuery *groupUsersQuery = [usersRelation query];
+        [groupUsersQuery setLimit:1000];
         PFQuery *query = [PFUser query];
+        [query setLimit:1000];
         [query whereKey:OBJECT_ID  doesNotMatchKey:OBJECT_ID inQuery:groupUsersQuery];
 
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {

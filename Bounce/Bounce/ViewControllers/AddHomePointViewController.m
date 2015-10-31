@@ -239,8 +239,6 @@
         }];
     
         
-        
-        
         UIImage *img = [UIImage imageNamed:@"redPlusWithBorder"];
         [cell.iconView setImage:img forState:UIControlStateNormal];
         cell.iconView.tag = indexPath.row;
