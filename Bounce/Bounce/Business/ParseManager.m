@@ -652,12 +652,9 @@ PFUser *currentUser;
     @try {
         PFQuery *query1 = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
         [query1 whereKey:PF_REQUEST_SENDER equalTo:[PFUser currentUser]];
-        [query1 setLimit:1000];
         PFQuery *query2 = [PFQuery queryWithClassName:PF_REQUEST_CLASS_NAME];
         [query2 whereKey:PF_REQUEST_RECEIVER equalTo:[[PFUser currentUser] username]];
-        [query2 setLimit:1000];
         PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:query1, query2, nil]];
-        [query setLimit:1000];
         [query orderByDescending:PF_CREATED_AT];
 
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
