@@ -15,7 +15,7 @@ class RequestPushNotificationsViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
         
-        titleLabel.text = "We need push notifications!"
+        titleLabel.text = "Do you want to get notified when you get messages?"
         titleLabel.font = UIFont(name: "AvenirNext-Medium", size: 24)
         titleLabel.textColor = UIColor.whiteColor()
         titleLabel.textAlignment = .Center
@@ -46,7 +46,7 @@ class RequestPushNotificationsViewController: UIViewController {
     private lazy var descriptionLabel: UILabel = {
         let descriptionLabel = UILabel()
         
-        descriptionLabel.text = "We'll let you know when you get a message via chat or leaving request."
+        descriptionLabel.text = "Let Bounce send you push notifications when a neighbor sends you a message, or wants to leave nearby."
         descriptionLabel.font = Constants.Fonts.Avenir.Medium
         descriptionLabel.textColor = UIColor.whiteColor()
         descriptionLabel.textAlignment = .Center

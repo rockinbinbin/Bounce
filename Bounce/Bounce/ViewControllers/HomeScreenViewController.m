@@ -198,8 +198,8 @@
     [confirmButton setBackgroundColor:[UIColor whiteColor]];
     confirmButton.tintColor = BounceRed;
     [confirmButton.layer setCornerRadius:10];
-    [confirmButton setTitle:@"Create Leaving Group" forState:UIControlStateNormal];
-    confirmButton.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size:18];
+    [confirmButton setTitle:@"GET HOME" forState:UIControlStateNormal];
+    confirmButton.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Bold" size:18];
     [confirmButton addTarget:self action:@selector(confirmButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:confirmButton];
     [confirmButton kgn_sizeToHeight:48];
@@ -610,6 +610,11 @@
     
     cell.homepointName.text = [[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
     
+
+    if ([self.nearUsers objectForKey:[[self.groups objectAtIndex:indexPath.row] objectId]] == nil) {
+        cell.nearbyUsers.text = @"Loading...";
+    }
+    else {
     NSString *usersNearby = [self.nearUsers objectForKey:[[self.groups objectAtIndex:indexPath.row] objectId]];
     int numUsers = (int)[usersNearby integerValue];
     if (numUsers == 0) {
@@ -625,6 +630,7 @@
     if ([self.homepointDistances count] > indexPath.row) {
         NSString *distanceText = [self.homepointDistances objectAtIndex:indexPath.row];
         cell.distanceLabel.text = distanceText;
+    }
     }
     
     return cell;

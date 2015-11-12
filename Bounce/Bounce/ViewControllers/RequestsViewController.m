@@ -72,7 +72,7 @@
     UIButton *makeRequest = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     makeRequest.tintColor = [UIColor whiteColor];
     [makeRequest setBackgroundColor:BounceSeaGreen];
-    [makeRequest setTitle:@"Create a new leaving group" forState:UIControlStateNormal];
+    [makeRequest setTitle:@"GET HOME" forState:UIControlStateNormal];
     makeRequest.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:18];
     makeRequest.layer.cornerRadius = 10;
     [makeRequest addTarget:self action:@selector(makeRequestButtonClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -364,7 +364,7 @@
                             }
                             else {
                                 dispatch_async(dispatch_get_main_queue(), ^{
-                                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Someone has removed you from this chat." message:@"This happens when a user notices that you have not participated in some time. If you're still looking for buddies, create a new leaving group!" delegate:weakSelf cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Someone has removed you from this chat." message:@"This happens if someone is threatened by you, or simply if they've noticed that you haven't participated." delegate:weakSelf cancelButtonTitle:@"OK" otherButtonTitles:nil];
                                     [alert show];
                                 });
                             }

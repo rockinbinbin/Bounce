@@ -18,7 +18,7 @@ class RequestLocationViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
 
-        titleLabel.text = "We need your location!"
+        titleLabel.text = "Do you want to get home with others nearby?"
         titleLabel.font = UIFont(name: "AvenirNext-Medium", size: 24)
         titleLabel.textColor = UIColor.whiteColor()
         titleLabel.textAlignment = .Center
@@ -40,7 +40,7 @@ class RequestLocationViewController: UIViewController {
     private lazy var descriptionLabel: UILabel = {
         let descriptionLabel = UILabel()
         
-        descriptionLabel.text = "We use your location to help you find others nearby to get home with, and to provide better suggestions for homepoints to join."
+        descriptionLabel.text = "Let Bounce group you with others nearby when you or a neighbor wants to get home. To know who's nearby, let Bounce use your location. It's private to everyone on the app."
         descriptionLabel.font = Constants.Fonts.Avenir.Medium
         descriptionLabel.textColor = UIColor.whiteColor()
         descriptionLabel.textAlignment = .Center
