@@ -521,8 +521,8 @@ PFUser *currentUser;
     [query whereKey:PF_USER_USERNAME notEqualTo:[[PFUser currentUser] username]];
     [query whereKey:PF_USER_LOCATION nearGeoPoint:userGeoPoint withinMiles:K_NEAR_DISTANCE];
     [query countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
-        if ([self.getNearUsersDelegate respondsToSelector:@selector(didLoadNearUsers:withError:)]) {
-            [self.getNearUsersDelegate didLoadNearUsers:number withError:error];
+        if ([self.getNearUsersDelegate respondsToSelector:@selector(didLoadNearUsers:forGroup:withError:)]) {
+            [self.getNearUsersDelegate didLoadNearUsers:number forGroup:group withError:error];
         }
     }];
     }

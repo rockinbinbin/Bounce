@@ -166,5 +166,5 @@
 @end
 
 @protocol ParseManagerGetNearUsersDelegate <NSObject>
-- (void) didLoadNearUsers:(int)userCount withError:(NSError *) error;
+- (void) didLoadNearUsers:(int)userCount forGroup:(PFObject *)group withError:(NSError *) error;
 @end

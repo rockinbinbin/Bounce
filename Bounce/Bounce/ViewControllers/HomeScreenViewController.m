@@ -27,7 +27,7 @@
 
 
 @property NSMutableArray *groups;
-@property NSMutableArray *nearUsers;
+@property NSMutableDictionary *nearUsers;
 @property NSMutableArray *selectedCells;
 @property NSMutableArray *homepointDistances;
 @property NSArray *images;
@@ -458,7 +458,7 @@
             }
             // calculate the near users in each group
             // calculate the distance to the group
-            self.nearUsers = [[NSMutableArray alloc] init];
+            self.nearUsers = [[NSMutableDictionary alloc] init];
             self.homepointDistances = [NSMutableArray new];
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -501,8 +501,12 @@
     }
 }
 
--(void)didLoadNearUsers:(int)userCount withError:(NSError *)error {
-    [self.nearUsers addObject:[NSNumber numberWithInt:userCount]];
+-(void)didLoadNearUsers:(int)userCount forGroup:(PFObject *)group withError:(NSError *)error {
+    //[self.nearUsers addObject:[NSNumber numberWithInt:userCount]];
+    
+    NSNumber *num = [NSNumber numberWithInt:userCount];
+    
+    [self.nearUsers setObject:num forKey:[group objectId]];
     
     if ([self.nearUsers count] == [self.groups count]) {
         [self.tableView reloadData];
@@ -606,19 +610,18 @@
     
     cell.homepointName.text = [[self.groups objectAtIndex:indexPath.row] objectForKey:PF_GROUPS_NAME];
     
-    if ([self.nearUsers count] > indexPath.row) {
-        NSString *usersNearby = [self.nearUsers objectAtIndex:indexPath.row];
-        int numUsers = (int)[usersNearby integerValue];
-        if (numUsers == 0) {
-            cell.nearbyUsers.text = @"no users nearby :(";
-        }
-        else if (numUsers == 1) {
-            cell.nearbyUsers.text = [NSString stringWithFormat:@"1 user nearby"];
-        }
-        else if (numUsers != 0) {
-            cell.nearbyUsers.text = [NSString stringWithFormat:@"%@ users nearby",usersNearby];
-        }
+    NSString *usersNearby = [self.nearUsers objectForKey:[[self.groups objectAtIndex:indexPath.row] objectId]];
+    int numUsers = (int)[usersNearby integerValue];
+    if (numUsers == 0) {
+        cell.nearbyUsers.text = @"no users nearby :(";
     }
+    else if (numUsers == 1) {
+        cell.nearbyUsers.text = [NSString stringWithFormat:@"1 user nearby"];
+    }
+    else if (numUsers != 0) {
+        cell.nearbyUsers.text = [NSString stringWithFormat:@"%@ users nearby", usersNearby];
+    }
+    
     if ([self.homepointDistances count] > indexPath.row) {
         NSString *distanceText = [self.homepointDistances objectAtIndex:indexPath.row];
         cell.distanceLabel.text = distanceText;
