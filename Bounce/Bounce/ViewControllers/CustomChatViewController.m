@@ -59,8 +59,6 @@
     if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
         MAKE_A_WEAKSELF;
         
-        
-        
         PFRelation *removedUsers = [self.currentRequest1 relationForKey:@"removedUsers"];
         PFQuery *removedUsersQuery = [removedUsers query];
         
@@ -199,6 +197,7 @@
     cell.homepointName.font = [UIFont fontWithName:@"AvenirNext-Regular" size:16];
     [cell.homepointName kgn_centerVerticallyInSuperview];
     cell.homepointName.text = [[self.receivers objectAtIndex:indexPath.row] valueForKey:PF_USER_FULLNAME];
+    cell.homepointName.numberOfLines = 0;
     
     UIImage *img = [UIImage imageNamed:@"redX"];
     UIButton *iconView = [UIButton new];

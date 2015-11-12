@@ -56,6 +56,7 @@ static RequestManger *sharedRequestManger = nil;
                 NSLog(@"%@", user.username);
                 [resultUsernames addObject:user.username];
             }
+            
             // Set the request data
             PFObject *request;
             request = [PFObject objectWithClassName:PF_REQUEST_CLASS_NAME];
@@ -65,6 +66,8 @@ static RequestManger *sharedRequestManger = nil;
             request[PF_REQUEST_TIME_ALLOCATED] = [NSNumber numberWithInteger:timeAllocated + 15]; // Buffer of 15 minutes
             request[PF_REQUEST_LOCATION] = [[PFUser currentUser] objectForKey:PF_USER_LOCATION];
             request[PF_GENDER] = gender;
+            
+            [[request relationForKey:@"joinedUsers"] addObject:[PFUser currentUser]];
             
             NSMutableArray *groupNames = [NSMutableArray new];
             
