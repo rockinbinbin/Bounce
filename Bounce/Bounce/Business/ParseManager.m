@@ -510,21 +510,21 @@ PFUser *currentUser;
 - (void) getNearUsersNumberInGroup:(PFObject *) group
 {
     if ([[Utility getInstance]checkReachabilityAndDisplayErrorMessage]) {
-    // User's location
+        
     PFGeoPoint *userGeoPoint = [[PFUser currentUser] objectForKey:PF_USER_LOCATION];
-    
-    // TODO: error check for nil current location
-    
-    PFRelation *userRelation = [group relationForKey:PF_GROUP_Users_RELATION];
-    PFQuery *query = [userRelation query];
-    [query setLimit:1000];
-    [query whereKey:PF_USER_USERNAME notEqualTo:[[PFUser currentUser] username]];
-    [query whereKey:PF_USER_LOCATION nearGeoPoint:userGeoPoint withinMiles:K_NEAR_DISTANCE];
-    [query countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
-        if ([self.getNearUsersDelegate respondsToSelector:@selector(didLoadNearUsers:forGroup:withError:)]) {
-            [self.getNearUsersDelegate didLoadNearUsers:number forGroup:group withError:error];
-        }
-    }];
+        
+    if (userGeoPoint != nil) {
+        PFRelation *userRelation = [group relationForKey:PF_GROUP_Users_RELATION];
+        PFQuery *query = [userRelation query];
+        [query setLimit:1000];
+        [query whereKey:PF_USER_USERNAME notEqualTo:[[PFUser currentUser] username]];
+        [query whereKey:PF_USER_LOCATION nearGeoPoint:userGeoPoint withinMiles:K_NEAR_DISTANCE];
+        [query countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
+            if ([self.getNearUsersDelegate respondsToSelector:@selector(didLoadNearUsers:forGroup:withError:)]) {
+                [self.getNearUsersDelegate didLoadNearUsers:number forGroup:group withError:error];
+            }
+        }];
+    }
     }
 }
 

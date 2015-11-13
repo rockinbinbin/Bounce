@@ -11,6 +11,7 @@
 #import "AppConstant.h"
 #import "ParseManager.h"
 #import "Constants.h"
+#import "Utility.h"
 
 @implementation RequestManger
 {
@@ -47,6 +48,8 @@ static RequestManger *sharedRequestManger = nil;
             gender = ALL_GENDER;
         }
         PFGeoPoint *userGeoPoint = currentUser[PF_USER_LOCATION];
+        
+        if (userGeoPoint != nil) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             // get User in the selected groups and within the radius
             NSArray *resultUsers = [self getUsersInSelectedGroups:selectedGroups withGender:gender WithinRequestRadius:radius withSenderName:[currentUser username] andSenderLocation:userGeoPoint];
@@ -102,6 +105,16 @@ static RequestManger *sharedRequestManger = nil;
                 }];
             }];
         });
+    }
+    else {
+        [[Utility getInstance] hideProgressHud];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Where are you?"
+                                                        message: @"Please go to Settings > Bounce > Location, and allow us to use your location!"
+                                                       delegate: self
+                                              cancelButtonTitle: @"OK"
+                                              otherButtonTitles: nil];
+        [alert show];
+    }
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@", exception);
