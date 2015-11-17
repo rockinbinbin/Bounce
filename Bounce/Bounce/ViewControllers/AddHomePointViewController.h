@@ -14,7 +14,6 @@
     ParseManagerDelegate,
     ParseManagerLoadingGroupsDelegate,
     UIActionSheetDelegate,
-    ParseManagerGetTentativeUsers,
     ParseManagerGetAllOtherGroups,
     UISearchResultsUpdating,
     UISearchControllerDelegate,

@@ -8,6 +8,8 @@
 
 #import "membersCell.h"
 #import "UIView+AutoLayout.h"
+#import "Utility.h"
+#import "pushnotification.h"
 
 @implementation membersCell
 
@@ -74,6 +76,9 @@
             self.iconView = iconView;
             [iconView kgn_pinToRightEdgeOfSuperviewWithOffset:20];
             [iconView kgn_centerVerticallyInSuperview];
+            UIImage *img = [UIImage imageNamed:@"redPlusWithBorder"];
+            [self.iconView setImage:img forState:UIControlStateNormal];
+            [self.iconView addTarget:self action:@selector(addGroup:) forControlEvents:UIControlEventTouchUpInside];
         
             UILabel *requestSent = [UILabel new];
             requestSent.translatesAutoresizingMaskIntoConstraints = NO;
@@ -87,6 +92,21 @@
         }
         return self;
     }
+
+- (void) addGroup:(id)sender {
+    [[ParseManager getInstance] setGetTentativeUsersDelegate:self];
+    [[ParseManager getInstance] getTentativeUsersFromGroup:self.group];
+    
+    SendPendingUserPush(self.group);
+    
+    [self.iconView setImage:nil forState:UIControlStateNormal];
+    self.requestAdded.text = @"Request sent!";
+}
+
+- (void)didLoadTentativeUsers:(NSArray *)tentativeUsers {
+    [[Utility getInstance] hideProgressHud];
+    [[ParseManager getInstance] addTentativeUserToGroup:self.group withExistingTentativeUsers:tentativeUsers];
+}
 
 
 @end

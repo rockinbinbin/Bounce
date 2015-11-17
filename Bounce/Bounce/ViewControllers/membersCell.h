@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ParseManager.h"
 
-@interface membersCell : UITableViewCell
+@interface membersCell : UITableViewCell <ParseManagerGetTentativeUsers>
+
 
 @property (nonatomic, weak) UILabel *name;
 @property (nonatomic, weak) UILabel *addedBy;
@@ -19,6 +21,7 @@
 @property (nonatomic, weak) UILabel *distance;
 @property (nonatomic, weak) UILabel *address;
 @property (nonatomic, weak) UILabel *friendsLabel;
+@property (nonatomic, strong) PFObject *group;
 
 
 @end

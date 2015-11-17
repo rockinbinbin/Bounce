@@ -125,7 +125,6 @@
     [[Utility getInstance] showProgressHudWithMessage:@"Loading"];
     [[ParseManager getInstance] setGetAllOtherGroupsDelegate:self];
     [[ParseManager getInstance] getAllOtherGroupsForCurrentUser];
-    [[ParseManager getInstance] setGetTentativeUsersDelegate:self];
     [[ParseManager getInstance] setUpdateGroupDelegate:self];
     [[ParseManager getInstance] setGetFacebookFriendsDelegate:self];
     [self loadGroups];
@@ -215,10 +214,10 @@
     NSString *text;
     if ([tableView isEqual:ResultsTableView]) {
         text = [self.searchResults[indexPath.row] objectForKey:@"groupName"];
-        
         cell.friendsLabel.text = @"Loading...";
         
         PFObject *homepoint = self.searchResults[indexPath.row];
+        cell.group = homepoint;
         PFRelation *groupUsers = homepoint[PF_GROUP_Users_RELATION];
         PFQuery *friendsQuery = [groupUsers query];
         PFQuery *totalQuery = [groupUsers query];
@@ -238,20 +237,8 @@
             }];
         }];
     
-        
-        UIImage *img = [UIImage imageNamed:@"redPlusWithBorder"];
-        [cell.iconView setImage:img forState:UIControlStateNormal];
-        cell.iconView.tag = indexPath.row;
-        
-        if (indexPath.row == self.index) {
-            [cell.iconView setImage:nil forState:UIControlStateNormal];
-            cell.requestAdded.text = @"Request sent!";
-        }
-        
         cell.address.text = [self.searchResults[indexPath.row] objectForKey:@"Address"];
-        
-        [cell.iconView addTarget:self action:@selector(addGroup:) forControlEvents:UIControlEventTouchUpInside];
-        
+
         cell.name.text = text;
         PFObject *hp = [self.searchResults objectAtIndex:indexPath.row];
         PFFile *file = [hp objectForKey:PF_GROUP_IMAGE];
@@ -264,10 +251,12 @@
     }
     else {
         text = [groups[indexPath.row] objectForKey:@"groupName"];
+        PFObject *homepoint = groups[indexPath.row];
+        cell.group = homepoint;
         
         cell.friendsLabel.text = @"Loading...";
         if ([self.allGroups count]) {
-        PFObject *homepoint = self.allGroups[indexPath.row];
+        //PFObject *homepoint = self.allGroups[indexPath.row];
         PFRelation *groupUsers = homepoint[PF_GROUP_Users_RELATION];
         PFQuery *friendsQuery = [groupUsers query];
         PFQuery *totalQuery = [groupUsers query];
@@ -287,18 +276,9 @@
             }];
         }];
         }
-        UIImage *img = [UIImage imageNamed:@"redPlusWithBorder"];
-        [cell.iconView setImage:img forState:UIControlStateNormal];
-        cell.iconView.tag = indexPath.row;
-        
-        if (indexPath.row == self.index) {
-            [cell.iconView setImage:nil forState:UIControlStateNormal];
-            cell.requestAdded.text = @"Request sent!";
-        }
+
         
         cell.address.text = [groups[indexPath.row] objectForKey:@"Address"];
-        
-        [cell.iconView addTarget:self action:@selector(addGroup:) forControlEvents:UIControlEventTouchUpInside];
         
         cell.name.text = text;
         PFObject *hp = [groups objectAtIndex:indexPath.row];
@@ -316,108 +296,10 @@
 #pragma mark - TableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    //    if ([[userJoinedGroups objectAtIndex:indexPath.row]boolValue]) {
-    //        // remove current user from the selected group
-    //        [self deleteUserFromGroup:indexPath.row];
-    //    } else {
-    //        // add current user to the selected group
-    //        [self addUserToGroup:indexPath.row];
-    //    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 140;
-}
-
-#pragma mark - Add User to selected group
-
-- (void) addGroup:(id)sender {
-    
-    UIButton *senderButton = (UIButton *)sender;
-    NSIndexPath *path = [NSIndexPath indexPathForRow:senderButton.tag inSection:0];
-    
-    if ([self.searchResults count]) {
-        if (path != nil) {
-            self.currentGroup = [self.searchResults objectAtIndex:path.row];
-            [[ParseManager getInstance] setGetTentativeUsersDelegate:self];
-            [[ParseManager getInstance] getTentativeUsersFromGroup:self.currentGroup];
-            SendPendingUserPush(self.currentGroup);
-            if (self.index != path.row) {
-                self.index = path.row;
-                self.shouldAdd = YES;
-            }
-            else {
-                self.index = -1;
-                self.shouldAdd = NO;
-            }
-            [ResultsTableView reloadData];
-        }
-    }
-    else {
-        if (path != nil) {
-            self.currentGroup = [groups objectAtIndex:path.row];
-            [[ParseManager getInstance] setGetTentativeUsersDelegate:self];
-            [[ParseManager getInstance] getTentativeUsersFromGroup:self.currentGroup];
-            SendPendingUserPush(self.currentGroup);
-            if (self.index != path.row) {
-                self.index = path.row;
-                self.shouldAdd = YES;
-            }
-            else {
-                self.index = -1;
-                self.shouldAdd = NO;
-            }
-            [self.tableView reloadData];
-        }
-    }
-}
-
-//- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex;
-//{
-//    if (buttonIndex == 0) {
-//        [self requestToJoin];
-//    }
-//}
-//
-//- (void) addUserToGroup:(NSInteger) index
-//{
-//    self.cellIndex = index;
-//    if (!_imageActionSheet) {
-//        self.imageActionSheet = [[UIActionSheet alloc] initWithTitle:@"A member of this homepoint will have to approve your request."  delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Request to join", nil];
-//        }
-//    [self.imageActionSheet showInView:self.view];
-//
-//}
-//
-//-(void)requestToJoin {
-//    if ([self.searchResults count]) {
-//        PFObject *group = [self.searchResults objectAtIndex:self.cellIndex];
-//        if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
-//            [[Utility getInstance] showProgressHudWithMessage:[NSString stringWithFormat:@"Request sent to %@", [group objectForKey:PF_GROUPS_NAME]] withView:self.view];
-//            selectedIndex = self.cellIndex;
-//            [[ParseManager getInstance] setGetTentativeUsersDelegate:self];
-//            [[ParseManager getInstance] getTentativeUsersFromGroup:group]; // this adds user to tentative list
-//        }
-//    }
-//    else {
-//        PFObject *group = [groups objectAtIndex:self.cellIndex];
-//        if ([[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
-//            [[Utility getInstance] showProgressHudWithMessage:[NSString stringWithFormat:@"Request sent to %@", [group objectForKey:PF_GROUPS_NAME]] withView:self.view];
-//            selectedIndex = self.cellIndex;
-//            [[ParseManager getInstance] setGetTentativeUsersDelegate:self];
-//            [[ParseManager getInstance] getTentativeUsersFromGroup:group]; // this adds user to tentative list
-//        }
-//    }
-//}
-
-- (void)didLoadTentativeUsers:(NSArray *)tentativeUsers {
-    [[Utility getInstance] hideProgressHud];
-    if ([self.searchResults count]) {
-        [[ParseManager getInstance] addTentativeUserToGroup:[self.searchResults objectAtIndex:self.cellIndex] withExistingTentativeUsers:tentativeUsers];
-    }
-    else {
-        [[ParseManager getInstance] addTentativeUserToGroup:[groups objectAtIndex:self.cellIndex] withExistingTentativeUsers:tentativeUsers];
-    }
 }
 
 #pragma mark - Delete user from selected group
