@@ -14,6 +14,7 @@
 		002805C51B845631004E1DE1 /* membersCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 002805C41B845631004E1DE1 /* membersCell.m */; };
 		002805CB1B8FF375004E1DE1 /* HomepointChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 002805CA1B8FF375004E1DE1 /* HomepointChat.m */; };
 		00414F691AAE2B3200B25CEE /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 00414F681AAE2B3200B25CEE /* libicucore.dylib */; };
+		006A892D1BFBD8640096298E /* usersCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 006A892C1BFBD8640096298E /* usersCell.m */; };
 		007BA4091A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 007BA4061A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.m */; };
 		007BA40A1A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 007BA4081A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
 		007CF29A1AA3E516007D7C33 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF2991AA3E516007D7C33 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -50,7 +51,7 @@
 		282FAC1B1B71D4C700899FAB /* EmailSentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282FAC151B71D4C700899FAB /* EmailSentViewController.swift */; };
 		282FAC1D1B71D54C00899FAB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282FAC1C1B71D54C00899FAB /* Constants.swift */; };
 		282FAC1F1B71D56D00899FAB /* KGN Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282FAC1E1B71D56D00899FAB /* KGN Autolayout.swift */; };
-		287FB69A1BB7B21200301028 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287FB6991BB7B21200301028 /* GlobalVariables.swift */; settings = {ASSET_TAGS = (); }; };
+		287FB69A1BB7B21200301028 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287FB6991BB7B21200301028 /* GlobalVariables.swift */; };
 		28802DAC1B7708CF008E8B33 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28802DAB1B7708CF008E8B33 /* AccountViewController.swift */; };
 		28802DAE1B770C12008E8B33 /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28802DAD1B770C12008E8B33 /* RootTabBarController.swift */; };
 		28802DB01B770C8D008E8B33 /* UniversityEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28802DAF1B770C8D008E8B33 /* UniversityEmail.swift */; };
@@ -342,6 +343,8 @@
 		00414EFE1AADEE0600B25CEE /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
 		00414EFF1AADEE0600B25CEE /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
 		00414F681AAE2B3200B25CEE /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		006A892B1BFBD8640096298E /* usersCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = usersCell.h; path = ../../usersCell.h; sourceTree = "<group>"; };
+		006A892C1BFBD8640096298E /* usersCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = usersCell.m; path = ../../usersCell.m; sourceTree = "<group>"; };
 		007BA4051A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
 		007BA4061A6CDF7500BF08DE /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
 		007BA4071A6CDF7500BF08DE /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
@@ -1165,6 +1168,8 @@
 		67BB91F71ADFA8D10050164B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				006A892B1BFBD8640096298E /* usersCell.h */,
+				006A892C1BFBD8640096298E /* usersCell.m */,
 				00E2CBB21B53073700B316D1 /* UIView+AutoLayout.h */,
 				00E2CBB31B53073700B316D1 /* UIView+AutoLayout.m */,
 				002805BD1B8452CB004E1DE1 /* MembersViewController.h */,
@@ -1758,6 +1763,7 @@
 				67BB940D1ADFABCD0050164B /* UIWebView+AFNetworking.m in Sources */,
 				67BB93FD1ADFABCD0050164B /* AFHTTPRequestOperation.m in Sources */,
 				67BB94051ADFABCD0050164B /* AFURLSessionManager.m in Sources */,
+				006A892D1BFBD8640096298E /* usersCell.m in Sources */,
 				67BB94391ADFABCD0050164B /* JSQMessagesCollectionViewFlowLayout.m in Sources */,
 				28A0FFDA1B9B8D25002CF156 /* RichTextViewController.swift in Sources */,
 				67BB94371ADFABCD0050164B /* JSQMessagesTimestampFormatter.m in Sources */,

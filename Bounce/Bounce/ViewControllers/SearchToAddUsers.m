@@ -12,6 +12,7 @@
 #import "Utility.h"
 #import "pushnotification.h"
 #import "AppConstant.h"
+#import "usersCell.h"
 
 #define ResultsTableView self.searchResultsTableViewController.tableView
 
@@ -100,10 +101,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
        NSString* cellId = Identifier;
-        membersCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellId];
+        usersCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellId];
     
         if (!cell) {
-                cell = [membersCell new];
+                cell = [usersCell new];
             }
     
         NSString *text;

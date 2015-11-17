@@ -10,6 +10,7 @@
 #import "membersCell.h"
 #import "SearchToAddUsers.h"
 #import "pushnotification.h"
+#import "usersCell.h"
 
 @implementation MembersViewController
 
@@ -98,10 +99,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
         NSString* cellId = @"ChatListCell";
-        membersCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellId];
+        usersCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellId];
     
         if (!cell) {
-               cell = [membersCell new];
+               cell = [usersCell new];
             }
     
         PFUser *user = [PFUser new];
