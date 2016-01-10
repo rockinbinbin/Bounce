@@ -10,15 +10,15 @@ import UIKit
 import Darwin
 
 class RequestLocationViewController: UIViewController {
-
+    
     // MARK: - UI Elements
     
     let locationManager = CLLocationManager()
     
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
-
-        titleLabel.text = "Do you want to get home with others nearby?"
+        
+        titleLabel.text = "We need your location!"
         titleLabel.font = UIFont(name: "AvenirNext-Medium", size: 24)
         titleLabel.textColor = UIColor.whiteColor()
         titleLabel.textAlignment = .Center
@@ -40,7 +40,7 @@ class RequestLocationViewController: UIViewController {
     private lazy var descriptionLabel: UILabel = {
         let descriptionLabel = UILabel()
         
-        descriptionLabel.text = "Let Bounce group you with others nearby when you or a neighbor wants to get home. To know who's nearby, let Bounce use your location. It's private to everyone on the app."
+        descriptionLabel.text = "We use your location to help you find others nearby to get home with, and to provide better suggestions for homepoints to join."
         descriptionLabel.font = Constants.Fonts.Avenir.Medium
         descriptionLabel.textColor = UIColor.whiteColor()
         descriptionLabel.textAlignment = .Center
@@ -54,7 +54,7 @@ class RequestLocationViewController: UIViewController {
     
     private lazy var continueButton: RoundedRectButton = {
         let continueButton = RoundedRectButton(text: "Continue")
-
+        
         continueButton.addTarget(self, action: "continuePressed", forControlEvents: .TouchUpInside)
         
         self.view.addSubview(continueButton)
@@ -131,7 +131,7 @@ class RequestLocationViewController: UIViewController {
         self.configureViewControllerAppearance()
         self.layoutViews()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

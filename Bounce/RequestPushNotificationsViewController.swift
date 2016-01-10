@@ -15,7 +15,7 @@ class RequestPushNotificationsViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
         
-        titleLabel.text = "Do you want to get notified when you get messages?"
+        titleLabel.text = "We need push notifications!"
         titleLabel.font = UIFont(name: "AvenirNext-Medium", size: 24)
         titleLabel.textColor = UIColor.whiteColor()
         titleLabel.textAlignment = .Center
@@ -23,7 +23,7 @@ class RequestPushNotificationsViewController: UIViewController {
         self.view.addSubview(titleLabel)
         
         return titleLabel
-        }()
+    }()
     
     private lazy var phoneImageView: UIImageView = {
         let image = UIImage(named: "Intro-Phone")
@@ -32,7 +32,7 @@ class RequestPushNotificationsViewController: UIViewController {
         self.view.addSubview(phoneImageView)
         
         return phoneImageView
-        }()
+    }()
     
     private lazy var notificationImageView: UIImageView = {
         let image = UIImage(named: "Intro-Notification")
@@ -41,12 +41,12 @@ class RequestPushNotificationsViewController: UIViewController {
         self.view.addSubview(notificationImageView)
         
         return notificationImageView
-        }()
+    }()
     
     private lazy var descriptionLabel: UILabel = {
         let descriptionLabel = UILabel()
         
-        descriptionLabel.text = "Let Bounce send you push notifications when a neighbor sends you a message, or wants to leave nearby."
+        descriptionLabel.text = "We'll let you know when you get a message via chat or leaving request."
         descriptionLabel.font = Constants.Fonts.Avenir.Medium
         descriptionLabel.textColor = UIColor.whiteColor()
         descriptionLabel.textAlignment = .Center
@@ -56,7 +56,7 @@ class RequestPushNotificationsViewController: UIViewController {
         self.view.addSubview(descriptionLabel)
         
         return descriptionLabel
-        }()
+    }()
     
     private lazy var continueButton: RoundedRectButton = {
         let continueButton = RoundedRectButton(text: "Continue")
@@ -66,7 +66,7 @@ class RequestPushNotificationsViewController: UIViewController {
         self.view.addSubview(continueButton)
         
         return continueButton
-        }()
+    }()
     
     // MARK: - UI Appearance and Layout
     
@@ -96,7 +96,7 @@ class RequestPushNotificationsViewController: UIViewController {
         
         descriptionLabel.positionAboveItem(continueButton, offset: screenHeight * 0.2 - 75)
         descriptionLabel.pinToSideEdgesOfSuperview(screenWidth * 0.05)
-
+        
         let notificationWidth = self.phoneImageView.image!.size.width * 0.4
         notificationImageView.sizeToWidth(notificationWidth)
         notificationImageView.sizeToHeight(notificationWidth)
