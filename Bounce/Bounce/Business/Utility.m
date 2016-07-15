@@ -2,8 +2,8 @@
 //  Utility.m
 //  ChattingApp
 //
-//  Created by Shimaa Essam on 3/16/15.
-//  Copyright (c) 2015 Shimaa Essam. All rights reserved.
+//  Created by Robin Mehta on 3/16/15.
+//  Copyright (c) 2015 Bounce Labs, Inc. All rights reserved.
 //
 
 #import "Utility.h"
@@ -64,7 +64,7 @@ static Utility *sharedUtility = nil;
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         if (![[Utility getInstance] checkReachabilityAndDisplayErrorMessage]) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Are you even connected?"
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Are you connected?"
                                                             message: @"Check your internet and try again!"
                                                            delegate: self
                                                   cancelButtonTitle: @"OK"

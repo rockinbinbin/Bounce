@@ -23,14 +23,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Initialize Parse
-    [Parse setApplicationId:PARSE_APP_ID clientKey:PARSE_CLIENT_KEY];
+    NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Keys" ofType:@"plist"]];
+    NSString *applicationId = [dictionary objectForKey:@"parseApplicationId"];
+    NSString *clientKey = [dictionary objectForKey:@"parseClientKey"];
+
+    [Parse setApplicationId:applicationId clientKey:clientKey];
     [PFAnalytics trackAppOpenedWithLaunchOptionsInBackground:launchOptions block:nil];
 
-    // Initialize PFFacebookUtils
     [PFFacebookUtils initializeFacebook];
 
-    // Configure status bar
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
     [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init]
@@ -44,11 +45,9 @@
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    // If user is logged in already
     if ([PFUser currentUser] != nil && [[PFUser currentUser] valueForKey:@"setupComplete"]) {
         [[PFUser currentUser] fetchInBackgroundWithBlock:nil];
 
-        // If logged in user completed setup
         if ([[[PFUser currentUser] valueForKey:@"setupComplete"] boolValue]) {
 
             NSString *requestId = [launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey] objectForKey:OBJECT_ID];
@@ -71,7 +70,6 @@
             }
         }
 
-    // If setup needs to be started
     } else {
         self.window.rootViewController = [[IntroViewController alloc] init];
     }

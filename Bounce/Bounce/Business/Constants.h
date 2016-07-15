@@ -2,16 +2,12 @@
 //  Constants.h
 //  bounce
 //
-//  Created by Mohamed Abo Shamaaa on 3/26/15.
-//  Copyright (c) 2015 hobble. All rights reserved.
+//  Created by Robin Mehta on 3/26/15.
+//  Copyright (c) 2015 Bounce Labs, Inc. All rights reserved.
 //
 
 #ifndef bounce_Constants_h
 #define bounce_Constants_h
-
-// Parse credentials
-#define PARSE_APP_ID @"vVNUbdp3ci9MLKqNWJMFMYBQZ1tE8EjJ5DZBTCF7"
-#define PARSE_CLIENT_KEY @"JvcX34MRd7rREhmtjFZrcU8mxqmRDFlbyC0yXzAv"
 
 #define MAKE_A_WEAKSELF     __weak typeof(self) weakSelf = self
 #define MAKE_A_STRONGSELF   __strong typeof(weakSelf) strongSelf = weakSelf

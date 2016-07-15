@@ -2,8 +2,8 @@
 //  RequestManger.m
 //  ChattingApp
 //
-//  Created by Shimaa Essam on 3/29/15.
-//  Copyright (c) 2015 Shimaa Essam. All rights reserved.
+//  Created by Robin Mehta on 3/29/15.
+//  Copyright (c) 2015 Bounce Labs, Inc. All rights reserved.
 //
 
 #import "RequestManger.h"
@@ -51,8 +51,10 @@ static RequestManger *sharedRequestManger = nil;
         
         if (userGeoPoint != nil) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
             // get User in the selected groups and within the radius
             NSArray *resultUsers = [self getUsersInSelectedGroups:selectedGroups withGender:gender WithinRequestRadius:radius withSenderName:[currentUser username] andSenderLocation:userGeoPoint];
+            
             // Get User names
             NSMutableArray *resultUsernames = [[NSMutableArray alloc] init];
             for (PFUser *user in resultUsers) {
@@ -79,23 +81,22 @@ static RequestManger *sharedRequestManger = nil;
             }
             
             request[PF_REQUEST_HOMEPOINTS] = groupNames;
-            // FIX DIS NOW
 
-            [request saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
-                // Set the request end date
+            [request saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                
                 request[PF_REQUEST_END_DATE] = [[request createdAt] dateByAddingTimeInterval:(timeAllocated*60)];
-                // save the request relations
+                
                 [self setRequestGroupRelation:request withGroups:selectedGroups];
                 [self appendUsers:resultUsers toRequestUserRelation:request];
 
                 [request saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                     if (!error) {
-                        // create Chat item with all users
+
                         NSString *requestId = request.objectId;
                         [[ParseManager getInstance] createMessageItemForUser:currentUser WithGroupId:requestId andDescription:@"request"];
                         [self createChatItemAndSendNotificationToUsers:resultUsers withRequestId:requestId];
                         activeRequest = request;
-                        // Start request updataing
+
                         self.requestLeftTimeInMinute = timeAllocated;
                         [self startRequestUpdating];
                     }
@@ -127,6 +128,7 @@ static RequestManger *sharedRequestManger = nil;
     @try {
         PFQuery *query = [PFUser query];
         NSMutableArray *queries = [[NSMutableArray alloc] init];
+        
         // go through all groups to find users who are near
         for (PFObject *group in selectedGroups) {
             PFRelation *usersIngroup = [group relationForKey:PF_GROUP_Users_RELATION];
@@ -183,8 +185,10 @@ static RequestManger *sharedRequestManger = nil;
     @try {
         PFUser *currentUser = [PFUser currentUser];
         for (PFUser* user in users) {
+            
             // Create chat item
             [[ParseManager getInstance] createMessageItemForUser:user WithGroupId:requestId andDescription:@""];
+            
             // Notify the user with the request
             [self sendPushNotificationForUser:user from:[currentUser username] WithRequestId:requestId];
         }
@@ -203,7 +207,7 @@ static RequestManger *sharedRequestManger = nil;
         
         PFPush *push = [[PFPush alloc] init];
         [push setQuery:queryInstallation];
-//        [push setMessage:[NSString stringWithFormat:@"%@ send request to you", senderName]];
+
         NSString *alertMessage = [NSString stringWithFormat:@"Heading home soon? %@ created a leaving group nearby!", senderName];
         NSDictionary *data = [[NSDictionary alloc] initWithObjects:@[requestId, alertMessage] forKeys:@[OBJECT_ID, NOTIFICATION_ALERT_MESSAGE]];
         [push setData:data];
@@ -238,17 +242,20 @@ static RequestManger *sharedRequestManger = nil;
 {
     @try {
         NSDate *endDate = [[activeRequest createdAt] dateByAddingTimeInterval:[[activeRequest objectForKey:PF_REQUEST_TIME_ALLOCATED] integerValue] * 60];
+        
         if (![self isEndDateIsSmallerThanCurrent:endDate]) {
+            
             // Update Request view in home screen
             [self calculateRequestTimeOver];
             [self getNumberOfUnReadMessages];
+            
             // check if update is already runing
             if (!isUpdating) {
                 isUpdating = YES;
                 //Update request
                 [self updateRequestUsers];
             }
-        }else{
+        } else {
             // invalidate the request
             [self requestBecomeInvalid];
         }
@@ -398,19 +405,6 @@ static RequestManger *sharedRequestManger = nil;
 #pragma mark - End Request
 - (void) endRequest
 {
-    // update request data
-    // close the update thread
-    // remove the reply view
-//    [activeRequest setObject:[NSDate date] forKey:PF_REQUEST_END_DATE];
-//    [activeRequest setObject:[NSNumber numberWithBool:YES] forKey:PF_REQUEST_IS_ENDED];
-//    [activeRequest saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//        if (!error) {
-//            [self invalidateCurrentRequest];
-//        }
-//        if ([self.requestManagerDelegate respondsToSelector:@selector(didEndRequestWithError:)]) {
-//            [self.requestManagerDelegate didEndRequestWithError:error];
-//        }
-//    }];
     // Instead marked the request as deleted we become delete request data once it end
     [[ParseManager getInstance] deleteAllRequestData:activeRequest];
     [self invalidateCurrentRequest];

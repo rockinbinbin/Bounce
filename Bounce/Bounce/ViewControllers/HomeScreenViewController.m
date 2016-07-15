@@ -2,8 +2,8 @@
 //  HomeScreenViewController.m
 //  bounce
 //
-//  Created by Mohamed Abo Shamaaa on 3/26/15.
-//  Copyright (c) 2015 hobble. All rights reserved.
+//  Created by Robin Mehta on 3/26/15.
+//  Copyright (c) 2015 Bounce Labs, Inc. All rights reserved.
 //
 
 #import "HomeScreenViewController.h"

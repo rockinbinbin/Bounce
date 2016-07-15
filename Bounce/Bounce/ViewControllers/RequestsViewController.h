@@ -2,8 +2,8 @@
 //  GroupsListViewController.h
 //  ChattingApp
 //
-//  Created by Shimaa Essam on 3/18/15.
-//  Copyright (c) 2015 Shimaa Essam. All rights reserved.
+//  Created by Robin Mehta on 3/18/15.
+//  Copyright (c) 2015 Bounce Labs, Inc. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

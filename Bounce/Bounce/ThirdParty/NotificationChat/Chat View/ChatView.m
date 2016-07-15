@@ -51,7 +51,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
     
-    self.currentRequest1 = [[ParseManager getInstance] retrieveRequestUpdate:self.groupId];
+    self.currentRequest1 = [[ParseManager getInstance] retrieveRequestUpdate:self.groupId]; // should be handled in background...
     
 	users = [[NSMutableArray alloc] init];
 	messages = [[NSMutableArray alloc] init];
